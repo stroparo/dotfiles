@@ -1,0 +1,75 @@
+{
+    // "font_face": "InputMono",
+    "font_size": 10,
+
+    "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
+    // "color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme",
+    // "color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+    // "color_scheme": "Packages/Color Scheme - Default/Mac Classic.tmTheme",
+
+    // Spacegray
+    // "color_scheme": ".../base16-eighties.dark (SL).tmTheme",
+    // "theme": "Spacegray Eighties.sublime-theme",
+    // "spacegray_fileicons": true,
+    // "spacegray_sidebar_font_xlarge": true,
+    // "spacegray_sidebar_tree_xsmall": true,
+
+    // Wombat
+    // "color_scheme": "Packages/Wombat Theme/Wombat.tmTheme",
+    // "theme": "Wombat.sublime-theme",
+    // "wombat_color_blue": true,
+    // "wombat_dirty_bottom_bar_blue": true,
+
+    "always_show_minimap_viewport": false,
+    "auto_indent": true,
+    "auto_match_enabled": true,
+    "bold_folder_labels": true,
+    "caret_extra_bottom": 2,
+    "caret_extra_top": 2,
+    "caret_extra_width": 3,
+    "caret_style": "phase",
+
+    "contrasted_tabs": true,
+    "default_line_ending": "unix",
+    "detect_indentation": true,
+    "draw_centered": false,
+    "fade_fold_buttons": true,
+    "gutter": true,
+    "highlight_line": true,
+    "highlight_modified_tabs": true,
+    "icon_file_type_enable": true,
+    "ignored_packages":
+    [
+        "Vintage"
+    ],
+    "indent_guide_options":
+    [
+        "draw_normal",
+        "draw_active",
+        "draw_indent_guides"
+    ],
+    "indent_subsequent_lines": true,
+    "large_scroll_bars": true,
+    "line_numbers": true,
+    "line_padding_bottom": 1,
+    "line_padding_top": 1,
+    "margin": 4,
+    "overlay_scroll_bars": "disabled",
+    "quick_panel_small": true,
+    "rulers":
+    [
+        0,
+        88
+    ],
+    "show_encoding": true,
+    "smart_indent": true,
+    "spell_check": false,
+    "tab_size": 2,
+    "translate_tabs_to_spaces": true,
+    "trim_automatic_white_space": true,
+    "trim_trailing_white_space_on_save": false,
+    "use_tab_stops": true,
+    "wide_caret": true,
+    "word_wrap": "auto",
+    "wrap_width": 0
+}
