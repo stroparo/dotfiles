@@ -15,7 +15,17 @@
     // "spacegray_sidebar_font_xlarge": true,
     // "spacegray_sidebar_tree_xsmall": true,
 
-    // Wombat
+    // Wombat - defaults set by wombat:
+    "auto_complete_commit_on_tab": true,
+    "draw_shadows": false,
+    "use_simple_full_screen": true,
+    // "wombat_color_expanded_folder": true,
+    // "wombat_dirty_bottom_bar": true,
+    // "wombat_sidebar_tree_small": true,
+    // "wombat_solid_current_tab": true,
+    // "wombat_tabs_medium": true,
+
+    // Wombat core:
     // "color_scheme": "Packages/Wombat Theme/Wombat.tmTheme",
     // "theme": "Wombat.sublime-theme",
     // "wombat_color_blue": true,
@@ -29,7 +39,6 @@
     "caret_extra_top": 2,
     "caret_extra_width": 3,
     "caret_style": "phase",
-
     "contrasted_tabs": true,
     "default_line_ending": "unix",
     "detect_indentation": true,
@@ -63,6 +72,7 @@
         88
     ],
     "show_encoding": true,
+    "show_full_path": true,
     "smart_indent": true,
     "spell_check": false,
     "tab_size": 2,
