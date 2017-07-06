@@ -1,37 +1,23 @@
 {
-    // "font_face": "InputMono",
-    "font_size": 10,
-
+    // "color_scheme": "Packages/User/SublimeLinter/RailsCastsColorScheme (SL).tmTheme",
     "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
-    // "color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme",
-    // "color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
-    // "color_scheme": "Packages/Color Scheme - Default/Mac Classic.tmTheme",
-    // "color_scheme": "Packages/Color Scheme - Default/Dawn.tmTheme",
+    "font_size": 10,
+    // "font_face": "Hack",
 
-    // Spacegray
-    // "color_scheme": ".../base16-eighties.dark (SL).tmTheme",
     // "theme": "Spacegray Eighties.sublime-theme",
     // "spacegray_fileicons": true,
     // "spacegray_sidebar_font_xlarge": true,
     // "spacegray_sidebar_tree_xsmall": true,
 
-    // Wombat - defaults set by wombat:
-    "auto_complete_commit_on_tab": true,
-    "draw_shadows": false,
-    "use_simple_full_screen": true,
-    // "wombat_color_expanded_folder": true,
-    // "wombat_dirty_bottom_bar": true,
-    // "wombat_sidebar_tree_small": true,
-    // "wombat_solid_current_tab": true,
-    // "wombat_tabs_medium": true,
-
-    // Wombat core:
-    // "color_scheme": "Packages/Wombat Theme/Wombat.tmTheme",
-    // "theme": "Wombat.sublime-theme",
-    // "wombat_color_blue": true,
-    // "wombat_dirty_bottom_bar_blue": true,
+    // Other usable colors:
+    // "color_scheme": "Packages/User/SublimeLinter/base16-eighties.dark (SL).tmTheme",
+    // "color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme",
+    // "color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+    // "color_scheme": "Packages/Color Scheme - Default/Mac Classic.tmTheme",
+    // "color_scheme": "Packages/Color Scheme - Default/Dawn.tmTheme",
 
     "always_show_minimap_viewport": false,
+    "auto_complete_commit_on_tab": true,
     "auto_indent": true,
     "auto_match_enabled": true,
     "bold_folder_labels": true,
@@ -43,6 +29,7 @@
     "default_line_ending": "unix",
     "detect_indentation": true,
     "draw_centered": false,
+    "draw_shadows": false,
     "fade_fold_buttons": true,
     "gutter": true,
     "highlight_line": true,
@@ -79,6 +66,7 @@
     "translate_tabs_to_spaces": true,
     "trim_automatic_white_space": true,
     "trim_trailing_white_space_on_save": false,
+    "use_simple_full_screen": true,
     "use_tab_stops": true,
     "wide_caret": true,
     "word_wrap": "auto",
