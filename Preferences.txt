@@ -1,16 +1,16 @@
 {
     "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
-    "font_size": 10,
-
+    "font_size": 12,
+    "font_face": "Ubuntu Mono derivative Powerline",
     // "font_face": "Hack",
 
-    // "theme": "Spacegray Eighties.sublime-theme",
-    // "spacegray_fileicons": true,
-    // "spacegray_sidebar_font_xlarge": true,
-    // "spacegray_sidebar_tree_xsmall": true,
+    "theme": "Spacegray Eighties.sublime-theme",
+    "spacegray_fileicons": true,
+    "spacegray_sidebar_font_xlarge": true,
+    "spacegray_sidebar_tree_xsmall": true,
 
     // Other usable colors:
-    // "color_scheme": "Packages/User/SublimeLinter/base16-eighties.dark (SL).tmTheme",
+    // "color_scheme": "Packages/User/.../base16-eighties.dark (SL).tmTheme",
     // "color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme",
     // "color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
     // "color_scheme": "Packages/Color Scheme - Default/Mac Classic.tmTheme",
