@@ -1,8 +1,8 @@
 {
     "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
-    "font_size": 12,
-    "font_face": "Ubuntu Mono derivative Powerline",
     // "font_face": "Hack",
+    "font_face": "Ubuntu Mono derivative Powerline",
+    "font_size": 12,
 
     "theme": "Spacegray Eighties.sublime-theme",
     "spacegray_fileicons": true,
@@ -10,7 +10,9 @@
     "spacegray_sidebar_tree_xsmall": true,
 
     // Other usable colors:
-    // "color_scheme": "Packages/User/.../base16-eighties.dark (SL).tmTheme",
+    // "color_scheme": "Packages/User/.../RailsCastsColorScheme.tmTheme",
+    // "color_scheme": "Packages/User/.../base16-eighties.dark.tmTheme",
+    // "color_scheme": "Packages/User/.../base16-eighties.dark.tmTheme",
     // "color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme",
     // "color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
     // "color_scheme": "Packages/Color Scheme - Default/Mac Classic.tmTheme",
