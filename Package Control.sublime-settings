@@ -7,25 +7,18 @@
 	[
 		"1337 Color Scheme",
 		"AdvancedNewFile",
-		"Alignment",
+		//"Alignment",
 		"All Autocomplete",
 		"Anaconda",
 		"AutoFileName",
 		"BracketHighlighter",
-		"caniuse_local",
-		"CoffeeCompile",
-		"CoffeeScriptHaml",
 		"ColorHelper",
 		"ColorPicker",
-		"ColorSchemeSelector",
 		"Dockerfile Syntax Highlighting",
-		"Find++",
 		"Front-end Project Snippets",
 		"FuzzyFilePath",
-		"Gist",
 		"Highlight",
 		"Highlight Dodgy Chars",
-		"Keymaps",
 		"MarkdownEditing",
 		"Package Control",
 		"Pretty JSON",
@@ -38,9 +31,8 @@
 		"SublimeLinter-rubocop",
 		"SyncedSideBar",
 		"TabsExtra",
-		"Text Pastry",
+		//"Text Pastry",
 		"Theme - Spacegray",
-		"TrailingSpaces",
-		"Vuejs Complete Package"
+		"TrailingSpaces"
 	]
 }
