@@ -1,1 +1,10 @@
-.dropbox*
+.*.swp
+*~
+*.sublime-workspace
+*.zip
+*.[Dd][Aa][Tt]
+*.[Ee][Xx][Ee]
+*.out
+*.[Pp][Yy][Cc]
+/input*
+/output*
