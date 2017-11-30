@@ -9,12 +9,6 @@ SETUP_URL=https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh
   && echo "FATAL: curl missing" 1>&2 \
   && exit 1
 
-if [ -f ./setup.sh ] ; then
-  ./setup.sh
-else
-  sh -c "$(curl -LSfs "$SETUP_URL")"
-fi
-
 # Install custom package selections:
 if grep -E -i -q 'debian|ubuntu' /etc/*release* 2>/dev/null ; then
 
@@ -29,7 +23,14 @@ elif grep -E -i -q 'centos|oracle|red ?hat' /etc/*release* 2>/dev/null ; then
   "$SCRIPT_DIR/custom/install-yum-packages.sh" || sh -c "$(curl -LSfs "$MASTER_URL/custom/install-yum-packages.sh")"
 fi
 
-# Make the workspace directory
+# Base dotfiles:
+if [ -f ./setup.sh ] ; then
+  ./setup.sh
+else
+  sh -c "$(curl -LSfs "$SETUP_URL")"
+fi
+
+# Make the workspace directory:
 export DEV=~/workspace
 mkdir -p "$DEV"
 ls -d -l "$DEV"
