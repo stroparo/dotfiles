@@ -1,0 +1,36 @@
+source 'https://rubygems.org'
+
+gem 'apipie-rails' # API documentation
+gem 'colorize' # colorized logs
+gem 'credit_card_validations' # validates credit cards
+gem 'haml'
+gem 'koala' # facebook
+gem 'puma' # server
+gem 'sqlite3'
+gem 'rsense'
+gem 'rubocop'
+gem 'uglifier' # js compressor
+
+gem 'rails'
+gem 'activeadmin', '~> 1.0.0.pre4'
+gem 'activeadmin_addons'
+gem 'coffee-rails'
+gem 'dotenv-rails'
+gem 'geokit-rails' # geolocation
+gem 'jbuilder'
+gem 'pg'
+gem 'rails_12factor'
+gem 'rspec-rails'
+gem 'sass-rails'
+gem 'spring' # rails background process
+gem 'turbolinks'
+
+# Authentication gems
+gem 'rack-cors'
+gem 'jwt'
+gem 'devise'
+
+# Image / asset upload gems
+gem 'carrierwave'
+gem 'carrierwave-aws'
+gem 'rmagick'

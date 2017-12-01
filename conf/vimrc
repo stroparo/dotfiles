@@ -1,0 +1,29 @@
+" Exrc:
+set autoindent
+set ignorecase
+set magic
+set number
+set shiftwidth=2
+set tabstop=4
+set wrapmargin=0
+set wrapscan
+
+syn on
+colorscheme elflord
+
+set incsearch
+set nolist
+set ruler
+set showmode
+set sidescroll=0
+set nowrap
+
+if has("gui_running")
+  " GUI is running or is about to start.
+  
+  " Set font:
+  set gfn=DejaVu\ Sans\ Mono\ 11
+  " Maximize gvim window:
+  set lines=999 columns=140
+endif
+

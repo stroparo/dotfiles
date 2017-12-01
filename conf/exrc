@@ -1,0 +1,9 @@
+" Exrc:
+set autoindent
+set ignorecase
+set magic
+set number
+set shiftwidth=2
+set tabstop=4
+set wrapmargin=0
+set wrapscan
