@@ -7,7 +7,7 @@
 # Shell programs: Daily Shells, OhMyZsh etc.
 sh -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/ds/master/setup.sh)"
 sh -c "$(curl -LSfs https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-(. ~/.ds/ds.sh && [ -n "$DS_LOADED" ] && installohmyzsh)
+(. ~/.ds/ds.sh && [ -n "$DS_LOADED" ] && installohmyzsh.sh)
 
 # SSH key
 if [[ $USER != root ]] && [ ! -e ~/.ssh/id_rsa ] ; then
