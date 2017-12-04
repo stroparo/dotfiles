@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+INSTALL_APT="$SCRIPT_DIR/custom/install-apt-packages.sh"
+INSTALL_PPA="$SCRIPT_DIR/custom/install-ppa-packages.sh"
+INSTALL_YUM="$SCRIPT_DIR/custom/install-yum-packages.sh"
 MASTER_URL=https://raw.githubusercontent.com/stroparo/dotfiles/master
 SCRIPT_DIR="${0%/*}"
 SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
@@ -11,16 +14,30 @@ SETUP_URL=https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh
 
 # Install custom package selections:
 if grep -E -i -q 'debian|ubuntu' /etc/*release* 2>/dev/null ; then
-
-  "$SCRIPT_DIR/custom/install-apt-packages.sh" || sh -c "$(curl -LSfs "$MASTER_URL/custom/install-apt-packages.sh")"
-
-  if grep -E -i -q ubuntu /etc/*release* 2>/dev/null ; then
-    "$SCRIPT_DIR/custom/install-ppa-packages.sh" || sh -c "$(curl -LSfs "$MASTER_URL/custom/install-ppa-packages.sh")"
+  if [ -f "$INSTALL_APT" ] ; then
+    "$INSTALL_APT"
+  else
+    sh -c "$(curl -Lf "$MASTER_URL/custom/install-apt-packages.sh")"
   fi
 
-elif grep -E -i -q 'centos|oracle|red ?hat' /etc/*release* 2>/dev/null ; then
+fi
 
-  "$SCRIPT_DIR/custom/install-yum-packages.sh" || sh -c "$(curl -LSfs "$MASTER_URL/custom/install-yum-packages.sh")"
+# Install PPA packages:
+if grep -E -i -q ubuntu /etc/*release* 2>/dev/null ; then
+  if [ -f "$INSTALL_PPA" ] ; then
+    "$INSTALL_PPA"
+  else
+    sh -c "$(curl -Lf "$MASTER_URL/custom/install-ppa-packages.sh")"
+  fi
+fi
+
+# Install YUM packages:
+if grep -E -i -q 'centos|oracle|red ?hat' /etc/*release* 2>/dev/null ; then
+  if [ -f "$INSTALL_YUM" ] ; then
+    "$INSTALL_YUM"
+  else
+    sh -c "$(curl -Lf "$MASTER_URL/custom/install-yum-packages.sh")"
+  fi
 fi
 
 # Base dotfiles:
