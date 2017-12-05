@@ -6,5 +6,6 @@
 *.[Ee][Xx][Ee]
 *.out
 *.[Pp][Yy][Cc]
+*stackdump
 /input*
 /output*
