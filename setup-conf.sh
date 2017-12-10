@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 cp -v ./conf/exrc ~/.exrc
 cp -v ./conf/vimrc ~/.vimrc
