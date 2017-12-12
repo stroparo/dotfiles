@@ -38,8 +38,28 @@ fi
 # Sublime Text
 
 if _is_gui_env ; then
+
   mkdir -p "${SUBL_USER}"
-  cp -v ./conf/sublime3/* "${SUBL_USER}"/
+
+  if [ -f "${SUBL_USER}/Preferences.sublime-settings" ] ; then
+
+    # Do not overwrite settings
+
+    files="$(ls -1d ./conf/sublime3/* \
+      | grep -F -v Preferences.sublime-settings \
+      | sed "s/^/'/" \
+      | sed "s/$/'/" \
+      | tr '\n' ' ')"
+
+  else
+
+    files="$(ls -1d ./conf/sublime3/* \
+      | sed "s/^/'/" \
+      | sed "s/$/'/" \
+      | tr '\n' ' ')"
+  fi
+
+  eval cp -v "${files}" "${SUBL_USER}"/
 fi
 
 # ##############################################################################
