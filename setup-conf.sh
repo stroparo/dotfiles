@@ -4,7 +4,7 @@
 # Helpers
 
 _is_gui_env () {
-  (which startx || which firefox || which google-chrome) >/dev/null 2>&1
+  (which startx || which firefox || which google-chrome || which subl) >/dev/null 2>&1
 }
 
 # ##############################################################################
