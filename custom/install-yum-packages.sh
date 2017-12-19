@@ -47,6 +47,11 @@ sudo apt install -y p7zip p7zip-plugins
 sudo $PROG install -y git tig jq make sqlite tmux vim-enhanced
 
 # ##############################################################################
+# SELinux
+
+sudo $PROG install -y setroubleshoot-server selinux-policy-devel
+
+# ##############################################################################
 # silversearcher https://github.com/ggreer/the_silver_searcher
 if ! ag --version ; then
   if ! grep -i -q 'fedora' /etc/*release* ; then
