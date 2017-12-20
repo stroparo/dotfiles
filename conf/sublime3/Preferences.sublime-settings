@@ -58,7 +58,8 @@
     "rulers":
     [
         0,
-        80
+        72,
+        79
     ],
     "show_encoding": true,
     "show_full_path": true,
@@ -71,6 +72,6 @@
     "use_simple_full_screen": true,
     "use_tab_stops": true,
     "wide_caret": true,
-    "word_wrap": "auto",
-    "wrap_width": 0
+    "word_wrap": "true",
+    "wrap_width": 80
 }
