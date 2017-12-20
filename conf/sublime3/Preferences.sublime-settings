@@ -11,10 +11,11 @@
     "spell_check": false,
 
     // Color
+    // "color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme",
     "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
+    // "color_scheme": "Packages/User/.../1337.tmTheme",
     // "color_scheme": "Packages/User/.../RailsCastsColorScheme.tmTheme",
     // "color_scheme": "Packages/User/.../base16-eighties.dark.tmTheme",
-    // "color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme",
     "theme": "Spacegray Eighties.sublime-theme",
     "spacegray_fileicons": true,
     "spacegray_sidebar_font_xlarge": true,
