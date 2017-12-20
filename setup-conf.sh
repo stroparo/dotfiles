@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
 # ##############################################################################
+# Options
+
+forcesublprefs=false
+[ "$1" = 'forcesublprefs' ] && forcesublprefs=true && shift
+
+# ##############################################################################
 # Helpers
 
 _is_gui_env () {
@@ -43,7 +49,7 @@ fi
 
 mkdir -p "${SUBL_USER}"
 
-if [ -f "${SUBL_USER}/Preferences.sublime-settings" ] ; then
+if !forcesublprefs && [ -f "${SUBL_USER}/Preferences.sublime-settings" ] ; then
 
   # Do not overwrite settings
 
