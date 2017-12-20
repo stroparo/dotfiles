@@ -1,53 +1,54 @@
 {
-    "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
-    // "font_face": "Hack",
-    "font_face": "Ubuntu Mono derivative Powerline",
-    "font_size": 12,
+    // Behavior
+    "auto_complete": false,
+    "auto_complete_commit_on_tab": true,
+    "auto_match_enabled": true,
+    "fade_fold_buttons": true,
+    "find_selected_text": true,
+    "scroll_past_end": false,
+    "show_encoding": true,
+    "show_full_path": true,
+    "spell_check": false,
 
+    // Color
+    "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
+    // "color_scheme": "Packages/User/.../RailsCastsColorScheme.tmTheme",
+    // "color_scheme": "Packages/User/.../base16-eighties.dark.tmTheme",
+    // "color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme",
     "theme": "Spacegray Eighties.sublime-theme",
     "spacegray_fileicons": true,
     "spacegray_sidebar_font_xlarge": true,
     "spacegray_sidebar_tree_xsmall": true,
 
-    // Other usable colors:
-    // "color_scheme": "Packages/User/.../RailsCastsColorScheme.tmTheme",
-    // "color_scheme": "Packages/User/.../base16-eighties.dark.tmTheme",
-    // "color_scheme": "Packages/User/.../base16-eighties.dark.tmTheme",
-    // "color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme",
-    // "color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
-    // "color_scheme": "Packages/Color Scheme - Default/Mac Classic.tmTheme",
-    // "color_scheme": "Packages/Color Scheme - Default/Dawn.tmTheme",
-
-    "always_show_minimap_viewport": false,
-    "auto_complete_commit_on_tab": true,
-    "auto_indent": true,
-    "auto_match_enabled": true,
-    "bold_folder_labels": true,
-    "caret_extra_bottom": 2,
+    // Cursor
+    // "caret_extra_bottom": 2,
     "caret_extra_top": 2,
     "caret_extra_width": 3,
-    "caret_style": "phase",
+    "caret_style": "solid",
+    "wide_caret": true,
+
+    // Fonts
+    // "font_face": "Hack",
+    "font_face": "Ubuntu Mono derivative Powerline",
+    "font_size": 12,
+    "font_options": ["subpixel_antialias", "no_bold"],
+
+    // Layout & look-and-feel
+    "always_show_minimap_viewport": false,
+    "bold_folder_labels": true,
     "contrasted_tabs": true,
-    "default_line_ending": "unix",
-    "detect_indentation": true,
     "draw_centered": false,
     "draw_shadows": false,
-    "fade_fold_buttons": true,
     "gutter": true,
     "highlight_line": true,
     "highlight_modified_tabs": true,
     "icon_file_type_enable": true,
-    "ignored_packages":
-    [
-        "Vintage"
-    ],
     "indent_guide_options":
     [
         "draw_normal",
         "draw_active",
         "draw_indent_guides"
     ],
-    "indent_subsequent_lines": true,
     "large_scroll_bars": true,
     "line_numbers": true,
     "line_padding_bottom": 1,
@@ -61,17 +62,45 @@
         72,
         79
     ],
-    "show_encoding": true,
-    "show_full_path": true,
+    "show_minimap": false,
+    "use_simple_full_screen": true,
+
+    // Misc
+    "ignored_packages":
+    [
+        "Vintage"
+    ],
+
+    // Whitespace
+    "auto_indent": true,
+    "default_line_ending": "unix",
+    "detect_indentation": true,
+    "draw_white_space": "all",
+    "ensure_newline_at_eof_on_save": true,
+    "indent_subsequent_lines": true,
     "smart_indent": true,
-    "spell_check": false,
     "tab_size": 2,
     "translate_tabs_to_spaces": true,
     "trim_automatic_white_space": true,
-    "trim_trailing_white_space_on_save": false,
-    "use_simple_full_screen": true,
-    "use_tab_stops": true,
-    "wide_caret": true,
+    "trim_trailing_white_space_on_save": true,
+    // "use_tab_stops": true,
+
+    // Word wrapping
     "word_wrap": "true",
-    "wrap_width": 80
+    "wrap_width": 80,
+
+    // Sidebar - exclude distracting files and folders
+    "file_exclude_patterns":
+    [
+        ".DS_Store",
+        "*.pid",
+        "*.pyc"
+    ],
+    "folder_exclude_patterns":
+    [
+        ".git",
+        "__pycache__",
+        "env",
+        "env3"
+    ]
 }
