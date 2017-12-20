@@ -4,7 +4,9 @@
 # Options
 
 forcesublprefs=false
-[ "$1" = 'forcesublprefs' ] && forcesublprefs=true && shift
+if [ "$1" = 'forcesublprefs' ] ; then
+  forcesublprefs=true && shift
+fi
 
 # ##############################################################################
 # Helpers
@@ -49,7 +51,7 @@ fi
 
 mkdir -p "${SUBL_USER}"
 
-if !forcesublprefs && [ -f "${SUBL_USER}/Preferences.sublime-settings" ] ; then
+if !${forcesublprefs:-false} && [ -f "${SUBL_USER}/Preferences.sublime-settings" ] ; then
 
   # Do not overwrite settings
 
