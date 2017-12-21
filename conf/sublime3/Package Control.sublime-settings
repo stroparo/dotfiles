@@ -32,6 +32,7 @@
 		"SideBarEnhancements",
 		"SublimeCodeIntel",
 		"SublimeLinter",
+		"SublimeLinter-flake8",
 		"SublimeLinter-jshint",
 		"SublimeLinter-rubocop",
 		"SyncedSideBar",
