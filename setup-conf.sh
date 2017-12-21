@@ -51,16 +51,16 @@ fi
 
 mkdir -p "${SUBL_USER}"
 
-subl_files="$(ls -1d ./conf/sublime3/* \
-  | sed "s/^/'/" \
-  | sed "s/$/'/" \
-  | tr '\n' ' ')"
+subl_files="$(ls -1d ./conf/sublime3/*)"
 
 if ! ${forcesublprefs:-false} \
   && [ -f "${SUBL_USER}/Preferences.sublime-settings" ]
 then
   subl_files="$(echo "$subl_files" | grep -F -v Preferences.sublime-settings)"
 fi
+
+# Prep for eval: quote, and translate newlines to space separators:
+subl_files="$(echo "$subl_files" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')"
 
 eval cp -v "${subl_files}" "${SUBL_USER}"/
 
