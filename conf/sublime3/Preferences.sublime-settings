@@ -31,7 +31,7 @@
     // Fonts
     // "font_face": "Hack",
     "font_face": "Ubuntu Mono derivative Powerline",
-    "font_size": 12,
+    "font_size": 15,
     "font_options": ["subpixel_antialias", "no_bold"],
 
     // Layout & look-and-feel

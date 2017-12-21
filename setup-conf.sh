@@ -51,7 +51,7 @@ fi
 
 mkdir -p "${SUBL_USER}"
 
-if !${forcesublprefs:-false} && [ -f "${SUBL_USER}/Preferences.sublime-settings" ] ; then
+if ! ${forcesublprefs:-false} && [ -f "${SUBL_USER}/Preferences.sublime-settings" ] ; then
 
   # Do not overwrite settings
 
