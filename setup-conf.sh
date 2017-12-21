@@ -25,7 +25,7 @@ cp -v ./conf/sshconfig ~/.ssh/config
 # #############################################################################
 # GUI envs from this point on...
 
-_is_gui_env || return 0 || exit 0
+_is_gui_env || return 0 >/dev/null 2>&1 || exit 0
 
 # #############################################################################
 # Prep Sublime Text User PATH
