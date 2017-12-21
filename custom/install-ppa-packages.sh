@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# ##############################################################################
+# #############################################################################
 # Add PPA repos
 
 for ppa in \
@@ -16,7 +16,7 @@ do
   fi
 done
 
-# ##############################################################################
+# #############################################################################
 # Install packages
 
 sudo apt update
@@ -26,7 +26,7 @@ sudo aptitude install qdirstat
 sudo aptitude install remmina remmina-plugin-rdp remmina-plugin-vnc libfreerdp-plugins-standard
 sudo aptitude install y-ppa-manager
 
-# ##############################################################################
+# #############################################################################
 # Cleanup
 
 sudo apt autoremove

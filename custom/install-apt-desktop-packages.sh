@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# ##############################################################################
+# #############################################################################
 # Check OS
 
 if ! egrep -i -q 'debian|ubuntu' /etc/*release* ; then
@@ -8,7 +8,7 @@ if ! egrep -i -q 'debian|ubuntu' /etc/*release* ; then
   exit 1
 fi
 
-# ##############################################################################
+# #############################################################################
 # Sudo check
 
 if ! which sudo ; then
@@ -21,16 +21,16 @@ EOF
   exit 1
 fi
 
-# ##############################################################################
+# #############################################################################
 sudo apt update
 
-# ##############################################################################
+# #############################################################################
 # Upgrade
 
 echo ${BASH_VERSION:+-e} "\n==> Upgrade all packages? [y/N]\c" ; read answer
 [[ $answer = y ]] && sudo apt upgrade
 
-# ##############################################################################
+# #############################################################################
 # Desktop applications
 
 echo ${BASH_VERSION:+-e} "\n==> XFCE..."
@@ -41,7 +41,7 @@ sudo apt install bum evince galculator gnome-shell-pomodoro guake meld mp3splt r
 sudo apt install gnome-themes-standard gnome-themes-ubuntu gtk2-engines-xfce
 sudo apt install xfce4-clipman-plugin xfce4-mount-plugin xfce4-places-plugin xfce4-terminal xfce4-timer-plugin
 
-# ##############################################################################
+# #############################################################################
 # Desktop applications, interactive
 
 echo ${BASH_VERSION:+-e} "\n==> Educational? [y/N]\c" ; read answer
@@ -76,7 +76,7 @@ usb-creator-gtk"
 
 fi
 
-# ##############################################################################
+# #############################################################################
 # Cleanup
 
 sudo apt autoremove
