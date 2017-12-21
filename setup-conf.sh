@@ -51,24 +51,17 @@ fi
 
 mkdir -p "${SUBL_USER}"
 
-if ! ${forcesublprefs:-false} && [ -f "${SUBL_USER}/Preferences.sublime-settings" ] ; then
+subl_files="$(ls -1d ./conf/sublime3/* \
+  | sed "s/^/'/" \
+  | sed "s/$/'/" \
+  | tr '\n' ' ')"
 
-  # Do not overwrite settings
-
-  files="$(ls -1d ./conf/sublime3/* \
-    | grep -F -v Preferences.sublime-settings \
-    | sed "s/^/'/" \
-    | sed "s/$/'/" \
-    | tr '\n' ' ')"
-
-else
-
-  files="$(ls -1d ./conf/sublime3/* \
-    | sed "s/^/'/" \
-    | sed "s/$/'/" \
-    | tr '\n' ' ')"
+if ! ${forcesublprefs:-false} \
+  && [ -f "${SUBL_USER}/Preferences.sublime-settings" ]
+then
+  subl_files="$(echo "$subl_files" | grep -F -v Preferences.sublime-settings)"
 fi
 
-eval cp -v "${files}" "${SUBL_USER}"/
+eval cp -v "${subl_files}" "${SUBL_USER}"/
 
 # ##############################################################################
