@@ -24,8 +24,8 @@
     // Cursor
     // "caret_extra_bottom": 2,
     "caret_extra_top": 2,
-    "caret_extra_width": 3,
-    "caret_style": "solid",
+    "caret_extra_width": 5,
+    "caret_style": "blink",
     "wide_caret": true,
 
     // Fonts
