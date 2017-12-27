@@ -87,7 +87,7 @@
     // "use_tab_stops": true,
 
     // Word wrapping
-    "word_wrap": "true",
+    "word_wrap": true,
     "wrap_width": 80,
 
     // Sidebar - exclude distracting files and folders
