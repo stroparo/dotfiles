@@ -1,15 +1,4 @@
 {
-    // Behavior
-    "auto_complete": false,
-    "auto_complete_commit_on_tab": true,
-    "auto_match_enabled": true,
-    "fade_fold_buttons": true,
-    "find_selected_text": true,
-    "scroll_past_end": false,
-    "show_encoding": true,
-    "show_full_path": true,
-    "spell_check": false,
-
     // Color
     // "color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme",
     "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
@@ -20,6 +9,17 @@
     "spacegray_fileicons": true,
     "spacegray_sidebar_font_xlarge": true,
     "spacegray_sidebar_tree_xsmall": true,
+
+    // Behavior
+    "auto_complete": false,
+    "auto_complete_commit_on_tab": true,
+    "auto_match_enabled": true,
+    "fade_fold_buttons": true,
+    "find_selected_text": true,
+    "scroll_past_end": false,
+    "show_encoding": true,
+    "show_full_path": true,
+    "spell_check": false,
 
     // Cursor
     // "caret_extra_bottom": 2,
