@@ -22,9 +22,9 @@ This script leverages the setup.sh script (explained below) and on top of that p
 
 The setup.sh routine provides a very basic, general setup for software development:
 
-* Install oh-my-zsh Z shell plugin
-* Install [Daily Shells](http://stroparo.github.io/ds/)
-* Make an SSH RSA key-pair, echo the public key on the screen
+* Install [Daily Shells](http://stroparo.github.io/ds/) and [DS Extras](https://github.com/stroparo/ds-extras)
+* Install Oh-My-Zsh (zsh configuration framework)
+* Make an SSH RSA key-pair and echo the public key on the screen
 
 Steps:
 
