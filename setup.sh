@@ -21,8 +21,11 @@ if [[ $USER != root ]] && [ ! -e ~/.ssh/id_rsa ] ; then
   
   mkdir ~/.ssh
   
-  ssh-keygen -t rsa -C "$USER@$(hostname)" && \
-    cat ~/.ssh/id_rsa.pub && \
-    chmod 700 ~/.ssh/id_rsa && \
-    ls -l ~/.ssh/id_rsa
+  ssh-keygen -t rsa -C "$USER@$(hostname)" \
+    && chmod 700 ~/.ssh/id_rsa \
+    && ls -l ~/.ssh/id_rsa
+fi
+if [ -e ~/.ssh/id_rsa.pub ] ; then
+  echo "==> ~/.ssh/id_rsa.pub contents:"
+  cat ~/.ssh/id_rsa.pub
 fi
