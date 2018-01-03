@@ -11,7 +11,7 @@
     "spacegray_sidebar_tree_xsmall": true,
 
     // Behavior
-    "auto_complete": false,
+    "auto_complete": true,
     "auto_complete_commit_on_tab": true,
     "auto_match_enabled": true,
     "fade_fold_buttons": true,
@@ -24,7 +24,7 @@
     // Cursor
     // "caret_extra_bottom": 2,
     "caret_extra_top": 2,
-    "caret_extra_width": 5,
+    "caret_extra_width": 4,
     "caret_style": "blink",
     "wide_caret": true,
 
