@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
+SCRIPT_DIR="${0%/*}"
+SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
+
 INSTALL_APT="$SCRIPT_DIR/custom/install-apt-packages.sh"
 INSTALL_PPA="$SCRIPT_DIR/custom/install-ppa-packages.sh"
 INSTALL_YUM="$SCRIPT_DIR/custom/install-yum-packages.sh"
 MASTER_URL=https://raw.githubusercontent.com/stroparo/dotfiles/master
-SCRIPT_DIR="${0%/*}"
-SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
 SETUP_URL=https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh
 
 ! which curl &> /dev/null \
