@@ -7,7 +7,7 @@ My environment setup routines and configurations.
 Setup command:
 
 ```
-sh -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setup-custom.sh)"
+bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setup-custom.sh)"
 ```
 
 Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -``` in the command.
@@ -30,7 +30,7 @@ The setup.sh routine provides a very basic, general setup for software developme
 Steps:
 
 ```
-sh -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh)"
+bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh)"
 ```
 
 Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -``` in the command.

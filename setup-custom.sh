@@ -30,7 +30,7 @@ if grep -E -i -q 'debian|ubuntu' /etc/*release* 2>/dev/null ; then
   if [ -f "${INSTALL_APT}" ] ; then
     "${INSTALL_APT}"
   else
-    sh -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/install-apt-packages.sh")"
+    bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/install-apt-packages.sh")"
   fi
 
 fi
@@ -40,7 +40,7 @@ if grep -E -i -q ubuntu /etc/*release* 2>/dev/null ; then
   if [ -f "${INSTALL_PPA}" ] ; then
     "${INSTALL_PPA}"
   else
-    sh -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/install-ppa-packages.sh")"
+    bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/install-ppa-packages.sh")"
   fi
 fi
 
@@ -49,7 +49,7 @@ if grep -E -i -q 'centos|oracle|red ?hat' /etc/*release* 2>/dev/null ; then
   if [ -f "${INSTALL_YUM}" ] ; then
     "${INSTALL_YUM}"
   else
-    sh -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/install-yum-packages.sh")"
+    bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/install-yum-packages.sh")"
   fi
 fi
 
@@ -57,7 +57,7 @@ fi
 if [ -f ./setup.sh ] ; then
   ./setup.sh
 else
-  sh -c "$(${DLPROG} ${DLOPT} "${SETUP_URL}")"
+  bash -c "$(${DLPROG} ${DLOPT} "${SETUP_URL}")"
 fi
 
 # Make the workspace directory:

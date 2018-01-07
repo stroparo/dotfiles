@@ -25,7 +25,7 @@ fi
 # #############################################################################
 
 # Daily Shells
-sh -c "$(${DLPROG} ${DLOPT} "${SETUP_URL}")"
+bash -c "$(${DLPROG} ${DLOPT} "${SETUP_URL}")"
 
 # Daily Shells Extras
 git clone "${DSEXTRAS_GIT}" ~/.ds-extras \
@@ -33,7 +33,7 @@ git clone "${DSEXTRAS_GIT}" ~/.ds-extras \
   && rm -rf ~/.ds-extras
 
 # OhMyZsh
-sh -c "$(${DLPROG} ${DLOPT} "${OHMYZSH_URL}")"
+bash -c "$(${DLPROG} ${DLOPT} "${OHMYZSH_URL}")"
 (. ~/.ds/ds.sh && [ -n "$DS_LOADED" ] && installohmyzsh.sh)
 
 # SSH key
