@@ -1,12 +1,13 @@
 #/usr/bin/env bash
 
+# Daily Shells Library
+# More instructions and licensing at:
+# https://github.com/stroparo/ds
+
 # #############################################################################
 # Globals
 
 export DSEXTRAS_GIT="https://github.com/stroparo/ds-extras.git"
-
-export OHMYZSH_URL="https://raw.github.com/robbyrussell/\
-oh-my-zsh/master/tools/install.sh"
 
 export SETUP_URL="https://raw.githubusercontent.com/stroparo/ds/\
 master/setup.sh"
@@ -28,24 +29,17 @@ fi
 bash -c "$(${DLPROG} ${DLOPT} "${SETUP_URL}")"
 
 # Daily Shells Extras
+rm -rf ~/.ds-extras >/dev/null 2>&1
 git clone "${DSEXTRAS_GIT}" ~/.ds-extras \
   && (cd ~/.ds-extras && . ./overlay.sh) \
   && rm -rf ~/.ds-extras
 
-# OhMyZsh
-bash -c "$(${DLPROG} ${DLOPT} "${OHMYZSH_URL}")"
-(. ~/.ds/ds.sh && [ -n "$DS_LOADED" ] && installohmyzsh.sh)
-
-# SSH key
-if [[ $USER != root ]] && [ ! -e ~/.ssh/id_rsa ] ; then
-
-  mkdir ~/.ssh
-
-  ssh-keygen -t rsa -C "$USER@$(hostname)" \
-    && chmod 700 ~/.ssh/id_rsa \
-    && ls -l ~/.ssh/id_rsa
+# Load Daily Shells
+. ~/.ds/ds.sh
+if [ -n "$DS_LOADED" ] ; then
+  echo "FATAL: Could not load Daily Shells." 1>&2
+  exit 1
 fi
-if [ -e ~/.ssh/id_rsa.pub ] ; then
-  echo "==> ~/.ssh/id_rsa.pub contents:"
-  cat ~/.ssh/id_rsa.pub
-fi
+
+installohmyzsh.sh
+sshkeygenrsa.sh
