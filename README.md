@@ -2,23 +2,6 @@
 
 My environment setup routines and configurations.
 
-## Setup a Linux box for development and custom configurations
-
-Setup command:
-
-```
-bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setup-custom.sh)"
-```
-
-Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -``` in the command.
-
-This script further extends setup.sh:
-
-* Install custom package selections for Debian, Ubuntu or RedHat
-* Execute this project's base setup.sh script (see below)
-* Make the $DEV directory (default ~/workspace)
-* For conveniency print a loop command on the screen which - if copied and pasted on the command line - will allow you to inform and clone several git repositories
-
 ## Setup a Linux box for development
 
 The setup.sh routine provides a very basic, general setup for software development:
@@ -34,3 +17,19 @@ bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master
 ```
 
 Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -``` in the command.
+
+## Setup a Linux dev box plus custom settings
+
+Setup command:
+
+```
+bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setup-custom.sh)"
+```
+
+Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -``` in the command.
+
+* Install custom package selections for Debian, Ubuntu or RedHat
+* Execute this project's setup.sh
+* Make the $DEV directory (defaults to ~/workspace)
+* For conveniency print a loop command on the screen which - if copied and pasted on the command line - will allow you to inform and clone several git repositories
+
