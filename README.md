@@ -2,6 +2,16 @@
 
 My environment setup routines and configurations.
 
+## Setup configurations
+
+Run:
+
+```bash
+git clone https://github.com/stroparo/dotfiles.git
+cd dotfiles
+./setup-conf.sh
+```
+
 ## Setup a Linux box for development
 
 The setup.sh routine provides a very basic, general setup for software development:
