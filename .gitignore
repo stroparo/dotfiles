@@ -1,11 +1,11 @@
-.*.swp
-*~
-*.sublime-workspace
-*.zip
 *.[Dd][Aa][Tt]
 *.[Ee][Xx][Ee]
-*.out
 *.[Pp][Yy][Cc]
+*.[Zz][Ii][Pp]
+*.out
+*.sublime-workspace
 *stackdump
+*~
+.*.swp
 /input*
 /output*
