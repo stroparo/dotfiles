@@ -1,33 +1,6 @@
 #!/usr/bin/env bash
 
 # #############################################################################
-# Options
-
-forcesublprefs=false
-if [ "$1" = 'forcesublprefs' ] ; then
-  forcesublprefs=true && shift
-fi
-
-# #############################################################################
-# Helpers
-
-_is_gui_env () {
-  (which startx || which firefox || which google-chrome || which subl) >/dev/null 2>&1
-}
-
-# #############################################################################
-# Headless configs
-
-cp -v ./conf/exrc ~/.exrc
-cp -v ./conf/vimrc ~/.vimrc
-cp -v ./conf/sshconfig ~/.ssh/config
-
-# #############################################################################
-# GUI envs from this point on...
-
-_is_gui_env || return 0 >/dev/null 2>&1 || exit 0
-
-# #############################################################################
 # Prep Sublime Text User PATH
 
 SUBL_WIN='C:\Users\cr391577\AppData\Roaming\Sublime Text 3'
@@ -51,7 +24,7 @@ fi
 
 mkdir -p "${SUBL_USER}"
 
-subl_files="$(ls -1d ./conf/sublime3/*)"
+subl_files="$(ls -1d ./sublime3/*)"
 
 if ! ${forcesublprefs:-false} \
   && [ -f "${SUBL_USER}/Preferences.sublime-settings" ]
