@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if ! . ./helpers/setuphelpers.sh ; then
-  echo "FATAL: Error while sourcing './helpers.sh'" 1>&2
+  echo "FATAL: Error sourcing './helpers.sh'" 1>&2
   exit 1
 fi
 
