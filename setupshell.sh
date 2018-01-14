@@ -41,5 +41,5 @@ if [ -n "$DS_LOADED" ] ; then
   exit 1
 fi
 
-installohmyzsh.sh
+setup-ohmyzsh.sh
 sshkeygenrsa.sh
