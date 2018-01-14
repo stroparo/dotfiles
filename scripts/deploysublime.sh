@@ -26,7 +26,7 @@ mkdir -p "${SUBL_USER}"
 
 subl_files="$(ls -1d ./sublime3/*)"
 
-if ! ${forcesublprefs:-false} \
+if ! ${OVERRIDE_SUBL_PREFS:-false} \
   && [ -f "${SUBL_USER}/Preferences.sublime-settings" ]
 then
   subl_files="$(echo "$subl_files" | grep -F -v Preferences.sublime-settings)"

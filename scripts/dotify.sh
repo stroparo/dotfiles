@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-for filename in $(ls -d ./conf/*) ; do
-  echo cp -a -v "${filename}" "${HOME}/.${filename#./conf/}"
+for conf_item in $(ls -d ./conf/*) ; do
+  echo cp -a -v "${conf_item}" "${HOME}/.${conf_item#./conf/}"
 done

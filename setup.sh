@@ -8,9 +8,11 @@ fi
 # #############################################################################
 # Options
 
-forcesublprefs=false
-if [ "$1" = 'forcesublprefs' ] ; then
-  forcesublprefs=true && shift
+export OVERRIDE_SUBL_PREFS=false
+
+if [ "$1" = '-f' ] ; then
+  export OVERRIDE_SUBL_PREFS=true
+  shift
 fi
 
 # #############################################################################
