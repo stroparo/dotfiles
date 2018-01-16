@@ -36,7 +36,7 @@ git clone "${DSEXTRAS_GIT}" ~/.ds-extras \
 
 # Load Daily Shells
 . ~/.ds/ds.sh
-if [ -n "$DS_LOADED" ] ; then
+if ! ${DS_LOADED:-false} ; then
   echo "FATAL: Could not load Daily Shells." 1>&2
   exit 1
 fi
