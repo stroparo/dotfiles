@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-if ! . ./helpers/setuphelpers.sh ; then
-  echo "FATAL: Error sourcing './helpers.sh'" 1>&2
-  exit 1
-fi
-
 # #############################################################################
 # Options
 
@@ -16,13 +11,7 @@ if [ "$1" = '-f' ] ; then
 fi
 
 # #############################################################################
-# Headless configs
+# Configurations
 
-_exec ./scripts/dotify.sh
-
-# #############################################################################
-# GUI envs from this point on...
-
-_is_gui_env || return 0 >/dev/null 2>&1 || exit 0
-
-_exec ./scripts/deploysublime.sh
+./scripts/dotify.sh || exit $?
+./scripts/deploysublime.sh || exit $?
