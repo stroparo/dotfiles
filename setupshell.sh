@@ -8,7 +8,7 @@
 # Globals
 
 export DSEXTRAS_GIT="https://github.com/stroparo/ds-extras.git"
-
+export PROGNAME=setupshell.sh
 export SETUP_URL="https://raw.githubusercontent.com/stroparo/ds/\
 master/setup.sh"
 
@@ -19,7 +19,7 @@ elif which wget >/dev/null 2>&1 ; then
   export DLPROG=wget
   export DLOPT='-O -'
 else
-  echo "FATAL: curl and wget missing" 1>&2
+  echo "${PROGNAME:+${PROGNAME}: }FATAL: curl and wget missing" 1>&2
   exit 1
 fi
 
@@ -37,7 +37,7 @@ git clone "${DSEXTRAS_GIT}" ~/.ds-extras \
 # Load Daily Shells
 . ~/.ds/ds.sh
 if ! ${DS_LOADED:-false} ; then
-  echo "FATAL: Could not load Daily Shells." 1>&2
+  echo "${PROGNAME:+${PROGNAME}: }FATAL: Could not load Daily Shells." 1>&2
   exit 1
 fi
 
