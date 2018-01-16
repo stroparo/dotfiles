@@ -10,7 +10,7 @@ INSTALL_APT="$SCRIPT_DIR/custom/install-apt-packages.sh"
 INSTALL_PPA="$SCRIPT_DIR/custom/install-ppa-packages.sh"
 INSTALL_YUM="$SCRIPT_DIR/custom/install-yum-packages.sh"
 MASTER_URL=https://raw.githubusercontent.com/stroparo/dotfiles/master
-SETUP_URL=https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh
+SETUP_URL=$MASTER_URL/setupshell.sh
 
 if which curl >/dev/null 2>&1 ; then
   export DLPROG=curl
@@ -54,8 +54,8 @@ if grep -E -i -q 'centos|oracle|red ?hat' /etc/*release* 2>/dev/null ; then
 fi
 
 # Base dotfiles:
-if [ -f ./setup.sh ] ; then
-  ./setup.sh
+if [ -f ./setupshell.sh ] ; then
+  ./setupshell.sh
 else
   bash -c "$(${DLPROG} ${DLOPT} "${SETUP_URL}")"
 fi
