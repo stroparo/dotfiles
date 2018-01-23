@@ -40,6 +40,6 @@ fi
 # Prep for eval: quote, and translate newlines to space separators:
 subl_files="$(echo "$subl_files" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')"
 
-eval cp -L -p -R -v "${subl_files}" "${SUBL_USER}"/
+eval cp -L -R -v "${subl_files}" "${SUBL_USER}"/
 
 # #############################################################################
