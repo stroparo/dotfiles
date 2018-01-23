@@ -20,10 +20,9 @@ set nowrap
 
 if has("gui_running")
   " GUI is running or is about to start.
-  
+
   " Set font:
-  set gfn=DejaVu\ Sans\ Mono\ 11
+  set gfn=Hack\ NF\ 11
   " Maximize gvim window:
   set lines=999 columns=140
 endif
-

@@ -47,8 +47,7 @@
     "indent_guide_options":
     [
         "draw_normal",
-        "draw_active",
-        "draw_indent_guides"
+        "draw_active"
     ],
     "large_scroll_bars": true,
     "line_numbers": true,
