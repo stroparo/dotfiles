@@ -5,11 +5,29 @@
 	],
 	"installed_packages":
 	[
-		"1337 Color Scheme",
-		"AdvancedNewFile",
-		//"Alignment",
-		"All Autocomplete",
+		// Code
+		// "Alignment",
+		// "All Autocomplete",
 		"Anaconda",
+		"Indent Size",
+		"Pretty JSON",
+		// "Ruby Completions",
+		// "SublimeCodeIntel", // this conflicts with anaconda completion
+		"SublimeLinter",
+		// "SublimeLinter-flake8",
+		"SublimeLinter-jshint",
+		"SublimeLinter-rubocop",
+		// "Text Pastry",
+		"TrailingSpaces",
+
+		// Themes
+		"1337 Color Scheme",
+		"Future Funk - Color Scheme",
+		"RailsCasts Colour Scheme",
+		"Theme - Spacegray",
+
+		// Etcetera
+		"AdvancedNewFile",
 		"AutoFileName",
 		"BracketHighlighter",
 		"ColorHelper",
@@ -19,30 +37,16 @@
 		"Dockerfile Syntax Highlighting",
 		"EasyMotion",
 		"Emmet Css Snippets",
-		"Front-end Project Snippets",
-		"Future Funk - Color Scheme",
 		"FuzzyFilePath",
 		"GitGutter",
 		"Highlight",
 		"Highlight Dodgy Chars",
 		"Highlight Duplicates",
-		"Indent Size",
 		"MarkdownEditing",
 		"Package Control",
-		"Pretty JSON",
-		"RailsCasts Colour Scheme",
-		"Ruby Completions",
 		"Select By Regex",
 		"SideBarEnhancements",
-		//"SublimeCodeIntel", // this conflicts with anaconda completion
-		"SublimeLinter",
-		"SublimeLinter-flake8",
-		"SublimeLinter-jshint",
-		"SublimeLinter-rubocop",
 		"SyncedSideBar",
-		"TabsExtra",
-		//"Text Pastry",
-		"Theme - Spacegray",
-		"TrailingSpaces"
+		"TabsExtra"
 	]
 }
