@@ -1,3 +1,14 @@
 {
+    "anaconda_linting": true,
+    // "anaconda_linting_behaviour": "save-only",
+    "anaconda_tooltip_theme": "light",
+    "auto_formatting": false,
+    "complete_parameters": true,
+    "complete_all_parameters": true,
+    "display_signatures": true,
+    "enable_signatures_tooltip": true,
+    "python_interpreter": "python",
+    // "suppress_word_completions": true,
+    // "suppress_explicit_completions": true,
     "swallow_startup_errors": true
 }
