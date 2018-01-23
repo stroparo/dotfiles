@@ -34,7 +34,7 @@
 		"Ruby Completions",
 		"Select By Regex",
 		"SideBarEnhancements",
-		"SublimeCodeIntel",
+		//"SublimeCodeIntel", // this conflicts with anaconda completion
 		"SublimeLinter",
 		"SublimeLinter-flake8",
 		"SublimeLinter-jshint",
