@@ -44,6 +44,7 @@ sudo $PROG install -y p7zip p7zip-plugins
 # #############################################################################
 # Devel
 
+sudo $PROG -y groupinstall 'Development Tools'
 sudo $PROG install -y git tig jq make sqlite tmux
 
 # #############################################################################
