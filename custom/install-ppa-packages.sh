@@ -17,7 +17,9 @@ userconfirm () {
 
 _install_confirm () {
   if userconfirm "Install $1?" ; then
-    sudo apt install -y "$@"
+    for pkg in "$@" ; do
+      sudo apt install -y "$pkg"
+    done
   fi
 }
 
