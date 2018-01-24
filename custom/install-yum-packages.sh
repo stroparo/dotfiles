@@ -38,8 +38,8 @@ echo ${BASH_VERSION:+-e} "\n==> Upgrade all packages? [y/N]\c" ; read answer
 sudo $PROG install -y curl less rsync unzip wget zip zsh
 
 # Etc
-sudo apt install -y lftp mosh
-sudo apt install -y p7zip p7zip-plugins
+sudo $PROG install -y lftp mosh
+sudo $PROG install -y p7zip p7zip-plugins
 
 # #############################################################################
 # Devel
@@ -52,13 +52,20 @@ sudo $PROG install -y git tig jq make sqlite tmux vim-enhanced
 sudo $PROG install -y setroubleshoot-server selinux-policy-devel
 
 # #############################################################################
-# silversearcher https://github.com/ggreer/the_silver_searcher
+# SilverSearcher Ag
+# https://github.com/ggreer/the_silver_searcher
+
 if ! ag --version ; then
   if ! grep -i -q 'fedora' /etc/*release* ; then
     sudo $PROG install -y epel-release.noarch
   fi
   sudo $PROG install -y the_silver_searcher
 fi
+
+# #############################################################################
+# Specific to the distribution
+
+sudo $PROG install -y yum-utils
 
 # #############################################################################
 # Cleanup
