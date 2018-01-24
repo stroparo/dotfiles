@@ -44,7 +44,7 @@ sudo $PROG install -y p7zip p7zip-plugins
 # #############################################################################
 # Devel
 
-sudo $PROG install -y git tig jq make sqlite tmux vim-enhanced
+sudo $PROG install -y git tig jq make sqlite tmux
 
 # #############################################################################
 # SELinux

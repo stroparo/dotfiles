@@ -53,7 +53,7 @@ sudo apt install -y $PKGS
 # #############################################################################
 # Devel
 
-sudo apt install -y exuberant-ctags git tig httpie jq make sqlite3 tmux vim vim-scripts
+sudo apt install -y exuberant-ctags git tig httpie jq make sqlite3 tmux
 
 echo ${BASH_VERSION:+-e} "\n==> Libs? [Y/n]\c" ; read answer
 if [[ $answer != n ]] ; then
