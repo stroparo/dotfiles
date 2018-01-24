@@ -36,11 +36,19 @@ echo ${BASH_VERSION:+-e} "\n==> Upgrade all packages? [y/N]\c" ; read answer
 echo ${BASH_VERSION:+-e} "\n==> Base packages..."
 sudo apt install -y curl less rsync unzip wget zip zsh
 
-# Etc
-sudo apt install -y gdebi-core
-sudo apt install -y localepurge logrotate net-tools parted secure-delete silversearcher-ag
-sudo apt install -y lftp mosh
-sudo apt install -y p7zip-full
+PKGS="
+gdebi-core
+lftp
+localepurge
+logrotate
+mosh
+net-tools
+p7zip-full
+parted
+secure-delete
+silversearcher-ag
+"
+sudo apt install -y $PKGS
 
 # #############################################################################
 # Devel
