@@ -3,7 +3,7 @@
 # #############################################################################
 # Globals
 
-APTPROG=apt-get ; if which apt >/dev/null 2>&1; then APTPROG=apt ; fi
+export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 
 # #############################################################################
 # Check OS
@@ -42,7 +42,7 @@ read answer
 
 echo ${BASH_VERSION:+-e} "\n\n==> Base packages..."
 
-sudo $APTPROG install -y curl less p7zip-full parted rsync silversearcher-ag unzip wget zip zsh
+sudo $APTPROG install -y curl less p7zip-full parted rsync silversearcher-ag tmux unzip wget zip zsh
 sudo $APTPROG install -y lftp mosh net-tools
 
 # Etcetera
@@ -56,7 +56,7 @@ sudo $APTPROG install -y secure-delete
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
 
-sudo $APTPROG install -y exuberant-ctags git tig httpie jq make sqlite3 tmux
+sudo $APTPROG install -y exuberant-ctags git tig httpie jq make sqlite3
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel libs? [Y/n]\c"
 read answer
