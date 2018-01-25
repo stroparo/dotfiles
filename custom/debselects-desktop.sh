@@ -3,7 +3,7 @@
 # #############################################################################
 # Globals
 
-APTPROG=apt-get ; if which apt >/dev/null 2>&1; then APTPROG=apt ; fi
+export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 
 # #############################################################################
 # Check OS
