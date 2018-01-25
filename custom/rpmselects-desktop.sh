@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 # #############################################################################
-# RedHat
+# Globals
+
+export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
+
+# #############################################################################
+# Check OS
 
 if ! egrep -i -q 'cent ?os|oracle|red ?hat' /etc/*release* ; then
   echo "FATAL: Only Red Hat based distros are allowed to call this script ($0)" 1>&2
   exit 1
-fi
-
-PROG=yum
-if which dnf >/dev/null 2>&1; then
-  PROG=dnf
 fi
 
 # #############################################################################
@@ -20,7 +20,7 @@ if ! which sudo ; then
   echo "FATAL: Please log in as root, install and then configure sudo for your user first.." 1>&2
   cat "Suggested commands:" <<EOF
 su -
-$PROG install sudo
+$RPMPROG install sudo
 visudo
 EOF
   exit 1
@@ -30,13 +30,13 @@ fi
 # Upgrade
 
 echo ${BASH_VERSION:+-e} "\n==> Upgrade all packages? [y/N]\c" ; read answer
-[[ $answer = y ]] && sudo $PROG update
+[[ $answer = y ]] && sudo $RPMPROG update
 
 # #############################################################################
 # Desktop applications, interactive
 
 echo ${BASH_VERSION:+-e} "\n==> Office? [y/N]\c" ; read answer
-[[ $answer = y ]] && sudo $PROG install libreoffice-calc
+[[ $answer = y ]] && sudo $RPMPROG install libreoffice-calc
 
 echo ${BASH_VERSION:+-e} "\n==> Other packages? [y/N]\c" ; read answer
 if [[ $answer = y ]] ; then
@@ -52,9 +52,9 @@ usb-creator-gtk
 "
 
   for package in $(echo $PACKAGES) ; do
-    echo ${BASH_VERSION:+-e} "\n==> $PROG install '$package'? [Y/n]\c" ; read answer
+    echo ${BASH_VERSION:+-e} "\n==> $RPMPROG install '$package'? [Y/n]\c" ; read answer
     if [[ $answer != n ]] ; then
-      sudo $PROG install -y $package
+      sudo $RPMPROG install -y $package
     fi
   done
 
@@ -66,9 +66,9 @@ fi
 
 if ! ag --version ; then
   if ! grep -i -q 'fedora' /etc/*release* ; then
-    sudo $PROG install -y epel-release.noarch
+    sudo $RPMPROG install -y epel-release.noarch
   fi
-  sudo $PROG install -y the_silver_searcher
+  sudo $RPMPROG install -y the_silver_searcher
 fi
 
 # #############################################################################

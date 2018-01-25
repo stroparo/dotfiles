@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 
 # #############################################################################
-# RedHat
+# Globals
+
+export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
+
+# #############################################################################
+# Check OS
 
 if ! egrep -i -q 'cent ?os|oracle|red ?hat' /etc/*release* ; then
   echo "FATAL: Only Red Hat based distros are allowed to call this script ($0)" 1>&2
   exit 1
 fi
-
-RPMPROG=yum ; if which dnf >/dev/null 2>&1; then RPMPROG=dnf ; fi
 
 # #############################################################################
 # Sudo check
