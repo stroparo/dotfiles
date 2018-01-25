@@ -6,9 +6,8 @@ SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
 # #############################################################################
 # Globals
 
-INSTALL_APT="$SCRIPT_DIR/custom/install-apt-packages.sh"
-INSTALL_PPA="$SCRIPT_DIR/custom/install-ppa-packages.sh"
-INSTALL_YUM="$SCRIPT_DIR/custom/install-yum-packages.sh"
+INSTALL_DEB_SEL="$SCRIPT_DIR/custom/debselects.sh"
+INSTALL_RPM_SEL="$SCRIPT_DIR/custom/rpmselects.sh"
 MASTER_URL=https://raw.githubusercontent.com/stroparo/dotfiles/master
 SETUP_URL=$MASTER_URL/setupshell.sh
 
@@ -25,31 +24,22 @@ fi
 
 # #############################################################################
 
-# Install custom package selections:
+# Install Debian based package selections:
 if grep -E -i -q 'debian|ubuntu' /etc/*release* 2>/dev/null ; then
-  if [ -f "${INSTALL_APT}" ] ; then
-    "${INSTALL_APT}"
+  if [ -f "${INSTALL_DEB_SEL}" ] ; then
+    "${INSTALL_DEB_SEL}"
   else
-    bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/install-apt-packages.sh")"
+    bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/debselects.sh")"
   fi
 
 fi
 
-# Install PPA packages:
-if grep -E -i -q ubuntu /etc/*release* 2>/dev/null ; then
-  if [ -f "${INSTALL_PPA}" ] ; then
-    "${INSTALL_PPA}"
-  else
-    bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/install-ppa-packages.sh")"
-  fi
-fi
-
-# Install YUM packages:
+# Install Red Hat based package selections:
 if grep -E -i -q 'centos|oracle|red ?hat' /etc/*release* 2>/dev/null ; then
-  if [ -f "${INSTALL_YUM}" ] ; then
-    "${INSTALL_YUM}"
+  if [ -f "${INSTALL_RPM_SEL}" ] ; then
+    "${INSTALL_RPM_SEL}"
   else
-    bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/install-yum-packages.sh")"
+    bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/rpmselects.sh")"
   fi
 fi
 
