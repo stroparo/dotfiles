@@ -37,6 +37,7 @@
 
     // Layout & look-and-feel
     "always_show_minimap_viewport": false,
+    "animation_enabled": false,
     "bold_folder_labels": true,
     "contrasted_tabs": true,
     "draw_centered": false,
@@ -63,7 +64,9 @@
         72,
         79
     ],
+    "scroll_speed": 0.0,
     "show_minimap": false,
+    "tree_animation_enabled": false,
     "use_simple_full_screen": true,
 
     // Misc
