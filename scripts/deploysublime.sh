@@ -25,7 +25,7 @@ elif [[ "$(uname -a)" = *[Ll]inux* ]] ; then
 fi
 
 # #############################################################################
-# Sublime Text
+# Deploy Sublime Text configuration
 
 mkdir -p "${SUBL_USER}"
 
@@ -41,5 +41,11 @@ fi
 subl_files="$(echo "$subl_files" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')"
 
 eval cp -L -R -v "${subl_files}" "${SUBL_USER}"/
+
+# #############################################################################
+# Windows specific
+
+sed -i -e 's/Knack Nerd Font Mono/Knack NF/' \
+  "${SUBL_USER}"/Preferences.sublime-settings
 
 # #############################################################################
