@@ -1,4 +1,68 @@
-" Exrc:
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vundle
+
+set nocompatible  " Vundle requires this
+filetype off      " Vundle requires this
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Plugins from #vim - https://www.vi-improved.org/plugins/
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-characterize'
+Plugin 'tpope/vim-commentary'
+Plugin 'justinmk/vim-dirvish'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-fugitive'
+Plugin 'https://github.com/ludovicchabant/vim-gutentags'
+Plugin 'https://github.com/tommcdo/vim-lion'
+Plugin 'https://github.com/romainl/vim-qf'
+Plugin 'https://github.com/romainl/vim-qlist'
+Plugin 'https://github.com/tpope/vim-repeat'
+Plugin 'https://github.com/tpope/vim-rsi'
+Plugin 'https://github.com/tpope/vim-sensible'
+Plugin 'https://github.com/justinmk/vim-sneak'
+Plugin 'https://github.com/tpope/vim-surround'
+Plugin 'https://github.com/wellle/targets.vim'
+Plugin 'https://github.com/tomtom/ttags_vim'
+Plugin 'https://github.com/mbbill/undotree'
+Plugin 'https://github.com/tpope/vim-unimpaired'
+Plugin 'https://github.com/ajh17/VimCompletesMe'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" Vundle end
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set incsearch
+set nolist
+set ruler
+set smarttab
+set showmode
+set sidescroll=0
+
+" Exrc compatible
 set autoindent
 set ignorecase
 set magic
@@ -8,21 +72,10 @@ set tabstop=4
 set wrapmargin=0
 set wrapscan
 
-syn on
-colorscheme elflord
-
-set incsearch
-set nolist
-set ruler
-set showmode
-set sidescroll=0
-set nowrap
+" set nowrap
 
 if has("gui_running")
   " GUI is running or is about to start.
-
-  " Set font:
   set gfn=Hack\ NF\ 11
-  " Maximize gvim window:
   set lines=999 columns=140
 endif
