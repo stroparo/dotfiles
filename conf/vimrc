@@ -16,12 +16,12 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Plugins from #vim - https://www.vi-improved.org/plugins/
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-characterize'
-Plugin 'tpope/vim-commentary'
-Plugin 'justinmk/vim-dirvish'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-fugitive'
+Plugin 'https://github.com/tpope/vim-abolish'
+Plugin 'https://github.com/tpope/vim-characterize'
+Plugin 'https://github.com/tpope/vim-commentary'
+Plugin 'https://github.com/justinmk/vim-dirvish'
+Plugin 'https://github.com/tpope/vim-eunuch'
+Plugin 'https://github.com/tpope/vim-fugitive'
 Plugin 'https://github.com/ludovicchabant/vim-gutentags'
 Plugin 'https://github.com/tommcdo/vim-lion'
 Plugin 'https://github.com/romainl/vim-qf'
