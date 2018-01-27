@@ -1,3 +1,5 @@
+let mapleader = ","
+
 set nocompatible
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -13,6 +15,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'junegunn/vim-plug'    " has vim-plug help
 Plug 'https://github.com/junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
 Plug 'https://github.com/junegunn/fzf.vim'
+
 " Plugins from #vim - https://www.vi-improved.org/plugins/
 Plug 'https://github.com/tpope/vim-abolish'
 Plug 'https://github.com/tpope/vim-characterize'
@@ -35,29 +38,72 @@ Plug 'https://github.com/mbbill/undotree'
 Plug 'https://github.com/tpope/vim-unimpaired'
 Plug 'https://github.com/ajh17/VimCompletesMe'
 call plug#end()
+
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set incsearch
 set nolist
 set ruler
 set smarttab
+set showcmd
 set showmode
 set sidescroll=0
+set timeoutlen=2000
+set undofile
+set undodir=~/.vim/undodir
 
 " Exrc compatible
 set autoindent
 set ignorecase
 set magic
+"set nowrap
 set number
 set shiftwidth=2
 set tabstop=4
 set wrapmargin=0
 set wrapscan
 
-" set nowrap
+" Shortcuts for completion
+inoremap <silent> ,f <C-x><C-f>
+inoremap <silent> ,i <C-x><C-i>
+inoremap <silent> ,l <C-x><C-l>
+inoremap <silent> ,n <C-x><C-n>
+inoremap <silent> ,o <C-x><C-o>
+inoremap <silent> ,t <C-x><C-]>
+inoremap <silent> ,u <C-x><C-u>
+
+" Shortcuts from https://www.vi-improved.org/recommendations/
+nnoremap <leader>a :argadd <c-r>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
+nnoremap <leader>b :b <C-d>
+nnoremap <leader>e :e **/
+nnoremap <leader>g :grep<space>
+nnoremap <leader>i :Ilist<space>
+nnoremap <leader>j :tjump /
+nnoremap <leader>m :make<cr>
+nnoremap <leader>s :call StripTrailingWhitespace()<cr>
+nnoremap <leader>q :b#<cr>
+nnoremap <leader>t :TTags<space>*<space>*<space>.<cr>
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Etc
+
+if executable("ag")
+    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
 
 if has("gui_running")
   " GUI is running or is about to start.
   set gfn=Hack\ NF\ 11
   set lines=999 columns=140
 endif
+
+function! StripTrailingWhitespace()
+  if !&binary && &filetype != 'diff'
+    normal mz
+    normal Hmy
+    %s/\s\+$//e
+    normal 'yz<CR>
+    normal `z
+  endif
+endfunction
