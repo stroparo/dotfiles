@@ -15,3 +15,4 @@ fi
 
 ./scripts/dotify.sh || exit $?
 ./scripts/deploysublime.sh || exit $?
+./scripts/deployvim.sh || exit $?
