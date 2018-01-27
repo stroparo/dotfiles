@@ -1,5 +1,3 @@
-let mapleader = ","
-
 set nocompatible
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -41,8 +39,12 @@ call plug#end()
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+set ignorecase
 set incsearch
+set magic
 set nolist
+"set nowrap
+set number
 set ruler
 set smarttab
 set showcmd
@@ -51,26 +53,41 @@ set sidescroll=0
 set timeoutlen=2000
 set undofile
 set undodir=~/.vim/undodir
-
-" Exrc compatible
-set autoindent
-set ignorecase
-set magic
-"set nowrap
-set number
-set shiftwidth=2
-set tabstop=4
 set wrapmargin=0
 set wrapscan
 
+set autoindent    " align the new line indent with the previous line
+set expandtab     " insert spaces when hitting TABs
+set shiftround    " round indent to multiple of 'shiftwidth'
+set shiftwidth=2  " operation >> indents 4 columns; << unindents 4 columns
+set softtabstop=2 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
+set tabstop=2     " a hard TAB displays as 4 columns
+set textwidth=79  " lines longer than 79 columns will be broken
+
+" Exrc compatible
+
+" Shortcut leaders
+let mapleader = ","
+let maplocalleader = "\\"
+
+" Shortcut to make . work with visually selected lines
+vnoremap . :norm.<CR>
+
+" Shortcut to make last typed word uppercase
+inoremap <c-u> <esc>viwUea
+
+" Shortcut to UpCase
+inoremap <Plug>UpCase <Esc>hgUaweA
+imap ;u <Plug>UpCase
+
 " Shortcuts for completion
-inoremap <silent> ,f <C-x><C-f>
-inoremap <silent> ,i <C-x><C-i>
-inoremap <silent> ,l <C-x><C-l>
-inoremap <silent> ,n <C-x><C-n>
-inoremap <silent> ,o <C-x><C-o>
-inoremap <silent> ,t <C-x><C-]>
-inoremap <silent> ,u <C-x><C-u>
+inoremap <silent> -f <C-x><C-f>
+inoremap <silent> -i <C-x><C-i>
+inoremap <silent> -l <C-x><C-l>
+inoremap <silent> -n <C-x><C-n>
+inoremap <silent> -o <C-x><C-o>
+inoremap <silent> -t <C-x><C-]>
+inoremap <silent> -u <C-x><C-u>
 
 " Shortcuts from https://www.vi-improved.org/recommendations/
 nnoremap <leader>a :argadd <c-r>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
@@ -85,18 +102,75 @@ nnoremap <leader>q :b#<cr>
 nnoremap <leader>t :TTags<space>*<space>*<space>.<cr>
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Etc
+" Ag silversearcher
 
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto make dir
+
+function! <SID>AutoMkdir() abort
+    let l:dir = expand('<afile>:p:h')
+    let l:file = expand('<afile>:t')
+    if !isdirectory(l:dir)
+        call mkdir(l:dir, 'p')
+        silent execute 'bw ' . l:dir . '/' . l:file
+        silent execute 'e ' . l:dir . '/' . l:file
+    endif
+endfunction
+
+augroup AutoMkdir
+    autocmd!
+    autocmd BufWritePre,FileWritePre,BufNewFile *
+        \ call <SID>AutoMkdir()
+augroup END
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto open quickfix window
+augroup autoquickfix
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost    l* lwindow
+augroup END
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" GUI (graphical Vim)
+
 if has("gui_running")
   " GUI is running or is about to start.
   set gfn=Hack\ NF\ 11
   set lines=999 columns=140
 endif
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" :H topic will open an 80 columns vertical split
+
+command! -complete=help -nargs=1 H call VerticalHelp(<f-args>)
+function! VerticalHelp(topic)
+    execute "vertical botright help " . a:topic
+    execute "vertical resize 78"
+endfunction
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Highlight only the line with focus
+
+augroup highlight_follows_focus
+    autocmd!
+    autocmd WinEnter * set cursorline
+    autocmd WinLeave * set nocursorline
+augroup END
+
+augroup highligh_follows_vim
+    autocmd!
+    autocmd FocusGained * set cursorline
+    autocmd FocusLost * set nocursorline
+augroup END
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Other functions
 
 function! StripTrailingWhitespace()
   if !&binary && &filetype != 'diff'
