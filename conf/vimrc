@@ -89,6 +89,12 @@ inoremap <silent> -o <C-x><C-o>
 inoremap <silent> -t <C-x><C-]>
 inoremap <silent> -u <C-x><C-u>
 
+" Shortcuts for split panel navigation, ctrl+vim motion
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 " Shortcuts from https://www.vi-improved.org/recommendations/
 nnoremap <leader>a :argadd <c-r>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
 nnoremap <leader>b :b <C-d>
