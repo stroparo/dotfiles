@@ -43,6 +43,17 @@ sudo $RPMPROG install -y lftp mosh
 sudo $RPMPROG install -y p7zip p7zip-plugins
 
 # #############################################################################
+# EPEL (Extra Packages for Enterprise Linux)
+# https://fedoraproject.org/wiki/EPEL
+
+echo ${BASH_VERSION:+-e} \
+  "\n\n==> EPEL (Extra Packages for Enterprise Linux)..."
+
+if ! grep -i -q 'fedora' /etc/*release* ; then
+  sudo $RPMPROG install -y epel-release.noarch
+fi
+
+# #############################################################################
 # Devel
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
@@ -84,9 +95,7 @@ sudo $RPMPROG install -y setroubleshoot-server selinux-policy-devel
 # https://github.com/ggreer/the_silver_searcher
 
 if ! ag --version ; then
-  if ! grep -i -q 'fedora' /etc/*release* ; then
-    sudo $RPMPROG install -y epel-release.noarch
-  fi
+  # Must have the epel-release repository:
   sudo $RPMPROG install -y the_silver_searcher
 fi
 
