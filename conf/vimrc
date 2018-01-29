@@ -97,6 +97,9 @@ set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
 
+" Nav cd to current file dir
+:nnoremap <silent> <F3> :lchdir %:p:h<CR>:pwd<CR>
+
 " Nav split panels with vim char motions
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
