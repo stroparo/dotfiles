@@ -67,6 +67,20 @@ if [[ $answer != n ]] ; then
   sudo $RPMPROG install -y ncurses ncurses-devel
 fi
 
+echo ${BASH_VERSION:+-e} "\n\n==> Go Programming Language (golang)? [y/N]\c"
+read answer
+if [[ $answer = y ]] ; then
+  sudo $RPMPROG install -y golang
+fi
+
+echo ${BASH_VERSION:+-e} "\n\n==> Nodejs? [y/N]\c"
+read answer
+if [[ $answer = y ]] ; then
+  curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
+  sudo $RPMPROG install -y nodejs
+  npm install -g typescript
+fi
+
 echo ${BASH_VERSION:+-e} "\n\n==> Perl distribution packages? [y/N]\c"
 read answer
 if [[ $answer = y ]] ; then
