@@ -10,9 +10,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/bundle')
+
 Plug 'junegunn/vim-plug'    " has vim-plug help
-Plug 'https://github.com/junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
-Plug 'https://github.com/junegunn/fzf.vim'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
+Plug 'junegunn/fzf.vim'
+Plug 'tmhedberg/SimpylFold'
 
 " Plugins from #vim - https://www.vi-improved.org/plugins/
 Plug 'https://github.com/tpope/vim-abolish'
@@ -179,6 +182,11 @@ augroup highligh_follows_vim
     autocmd FocusGained * set cursorline
     autocmd FocusLost * set nocursorline
 augroup END
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SimpylFold Python folding
+
+let g:SimpylFold_docstring_preview = 1
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other functions
