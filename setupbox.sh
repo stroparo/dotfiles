@@ -51,7 +51,7 @@ else
 fi
 
 # Make the workspace directory:
-export DEV=~/workspace
+export DEV="$HOME"/workspace
 mkdir -p "${DEV}"
 ls -d -l "${DEV}"
 
