@@ -10,13 +10,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/bundle')
-
 Plug 'junegunn/vim-plug'    " has vim-plug help
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
 Plug 'junegunn/fzf.vim'
-Plug 'tmhedberg/SimpylFold'
-
+Plug 'https://github.com/tmhedberg/SimpylFold'
 " Plugins from #vim - https://www.vi-improved.org/plugins/
 Plug 'https://github.com/tpope/vim-abolish'
 Plug 'https://github.com/tpope/vim-characterize'
