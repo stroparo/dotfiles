@@ -64,38 +64,14 @@ set softtabstop=2 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
 set tabstop=2     " a hard TAB displays as 4 columns
 set textwidth=79  " lines longer than 79 columns will be broken
 
-" Exrc compatible
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Shortcuts
 
-" Shortcut leaders
+" Leaders
 let mapleader = ","
 let maplocalleader = "\\"
 
-" Shortcut to make . work with visually selected lines
-vnoremap . :norm.<CR>
-
-" Shortcut to make last typed word uppercase
-inoremap <c-u> <esc>viwUea
-
-" Shortcut to UpCase
-inoremap <Plug>UpCase <Esc>hgUaweA
-imap ;u <Plug>UpCase
-
-" Shortcuts for completion
-inoremap <silent> -f <C-x><C-f>
-inoremap <silent> -i <C-x><C-i>
-inoremap <silent> -l <C-x><C-l>
-inoremap <silent> -n <C-x><C-n>
-inoremap <silent> -o <C-x><C-o>
-inoremap <silent> -t <C-x><C-]>
-inoremap <silent> -u <C-x><C-u>
-
-" Shortcuts for split panel navigation, ctrl+vim motion
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-" Shortcuts from https://www.vi-improved.org/recommendations/
+" By https://www.vi-improved.org/recommendations/
 nnoremap <leader>a :argadd <c-r>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
 nnoremap <leader>b :b <C-d>
 nnoremap <leader>e :e **/
@@ -106,6 +82,35 @@ nnoremap <leader>m :make<cr>
 nnoremap <leader>s :call StripTrailingWhitespace()<cr>
 nnoremap <leader>q :b#<cr>
 nnoremap <leader>t :TTags<space>*<space>*<space>.<cr>
+
+" Completion
+inoremap <silent> -f <C-x><C-f>
+inoremap <silent> -i <C-x><C-i>
+inoremap <silent> -l <C-x><C-l>
+inoremap <silent> -n <C-x><C-n>
+inoremap <silent> -o <C-x><C-o>
+inoremap <silent> -t <C-x><C-]>
+inoremap <silent> -u <C-x><C-u>
+
+" Folding
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
+
+" Nav split panels with vim char motions
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Repeat also on visually selected lines
+vnoremap . :norm.<CR>
+
+" Upcase last typed word
+inoremap <c-u> <esc>viwUea
+" Upcase
+inoremap <Plug>UpCase <Esc>hgUaweA
+imap ;u <Plug>UpCase
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ag silversearcher
