@@ -7,9 +7,12 @@ My environment setup routines and configurations.
 Run:
 
 ```bash
-git clone https://github.com/stroparo/dotfiles.git
-cd dotfiles
-./setup.sh
+curl -LSfs -o $HOME/dotfiles.zip \
+  https://github.com/stroparo/dotfiles/archive/master.zip \
+  && unzip "$HOME"/dotfiles.zip -d "$HOME" \
+  && cd dotfiles-master \
+  && [ "$PWD" = "$HOME"/dotfiles-master ] \
+  && ./setup.sh
 ```
 
 ## Setup Shell
