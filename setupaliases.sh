@@ -1,4 +1,4 @@
-ALIASES_FILE="HOME/.aliases-cs"
+ALIASES_FILE="$HOME/.aliases-cs"
 
 echo
 echo "==> Setting up setupaliases.sh ($ALIASES_FILE)..."
