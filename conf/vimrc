@@ -63,11 +63,11 @@ set undodir=~/.vim/undodir
 set wrapmargin=0
 set wrapscan
 
-" Theme
+" Themes
 set t_Co=256
 let g:zenburn_transparent = 1
 let g:zenburn_alternate_Visual = 1
-colorscheme zenburn
+colorscheme deus
 
 " Whitespace
 set autoindent    " align the new line indent with the previous line
