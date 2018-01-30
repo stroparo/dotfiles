@@ -15,6 +15,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 " Visuals
 Plug 'https://github.com/Konfekt/FastFold'
+" Python
+Plug 'https://github.com/vim-scripts/indentpython.vim'
 Plug 'https://github.com/tmhedberg/SimpylFold'
 " Plugins from #vim - https://www.vi-improved.org/plugins/
 Plug 'https://github.com/tpope/vim-abolish'
@@ -81,7 +83,6 @@ nnoremap <leader>g :grep<space>
 nnoremap <leader>i :Ilist<space>
 nnoremap <leader>j :tjump /
 nnoremap <leader>m :make<cr>
-nnoremap <leader>s :call StripTrailingWhitespace()<cr>
 nnoremap <leader>q :b#<cr>
 nnoremap <leader>t :TTags<space>*<space>*<space>.<cr>
 
@@ -218,13 +219,17 @@ augroup highligh_follows_vim
 augroup END
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SimpylFold Python folding
+" Python folding SimpylFold
 
 let g:SimpylFold_docstring_preview = 1
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Other functions
+" Whitespace
 
+" Flag trailing whitespace on file opening:
+au BufRead,BufNewFile *.py,*.pyw,*.rb,*.c,*.h match BadWhitespace /\s\+$/
+
+nnoremap <leader>s :call StripTrailingWhitespace()<cr>
 function! StripTrailingWhitespace()
   if !&binary && &filetype != 'diff'
     normal mz
@@ -234,3 +239,5 @@ function! StripTrailingWhitespace()
     normal `z
   endif
 endfunction
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
