@@ -14,5 +14,7 @@ fi
 # Configurations
 
 ./scripts/dotify.sh || exit $?
-./scripts/deploysublime.sh || exit $?
-./scripts/deployvim.sh || exit $?
+
+for deploy in `ls ./scripts/deploy*sh` ; do
+  "$deploy" || exit $?
+done
