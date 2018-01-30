@@ -4,6 +4,9 @@
 # More instructions and licensing at:
 # https://github.com/stroparo/ds
 
+echo
+echo "==> Setting up setupshell.sh (Daily Shells and some of its setups)..."
+
 # #############################################################################
 # Globals
 
