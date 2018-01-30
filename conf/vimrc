@@ -1,4 +1,3 @@
-colorscheme zenburn
 set t_Co=256
 set encoding=utf-8
 set nocompatible
@@ -17,6 +16,7 @@ Plug 'junegunn/vim-plug'    " has vim-plug help
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 " Visuals
+Plug 'https://github.com/rafi/awesome-vim-colorschemes'
 Plug 'https://github.com/Konfekt/FastFold'
 " Python
 Plug 'https://github.com/vim-scripts/indentpython.vim'
@@ -45,6 +45,10 @@ Plug 'https://github.com/ajh17/VimCompletesMe'
 call plug#end()
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim settings
+
+" Some themes are from plugins so call this after the plugin manager:
+colorscheme wombat256mod
 
 set ignorecase
 set incsearch
