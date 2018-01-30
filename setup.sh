@@ -15,6 +15,8 @@ fi
 
 ./scripts/dotify.sh || exit $?
 
+./setupaliases.sh
+
 for deploy in `ls ./scripts/deploy*sh` ; do
   "$deploy" || exit $?
 done
