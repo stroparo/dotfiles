@@ -4,7 +4,7 @@ My environment setup routines and configurations.
 
 ## Setup configurations
 
-This will call dotify and deploy* in the scripts directory, and also ```setupaliases.sh```. 
+This will call ```dotify``` and ```deploy*``` in the scripts directory, and also ```setupaliases.sh```. 
 Run:
 
 ```bash
