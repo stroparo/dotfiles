@@ -32,8 +32,8 @@ fi
 # Configurations
 
 ./scripts/dotify.sh
-
 ./setupaliases.sh
+./setupbox.sh
 
 for deploy in `ls ./scripts/deploy*sh` ; do
   "$deploy"
