@@ -1,6 +1,12 @@
-fgrep -i -q .aliases-cs ~/.bashrc || echo '. ~/.aliases-cs' >> ~/.bashrc
+ALIASES_FILE="HOME/.aliases-cs"
 
-cat > ~/.aliases-cs <<'EOF'
+echo
+echo "==> Setting up setupaliases.sh ($ALIASES_FILE)..."
+
+fgrep -i -q "$ALIASES_FILE" ~/.bashrc || echo ". '$ALIASES_FILE'" >> ~/.bashrc
+fgrep -i -q "$ALIASES_FILE" ~/.zrc || echo ". '$ALIASES_FILE'" >> ~/.zshrc
+
+cat > "$ALIASES_FILE" <<'EOF'
 callapi () {
  typeset x="$1"; typeset url="$2"; typeset token="$3"
  curl -s -X ${x:-GET} ${token:+-H "PRIVATE-TOKEN: $token"} "$url"
