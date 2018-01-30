@@ -10,7 +10,7 @@ Run and ignore some errors as this sequence is as most fault tolerant as possibl
 
 ```bash
 curl -LSfs -o "$HOME"/.dotfiles.zip \
-  https://github.com/stroparo/dotfiles/archive/master.zip \
+  https://github.com/stroparo/dotfiles/archive/master.zip
 unzip -o "$HOME"/.dotfiles.zip -d "$HOME" \
   && (cd "$HOME"/dotfiles-master \
   && [ "$PWD" = "$HOME"/dotfiles-master ] \
