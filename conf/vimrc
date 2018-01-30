@@ -65,10 +65,9 @@ set wrapscan
 
 " Theme
 set t_Co=256
-colorscheme zenburn
 let g:zenburn_transparent = 1
 let g:zenburn_alternate_Visual = 1
-
+colorscheme zenburn
 
 " Whitespace
 set autoindent    " align the new line indent with the previous line
