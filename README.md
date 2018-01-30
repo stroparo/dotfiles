@@ -9,15 +9,7 @@ This will call ```dotify``` and ```deploy*``` in the scripts directory, and also
 Run and ignore some errors as this sequence is as most fault tolerant as possible, already:
 
 ```bash
-{
-  curl -LSfs -o "$HOME"/.dotfiles.zip \
-    https://github.com/stroparo/dotfiles/archive/master.zip
-  unzip -o "$HOME"/.dotfiles.zip -d "$HOME" \
-    && (cd "$HOME"/dotfiles-master \
-    && [ "$PWD" = "$HOME"/dotfiles-master ] \
-    && ./setup.sh)
-  rm -f -r "$HOME"/dotfiles-master
-}
+bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh)"
 ```
 
 ## Setup Shell
@@ -30,7 +22,7 @@ The setupshell.sh routine provides a setup with foundational shell capabilities,
 
 Setup command:
 
-```
+```bash
 bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setupshell.sh)"
 ```
 
@@ -47,7 +39,7 @@ This setup is comprehensive and it does the following:
 
 Setup command:
 
-```
+```bash
 bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setupbox.sh)"
 ```
 
