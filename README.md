@@ -5,15 +5,17 @@ My environment setup routines and configurations.
 ## Setup configurations
 
 This will call ```dotify``` and ```deploy*``` in the scripts directory, and also ```setupaliases.sh```. 
-Run:
+
+Run and ignore some errors as this sequence is as most fault tolerant as possible, already:
 
 ```bash
-curl -LSfs -o "$HOME"/dotfiles.zip \
+curl -LSfs -o "$HOME"/.dotfiles.zip \
   https://github.com/stroparo/dotfiles/archive/master.zip \
-  && unzip -o "$HOME"/dotfiles.zip -d "$HOME" \
-    && (cd "$HOME"/dotfiles-master \
-    && [ "$PWD" = "$HOME"/dotfiles-master ] \
-    && ./setup.sh)
+unzip -o "$HOME"/.dotfiles.zip -d "$HOME" \
+  && (cd "$HOME"/dotfiles-master \
+  && [ "$PWD" = "$HOME"/dotfiles-master ] \
+  && ./setup.sh)
+rm -f -r "$HOME"/dotfiles-master
 ```
 
 ## Setup Shell
