@@ -10,7 +10,7 @@ Run:
 ```bash
 curl -LSfs -o "$HOME"/dotfiles.zip \
   https://github.com/stroparo/dotfiles/archive/master.zip \
-  && unzip "$HOME"/dotfiles.zip -d "$HOME" \
+  && unzip -o "$HOME"/dotfiles.zip -d "$HOME" \
     && (cd "$HOME"/dotfiles-master \
     && [ "$PWD" = "$HOME"/dotfiles-master ] \
     && ./setup.sh)
