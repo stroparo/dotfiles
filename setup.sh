@@ -18,5 +18,5 @@ fi
 ./setupaliases.sh
 
 for deploy in `ls ./scripts/deploy*sh` ; do
-  "$deploy" || exit $?
+  "$deploy"
 done
