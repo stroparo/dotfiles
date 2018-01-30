@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo
+echo "==> Setting up vim..."
+
 mkdir -p "$HOME"/.vim/colors
 mkdir -p "$HOME"/.vim/undodir
 
