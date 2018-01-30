@@ -231,9 +231,13 @@ let g:SimpylFold_docstring_preview = 1
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Whitespace
 
-" Flag trailing whitespace on file opening:
+" BadWhitespace definition:
+highlight BadWhitespace ctermbg=red guibg=darkred
+
+" BadWhitespace opening file:
 au BufRead,BufNewFile *.py,*.pyw,*.rb,*.c,*.h match BadWhitespace /\s\+$/
 
+" Strip trailing whitespace function
 nnoremap <leader>s :call StripTrailingWhitespace()<cr>
 function! StripTrailingWhitespace()
   if !&binary && &filetype != 'diff'
