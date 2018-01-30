@@ -24,46 +24,19 @@ fi
 
 # #############################################################################
 
-# Install Debian based package selections:
-if grep -E -i -q 'debian|ubuntu' /etc/*release* 2>/dev/null ; then
-  if [ -f "${INSTALL_DEB_SEL}" ] ; then
-    "${INSTALL_DEB_SEL}"
-  else
-    bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/debselects.sh")"
-  fi
+"${INSTALL_DEB_SEL}" >/dev/null 2>&1
+test -f "${INSTALL_DEB_SEL}" \
+  || bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/debselects.sh")"
 
-fi
+"${INSTALL_RPM_SEL}" >/dev/null 2>&1
+test -f "${INSTALL_RPM_SEL}"
+  || bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/rpmselects.sh")"
 
-# Install Red Hat based package selections:
-if grep -E -i -q 'centos|oracle|red ?hat' /etc/*release* 2>/dev/null ; then
-  if [ -f "${INSTALL_RPM_SEL}" ] ; then
-    "${INSTALL_RPM_SEL}"
-  else
-    bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/rpmselects.sh")"
-  fi
-fi
+./setupshell.sh
+test -f ./setupshell.sh \
+  || bash -c "$(${DLPROG} ${DLOPT} "${SETUP_URL}")"
 
-# Base dotfiles:
-if [ -f ./setupshell.sh ] ; then
-  ./setupshell.sh
-else
-  bash -c "$(${DLPROG} ${DLOPT} "${SETUP_URL}")"
-fi
-
-# Make the workspace directory:
+echo "Making the DEV directory..."
 export DEV="$HOME"/workspace
 mkdir -p "${DEV}"
 ls -d -l "${DEV}"
-
-# Echo repo cloning loop command:
-cat <<EOF
-
-# Clone your git repositories by running this sequence:
-
-cd '${DEV}'
-while true ; do
-  echo "Type repo URL or Ctrl-C to finish: "
-  read repo
-  git clone "\$repo"
-done
-EOF
