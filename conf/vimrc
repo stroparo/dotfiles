@@ -13,6 +13,8 @@ call plug#begin('~/.vim/bundle')
 Plug 'junegunn/vim-plug'    " has vim-plug help
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
 Plug 'junegunn/fzf.vim'
+" Visuals
+Plug 'https://github.com/Konfekt/FastFold'
 Plug 'https://github.com/tmhedberg/SimpylFold'
 " Plugins from #vim - https://www.vi-improved.org/plugins/
 Plug 'https://github.com/tpope/vim-abolish'
