@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo
+echo "==> Setting up setupbox.sh (packages, shell, DEV dir)..."
+
 SCRIPT_DIR="${0%/*}"
 SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
 
