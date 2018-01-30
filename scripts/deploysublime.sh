@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if ! (which sublime_text || which subl) >/dev/null 2>&1 ; then
-  echo "deploysublime.sh: SKIP: sublime text not in the path" 1>&2
+  echo "deploysublime: SKIP: sublime text not in the path" 1>&2
   exit
 fi
 
