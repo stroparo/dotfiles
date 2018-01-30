@@ -1,6 +1,6 @@
-fgrep -i -q .aliases ~/.bashrc || echo '. ~/.aliases' >> ~/.bashrc
+fgrep -i -q .aliases-cs ~/.bashrc || echo '. ~/.aliases-cs' >> ~/.bashrc
 
-cat >> ~/.aliases <<'EOF'
+cat > ~/.aliases-cs <<'EOF'
 callapi () {
  typeset x="$1"; typeset url="$2"; typeset token="$3"
  curl -s -X ${x:-GET} ${token:+-H "PRIVATE-TOKEN: $token"} "$url"
