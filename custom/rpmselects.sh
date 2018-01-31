@@ -64,7 +64,7 @@ sudo $RPMPROG -y groupinstall 'Development Tools'
 echo ${BASH_VERSION:+-e} "\n\n==> Devel libs? (often needed for compiling) [Y/n]\c"
 read answer
 if [[ $answer != n ]] ; then
-  sudo $RPMPROG install -y libevent libevent-devel
+  sudo $RPMPROG install -y libevent libevent-devel libevent-headers
   sudo $RPMPROG install -y ncurses ncurses-devel
 fi
 
