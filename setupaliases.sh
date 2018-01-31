@@ -26,8 +26,8 @@ unalias d 2>/dev/null; unset d 2>/dev/null ; d () {
 alias cls='clear'
 alias dfg='df -gP'
 alias dfh='df -hP'
+alias dumr='du -ma | sort -rn'
 alias dums='du -ma | sort -n'
-alias dumg='du -ma | sort -rn'
 if which exa >/dev/null 2>&1 ; then alias e='exa -il'; alias ea='exa -ila'; fi
 alias findd='find . -type d'
 alias findf='find . -type f'
@@ -36,11 +36,17 @@ alias nht='tail -9999f nohup.out'
 alias xcd="alias | egrep \"'c?d \" | fgrep -v 'cd -'"
 alias xgit="alias | grep -w git"
 
-if [[ $(grep --version 2>/dev/null) = *GNU* ]] ; then
+# #############################################################################
+# Grep
+
+if (command grep --help | command grep -q -- --color) ; then
   alias grep='grep --color=auto'
   alias egrep='egrep --color=auto'
   alias fgrep='fgrep --color=auto'
 fi
+
+# #############################################################################
+# Ls
 
 if [[ $(ls --version 2>/dev/null) = *GNU* ]] ; then
   alias ls='ls --color=auto'
@@ -53,8 +59,10 @@ else
   alias lt='ls -Flrt'
 fi
 
-if which ag >/dev/null 2>&1 ; then
+# #############################################################################
+# Ag aka the silver searcher
 
+if which ag >/dev/null 2>&1 ; then
   alias agi='ag -i'
   alias agin='ag -i --line-numbers'
   alias agn='ag --line-numbers'
@@ -87,20 +95,28 @@ if which ag >/dev/null 2>&1 ; then
   alias agxml='ag --xml'
 fi
 
+# #############################################################################
+# APT dpkg etcetera
+
 if which apt >/dev/null 2>&1 || which apt-get >/dev/null 2>&1 ; then
   alias apd='sudo aptitude update && sudo aptitude'
+  alias apdi='sudo aptitude install -y'
   alias apdnoup='sudo aptitude'
-  alias apti='sudo aptitude install -y'
+  alias apdup='sudo aptitude update'
+  alias apdupsafe='sudo aptitude safe-upgrade'
+  alias apti='sudo apt install -y'
   alias apts='apt-cache search'
   alias aptshow='apt-cache show'
   alias aptshowpkg='apt-cache showpkg'
-  alias aptup='sudo aptitude update'
-  alias aptupg='sudo aptitude safe-upgrade'
+  alias aptup='sudo apt update'
   alias dpkgl='dpkg -L'
   alias dpkgs='dpkg -s'
   alias dpkgsel='dpkg --get-selections | egrep -i'
   alias upalt='sudo update-alternatives'
 fi
+
+# #############################################################################
+# Git
 
 if which git >/dev/null 2>&1 ; then
 
@@ -144,5 +160,15 @@ if which git >/dev/null 2>&1 ; then
     alias grv='git remote -v'
   fi
 fi
+
+# #############################################################################
+# Tmux
+
+alias tls='tmux ls'
+alias tat='tmux attach -t'
+alias tns='tmux new-session -s'
+alias tks='tmux kill-session -t'
+
+# #############################################################################
 
 EOF
