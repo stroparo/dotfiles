@@ -61,9 +61,10 @@ echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
 sudo $RPMPROG install -y git tig jq make sqlite tmux
 sudo $RPMPROG -y groupinstall 'Development Tools'
 
-echo ${BASH_VERSION:+-e} "\n\n==> Devel libs? [Y/n]\c"
+echo ${BASH_VERSION:+-e} "\n\n==> Devel libs? (often needed for compiling) [Y/n]\c"
 read answer
 if [[ $answer != n ]] ; then
+  sudo $RPMPROG install -y libevent libevent-devel
   sudo $RPMPROG install -y ncurses ncurses-devel
 fi
 
