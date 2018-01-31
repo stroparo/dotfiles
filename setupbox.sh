@@ -27,11 +27,11 @@ fi
 
 # #############################################################################
 
-"${INSTALL_DEB_SEL}" >/dev/null 2>&1
+"${INSTALL_DEB_SEL}"
 test -f "${INSTALL_DEB_SEL}" \
   || bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/debselects.sh")"
 
-"${INSTALL_RPM_SEL}" >/dev/null 2>&1
+"${INSTALL_RPM_SEL}"
 test -f "${INSTALL_RPM_SEL}"
   || bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/rpmselects.sh")"
 
