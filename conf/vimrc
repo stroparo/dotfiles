@@ -15,6 +15,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 " Visuals
 Plug 'https://github.com/rafi/awesome-vim-colorschemes'
+Plug 'https://github.com/c9s/colorselector.vim'
 Plug 'https://github.com/Konfekt/FastFold'
 " Python
 Plug 'https://github.com/vim-scripts/indentpython.vim'

@@ -5,6 +5,7 @@
 .dropbox*
 .idea
 .vscode
+*.bak
 *.dat
 *.exe
 *.out
