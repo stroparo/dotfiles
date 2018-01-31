@@ -44,5 +44,5 @@ if ! ${DS_LOADED:-false} ; then
   exit 1
 fi
 
-setup-ohmyzsh.sh
+setupohmyzsh.sh
 sshkeygenrsa.sh
