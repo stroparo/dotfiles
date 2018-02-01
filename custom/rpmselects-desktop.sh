@@ -35,5 +35,7 @@ echo ${BASH_VERSION:+-e} "\n==> Upgrade all packages? [y/N]\c" ; read answer
 # #############################################################################
 # Install
 
-sudo $RPMPROG install gigolo guake libreoffice-calc meld parole
+sudo $RPMPROG install gigolo guake meld parole
+sudo $RPMPROG install libreoffice-calc
+sudo $RPMPROG install xfce4-whiskermenu-plugin
 
