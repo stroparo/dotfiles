@@ -15,7 +15,7 @@ sudo visudo
 Run and ignore some errors as this sequence is as most fault tolerant as possible, already:
 
 ```bash
-bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh)"
+DO_BOX=true bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh)"
 ```
 
 Install desktop selections by running:
