@@ -107,7 +107,7 @@ inoremap <silent> ;t <C-x><C-]>
 inoremap <silent> ;u <C-x><C-u>
 
 " Copy
-set pastetoggle=<F3>
+set pastetoggle=<F2>
 
 " Folding
 set foldmethod=indent
@@ -115,7 +115,7 @@ set foldlevel=99
 nnoremap <space> za
 
 " Nav cd to current file dir
-:nnoremap <silent> <F3> :lchdir %:p:h<CR>:pwd<CR>
+nnoremap <silent> <F3> :lchdir %:p:h<CR>:pwd<CR>
 
 " Nav split panels with vim char motions
 nnoremap <C-J> <C-W><C-J>
