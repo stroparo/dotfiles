@@ -12,7 +12,7 @@ Ensure sudo access by editing the sudoers file:
 sudo visudo
 ```
 
-Run and ignore some errors as this sequence is as most fault tolerant as possible, already:
+Run and ignore some errors as this sequence is already as fault tolerant as possible:
 
 ```bash
 DO_BOX=true bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh)"
