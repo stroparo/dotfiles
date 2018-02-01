@@ -182,7 +182,7 @@ au BufNewFile,BufRead *.py;
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Conf for Ruby files
 
-au BufNewFile,BufRead *.erb, *.rb;
+au BufNewFile,BufRead *.erb,*.rb;
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
@@ -193,7 +193,7 @@ au BufNewFile,BufRead *.erb, *.rb;
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Conf for web files
 
-au BufNewFile,BufRead *.js, *.html, *.css;
+au BufNewFile,BufRead *.js,*.html,*.css;
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
