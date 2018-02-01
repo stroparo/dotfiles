@@ -24,8 +24,8 @@ fi
 # #############################################################################
 # Options
 
-OVERRIDE_SUBL_PREFS=false
-DO_BOX=false
+: ${OVERRIDE_SUBL_PREFS:=false}
+: ${DO_BOX:=false}
 FULL=false
 
 # Options:
