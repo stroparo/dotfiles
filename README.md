@@ -22,7 +22,7 @@ Install desktop selections by running:
 
 ```bash
 unzip .dotfiles.zip -d "$HOME"
-cd "$HOME"/dotfiles-master/custom
+cd "$HOME"/dotfiles-master/installers
 bash ./debselects-desktop.sh
 bash ./rpmselects-desktop.sh
 ```

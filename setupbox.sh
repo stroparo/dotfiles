@@ -9,8 +9,8 @@ SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
 # #############################################################################
 # Globals
 
-INSTALL_DEB_SEL="$SCRIPT_DIR/custom/debselects.sh"
-INSTALL_RPM_SEL="$SCRIPT_DIR/custom/rpmselects.sh"
+INSTALL_DEB_SEL="$SCRIPT_DIR/installers/debselects.sh"
+INSTALL_RPM_SEL="$SCRIPT_DIR/installers/rpmselects.sh"
 MASTER_URL=https://raw.githubusercontent.com/stroparo/dotfiles/master
 SETUP_URL=$MASTER_URL/setupshell.sh
 
@@ -29,11 +29,11 @@ fi
 
 "${INSTALL_DEB_SEL}"
 test -f "${INSTALL_DEB_SEL}" \
-  || bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/debselects.sh")"
+  || bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/installers/debselects.sh")"
 
 "${INSTALL_RPM_SEL}"
 test -f "${INSTALL_RPM_SEL}" \
-  || bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/custom/rpmselects.sh")"
+  || bash -c "$(${DLPROG} ${DLOPT} "${MASTER_URL}/installers/rpmselects.sh")"
 
 ./setupshell.sh
 test -f ./setupshell.sh \
