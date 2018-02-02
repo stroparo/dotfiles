@@ -15,7 +15,7 @@ sudo visudo
 Run and ignore some errors as this sequence is already as fault tolerant as possible:
 
 ```bash
-DO_BOX=true bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh)"
+DO_BOX=true bash -c "$(curl -LSf https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh)"
 ```
 
 Install desktop selections by running:
@@ -30,7 +30,7 @@ bash ./rpmselects-desktop.sh
 ## Setup aliases
 
 ```bash
-bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setupaliases.sh)"
+bash -c "$(curl -LSf https://raw.githubusercontent.com/stroparo/dotfiles/master/setupaliases.sh)"
 ```
 
 ## Setup shell
@@ -46,7 +46,7 @@ The setupshell.sh routine provides a setup with foundational shell capabilities,
 Setup command:
 
 ```bash
-bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setupshell.sh)"
+bash -c "$(curl -LSf https://raw.githubusercontent.com/stroparo/dotfiles/master/setupshell.sh)"
 ```
 
 Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -``` in the command.
@@ -74,7 +74,7 @@ Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -`
 Download the zip file, unzip, and run setup.sh:
 
 ```bash
-curl -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip
+curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip
 unzip ~/dotfiles.zip -d "$HOME"
 cd "$HOME"/dotfiles-master
 ./setup.sh -b
@@ -83,7 +83,7 @@ cd "$HOME"/dotfiles-master
 Setup only aliases:
 
 ```bash
-curl -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip
+curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip
 unzip ~/dotfiles.zip -d "$HOME"
 cd "$HOME"/dotfiles-master
 ./setup.sh -a
@@ -91,7 +91,7 @@ cd "$HOME"/dotfiles-master
 
 Setup everything but setupbox.sh:
 ```bash
-curl -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip
+curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip
 unzip ~/dotfiles.zip -d "$HOME"
 cd "$HOME"/dotfiles-master
 ./setup.sh
