@@ -24,16 +24,14 @@ fi
 # #############################################################################
 # Options
 
-: ${ALIASES_ONLY:=false}
 : ${OVERRIDE_SUBL_PREFS:=false}
 : ${DO_BOX:=false}
 FULL=false
 
 # Options:
 OPTIND=1
-while getopts ':abf' option ; do
+while getopts ':bf' option ; do
     case "${option}" in
-        a) ALIASES_ONLY=true;;
         b) DO_BOX=true;;
         f)
           FULL=true
@@ -47,7 +45,7 @@ export OVERRIDE_SUBL_PREFS
 # #############################################################################
 # Configurations
 
-./setupaliases.sh; ${ALIASES_ONLY:-false} && exit
+./setupaliases.sh
 
 ${DO_BOX:-false} && ./setupbox.sh
 
