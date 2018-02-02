@@ -33,7 +33,7 @@ bash -c "$(${DLPROG} ${DLOPT} "${SETUP_URL}")"
 
 # Daily Shells Extras
 rm -rf ~/.ds-extras >/dev/null 2>&1
-git clone "${DSEXTRAS_GIT}" ~/.ds-extras \
+git clone --depth 1 "${DSEXTRAS_GIT}" ~/.ds-extras \
   && (cd ~/.ds-extras && . ./overlay.sh) \
   && rm -rf ~/.ds-extras
 
