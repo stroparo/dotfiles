@@ -27,7 +27,13 @@ bash ./debselects-desktop.sh
 bash ./rpmselects-desktop.sh
 ```
 
-## Setup Shell
+## Setup aliases
+
+```bash
+bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setupaliases.sh)"
+```
+
+## Setup shell
 
 If only shell setup is desired then execute this sequence.
 
