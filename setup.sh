@@ -33,7 +33,7 @@ FULL=false
 OPTIND=1
 while getopts ':abf' option ; do
     case "${option}" in
-        b) ALIASES_ONLY=true;;
+        a) ALIASES_ONLY=true;;
         b) DO_BOX=true;;
         f)
           FULL=true
