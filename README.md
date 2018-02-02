@@ -69,3 +69,25 @@ bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master
 
 Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -``` in the command.
 
+## Restricted network installation
+
+Download the zip file, unzip, and run setup.sh:
+
+```bash
+curl -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip
+unzip ~/dotfiles.zip -d "$HOME"
+cd "$HOME"/dotfiles-master
+./setup.sh -b
+```
+
+Setup only aliases:
+
+```bash
+./setup.sh -a
+```
+
+Setup everything but setupbox.sh:
+```bash
+./setup.sh
+```
+

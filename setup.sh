@@ -24,14 +24,16 @@ fi
 # #############################################################################
 # Options
 
+: ${ALIASES_ONLY:=false}
 : ${OVERRIDE_SUBL_PREFS:=false}
 : ${DO_BOX:=false}
 FULL=false
 
 # Options:
 OPTIND=1
-while getopts ':bf' option ; do
+while getopts ':abf' option ; do
     case "${option}" in
+        b) ALIASES_ONLY=true;;
         b) DO_BOX=true;;
         f)
           FULL=true
@@ -45,9 +47,11 @@ export OVERRIDE_SUBL_PREFS
 # #############################################################################
 # Configurations
 
-./setupaliases.sh
+./setupaliases.sh; ${ALIASES_ONLY:-false} && exit
 
-${DO_BOX:-false} && ./setupbox.sh
+if ${DO_BOX:-false} || ${FULL:-false} ; then
+  ./setupbox.sh
+fi
 
 ./scripts/dotify.sh
 
