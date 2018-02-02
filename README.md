@@ -21,7 +21,7 @@ DO_BOX=true bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dot
 Install desktop selections by running:
 
 ```bash
-unzip .dotfiles.zip -d "$HOME"
+unzip "$HOME"/.dotfiles.zip -d "$HOME"
 cd "$HOME"/dotfiles-master/installers
 bash ./debselects-desktop.sh
 bash ./rpmselects-desktop.sh
