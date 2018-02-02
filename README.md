@@ -83,11 +83,17 @@ cd "$HOME"/dotfiles-master
 Setup only aliases:
 
 ```bash
+curl -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip
+unzip ~/dotfiles.zip -d "$HOME"
+cd "$HOME"/dotfiles-master
 ./setup.sh -a
 ```
 
 Setup everything but setupbox.sh:
 ```bash
+curl -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip
+unzip ~/dotfiles.zip -d "$HOME"
+cd "$HOME"/dotfiles-master
 ./setup.sh
 ```
 
