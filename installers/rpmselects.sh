@@ -40,7 +40,7 @@ echo ${BASH_VERSION:+-e} "\n\n==> Base packages..."
 
 sudo $RPMPROG install -y curl less rsync unzip wget zip zsh
 sudo $RPMPROG install -y lftp mosh
-sudo $RPMPROG install -y p7zip p7zip-plugins
+sudo $RPMPROG install -y p7zip p7zip-plugins unrar
 
 # #############################################################################
 # EPEL (Extra Packages for Enterprise Linux)
