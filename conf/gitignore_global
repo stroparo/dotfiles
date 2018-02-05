@@ -8,6 +8,7 @@
 *.bak
 *.dat
 *.exe
+*.log
 *.out
 *.pyc
 *.sublime-workspace
