@@ -46,6 +46,16 @@ subl_files="$(echo "$subl_files" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')"
 eval cp -L -R -v "${subl_files}" "${SUBL_USER}"/
 
 # #############################################################################
+# Symlink subl
+
+if [ ! -e /usr/local/bin/subl ] \
+  && which sublime_text >/dev/null 2>&1 \
+  && [[ $(which sublime_text) != ${HOME}* ]]
+then
+  sudo ln -s $(which sublime_text) /usr/local/bin/subl
+fi
+
+# #############################################################################
 # Windows specific
 
 sed -i -e 's/Knack Nerd Font Mono/Knack NF/' \
