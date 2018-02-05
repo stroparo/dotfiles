@@ -21,10 +21,13 @@ DO_BOX=true bash -c "$(curl -LSf https://raw.githubusercontent.com/stroparo/dotf
 Install desktop selections by running:
 
 ```bash
-unzip "$HOME"/.dotfiles.zip -d "$HOME"
+{
+unzip -o "$HOME"/.dotfiles.zip -d "$HOME"
 cd "$HOME"/dotfiles-master/installers
 bash ./debselects-desktop.sh
 bash ./rpmselects-desktop.sh
+}
+
 ```
 
 ## Setup aliases
@@ -74,26 +77,26 @@ Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -`
 Download the zip file, unzip, and run setup.sh:
 
 ```bash
-curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip
-unzip ~/dotfiles.zip -d "$HOME"
-cd "$HOME"/dotfiles-master
-./setup.sh -b
+curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
+  && unzip -o ~/dotfiles.zip -d "$HOME" \
+  && cd "$HOME"/dotfiles-master \
+  && ./setup.sh -b
 ```
 
 Setup only aliases:
 
 ```bash
-curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip
-unzip ~/dotfiles.zip -d "$HOME"
-cd "$HOME"/dotfiles-master
-./setup.sh -a
+curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
+  && unzip -o ~/dotfiles.zip -d "$HOME" \
+  && cd "$HOME"/dotfiles-master \
+  && ./setup.sh -a
 ```
 
 Setup everything but setupbox.sh:
 ```bash
-curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip
-unzip ~/dotfiles.zip -d "$HOME"
-cd "$HOME"/dotfiles-master
-./setup.sh
+curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
+  && unzip -o ~/dotfiles.zip -d "$HOME" \
+  && cd "$HOME"/dotfiles-master \
+  && ./setup.sh
 ```
 
