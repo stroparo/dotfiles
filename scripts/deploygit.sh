@@ -14,6 +14,11 @@ GITFILE="${1:-$HOME/.gitconfig}"
 # #############################################################################
 # Prep
 
+if [ ! -f "$GITFILE" ] || [ ! -w "$GITFILE" ] ; then
+  echo "FATAL: Git file missing ('$GITFILE')." 1>&2
+  exit 1
+fi
+
 # Install Git
 which git >/dev/null 2>&1 \
   || (sudo apt update && sudo apt install -y 'git-core') \
@@ -46,5 +51,10 @@ push.recurseSubmodules  check
 sendpack.sideband false
 status.submodulesummary 1
 EOF
+
+# #############################################################################
+# Output results
+
+git config -f "$GITFILE" -l
 
 # #############################################################################
