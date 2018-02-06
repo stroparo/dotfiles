@@ -3,12 +3,13 @@
 # Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
 
 echo
-echo "==> Setting up setupaliases.sh ($ALIASES_FILE)..."
+echo "==> Setting up aliases..."
 
 # #############################################################################
 # Globals
 
 ALIASES_FILE="$HOME/.aliases-cs"
+echo "INFO: ALIASES_FILE='$ALIASES_FILE'"
 
 # #############################################################################
 # Shell profiles
