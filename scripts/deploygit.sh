@@ -53,6 +53,15 @@ status.submodulesummary 1
 EOF
 
 # #############################################################################
+# Cygwin / Windows
+
+if (uname -a | grep -i -q cygwin) ; then
+  git config --global core.preloadindex true
+  git config --global core.fscache true
+  git config --global gc.auto 256
+fi
+
+# #############################################################################
 # Output results
 
 git config -f "$GITFILE" -l
