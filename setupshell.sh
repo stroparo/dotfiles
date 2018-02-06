@@ -10,9 +10,10 @@ echo "==> Setting up setupshell.sh (Daily Shells and some of its setups)..."
 # #############################################################################
 # Globals
 
-export DSEXTRAS_GIT="https://github.com/stroparo/ds-extras.git"
 export PROGNAME=setupshell.sh
-export SETUP_URL="https://raw.githubusercontent.com/stroparo/ds/\
+
+export DSEXTRAS_GIT="https://github.com/stroparo/ds-extras.git"
+export DS_SETUP_URL="https://raw.githubusercontent.com/stroparo/ds/\
 master/setup.sh"
 
 if which curl >/dev/null 2>&1 ; then
@@ -29,7 +30,7 @@ fi
 # #############################################################################
 
 # Daily Shells
-bash -c "$(${DLPROG} ${DLOPT} "${SETUP_URL}")"
+bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}")"
 
 # Daily Shells Extras
 rm -rf ~/.ds-extras >/dev/null 2>&1

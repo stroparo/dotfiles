@@ -4,11 +4,13 @@ echo
 echo "==> Setting up setupaliases.sh ($ALIASES_FILE)..."
 
 if [ -r ~/.bashrc ] && [ -w ~/.bashrc ] ; then
-  fgrep -i -q "$ALIASES_FILE" ~/.bashrc || echo ". '$ALIASES_FILE'" >> ~/.bashrc
+  fgrep -i -q "$ALIASES_FILE" ~/.bashrc \
+    || echo ". '$ALIASES_FILE'" >> ~/.bashrc
 fi
-  
+
 if [ -r ~/.zshrc ] && [ -w ~/.zshrc ] ; then
-  fgrep -i -q "$ALIASES_FILE" ~/.zshrc || echo ". '$ALIASES_FILE'" >> ~/.zshrc
+  fgrep -i -q "$ALIASES_FILE" ~/.zshrc \
+    || echo ". '$ALIASES_FILE'" >> ~/.zshrc
 fi
 
 cat > "$ALIASES_FILE" <<'EOF'

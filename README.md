@@ -15,7 +15,7 @@ sudo visudo
 Run and ignore some errors as this sequence is already as fault tolerant as possible:
 
 ```bash
-DO_BOX=true bash -c "$(curl -LSf https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh)"
+bash -c "$(curl -LSf https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh)" dummy -f
 ```
 
 Install desktop selections by running:
@@ -80,7 +80,15 @@ Download the zip file, unzip, and run setup.sh:
 curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
   && unzip -o ~/dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master \
-  && ./setup.sh -b
+  && ./setup.sh -f
+```
+
+Setup everything but setupbox.sh:
+```bash
+curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
+  && unzip -o ~/dotfiles.zip -d "$HOME" \
+  && cd "$HOME"/dotfiles-master \
+  && ./setup.sh -a -d -s
 ```
 
 Setup only aliases:
@@ -90,13 +98,5 @@ curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master
   && unzip -o ~/dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master \
   && ./setup.sh -a
-```
-
-Setup everything but setupbox.sh:
-```bash
-curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
-  && unzip -o ~/dotfiles.zip -d "$HOME" \
-  && cd "$HOME"/dotfiles-master \
-  && ./setup.sh
 ```
 

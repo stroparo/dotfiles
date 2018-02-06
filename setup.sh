@@ -14,7 +14,7 @@ if [ ! -d ./scripts ] ; then
   unzip -o "$HOME"/.dotfiles.zip -d "$HOME" \
     && (cd "$HOME"/dotfiles-master \
     && [ "$PWD" = "$HOME"/dotfiles-master ] \
-    && ./setup.sh) \
+    && ./setup.sh "$@") \
     || exit $?
 
   rm -f -r "$HOME"/dotfiles-master
@@ -24,21 +24,23 @@ fi
 # #############################################################################
 # Options
 
-: ${ALIASES_ONLY:=false}
-: ${OVERRIDE_SUBL_PREFS:=false}
+: ${DO_ALIASES:=false}
 : ${DO_BOX:=false}
-FULL=false
+: ${DO_DOT:=false}
+: ${DO_SHELL:=false}
+: ${FULL:=false}
+: ${OVERRIDE_SUBL_PREFS:=false}
 
 # Options:
 OPTIND=1
-while getopts ':abf' option ; do
-    case "${option}" in
-        a) ALIASES_ONLY=true;;
-        b) DO_BOX=true;;
-        f)
-          FULL=true
-          OVERRIDE_SUBL_PREFS=true;;
-    esac
+while getopts ':abdfs' option ; do
+  case "${option}" in
+    a) DO_ALIASES=true;;
+    b) DO_BOX=true;;
+    d) DO_DOT=true;;
+    f) FULL=true;;
+    s) DO_SHELL=true;;
+  esac
 done
 shift "$((OPTIND-1))"
 
@@ -47,14 +49,23 @@ export OVERRIDE_SUBL_PREFS
 # #############################################################################
 # Configurations
 
-./setupaliases.sh; ${ALIASES_ONLY:-false} && exit
+if ${DO_ALIASES:-false} || ${FULL:-false} ; then
+  ./setupaliases.sh
+fi
 
 if ${DO_BOX:-false} || ${FULL:-false} ; then
   ./setupbox.sh
 fi
 
-./scripts/dotify.sh
+if ${DO_SHELL:-false} || ${FULL:-false} ; then
+  ./setupshell.sh
+fi
 
-for deploy in `ls ./scripts/deploy*sh` ; do
-  "$deploy"
-done
+if ${DO_DOT:-false} || ${FULL:-false} ; then
+
+  ./scripts/dotify.sh
+
+  for deploy in `ls ./scripts/deploy*sh` ; do
+    "$deploy"
+  done
+fi
