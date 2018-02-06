@@ -94,6 +94,12 @@ if [[ $answer = y ]] ; then
   sudo $RPMPROG install -y python python-devel
 fi
 
+echo ${BASH_VERSION:+-e} "\n\n==> Python3 distribution packages? [y/N]\c"
+read answer
+if [[ $answer = y ]] ; then
+  sudo $RPMPROG install -y python3 python3-devel
+fi
+
 echo ${BASH_VERSION:+-e} "\n\n==> Ruby distribution packages? [y/N]\c"
 read answer
 if [[ $answer = y ]] ; then
