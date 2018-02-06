@@ -1,17 +1,31 @@
-ALIASES_FILE="$HOME/.aliases-cs"
+#!/usr/bin/env bash
+
+# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
 
 echo
 echo "==> Setting up setupaliases.sh ($ALIASES_FILE)..."
+
+# #############################################################################
+# Globals
+
+ALIASES_FILE="$HOME/.aliases-cs"
+
+# #############################################################################
+# Shell profiles
 
 if [ -r ~/.bashrc ] && [ -w ~/.bashrc ] ; then
   fgrep -i -q "$ALIASES_FILE" ~/.bashrc \
     || echo ". '$ALIASES_FILE'" >> ~/.bashrc
 fi
 
+# Zsh profile
 if [ -r ~/.zshrc ] && [ -w ~/.zshrc ] ; then
   fgrep -i -q "$ALIASES_FILE" ~/.zshrc \
     || echo ". '$ALIASES_FILE'" >> ~/.zshrc
 fi
+
+# #############################################################################
+# Aliases file
 
 cat > "$ALIASES_FILE" <<'EOF'
 callapi () {
@@ -174,3 +188,5 @@ alias tks='tmux kill-session -t'
 # #############################################################################
 
 EOF
+
+# #############################################################################

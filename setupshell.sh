@@ -1,8 +1,6 @@
 #/usr/bin/env bash
 
-# Daily Shells Library
-# More instructions and licensing at:
-# https://github.com/stroparo/ds
+# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
 
 echo
 echo "==> Setting up setupshell.sh (Daily Shells and some of its setups)..."

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
+
 echo
 echo "==> Setting up vim..."
 

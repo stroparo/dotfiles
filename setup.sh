@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
+
+# Remark:
 # Run this script from its directory otherwise it will not find
 #  the ./scripts/ directory and will self provision.
 
@@ -62,10 +65,15 @@ if ${DO_SHELL:-false} || ${FULL:-false} ; then
 fi
 
 if ${DO_DOT:-false} || ${FULL:-false} ; then
-
-  ./scripts/dotify.sh
-
   for deploy in `ls ./scripts/deploy*sh` ; do
     "$deploy"
   done
+
+  # Cygwin
+  if (uname -a | grep -i -q cygwin) ; then
+    GITCONFIG_CYGWIN="$(cygpath "$USERPROFILE")/.gitconfig"
+    touch "$GITCONFIG_CYGWIN"
+    ./scripts/deploygit.sh "$GITCONFIG_CYGWIN"
+  fi
 fi
+
