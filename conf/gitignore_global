@@ -14,7 +14,7 @@
 *.sublime-workspace
 *.swo
 *.swp
-*.(bz2|gz|tar|xz|[zZ]|zip)
+*.(zip|7z|bz2|gz|tar|xz|[zZ])
 [Dd]esktop.ini
 tags
 *stackdump
