@@ -38,8 +38,7 @@ echo ${BASH_VERSION:+-e} "==> Upgrade all packages? [y/N]\c" ; read answer
 
 echo ${BASH_VERSION:+-e} "\n\n==> Base packages..."
 
-sudo $RPMPROG install -y curl less rsync unzip wget zip zsh
-sudo $RPMPROG install -y lftp mosh
+sudo $RPMPROG install -y curl less lftp mosh rsync tmux unzip wget zip zsh
 sudo $RPMPROG install -y p7zip p7zip-plugins unrar
 
 # #############################################################################
@@ -58,7 +57,7 @@ fi
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
 
-sudo $RPMPROG install -y git tig jq make sqlite tmux
+sudo $RPMPROG install -y ctags git tig jq make sqlite
 sudo $RPMPROG -y groupinstall 'Development Tools'
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel libs? (often needed for compiling) [Y/n]\c"
