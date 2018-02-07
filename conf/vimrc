@@ -130,10 +130,7 @@ nnoremap <C-H> <C-W><C-H>
 vnoremap . :norm.<CR>
 
 " Upcase last typed word
-inoremap <c-u> <esc>viwUea
-" Upcase
-inoremap <Plug>UpCase <Esc>hgUaweA
-imap ;u <Plug>UpCase
+inoremap ;wu <esc>viwUea
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ag silversearcher
