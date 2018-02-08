@@ -57,7 +57,7 @@ if egrep -i -q 'fedora' /etc/*release* ; then
     echo "==> DNF Delta RPM compression..."
 
     sudo dnf install deltarpm \
-      && echo "deltarpm=1" >> /etc/dnf/dnf.conf
+      && (echo "deltarpm=1" | sudo tee -a /etc/dnf/dnf.conf)
   fi
 
   echo "==> Google Chrome..."
