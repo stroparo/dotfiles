@@ -8,7 +8,8 @@ export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 # #############################################################################
 # Check OS
 
-if ! egrep -i -q 'cent ?os|fedora|oracle|red ?hat' /etc/*release* ; then
+if ! egrep -i -q 'cent ?os|fedora|oracle|red ?hat' /etc/*release* 2>/dev/null
+then
   echo "FATAL: Only Red Hat based distros are supported" 1>&2
   exit 1
 fi
@@ -59,7 +60,7 @@ sudo $RPMPROG install libreoffice-calc
 # #############################################################################
 # Fedora
 
-if egrep -i -q 'fedora' /etc/*release* ; then
+if egrep -i -q 'fedora' /etc/*release* 2>/dev/null ; then
 
   if which dnf >/dev/null 2>&1 ; then
 
@@ -108,7 +109,7 @@ fi
 # #############################################################################
 # Fedora 27
 
-if egrep -i -q 'fedora 27' /etc/*release* ; then
+if egrep -i -q 'fedora 27' /etc/*release* 2>/dev/null ; then
 
   echo
   echo '==> Fedora 27...'
@@ -156,12 +157,12 @@ fi
 # #############################################################################
 # Fedora 26 & 27
 
-if egrep -i -q 'fedora 2[67]' /etc/*release* ; then
+if egrep -i -q 'fedora 2[67]' /etc/*release* 2>/dev/null ; then
 
   echo
   echo '==> Fedora 26 & 27...'
 
-  fedora_version=$(egrep -i -o 'fedora 2[67]' /etc/*release* \
+  fedora_version=$(egrep -i -o 'fedora 2[67]' /etc/*release* 2>/dev/null \
     | head -1 \
     | awk '{ print $2; }')
 
