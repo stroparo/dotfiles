@@ -81,11 +81,12 @@ RPMREPO
 
   if which dnf >/dev/null 2>&1 ; then
 
-    echo "==> Skype (command: skypeforlinux)..."
+    echo "==> skypeforlinux installation prep..."
 
     sudo dnf config-manager --add-repo 'https://repo.skype.com/data/skype-stable.repo'
     sudo rpm --import 'https://repo.skype.com/data/SKYPE-GPG-KEY'
     sudo dnf update
+    echo "==> skypeforlinux installation..."
     sudo dnf install skypeforlinux
   fi
 fi
