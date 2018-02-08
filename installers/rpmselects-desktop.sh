@@ -27,6 +27,15 @@ EOF
 fi
 
 # #############################################################################
+# Hostname
+
+echo ${BASH_VERSION:+-e} "\n==> Skip hostname setup? [Y/n]\c" ; read answer
+if [[ $answer = n ]] ; then
+  echo ${BASH_VERSION:+-e} "Hostname: \c" ; read newhostname
+  sudo hostnamectl set-hostname "${newhostname:-andromeda}"
+fi
+
+# #############################################################################
 # Upgrade
 
 echo ${BASH_VERSION:+-e} "\n==> Upgrade all packages? [y/N]\c" ; read answer
@@ -54,13 +63,15 @@ if egrep -i -q 'fedora' /etc/*release* ; then
 
   if which dnf >/dev/null 2>&1 ; then
 
-    echo "==> DNF Delta RPM compression..."
+    echo
+    echo '==> DNF Delta RPM compression...'
 
     sudo dnf install deltarpm \
       && (echo "deltarpm=1" | sudo tee -a /etc/dnf/dnf.conf)
   fi
 
-  echo "==> Google Chrome..."
+  echo
+  echo '==> Google Chrome...'
 
   sudo rpm --import https://dl.google.com/linux/linux_signing_key.pub
   sudo tee /etc/yum.repos.d/google-chrome.repo <<RPMREPO
@@ -73,7 +84,8 @@ gpgkey=https://dl.google.com/linux/linux_signing_key.pub
 RPMREPO
   sudo $RPMPROG install google-chrome-stable
 
-  echo "==> Flash Player..."
+  echo
+  echo '==> Flash Player...'
 
   sudo $RPMPROG install http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
   sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
@@ -81,12 +93,14 @@ RPMREPO
 
   if which dnf >/dev/null 2>&1 ; then
 
-    echo "==> skypeforlinux installation prep..."
+    echo
+    echo '==> skypeforlinux installation prep...'
 
     sudo dnf config-manager --add-repo 'https://repo.skype.com/data/skype-stable.repo'
     sudo rpm --import 'https://repo.skype.com/data/SKYPE-GPG-KEY'
     sudo dnf update
-    echo "==> skypeforlinux installation..."
+    echo
+    echo '==> skypeforlinux installation...'
     sudo dnf install skypeforlinux
   fi
 fi
@@ -96,9 +110,11 @@ fi
 
 if egrep -i -q 'fedora 27' /etc/*release* ; then
 
-  echo "==> Fedora 27..."
+  echo
+  echo '==> Fedora 27...'
 
-  echo "==> RPMFusion repo..."
+  echo
+  echo '==> RPMFusion repo...'
   {
     sudo $RPMPROG install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm
     sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-27
@@ -106,14 +122,17 @@ if egrep -i -q 'fedora 27' /etc/*release* ; then
     sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-27
     sudo $RPMPROG update
 
-    echo "==> RPMFusion - codecs..."
+    echo
+    echo '==> RPMFusion - codecs...'
     sudo $RPMPROG install amrnb amrwb faad2 flac ffmpeg gpac-libs lame libfc14audiodecoder mencoder mplayer x264 x265 gstreamer-plugins-espeak gstreamer-plugins-fc gstreamer-rtsp gstreamer-plugins-good gstreamer-plugins-bad gstreamer-plugins-bad-free-extras gstreamer-plugins-bad-nonfree gstreamer-plugins-ugly gstreamer-ffmpeg gstreamer1-plugins-base gstreamer1-libav gstreamer1-plugins-bad-free-extras gstreamer1-plugins-bad-freeworld gstreamer1-plugins-base-tools gstreamer1-plugins-good-extras gstreamer1-plugins-ugly gstreamer1-plugins-bad-free gstreamer1-plugins-good
 
-    echo "==> RPMFusion - virtualbox..."
+    echo
+    echo '==> RPMFusion - virtualbox...'
     sudo $RPMPROG install VirtualBox
   }
 
-  # echo "==> Graphics drivers..."
+  echo
+  # echo '==> Graphics drivers...'
 
   # VGA AMD closed
   # sudo $RPMPROG install mesa-dri-drivers.i686 mesa-libGL.i686 xorg-x11-drv-amdgpu
@@ -126,7 +145,8 @@ if egrep -i -q 'fedora 27' /etc/*release* ; then
 
   if which dnf >/dev/null 2>&1 ; then
 
-    echo "==> Steam..."
+    echo
+    echo '==> Steam...'
 
     sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-steam.repo
     sudo dnf install steam
@@ -139,14 +159,14 @@ fi
 if egrep -i -q 'fedora 2[67]' /etc/*release* ; then
 
   echo
-  echo "==> Fedora 26 & 27..."
+  echo '==> Fedora 26 & 27...'
 
   fedora_version=$(egrep -i -o 'fedora 2[67]' /etc/*release* \
     | head -1 \
-	| awk '{ print $2; }')
+    | awk '{ print $2; }')
 
   echo
-  echo "==> XFCE Whisker Menu"
+  echo '==> XFCE Whisker Menu'
 
   sudo $RPMPROG remove xfce4-whiskermenu-plugin
   sudo curl -kLSf -o /etc/yum.repos.d/home:gottcode.repo \

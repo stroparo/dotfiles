@@ -27,6 +27,14 @@ EOF
 fi
 
 # #############################################################################
+# Hostname
+
+echo ${BASH_VERSION:+-e} "\n==> Skip hostname setup? [Y/n]\c" ; read answer
+if [[ $answer = n ]] ; then
+  echo ${BASH_VERSION:+-e} "Hostname: \c" ; read newhostname
+  sudo hostnamectl set-hostname "${newhostname:-andromeda}"
+fi
+# #############################################################################
 # Update
 
 echo ${BASH_VERSION:+-e} "\n\n==> Updating..."
