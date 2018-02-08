@@ -39,7 +39,7 @@ echo ${BASH_VERSION:+-e} "==> Upgrade all packages? [y/N]\c" ; read answer
 echo ${BASH_VERSION:+-e} "\n\n==> Base packages..."
 
 sudo $RPMPROG install -y curl less lftp mosh rsync tmux unzip wget zip zsh
-sudo $RPMPROG install -y p7zip p7zip-plugins unrar
+sudo $RPMPROG install -y p7zip p7zip-plugins lzip cabextract unrar
 
 # #############################################################################
 # EPEL (Extra Packages for Enterprise Linux)

@@ -36,19 +36,100 @@ echo ${BASH_VERSION:+-e} "\n==> Upgrade all packages? [y/N]\c" ; read answer
 # Install
 
 sudo $RPMPROG install gigolo guake meld
-sudo $RPMPROG install libreoffice-calc
+
+# Multimedia
+sudo $RPMPROG install audacious audacious-plugins-freeworld
 sudo $RPMPROG install mplayer parole
+
+# Networking
+sudo $RPMPROG install qbittorrent transmission
+
+# Productivity
+sudo $RPMPROG install libreoffice-calc
+
+# #############################################################################
+# Fedora
+
+if egrep -i -q 'fedora' /etc/*release* ; then
+
+  if which dnf >/dev/null 2>&1 ; then
+
+    echo "==> DNF Delta RPM compression..."
+
+    sudo dnf install deltarpm \
+      && echo "deltarpm=1" >> /etc/dnf/dnf.conf
+  fi
+
+  echo "==> Google Chrome..."
+
+  sudo rpm --import https://dl.google.com/linux/linux_signing_key.pub
+  sudo tee /etc/yum.repos.d/google-chrome.repo <<RPMREPO
+[google-chrome]
+name=google-chrome
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://dl.google.com/linux/linux_signing_key.pub
+RPMREPO
+  sudo $RPMPROG install google-chrome-stable
+
+  echo "==> Flash Player..."
+
+  sudo $RPMPROG install http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
+  sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
+  sudo $RPMPROG install flash-plugin
+
+  if which dnf >/dev/null 2>&1 ; then
+
+    echo "==> Skype (command: skypeforlinux)..."
+
+    sudo dnf config-manager --add-repo 'https://repo.skype.com/data/skype-stable.repo'
+    sudo rpm --import 'https://repo.skype.com/data/SKYPE-GPG-KEY'
+    sudo dnf update
+    sudo dnf install skypeforlinux
+  fi
+fi
 
 # #############################################################################
 # Fedora 27
 
 if egrep -i -q 'fedora 27' /etc/*release* ; then
-  echo "==> Fedora 27 codecs..."
-  sudo $RPMPROG install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm
-  sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-27
-  sudo $RPMPROG install http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-27.noarch.rpm
-  sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-27
-  sudo $RPMPROG install amrnb amrwb faad2 flac ffmpeg gpac-libs lame libfc14audiodecoder mencoder mplayer x264 x265 gstreamer-plugins-espeak gstreamer-plugins-fc gstreamer-rtsp gstreamer-plugins-good gstreamer-plugins-bad gstreamer-plugins-bad-free-extras gstreamer-plugins-bad-nonfree gstreamer-plugins-ugly gstreamer-ffmpeg gstreamer1-plugins-base gstreamer1-libav gstreamer1-plugins-bad-free-extras gstreamer1-plugins-bad-freeworld gstreamer1-plugins-base-tools gstreamer1-plugins-good-extras gstreamer1-plugins-ugly gstreamer1-plugins-bad-free gstreamer1-plugins-good
+
+  echo "==> Fedora 27..."
+
+  echo "==> RPMFusion repo..."
+  {
+    sudo $RPMPROG install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm
+    sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-27
+    sudo $RPMPROG install http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-27.noarch.rpm
+    sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-27
+    sudo $RPMPROG update
+
+    echo "==> RPMFusion - codecs..."
+    sudo $RPMPROG install amrnb amrwb faad2 flac ffmpeg gpac-libs lame libfc14audiodecoder mencoder mplayer x264 x265 gstreamer-plugins-espeak gstreamer-plugins-fc gstreamer-rtsp gstreamer-plugins-good gstreamer-plugins-bad gstreamer-plugins-bad-free-extras gstreamer-plugins-bad-nonfree gstreamer-plugins-ugly gstreamer-ffmpeg gstreamer1-plugins-base gstreamer1-libav gstreamer1-plugins-bad-free-extras gstreamer1-plugins-bad-freeworld gstreamer1-plugins-base-tools gstreamer1-plugins-good-extras gstreamer1-plugins-ugly gstreamer1-plugins-bad-free gstreamer1-plugins-good
+
+    echo "==> RPMFusion - virtualbox..."
+    sudo $RPMPROG install VirtualBox
+  }
+
+  # echo "==> Graphics drivers..."
+
+  # VGA AMD closed
+  # sudo $RPMPROG install mesa-dri-drivers.i686 mesa-libGL.i686 xorg-x11-drv-amdgpu
+  # VGA Intel
+  # sudo $RPMPROG install mesa-dri-drivers.i686 mesa-libGL.i686 xorg-x11-drv-intel
+  # VGA Nvidia closed
+  # sudo $RPMPROG install xorg-x11-drv-nvidia-libs.i686
+  # VGA Nvidia open
+  # sudo $RPMPROG install mesa-dri-drivers.i686 mesa-libGL.i686 xorg-x11-drv-nouveau
+
+  if which dnf >/dev/null 2>&1 ; then
+
+    echo "==> Steam..."
+
+    sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-steam.repo
+    sudo dnf install steam
+  fi
 fi
 
 # #############################################################################
@@ -65,6 +146,7 @@ if egrep -i -q 'fedora 2[67]' /etc/*release* ; then
 
   echo
   echo "==> XFCE Whisker Menu"
+
   sudo $RPMPROG remove xfce4-whiskermenu-plugin
   sudo curl -kLSf -o /etc/yum.repos.d/home:gottcode.repo \
     "http://download.opensuse.org/repositories/home:\
