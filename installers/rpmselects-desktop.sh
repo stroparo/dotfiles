@@ -54,6 +54,7 @@ sudo $RPMPROG install clamtk clamav clamav-update
 # Multimedia
 sudo $RPMPROG install audacious audacious-plugins-freeworld
 sudo $RPMPROG install mplayer parole
+sudo $RPMPROG install shutter # Screenshots, better than the stock one...
 
 # Networking
 sudo $RPMPROG install gigolo

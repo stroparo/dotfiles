@@ -53,18 +53,14 @@ alias nht='tail -9999f nohup.out'
 alias xcd="alias | egrep \"'c?d \" | fgrep -v 'cd -'"
 alias xgit="alias | grep -w git"
 
-# #############################################################################
 # Grep
-
 if (command grep --help | command grep -q -- --color) ; then
   alias grep='grep --color=auto'
   alias egrep='egrep --color=auto'
   alias fgrep='fgrep --color=auto'
 fi
 
-# #############################################################################
 # Ls
-
 if [[ $(ls --version 2>/dev/null) = *GNU* ]] ; then
   alias ls='ls --color=auto'
   alias l='ls -Flhi'
@@ -133,6 +129,12 @@ if which apt >/dev/null 2>&1 || which apt-get >/dev/null 2>&1 ; then
 fi
 
 # #############################################################################
+# Docker
+
+alias dc='docker-compose'
+alias de='docker-compose exec'
+
+# #############################################################################
 # Git
 
 if which git >/dev/null 2>&1 ; then
@@ -142,6 +144,7 @@ if which git >/dev/null 2>&1 ; then
   alias gh='git diff HEAD'
   alias glggas='git log --graph --decorate --all --stat'
   alias glogas='git log --graph --decorate --all --stat --oneline'
+  alias glrum='git pull --rebase upstream master'
   alias gv='git mv'
 
   # If no Oh-My-ZSH then load similar git aliases:
