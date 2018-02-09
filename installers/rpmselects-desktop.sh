@@ -5,6 +5,9 @@
 
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 
+URL_FLASH='http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm'
+URL_STACER='https://github.com/oguzhaninan/Stacer/releases/download/v1.0.8/stacer-1.0.8_x64.rpm'
+
 # #############################################################################
 # Check OS
 
@@ -88,9 +91,15 @@ RPMREPO
   echo
   echo '==> Flash Player...'
 
-  sudo $RPMPROG install http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
+  sudo $RPMPROG install "$URL_FLASH"
   sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
   sudo $RPMPROG install flash-plugin
+
+  echo
+  echo "==> Stacer monitor dashboard..."
+
+  curl -kLSf -o ~/stacer.rpm "$URL_STACER" \
+    && $RPMPROG install ~/stacer.rpm
 
   if which dnf >/dev/null 2>&1 ; then
 
