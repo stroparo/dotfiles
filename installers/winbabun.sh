@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CYGWINSETUP=setupcygwin.bat
+CYGWINSETUP=wincyg.bat
 
 if [ -e $CYGWINSETUP ] ; then
   pact install `grep CYGPKGS= "$CYGWINSETUP" | sed -e 's/^SET CYGPKGS=%CYGPKGS%//'`
