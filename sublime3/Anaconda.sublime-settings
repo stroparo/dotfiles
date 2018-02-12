@@ -1,5 +1,5 @@
 {
-    "anaconda_linting": true,
+    "anaconda_linting": false,
     // "anaconda_linting_behaviour": "save-only",
     "anaconda_tooltip_theme": "light",
     "auto_formatting": false,

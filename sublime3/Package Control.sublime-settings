@@ -8,17 +8,22 @@
 		// Code
 		// "Alignment",
 		// "All Autocomplete",
-		"Anaconda",
 		"Indent Size",
 		"Pretty JSON",
 		// "Ruby Completions",
 		// "SublimeCodeIntel", // this conflicts with anaconda completion
 		"SublimeLinter",
-		// "SublimeLinter-flake8",
+		"SublimeLinter-flake8", // or "SublimeLinter-pycodestyle",
 		"SublimeLinter-jshint",
+		"SublimeLinter-json",
 		"SublimeLinter-rubocop",
 		// "Text Pastry",
 		"TrailingSpaces",
+
+		// Code Python
+		"Anaconda",
+		"Djaneiro",
+		"requirementstxt",
 
 		// Themes
 		"1337 Color Scheme",
