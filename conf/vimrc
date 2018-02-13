@@ -34,6 +34,7 @@ Plug 'https://github.com/mbbill/undotree'
 Plug 'https://github.com/tpope/vim-unimpaired'
 Plug 'https://github.com/ajh17/VimCompletesMe'
 " Etc
+Plug 'https://github.com/editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/xtal8/traces.vim'
@@ -234,6 +235,11 @@ augroup highligh_follows_vim
     autocmd FocusGained * set cursorline
     autocmd FocusLost * set nocursorline
 augroup END
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin EditorConfig
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Python folding SimpylFold
