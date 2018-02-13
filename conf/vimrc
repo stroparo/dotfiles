@@ -11,15 +11,6 @@ endif
 
 call plug#begin('~/.vim/bundle')
 Plug 'junegunn/vim-plug'    " has vim-plug help
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
-Plug 'junegunn/fzf.vim'
-" Visuals
-Plug 'https://github.com/rafi/awesome-vim-colorschemes'
-Plug 'https://github.com/c9s/colorselector.vim'
-Plug 'https://github.com/Konfekt/FastFold'
-" Python
-Plug 'https://github.com/vim-scripts/indentpython.vim'
-Plug 'https://github.com/tmhedberg/SimpylFold'
 " No harm plugins from https://www.vi-improved.org/plugins/
 Plug 'https://github.com/tpope/vim-abolish'
 Plug 'https://github.com/tpope/vim-characterize'
@@ -41,6 +32,17 @@ Plug 'https://github.com/tomtom/ttags_vim'
 Plug 'https://github.com/mbbill/undotree'
 Plug 'https://github.com/tpope/vim-unimpaired'
 Plug 'https://github.com/ajh17/VimCompletesMe'
+" Etc
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
+Plug 'junegunn/fzf.vim'
+Plug 'https://github.com/xtal8/traces.vim'
+" Python
+Plug 'https://github.com/vim-scripts/indentpython.vim'
+Plug 'https://github.com/tmhedberg/SimpylFold'
+" Visuals
+Plug 'https://github.com/rafi/awesome-vim-colorschemes'
+Plug 'https://github.com/c9s/colorselector.vim'
+Plug 'https://github.com/Konfekt/FastFold'
 call plug#end()
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
