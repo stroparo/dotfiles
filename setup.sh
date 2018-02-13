@@ -27,6 +27,8 @@ fi
 # #############################################################################
 # Options
 
+NO_ACTION=true
+
 : ${DO_ALIASES:=false}
 : ${DO_BOX:=false}
 : ${DO_DOT:=false}
@@ -53,18 +55,21 @@ export OVERRIDE_SUBL_PREFS
 # Configurations
 
 if ${DO_ALIASES:-false} || ${FULL:-false} ; then
+  NO_ACTION=false
   ./setupaliases.sh
 fi
 
 if ${DO_BOX:-false} || ${FULL:-false} ; then
+  NO_ACTION=false
   ./setupbox.sh
 fi
 
 if ${DO_SHELL:-false} || ${FULL:-false} ; then
+  NO_ACTION=false
   ./setupshell.sh
 fi
 
-if ${DO_DOT:-false} || ${FULL:-false} ; then
+if ${DO_DOT:-false} || ${FULL:-false} || ${NO_ACTION:-true} ; then
   for deploy in `ls ./scripts/deploy*sh` ; do
     "$deploy"
   done
