@@ -36,6 +36,7 @@ Plug 'https://github.com/ajh17/VimCompletesMe'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/xtal8/traces.vim'
+Plug 'https://github.com/airblade/vim-gitgutter'
 " Python
 Plug 'https://github.com/vim-scripts/indentpython.vim'
 Plug 'https://github.com/tmhedberg/SimpylFold'
