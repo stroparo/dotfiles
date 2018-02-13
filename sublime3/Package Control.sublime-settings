@@ -12,7 +12,7 @@
 		"Indent Size",
 		"Pretty JSON",
 		// "Ruby Completions",
-		// "SublimeCodeIntel", // this conflicts with anaconda completion
+		"SublimeCodeIntel", // disable this for *.py files as it clashes with anaconda's completion
 		"SublimeLinter",
 		"SublimeLinter-flake8", // or "SublimeLinter-pycodestyle",
 		"SublimeLinter-jshint",
