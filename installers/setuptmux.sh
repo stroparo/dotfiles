@@ -4,11 +4,14 @@
 # More instructions and licensing at:
 # https://github.com/stroparo/ds-extras
 
+set -e
+
 echo ${BASH_VERSION:+-e} '\n\n==> Installing tmux...' 1>&2
 
 # #############################################################################
 # Globals
 
+PREFIX="${1:-/usr/local}"
 WORKDIR="$HOME"
 
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
@@ -35,19 +38,19 @@ _make_install () {
 }
 
 # #############################################################################
-# Checks
+# Prep
 
+# Check OS
 if !(uname -a | grep -i -q linux) ; then
   echo "FATAL: Only Linux is supported." 1>&2
   exit 1
 fi
 
-# #############################################################################
-# Prep
-
-set -e
-
 mkdir -p "$PREFIX"/
+if [ ! -d "$PREFIX" ] ; then
+  echo "FATAL: No prefix dir ($PREFIX)." 1>&2
+  exit 1
+fi
 
 echo ${BASH_VERSION:+-e} "\n==> Installing dependencies..."
 if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
@@ -67,23 +70,23 @@ if [ ! -e libevent-$LIBEVENT_VERSION.tar.gz ] ; then
 fi
 tar -xzf ./libevent-$LIBEVENT_VERSION.tar.gz
 cd libevent-$LIBEVENT_VERSION-stable
-./configure
+./configure --prefix="$PREFIX"
 make
 _make_install
 
 # #############################################################################
 # Build ncurses
 
-# cd "$WORKDIR"
+cd "$WORKDIR"
 
-# if [ ! -e ncurses-$NCURSES_VERSION.tar.gz ] ; then
-#   curl -LSfs -o ncurses-$NCURSES_VERSION.tar.gz "$NCURSES_URL"
-# fi
-# tar -xzf ncurses-$NCURSES_VERSION.tar.gz
-# cd ncurses-$NCURSES_VERSION
-# ./configure
-# make
-# _make_install
+if [ ! -e ncurses-$NCURSES_VERSION.tar.gz ] ; then
+  curl -LSfs -o ncurses-$NCURSES_VERSION.tar.gz "$NCURSES_URL"
+fi
+tar -xzf ncurses-$NCURSES_VERSION.tar.gz
+cd ncurses-$NCURSES_VERSION
+./configure --prefix="$PREFIX"
+make
+_make_install
 
 # #############################################################################
 # Build tmux
@@ -95,6 +98,7 @@ if [ ! -e tmux-$TMUX_VERSION.tar.gz ] ; then
 fi
 tar -xzf ./tmux-$TMUX_VERSION.tar.gz
 cd tmux-$TMUX_VERSION
-./configure
+LDFLAGS="-L$PREFIX/lib -Wl,-rpath=$PREFIX/lib" \
+  ./configure --prefix="$PREFIX"
 make
 _make_install
