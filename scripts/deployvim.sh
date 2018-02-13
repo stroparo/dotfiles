@@ -25,6 +25,6 @@ fi
 
 ls -d -l "$HOME"/.vim/colors
 ls -d -l "$HOME"/.vim/undodir
-ls -l "$HOME"/.vim/colors/zenburn.vim
+ls -l "$HOME"/.vim/colors/*.vim
 
 # #############################################################################
