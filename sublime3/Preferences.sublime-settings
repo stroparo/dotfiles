@@ -79,7 +79,7 @@
     "auto_indent": true,
     "default_line_ending": "unix",
     "detect_indentation": true,
-    "draw_white_space": "selection",
+    "draw_white_space": "all",
     "ensure_newline_at_eof_on_save": true,
     "indent_subsequent_lines": true,
     "smart_indent": true,

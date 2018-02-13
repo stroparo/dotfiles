@@ -8,6 +8,7 @@
 		// Code
 		// "Alignment",
 		// "All Autocomplete",
+		"EditorConfig",
 		"Indent Size",
 		"Pretty JSON",
 		// "Ruby Completions",
