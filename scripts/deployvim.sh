@@ -22,7 +22,7 @@ fi
 
 if [ ! -e "$HOME"/.vim/colors/jellybeans.vim ] ; then
   git clone 'https://github.com/nanotech/jellybeans.vim' "$HOME"/vim-jellybeans \
-    && mv -f -v "$HOME"/vim-jellybeans/colors/zenburn.vim "$HOME"/.vim/colors/ \
+    && mv -f -v "$HOME"/vim-jellybeans/colors/jellybeans.vim "$HOME"/.vim/colors/ \
     && rm -f -r "$HOME"/vim-jellybeans
 fi
 
