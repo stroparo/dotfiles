@@ -235,7 +235,14 @@ augroup highligh_follows_vim
 augroup END
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Python folding SimpylFold
+" Plugin GitGutter
+
+GitGutterEnable
+GitGutterSignsEnable
+GitGutterLineHighlightsDisable
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Python folding SimpylFold
 
 let g:SimpylFold_docstring_preview = 1
 
