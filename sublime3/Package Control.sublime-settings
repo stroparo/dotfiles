@@ -1,62 +1,63 @@
 {
-	"bootstrapped": true,
-	"in_process_packages":
-	[
-	],
-	"installed_packages":
-	[
-		// Code
-		// "Alignment",
-		// "All Autocomplete",
-		"EditorConfig",
-		"Indent Size",
-		"Pretty JSON",
-		// "Ruby Completions",
-		"SublimeCodeIntel", // disable this for *.py files as it clashes with anaconda's completion
-		"SublimeLinter",
-		"SublimeLinter-flake8", // or "SublimeLinter-pycodestyle",
-		"SublimeLinter-jshint",
-		"SublimeLinter-json",
-		"SublimeLinter-rubocop",
-		// "Text Pastry",
-		"TrailingSpaces",
+  "bootstrapped": true,
+  "in_process_packages":
+  [
+  ],
+  "installed_packages":
+  [
+    // Code
+    // "Alignment",
+    // "All Autocomplete",
+    "EditorConfig",
+    "Indent Size",
+    "Pretty JSON",
+    // "Ruby Completions",
+    "SublimeCodeIntel", // disable this for *.py files as it clashes with anaconda's completion
+    "SublimeLinter",
+    "SublimeLinter-flake8", // or "SublimeLinter-pycodestyle",
+    "SublimeLinter-jshint",
+    "SublimeLinter-json",
+    "SublimeLinter-rubocop",
+    // "Text Pastry",
+    "TrailingSpaces",
 
-		// Code Python
-		"Anaconda",
-		"Djaneiro",
-		"requirementstxt",
+    // Code Python
+    "Anaconda",
+    "Djaneiro",
+    "requirementstxt",
 
-		// Themes
-		"1337 Color Scheme",
-		"Lodestone Color Scheme",
-		"Monarch",
-		"RailsCasts Colour Scheme",
-		"Theme - Spacegray",
-		"Twilightcyanide Colorscheme",
-		"Wombatish color scheme",
+    // Themes
+    "1337 Color Scheme",
+    "Lodestone Color Scheme",
+    "Monarch",
+    "RailsCasts Colour Scheme",
+    "Theme - Spacegray",
+    "Twilightcyanide Colorscheme",
+    "Wombatish color scheme",
 
-		// Etcetera
-		"AdvancedNewFile",
-		"AutoFileName",
-		"BracketHighlighter",
-		"ColorHelper",
-		"ColorPicker",
-		"Compare Side-By-Side",
-		"DocBlockr",
-		"Dockerfile Syntax Highlighting",
-		"EasyMotion",
-		"Emmet Css Snippets",
-		"FuzzyFilePath",
-		"GitGutter",
-		"Highlight",
-		"Highlight Dodgy Chars",
-		"Highlight Duplicates",
-		"MarkdownEditing",
-		"Package Control",
-		"PackageResourceViewer",
-		"Select By Regex",
-		"SideBarEnhancements",
-		"SyncedSideBar",
-		"TabsExtra"
-	]
+    // Etcetera
+    "AdvancedNewFile",
+    "AutoFileName",
+    "BracketHighlighter",
+    "ColorHelper",
+    "ColorPicker",
+    "Compare Side-By-Side",
+    "DocBlockr",
+    "Dockerfile Syntax Highlighting",
+    "EasyMotion",
+    "Emmet Css Snippets",
+    "FuzzyFilePath",
+    "GitGutter",
+    "Highlight",
+    "Highlight Dodgy Chars",
+    "Highlight Duplicates",
+    "MarkdownEditing",
+    "Package Control",
+    "PackageResourceViewer",
+    "Select By Regex",
+    "SideBarEnhancements",
+    "SyncedSideBar",
+    "TabsExtra",
+    "Terminal"
+  ]
 }
