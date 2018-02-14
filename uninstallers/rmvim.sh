@@ -9,8 +9,11 @@
 # #############################################################################
 # Globals
 
-PURGE=false
 USAGE="[-p] option purges any config files remaining"
+PURGE=false
+
+export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
+export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 
 # #############################################################################
 # Options
@@ -30,11 +33,11 @@ shift "$((OPTIND-1))"
 
 if egrep -i -q 'debian|ubuntu' /etc/*release* ; then
 
-  sudo apt remove -y --purge vim vim-runtime vim-gnome vim-tiny vim-gui-common
+  sudo $APTPROG remove -y --purge vim vim-runtime vim-gnome vim-tiny vim-gui-common
 
 elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
 
-  sudo yum -y remove vim-enhanced
+  sudo $RPMPROG -y remove vim-enhanced
 fi
 
 sudo rm -rf /usr/local/share/vim /usr/bin/vim

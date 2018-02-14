@@ -143,20 +143,6 @@ else
 fi
 
 # #############################################################################
-# Prep: cleanup previous
-
-if egrep -i -q 'debian|ubuntu' /etc/*release* ; then
-
-  sudo $APTPROG remove -y --purge vim vim-runtime vim-gnome vim-tiny vim-gui-common
-
-elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
-
-  sudo $RPMPROG -y remove vim-enhanced
-fi
-
-sudo rm -rf /usr/local/share/vim /usr/bin/vim
-
-# #############################################################################
 # Prep dependencies
 
 if egrep -i -q 'debian|ubuntu' /etc/*release* ; then
