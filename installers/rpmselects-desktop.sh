@@ -48,22 +48,22 @@ echo ${BASH_VERSION:+-e} "\n==> Upgrade all packages? [y/N]\c" ; read answer
 # #############################################################################
 # Install
 
-# Antivirus command freshclam
-sudo $RPMPROG install clamtk clamav clamav-update
+# Productivity
+sudo $RPMPROG install guake
+sudo $RPMPROG install libreoffice-calc
+sudo $RPMPROG install meld
+
+# Networking
+sudo $RPMPROG install gigolo
+sudo $RPMPROG install qbittorrent transmission
 
 # Multimedia
 sudo $RPMPROG install audacious audacious-plugins-freeworld
 sudo $RPMPROG install mplayer parole
 sudo $RPMPROG install shutter # Screenshots, better than the stock one...
 
-# Networking
-sudo $RPMPROG install gigolo
-sudo $RPMPROG install qbittorrent transmission
-
-# Productivity
-sudo $RPMPROG install guake
-sudo $RPMPROG install libreoffice-calc
-sudo $RPMPROG install meld
+# Antivirus command freshclam
+sudo $RPMPROG install clamtk clamav clamav-update
 
 # #############################################################################
 # Fedora
