@@ -14,6 +14,7 @@ GITFILE="${1:-$HOME/.gitconfig}"
 # #############################################################################
 # Prep
 
+touch "$GITFILE"
 if [ ! -f "$GITFILE" ] || [ ! -w "$GITFILE" ] ; then
   echo "FATAL: Git file missing ('$GITFILE')." 1>&2
   exit 1
