@@ -4,6 +4,7 @@
 # Globals
 
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
+export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP="dnf group install"
 
 # #############################################################################
 # Check OS
@@ -42,14 +43,6 @@ echo ${BASH_VERSION:+-e} "==> Upgrade all packages? [y/N]\c" ; read answer
 [[ $answer = y ]] && sudo $RPMPROG update
 
 # #############################################################################
-# Base
-
-echo ${BASH_VERSION:+-e} "\n\n==> Base packages..."
-
-sudo $RPMPROG install -y curl less lftp mosh rsync tmux unzip wget zip zsh
-sudo $RPMPROG install -y p7zip p7zip-plugins lzip cabextract unrar
-
-# #############################################################################
 # EPEL (Extra Packages for Enterprise Linux)
 # https://fedoraproject.org/wiki/EPEL
 
@@ -61,12 +54,23 @@ if ! grep -i -q 'fedora' /etc/*release* ; then
 fi
 
 # #############################################################################
-# Devel
+# Main
+
+echo ${BASH_VERSION:+-e} "\n\n==> Base packages..."
+sudo $RPMPROG install -y curl lftp mosh rsync wget
+sudo $RPMPROG install -y less
+sudo $RPMPROG install -y p7zip p7zip-plugins lzip cabextract unrar
+sudo $RPMPROG install -y tmux
+sudo $RPMPROG install -y unzip zip
+sudo $RPMPROG install -y zsh
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
-
-sudo $RPMPROG install -y ctags git tig jq make sqlite
-sudo $RPMPROG -y groupinstall 'Development Tools'
+sudo $RPMGROUP -y 'Development Tools'
+sudo $RPMPROG install -y ctags
+sudo $RPMPROG install -y jq
+sudo $RPMPROG install -y make
+sudo $RPMPROG install -y sqlite
+sudo $RPMPROG install git tig
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel libs? (often needed for compiling) [Y/n]\c"
 read answer
@@ -116,6 +120,7 @@ fi
 # #############################################################################
 # SELinux
 
+echo ${BASH_VERSION:+-e} "\n\n==> SELinux..."
 sudo $RPMPROG install -y setroubleshoot-server selinux-policy-devel
 
 # #############################################################################
@@ -124,6 +129,7 @@ sudo $RPMPROG install -y setroubleshoot-server selinux-policy-devel
 
 if ! ag --version ; then
   # Must have the epel-release repository:
+  echo ${BASH_VERSION:+-e} "\n\n==> SilverSearcher Ag..."
   sudo $RPMPROG install -y the_silver_searcher
 fi
 

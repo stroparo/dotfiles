@@ -55,7 +55,8 @@ sudo $RPMPROG install meld
 
 # Networking
 sudo $RPMPROG install gigolo
-sudo $RPMPROG install qbittorrent transmission
+sudo $RPMPROG install qbittorrent
+sudo $RPMPROG install transmission
 
 # Multimedia
 sudo $RPMPROG install audacious audacious-plugins-freeworld
