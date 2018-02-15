@@ -10,7 +10,7 @@ export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP
 # #############################################################################
 # Main
 
-if egrep -i -q '(centos|fedora|oracle|red *hat).* 6' /etc/*release*
+if egrep -i -q '(centos|fedora|oracle|red *hat).* 6' /etc/*release* ; then
 
   echo ${BASH_VERSION:+-e} "\n==> XFCE..."
   sudo $RPMGROUP desktop "general purpose desktop" "x window system"
