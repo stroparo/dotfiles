@@ -4,7 +4,7 @@ if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
   sudo yum -y install xrdp tigervnc-server
 fi
 
-if egrep -i -q '(centos|fedora|oracle|red *hat).* 6' /etc/*release*
+if egrep -i -q '(oracle|red *hat).* [67]' /etc/*release* ; then
   echo ${BASH_VERSION:+-e} "Force Xclients to startxfce4? [y/N]\c"
   read ans
   if [ "$ans" = y ] ; then
