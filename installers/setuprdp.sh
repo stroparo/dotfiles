@@ -14,4 +14,5 @@ if egrep -i -q '(centos|fedora|oracle|red *hat).* 6' /etc/*release*
 exec $(which startxfce4)
 EOF
   fi
+  sudo chmod 755 /etc/X11/xinit/Xclients
 fi
