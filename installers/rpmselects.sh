@@ -60,17 +60,21 @@ echo ${BASH_VERSION:+-e} "\n\n==> Base packages..."
 sudo $RPMPROG install -y curl lftp mosh rsync wget
 sudo $RPMPROG install -y less
 sudo $RPMPROG install -y p7zip p7zip-plugins lzip cabextract unrar
-sudo $RPMPROG install -y tmux
+which tmux >/dev/null 2>&1 || sudo $RPMPROG install -y tmux
 sudo $RPMPROG install -y unzip zip
 sudo $RPMPROG install -y zsh
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
+
+which git >/dev/null 2>&1 && GIT_ALREADY=true
 sudo $RPMGROUP -y 'Development Tools'
+${GIT_ALREADY:-false} && sudo $RPMPROG remove -y git
+
 sudo $RPMPROG install -y ctags
 sudo $RPMPROG install -y jq
 sudo $RPMPROG install -y make
 sudo $RPMPROG install -y sqlite
-sudo $RPMPROG install git tig
+sudo $RPMPROG install tig
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel libs? (often needed for compiling) [Y/n]\c"
 read answer
