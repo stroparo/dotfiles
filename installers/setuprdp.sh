@@ -9,7 +9,7 @@ if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
   if egrep -i -q '(oracle|red *hat)' /etc/*release* ; then
 
     echo "$PROGNAME: INFO: setting up firewall"
-    if [ $(sudo firewall-cmd --state) = "not running" ] ; then
+    if [ "$(sudo firewall-cmd --state)" = "not running" ] ; then
       sudo systemctl start firewalld
     fi
     sudo firewall-cmd --permanent --zone=public --add-port=5904-5905/tcp \
