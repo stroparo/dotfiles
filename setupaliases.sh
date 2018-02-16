@@ -40,6 +40,10 @@ unalias d 2>/dev/null; unset d 2>/dev/null ; d () {
  if which git >/dev/null 2>&1; then git status -s 2>/dev/null ; fi
 }
 
+if which vim >/dev/null 2>&1 ; then
+  unalias vi 2>/dev/null; alias vi=vim
+fi
+
 alias cls='clear'
 alias dfg='df -gP'
 alias dfh='df -hP'
