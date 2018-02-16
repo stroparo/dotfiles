@@ -80,6 +80,7 @@ if egrep -i -q 'fedora' /etc/*release* 2>/dev/null ; then
       && (echo "deltarpm=1" | sudo tee -a /etc/dnf/dnf.conf)
   fi
 
+  # TODO this chrome setup is the very same for rhel7 so cater for this
   echo
   echo '==> Google Chrome...'
 
