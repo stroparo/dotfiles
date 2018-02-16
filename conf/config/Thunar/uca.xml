@@ -1,0 +1,46 @@
+<?xml encoding="UTF-8" version="1.0"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<unique-id>1517345475243851-1</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Example for a custom action</description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon></icon>
+	<name>Open with Sublime</name>
+	<unique-id>1518473820062068-4</unique-id>
+	<command>subl %F</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+	<other-files/>
+	<text-files/>
+</action>
+<action>
+	<icon></icon>
+	<name>xz</name>
+	<unique-id>1518823355463389-3</unique-id>
+	<command>xz %F</command>
+	<description></description>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon></icon>
+	<name>unxz</name>
+	<unique-id>1518823348199612-2</unique-id>
+	<command>xz -d %F</command>
+	<description></description>
+	<patterns>*.xz</patterns>
+	<other-files/>
+</action>
+</actions>
