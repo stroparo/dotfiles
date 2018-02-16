@@ -10,10 +10,18 @@ export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP
 # #############################################################################
 # Main
 
-if egrep -i -q '(centos|fedora|oracle|red *hat).* 6' /etc/*release* ; then
+echo ${BASH_VERSION:+-e} "\n==> Setting up XFCE..."
 
-  echo ${BASH_VERSION:+-e} "\n==> XFCE..."
-  sudo $RPMGROUP desktop "general purpose desktop" "x window system"
+if egrep -i -q '(centos|fedora|oracle|red *hat)' /etc/*release* ; then
+
+  sudo $RPMGROUP "x window system"
+
+  if egrep -i -q '(centos|fedora|oracle|red *hat).* 6' /etc/*release* ; then
+    sudo $RPMGROUP desktop "general purpose desktop"
+  elif egrep -i -q '(centos|fedora|oracle|red *hat).* 7' /etc/*release* ; then
+    sudo $RPMGROUP desktop "server with gui"
+  fi
+
   sudo $RPMGROUP xfce
 
   echo ${BASH_VERSION:+-e} "\n==> XFCE fonts..."
@@ -21,7 +29,6 @@ if egrep -i -q '(centos|fedora|oracle|red *hat).* 6' /etc/*release* ; then
 
 elif egrep -i -q 'debian|ubuntu' /etc/*release* ; then
 
-  echo ${BASH_VERSION:+-e} "\n==> XFCE..."
   sudo $APTPROG install xfce4 desktop-base thunar-volman tango-icon-theme xfce4-notifyd xscreensaver light-locker xfce4-volumed tumbler xfwm4-themes
 
   echo ${BASH_VERSION:+-e} "\n==> XFCE plugins..."
