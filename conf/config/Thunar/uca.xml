@@ -14,7 +14,7 @@
 	<icon></icon>
 	<name>Open with Sublime</name>
 	<unique-id>1518473820062068-4</unique-id>
-	<command>subl %F</command>
+	<command>/home/user/opt/subl/subl %F</command>
 	<description></description>
 	<patterns>*</patterns>
 	<directories/>
