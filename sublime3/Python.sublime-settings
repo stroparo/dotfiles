@@ -1,10 +1,14 @@
 {
+    // editor options
     "auto_complete_triggers": [{"selector": "source.python - string - comment - constant.numeric", "characters": "."}],
+    "draw_white_space": "all",
+
+    "auto_indent": true,
+    "rulers": [79],
+    "smart_indent": true,
     "tab_size": 4,
-    "extensions":
-    [
-      "awk",
-      "py"
-    ],
-    "word_wrap": false
+    "trim_automatic_white_space": true,
+    "use_tab_stops": true,
+    "word_wrap": false,
+    "wrap_width": 80
 }
