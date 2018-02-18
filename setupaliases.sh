@@ -39,6 +39,7 @@ if which vim >/dev/null 2>&1 ; then
   unalias vi 2>/dev/null; alias vi=vim
 fi
 
+alias capsctrl='setxkbmap -option "ctrl:nocaps"'
 alias cls='clear'
 alias dfg='df -gP'
 alias dfh='df -hP'
