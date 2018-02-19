@@ -28,6 +28,8 @@ if [ ! -d "${HOME}/.oh-my-zsh" ] ; then
   sh -c "$(curl -LSfs "${OMZ_URL}")"
 fi
 
+# TODO restore pre-ohmyzsh backup
+
 # #############################################################################
 # Plugin syntax highlighting
 
