@@ -11,6 +11,7 @@ echo ${BASH_VERSION:+-e} '\n\n==> Installing subl...' 1>&2
 
 SUBL_DIR="$HOME/opt"
 SUBL_URL_LINUX='https://download.sublimetext.com/sublime_text_3_build_3143_x64.tar.bz2'
+SUBL_URL_WINDOWS='https://download.sublimetext.com/Sublime%20Text%20Build%203143%20x64.zip'
 
 # #############################################################################
 # Checks
@@ -38,11 +39,11 @@ if egrep -i -q 'linux' /etc/*release* ; then
 
 elif [[ "$(uname -a)" = *[Cc]ygwin* ]] ; then
 
-  :
-  # TODO
-  # wget 'https://subl.io/download/windows'
-  # mv windows sublsetup.exe
-  # chmod u+x sublsetup.exe && ./sublsetup.exe && rm -f ./sublsetup.exe
+  SUBL_DIR="$(cygpath 'C:\opt')"
+  mkdir -p "$SUBL_DIR"
+  cd "$SUBL_DIR"
+  curl -k -L -o ./subl3.zip "$SUBL_URL_WINDOWS"
+  unzip ./subl3.zip
 
 # #############################################################################
 
