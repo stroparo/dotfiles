@@ -16,6 +16,9 @@ if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
       && sudo firewall-cmd --reload
 
     if egrep -i -q '(oracle|red *hat).* [67]' /etc/*release* ; then
+
+      # Xclients customization in /etc/X11/xinit for XFCE:
+      # TODO verify if applies to centos & fedora
       echo ${BASH_VERSION:+-e} "Force Xclients to startxfce4? [y/N]\c"
       read ans
       if [ "$ans" = y ] ; then
@@ -26,7 +29,11 @@ exec $(which startxfce4)
 EOF
       fi
       sudo chmod 755 /etc/X11/xinit/Xclients
+
     fi
   fi
+
+  sudo systemctl enable xrdp
+  sudo systemctl start xrdp
 fi
 
