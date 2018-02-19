@@ -40,11 +40,11 @@ NO_ACTION=true
 OPTIND=1
 while getopts ':abdfs' option ; do
   case "${option}" in
-    a) DO_ALIASES=true;;
-    b) DO_BOX=true;;
+    a) DO_ALIASES=true; NO_ACTION=true;;
+    b) DO_BOX=true; NO_ACTION=true;;
     d) DO_DOT=true;;
     f) FULL=true;;
-    s) DO_SHELL=true;;
+    s) DO_SHELL=true; NO_ACTION=true;;
   esac
 done
 shift "$((OPTIND-1))"
@@ -55,17 +55,14 @@ export OVERRIDE_SUBL_PREFS
 # Configurations
 
 if ${DO_ALIASES:-false} || ${FULL:-false} ; then
-  NO_ACTION=false
   ./setupaliases.sh
 fi
 
 if ${DO_BOX:-false} || ${FULL:-false} ; then
-  NO_ACTION=false
   ./setupbox.sh
 fi
 
 if ${DO_SHELL:-false} || ${FULL:-false} ; then
-  NO_ACTION=false
   ./setupshell.sh
 fi
 
