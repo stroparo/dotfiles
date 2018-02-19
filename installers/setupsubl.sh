@@ -23,6 +23,19 @@ if type subl >/dev/null 2>&1 ; then
 fi
 
 # #############################################################################
+# Options
+
+# Options:
+OPTIND=1
+while getopts ':d:' option ; do
+  case "${option}" in
+    d) SUBL_DIR="${OPTARG}";;
+    h) echo "$USAGE"; exit;;
+  esac
+done
+shift "$((OPTIND-1))"
+
+# #############################################################################
 # Linux
 
 if egrep -i -q 'linux' /etc/*release* ; then
@@ -30,7 +43,7 @@ if egrep -i -q 'linux' /etc/*release* ; then
   mkdir -p "$SUBL_DIR"
   cd "$SUBL_DIR"
   curl -k -L -o ./subl3.tar.bz2 "$SUBL_URL_LINUX"
-  tar xjvf ./subl3.tar.bz2
+  sudo tar xjvf ./subl3.tar.bz2
   ln -s -v ./sublime_text_3 ./subl # directory
   ln -s -v sublime_text ./subl/subl # binary
 
