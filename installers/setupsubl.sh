@@ -9,6 +9,7 @@ echo ${BASH_VERSION:+-e} '\n\n==> Installing subl...' 1>&2
 # #############################################################################
 # Globals
 
+SUBL_DIR="$HOME/opt"
 SUBL_URL_LINUX='https://download.sublimetext.com/sublime_text_3_build_3143_x64.tar.bz2'
 
 # #############################################################################
@@ -23,11 +24,11 @@ fi
 # #############################################################################
 # Linux
 
-if egrep -i -q 'linux' ; then
+if egrep -i -q 'linux' /etc/*release* ; then
 
-  mkdir -p "$HOME/opt"
-  cd "$HOME/opt"
-  curl -k -LSf -o ./subl3.tar.bz2 "$SUBL_URL_LINUX"
+  mkdir -p "$SUBL_DIR"
+  cd "$SUBL_DIR"
+  curl -k -L -o ./subl3.tar.bz2 "$SUBL_URL_LINUX"
   tar xjvf ./subl3.tar.bz2
   ln -s -v "$PWD/sublime_text_3" ./subl
 
