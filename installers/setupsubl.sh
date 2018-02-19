@@ -30,7 +30,8 @@ if egrep -i -q 'linux' /etc/*release* ; then
   cd "$SUBL_DIR"
   curl -k -L -o ./subl3.tar.bz2 "$SUBL_URL_LINUX"
   tar xjvf ./subl3.tar.bz2
-  ln -s -v "$PWD/sublime_text_3" ./subl
+  ln -s -v ./sublime_text_3 ./subl # directory
+  ln -s -v sublime_text ./subl/subl # binary
 
 # #############################################################################
 # Cygwin
