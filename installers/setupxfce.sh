@@ -10,22 +10,54 @@ export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP
 # #############################################################################
 # Main
 
-echo ${BASH_VERSION:+-e} "\n==> Setting up XFCE..."
+echo ${BASH_VERSION:+-e} "\n==> XFCE setup..."
+
+# #############################################################################
+
 
 if egrep -i -q '(centos|fedora|oracle|red *hat)' /etc/*release* ; then
 
-  sudo $RPMGROUP "x window system"
+  echo ${BASH_VERSION:+-e} "\n==> XFCE dependencies..."
 
-  if egrep -i -q '(centos|fedora|oracle|red *hat).* 6' /etc/*release* ; then
+  sudo $RPMGROUP "x window system"
+  if egrep -i -q '(centos|oracle|red *hat).* 6' /etc/*release* ; then
     sudo $RPMGROUP desktop "general purpose desktop"
-  elif egrep -i -q '(centos|fedora|oracle|red *hat).* 7' /etc/*release* ; then
-    sudo $RPMGROUP desktop "server with gui"
+  elif egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release* ; then
+    sudo $RPMGROUP desktop "server with gui" "mate desktop"
   fi
 
   sudo $RPMGROUP xfce
 
   echo ${BASH_VERSION:+-e} "\n==> XFCE fonts..."
+
   sudo $RPMPROG -y install xorg-x11-fonts-Type1 xorg-x11-fonts-misc
+
+  echo ${BASH_VERSION:+-e} "\n==> XFCE Whisker Menu..."
+
+  if egrep -i -q '(centos|oracle|red *hat)' /etc/*release* 2>/dev/null ; then
+
+    echo ${BASH_VERSION:+-e} \
+      "\n==> CentOS & EL ($RPMPROG install xfce4-whiskermenu-plugin)..."
+
+    sudo $RPMPROG install xfce4-whiskermenu-plugin
+
+  elif egrep -i -q 'fedora 2[67]' /etc/*release* 2>/dev/null ; then
+
+    echo ${BASH_VERSION:+-e} "\n==> Fedora 26 & 27..."
+
+    fedora_version=$(egrep -i -o 'fedora 2[67]' /etc/*release* 2>/dev/null \
+      | head -1 \
+      | awk '{ print $2; }')
+
+    sudo $RPMPROG remove xfce4-whiskermenu-plugin
+    sudo curl -kLSf -o /etc/yum.repos.d/home:gottcode.repo \
+      "http://download.opensuse.org/repositories/home:\
+  /gottcode/Fedora_${fedora_version}/home:\
+  gottcode.repo"
+    sudo $RPMPROG install xfce4-whiskermenu-plugin
+  fi
+
+# #############################################################################
 
 elif egrep -i -q 'debian|ubuntu' /etc/*release* ; then
 

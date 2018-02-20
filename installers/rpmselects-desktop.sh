@@ -171,27 +171,4 @@ if egrep -i -q 'fedora 27' /etc/*release* 2>/dev/null ; then
 fi
 
 # #############################################################################
-# Fedora 26 & 27
-
-if egrep -i -q 'fedora 2[67]' /etc/*release* 2>/dev/null ; then
-
-  echo
-  echo '==> Fedora 26 & 27...'
-
-  fedora_version=$(egrep -i -o 'fedora 2[67]' /etc/*release* 2>/dev/null \
-    | head -1 \
-    | awk '{ print $2; }')
-
-  echo
-  echo '==> XFCE Whisker Menu'
-
-  sudo $RPMPROG remove xfce4-whiskermenu-plugin
-  sudo curl -kLSf -o /etc/yum.repos.d/home:gottcode.repo \
-    "http://download.opensuse.org/repositories/home:\
-/gottcode/Fedora_${fedora_version}/home:\
-gottcode.repo"
-  sudo $RPMPROG install xfce4-whiskermenu-plugin
-fi
-
-# #############################################################################
 
