@@ -40,7 +40,7 @@ elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
   sudo $RPMPROG -y remove vim-enhanced
 fi
 
-sudo rm -rf /usr/local/share/vim /usr/bin/vim
+sudo rm -rf /usr/{,local/}bin/vi{ew,m,mdiff,mtutor} /usr/{,local/}share/vim
 
 # #############################################################################
 # Purge
