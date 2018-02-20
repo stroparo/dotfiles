@@ -35,9 +35,8 @@ unalias d 2>/dev/null; unset d 2>/dev/null ; d () {
   if which git >/dev/null 2>&1; then git status -s 2>/dev/null ; fi
 }
 
-if which vim >/dev/null 2>&1 ; then
-  unalias vi 2>/dev/null; alias vi=vim
-fi
+# Sensitive aliases:
+which vim >/dev/null 2>&1 && alias vi=vim
 
 alias capsctrl='setxkbmap -option "ctrl:nocaps"'
 alias cls='clear'
@@ -45,11 +44,13 @@ alias dfg='df -gP'
 alias dfh='df -hP'
 alias dumr='du -ma | sort -rn'
 alias dums='du -ma | sort -n'
-if which exa >/dev/null 2>&1 ; then alias e='exa -il'; alias ea='exa -ila'; fi
+alias e='exa -il'
+alias ea='exa -ila'
 alias findd='find . -type d'
 alias findf='find . -type f'
 alias nhr='rm nohup.out'
 alias nht='tail -9999f nohup.out'
+alias sourceds='. ~/.ds/ds.sh'
 alias xcd="alias | egrep \"'c?d \" | fgrep -v 'cd -'"
 alias xgit="alias | grep -w git"
 
