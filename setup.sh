@@ -40,11 +40,11 @@ NO_ACTION=true
 OPTIND=1
 while getopts ':abdfs' option ; do
   case "${option}" in
-    a) DO_ALIASES=true; NO_ACTION=true;;
-    b) DO_BOX=true; NO_ACTION=true;;
+    a) DO_ALIASES=true; NO_ACTION=false;;
+    b) DO_BOX=true; NO_ACTION=false;;
     d) DO_DOT=true;;
     f) FULL=true;;
-    s) DO_SHELL=true; NO_ACTION=true;;
+    s) DO_SHELL=true; NO_ACTION=false;;
   esac
 done
 shift "$((OPTIND-1))"
