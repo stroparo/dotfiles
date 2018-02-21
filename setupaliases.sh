@@ -29,15 +29,15 @@ fi
 # Aliases file
 
 cat > "$ALIASES_FILE" <<'EOF'
-unalias d 2>/dev/null; unset d 2>/dev/null ; d () {
+unalias d 2>/dev/null
+unset d 2>/dev/null
+d () {
   dir="${1}" ; shift
   cd "${dir}" || return 1 ; pwd 1>&2 ; ls -Fl "$@" 1>&2
   if which git >/dev/null 2>&1; then git status -s 2>/dev/null ; fi
 }
 
-# Sensitive aliases:
-which vim >/dev/null 2>&1 && alias vi=vim
-
+# Asorted
 alias capsctrl='setxkbmap -option "ctrl:nocaps"'
 alias cls='clear'
 alias dfg='df -gP'
@@ -50,9 +50,14 @@ alias findd='find . -type d'
 alias findf='find . -type f'
 alias nhr='rm nohup.out'
 alias nht='tail -9999f nohup.out'
-alias sourceds='. ~/.ds/ds.sh'
+alias server='python3 -m http.server'
+alias sourceds='. "$HOME/.ds/ds.sh"'
+alias sourcevirtualenv='. ./bin/activate'
 alias xcd="alias | egrep \"'c?d \" | fgrep -v 'cd -'"
 alias xgit="alias | grep -w git"
+
+# Breaking aliases
+which vim >/dev/null 2>&1 && alias vi=vim
 
 # Grep
 if (command grep --help | command grep -q -- --color) ; then
