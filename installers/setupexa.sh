@@ -32,7 +32,9 @@ _install_exa_deb () {
 
   # Deps - Install from APT repos:
   sudo apt update || exit 1
-  sudo apt install -y libgit2-dev cmake git libhttp-parser2.1 || exit 1
+  sudo apt install -y libgit2-dev libhttp-parser2.1 || exit $?
+  which cmake >/dev/null 2>&1 || sudo apt install -y cmake || exit $?
+  which git >/dev/null 2>&1 || sudo apt install -y git || exit $?
 
   # Compile:
   git clone https://github.com/ogham/exa.git /tmp/exa \

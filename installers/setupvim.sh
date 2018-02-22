@@ -148,7 +148,11 @@ fi
 if egrep -i -q 'debian|ubuntu' /etc/*release* ; then
 
   # Utilities:
-  sudo $APTPROG install -y exuberant-ctags curl gcc git-core make
+  sudo $APTPROG install -y exuberant-ctags
+  which curl >/dev/null 2>&1 || sudo $APTPROG install -y curl
+  which gcc >/dev/null 2>&1 || sudo $APTPROG install -y gcc
+  which git >/dev/null 2>&1 || sudo $APTPROG install -y git-core
+  which make >/dev/null 2>&1 || sudo $APTPROG install -y make
 
   # Libraries:
   sudo $APTPROG install -y libatk1.0-dev
@@ -175,7 +179,11 @@ if egrep -i -q 'debian|ubuntu' /etc/*release* ; then
 elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
 
   # Utilities:
-  sudo $RPMPROG -y install cmake ctags curl gcc git
+  sudo $RPMPROG -y install ctags
+  which cmake >/dev/null 2>&1 || sudo $RPMPROG -y install cmake
+  which curl >/dev/null 2>&1 || sudo $RPMPROG -y install curl
+  which gcc >/dev/null 2>&1 || sudo $RPMPROG -y install gcc
+  which git >/dev/null 2>&1 || sudo $RPMPROG -y install git
   sudo $RPMPROG -y groupinstall 'Development Tools'
 
   # Libraries:
