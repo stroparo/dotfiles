@@ -37,7 +37,10 @@ if ! [[ $(python -V 2>&1) =~ 2[.] ]]; then
 fi
 
 # Pre-req sha256deep:
-if ! which sha256deep; then sudo yum install -y md5deep; fi
+if ! which sha256deep; then
+  sudo apt update && sudo apt install -y md5deep \
+    || sudo yum install -y md5deep
+fi
 if ! which sha256deep; then exit 1; fi
 
 cd "$WORKDIR"
