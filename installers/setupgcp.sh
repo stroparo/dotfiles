@@ -38,8 +38,14 @@ fi
 
 # Pre-req sha256deep:
 if ! which sha256deep; then
-  sudo apt update && sudo apt install -y md5deep \
-    || sudo yum install -y md5deep
+  if egrep -i -q 'debian|ubuntu' /etc/*release* ; then
+    sudo apt update && sudo apt install -y md5deep
+    sudo ln -s -v /usr/bin/hashdeep /usr/local/bin/md5deep
+    sudo ln -s -v /usr/bin/hashdeep /usr/local/bin/sha1deep
+    sudo ln -s -v /usr/bin/hashdeep /usr/local/bin/sha256deep
+  elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
+    sudo yum install -y md5deep
+  fi
 fi
 if ! which sha256deep; then exit 1; fi
 
