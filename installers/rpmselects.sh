@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
+# Custom RPM package selection
+
+PROGNAME=rpmselects.sh
+
 # #############################################################################
 # Globals
 
@@ -50,7 +55,14 @@ echo ${BASH_VERSION:+-e} \
   "\n\n==> EPEL (Extra Packages for Enterprise Linux)..."
 
 if ! grep -i -q 'fedora' /etc/*release* ; then
-  sudo $RPMPROG install -y epel-release.noarch
+  if egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release*
+    yum -y install \
+        https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+      echo "${PROGNAME:+$PROGNAME: }INFO: Disabled epel (use --enablerepo=epel) from now on..." 1>&2
+    sed -i -e "s/^enabled=1/enabled=0/" /etc/yum.repos.d/epel.repo
+  else
+    sudo $RPMPROG install -y epel-release.noarch
+  fi
 fi
 
 # #############################################################################
