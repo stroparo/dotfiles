@@ -49,7 +49,9 @@ while getopts ':abdfs' option ; do
 done
 shift "$((OPTIND-1))"
 
+echo FULL=$FULL
 export DO_ALIASES DO_BOX DO_DOT DO_SHELL FULL OVERRIDE_SUBL_PREFS
+exit
 
 # #############################################################################
 # Configurations
