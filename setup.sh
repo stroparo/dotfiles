@@ -7,24 +7,6 @@
 #  the ./scripts/ directory and will self provision.
 
 # #############################################################################
-# Self provisioning
-
-if [ ! -d ./scripts ] ; then
-
-  curl -LSfs -o "$HOME"/.dotfiles.zip \
-    https://github.com/stroparo/dotfiles/archive/master.zip
-
-  unzip -o "$HOME"/.dotfiles.zip -d "$HOME" \
-    && (cd "$HOME"/dotfiles-master \
-    && [ "$PWD" = "$HOME"/dotfiles-master ] \
-    && ./setup.sh "$@") \
-    || exit $?
-
-  rm -f -r "$HOME"/dotfiles-master
-  exit
-fi
-
-# #############################################################################
 # Options
 
 NO_ACTION=true
@@ -49,7 +31,25 @@ while getopts ':abdfs' option ; do
 done
 shift "$((OPTIND-1))"
 
-export DO_ALIASES DO_BOX DO_DOT DO_SHELL FULL OVERRIDE_SUBL_PREFS
+export DO_ALIASES DO_BOX DO_DOT DO_SHELL NO_ACTION FULL OVERRIDE_SUBL_PREFS
+
+# #############################################################################
+# Self provisioning
+
+if [ ! -d ./scripts ] ; then
+
+  curl -LSfs -o "$HOME"/.dotfiles.zip \
+    https://github.com/stroparo/dotfiles/archive/master.zip
+
+  unzip -o "$HOME"/.dotfiles.zip -d "$HOME" \
+    && (cd "$HOME"/dotfiles-master \
+    && [ "$PWD" = "$HOME"/dotfiles-master ] \
+    && ./setup.sh "$@") \
+    || exit $?
+
+  rm -f -r "$HOME"/dotfiles-master
+  exit
+fi
 
 # #############################################################################
 # Configurations
