@@ -78,15 +78,19 @@ sudo $RPMPROG install -y zsh
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
 
-which git >/dev/null 2>&1 && GIT_ALREADY=true
+(which git 2>/dev/null | grep -q /opt) && IS_GIT_OPT=true
 sudo $RPMGROUP -y 'Development Tools'
-${GIT_ALREADY:-false} && sudo $RPMPROG remove -y git
+${IS_GIT_OPT:-false} && sudo $RPMPROG remove -y git
 
 sudo $RPMPROG install -y ctags
 sudo $RPMPROG install -y jq
 sudo $RPMPROG install -y make
 sudo $RPMPROG install -y sqlite
-sudo $RPMPROG install tig
+if ${IS_GIT_OPT:-false} ; then
+  : # TODO implement tig installation from latest/source
+else
+  sudo $RPMPROG install -y tig
+fi
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel libs? (often needed for compiling) [Y/n]\c"
 read answer
