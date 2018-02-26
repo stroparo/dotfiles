@@ -115,26 +115,6 @@ if which ag >/dev/null 2>&1 ; then
 fi
 
 # #############################################################################
-# APT dpkg etcetera
-
-if which apt >/dev/null 2>&1 || which apt-get >/dev/null 2>&1 ; then
-  alias apd='sudo aptitude update && sudo aptitude'
-  alias apdi='sudo aptitude install -y'
-  alias apdnoup='sudo aptitude'
-  alias apdup='sudo aptitude update'
-  alias apdupsafe='sudo aptitude safe-upgrade'
-  alias apti='sudo apt install -y'
-  alias apts='apt-cache search'
-  alias aptshow='apt-cache show'
-  alias aptshowpkg='apt-cache showpkg'
-  alias aptup='sudo apt update'
-  alias dpkgl='dpkg -L'
-  alias dpkgs='dpkg -s'
-  alias dpkgsel='dpkg --get-selections | egrep -i'
-  alias upalt='sudo update-alternatives'
-fi
-
-# #############################################################################
 # Docker
 
 alias dc='docker-compose'
@@ -185,6 +165,33 @@ if which git >/dev/null 2>&1 ; then
     alias grup='git remote update'
     alias grv='git remote -v'
   fi
+fi
+
+# #############################################################################
+# Packaging APT dpkg etcetera
+
+if which apt >/dev/null 2>&1 || which apt-get >/dev/null 2>&1 ; then
+  alias apd='sudo aptitude update && sudo aptitude'
+  alias apdi='sudo aptitude install -y'
+  alias apdnoup='sudo aptitude'
+  alias apdup='sudo aptitude update'
+  alias apdupsafe='sudo aptitude safe-upgrade'
+  alias apti='sudo apt install -y'
+  alias apts='apt-cache search'
+  alias aptshow='apt-cache show'
+  alias aptshowpkg='apt-cache showpkg'
+  alias aptup='sudo apt update'
+  alias dpkgl='dpkg -L'
+  alias dpkgs='dpkg -s'
+  alias dpkgsel='dpkg --get-selections | egrep -i'
+  alias upalt='sudo update-alternatives'
+fi
+
+# #############################################################################
+# Packaging RPM etcetera
+
+if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
+  alias yumepel='sudo yum --enablerepo=epel'
 fi
 
 # #############################################################################
