@@ -19,17 +19,16 @@ if egrep -i -q '(centos|fedora|oracle|red *hat)' /etc/*release* ; then
 
   echo ${BASH_VERSION:+-e} "\n==> XFCE dependencies..."
 
-  sudo $RPMGROUP "x window system"
+  sudo $RPMGROUP -y "x window system"
   if egrep -i -q '(centos|oracle|red *hat).* 6' /etc/*release* ; then
-    sudo $RPMGROUP desktop "general purpose desktop"
+    sudo $RPMGROUP -y desktop "general purpose desktop"
   elif egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release* ; then
-    sudo $RPMGROUP desktop "server with gui" "mate desktop"
+    sudo $RPMGROUP -y desktop "server with gui" "mate desktop"
   fi
 
-  sudo $RPMGROUP xfce
+  sudo $RPMGROUP -y xfce
 
   echo ${BASH_VERSION:+-e} "\n==> XFCE fonts..."
-
   sudo $RPMPROG -y install xorg-x11-fonts-Type1 xorg-x11-fonts-misc
 
   echo ${BASH_VERSION:+-e} "\n==> XFCE Whisker Menu..."
@@ -39,7 +38,7 @@ if egrep -i -q '(centos|fedora|oracle|red *hat)' /etc/*release* ; then
     echo ${BASH_VERSION:+-e} \
       "\n==> CentOS & EL ($RPMPROG install xfce4-whiskermenu-plugin)..."
 
-    sudo $RPMPROG install xfce4-whiskermenu-plugin
+    sudo $RPMPROG -y install xfce4-whiskermenu-plugin
 
   elif egrep -i -q 'fedora 2[67]' /etc/*release* 2>/dev/null ; then
 
