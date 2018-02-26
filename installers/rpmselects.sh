@@ -55,7 +55,7 @@ echo ${BASH_VERSION:+-e} \
   "\n\n==> EPEL (Extra Packages for Enterprise Linux)..."
 
 if ! grep -i -q 'fedora' /etc/*release* ; then
-  if egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release*
+  if egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release* ; then
     yum -y install \
         https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
       echo "${PROGNAME:+$PROGNAME: }INFO: Disabled epel (use --enablerepo=epel) from now on..." 1>&2
