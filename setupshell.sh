@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
 
@@ -9,6 +9,7 @@ echo "==> Setting up setupshell.sh (Daily Shells and some of its setups)..."
 # Globals
 
 export PROGNAME=setupshell.sh
+export PROGDIR="$(dirname "$0")"
 
 export DSEXTRAS_GIT="https://github.com/stroparo/ds-extras.git"
 export DS_SETUP_URL="https://raw.githubusercontent.com/stroparo/ds/\
@@ -43,5 +44,5 @@ if ! ${DS_LOADED:-false} ; then
   exit 1
 fi
 
-setupohmyzsh.sh
+"$PROGDIR/installers/setupohmyzsh.sh"
 sshkeygenrsa.sh
