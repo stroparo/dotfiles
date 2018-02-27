@@ -44,5 +44,12 @@ if ! ${DS_LOADED:-false} ; then
   exit 1
 fi
 
+echo
+echo "==> After installing oh-my-zsh, it will change"
+echo "    the default shell to zsh and log into it."
+echo "    IF THAT IS THE CASE (like the prompt stopped"
+echo "    and nothing else happened), then exit or ctrl+d"
+echo "    for this sequence to continue."
 "$PROGDIR/installers/setupohmyzsh.sh"
+
 sshkeygenrsa.sh
