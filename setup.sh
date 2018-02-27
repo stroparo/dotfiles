@@ -47,7 +47,8 @@ if [ ! -d ./scripts ] ; then
     && ./setup.sh "$@") \
     || exit $?
 
-  rm -f -r "$HOME"/dotfiles-master
+  echo ${BASH_VERSION:+-e} "\n==> dotfiles directory will remain at:"
+  ls -d -l "$HOME"/dotfiles-master
   exit
 fi
 
