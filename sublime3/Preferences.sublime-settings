@@ -47,7 +47,7 @@
     // Layout & look-and-feel
     "always_show_minimap_viewport": false,
     "animation_enabled": false,
-    "bold_folder_labels": true,
+    "bold_folder_labels": false,
     "contrasted_tabs": true,
     "draw_centered": false,
     "draw_shadows": false,
