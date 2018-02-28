@@ -55,11 +55,7 @@
     "highlight_line": true,
     "highlight_modified_tabs": true,
     "icon_file_type_enable": true,
-    "indent_guide_options":
-    [
-        "draw_normal",
-        "draw_active"
-    ],
+    "indent_guide_options": ["draw_normal", "draw_active"],
     "large_scroll_bars": true,
     "line_numbers": true,
     "line_padding_bottom": 0,
@@ -67,22 +63,14 @@
     "margin": 4,
     "overlay_scroll_bars": "disabled",
     "quick_panel_small": true,
-    "rulers":
-    [
-        0,
-        72,
-        79
-    ],
+    "rulers": [0, 108],
     "scroll_speed": 0.0,
     "show_minimap": false,
     "tree_animation_enabled": false,
     "use_simple_full_screen": true,
 
     // Misc
-    "ignored_packages":
-    [
-        "Vintage"
-    ],
+    "ignored_packages": ["Vintage"],
 
     // Whitespace
     "auto_indent": true,
