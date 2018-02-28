@@ -3,7 +3,10 @@
 # #############################################################################
 # Globals
 
-export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
+if [ -z "$RPMPROG" ] ; then
+  export RPMPROG=yum
+  which dnf >/dev/null 2>&1 && export RPMPROG=dnf
+fi
 
 URL_FLASH='http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm'
 URL_STACER='https://github.com/oguzhaninan/Stacer/releases/download/v1.0.8/stacer-1.0.8_x64.rpm'

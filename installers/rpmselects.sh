@@ -8,8 +8,15 @@ PROGNAME=rpmselects.sh
 # #############################################################################
 # Globals
 
-export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
-export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP="dnf group install"
+if [ -z "$RPMPROG" ] ; then
+  export RPMPROG=yum
+  which dnf >/dev/null 2>&1 && export RPMPROG=dnf
+fi
+
+if [ -z "$RPMGROUP" ] ; then
+  export RPMGROUP="yum groupinstall"
+  which dnf >/dev/null 2>&1 && export RPMGROUP="dnf group install"
+fi
 
 # #############################################################################
 # Check OS
