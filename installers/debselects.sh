@@ -3,7 +3,10 @@
 # #############################################################################
 # Globals
 
-export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
+if [ -z "$APTPROG" ] ; then
+  export APTPROG=apt-get
+  which apt >/dev/null 2>&1 && export APTPROG=apt
+fi
 
 # #############################################################################
 # Check OS
