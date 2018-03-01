@@ -92,6 +92,7 @@ UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete.ttf
 UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete%20Mono.ttf
 EOF
 
+fc-cache -f -v
 sudo fc-cache -f -v
 
 mkfontscale "$INSTALL_DIR"
