@@ -1,6 +1,6 @@
 {
-  "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
-
+  // "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
+  "color_scheme": "Packages/Monarch/Monarch.tmTheme",
   // Theme Boxy
   "theme": "Boxy Tomorrow.sublime-theme",
   "theme_accent_blue": true,
