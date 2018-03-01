@@ -1,14 +1,15 @@
 {
-    // Color
-    // "color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme",
+    // Color schemes
     "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
-    // "color_scheme": "Packages/User/.../1337.tmTheme",
     // "color_scheme": "Packages/User/.../RailsCastsColorScheme.tmTheme",
     // "color_scheme": "Packages/User/.../base16-eighties.dark.tmTheme",
-    "theme": "Spacegray Eighties.sublime-theme",
-    "spacegray_fileicons": true,
-    "spacegray_sidebar_font_xlarge": true,
-    "spacegray_sidebar_tree_xsmall": true,
+
+    // Themes
+    "theme": "Boxy Ocean.sublime-theme",
+    // "theme": "Spacegray Eighties.sublime-theme",
+    // "spacegray_fileicons": true,
+    // "spacegray_sidebar_font_xlarge": true,
+    // "spacegray_sidebar_tree_xsmall": true,
 
     // Behavior
     "auto_complete": true,
@@ -58,8 +59,8 @@
     "indent_guide_options": ["draw_normal", "draw_active"],
     "large_scroll_bars": true,
     "line_numbers": true,
-    "line_padding_bottom": 0,
-    "line_padding_top": 0,
+    "line_padding_bottom": 1,
+    "line_padding_top": 1,
     "margin": 4,
     "overlay_scroll_bars": "disabled",
     "quick_panel_small": true,
