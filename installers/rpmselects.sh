@@ -80,6 +80,7 @@ sudo $RPMPROG install -y curl lftp mosh rsync wget
 sudo $RPMPROG install -y less
 sudo $RPMPROG install -y p7zip p7zip-plugins lzip cabextract unrar
 which tmux >/dev/null 2>&1 || sudo $RPMPROG install -y tmux
+sudo $RPMPROG install -y sqlite libdbi-dbd-sqlite
 sudo $RPMPROG install -y unzip zip
 sudo $RPMPROG install -y zsh
 
@@ -92,7 +93,6 @@ ${IS_GIT_OPT:-false} && sudo $RPMPROG remove -y git
 sudo $RPMPROG install -y ctags
 sudo $RPMPROG install -y jq
 sudo $RPMPROG install -y make
-sudo $RPMPROG install -y sqlite
 if ${IS_GIT_OPT:-false} ; then
   : # TODO implement tig installation from latest/source
 else
