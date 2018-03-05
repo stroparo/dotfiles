@@ -48,12 +48,15 @@ export SUBL_OPT_DIR
 if ! ${DO_PORTABLE:-false} ; then
 
   if egrep -i -q 'debian|ubuntu' /etc/*release* ; then
+
     curl -LSf "$SUBL_APT_KEY" | sudo apt-key add -
     sudo apt-get install apt-transport-https
     echo "$SUBL_APT_REPO" | sudo tee /etc/apt/sources.list.d/sublime-text.list
     sudo apt-get update
     sudo apt-get install "$SUBL_APT_PKG"
+
   elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
+
     if which dnf 2>/dev/null ; then
       sudo rpm -v --import "$SUBL_RPM_KEY"
       sudo dnf config-manager --add-repo "$SUBL_RPM_REPO"
