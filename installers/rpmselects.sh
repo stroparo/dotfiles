@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
 # Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
-# Custom RPM package selection
 
-PROGNAME=rpmselects.sh
+# Custom RPM package selection
 
 # #############################################################################
 # Globals
+
+PROGNAME=rpmselects.sh
 
 if [ -z "$RPMPROG" ] ; then
   export RPMPROG=yum

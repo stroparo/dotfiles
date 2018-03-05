@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
+
 # OpenShift installer for Enterprise Linux 7
 
 set -e

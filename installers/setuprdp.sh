@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
+# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
+
+# #############################################################################
+# Globals
+
 PROGNAME="setuprdp.sh"
+
+# #############################################################################
 
 if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* 2>/dev/null ; then
 

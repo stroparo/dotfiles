@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
+
 # Install Python in a Cygwin environment
 
 # Arguments of filenames ending '-xyz' will have a list of pip packages to be installed
