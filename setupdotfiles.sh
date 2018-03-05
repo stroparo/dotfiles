@@ -44,7 +44,7 @@ if [ ! -d ./scripts ] ; then
   unzip -o "$HOME"/.dotfiles.zip -d "$HOME" \
     && (cd "$HOME"/dotfiles-master \
     && [ "$PWD" = "$HOME"/dotfiles-master ] \
-    && ./setup.sh "$@") \
+    && ./setupdotfiles.sh "$@") \
     || exit $?
 
   echo ${BASH_VERSION:+-e} "\n==> dotfiles directory will remain at:"
@@ -68,8 +68,10 @@ if ${DO_SHELL:-false} || ${FULL:-false} ; then
 fi
 
 if ${DO_DOT:-false} || ${FULL:-false} || ${NO_ACTION:-true} ; then
-  for deploy in `ls ./scripts/deploy*sh` ; do
-    "$deploy"
+  DEPLOY_SCRIPTS="$(ls -1 ./scripts/deploy*sh | grep -v deploypackages)"
+
+  for deploy_script in $DEPLOY_SCRIPTS ; do
+    "$deploy_script"
   done
 
   # Cygwin
