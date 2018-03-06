@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-# Daily Shells Extras extensions
-# More instructions and licensing at:
-# https://github.com/stroparo/ds-extras
+# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
 
 # Install Python, pyenv etcetera, and Python packages
 
@@ -110,11 +108,12 @@ echo ${BASH_VERSION:+-e} "\n\n==> Dependencies system-wise"
 
 if egrep -i -q 'debian|ubuntu' /etc/*release* ; then
   sudo $APTPROG update || exit $?
+  sudo $APTPROG upgrade -y || exit $?
   which curl >/dev/null 2>&1 || sudo $APTPROG install -y curl || exit $?
   which git >/dev/null 2>&1 || sudo $APTPROG install -y git-core || exit $?
   which sqlite3 >/dev/null 2>&1 || sudo $APTPROG install -y sqlite3 || exit $?
 elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
-  sudo $RPMPROG update || exit $? # Yes, intentionally upgrade packages...
+  sudo $RPMPROG update -y || exit $?
   which curl >/dev/null 2>&1 || sudo $RPMPROG install -y curl || exit $?
   which git >/dev/null 2>&1 || sudo $RPMPROG install -y git || exit $?
   which sqlite >/dev/null 2>&1 || sudo $RPMPROG install -y sqlite || exit $?

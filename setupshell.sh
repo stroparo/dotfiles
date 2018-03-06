@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
 
@@ -9,10 +9,10 @@ echo "==> Setting up setupshell.sh (Daily Shells and some of its setups)..."
 # Globals
 
 export PROGNAME=setupshell.sh
+export PROGDIR="$(dirname "$0")"
 
 export DSEXTRAS_GIT="https://github.com/stroparo/ds-extras.git"
-export DS_SETUP_URL="https://raw.githubusercontent.com/stroparo/ds/\
-master/setup.sh"
+export DS_SETUP_URL="https://raw.githubusercontent.com/stroparo/ds/master/setup.sh"
 
 if which curl >/dev/null 2>&1 ; then
   export DLPROG=curl
@@ -43,5 +43,12 @@ if ! ${DS_LOADED:-false} ; then
   exit 1
 fi
 
-setupohmyzsh.sh
+echo
+echo "==> After installing oh-my-zsh, it will change"
+echo "    the default shell to zsh and log into it."
+echo "    IF THAT IS THE CASE (like the prompt stopped"
+echo "    and nothing else happened), then exit or ctrl+d"
+echo "    for this sequence to continue."
+"$PROGDIR/installers/setupohmyzsh.sh"
+
 sshkeygenrsa.sh

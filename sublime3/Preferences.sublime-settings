@@ -1,123 +1,126 @@
 {
-    // Color
-    // "color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme",
-    "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
-    // "color_scheme": "Packages/User/.../1337.tmTheme",
-    // "color_scheme": "Packages/User/.../RailsCastsColorScheme.tmTheme",
-    // "color_scheme": "Packages/User/.../base16-eighties.dark.tmTheme",
-    "theme": "Spacegray Eighties.sublime-theme",
-    "spacegray_fileicons": true,
-    "spacegray_sidebar_font_xlarge": true,
-    "spacegray_sidebar_tree_xsmall": true,
+  // "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
+  // "color_scheme": "Packages/Monarch/Monarch.tmTheme",
+  "color_scheme": "Packages/Twilightcyanide Colorscheme/Twilightcyanide ColorScheme - Constrasted Semi.tmTheme",
 
-    // Behavior
-    "auto_complete": true,
-    "auto_complete_commit_on_tab": true,
-    "auto_match_enabled": true,
-    "default_encoding": "UTF-8",
-    "fade_fold_buttons": false,
-    "find_selected_text": true,
-    "match_brackets": true,
-    "match_brackets_angle": false,
-    "match_brackets_braces": true,
-    "match_brackets_content": true,
-    "match_brackets_square": true,
-    "remember_open_files": true,
-    "remember_open_folders": true,
-    "save_on_focus_lost": true,
-    "scroll_past_end": false,
-    "show_encoding": true,
-    "show_full_path": true,
-    "spell_check": false,
+  // Theme Boxy
+  "theme": "Boxy Tomorrow.sublime-theme",
+  "theme_accent_blue": true,
+  "theme_autocomplete_item_selected_colored": true,
+  "theme_bar": true,
+  "theme_sidebar_disclosure": true,
+  "theme_sidebar_font_md": true,
+  "theme_sidebar_indent_sm": true,
+  "theme_sidebar_size_xxs": true,
+  "theme_statusbar_colored": true,
+  "theme_statusbar_size_xs": true,
+  "theme_tab_selected_underlined": true,
+  "theme_tab_selected_transparent": true,
+  "theme_tabset_line_visible": false,
+  "theme_unified": true,
 
-    // Cursor
-    // "caret_extra_bottom": 2,
-    "caret_extra_top": 2,
-    "caret_extra_width": 4,
-    "caret_style": "blink",
-    "wide_caret": true,
+  // Theme spacegray
+  // "theme": "Spacegray Eighties.sublime-theme",
+  // "spacegray_fileicons": true,
+  // "spacegray_sidebar_font_xlarge": true,
+  // "spacegray_sidebar_tree_xsmall": true,
 
-    // Fonts
-    // "font_face": "Hack",
-    "font_face": "Knack Nerd Font Mono",
-    // "font_face": "Ubuntu Mono derivative Powerline",
-    "font_size": 11,
-    "font_options": ["subpixel_antialias", "no_bold"],
+  // Behavior
+  "auto_complete": true,
+  "auto_complete_commit_on_tab": true,
+  "auto_match_enabled": true,
+  "default_encoding": "UTF-8",
+  "fade_fold_buttons": false,
+  "find_selected_text": true,
+  "match_brackets": true,
+  "match_brackets_angle": false,
+  "match_brackets_braces": true,
+  "match_brackets_content": true,
+  "match_brackets_square": true,
+  "remember_open_files": true,
+  "remember_open_folders": true,
+  "save_on_focus_lost": true,
+  "scroll_past_end": false,
+  "show_encoding": true,
+  "show_full_path": true,
+  "spell_check": false,
 
-    // Layout & look-and-feel
-    "always_show_minimap_viewport": false,
-    "animation_enabled": false,
-    "bold_folder_labels": true,
-    "contrasted_tabs": true,
-    "draw_centered": false,
-    "draw_shadows": false,
-    "gutter": true,
-    "highlight_line": true,
-    "highlight_modified_tabs": true,
-    "icon_file_type_enable": true,
-    "indent_guide_options":
-    [
-        "draw_normal",
-        "draw_active"
-    ],
-    "large_scroll_bars": true,
-    "line_numbers": true,
-    "line_padding_bottom": 0,
-    "line_padding_top": 0,
-    "margin": 4,
-    "overlay_scroll_bars": "disabled",
-    "quick_panel_small": true,
-    "rulers":
-    [
-        0,
-        72,
-        79
-    ],
-    "scroll_speed": 0.0,
-    "show_minimap": false,
-    "tree_animation_enabled": false,
-    "use_simple_full_screen": true,
+  // Cursor
+  // "caret_extra_bottom": 2,
+  "caret_extra_top": 2,
+  "caret_extra_width": 4,
+  "caret_style": "blink",
+  "wide_caret": true,
 
-    // Misc
-    "ignored_packages":
-    [
-        "Vintage"
-    ],
+  // Fonts
+  // "font_face": "Hack",
+  "font_face": "Knack Nerd Font Mono",
+  // "font_face": "Ubuntu Mono derivative Powerline",
+  "font_size": 11,
+  "font_options": ["subpixel_antialias", "no_bold"],
 
-    // Whitespace
-    "auto_indent": true,
-    "default_line_ending": "unix",
-    "detect_indentation": true,
-    "draw_white_space": "all",
-    "ensure_newline_at_eof_on_save": true,
-    "indent_subsequent_lines": true,
-    "indent_to_bracket": true, // requires auto_indent
-    "smart_indent": true,
-    "tab_size": 2,
-    "translate_tabs_to_spaces": true,
-    "trim_automatic_white_space": true,
-    "trim_trailing_white_space_on_save": true,
-    // "use_tab_stops": true,
+  // Layout & look-and-feel
+  "always_show_minimap_viewport": false,
+  "animation_enabled": false,
+  "bold_folder_labels": false,
+  "contrasted_tabs": true,
+  "draw_centered": false,
+  "draw_shadows": false,
+  "gutter": true,
+  "highlight_line": true,
+  "highlight_modified_tabs": true,
+  "icon_file_type_enable": true,
+  "indent_guide_options": ["draw_normal", "draw_active"],
+  "large_scroll_bars": true,
+  "line_numbers": true,
+  "line_padding_bottom": 1,
+  "line_padding_top": 1,
+  "margin": 4,
+  "overlay_scroll_bars": "disabled",
+  "quick_panel_small": true,
+  "rulers": [0, 108],
+  "scroll_speed": 0.0,
+  "show_minimap": false,
+  "tree_animation_enabled": false,
+  "use_simple_full_screen": true,
 
-    // Word wrapping
-    "word_wrap": false,
-    "wrap_width": 80,
+  // Misc
+  "ignored_packages": ["Vintage"],
 
-    // Sidebar - exclude distracting files and folders
-    "file_exclude_patterns":
-    [
-        ".DS_Store",
-        "*~",
-        "*.pid",
-        "*.pyc",
-        "*.swp",
-        "tags"
-    ],
-    "folder_exclude_patterns":
-    [
-        ".git",
-        "__pycache__",
-        "env",
-        "env3"
-    ]
+  // Whitespace
+  "auto_indent": true,
+  "default_line_ending": "unix",
+  "detect_indentation": true,
+  "draw_white_space": "all",
+  "ensure_newline_at_eof_on_save": true,
+  "indent_subsequent_lines": true,
+  "indent_to_bracket": true, // requires auto_indent
+  "smart_indent": true,
+  "tab_size": 2,
+  "translate_tabs_to_spaces": true,
+  "trim_automatic_white_space": true,
+  "trim_trailing_white_space_on_save": true,
+  // "use_tab_stops": true,
+
+  // Word wrapping
+  "word_wrap": false,
+  "wrap_width": 80,
+
+  // Sidebar - exclude distracting files and folders
+  "file_exclude_patterns":
+  [
+      ".DS_Store",
+      "*~",
+      "*.pid",
+      "*.pyc",
+      "*.swp",
+      "tags"
+  ],
+  "folder_exclude_patterns":
+  [
+      ".git",
+      "__pycache__",
+      "env",
+      "env3"
+  ]
 }

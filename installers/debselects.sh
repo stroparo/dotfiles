@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
+# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
+
 # #############################################################################
 # Globals
 
-export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
+if [ -z "$APTPROG" ] ; then
+  export APTPROG=apt-get
+  which apt >/dev/null 2>&1 && export APTPROG=apt
+fi
 
 # #############################################################################
 # Check OS
@@ -48,6 +53,7 @@ sudo $APTPROG install -y logrotate
 sudo $APTPROG install -y parted
 sudo $APTPROG install -y p7zip-full p7zip-rar
 sudo $APTPROG install -y secure-delete
+sudo $APTPROG install -y sqlite3 libdbd-sqlite3
 sudo $APTPROG install -y tmux
 sudo $APTPROG install -y unzip zip
 sudo $APTPROG install -y zsh
@@ -58,7 +64,6 @@ sudo $APTPROG install -y exuberant-ctags
 sudo $APTPROG install -y httpie
 sudo $APTPROG install -y jq
 sudo $APTPROG install -y make
-sudo $APTPROG install -y sqlite3
 sudo $APTPROG install git tig
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel libs? [Y/n]\c"

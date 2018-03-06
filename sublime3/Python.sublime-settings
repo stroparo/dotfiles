@@ -4,7 +4,7 @@
     "draw_white_space": "all",
 
     "auto_indent": true,
-    "rulers": [79],
+    "rulers": [0, 79],
     "smart_indent": true,
     "tab_size": 4,
     "trim_automatic_white_space": true,

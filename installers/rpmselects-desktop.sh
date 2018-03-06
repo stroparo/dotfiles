@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
+# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
+
 # #############################################################################
 # Globals
 
-export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
+if [ -z "$RPMPROG" ] ; then
+  export RPMPROG=yum
+  which dnf >/dev/null 2>&1 && export RPMPROG=dnf
+fi
 
 URL_FLASH='http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm'
 URL_STACER='https://github.com/oguzhaninan/Stacer/releases/download/v1.0.8/stacer-1.0.8_x64.rpm'
@@ -48,23 +53,23 @@ echo ${BASH_VERSION:+-e} "\n==> Upgrade all packages? [y/N]\c" ; read answer
 # #############################################################################
 # Install
 
-# Productivity
-sudo $RPMPROG install guake
-sudo $RPMPROG install libreoffice-calc
-sudo $RPMPROG install meld
+echo ${BASH_VERSION:+-e} "\n==> Antivirus command freshclam..."
+sudo $RPMPROG install clamtk clamav clamav-update
 
-# Networking
-sudo $RPMPROG install gigolo
-sudo $RPMPROG install qbittorrent
-sudo $RPMPROG install transmission
-
-# Multimedia
+echo ${BASH_VERSION:+-e} "\n==> Multimedia..."
 sudo $RPMPROG install audacious audacious-plugins-freeworld
 sudo $RPMPROG install mplayer parole
 sudo $RPMPROG install shutter # Screenshots, better than the stock one...
 
-# Antivirus command freshclam
-sudo $RPMPROG install clamtk clamav clamav-update
+echo ${BASH_VERSION:+-e} "\n==> Networking..."
+sudo $RPMPROG install gigolo
+sudo $RPMPROG install qbittorrent
+sudo $RPMPROG install transmission
+
+echo ${BASH_VERSION:+-e} "\n==> Productivity..."
+sudo $RPMPROG install guake
+sudo $RPMPROG install libreoffice-calc
+sudo $RPMPROG install meld
 
 # #############################################################################
 # Fedora

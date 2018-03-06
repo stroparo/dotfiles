@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-# Daily Shells Extras extensions
-# More instructions and licensing at:
-# https://github.com/stroparo/ds-extras
+# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
 
 echo ${BASH_VERSION:+-e} '\n\n==> Installing nerd-fonts...' 1>&2
 
@@ -44,14 +42,6 @@ while read fontpath ; do
 done <<EOF
 AnonymousPro/complete/Anonymice%20Nerd%20Font%20Complete.ttf
 AnonymousPro/complete/Anonymice%20Nerd%20Font%20Complete%20Mono.ttf
-BitstreamVeraSansMono/Bold/complete/Bitstream%20Vera%20Sans%20Mono%20Bold%20Nerd%20Font%20Complete.ttf
-BitstreamVeraSansMono/Bold/complete/Bitstream%20Vera%20Sans%20Mono%20Bold%20Nerd%20Font%20Complete%20Mono.ttf
-BitstreamVeraSansMono/Bold-Italic/complete/Bitstream%20Vera%20Sans%20Mono%20Bold%20Oblique%20Nerd%20Font%20Complete.ttf
-BitstreamVeraSansMono/Bold-Italic/complete/Bitstream%20Vera%20Sans%20Mono%20Bold%20Oblique%20Nerd%20Font%20Complete%20Mono.ttf
-BitstreamVeraSansMono/Italic/complete/Bitstream%20Vera%20Sans%20Mono%20Oblique%20Nerd%20Font%20Complete.ttf
-BitstreamVeraSansMono/Italic/complete/Bitstream%20Vera%20Sans%20Mono%20Oblique%20Nerd%20Font%20Complete%20Mono.ttf
-BitstreamVeraSansMono/Regular/complete/Bitstream%20Vera%20Sans%20Mono%20Nerd%20Font%20Complete.ttf
-BitstreamVeraSansMono/Regular/complete/Bitstream%20Vera%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.ttf
 FiraCode/Regular/complete/Fura%20Code%20Regular%20Nerd%20Font%20Complete.otf
 FiraCode/Regular/complete/Fura%20Code%20Regular%20Nerd%20Font%20Complete%20Mono.otf
 FiraCode/Medium/complete/Fura%20Code%20Medium%20Nerd%20Font%20Complete.otf
@@ -68,6 +58,18 @@ Hack/Italic/complete/Knack%20Italic%20Nerd%20Font%20Complete.ttf
 Hack/Italic/complete/Knack%20Italic%20Nerd%20Font%20Complete%20Mono.ttf
 Hack/Regular/complete/Knack%20Regular%20Nerd%20Font%20Complete.ttf
 Hack/Regular/complete/Knack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
+Meslo/L/complete/Meslo%20LG%20L%20Regular%20Nerd%20Font%20Complete.otf
+Meslo/L/complete/Meslo%20LG%20L%20Regular%20Nerd%20Font%20Complete%20Mono.otf
+Meslo/M/complete/Meslo%20LG%20M%20Regular%20Nerd%20Font%20Complete.otf
+Meslo/M/complete/Meslo%20LG%20M%20Regular%20Nerd%20Font%20Complete%20Mono.otf
+Meslo/S/complete/Meslo%20LG%20S%20Regular%20Nerd%20Font%20Complete.otf
+Meslo/S/complete/Meslo%20LG%20S%20Regular%20Nerd%20Font%20Complete%20Mono.otf
+Meslo/L-DZ/complete/Meslo%20LG%20L%20DZ%20Regular%20Nerd%20Font%20Complete.otf
+Meslo/L-DZ/complete/Meslo%20LG%20L%20DZ%20Regular%20Nerd%20Font%20Complete%20Mono.otf
+Meslo/M-DZ/complete/Meslo%20LG%20M%20DZ%20Regular%20Nerd%20Font%20Complete.otf
+Meslo/M-DZ/complete/Meslo%20LG%20M%20DZ%20Regular%20Nerd%20Font%20Complete%20Mono.otf
+Meslo/S-DZ/complete/Meslo%20LG%20S%20DZ%20Regular%20Nerd%20Font%20Complete.otf
+Meslo/S-DZ/complete/Meslo%20LG%20S%20DZ%20Regular%20Nerd%20Font%20Complete%20Mono.otf
 SourceCodePro/Black/complete/Sauce%20Code%20Pro%20Black%20Nerd%20Font%20Complete.ttf
 SourceCodePro/Black/complete/Sauce%20Code%20Pro%20Black%20Nerd%20Font%20Complete%20Mono.ttf
 SourceCodePro/Bold/complete/Sauce%20Code%20Pro%20Bold%20Nerd%20Font%20Complete.ttf
@@ -92,6 +94,7 @@ UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete.ttf
 UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete%20Mono.ttf
 EOF
 
+fc-cache -f -v
 sudo fc-cache -f -v
 
 mkfontscale "$INSTALL_DIR"

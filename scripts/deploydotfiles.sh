@@ -2,14 +2,16 @@
 
 # Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
 
+# Globals
 PROGNAME=deploydotfiles.sh
+DOTDIR=./dotfiles
 
 echo
 echo "==> Dotifying all files in conf/ to the home directory..."
 
-for conf_item in $(ls -d ./conf/*) ; do
-  destname="${HOME}/.${conf_item#./conf/}"
-  if [ -d "$conf_item" ] ; then
+for dotfilename in $(ls -d "$DOTDIR"/*) ; do
+  destname="${HOME}/.${dotfilename#$DOTDIR/}"
+  if [ -d "$dotfilename" ] ; then
     if [ ! -d "$destname" ] ; then
       mkdir "$destname"
       if [ ! -d "$destname" ] ; then
@@ -17,8 +19,8 @@ for conf_item in $(ls -d ./conf/*) ; do
         continue
       fi
     fi
-    cp -f -R -v "${conf_item}"/* "$destname"/
+    cp -f -R -v "${dotfilename}"/* "$destname"/
   else
-    cp -f -R -v "${conf_item}" "$destname"
+    cp -f -R -v "${dotfilename}" "$destname"
   fi
 done

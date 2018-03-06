@@ -1,15 +1,23 @@
 #!/usr/bin/env bash
 
 # Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
-# Custom RPM package selection
 
-PROGNAME=rpmselects.sh
+# Custom RPM package selection
 
 # #############################################################################
 # Globals
 
-export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
-export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP="dnf group install"
+PROGNAME=rpmselects.sh
+
+if [ -z "$RPMPROG" ] ; then
+  export RPMPROG=yum
+  which dnf >/dev/null 2>&1 && export RPMPROG=dnf
+fi
+
+if [ -z "$RPMGROUP" ] ; then
+  export RPMGROUP="yum groupinstall"
+  which dnf >/dev/null 2>&1 && export RPMGROUP="dnf group install"
+fi
 
 # #############################################################################
 # Check OS
@@ -56,10 +64,10 @@ echo ${BASH_VERSION:+-e} \
 
 if ! grep -i -q 'fedora' /etc/*release* ; then
   if egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release* ; then
-    yum -y install \
+    sudo $RPMPROG -y install \
         https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
       echo "${PROGNAME:+$PROGNAME: }INFO: Disabled epel (use --enablerepo=epel) from now on..." 1>&2
-    sed -i -e "s/^enabled=1/enabled=0/" /etc/yum.repos.d/epel.repo
+    sudo sed -i -e "s/^enabled=1/enabled=0/" /etc/yum.repos.d/epel.repo
   else
     sudo $RPMPROG install -y epel-release.noarch
   fi
@@ -73,20 +81,24 @@ sudo $RPMPROG install -y curl lftp mosh rsync wget
 sudo $RPMPROG install -y less
 sudo $RPMPROG install -y p7zip p7zip-plugins lzip cabextract unrar
 which tmux >/dev/null 2>&1 || sudo $RPMPROG install -y tmux
+sudo $RPMPROG install -y sqlite libdbi-dbd-sqlite
 sudo $RPMPROG install -y unzip zip
 sudo $RPMPROG install -y zsh
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
 
-which git >/dev/null 2>&1 && GIT_ALREADY=true
+(which git 2>/dev/null | grep -q /opt) && IS_GIT_OPT=true
 sudo $RPMGROUP -y 'Development Tools'
-${GIT_ALREADY:-false} && sudo $RPMPROG remove -y git
+${IS_GIT_OPT:-false} && sudo $RPMPROG remove -y git
 
 sudo $RPMPROG install -y ctags
 sudo $RPMPROG install -y jq
 sudo $RPMPROG install -y make
-sudo $RPMPROG install -y sqlite
-sudo $RPMPROG install tig
+if ${IS_GIT_OPT:-false} ; then
+  : # TODO implement tig installation from latest/source
+else
+  sudo $RPMPROG install -y tig
+fi
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel libs? (often needed for compiling) [Y/n]\c"
 read answer

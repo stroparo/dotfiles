@@ -15,7 +15,7 @@ sudo visudo
 Run and ignore some errors as this sequence is already as fault tolerant as possible:
 
 ```bash
-bash -c "$(curl -LSf https://raw.githubusercontent.com/stroparo/dotfiles/master/setup.sh)" dummy -f
+bash -c "$(curl -LSf https://raw.githubusercontent.com/stroparo/dotfiles/master/setupdotfiles.sh)" dummy -f
 ```
 
 Install desktop selections by running:
@@ -74,13 +74,13 @@ Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -`
 
 ## Restricted network installation
 
-Download the zip file, unzip, and run setup.sh:
+Download the zip file, unzip, and run setupdotfiles.sh:
 
 ```bash
 curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
   && unzip -o ~/dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master \
-  && ./setup.sh -f
+  && ./setupdotfiles.sh -f
 ```
 
 Setup everything but setupbox.sh:
@@ -88,7 +88,7 @@ Setup everything but setupbox.sh:
 curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
   && unzip -o ~/dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master \
-  && ./setup.sh -a -d -s
+  && ./setupdotfiles.sh -a -d -s
 ```
 
 Setup only aliases:
@@ -97,6 +97,6 @@ Setup only aliases:
 curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
   && unzip -o ~/dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master \
-  && ./setup.sh -a
+  && ./setupdotfiles.sh -a
 ```
 
