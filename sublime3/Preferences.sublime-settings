@@ -54,9 +54,9 @@
 
   // Fonts
   // "font_face": "Hack",
-  "font_face": "Knack Nerd Font Mono",
+  "font_face": "SauceCodePro Nerd Font Mono",
   // "font_face": "Ubuntu Mono derivative Powerline",
-  "font_size": 11,
+  "font_size": 14,
   "font_options": ["subpixel_antialias", "no_bold"],
 
   // Layout & look-and-feel
