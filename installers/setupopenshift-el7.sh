@@ -29,6 +29,11 @@ sed -i -e "s/^enabled=1/enabled=0/" /etc/yum.repos.d/epel.repo
 yum -y --enablerepo=epel install ansible pyOpenSSL
 
 # #############################################################################
+echo "${PROGNAME:+$PROGNAME: }INFO: Prep containerized installation..." 1>&2
+
+echo "${PROGNAME:+$PROGNAME: }INFO: Installing atomic..." 1>&2
+
+
 echo "${PROGNAME:+$PROGNAME: }INFO: Cloning openshift-ansible..." 1>&2
 cd ~
 if [ ! -d openshift-ansible ] ; then
