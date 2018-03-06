@@ -12,8 +12,7 @@ export PROGNAME=setupshell.sh
 export PROGDIR="$(dirname "$0")"
 
 export DSEXTRAS_GIT="https://github.com/stroparo/ds-extras.git"
-export DS_SETUP_URL="https://raw.githubusercontent.com/stroparo/ds/\
-master/setup.sh"
+export DS_SETUP_URL="https://raw.githubusercontent.com/stroparo/ds/master/setup.sh"
 
 if which curl >/dev/null 2>&1 ; then
   export DLPROG=curl
