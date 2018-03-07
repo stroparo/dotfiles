@@ -2,10 +2,21 @@
 
 set -e
 
+# #############################################################################
+# Globals
+
+PROGNAME="setupfonts-el7.sh"
+
+# #############################################################################
+# Prep
+
 if ! egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release* ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: Only EL7 is supported." 1>&2
-  exit 1
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Only EL7 is supported." 1>&2
+  exit
 fi
+
+# #############################################################################
+# Main
 
 # set up nux-dextop repo to install font packages. skip if this repo had already set up.
 # can be done by either rpm or yum app.
@@ -20,7 +31,7 @@ fi
 /usr/bin/sudo /usr/bin/yum --enablerepo=nux-dextop install fontconfig-infinality cairo libXft freetype-infinality
 
 # a good .fonts.conf file. not sure if necessary.
-/usr/bin/cat <<wEOF > ~/.fonts.conf
+/usr/bin/cat <<EOF > ~/.fonts.conf
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
