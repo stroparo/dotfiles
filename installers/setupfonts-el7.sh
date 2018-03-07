@@ -20,41 +20,41 @@ fi
 /usr/bin/sudo /usr/bin/yum --enablerepo=nux-dextop install fontconfig-infinality cairo libXft freetype-infinality
 
 # a good .fonts.conf file. not sure if necessary.
-/usr/bin/cat << EOF > ~/.fonts.conf
-    <?xml version="1.0"?>
-    <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-    <fontconfig>
-     <match target="font">
-      <edit mode="assign" name="hinting" >
-       <bool>true</bool>
-      </edit>
-     </match>
-     <match target="font" >
-      <edit mode="assign" name="autohint" >
-       <bool>true</bool>
-      </edit>
-     </match>
-     <match target="font">
-      <edit mode="assign" name="hintstyle" >
-      <const>hintslight</const>
-      </edit>
-     </match>
-     <match target="font">
-      <edit mode="assign" name="rgba" >
-       <const>rgb</const>
-      </edit>
-     </match>
-     <match target="font">
-      <edit mode="assign" name="antialias" >
-       <bool>true</bool>
-      </edit>
-     </match>
-     <match target="font">
-       <edit mode="assign" name="lcdfilter">
-       <const>lcddefault</const>
-       </edit>
-     </match>
-    </fontconfig>
+/usr/bin/cat <<wEOF > ~/.fonts.conf
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+ <match target="font">
+  <edit mode="assign" name="hinting" >
+   <bool>true</bool>
+  </edit>
+ </match>
+ <match target="font" >
+  <edit mode="assign" name="autohint" >
+   <bool>true</bool>
+  </edit>
+ </match>
+ <match target="font">
+  <edit mode="assign" name="hintstyle" >
+  <const>hintslight</const>
+  </edit>
+ </match>
+ <match target="font">
+  <edit mode="assign" name="rgba" >
+   <const>rgb</const>
+  </edit>
+ </match>
+ <match target="font">
+  <edit mode="assign" name="antialias" >
+   <bool>true</bool>
+  </edit>
+ </match>
+ <match target="font">
+   <edit mode="assign" name="lcdfilter">
+   <const>lcddefault</const>
+   </edit>
+ </match>
+</fontconfig>
 EOF
 
 # done.
