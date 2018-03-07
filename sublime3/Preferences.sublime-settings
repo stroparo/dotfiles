@@ -53,10 +53,10 @@
   "wide_caret": true,
 
   // Fonts
-  // "font_face": "Hack",
-  "font_face": "SauceCodePro Nerd Font Mono",
-  // "font_face": "Ubuntu Mono derivative Powerline",
-  "font_size": 10,
+  // "font_face": "Hack", "font_size": 10,
+  // "font_face": "SauceCodePro Nerd Font Mono", "font_size": 10,
+  // "font_face": "Ubuntu Mono derivative Powerline", "font_size": 11,
+  "font_face": "UbuntuMono Nerd Font Mono", "font_size": 11,
   "font_options": ["subpixel_antialias", "no_bold"],
 
   // Layout & look-and-feel
