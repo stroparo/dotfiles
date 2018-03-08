@@ -26,6 +26,11 @@
     "Djaneiro",
     "requirementstxt",
 
+    // Code Versioning
+    "Git",
+    // "GitGutter",
+    "Modific",
+
     // Themes
     "Boxy Theme",
     "Monarch",
@@ -46,7 +51,6 @@
     "EasyMotion",
     "Emmet Css Snippets",
     "FuzzyFilePath",
-    "GitGutter",
     "Highlight",
     "Highlight Dodgy Chars",
     "Highlight Duplicates",
