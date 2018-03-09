@@ -53,10 +53,12 @@
   "wide_caret": true,
 
   // Fonts
-  // "font_face": "Hack", "font_size": 11,
+  // "font_face": "Knack NF", "font_size": 11,
+  // "font_face": "Knack Nerd Font Mono", "font_size": 11,
   "font_face": "MesloLGMDZ Nerd Font Mono", "font_size": 11,
-  // "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12,
+  // "font_face": "MesloLGMDZ NF RegularForPowerline", "font_size": 11,
   // "font_face": "UbuntuMono Nerd Font Mono", "font_size": 12,
+  // "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12,
   "font_options": ["subpixel_antialias", "no_bold"],
 
   // Layout & look-and-feel
