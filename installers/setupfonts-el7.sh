@@ -10,7 +10,7 @@ PROGNAME="setupfonts-el7.sh"
 # #############################################################################
 # Prep
 
-if ! egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release* ; then
+if ! egrep -i -q 'fedora|(centos|oracle|red *hat).* 7' /etc/*release* ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: Only EL7 is supported." 1>&2
   exit
 fi
