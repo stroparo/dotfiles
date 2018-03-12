@@ -26,7 +26,12 @@ if [ ! -d "${HOME}/.oh-my-zsh" ] ; then
   sh -c "$(curl -LSfs "${OMZ_URL}")"
 fi
 
-# TODO restore pre-ohmyzsh backup
+# Restore pre-oh-my-zsh backup:
+if [ -s "${HOME}/.zshrc.pre-oh-my-zsh" ] ; then
+  echo ${BASH_VERSION:+-e} "\n# .zshrc.pre-oh-my-zsh restored\n" >> "${HOME}/.zshrc"
+  cat >> "${HOME}/.zshrc" < "${HOME}/.zshrc.pre-oh-my-zsh" \
+    && rm -f "${HOME}/.zshrc.pre-oh-my-zsh"
+fi
 
 # #############################################################################
 # Plugin syntax highlighting
