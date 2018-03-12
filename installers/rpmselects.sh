@@ -41,19 +41,40 @@ EOF
 fi
 
 # #############################################################################
+# Routines
+
+_is_interactive () { [[ $- = *i* ]] ; }
+
+_user_confirm () {
+  # Info: Ask a question and yield success if user responded [yY]*
+
+  typeset confirm
+  typeset result=1
+
+  echo ${BASH_VERSION:+-e} "$@" "[y/N] \c"
+  read confirm
+  if [[ $confirm = [yY]* ]] ; then return 0 ; fi
+  return 1
+}
+
+# #############################################################################
 # Hostname
 
-echo ${BASH_VERSION:+-e} "\n==> Skip hostname setup? [Y/n]\c" ; read answer
-if [[ $answer = n ]] ; then
-  echo ${BASH_VERSION:+-e} "Hostname: \c" ; read newhostname
-  sudo hostnamectl set-hostname "${newhostname:-andromeda}"
+if _is_interactive ; then
+  echo
+  if _user_confirm "==> Set custom hostname?" ; then
+    echo ${BASH_VERSION:+-e} "Hostname: \c" ; read newhostname
+    sudo hostnamectl set-hostname "${newhostname:-andromeda}"
+  fi
 fi
+
 # #############################################################################
 # Update
 
 echo ${BASH_VERSION:+-e} "\n\n==> Updating..."
-echo ${BASH_VERSION:+-e} "==> Upgrade all packages? [y/N]\c" ; read answer
-[[ $answer = y ]] && sudo $RPMPROG update
+if _user_confirm "==> Upgrade all packages?" ; then
+  sudo $RPMPROG update -y
+fi
 
 # #############################################################################
 # EPEL (Extra Packages for Enterprise Linux)
