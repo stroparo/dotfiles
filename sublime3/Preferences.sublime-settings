@@ -117,12 +117,14 @@
       "*~",
       "*.pid",
       "*.pyc",
+      "*.sublime-workspace",
       "*.swp",
       "tags"
   ],
   "folder_exclude_patterns":
   [
       ".git",
+      ".kitchen",
       "__pycache__",
       "env",
       "env3"
