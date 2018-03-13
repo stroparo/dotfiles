@@ -52,21 +52,21 @@ fi
 
 if which zsh >/dev/null 2>&1 ; then
 
-  mkdir -p ~/.zsh/completion
+  mkdir -p "${HOME}"/.zsh/completion
 
   echo
   echo "Fetching '$COMPLETION_URL' into '$COMPLETION_FILE'"
   curl -L "$COMPLETION_URL" > "$COMPLETION_FILE"
   ls -l "$COMPLETION_FILE"
 
-  if ! grep -F -q 'fpath=(~/.zsh/completion $fpath)' ~/.zshrc ; then
-    echo >> ~/.zshrc
-    echo 'fpath=(~/.zsh/completion $fpath)' >> ~/.zshrc
+  if ! grep -F -q 'fpath=(~/.zsh/completion $fpath)' "${HOME}"/.zshrc ; then
+    echo >> "${HOME}"/.zshrc
+    echo 'fpath=(~/.zsh/completion $fpath)' >> "${HOME}"/.zshrc
   fi
 
-  if ! grep -F -q 'autoload -Uz compinit && compinit -i' ~/.zshrc ; then
-    echo >> ~/.zshrc
-    echo 'autoload -Uz compinit && compinit -i' >> ~/.zshrc
+  if ! grep -F -q 'autoload -Uz compinit && compinit -i' "${HOME}"/.zshrc ; then
+    echo >> "${HOME}"/.zshrc
+    echo 'autoload -Uz compinit && compinit -i' >> "${HOME}"/.zshrc
   fi
 fi
 
