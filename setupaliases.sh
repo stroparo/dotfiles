@@ -32,9 +32,15 @@ cat > "$ALIASES_FILE" <<'EOF'
 unalias d 2>/dev/null
 unset d 2>/dev/null
 d () {
-  dir="${1}" ; shift
-  cd "${dir}" || return 1 ; pwd 1>&2 ; ls -Fl "$@" 1>&2
-  if which git >/dev/null 2>&1; then git status -s 2>/dev/null ; fi
+  if [ -e "$dir" ] ; then
+    cd "$dir"
+  else
+    for dir in "$@" ; do
+      found="$(find . -type d -name "*${dir}*" | head -1)"
+      if [ -n "$found" ] ; then cd "${found}" && pwd 1>&2 ; fi
+    done
+  fi
+  if [ -e ./.git ] ; then git branch -vv ; fi
 }
 
 # Asorted
