@@ -14,7 +14,7 @@ export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP
 
 echo ${BASH_VERSION:+-e} "\n==> Setting up Google Chrome..."
 
-if egrep -i -q '(centos|fedora|oracle|red *hat).* 7' /etc/*release* ; then
+if egrep -i -q '(centos|fedora|oracle|red *hat).* 7' /etc/*release ; then
 
   cat <<EOF | sudo tee /etc/yum.repos.d/google-x86_64.repo
 [google64]
@@ -26,7 +26,7 @@ gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 EOF
   sudo yum install google-chrome-stable
 
-elif egrep -i -q 'debian|ubuntu' /etc/*release* ; then
+elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
   echo "SKIP: Debian/Ubuntu to be implemented" 1>&2
 

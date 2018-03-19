@@ -25,7 +25,7 @@ if [[ "$(uname -a)" = *[Cc]ygwin* ]] ; then
 # #############################################################################
 # Debian/Ubuntu
 
-elif egrep -i -q 'debian|ubuntu' /etc/*release* ; then
+elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
   wget 'https://atom.io/download/deb'
   sudo dpkg -i deb && rm -f deb
@@ -33,7 +33,7 @@ elif egrep -i -q 'debian|ubuntu' /etc/*release* ; then
 # #############################################################################
 # Red Hat family
 
-elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
+elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
   wget 'https://atom.io/download/rpm'
   sudo rpm -ivh rpm && rm -f rpm

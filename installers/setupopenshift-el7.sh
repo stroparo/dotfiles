@@ -11,7 +11,7 @@ VG_NAME=docker-vg
 # #############################################################################
 # Checks
 
-if ! egrep -i -q 'red *hat.* 7' /etc/*release* ; then
+if ! egrep -i -q 'red *hat.* 7' /etc/*release ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: Only EL7 supported." 1>&2
 fi
 

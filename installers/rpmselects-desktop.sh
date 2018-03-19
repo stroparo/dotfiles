@@ -16,7 +16,7 @@ URL_STACER='https://github.com/oguzhaninan/Stacer/releases/download/v1.0.8/stace
 # #############################################################################
 # Check OS
 
-if ! egrep -i -q 'cent ?os|fedora|oracle|red ?hat' /etc/*release* 2>/dev/null
+if ! egrep -i -q 'cent ?os|fedora|oracle|red ?hat' /etc/*release 2>/dev/null
 then
   echo "FATAL: Only Red Hat based distros are supported" 1>&2
   exit 1
@@ -74,7 +74,7 @@ sudo $RPMPROG install meld
 # #############################################################################
 # Fedora
 
-if egrep -i -q 'fedora' /etc/*release* 2>/dev/null ; then
+if egrep -i -q 'fedora' /etc/*release 2>/dev/null ; then
 
   if which dnf >/dev/null 2>&1 ; then
 
@@ -130,7 +130,7 @@ fi
 # #############################################################################
 # Fedora 27
 
-if egrep -i -q 'fedora 27' /etc/*release* 2>/dev/null ; then
+if egrep -i -q 'fedora 27' /etc/*release 2>/dev/null ; then
 
   echo
   echo '==> Fedora 27...'

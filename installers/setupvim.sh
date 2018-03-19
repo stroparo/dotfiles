@@ -143,7 +143,7 @@ fi
 # #############################################################################
 # Prep dependencies
 
-if egrep -i -q 'debian|ubuntu' /etc/*release* ; then
+if egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
   # Utilities:
   sudo $APTPROG install -y exuberant-ctags
@@ -174,7 +174,7 @@ if egrep -i -q 'debian|ubuntu' /etc/*release* ; then
   # Optional: so vim can be uninstalled again via `dpkg -r vim`
   sudo $APTPROG install checkinstall
 
-elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
+elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
   # Utilities:
   sudo $RPMPROG -y install ctags

@@ -7,7 +7,7 @@ echo ${BASH_VERSION:+-e} '\n\n==> Installing jenkins...' 1>&2
 # #############################################################################
 # Checks
 
-if ! egrep -i -q 'debian|ubuntu' /etc/*release* ; then
+if ! egrep -i -q 'debian|ubuntu' /etc/*release ; then
   echo "FATAL: Only APT (Debian, Ubuntu etc.) distros supported." 1>&2
   exit 1
 fi

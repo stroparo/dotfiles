@@ -31,11 +31,11 @@ shift "$((OPTIND-1))"
 
 # Remove Vim from the system
 
-if egrep -i -q 'debian|ubuntu' /etc/*release* ; then
+if egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
   sudo $APTPROG remove -y --purge vim vim-runtime vim-gnome vim-tiny vim-gui-common
 
-elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
+elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
   sudo $RPMPROG -y remove vim-enhanced
 fi
@@ -47,7 +47,7 @@ sudo rm -frv /usr/{,local/}bin/vi{ew,m,mdiff,mtutor} /usr/{,local/}share/vim
 
 if ${PURGE:-false} ; then
 
-  if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
+  if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
     for file in $(rpm -q --configfiles vim-enhanced)
     do

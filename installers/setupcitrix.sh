@@ -55,7 +55,7 @@ fi
 
 sudo /opt/setupcitrix/setupwfc
 
-if egrep -i -q 'ubuntu' /etc/*release* ; then
+if egrep -i -q 'ubuntu' /etc/*release ; then
   # SSL certificates from Firefox
   sudo cp -v \
     /usr/share/ca-certificates/mozilla/* \
@@ -74,7 +74,7 @@ if egrep -i -q 'ubuntu' /etc/*release* ; then
     /opt/Citrix/ICAClient/npica.so \
     /usr/lib/firefox-addons/plugins/npica.so
 
-elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
+elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
   curl -kLSfo /tmp/cacert-roots-symantec.zip \
     http://www.symantec.com/content/en/us/enterprise/verisign/roots/roots.zip
   unzip /tmp/cacert-roots-symantec.zip -d "$HOME"

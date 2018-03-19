@@ -10,7 +10,7 @@ PROGNAME="setupfonts-el7.sh"
 # #############################################################################
 # Prep
 
-if ! egrep -i -q 'fedora|(centos|oracle|red *hat).* 7' /etc/*release* ; then
+if ! egrep -i -q 'fedora|(centos|oracle|red *hat).* 7' /etc/*release ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: Only EL7 is supported." 1>&2
   exit
 fi
@@ -18,7 +18,7 @@ fi
 # #############################################################################
 # Main
 
-if egrep -i -q 'fedora' /etc/*release* ; then
+if egrep -i -q 'fedora' /etc/*release ; then
 
   sudo su -c 'dnf install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
   sudo dnf install freetype-freeworld
@@ -54,7 +54,7 @@ if egrep -i -q 'fedora' /etc/*release* ; then
 EOF
 
 
-elif egrep -i -q 'centos|oracle|red *hat' /etc/*release* ; then
+elif egrep -i -q 'centos|oracle|red *hat' /etc/*release ; then
 
   # set up nux-dextop repo to install font packages. skip if this repo had already set up.
   # can be done by either rpm or yum app.

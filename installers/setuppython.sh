@@ -31,8 +31,8 @@ export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 # #############################################################################
 # Check OS
 
-if ! egrep -i -q 'ubuntu' /etc/*release* \
-  && ! egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release*
+if ! egrep -i -q 'ubuntu' /etc/*release \
+  && ! egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release
 then
   echo "FATAL: Only Debian/RHEL family distros are supported." 1>&2
   exit 1
@@ -106,13 +106,13 @@ appendunique 'export PROJECT_HOME="$HOME"/workspace' \
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Dependencies system-wise"
 
-if egrep -i -q 'debian|ubuntu' /etc/*release* ; then
+if egrep -i -q 'debian|ubuntu' /etc/*release ; then
   sudo $APTPROG update || exit $?
   sudo $APTPROG upgrade -y || exit $?
   which curl >/dev/null 2>&1 || sudo $APTPROG install -y curl || exit $?
   which git >/dev/null 2>&1 || sudo $APTPROG install -y git-core || exit $?
   which sqlite3 >/dev/null 2>&1 || sudo $APTPROG install -y sqlite3 || exit $?
-elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* ; then
+elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
   sudo $RPMPROG update -y || exit $?
   which curl >/dev/null 2>&1 || sudo $RPMPROG install -y curl || exit $?
   which git >/dev/null 2>&1 || sudo $RPMPROG install -y git || exit $?

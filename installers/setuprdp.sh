@@ -9,11 +9,11 @@ PROGNAME="setuprdp.sh"
 
 # #############################################################################
 
-if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* 2>/dev/null ; then
+if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release 2>/dev/null ; then
 
   sudo yum -y install xrdp tigervnc-server
 
-  if egrep -i -q '(oracle|red *hat)' /etc/*release* 2>/dev/null ; then
+  if egrep -i -q '(oracle|red *hat)' /etc/*release 2>/dev/null ; then
 
     echo "$PROGNAME: INFO: setting up firewall"
     if [ "$(sudo firewall-cmd --state)" = "not running" ] ; then
@@ -22,7 +22,7 @@ if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release* 2>/dev/null ; then
     sudo firewall-cmd --permanent --zone=public --add-port=5904-5905/tcp \
       && sudo firewall-cmd --reload
 
-    if egrep -i -q '(oracle|red *hat).* [67]' /etc/*release* 2>/dev/null ; then
+    if egrep -i -q '(oracle|red *hat).* [67]' /etc/*release 2>/dev/null ; then
 
       if which startxfce4 >/dev/null 2>&1 ; then
         # Xclients customization in /etc/X11/xinit for XFCE:
