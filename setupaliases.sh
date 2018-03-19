@@ -88,6 +88,11 @@ fi
 # Ag aka the silver searcher
 
 if which ag >/dev/null 2>&1 ; then
+
+  alias agbare='command ag'
+
+  alias agf='ag -F'
+  alias agfi='ag -Fi'
   alias agi='ag -i'
   alias agin='ag -i --line-numbers'
   alias agn='ag --line-numbers'
