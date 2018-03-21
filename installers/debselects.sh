@@ -32,15 +32,26 @@ EOF
 fi
 
 # #############################################################################
+# Routines
+
+_user_confirm () {
+  # Info: Ask a question and yield success if user responded [yY]*
+
+  typeset confirm
+  typeset result=1
+
+  echo ${BASH_VERSION:+-e} "$@" "[y/N] \c"
+  read confirm
+  if [[ $confirm = [yY]* ]] ; then return 0 ; fi
+  return 1
+}
+
+# #############################################################################
 # Update
 
 echo ${BASH_VERSION:+-e} "\n\n==> Updating..."
-
 sudo $APTPROG update
-
-echo ${BASH_VERSION:+-e} "\n\n==> Upgrade all packages? [y/N]\c"
-read answer
-[[ $answer = y ]] && sudo $APTPROG upgrade
+sudo $APTPROG upgrade -y
 
 # #############################################################################
 # Main
@@ -60,39 +71,25 @@ sudo $APTPROG install -y zsh
 sudo $APTPROG install gdebi-core
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
+# pyenv deps
+sudo $APTPROG install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+xz-utils tk-dev
 sudo $APTPROG install -y exuberant-ctags
 sudo $APTPROG install -y httpie
+sudo $APTPROG install -y git tig
 sudo $APTPROG install -y jq
-sudo $APTPROG install -y make
-sudo $APTPROG install git tig
+sudo $APTPROG install -y perl libperl-dev
+sudo $APTPROG install -y python-dev python-pip
+sudo $APTPROG install -y python3-dev python3-pip
+# sudo $APTPROG install -y ruby ruby-dev ruby-full
 
-echo ${BASH_VERSION:+-e} "\n\n==> Devel libs? [Y/n]\c"
-read answer
-if [[ $answer != n ]] ; then
-  sudo $APTPROG install -y gettext
-  sudo $APTPROG install -y imagemagick
-  sudo $APTPROG install -y libsqlite3-0 libsqlite3-dev
-  sudo $APTPROG install -y zlib1g zlib1g-dev
-fi
-
-echo ${BASH_VERSION:+-e} "\n\n==> Perl distribution packages? [y/N]\c"
-read answer
-if [[ $answer = y ]] ; then
-  sudo $APTPROG install -y perl libperl-dev
-fi
-
-echo ${BASH_VERSION:+-e} "\n\n==> Python distribution packages? [y/N]\c"
-read answer
-if [[ $answer = y ]] ; then
-  sudo $APTPROG install -y python-dev python-pip
-  sudo $APTPROG install -y python3-dev python3-pip
-fi
-
-echo ${BASH_VERSION:+-e} "\n\n==> Ruby distribution packages? [y/N]\c"
-read answer
-if [[ $answer = y ]] ; then
-  sudo $APTPROG install -y ruby ruby-dev ruby-full
-fi
+echo ${BASH_VERSION:+-e} "\n\n==> Devel libs..."
+sudo $APTPROG install -y gettext
+sudo $APTPROG install -y imagemagick
+sudo $APTPROG install -y libsqlite3-0 libsqlite3-dev
+sudo $APTPROG install -y libssl-dev
+sudo $APTPROG install -y zlib1g zlib1g-dev
 
 # #############################################################################
 # SilverSearcher Ag
@@ -108,5 +105,5 @@ fi
 
 echo ${BASH_VERSION:+-e} "\n\n==> Cleaning up APT repositories..."
 
-sudo $APTPROG autoremove
-sudo $APTPROG clean
+sudo $APTPROG autoremove -y
+sudo $APTPROG clean -y
