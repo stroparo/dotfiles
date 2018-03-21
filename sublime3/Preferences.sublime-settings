@@ -41,7 +41,7 @@
   "match_brackets_square": true,
   "remember_open_files": true,
   "remember_open_folders": true,
-  "save_on_focus_lost": true,
+  "save_on_focus_lost": false,
   "scroll_past_end": false,
   "show_encoding": true,
   "show_full_path": true,
