@@ -71,17 +71,11 @@ sudo $APTPROG install -y unzip zip
 sudo $APTPROG install -y zsh
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
-# pyenv deps
-sudo $APTPROG install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
-libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-xz-utils tk-dev
 sudo $APTPROG install -y exuberant-ctags
 sudo $APTPROG install -y httpie
 sudo $APTPROG install -y git tig
 sudo $APTPROG install -y jq
 sudo $APTPROG install -y perl libperl-dev
-sudo $APTPROG install -y python-dev python-pip
-sudo $APTPROG install -y python3-dev python3-pip
 # sudo $APTPROG install -y ruby ruby-dev ruby-full
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel libs..."

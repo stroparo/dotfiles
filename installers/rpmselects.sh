@@ -108,25 +108,27 @@ sudo $RPMPROG install -y zsh
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
 
-(which git 2>/dev/null | grep -q /opt) && IS_GIT_OPT=true
+(which git 2>/dev/null | grep -q /opt) && IS_GIT_OPT=true  # Put this BEFORE 'Development Tools' group
 sudo $RPMGROUP -y 'Development Tools'
-${IS_GIT_OPT:-false} && sudo $RPMPROG remove -y git
 
 sudo $RPMPROG install -y ctags
 sudo $RPMPROG install -y jq
 sudo $RPMPROG install -y make
+sudo $RPMPROG install -y perl perl-devel perl-ExtUtils-Embed
+# sudo $RPMPROG install -y ruby ruby-devel
+
+# In case git was in /opt already, remove the distro package and provide
+#  other git related stuff in their proper versions:
+${IS_GIT_OPT:-false} && sudo $RPMPROG remove -y git
 if ${IS_GIT_OPT:-false} ; then
   : # TODO implement tig installation from latest/source
 else
   sudo $RPMPROG install -y tig
 fi
 
-echo ${BASH_VERSION:+-e} "\n\n==> Devel libs? (often needed for compiling) [Y/n]\c"
-read answer
-if [[ $answer != n ]] ; then
-  sudo $RPMPROG install -y libevent libevent-devel libevent-headers
-  sudo $RPMPROG install -y ncurses ncurses-devel
-fi
+echo ${BASH_VERSION:+-e} "\n\n==> Devel libs (often needed for compiling)"
+sudo $RPMPROG install -y libevent libevent-devel libevent-headers
+sudo $RPMPROG install -y ncurses ncurses-devel
 
 echo ${BASH_VERSION:+-e} "\n\n==> Go Programming Language (golang)? [y/N]\c"
 read answer
@@ -140,30 +142,6 @@ if [[ $answer = y ]] ; then
   curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
   sudo $RPMPROG install -y nodejs
   npm install -g typescript
-fi
-
-echo ${BASH_VERSION:+-e} "\n\n==> Perl distribution packages? [y/N]\c"
-read answer
-if [[ $answer = y ]] ; then
-  sudo $RPMPROG install -y perl perl-devel perl-ExtUtils-Embed
-fi
-
-echo ${BASH_VERSION:+-e} "\n\n==> Python(2) distribution packages? [y/N]\c"
-read answer
-if [[ $answer = y ]] ; then
-  sudo $RPMPROG install -y python python-devel
-fi
-
-echo ${BASH_VERSION:+-e} "\n\n==> Python3 distribution packages? [y/N]\c"
-read answer
-if [[ $answer = y ]] ; then
-  sudo $RPMPROG install -y python3 python3-devel
-fi
-
-echo ${BASH_VERSION:+-e} "\n\n==> Ruby distribution packages? [y/N]\c"
-read answer
-if [[ $answer = y ]] ; then
-  sudo $RPMPROG install -y ruby ruby-devel
 fi
 
 # #############################################################################

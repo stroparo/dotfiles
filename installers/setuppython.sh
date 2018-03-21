@@ -110,14 +110,36 @@ appendunique 'export PROJECT_HOME="$HOME"/workspace' \
 echo ${BASH_VERSION:+-e} "\n\n==> Dependencies system-wise"
 
 if egrep -i -q 'debian|ubuntu' /etc/*release ; then
+
   sudo $APTPROG update || exit $?
+
+  # Distribution Python
+  sudo $APTPROG install -y python-dev python-pip
+  sudo $APTPROG install -y python3-dev python3-pip
+  sudo pip install --upgrade pip
+  sudo pip3 install --upgrade pip
+
+  # pyenv dependencies
   sudo $APTPROG install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
   xz-utils tk-dev
+
+  # tools
   which git >/dev/null 2>&1 || sudo $APTPROG install -y git-core || exit $?
   which sqlite3 >/dev/null 2>&1 || sudo $APTPROG install -y sqlite3 || exit $?
+
 elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+
+  # Distribution Python
+  sudo $RPMPROG install -y python python-devel
+  sudo $RPMPROG install -y python3 python3-devel
+  sudo pip install --upgrade pip
+  sudo pip3 install --upgrade pip
+
+  # pyenv dependencies
   sudo $RPMPROG install -y zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel
+
+  # tools
   which git >/dev/null 2>&1 || sudo $RPMPROG install -y git || exit $?
   which sqlite >/dev/null 2>&1 || sudo $RPMPROG install -y sqlite || exit $?
 fi
