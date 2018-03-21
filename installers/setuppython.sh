@@ -7,6 +7,9 @@
 # Arguments of filenames ending '-xyz' will have a list of pip packages to be installed
 # into the 'xyz' virtualenv.
 
+# pyenv faq
+# https://github.com/pyenv/pyenv/wiki/Common-build-problems
+
 # #############################################################################
 # Globals
 
@@ -108,13 +111,13 @@ echo ${BASH_VERSION:+-e} "\n\n==> Dependencies system-wise"
 
 if egrep -i -q 'debian|ubuntu' /etc/*release ; then
   sudo $APTPROG update || exit $?
-  sudo $APTPROG upgrade -y || exit $?
-  which curl >/dev/null 2>&1 || sudo $APTPROG install -y curl || exit $?
+  sudo $APTPROG install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+  libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+  xz-utils tk-dev
   which git >/dev/null 2>&1 || sudo $APTPROG install -y git-core || exit $?
   which sqlite3 >/dev/null 2>&1 || sudo $APTPROG install -y sqlite3 || exit $?
 elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
-  sudo $RPMPROG update -y || exit $?
-  which curl >/dev/null 2>&1 || sudo $RPMPROG install -y curl || exit $?
+  sudo $RPMPROG install -y zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel
   which git >/dev/null 2>&1 || sudo $RPMPROG install -y git || exit $?
   which sqlite >/dev/null 2>&1 || sudo $RPMPROG install -y sqlite || exit $?
 fi
