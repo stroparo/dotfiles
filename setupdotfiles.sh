@@ -60,7 +60,7 @@ if ${DO_ALIASES:-false} || ${FULL:-false} ; then
 fi
 
 if ${DO_BOX:-false} || ${FULL:-false} ; then
-  ./setupbox.sh
+  ./setupbox.sh # {deb,rpm}selects etc.
 fi
 
 if ${DO_SHELL:-false} || ${FULL:-false} ; then
