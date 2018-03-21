@@ -3,7 +3,7 @@
 # Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
 
 echo
-echo "==> Setting up setupshell.sh (Daily Shells and some of its setups)..."
+echo "==> Setting up the shell with Daily Shells and some of its own setups..."
 
 # #############################################################################
 # Globals
