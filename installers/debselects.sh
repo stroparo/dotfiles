@@ -58,6 +58,7 @@ sudo $APTPROG upgrade -y
 
 echo ${BASH_VERSION:+-e} "\n\n==> Base packages..."
 sudo $APTPROG install -y curl lftp mosh net-tools rsync wget
+# sudo $APTPROG install -y gdebi-core
 sudo $APTPROG install -y less
 sudo $APTPROG install -y localepurge
 sudo $APTPROG install -y logrotate
@@ -68,7 +69,6 @@ sudo $APTPROG install -y sqlite3 libdbd-sqlite3
 sudo $APTPROG install -y tmux
 sudo $APTPROG install -y unzip zip
 sudo $APTPROG install -y zsh
-sudo $APTPROG install gdebi-core
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
 # pyenv deps
