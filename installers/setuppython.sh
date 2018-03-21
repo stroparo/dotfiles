@@ -116,8 +116,6 @@ if egrep -i -q 'debian|ubuntu' /etc/*release ; then
   # Distribution Python
   sudo $APTPROG install -y python-dev python-pip
   sudo $APTPROG install -y python3-dev python3-pip
-  sudo pip install --upgrade pip
-  sudo pip3 install --upgrade pip
 
   # pyenv dependencies
   sudo $APTPROG install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
@@ -133,8 +131,6 @@ elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
   # Distribution Python
   sudo $RPMPROG install -y python python-devel
   sudo $RPMPROG install -y python3 python3-devel
-  sudo pip install --upgrade pip
-  sudo pip3 install --upgrade pip
 
   # pyenv dependencies
   sudo $RPMPROG install -y zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel
@@ -143,6 +139,10 @@ elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
   which git >/dev/null 2>&1 || sudo $RPMPROG install -y git || exit $?
   which sqlite >/dev/null 2>&1 || sudo $RPMPROG install -y sqlite || exit $?
 fi
+
+echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade...\n"
+sudo -H pip install --upgrade pip
+sudo -H pip3 install --upgrade pip
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> pyenv (installation if needed and) load into this session"
