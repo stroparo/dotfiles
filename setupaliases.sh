@@ -38,7 +38,7 @@ d () {
     if [ -z "$found" ] ; then found="$(find . -type d -name "*${dir}*" | head -1)" ; fi
     if [ -n "$found" ] ; then echo "$found" ; cd "$found" ; fi
   done
-  pwd; which exa >/dev/null 2>&1 && exa -ila || ls -al
+  pwd; which exa >/dev/null 2>&1 && exa -ahil || ls -al
   if [ -e ./.git ] ; then git branch -vv ; fi
 }
 
@@ -50,8 +50,8 @@ alias dfh='df -hP'
 alias dsloaddefault='. ~/.ds/ds.sh'
 alias dumr='du -ma | sort -rn'
 alias dums='du -ma | sort -n'
-alias e='exa -il'
-alias ea='exa -ila'
+alias e='exa -hil'
+alias ea='exa -ahil'
 alias findd='find . -type d'
 alias findf='find . -type f'
 alias nhr='rm nohup.out'
