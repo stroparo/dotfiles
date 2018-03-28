@@ -32,21 +32,6 @@ EOF
 fi
 
 # #############################################################################
-# Routines
-
-_user_confirm () {
-  # Info: Ask a question and yield success if user responded [yY]*
-
-  typeset confirm
-  typeset result=1
-
-  echo ${BASH_VERSION:+-e} "$@" "[y/N] \c"
-  read confirm
-  if [[ $confirm = [yY]* ]] ; then return 0 ; fi
-  return 1
-}
-
-# #############################################################################
 # Update
 
 echo ${BASH_VERSION:+-e} "\n\n==> Updating..."
