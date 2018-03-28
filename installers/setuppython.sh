@@ -14,15 +14,7 @@
 # Globals
 
 export PROGNAME=setuppython.sh
-export USAGE="$PROGNAME [0 or more files containing pip packages]
-
-Each of the files, if any, must be named like <anything>-<virtualenvname>
-virtualenvname as of this writing can be any of:
-tools3
-jupyter3
-tools2
-ipython2
-"
+export USAGE="$PROGNAME [-h]"
 
 export PYENV_INSTALLER="https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer"
 export PYV2='2.7.14'
