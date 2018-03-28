@@ -65,6 +65,7 @@ sudo $APTPROG install -y logrotate
 sudo $APTPROG install -y parted
 sudo $APTPROG install -y p7zip-full p7zip-rar
 sudo $APTPROG install -y secure-delete
+sudo $APTPROG install -y silversearcher-ag
 sudo $APTPROG install -y sqlite3 libdbd-sqlite3
 sudo $APTPROG install -y tmux
 sudo $APTPROG install -y unzip zip
@@ -84,15 +85,6 @@ sudo $APTPROG install -y imagemagick
 sudo $APTPROG install -y libsqlite3-0 libsqlite3-dev
 sudo $APTPROG install -y libssl-dev
 sudo $APTPROG install -y zlib1g zlib1g-dev
-
-# #############################################################################
-# SilverSearcher Ag
-# https://github.com/ggreer/the_silver_searcher
-
-if ! ag --version ; then
-  echo ${BASH_VERSION:+-e} "\n\n==> SilverSearcher Ag..."
-  sudo $RPMPROG install -y silversearcher-ag
-fi
 
 # #############################################################################
 # Cleanup

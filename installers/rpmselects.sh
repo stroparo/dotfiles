@@ -41,42 +41,6 @@ EOF
 fi
 
 # #############################################################################
-# Routines
-
-_is_interactive () { [[ $- = *i* ]] ; }
-
-_user_confirm () {
-  # Info: Ask a question and yield success if user responded [yY]*
-
-  typeset confirm
-  typeset result=1
-
-  echo ${BASH_VERSION:+-e} "$@" "[y/N] \c"
-  read confirm
-  if [[ $confirm = [yY]* ]] ; then return 0 ; fi
-  return 1
-}
-
-# #############################################################################
-# Hostname
-
-if _is_interactive ; then
-  echo
-  if _user_confirm "==> Set custom hostname?" ; then
-    echo ${BASH_VERSION:+-e} "Hostname: \c" ; read newhostname
-    sudo hostnamectl set-hostname "${newhostname:-andromeda}"
-  fi
-fi
-
-# #############################################################################
-# Update
-
-echo ${BASH_VERSION:+-e} "\n\n==> Updating..."
-if _user_confirm "==> Upgrade all packages?" ; then
-  sudo $RPMPROG update -y
-fi
-
-# #############################################################################
 # EPEL (Extra Packages for Enterprise Linux)
 # https://fedoraproject.org/wiki/EPEL
 
@@ -97,52 +61,33 @@ fi
 # #############################################################################
 # Main
 
+if [ -n "$NEWHOSTNAME" ] ; then
+  echo "==> Setting up hostname to '${NEWHOSTNAME}'..." 1>&2
+  sudo hostnamectl set-hostname "${NEWHOSTNAME:-andromeda}"
+fi
+
+sudo $RPMPROG update -y
+
 echo ${BASH_VERSION:+-e} "\n\n==> Base packages..."
 sudo $RPMPROG install -y curl lftp mosh rsync wget
 sudo $RPMPROG install -y less
 sudo $RPMPROG install -y p7zip p7zip-plugins lzip cabextract unrar
 which tmux >/dev/null 2>&1 || sudo $RPMPROG install -y tmux
 sudo $RPMPROG install -y sqlite libdbi-dbd-sqlite
+sudo $RPMPROG install -y the_silver_searcher # ag
 sudo $RPMPROG install -y unzip zip
 sudo $RPMPROG install -y zsh
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
 
-(which git 2>/dev/null | grep -q /opt) && IS_GIT_OPT=true  # Put this BEFORE 'Development Tools' group
 sudo $RPMGROUP -y 'Development Tools'
-
 sudo $RPMPROG install -y ctags
+# sudo $RPMPROG install -y golang
 sudo $RPMPROG install -y jq
 sudo $RPMPROG install -y make
 sudo $RPMPROG install -y perl perl-devel perl-ExtUtils-Embed
 # sudo $RPMPROG install -y ruby ruby-devel
-
-# In case git was in /opt already, remove the distro package and provide
-#  other git related stuff in their proper versions:
-${IS_GIT_OPT:-false} && sudo $RPMPROG remove -y git
-if ${IS_GIT_OPT:-false} ; then
-  : # TODO implement tig installation from latest/source
-else
-  sudo $RPMPROG install -y tig
-fi
-
-echo ${BASH_VERSION:+-e} "\n\n==> Devel libs (often needed for compiling)"
-sudo $RPMPROG install -y libevent libevent-devel libevent-headers
-sudo $RPMPROG install -y ncurses ncurses-devel
-
-echo ${BASH_VERSION:+-e} "\n\n==> Go Programming Language (golang)? [y/N]\c"
-read answer
-if [[ $answer = y ]] ; then
-  sudo $RPMPROG install -y golang
-fi
-
-echo ${BASH_VERSION:+-e} "\n\n==> Nodejs? [y/N]\c"
-read answer
-if [[ $answer = y ]] ; then
-  curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
-  sudo $RPMPROG install -y nodejs
-  npm install -g typescript
-fi
+sudo $RPMPROG install -y tig # git
 
 # #############################################################################
 # SELinux
@@ -151,20 +96,7 @@ echo ${BASH_VERSION:+-e} "\n\n==> SELinux..."
 sudo $RPMPROG install -y setroubleshoot-server selinux-policy-devel
 
 # #############################################################################
-# SilverSearcher Ag
-# https://github.com/ggreer/the_silver_searcher
-
-if ! ag --version ; then
-  # Must have the epel-release repository:
-  echo ${BASH_VERSION:+-e} "\n\n==> SilverSearcher Ag..."
-  sudo $RPMPROG install -y the_silver_searcher
-fi
-
-# #############################################################################
 # Specific to the distribution
 
 sudo $RPMPROG install -y yum-utils
-
-# #############################################################################
-# Cleanup
 
