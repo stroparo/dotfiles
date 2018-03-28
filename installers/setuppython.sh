@@ -63,22 +63,14 @@ appendunique () {
   return ${fail}
 }
 
-pipinstallfromfile () {
-  typeset listfile="$1"
-  [ -f "$listfile" ] || continue
-  for pkg in $(cat "$listfile") ; do
-    pip install ${pkg}
-  done
-}
-
 # #############################################################################
 # Options
 
 OPTIND=1
 while getopts ':h' option ; do
-    case "${option}" in
-        h) echo "$USAGE"; exit;;
-    esac
+  case "${option}" in
+    h) echo "$USAGE"; exit;;
+  esac
 done
 shift "$((OPTIND-1))"
 
@@ -165,6 +157,15 @@ eval "$(pyenv init -)"
 EOF
 fi
 
+# Speed up disabling prompt as it is going to be discontinued anyway:
+PYENV_PROMPT_DISABLE='export PYENV_VIRTUALENV_DISABLE_PROMPT=1'
+if ! grep -q "$PYENV_PROMPT_DISABLE" "$HOME"/.bashrc 2>/dev/null; then
+  echo "$PYENV_PROMPT_DISABLE" >> "$HOME"/.bashrc
+fi
+if ! grep -q "$PYENV_PROMPT_DISABLE" "$HOME"/.zshrc 2>/dev/null; then
+  echo "$PYENV_PROMPT_DISABLE" >> "$HOME"/.zshrc
+fi
+
 if which pyenv >/dev/null 2>&1 ; then
   eval "$(pyenv init -)"
 else
@@ -226,25 +227,14 @@ python -m ipykernel install --user
 pyenv deactivate
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Python package installation from files"
-
-# Conviniently install packages listed in files, into virtualenvs:
-# Each pipfile must be named like <anything>-<virtualenvname>
-# and contain a list of pip packages to be installed into
-# that virtualenv
-for pipfile in "$@" ; do
-  if ! [ -f "$pipfile" ] || ! [ -r "$pipfile" ] ; then
-    echo "SKIP: '$pipfile' is not a readable file." 1>&2
-  fi
-  pyenv activate ${pipfile##*-} || continue
-  pipinstallfromfile "$pipfile"
-  pyenv deactivate
-done
-
-# #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> pyenv PATH priority"
 
 pyenv global "$PYV3" "$PYV2" jupyter3 ipython2 tools3 tools2
+
+# #############################################################################
+echo ${BASH_VERSION:+-e} "\n\n==> Python 3 base utilities"
+
+pip install pipenv
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> virtualenvwrapper installation"
