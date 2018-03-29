@@ -69,25 +69,26 @@ fi
 sudo $RPMPROG update -y
 
 echo ${BASH_VERSION:+-e} "\n\n==> Base packages..."
-sudo $RPMPROG install -y curl lftp mosh rsync wget
+sudo $RPMPROG install -y curl lftp rsync wget
+sudo $RPMPROG install -y --enablerepo=epel mosh
 sudo $RPMPROG install -y less
-sudo $RPMPROG install -y p7zip p7zip-plugins lzip cabextract unrar
+sudo $RPMPROG install -y --enablerepo=epel p7zip p7zip-plugins lzip cabextract unrar
 which tmux >/dev/null 2>&1 || sudo $RPMPROG install -y tmux
 sudo $RPMPROG install -y sqlite libdbi-dbd-sqlite
-sudo $RPMPROG install -y the_silver_searcher # ag
+sudo $RPMPROG install -y --enablerepo=epel the_silver_searcher # ag
 sudo $RPMPROG install -y unzip zip
 sudo $RPMPROG install -y zsh
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
 
-sudo $RPMGROUP -y 'Development Tools'
+sudo $RPMGROUP -y --enablerepo=epel 'Development Tools'
 sudo $RPMPROG install -y ctags
 # sudo $RPMPROG install -y golang
-sudo $RPMPROG install -y jq
+sudo $RPMPROG install -y --enablerepo=epel jq
 sudo $RPMPROG install -y make
 sudo $RPMPROG install -y perl perl-devel perl-ExtUtils-Embed
 # sudo $RPMPROG install -y ruby ruby-devel
-sudo $RPMPROG install -y tig # git
+sudo $RPMPROG install -y --enablerepo=epel tig # git
 
 # #############################################################################
 # SELinux
