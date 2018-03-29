@@ -66,7 +66,7 @@ if [ -n "$NEWHOSTNAME" ] ; then
   sudo hostnamectl set-hostname "${NEWHOSTNAME:-andromeda}"
 fi
 
-sudo $RPMPROG update -y
+# sudo $RPMPROG update -y
 
 echo ${BASH_VERSION:+-e} "\n\n==> Base packages..."
 sudo $RPMPROG install -y curl lftp rsync wget
