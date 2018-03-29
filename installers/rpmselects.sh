@@ -64,6 +64,7 @@ if [ -n "$NEWHOSTNAME" ] ; then
   sudo hostnamectl set-hostname "${NEWHOSTNAME:-andromeda}"
 fi
 
+sudo yum makecache fast
 # sudo $RPMPROG update -y
 
 echo ${BASH_VERSION:+-e} "\n\n==> Base packages..."
