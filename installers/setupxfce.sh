@@ -9,6 +9,13 @@ export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP="dnf group install"
 
+if [ "$1" = '-d' ] ; then
+  DO_DEPS=true
+  shift
+else
+  DO_DEPS=false
+fi
+
 # #############################################################################
 # Main
 
@@ -22,10 +29,13 @@ if egrep -i -q '(centos|fedora|oracle|red *hat)' /etc/*release ; then
   echo ${BASH_VERSION:+-e} "\n==> XFCE dependencies..."
 
   sudo $RPMGROUP -y "x window system"
-  if egrep -i -q '(centos|oracle|red *hat).* 6' /etc/*release ; then
-    sudo $RPMGROUP -y desktop "general purpose desktop"
-  elif egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release ; then
-    sudo $RPMGROUP -y desktop "server with gui" "mate desktop"
+  
+  if ${DO_DEPS:-false} ; then
+    if egrep -i -q '(centos|oracle|red *hat).* 6' /etc/*release ; then
+      sudo $RPMGROUP -y desktop "general purpose desktop"
+    elif egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release ; then
+      sudo $RPMGROUP -y desktop "server with gui" "mate desktop"
+    fi
   fi
 
   sudo $RPMGROUP -y xfce
