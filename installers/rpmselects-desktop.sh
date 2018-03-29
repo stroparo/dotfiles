@@ -63,8 +63,6 @@ sudo $RPMPROG install shutter # Screenshots, better than the stock one...
 
 echo ${BASH_VERSION:+-e} "\n==> Networking..."
 sudo $RPMPROG install gigolo
-sudo $RPMPROG install qbittorrent
-sudo $RPMPROG install transmission
 
 echo ${BASH_VERSION:+-e} "\n==> Productivity..."
 sudo $RPMPROG install guake

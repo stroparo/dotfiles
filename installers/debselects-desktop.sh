@@ -57,8 +57,6 @@ sudo $APTPROG install mp3splt mpv parole ristretto
 
 echo ${BASH_VERSION:+-e} "\n==> Networking..."
 sudo $APTPROG install gigolo
-sudo $APTPROG install qbittorrent transmission
-sudo $APTPROG install transmission
 
 echo ${BASH_VERSION:+-e} "\n==> Productivity..."
 sudo $APTPROG install evince galculator
