@@ -50,9 +50,7 @@ echo ${BASH_VERSION:+-e} \
 if ! grep -i -q 'fedora' /etc/*release ; then
   if egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release ; then
     sudo $RPMPROG -y install \
-        https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-      echo "${PROGNAME:+$PROGNAME: }INFO: Disabled epel (use --enablerepo=epel) from now on..." 1>&2
-    sudo sed -i -e "s/^enabled=1/enabled=0/" /etc/yum.repos.d/epel.repo
+      https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   else
     sudo $RPMPROG install -y epel-release.noarch
   fi
