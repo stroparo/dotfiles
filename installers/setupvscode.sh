@@ -17,7 +17,9 @@ firefox \
   'https://code.visualstudio.com/download' \
   'https://marketplace.visualstudio.com/items?itemName=nonoroazoro.syncing' \
   'https://gist.github.com/stroparo/5ae1e0c8fe2e7a5401a9f52b3aaec9f1' \
-  'https://github.com/viatsko/awesome-vscode'
+  'https://github.com/viatsko/awesome-vscode' \
+  &
+disown
 
 # #############################################################################
 # Tips
