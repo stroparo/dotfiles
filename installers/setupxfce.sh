@@ -29,7 +29,7 @@ if egrep -i -q '(centos|fedora|oracle|red *hat)' /etc/*release ; then
   echo ${BASH_VERSION:+-e} "\n==> XFCE dependencies..."
 
   sudo $RPMGROUP -y "x window system"
-  
+
   if ${DO_DEPS:-false} ; then
     if egrep -i -q '(centos|oracle|red *hat).* 6' /etc/*release ; then
       sudo $RPMGROUP -y desktop "general purpose desktop"
