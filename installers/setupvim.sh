@@ -125,7 +125,8 @@ elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
     sudo $RPMPROG install -y --enablerepo=epel python python-devel
   fi
   if "${DO_PYTHON3:-false}" ; then
-    sudo $RPMPROG install -y --enablerepo=epel python3 python3-devel
+    sudo $RPMPROG install -y --enablerepo=epel python3 python3-devel \
+      || sudo $RPMPROG install -y --enablerepo=epel python36 python36-devel
   fi
 fi
 
