@@ -28,6 +28,21 @@ unset CONF_ARGS_PYTHON
 unset CONF_ARGS_RUBY
 
 # #############################################################################
+# Routines
+
+_user_confirm () {
+  # Info: Ask a question and yield success if user responded [yY]*
+
+  typeset confirm
+  typeset result=1
+
+  echo ${BASH_VERSION:+-e} "$@" "[y/N] \c"
+  read confirm
+  if [[ $confirm = [yY]* ]] ; then return 0 ; fi
+  return 1
+}
+
+# #############################################################################
 # Dynamic globals
 
 # Options:
@@ -50,11 +65,11 @@ echo ${BASH_VERSION:+-e} "\n==> $PROGNAME started..."
 # #############################################################################
 # Prompt for specific support
 
-read -p 'Support Lua?' DO_LUA
-read -p 'Support Perl?' DO_PERL
-read -p 'Support Python2?' DO_PYTHON2
-read -p 'Support Python3?' DO_PYTHON3
-read -p 'Support Ruby?' DO_RUBY
+if _user_confirm 'Support Lua?' ; then DO_LUA=true ; fi
+if _user_confirm 'Support Perl?' ; then DO_PERL=true ; fi
+if _user_confirm 'Support Python2?' ; then DO_PYTHON2=true ; fi
+if _user_confirm 'Support Python3?' ; then DO_PYTHON3=true ; fi
+if _user_confirm 'Support Ruby?' ; then DO_RUBY=true ; fi
 
 # #############################################################################
 # Prep dependencies
