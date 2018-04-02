@@ -48,97 +48,13 @@ export PREFIX
 echo ${BASH_VERSION:+-e} "\n==> $PROGNAME started..."
 
 # #############################################################################
+# Prompt for specific support
 
-echo 'Support Lua?'
-read DO_LUA
-
-if [ "$DO_LUA" = y ] || [ "$DO_LUA" = true ] ; then
-  DO_LUA=true
-  CONF_ARGS_LUA="\
-    --enable-luainterp \
-    --with-luajit"
-else
-  DO_LUA=false
-fi
-
-# #############################################################################
-
-echo 'Support Perl?'
-read DO_PERL
-
-if [ "$DO_PERL" = y ] || [ "$DO_PERL" = true ] ; then
-  DO_PERL=true
-  CONF_ARGS_PERL="--enable-perlinterp=dynamic"
-else
-  DO_PERL=false
-fi
-
-# #############################################################################
-
-echo 'Support Python2?'
-read DO_PYTHON2
-
-if [ "$DO_PYTHON2" = y ] || [ "$DO_PYTHON2" = true ] ; then
-
-  DO_PYTHON2=true
-
-  echo 'Enter Python2 config dir: '
-  echo 'Examples in Fedora 27:'
-  echo '/usr/lib/python2.7/config'
-  echo '/usr/lib64/python2.7/config'
-  read PYTHON2_CONFIG_DIR
-
-  CONF_ARGS_PYTHON2="\
-    --enable-python3interp \
-    --with-python-config-dir=\"$PYTHON2_CONFIG_DIR\""
-else
-  DO_PYTHON2=false
-fi
-
-# #############################################################################
-
-echo 'Support Python3?'
-read DO_PYTHON3
-
-if [ "$DO_PYTHON3" = y ] || [ "$DO_PYTHON3" = true ] ; then
-
-  DO_PYTHON3=true
-
-  echo 'Enter Python3 config dir: '
-  echo 'Examples in Fedora 27:'
-  echo '/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu'
-  echo '/usr/lib64/python3.6/config-3.6m-x86_64-linux-gnu'
-  read PYTHON3_CONFIG_DIR
-
-  CONF_ARGS_PYTHON3="\
-    --enable-python3interp \
-    --with-python3-config-dir=\"$PYTHON3_CONFIG_DIR\""
-else
-  DO_PYTHON3=false
-fi
-
-# #############################################################################
-
-echo 'Support Ruby?'
-read DO_RUBY
-if [ "$DO_RUBY" = y ] || [ "$DO_RUBY" = true ] ; then
-
-  DO_RUBY=true
-
-  if which ruby >/dev/null 2>&1 ; then
-    RUBY_BINARY_PATH="$(which ruby)"
-  else
-    echo 'Enter Ruby binary path: '
-    echo '(E.g.: /usr/local/bin/ruby)'
-    read RUBY_BINARY_PATH
-  fi
-
-  CONF_ARGS_RUBY="\
-    --enable-rubyinterp=dynamic \
-    --with-ruby-command=\"$RUBY_BINARY_PATH\""
-else
-  DO_RUBY=false
-fi
+read -p 'Support Lua?' DO_LUA
+read -p 'Support Perl?' DO_PERL
+read -p 'Support Python2?' DO_PYTHON2
+read -p 'Support Python3?' DO_PYTHON3
+read -p 'Support Ruby?' DO_RUBY
 
 # #############################################################################
 # Prep dependencies
@@ -196,6 +112,85 @@ elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
   if "$DO_PYTHON3" ; then
     sudo $RPMPROG install -y python3 python3-devel
   fi
+fi
+
+# #############################################################################
+
+if [ "$DO_LUA" = y ] || [ "$DO_LUA" = true ] ; then
+  DO_LUA=true
+  CONF_ARGS_LUA="\
+    --enable-luainterp \
+    --with-luajit"
+else
+  DO_LUA=false
+fi
+
+# #############################################################################
+
+if [ "$DO_PERL" = y ] || [ "$DO_PERL" = true ] ; then
+  DO_PERL=true
+  CONF_ARGS_PERL="--enable-perlinterp=dynamic"
+else
+  DO_PERL=false
+fi
+
+# #############################################################################
+
+if [ "$DO_PYTHON2" = y ] || [ "$DO_PYTHON2" = true ] ; then
+
+  DO_PYTHON2=true
+
+  echo 'Enter Python2 config dir: '
+  echo 'Examples in Fedora 27:'
+  echo '/usr/lib/python2.7/config'
+  echo '/usr/lib64/python2.7/config'
+  read PYTHON2_CONFIG_DIR
+
+  CONF_ARGS_PYTHON2="\
+    --enable-python3interp \
+    --with-python-config-dir=\"$PYTHON2_CONFIG_DIR\""
+else
+  DO_PYTHON2=false
+fi
+
+# #############################################################################
+
+if [ "$DO_PYTHON3" = y ] || [ "$DO_PYTHON3" = true ] ; then
+
+  DO_PYTHON3=true
+
+  echo 'Enter Python3 config dir: '
+  echo 'Examples in Fedora 27:'
+  echo '/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu'
+  echo '/usr/lib64/python3.6/config-3.6m-x86_64-linux-gnu'
+  read PYTHON3_CONFIG_DIR
+
+  CONF_ARGS_PYTHON3="\
+    --enable-python3interp \
+    --with-python3-config-dir=\"$PYTHON3_CONFIG_DIR\""
+else
+  DO_PYTHON3=false
+fi
+
+# #############################################################################
+
+if [ "$DO_RUBY" = y ] || [ "$DO_RUBY" = true ] ; then
+
+  DO_RUBY=true
+
+  if which ruby >/dev/null 2>&1 ; then
+    RUBY_BINARY_PATH="$(which ruby)"
+  else
+    echo 'Enter Ruby binary path: '
+    echo '(E.g.: /usr/local/bin/ruby)'
+    read RUBY_BINARY_PATH
+  fi
+
+  CONF_ARGS_RUBY="\
+    --enable-rubyinterp=dynamic \
+    --with-ruby-command=\"$RUBY_BINARY_PATH\""
+else
+  DO_RUBY=false
 fi
 
 # #############################################################################
