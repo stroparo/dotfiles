@@ -89,16 +89,16 @@ if egrep -i -q 'debian|ubuntu' /etc/*release ; then
   sudo $APTPROG install -y libx11-dev
   sudo $APTPROG install -y libxpm-dev
   sudo $APTPROG install -y libxt-dev
-  if "$DO_LUA" ; then
+  if "${DO_LUA:-false}" ; then
     sudo $APTPROG install -y liblua5.1-dev luajit libluajit-5.1
   fi
-  if "$DO_PERL" ; then
+  if "${DO_PERL:-false}" ; then
     sudo $APTPROG install -y perl libperl-dev
   fi
-  if "$DO_PYTHON2" ; then
+  if "${DO_PYTHON2:-false}" ; then
     sudo $APTPROG install -y python-dev python-pip
   fi
-  if "$DO_PYTHON3" ; then
+  if "${DO_PYTHON3:-false}" ; then
     sudo $APTPROG install -y python3-dev python3-pip
   fi
 
@@ -108,24 +108,24 @@ if egrep -i -q 'debian|ubuntu' /etc/*release ; then
 elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
   # Utilities:
-  sudo $RPMPROG -y install ctags
-  which cmake >/dev/null 2>&1 || sudo $RPMPROG -y install cmake
-  which curl >/dev/null 2>&1 || sudo $RPMPROG -y install curl
-  which gcc >/dev/null 2>&1 || sudo $RPMPROG -y install gcc
-  which git >/dev/null 2>&1 || sudo $RPMPROG -y install git
+  sudo $RPMPROG install -y --enablerepo=epel ctags
+  which cmake >/dev/null 2>&1 || sudo $RPMPROG install -y --enablerepo=epel cmake
+  which curl >/dev/null 2>&1 || sudo $RPMPROG install -y --enablerepo=epel curl
+  which gcc >/dev/null 2>&1 || sudo $RPMPROG install -y --enablerepo=epel gcc
+  which git >/dev/null 2>&1 || sudo $RPMPROG install -y --enablerepo=epel git
   sudo $RPMPROG -y groupinstall 'Development Tools'
 
   # Libraries:
-  sudo $RPMPROG -y install ncurses ncurses-devel
+  sudo $RPMPROG install -y --enablerepo=epel ncurses ncurses-devel
   # TODO include Lua installation commands
-  if "$DO_PERL" ; then
-    sudo $RPMPROG install -y perl perl-devel perl-ExtUtils-Embed
+  if "${DO_PERL:-false}" ; then
+    sudo $RPMPROG install -y --enablerepo=epel perl perl-devel perl-ExtUtils-Embed
   fi
-  if "$DO_PYTHON2" ; then
-    sudo $RPMPROG install -y python python-devel
+  if "${DO_PYTHON2:-false}" ; then
+    sudo $RPMPROG install -y --enablerepo=epel python python-devel
   fi
-  if "$DO_PYTHON3" ; then
-    sudo $RPMPROG install -y python3 python3-devel
+  if "${DO_PYTHON3:-false}" ; then
+    sudo $RPMPROG install -y --enablerepo=epel python3 python3-devel
   fi
 fi
 
