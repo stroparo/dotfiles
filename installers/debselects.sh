@@ -62,6 +62,7 @@ sudo $APTPROG install -y httpie
 sudo $APTPROG install -y git tig
 sudo $APTPROG install -y jq
 sudo $APTPROG install -y perl libperl-dev
+sudo $APTPROG install -y vagrant
 # sudo $APTPROG install -y ruby ruby-dev ruby-full
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel libs..."

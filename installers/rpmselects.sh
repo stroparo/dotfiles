@@ -88,6 +88,7 @@ sudo $RPMPROG install -y make
 sudo $RPMPROG install -y perl perl-devel perl-ExtUtils-Embed
 # sudo $RPMPROG install -y ruby ruby-devel
 sudo $RPMPROG install -y --enablerepo=epel tig # git
+sudo $RPMPROG install -y vagrant
 
 # #############################################################################
 # SELinux
