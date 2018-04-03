@@ -114,7 +114,8 @@ elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
   # Distribution Python
   sudo $RPMPROG install -y python python-devel
-  sudo $RPMPROG install -y python3 python3-devel
+  sudo $RPMPROG install -y python3 python3-devel \
+    || sudo $RPMPROG install -y python36 python36-devel
 
   # pyenv dependencies
   sudo $RPMPROG install -y zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel
