@@ -24,7 +24,7 @@ enabled=1
 gpgcheck=1
 gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 EOF
-  sudo yum install google-chrome-stable
+  sudo $RPMPROG install -y google-chrome-stable
 
 elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
