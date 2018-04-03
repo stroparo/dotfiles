@@ -29,7 +29,12 @@ EOF
 elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
   curl -LSfs "https://dl-ssl.google.com/linux/linux_signing_key.pub" | sudo apt-key add -
+
   sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+  if [ "$(uname -p)" = "x86_64" ] ; then
+    sudo sed -i -e 's/deb http/deb [arch=amd64] http/' '/etc/apt/sources.list.d/google-chrome.list'
+  fi
+
   sudo $APTPROG update
   sudo $APTPROG install -y google-chrome-stable
 fi
