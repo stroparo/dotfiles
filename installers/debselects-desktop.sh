@@ -5,9 +5,9 @@
 # #############################################################################
 # Globals
 
-if [ -z "$APTPROG" ] ; then
-  export APTPROG=apt-get
-  which apt >/dev/null 2>&1 && export APTPROG=apt
+if [ -z "$INSTPROG" ] ; then
+  export INSTPROG=apt-get
+  which apt >/dev/null 2>&1 && export INSTPROG=apt
 fi
 
 # #############################################################################
@@ -34,42 +34,67 @@ fi
 # #############################################################################
 # Update
 
-sudo $APTPROG update
+sudo $INSTPROG update
 
 echo ${BASH_VERSION:+-e} "\n==> Upgrade all packages? [y/N]\c" ; read answer
-[[ $answer = y ]] && sudo $APTPROG upgrade
+[[ $answer = y ]] && sudo $INSTPROG upgrade -y
 
 # #############################################################################
 # Main
 
-echo ${BASH_VERSION:+-e} "\n==> Desktop packages..."
-sudo $APTPROG install bum ssh-askpass thunar xbacklight xclip
-sudo $APTPROG install gnome-themes-standard gnome-themes-ubuntu gtk2-engines-xfce
+echo ${BASH_VERSION:+-e} "\n==> Base desktop packages..."
+sudo $INSTPROG install -y bum ssh-askpass xbacklight xclip
+sudo $INSTPROG install -y gnome-themes-standard
+sudo $INSTPROG install -y gnome-themes-ubuntu gtk2-engines-xfce
 
 echo ${BASH_VERSION:+-e} "\n==> Educational..."
-sudo $APTPROG install gperiodic gtypist tuxtype
-
-echo ${BASH_VERSION:+-e} "\n==> Games..."
-sudo $APTPROG install dosbox stella visualboyadvance-gtk zsnes chocolate-doom gnome-games gnome-sudoku gnuchess joy2key joystick inputattach openttd openttd-opensfx
-
-echo ${BASH_VERSION:+-e} "\n==> Multimedia..."
-sudo $APTPROG install mp3splt mpv parole ristretto
-
-echo ${BASH_VERSION:+-e} "\n==> Networking..."
-sudo $APTPROG install gigolo
+sudo $INSTPROG install -y gperiodic
 
 echo ${BASH_VERSION:+-e} "\n==> Productivity..."
-sudo $APTPROG install evince galculator
-sudo $APTPROG install gnome-shell-pomodoro
-sudo $APTPROG install guake
-sudo $APTPROG install libreoffice-calc
-sudo $APTPROG install meld
+sudo $INSTPROG install -y atril galculator guake meld
+sudo $INSTPROG install -y gnome-shell-pomodoro
+sudo $INSTPROG install -y shutter # screenshots
 
 echo ${BASH_VERSION:+-e} "\n==> Other packages..."
-sudo $APTPROG install autorenamer
+sudo $INSTPROG install -y autorenamer
 
 # #############################################################################
 # Cleanup
 
-sudo $APTPROG autoremove
-sudo $APTPROG clean
+sudo $INSTPROG autoremove
+sudo $INSTPROG clean
+
+# #############################################################################
+echo
+echo "==> Suggestions"
+
+cat <<EOF
+
+# Games
+sudo $INSTPROG install -y chocolate-doom
+sudo $INSTPROG install -y dosbox stella zsnes
+sudo $INSTPROG install -y gnome-games gnome-sudoku gnuchess
+sudo $INSTPROG install -y joy2key joystick inputattach
+sudo $INSTPROG install -y openttd openttd-opengfx openttd-openmsx openttd-opensfx timidity
+sudo $INSTPROG install -y visualboyadvance-gtk
+
+# Educational
+sudo $INSTPROG install -y gtypist tuxtype
+
+# Multimedia
+sudo $INSTPROG install -y audacious audacious-plugins
+sudo $INSTPROG install -y mp3splt
+sudo $INSTPROG install -y mpv
+sudo $INSTPROG install -y parole
+sudo $INSTPROG install -y ristretto
+
+# Networking
+sudo $INSTPROG install -y gigolo # remote filesystem management
+
+# Productivity
+sudo $INSTPROG install -y libreoffice-calc
+
+EOF
+
+# #############################################################################
+
