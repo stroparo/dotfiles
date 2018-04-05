@@ -12,7 +12,7 @@
 NO_ACTION=true
 
 : ${DO_ALIASES:=false}
-: ${DO_BOX:=false}
+: ${DO_PACKAGES:=false}
 : ${DO_DOT:=false}
 : ${DO_SHELL:=false}
 : ${FULL:=false}
@@ -20,10 +20,10 @@ NO_ACTION=true
 
 # Options:
 OPTIND=1
-while getopts ':abdfs' option ; do
+while getopts ':abdfps' option ; do
   case "${option}" in
     a) DO_ALIASES=true; NO_ACTION=false;;
-    b) DO_BOX=true; NO_ACTION=false;;
+    b|p) DO_PACKAGES=true; NO_ACTION=false;;
     d) DO_DOT=true;;
     f) FULL=true;;
     s) DO_SHELL=true; NO_ACTION=false;;
@@ -31,7 +31,7 @@ while getopts ':abdfs' option ; do
 done
 shift "$((OPTIND-1))"
 
-export DO_ALIASES DO_BOX DO_DOT DO_SHELL NO_ACTION FULL OVERRIDE_SUBL_PREFS
+export DO_ALIASES DO_PACKAGES DO_DOT DO_SHELL NO_ACTION FULL OVERRIDE_SUBL_PREFS
 
 # #############################################################################
 # Self provisioning
@@ -59,7 +59,7 @@ if ${DO_ALIASES:-false} || ${FULL:-false} ; then
   ./setupaliases.sh
 fi
 
-if ${DO_BOX:-false} || ${FULL:-false} ; then
+if ${DO_PACKAGES:-false} || ${FULL:-false} ; then
   ./setuppackages.sh # {deb,rpm}selects etc.
 fi
 
