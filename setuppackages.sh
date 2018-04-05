@@ -3,7 +3,7 @@
 # Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
 
 echo
-echo "==> Setting up setupbox.sh (packages, shell, DEV dir)..."
+echo "==> Setting up packages..."
 
 # #############################################################################
 # Globals

@@ -67,7 +67,7 @@ This setup is comprehensive and it does the following:
 Setup command:
 
 ```bash
-bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setupbox.sh)"
+bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setuppackages.sh)"
 ```
 
 Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -``` in the command.
@@ -83,7 +83,7 @@ curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master
   && ./setupdotfiles.sh -f
 ```
 
-Setup everything but setupbox.sh:
+Setup everything but setuppackages.sh:
 ```bash
 curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
   && unzip -o ~/dotfiles.zip -d "$HOME" \
