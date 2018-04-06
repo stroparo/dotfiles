@@ -73,12 +73,5 @@ if ${DO_DOT:-false} || ${FULL:-false} || ${NO_ACTION:-true} ; then
   for deploy_script in $DEPLOY_SCRIPTS ; do
     "$deploy_script"
   done
-
-  # Cygwin
-  if (uname -a | grep -i -q cygwin) ; then
-    GITCONFIG_CYGWIN="$(cygpath "$USERPROFILE")/.gitconfig"
-    touch "$GITCONFIG_CYGWIN"
-    ./scripts/deploygit.sh "$GITCONFIG_CYGWIN"
-  fi
 fi
 
