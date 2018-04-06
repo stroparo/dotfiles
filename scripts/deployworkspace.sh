@@ -3,9 +3,13 @@
 # Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
 
 echo
-echo "==> Setting up workspace directory..."
+echo "==> Setting up the workspace directory (DEV global)..."
 
-export DEV="$HOME"/workspace
-echo "Making the DEV directory '${DEV}'..."
-mkdir -p "${DEV}"
+: ${DEV:=${HOME}/workspace} ; export DEV
+
+if [ ! -d "$DEV" ] ; then
+  echo "Making the DEV directory '${DEV}'..."
+  mkdir -p "${DEV}"
+fi
+
 ls -d -l "${DEV}"
