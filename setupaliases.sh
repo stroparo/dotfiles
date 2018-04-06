@@ -142,6 +142,7 @@ if which git >/dev/null 2>&1 ; then
   alias glggas='git log --graph --decorate --all --stat'
   alias glogas='git log --graph --decorate --all --stat --oneline'
   alias glrum='git pull --rebase upstream master'
+  alias gpmm='git push mirror master'
   alias gv='git mv'
 
   # If no Oh-My-ZSH then load similar git aliases:
