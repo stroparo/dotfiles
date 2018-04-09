@@ -20,8 +20,8 @@ fi
 
 if egrep -i -q 'fedora' /etc/*release ; then
 
-  sudo su -c 'dnf install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
-  sudo dnf install freetype-freeworld
+  sudo su -c 'dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
+  sudo dnf install -y freetype-freeworld
 
   cat <<EOF | sudo tee /etc/fonts/local.conf
 <?xml version='1.0'?>
@@ -59,14 +59,14 @@ elif egrep -i -q 'centos|oracle|red *hat' /etc/*release ; then
   # set up nux-dextop repo to install font packages. skip if this repo had already set up.
   # can be done by either rpm or yum app.
   # sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
-  sudo yum localinstall http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+  sudo yum localinstall -y http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
 
   # disable nux-dextop by default and only enable it as needed as part of running yum.
   # skip this step to make all packages in nux-dextop available at all time.
   sudo sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/nux-dextop.repo
 
   # install the magical packages that does font look nice.
-  sudo yum --enablerepo=nux-dextop install fontconfig-infinality cairo libXft freetype-infinality
+  sudo yum --enablerepo=nux-dextop install -y fontconfig-infinality cairo libXft freetype-infinality
 
   # a good .fonts.conf file. not sure if necessary.
   cat <<EOF > ~/.fonts.conf
