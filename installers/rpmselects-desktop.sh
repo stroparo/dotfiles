@@ -53,6 +53,9 @@ sudo $INSTPROG install -y atril galculator guake meld
 sudo $INSTPROG install -y gnome-shell-extension-pomodoro
 sudo $INSTPROG install -y shutter # screenshots
 
+echo ${BASH_VERSION:+-e} "\n==> Other packages..."
+sudo $INSTPROG install -y oathtool oath-toolkit
+
 # #############################################################################
 # Fedora
 
@@ -147,25 +150,26 @@ echo "==> Suggestions"
 
 cat <<EOF
 
-echo ${BASH_VERSION:+-e} "\n==> Antivirus command freshclam..."
+# Antivirus command freshclam...
 sudo $INSTPROG install -y clamtk clamav clamav-update
 
-echo ${BASH_VERSION:+-e} "\n==> Educational..."
+# Educational...
 sudo $INSTPROG install -y gnome-chemistry-utils
 
-echo ${BASH_VERSION:+-e} "\n==> Games..."
+# Games...
 sudo $INSTPROG install -y dosbox
 sudo $INSTPROG install -y openttd openttd-opengfx timidity++
 
-echo ${BASH_VERSION:+-e} "\n==> Multimedia..."
+# Multimedia...
 sudo $INSTPROG install -y audacious audacious-plugins-freeworld
 sudo $INSTPROG install -y parole
 sudo $INSTPROG install -y ristretto
 
-echo ${BASH_VERSION:+-e} "\n==> Networking..."
+# Networking...
 sudo $INSTPROG install -y gigolo # remote filesystem management
 
-echo ${BASH_VERSION:+-e} "\n==> Productivity..."
+# Productivity...
+sudo $INSTPROG install -y gnucash
 sudo $INSTPROG install -y libreoffice-calc
 
 EOF

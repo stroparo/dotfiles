@@ -57,6 +57,7 @@ sudo $INSTPROG install -y shutter # screenshots
 
 echo ${BASH_VERSION:+-e} "\n==> Other packages..."
 sudo $INSTPROG install -y autorenamer
+sudo $INSTPROG install -y oathtool
 
 # #############################################################################
 # Cleanup
@@ -92,6 +93,7 @@ sudo $INSTPROG install -y ristretto
 sudo $INSTPROG install -y gigolo # remote filesystem management
 
 # Productivity
+sudo $INSTPROG install -y gnucash
 sudo $INSTPROG install -y libreoffice-calc
 
 EOF
