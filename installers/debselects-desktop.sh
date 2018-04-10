@@ -55,9 +55,12 @@ sudo $INSTPROG install -y atril galculator guake meld
 sudo $INSTPROG install -y gnome-shell-pomodoro
 sudo $INSTPROG install -y shutter # screenshots
 
+echo ${BASH_VERSION:+-e} "\n==> Sec..."
+sudo $INSTPROG install -y gnupg pwgen
+sudo $INSTPROG install -y oathtool
+
 echo ${BASH_VERSION:+-e} "\n==> Other packages..."
 sudo $INSTPROG install -y autorenamer
-sudo $INSTPROG install -y oathtool
 
 # #############################################################################
 # Cleanup

@@ -54,6 +54,7 @@ sudo $INSTPROG install -y gnome-shell-extension-pomodoro
 sudo $INSTPROG install -y shutter # screenshots
 
 echo ${BASH_VERSION:+-e} "\n==> Other packages..."
+sudo $INSTPROG install -y gnupg pwgen
 sudo $INSTPROG install -y oathtool oath-toolkit
 
 # #############################################################################
