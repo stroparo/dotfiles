@@ -52,7 +52,7 @@ if ! grep -i -q 'fedora' /etc/*release ; then
     sudo $RPMPROG -y install \
       https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   else
-    sudo $RPMPROG install -y epel-release.noarch
+    sudo $RPMPROG install -q -y epel-release.noarch
   fi
 fi
 
@@ -68,36 +68,36 @@ sudo yum makecache fast
 # sudo $RPMPROG update -y
 
 echo ${BASH_VERSION:+-e} "\n\n==> Base packages..."
-sudo $RPMPROG install -y curl lftp rsync wget
-sudo $RPMPROG install -y --enablerepo=epel mosh
-sudo $RPMPROG install -y less
-sudo $RPMPROG install -y --enablerepo=epel p7zip p7zip-plugins lzip cabextract unrar
-which tmux >/dev/null 2>&1 || sudo $RPMPROG install -y tmux
-sudo $RPMPROG install -y sqlite libdbi-dbd-sqlite
-sudo $RPMPROG install -y --enablerepo=epel the_silver_searcher # ag
-sudo $RPMPROG install -y unzip zip
-sudo $RPMPROG install -y zsh
+sudo $RPMPROG install -q -y curl lftp rsync wget
+sudo $RPMPROG install -q -y --enablerepo=epel mosh
+sudo $RPMPROG install -q -y less
+sudo $RPMPROG install -q -y --enablerepo=epel p7zip p7zip-plugins lzip cabextract unrar
+which tmux >/dev/null 2>&1 || sudo $RPMPROG install -q -y tmux
+sudo $RPMPROG install -q -y sqlite libdbi-dbd-sqlite
+sudo $RPMPROG install -q -y --enablerepo=epel the_silver_searcher # ag
+sudo $RPMPROG install -q -y unzip zip
+sudo $RPMPROG install -q -y zsh
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel packages..."
 
-sudo $RPMGROUP -y --enablerepo=epel 'Development Tools'
-sudo $RPMPROG install -y ctags
-# sudo $RPMPROG install -y golang
-sudo $RPMPROG install -y --enablerepo=epel jq
-sudo $RPMPROG install -y make
-sudo $RPMPROG install -y perl perl-devel perl-ExtUtils-Embed
-# sudo $RPMPROG install -y ruby ruby-devel
-sudo $RPMPROG install -y --enablerepo=epel tig # git
-sudo $RPMPROG install -y vagrant
+sudo $RPMGROUP -q -y --enablerepo=epel 'Development Tools'
+sudo $RPMPROG install -q -y ctags
+# sudo $RPMPROG install -q -y golang
+sudo $RPMPROG install -q -y --enablerepo=epel jq
+sudo $RPMPROG install -q -y make
+sudo $RPMPROG install -q -y perl perl-devel perl-ExtUtils-Embed
+# sudo $RPMPROG install -q -y ruby ruby-devel
+sudo $RPMPROG install -q -y --enablerepo=epel tig # git
+sudo $RPMPROG install -q -y vagrant
 
 # #############################################################################
 # SELinux
 
 echo ${BASH_VERSION:+-e} "\n\n==> SELinux..."
-sudo $RPMPROG install -y setroubleshoot-server selinux-policy-devel
+sudo $RPMPROG install -q -y setroubleshoot-server selinux-policy-devel
 
 # #############################################################################
 # Specific to the distribution
 
-sudo $RPMPROG install -y yum-utils
+sudo $RPMPROG install -q -y yum-utils
 
