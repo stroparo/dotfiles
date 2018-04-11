@@ -170,13 +170,9 @@ EOF
 fi
 
 # Speed up disabling prompt as it is going to be discontinued anyway:
-PYENV_PROMPT_DISABLE='export PYENV_VIRTUALENV_DISABLE_PROMPT=1'
-if ! grep -q "$PYENV_PROMPT_DISABLE" "$HOME/.bashrc" 2>/dev/null; then
-  echo "$PYENV_PROMPT_DISABLE" >> "$HOME/.bashrc"
-fi
-if ! grep -q "$PYENV_PROMPT_DISABLE" "$HOME/.zshrc" 2>/dev/null; then
-  echo "$PYENV_PROMPT_DISABLE" >> "$HOME/.zshrc"
-fi
+appendunique 'export PYENV_VIRTUALENV_DISABLE_PROMPT=1' \
+  "${HOME}/.bashrc" \
+  "${HOME}/.zshrc"
 
 # Install
 if [ ! -d "$HOME/.pyenv" ] ; then
