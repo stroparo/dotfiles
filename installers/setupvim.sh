@@ -17,7 +17,7 @@
 # Globals
 
 PROGNAME="$(basename "${0:-setupvim.sh}")"
-USAGE="[-p prefix_path]" [lua] [perl] [python|python2] [ruby]
+USAGE="[-p prefix_path] [lua] [perl] [python|python2] [ruby]"
 
 INTERACTIVE=false
 
@@ -258,7 +258,7 @@ if [ ! -e "$VIM_PKG" ] ; then
   curl -LSfs https://github.com/vim/vim/archive/master.zip > "$VIM_PKG"
 fi
 
-if ! unzip "$VIM_PKG" -d "$VIM_PKG_DIR" ; then
+if ! unzip -o "$VIM_PKG" -d "$VIM_PKG_DIR" ; then
   echo "FATAL: unzipping '$VIM_PKG'." 1>&2
   exit 1
 fi
