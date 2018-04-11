@@ -20,7 +20,7 @@
 PROGNAME="$(basename "${0:-setupvim.sh}")"
 USAGE="[-h] [-i] [-p prefix_path] [lua] [perl] [python|python2] [ruby]"
 
-INTERACTIVE=false
+export INTERACTIVE=false
 
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
@@ -56,13 +56,11 @@ OPTIND=1
 while getopts ':hip:' option ; do
   case "${option}" in
     h) echo "$USAGE"; exit;;
-    i) INTERACTIVE=true;;
-    p) PREFIX="${OPTARG}";;
+    i) export INTERACTIVE=true;;
+    p) export PREFIX="${OPTARG}";;
   esac
 done
 shift "$((OPTIND-1))"
-
-export PREFIX
 
 # #############################################################################
 # Inform of start
@@ -271,25 +269,31 @@ cd "$VIM_SETUP_DIR/src" \
   && [ "$PWD" = "$VIM_SETUP_DIR/src" ] \
   && make distclean
 
-cd "$VIM_SETUP_DIR" \
-  && [ "$PWD" = "$VIM_SETUP_DIR" ] \
-  && eval ./configure \
-    "$@" \
-    ${PREFIX:+--prefix="$PREFIX"} \
-    $CONF_ARGS_LUA \
-    $CONF_ARGS_PERL \
-    $CONF_ARGS_PYTHON2 \
-    $CONF_ARGS_PYTHON3 \
-    $CONF_ARGS_RUBY \
-    --disable-gui \
-    --enable-multibyte \
-    --enable-cscope \
-    --with-features=huge \
-    --with-x \
-    --enable-fontset \
-    --enable-largefile \
-    --disable-netbeans \
-    --with-compiledby="ds-extras" \
-    --enable-fail-if-missing \
-  && make \
-  && (sudo checkinstall || sudo make install)
+cd "$VIM_SETUP_DIR"
+[ "$PWD" = "$VIM_SETUP_DIR" ] || exit $?
+
+eval ./configure \
+  "$@" \
+  ${PREFIX:+--prefix="$PREFIX"} \
+  $CONF_ARGS_LUA \
+  $CONF_ARGS_PERL \
+  $CONF_ARGS_PYTHON2 \
+  $CONF_ARGS_PYTHON3 \
+  $CONF_ARGS_RUBY \
+  --disable-gui \
+  --enable-multibyte \
+  --enable-cscope \
+  --with-features=huge \
+  --with-x \
+  --enable-fontset \
+  --enable-largefile \
+  --disable-netbeans \
+  --with-compiledby="ds-extras" \
+  --enable-fail-if-missing \
+  && make
+
+if [ "$?" -eq 0 ] \
+  && ! ("${INTERACTIVE:-false}" && sudo checkinstall)
+then
+  sudo make install
+fi
