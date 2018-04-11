@@ -85,7 +85,7 @@ done
 
 if ${DO_LUA:-false} ; then "setuplua.sh" ; fi
 if ${DO_PERL:-false} ; then "setupperl.sh" ; fi
-if ${DO_PYTHON2:-false} || ${DO_PYTHON3:-false} ; then "setuppython.sh" ; fi
+if ${DO_PYTHON2:-false} || ${DO_PYTHON3:-false} ; then "setuppython.sh" "system" ; fi
 
 if egrep -i -q 'debian|ubuntu' /etc/*release ; then
 

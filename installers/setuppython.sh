@@ -14,7 +14,7 @@
 # Globals
 
 export PROGNAME=setuppython.sh
-export USAGE="$PROGNAME [-h]"
+export USAGE="$PROGNAME [-h] [system]"
 
 export PYENV_INSTALLER="https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer"
 export PYV2='2.7.14'
@@ -22,6 +22,10 @@ export PYV3='3.6.4'
 
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
+
+if (echo "$*" | grep -q system) ; then
+  export SYSTEM_ONLY=true
+fi
 
 # #############################################################################
 # Check OS
@@ -65,32 +69,6 @@ while getopts ':h' option ; do
   esac
 done
 shift "$((OPTIND-1))"
-
-# #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Prepare directories"
-
-# Directory for projects
-mkdir "$HOME"/workspace
-ls -ld "$HOME"/workspace || exit $?
-
-# Directory for virtualenvs
-mkdir "$HOME"/.ve
-ls -ld "$HOME"/.ve || exit $?
-
-# #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Prepare shell profiles for Python"
-
-echo ${BASH_VERSION:+-e} "\n\n==> WORKON_HOME..."
-appendunique 'export WORKON_HOME="$HOME"/.ve' \
-  "${HOME}/.bashrc" \
-  "${HOME}/.zshrc" \
-  || exit $?
-
-echo ${BASH_VERSION:+-e} "\n\n==> PROJECT_HOME..."
-appendunique 'export PROJECT_HOME="$HOME"/workspace' \
-  "${HOME}/.bashrc" \
-  "${HOME}/.zshrc" \
-  || exit $?
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Python system dependencies"
@@ -138,7 +116,37 @@ sudo -H pip install --upgrade pip
 sudo -H pip3 install --upgrade pip
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> pyenv (installation if needed and) load into this session"
+
+${SYSTEM_ONLY:-false} && exit
+
+# #############################################################################
+echo ${BASH_VERSION:+-e} "\n\n==> Preparing venv and workspace directories..."
+
+# Directory for projects
+mkdir "$HOME"/workspace
+ls -ld "$HOME"/workspace || exit $?
+
+# Directory for virtualenvs
+mkdir "$HOME"/.ve
+ls -ld "$HOME"/.ve || exit $?
+
+# #############################################################################
+echo ${BASH_VERSION:+-e} "\n\n==> Preparing shell profiles for Python..."
+
+echo ${BASH_VERSION:+-e} "\n\n==> WORKON_HOME..."
+appendunique 'export WORKON_HOME="$HOME"/.ve' \
+  "${HOME}/.bashrc" \
+  "${HOME}/.zshrc" \
+  || exit $?
+
+echo ${BASH_VERSION:+-e} "\n\n==> PROJECT_HOME..."
+appendunique 'export PROJECT_HOME="$HOME"/workspace' \
+  "${HOME}/.bashrc" \
+  "${HOME}/.zshrc" \
+  || exit $?
+
+# #############################################################################
+echo ${BASH_VERSION:+-e} "\n\n==> pyenv setup and load into this session..."
 
 # Pyenv projects:
 # https://github.com/yyuu/pyenv-installer (https://github.com/yyuu/pyenv)
@@ -193,7 +201,7 @@ sed -i -e 's/^[^#].*pyenv virtualenv-init.*$/# &/' \
   "$HOME"/.bashrc "$HOME"/.zshrc
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Python interpreters"
+echo ${BASH_VERSION:+-e} "\n\n==> pyenv install $PYV3 and $PYV2 ..."
 
 pyenv install "$PYV3"
 pyenv install "$PYV2"
@@ -203,9 +211,8 @@ if ! (pyenv versions | fgrep -q "$PYV3") ; then
 fi
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> virtualenvs creation"
+echo ${BASH_VERSION:+-e} "\n\n==> virtualenv's..."
 
-# Environments:
 pyenv virtualenv "$PYV3" jupyter3
 pyenv virtualenv "$PYV2" ipython2
 pyenv virtualenv "$PYV3" tools3
@@ -307,6 +314,6 @@ EOF
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Etcetera"
 
-if which pythonselects.sh >/dev/null 2>&1; then
-  pythonselects.sh
+if which "pythonselects.sh" >/dev/null 2>&1; then
+  "pythonselects.sh"
 fi
