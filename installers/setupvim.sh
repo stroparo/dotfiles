@@ -19,6 +19,8 @@
 PROGNAME="$(basename "${0:-aptinstall.sh}")"
 USAGE="[-p prefix_path]"
 
+INTERACTIVE=false
+
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 
@@ -47,9 +49,10 @@ _user_confirm () {
 
 # Options:
 OPTIND=1
-while getopts ':hp:' option ; do
+while getopts ':hip:' option ; do
   case "${option}" in
     h) echo "$USAGE"; exit;;
+    i) INTERACTIVE=true;;
     p) PREFIX="${OPTARG}";;
   esac
 done
@@ -117,82 +120,131 @@ fi
 
 # #############################################################################
 
-if [ "$DO_LUA" = y ] || [ "$DO_LUA" = true ] ; then
-  DO_LUA=true
-  CONF_ARGS_LUA="\
-    --enable-luainterp \
-    --with-luajit"
-else
-  DO_LUA=false
-fi
-
-# #############################################################################
-
-if [ "$DO_PERL" = y ] || [ "$DO_PERL" = true ] ; then
-  DO_PERL=true
-  CONF_ARGS_PERL="--enable-perlinterp=dynamic"
-else
-  DO_PERL=false
-fi
-
-# #############################################################################
-
-if [ "$DO_PYTHON2" = y ] || [ "$DO_PYTHON2" = true ] ; then
-
-  DO_PYTHON2=true
-
-  echo 'Enter Python2 config dir: '
-  echo 'Examples in Fedora 27:'
-  echo '/usr/lib/python2.7/config'
-  echo '/usr/lib64/python2.7/config'
-  read PYTHON2_CONFIG_DIR
-
-  CONF_ARGS_PYTHON2="\
-    --enable-python3interp \
-    --with-python-config-dir=\"$PYTHON2_CONFIG_DIR\""
-else
-  DO_PYTHON2=false
-fi
-
-# #############################################################################
-
-if [ "$DO_PYTHON3" = y ] || [ "$DO_PYTHON3" = true ] ; then
-
-  DO_PYTHON3=true
-
-  echo 'Enter Python3 config dir: '
-  echo 'Examples in Fedora 27:'
-  echo '/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu'
-  echo '/usr/lib64/python3.6/config-3.6m-x86_64-linux-gnu'
-  read PYTHON3_CONFIG_DIR
-
-  CONF_ARGS_PYTHON3="\
-    --enable-python3interp \
-    --with-python3-config-dir=\"$PYTHON3_CONFIG_DIR\""
-else
-  DO_PYTHON3=false
-fi
-
-# #############################################################################
-
-if [ "$DO_RUBY" = y ] || [ "$DO_RUBY" = true ] ; then
-
-  DO_RUBY=true
-
-  if which ruby >/dev/null 2>&1 ; then
-    RUBY_BINARY_PATH="$(which ruby)"
+_prep_lua () {
+  if [ "$DO_LUA" = y ] || [ "$DO_LUA" = true ] ; then
+    DO_LUA=true
+    CONF_ARGS_LUA="\
+      --enable-luainterp \
+      --with-luajit"
   else
-    echo 'Enter Ruby binary path: '
-    echo '(E.g.: /usr/local/bin/ruby)'
-    read RUBY_BINARY_PATH
+    DO_LUA=false
+    return
   fi
+}
+_prep_lua
 
-  CONF_ARGS_RUBY="\
-    --enable-rubyinterp=dynamic \
-    --with-ruby-command=\"$RUBY_BINARY_PATH\""
-else
-  DO_RUBY=false
-fi
+# #############################################################################
+
+_prep_perl () {
+  if [ "$DO_PERL" = y ] || [ "$DO_PERL" = true ] ; then
+    DO_PERL=true
+    CONF_ARGS_PERL="--enable-perlinterp=dynamic"
+  else
+    DO_PERL=false
+    return
+  fi
+}
+_prep_perl
+
+# #############################################################################
+
+_prep_python2 () {
+  if [ "$DO_PYTHON2" = y ] || [ "$DO_PYTHON2" = true ] ; then
+
+    DO_PYTHON2=true
+
+    if ${INTERACTIVE:-false} ; then
+      echo
+      echo 'Python 2 config dir...'
+      echo
+      echo 'Examples in Fedora 27:'
+      echo '/usr/lib/python2.7/config'
+      echo '/usr/lib64/python2.7/config'
+      echo
+      echo 'Enter the Python 2 config dir:'
+      read PYTHON2_CONFIG_DIR
+    elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+      PYTHON2_CONFIG_DIR="/usr/lib64/python2.7/config"
+    elif egrep -i -q 'ubuntu' /etc/*release ; then
+      PYTHON2_CONFIG_DIR="/usr/lib/python2.7/config-x86_64-linux-gnu"
+    else
+      DO_PYTHON2=false
+      return
+    fi
+
+    CONF_ARGS_PYTHON2="\
+      --enable-python3interp \
+      --with-python-config-dir=\"$PYTHON2_CONFIG_DIR\""
+  else
+    DO_PYTHON2=false
+    return
+  fi
+}
+_prep_python2
+
+# #############################################################################
+
+_prep_python3 () {
+  if [ "$DO_PYTHON3" = y ] || [ "$DO_PYTHON3" = true ] ; then
+
+    DO_PYTHON3=true
+
+    if ${INTERACTIVE:-false} ; then
+      echo
+      echo 'Python 3 config dir...'
+      echo
+      echo 'Examples in Fedora 27:'
+      echo '/usr/lib/python3.4/config-3.4m-x86_64-linux-gnu'
+      echo '/usr/lib64/python3.4/config-3.4m-x86_64-linux-gnu'
+      echo
+      echo 'Enter the Python 3 config dir:'
+      read PYTHON3_CONFIG_DIR
+    elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+      PYTHON3_CONFIG_DIR="/usr/lib64/python3.4/config-3.4m-x86_64-linux-gnu"
+    elif egrep -i -q 'ubuntu' /etc/*release ; then
+      PYTHON3_CONFIG_DIR="/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu"
+    else
+      DO_PYTHON3=false
+      return
+    fi
+
+    CONF_ARGS_PYTHON3="\
+      --enable-python3interp \
+      --with-python3-config-dir=\"$PYTHON3_CONFIG_DIR\""
+  else
+    DO_PYTHON3=false
+    return
+  fi
+}
+_prep_python3
+
+# #############################################################################
+
+_prep_ruby () {
+  if [ "$DO_RUBY" = y ] || [ "$DO_RUBY" = true ] ; then
+
+    DO_RUBY=true
+
+    if ${INTERACTIVE:-false} ; then
+      echo 'Enter Ruby binary path: '
+      echo '(E.g.: /usr/local/bin/ruby)'
+      read RUBY_BINARY_PATH
+    elif which ruby >/dev/null 2>&1 ; then
+      RUBY_BINARY_PATH="$(which ruby)"
+    else
+      DO_RUBY=false
+      return
+    fi
+
+    CONF_ARGS_RUBY="\
+      --enable-rubyinterp=dynamic \
+      --with-ruby-command=\"$RUBY_BINARY_PATH\""
+  else
+    DO_RUBY=false
+    return
+  fi
+}
+_prep_ruby
 
 # #############################################################################
 # Main installation
