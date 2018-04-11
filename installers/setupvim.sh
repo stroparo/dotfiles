@@ -8,7 +8,8 @@
 # #############################################################################
 # Remarks
 
-# Interactive script.
+# Interactive mode trigered with -i option.
+# Errors may generate prompts even during a non-interactive run.
 
 # Configure command based on:
 # https://gist.github.com/odiumediae/3b22d09b62e9acb7788baf6fdbb77cf8
@@ -17,7 +18,7 @@
 # Globals
 
 PROGNAME="$(basename "${0:-setupvim.sh}")"
-USAGE="[-p prefix_path] [lua] [perl] [python|python2] [ruby]"
+USAGE="[-h] [-i] [-p prefix_path] [lua] [perl] [python|python2] [ruby]"
 
 INTERACTIVE=false
 
