@@ -27,16 +27,18 @@ if [[ "$(uname -a)" = *[Cc]ygwin* ]] ; then
 
 elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
-  wget 'https://atom.io/download/deb'
-  sudo dpkg -i deb && rm -f deb
+  wget -O "$HOME"/atom.deb 'https://atom.io/download/deb'
+  sudo dpkg -i "$HOME"/atom.deb && rm -f "$HOME"/atom.deb
 
 # #############################################################################
 # Red Hat family
 
 elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
-  wget 'https://atom.io/download/rpm'
-  sudo rpm -ivh rpm && rm -f rpm
+  wget -O "$HOME"/atom.rpm 'https://atom.io/download/rpm'
+  sudo yum-config-manager --enable epel.repo
+  sudo rpm -ivh "$HOME"/atom.rpm && rm -f "$HOME"/atom.rpm
+  sudo yum-config-manager --disable epel.repo
 
 # #############################################################################
 
