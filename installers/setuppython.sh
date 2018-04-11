@@ -78,20 +78,22 @@ mkdir "$HOME"/.ve
 ls -ld "$HOME"/.ve || exit $?
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Prepare shell profiles"
+echo ${BASH_VERSION:+-e} "\n\n==> Prepare shell profiles for Python"
 
+echo ${BASH_VERSION:+-e} "\n\n==> WORKON_HOME..."
 appendunique 'export WORKON_HOME="$HOME"/.ve' \
   "${HOME}/.bashrc" \
   "${HOME}/.zshrc" \
   || exit $?
 
+echo ${BASH_VERSION:+-e} "\n\n==> PROJECT_HOME..."
 appendunique 'export PROJECT_HOME="$HOME"/workspace' \
   "${HOME}/.bashrc" \
   "${HOME}/.zshrc" \
   || exit $?
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Dependencies system-wise"
+echo ${BASH_VERSION:+-e} "\n\n==> Python system dependencies"
 
 if egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
@@ -113,22 +115,22 @@ if egrep -i -q 'debian|ubuntu' /etc/*release ; then
 elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
   # Python 2
-  sudo $RPMPROG install -y --enablerepo=epel python python-devel
-  sudo $RPMPROG install -y --enablerepo=epel python-pip \
-    || sudo $RPMPROG install -y --enablerepo=epel python2-pip
+  sudo $RPMPROG install -q -y --enablerepo=epel python python-devel
+  sudo $RPMPROG install -q -y --enablerepo=epel python-pip \
+    || sudo $RPMPROG install -q -y --enablerepo=epel python2-pip
 
   # Python 3
-  sudo $RPMPROG install -y --enablerepo=epel python3 python3-devel \
-    || sudo $RPMPROG install -y --enablerepo=epel python34 python34-devel
-  sudo $RPMPROG install -y --enablerepo=epel python3-pip \
-    || sudo $RPMPROG install -y --enablerepo=epel python34-pip
+  sudo $RPMPROG install -q -y --enablerepo=epel python3 python3-devel \
+    || sudo $RPMPROG install -q -y --enablerepo=epel python34 python34-devel
+  sudo $RPMPROG install -q -y --enablerepo=epel python3-pip \
+    || sudo $RPMPROG install -q -y --enablerepo=epel python34-pip
 
   # pyenv dependencies
-  sudo $RPMPROG install -y --enablerepo=epel zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel
+  sudo $RPMPROG install -q -y --enablerepo=epel zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel
 
   # tools
-  which git >/dev/null 2>&1 || sudo $RPMPROG install -y git || exit $?
-  which sqlite >/dev/null 2>&1 || sudo $RPMPROG install -y sqlite || exit $?
+  which git >/dev/null 2>&1 || sudo $RPMPROG install -q -y git || exit $?
+  which sqlite >/dev/null 2>&1 || sudo $RPMPROG install -q -y sqlite || exit $?
 fi
 
 echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade...\n"
