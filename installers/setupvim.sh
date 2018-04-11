@@ -65,14 +65,22 @@ echo ${BASH_VERSION:+-e} "\n==> $PROGNAME started..."
 # #############################################################################
 # Prompt for specific support
 
-if _user_confirm 'Support Lua?' ; then DO_LUA=true ; fi
-if _user_confirm 'Support Perl?' ; then DO_PERL=true ; fi
-if _user_confirm 'Support Python2?' ; then DO_PYTHON2=true ; fi
-if _user_confirm 'Support Python3?' ; then DO_PYTHON3=true ; fi
-if _user_confirm 'Support Ruby?' ; then DO_RUBY=true ; fi
+for arg in "$@" ; do
+  case $arg in
+    lua)      DO_LUA=true;;
+    perl)     DO_PERL=true;;
+    python)   DO_PYTHON2=true;;
+    python3)  DO_PYTHON3=true;;
+    ruby)     DO_RUBY=true;;
+  esac
+done
 
 # #############################################################################
 # Prep dependencies
+
+if ${DO_LUA:-false} ; then "setuplua.sh" ; fi
+if ${DO_PERL:-false} ; then "setupperl.sh" ; fi
+if ${DO_PYTHON2:-false} || ${DO_PYTHON3:-false} ; then "setuppython.sh" ; fi
 
 if egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
@@ -89,21 +97,9 @@ if egrep -i -q 'debian|ubuntu' /etc/*release ; then
   sudo $APTPROG install -y libx11-dev
   sudo $APTPROG install -y libxpm-dev
   sudo $APTPROG install -y libxt-dev
-  if "${DO_LUA:-false}" ; then
-    sudo $APTPROG install -y liblua5.1-dev luajit libluajit-5.1
-  fi
-  if "${DO_PERL:-false}" ; then
-    sudo $APTPROG install -y perl libperl-dev
-  fi
-  if "${DO_PYTHON2:-false}" ; then
-    sudo $APTPROG install -y python-dev python-pip
-  fi
-  if "${DO_PYTHON3:-false}" ; then
-    sudo $APTPROG install -y python3-dev python3-pip
-  fi
 
-  # Optional: so vim can be uninstalled again via `dpkg -r vim`
-  sudo $APTPROG install checkinstall
+  # checkinstall will allow for vim to be uninstalled via `dpkg -r vim`
+  sudo $APTPROG install -y checkinstall
 
 elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
@@ -117,17 +113,6 @@ elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
   # Libraries:
   sudo $RPMPROG install -y --enablerepo=epel ncurses ncurses-devel
-  # TODO include Lua installation commands
-  if "${DO_PERL:-false}" ; then
-    sudo $RPMPROG install -y --enablerepo=epel perl perl-devel perl-ExtUtils-Embed
-  fi
-  if "${DO_PYTHON2:-false}" ; then
-    sudo $RPMPROG install -y --enablerepo=epel python python-devel
-  fi
-  if "${DO_PYTHON3:-false}" ; then
-    sudo $RPMPROG install -y --enablerepo=epel python3 python3-devel \
-      || sudo $RPMPROG install -y --enablerepo=epel python36 python36-devel
-  fi
 fi
 
 # #############################################################################

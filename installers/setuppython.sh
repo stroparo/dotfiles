@@ -98,8 +98,8 @@ if egrep -i -q 'debian|ubuntu' /etc/*release ; then
   sudo $APTPROG update || exit $?
 
   # Distribution Python
-  sudo $APTPROG install -y python-dev python-pip
-  sudo $APTPROG install -y python3-dev python3-pip
+  sudo $APTPROG install -y python python-dev python-pip
+  sudo $APTPROG install -y python3 python3-dev python3-pip
 
   # pyenv dependencies
   sudo $APTPROG install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
@@ -112,13 +112,19 @@ if egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
 elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
-  # Distribution Python
-  sudo $RPMPROG install -y python python-devel
-  sudo $RPMPROG install -y python3 python3-devel \
-    || sudo $RPMPROG install -y python36 python36-devel
+  # Python 2
+  sudo $RPMPROG install -y --enablerepo=epel python python-devel
+  sudo $RPMPROG install -y --enablerepo=epel python-pip \
+    || sudo $RPMPROG install -y --enablerepo=epel python2-pip
+
+  # Python 3
+  sudo $RPMPROG install -y --enablerepo=epel python3 python3-devel \
+    || sudo $RPMPROG install -y --enablerepo=epel python34 python34-devel
+  sudo $RPMPROG install -y --enablerepo=epel python3-pip \
+    || sudo $RPMPROG install -y --enablerepo=epel python34-pip
 
   # pyenv dependencies
-  sudo $RPMPROG install -y zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel
+  sudo $RPMPROG install -y --enablerepo=epel zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel
 
   # tools
   which git >/dev/null 2>&1 || sudo $RPMPROG install -y git || exit $?
