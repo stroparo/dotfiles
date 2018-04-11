@@ -16,8 +16,8 @@
 # #############################################################################
 # Globals
 
-PROGNAME="$(basename "${0:-aptinstall.sh}")"
-USAGE="[-p prefix_path]"
+PROGNAME="$(basename "${0:-setupvim.sh}")"
+USAGE="[-p prefix_path]" [lua] [perl] [python|python2] [ruby]
 
 INTERACTIVE=false
 
@@ -72,7 +72,7 @@ for arg in "$@" ; do
   case $arg in
     lua)      DO_LUA=true;;
     perl)     DO_PERL=true;;
-    python)   DO_PYTHON2=true;;
+    python2|python) DO_PYTHON2=true;;
     python3)  DO_PYTHON3=true;;
     ruby)     DO_RUBY=true;;
   esac
