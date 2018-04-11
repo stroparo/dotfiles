@@ -5,16 +5,24 @@
 # #############################################################################
 # Globals
 
+PROGNAME="setupxfce.sh"
+export USAGE="[-d] [-h]"
+
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP="dnf group install"
 
-if [ "$1" = '-d' ] ; then
-  DO_DEPS=true
-  shift
-else
-  DO_DEPS=false
-fi
+export DO_DEPS=false
+
+# Options:
+OPTIND=1
+while getopts ':dh' option ; do
+  case "${option}" in
+    d) export DO_DEPS=true;;
+    h) echo "$USAGE"; exit;;
+  esac
+done
+shift "$((OPTIND-1))"
 
 # #############################################################################
 # Main
@@ -41,7 +49,7 @@ if egrep -i -q '(centos|fedora|oracle|red *hat)' /etc/*release ; then
   sudo $RPMGROUP -y xfce
 
   echo ${BASH_VERSION:+-e} "\n==> XFCE fonts..."
-  sudo $RPMPROG -y install xorg-x11-fonts-Type1 xorg-x11-fonts-misc
+  sudo $RPMPROG install -y xorg-x11-fonts-Type1 xorg-x11-fonts-misc
 
   echo ${BASH_VERSION:+-e} "\n==> XFCE Whisker Menu..."
 
@@ -50,7 +58,7 @@ if egrep -i -q '(centos|fedora|oracle|red *hat)' /etc/*release ; then
     echo ${BASH_VERSION:+-e} \
       "\n==> CentOS & EL ($RPMPROG install xfce4-whiskermenu-plugin)..."
 
-    sudo $RPMPROG -y install xfce4-whiskermenu-plugin
+    sudo $RPMPROG install -y xfce4-whiskermenu-plugin
 
   elif egrep -i -q 'fedora 2[67]' /etc/*release 2>/dev/null ; then
 
@@ -60,20 +68,20 @@ if egrep -i -q '(centos|fedora|oracle|red *hat)' /etc/*release ; then
       | head -1 \
       | awk '{ print $2; }')
 
-    sudo $RPMPROG remove xfce4-whiskermenu-plugin
+    sudo $RPMPROG remove -y xfce4-whiskermenu-plugin
     sudo curl -kLSf -o /etc/yum.repos.d/home:gottcode.repo \
       "http://download.opensuse.org/repositories/home:\
   /gottcode/Fedora_${fedora_version}/home:\
   gottcode.repo"
-    sudo $RPMPROG install xfce4-whiskermenu-plugin
+    sudo $RPMPROG install -y xfce4-whiskermenu-plugin
   fi
 
 # #############################################################################
 
 elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
-  sudo $APTPROG install xfce4 desktop-base thunar-volman tango-icon-theme xfce4-notifyd xscreensaver light-locker xfce4-volumed tumbler xfwm4-themes
+  sudo $APTPROG install -y xfce4 desktop-base thunar-volman tango-icon-theme xfce4-notifyd xscreensaver light-locker xfce4-volumed tumbler xfwm4-themes
 
   echo ${BASH_VERSION:+-e} "\n==> XFCE plugins..."
-  sudo $APTPROG install xfce4-clipman-plugin xfce4-mount-plugin xfce4-places-plugin xfce4-terminal xfce4-timer-plugin
+  sudo $APTPROG install -y xfce4-clipman-plugin xfce4-mount-plugin xfce4-places-plugin xfce4-terminal xfce4-timer-plugin
 fi
