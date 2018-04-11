@@ -73,7 +73,7 @@ if egrep -i -q 'fedora' /etc/*release 2>/dev/null ; then
   echo '==> Flash Player...'
 
   sudo $INSTPROG install -q -y "$URL_FLASH"
-  sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
+  sudo rpm --import --quiet /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
   sudo $INSTPROG install -q -y flash-plugin
 
   echo
@@ -89,7 +89,7 @@ if egrep -i -q 'fedora' /etc/*release 2>/dev/null ; then
     echo '==> skypeforlinux installation prep...'
 
     sudo dnf config-manager --add-repo 'https://repo.skype.com/data/skype-stable.repo'
-    sudo rpm --import 'https://repo.skype.com/data/SKYPE-GPG-KEY'
+    sudo rpm --import --quiet 'https://repo.skype.com/data/SKYPE-GPG-KEY'
     sudo dnf update
     echo
     echo '==> skypeforlinux installation...'
@@ -109,9 +109,9 @@ if egrep -i -q 'fedora 27' /etc/*release 2>/dev/null ; then
   echo '==> RPMFusion repo...'
   {
     sudo $INSTPROG install -q -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm
-    sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-27
+    sudo rpm --import --quiet /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-27
     sudo $INSTPROG install -q -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-27.noarch.rpm
-    sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-27
+    sudo rpm --import --quiet /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-27
     sudo $INSTPROG update -y
 
     echo
