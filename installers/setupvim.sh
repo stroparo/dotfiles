@@ -83,9 +83,13 @@ done
 # #############################################################################
 # Prep dependencies
 
+echo ${BASH_VERSION:+-e} "\n==> Dependencies custom scripts...\n"
+
 if ${DO_LUA:-false} ; then "setuplua.sh" ; fi
 if ${DO_PERL:-false} ; then "setupperl.sh" ; fi
 if ${DO_PYTHON2:-false} || ${DO_PYTHON3:-false} ; then "setuppython.sh" "system" ; fi
+
+echo ${BASH_VERSION:+-e} "\n==> Dependencies from OS repos (deb, rpm)...\n"
 
 if egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
