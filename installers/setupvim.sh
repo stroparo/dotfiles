@@ -24,6 +24,9 @@ INTERACTIVE=false
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 
+# Disable pyenv in PATH:
+export PATH="$(echo "$PATH" | tr : \\n | grep -v pyenv | tr \\n :)"
+
 unset CONF_ARGS_LUA
 unset CONF_ARGS_PERL
 unset CONF_ARGS_PYTHON
