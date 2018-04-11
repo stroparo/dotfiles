@@ -111,9 +111,12 @@ elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
   which sqlite >/dev/null 2>&1 || sudo $RPMPROG install -q -y sqlite || exit $?
 fi
 
-echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade...\n"
+(
+echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for system's pip, so no pyenv in PATH...\n"
+export PATH="$(echo "$PATH" | tr : \\n | grep -v pyenv | tr \\n :)"
 sudo -H pip install --upgrade pip
 sudo -H pip3 install --upgrade pip
+)
 
 # #############################################################################
 
@@ -155,8 +158,8 @@ echo ${BASH_VERSION:+-e} "\n\n==> pyenv setup and load into this session..."
 
 # Write shell RC files before everything, as pyenv could be in path,
 # but for some reason the RC files been meddled with or reset etc.
-if ! grep -q 'pyenv init' "$HOME"/.bashrc \
-  || ! grep -q 'pyenv init' "$HOME"/.zshrc
+if ! grep -q 'pyenv init' "$HOME/.bashrc" \
+  || ! grep -q 'pyenv init' "$HOME/.zshrc"
 then
   cat <<'EOF' | tee -a "$HOME"/.{ba,z}shrc
 export PATH="$HOME/.pyenv/bin:$PATH"
@@ -168,25 +171,27 @@ fi
 
 # Speed up disabling prompt as it is going to be discontinued anyway:
 PYENV_PROMPT_DISABLE='export PYENV_VIRTUALENV_DISABLE_PROMPT=1'
-if ! grep -q "$PYENV_PROMPT_DISABLE" "$HOME"/.bashrc 2>/dev/null; then
-  echo "$PYENV_PROMPT_DISABLE" >> "$HOME"/.bashrc
+if ! grep -q "$PYENV_PROMPT_DISABLE" "$HOME/.bashrc" 2>/dev/null; then
+  echo "$PYENV_PROMPT_DISABLE" >> "$HOME/.bashrc"
 fi
-if ! grep -q "$PYENV_PROMPT_DISABLE" "$HOME"/.zshrc 2>/dev/null; then
-  echo "$PYENV_PROMPT_DISABLE" >> "$HOME"/.zshrc
+if ! grep -q "$PYENV_PROMPT_DISABLE" "$HOME/.zshrc" 2>/dev/null; then
+  echo "$PYENV_PROMPT_DISABLE" >> "$HOME/.zshrc"
 fi
 
+# Install
+if [ ! -d "$HOME/.pyenv" ] ; then
+  bash -c "$(curl -L "$PYENV_INSTALLER")"
+fi
+
+# Load
 if which pyenv >/dev/null 2>&1 ; then
   eval "$(pyenv init -)"
 else
-  bash -c "$(curl -L "$PYENV_INSTALLER")"
-
-  # Reload shell profile
-  if [ -n "$BASH_VERSION" ] ; then
-    . "$HOME"/.bashrc
-  elif [ -n "$ZSH_VERSION" ] ; then
-    . "$HOME"/.zshrc
+  if [ -n "$BASH_VERSION" ] && grep -q "pyenv" "$HOME/.bashrc" ; then
+    . "$HOME/.bashrc"
+  elif [ -n "$ZSH_VERSION" ] && grep -q "pyenv" "$HOME/.zshrc" ; then
+    . "$HOME/.zshrc"
   fi
-
   if ! which pyenv >/dev/null 2>&1 ; then
     echo "FATAL: There was some error installing pyenv." 1>&2
     exit 1
@@ -198,7 +203,7 @@ echo ${BASH_VERSION:+-e} "\n\n==> pyenv virtualenv disable \
 (conflicts with virtualenvwrapper)"
 
 sed -i -e 's/^[^#].*pyenv virtualenv-init.*$/# &/' \
-  "$HOME"/.bashrc "$HOME"/.zshrc
+  "$HOME/.bashrc" "$HOME/.zshrc"
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> pyenv install $PYV3 and $PYV2 ..."
@@ -209,6 +214,10 @@ pyenv install "$PYV2"
 if ! (pyenv versions | fgrep -q "$PYV3") ; then
   echo "FATAL: $PYV3 version could not be installed." 1>&2
 fi
+
+echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for pyenv's pip...\n"
+pip2 install --upgrade pip
+pip3 install --upgrade pip
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> virtualenv's..."
