@@ -109,15 +109,15 @@ if egrep -i -q 'debian|ubuntu' /etc/*release ; then
 elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
   # Utilities:
-  sudo $RPMPROG install -y --enablerepo=epel ctags
-  which cmake >/dev/null 2>&1 || sudo $RPMPROG install -y --enablerepo=epel cmake
-  which curl >/dev/null 2>&1 || sudo $RPMPROG install -y --enablerepo=epel curl
-  which gcc >/dev/null 2>&1 || sudo $RPMPROG install -y --enablerepo=epel gcc
-  which git >/dev/null 2>&1 || sudo $RPMPROG install -y --enablerepo=epel git
+  sudo $RPMPROG install -q -y --enablerepo=epel ctags
+  which cmake >/dev/null 2>&1 || sudo $RPMPROG install -q -y --enablerepo=epel cmake
+  which curl >/dev/null 2>&1 || sudo $RPMPROG install -q -y --enablerepo=epel curl
+  which gcc >/dev/null 2>&1 || sudo $RPMPROG install -q -y --enablerepo=epel gcc
+  which git >/dev/null 2>&1 || sudo $RPMPROG install -q -y --enablerepo=epel git
   sudo $RPMPROG -y groupinstall 'Development Tools'
 
   # Libraries:
-  sudo $RPMPROG install -y --enablerepo=epel ncurses ncurses-devel
+  sudo $RPMPROG install -q -y --enablerepo=epel ncurses ncurses-devel
 fi
 
 # #############################################################################
