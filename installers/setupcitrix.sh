@@ -52,12 +52,10 @@ while ! ls -1 "$HOME/Downloads"/*linuxx64* >/dev/null 2>&1 ; do
 
   echo "$PROGNAME: INFO: Please go download the linuxx64...tar.gz package,"
   echo "$PROGNAME: INFO: ... and place it in '$HOME/Downloads'..." 1>&2
-
-  if which firefox >/dev/null 2>&1 && ! (ps -ef | grep -i -q firefox) ; then
-    echo "$PROGNAME: INFO: Opening the browser for you at '$CITRIX_DOWNLOAD_URL'..."
-    (firefox "$CITRIX_DOWNLOAD_URL" >/dev/null 2>&1 \
-      || google-chrome "$CITRIX_DOWNLOAD_URL" >/dev/null 2>&1) & disown
-  fi
+  echo
+  echo "$PROGNAME: INFO: Opening the browser for you at '$CITRIX_DOWNLOAD_URL'..."
+  (firefox "$CITRIX_DOWNLOAD_URL" >/dev/null 2>&1 \
+    || google-chrome "$CITRIX_DOWNLOAD_URL" >/dev/null 2>&1) & disown
 
   sleep 30
 
