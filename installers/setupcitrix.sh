@@ -54,6 +54,8 @@ while ! ls -1 "$HOME/Downloads"/*linuxx64* >/dev/null 2>&1 ; do
   echo "$PROGNAME: INFO: ... and place it in '$HOME/Downloads'..." 1>&2
   echo
   echo "$PROGNAME: INFO: Opening the browser for you at '$CITRIX_DOWNLOAD_URL'..."
+  echo "$PROGNAME: IMPORTANT: Select the >> tarball << option..."
+
   (firefox "$CITRIX_DOWNLOAD_URL" >/dev/null 2>&1 \
     || google-chrome "$CITRIX_DOWNLOAD_URL" >/dev/null 2>&1) & disown
 
