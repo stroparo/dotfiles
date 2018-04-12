@@ -59,7 +59,7 @@ while ! ls -1 "$HOME/Downloads"/*linuxx64* >/dev/null 2>&1 ; do
       || google-chrome "$CITRIX_DOWNLOAD_URL" >/dev/null 2>&1) & disown
   fi
 
-  sleep 120
+  sleep 30
 
   echo "If still downloading then just ignore this prompt..."
   read -p "Press ENTER either if download has finished or to reopen the URL in a browser..." dummy
