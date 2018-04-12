@@ -50,13 +50,19 @@ pwd
 
 while ! ls -1 "$HOME/Downloads"/*linuxx64* >/dev/null 2>&1 ; do
 
-  echo "$PROGNAME: INFO: Place the *linuxx64* package in the '$HOME/Downloads'..." 1>&2
+  echo "$PROGNAME: INFO: Please go download the linuxx64...tar.gz package,"
+  echo "$PROGNAME: INFO: ... and place it in '$HOME/Downloads'..." 1>&2
 
   if which firefox >/dev/null 2>&1 && ! (ps -ef | grep -i -q firefox) ; then
-    echo "$PROGNAME: INFO: Opening Firefox to download citrix (linuxx64...tar.gz)..."
-    firefox "$CITRIX_DOWNLOAD_URL" >/dev/null 2>&1 & disown
+    echo "$PROGNAME: INFO: Opening the browser for you at '$CITRIX_DOWNLOAD_URL'..."
+    (firefox "$CITRIX_DOWNLOAD_URL" >/dev/null 2>&1 \
+      || google-chrome "$CITRIX_DOWNLOAD_URL" >/dev/null 2>&1) & disown
   fi
-  sleep 60
+
+  sleep 120
+
+  echo "If still downloading then just ignore this prompt..."
+  read -p "Press ENTER either if download has finished or to reopen the URL in a browser..." dummy
 done
 
 # #############################################################################
