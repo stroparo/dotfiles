@@ -22,7 +22,7 @@ ${CITRIX_MAJOR_VERSION}-${CITRIX_MINOR_VERSION}.html"
 
 # #############################################################################
 
-echo ${BASH_VERSION:+-e} '\n\n==> Installing citrix...' 1>&2
+echo ${BASH_VERSION:+-e} "\n\n==> Citrix setup started...\n" 1>&2
 
 # #############################################################################
 # Checks
@@ -34,26 +34,42 @@ if [ -e /opt/Citrix/ICAClient/selfservice ] ; then
 fi
 
 # #############################################################################
-# Main
+# Prep filesystem
 
 rm -r -f -v "$HOME"/.ICAClient
 sudo rm -f -r -v /opt/setupcitrix/*
-sudo mkdir /opt/setupcitrix
-sudo chmod 777 /opt/setupcitrix
-cd /opt/setupcitrix
+sudo mkdir -p /opt/setupcitrix
+sudo chmod -v 777 /opt/setupcitrix
 
-while ! ls -1 "$HOME"/Downloads/*linuxx64* >/dev/null 2>&1 ; do
-  echo "$PROGNAME: INFO: Opening Firefox to download citrix (linuxx64...tar.gz)..."
-  echo "$PROGNAME: INFO: Place it in the "$HOME"/Downloads directory" 1>&2
-  firefox "$CITRIX_DOWNLOAD_URL"
-  sleep 10
+cd /opt/setupcitrix
+echo "PWD:"
+pwd
+
+# #############################################################################
+# Prep download the package
+
+while ! ls -1 "$HOME/Downloads"/*linuxx64* >/dev/null 2>&1 ; do
+
+  echo "$PROGNAME: INFO: Place the *linuxx64* package in the '$HOME/Downloads'..." 1>&2
+
+  if which firefox >/dev/null 2>&1 && ! (ps -ef | grep -i -q firefox) ; then
+    echo "$PROGNAME: INFO: Opening Firefox to download citrix (linuxx64...tar.gz)..."
+    firefox "$CITRIX_DOWNLOAD_URL" >/dev/null 2>&1 & disown
+  fi
+  sleep 60
 done
 
-if sudo tar xzvf $(ls -1 "$HOME"/Downloads/*linuxx64* | tail -n 1) ; then
+# #############################################################################
+# Main
+
+if sudo tar xzvf $(ls -1 "$HOME/Downloads"/*linuxx64* | tail -n 1) ; then
   echo "$PROGNAME: FATAL: There was some error extracting the tarball." 1>&2
 fi
 
-sudo /opt/setupcitrix/setupwfc
+sudo /opt/setupcitrix/setupwfc || exit $?
+
+# #############################################################################
+# Post-install certificates
 
 if egrep -i -q 'ubuntu' /etc/*release ; then
   # SSL certificates from Firefox
