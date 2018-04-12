@@ -70,6 +70,9 @@ echo "==> Suggestions"
 
 cat <<EOF
 
+# Drivers - Have linux-headers-... installed.
+sudo aptitude install -y "nvidia-kernel-$(uname -r)" nvidia-{settings,xconfig}
+
 # Games
 sudo $INSTPROG install -y chocolate-doom
 sudo $INSTPROG install -y dosbox stella zsnes
@@ -90,6 +93,7 @@ sudo $INSTPROG install -y ristretto
 
 # Networking
 sudo $INSTPROG install -y gigolo # remote filesystem management
+sudo $INSTPROG install -y mobile-broadband-provider-info modemmanager usb-modeswitch # mobile modem
 
 # Productivity
 sudo $INSTPROG install -y gnucash
