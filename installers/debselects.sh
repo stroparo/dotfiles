@@ -59,7 +59,6 @@ sudo $APTPROG install -y httpie
 sudo $APTPROG install -y git tig
 sudo $APTPROG install -y jq
 sudo $APTPROG install -y perl libperl-dev
-sudo $APTPROG install -y vagrant
 # sudo $APTPROG install -y ruby ruby-dev ruby-full
 
 echo ${BASH_VERSION:+-e} "\n\n==> Devel libs..."
@@ -68,6 +67,10 @@ sudo $APTPROG install -y imagemagick
 sudo $APTPROG install -y libsqlite3-0 libsqlite3-dev
 sudo $APTPROG install -y libssl-dev
 sudo $APTPROG install -y zlib1g zlib1g-dev
+
+echo ${BASH_VERSION:+-e} "\n==> Security..."
+sudo $INSTPROG install -y gnupg pwgen
+sudo $INSTPROG install -y oathtool
 
 # #############################################################################
 # Cleanup
