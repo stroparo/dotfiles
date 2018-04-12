@@ -88,7 +88,10 @@ sudo $RPMPROG install -q -y make
 sudo $RPMPROG install -q -y perl perl-devel perl-ExtUtils-Embed
 # sudo $RPMPROG install -q -y ruby ruby-devel
 sudo $RPMPROG install -q -y --enablerepo=epel tig # git
-sudo $RPMPROG install -q -y vagrant
+
+echo ${BASH_VERSION:+-e} "\n==> Security..."
+sudo $INSTPROG install -q -y gnupg pwgen
+sudo $INSTPROG install -q -y oathtool oath-toolkit
 
 # #############################################################################
 # SELinux

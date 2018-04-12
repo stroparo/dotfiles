@@ -53,10 +53,6 @@ sudo $INSTPROG install -q -y atril galculator guake meld
 sudo $INSTPROG install -q -y gnome-shell-extension-pomodoro
 sudo $INSTPROG install -q -y shutter # screenshots
 
-echo ${BASH_VERSION:+-e} "\n==> Other packages..."
-sudo $INSTPROG install -q -y gnupg pwgen
-sudo $INSTPROG install -q -y oathtool oath-toolkit
-
 # #############################################################################
 # Fedora
 
@@ -120,7 +116,7 @@ if egrep -i -q 'fedora 27' /etc/*release 2>/dev/null ; then
 
     echo
     echo '==> RPMFusion - virtualbox...'
-    sudo $INSTPROG install -q -y VirtualBox
+    sudo $INSTPROG install -q -y virtualbox
   }
 
   echo
