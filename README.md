@@ -15,7 +15,7 @@ sudo visudo
 Run and ignore some errors as this sequence is already as fault tolerant as possible:
 
 ```bash
-bash -c "$(curl -LSf https://raw.githubusercontent.com/stroparo/dotfiles/master/setupdotfiles.sh)" dummy -f
+bash -c "$(curl -LSfs https://gitlab.com/stroparo/dotfiles/raw/master/setupdotfiles.sh)" dummy -f
 ```
 
 Install desktop selections by running:
@@ -33,7 +33,7 @@ bash ./rpmselects-desktop.sh
 ## Setup aliases
 
 ```bash
-bash -c "$(curl -LSf https://raw.githubusercontent.com/stroparo/dotfiles/master/setupaliases.sh)"
+bash -c "$(curl -LSfs https://gitlab.com/stroparo/dotfiles/raw/master/setupaliases.sh)"
 ```
 
 ## Setup shell
@@ -49,7 +49,7 @@ The setupshell.sh routine provides a setup with foundational shell capabilities,
 Setup command:
 
 ```bash
-bash -c "$(curl -LSf https://raw.githubusercontent.com/stroparo/dotfiles/master/setupshell.sh)"
+bash -c "$(curl -LSfs https://gitlab.com/stroparo/dotfiles/raw/master/setupshell.sh)"
 ```
 
 Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -``` in the command.
@@ -67,7 +67,7 @@ This setup is comprehensive and it does the following:
 Setup command:
 
 ```bash
-bash -c "$(curl -LSfs https://raw.githubusercontent.com/stroparo/dotfiles/master/setuppackages.sh)"
+bash -c "$(curl -LSfs https://gitlab.com/stroparo/dotfiles/raw/master/setuppackages.sh)"
 ```
 
 Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -``` in the command.
@@ -77,7 +77,7 @@ Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -`
 Download the zip file, unzip, and run setupdotfiles.sh:
 
 ```bash
-curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
+curl -LSfk -o ~/dotfiles.zip https://gitlab.com/stroparo/dotfiles/repository/master/archive.zip \
   && unzip -o ~/dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master \
   && ./setupdotfiles.sh -f
@@ -85,7 +85,7 @@ curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master
 
 Setup everything but setuppackages.sh:
 ```bash
-curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
+curl -LSfk -o ~/dotfiles.zip https://gitlab.com/stroparo/dotfiles/repository/master/archive.zip \
   && unzip -o ~/dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master \
   && ./setupdotfiles.sh -a -d -s
@@ -94,7 +94,7 @@ curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master
 Setup only aliases:
 
 ```bash
-curl -LSfk -o ~/dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
+curl -LSfk -o ~/dotfiles.zip https://gitlab.com/stroparo/dotfiles/repository/master/archive.zip \
   && unzip -o ~/dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master \
   && ./setupdotfiles.sh -a
