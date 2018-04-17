@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
+# Cristian Stroparo's dotfiles
 
 # Made for Ubuntu 16.04
 # Install Ruby, Rails, Bundler and common gems

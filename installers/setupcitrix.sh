@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
+# Cristian Stroparo's dotfiles
 
 # Sources:
 # https://help.ubuntu.com/community/CitrixICAClientHowTo

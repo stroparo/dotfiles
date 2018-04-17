@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
+# Cristian Stroparo's dotfiles
 
 echo ${BASH_VERSION:+-e} '\n\n==> Installing dropbox...' 1>&2
 

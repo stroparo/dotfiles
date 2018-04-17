@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles
+# Cristian Stroparo's dotfiles
 
 # Remark:
 # Run this script from its directory otherwise it will not find
