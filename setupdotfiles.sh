@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Cristian Stroparo's dotfiles
 
 # Remark:
@@ -7,7 +6,10 @@
 #  the ./scripts/ directory and will self provision.
 
 # #############################################################################
-# Options
+# Globals & Options
+
+export DOTFILES_AT_GITHUB="https://github.com/stroparo/dotfiles/archive/master.zip"
+export DOTFILES_AT_GITLAB="https://gitlab.com/stroparo/dotfiles/repository/master/archive.zip"
 
 NO_ACTION=true
 
@@ -38,8 +40,8 @@ export DO_ALIASES DO_PACKAGES DO_DOT DO_SHELL NO_ACTION FULL OVERRIDE_SUBL_PREFS
 
 if [ ! -d ./scripts ] ; then
 
-  curl -LSfs -o "$HOME"/.dotfiles.zip \
-    https://github.com/stroparo/dotfiles/archive/master.zip
+  curl -LSfs -o "$HOME"/.dotfiles.zip "$DOTFILES_AT_GITLAB" \
+    || curl -LSfs -o "$HOME"/.dotfiles.zip "$DOTFILES_AT_GITHUB"
 
   unzip -o "$HOME"/.dotfiles.zip -d "$HOME" \
     && (cd "$HOME"/dotfiles-master \
