@@ -8,8 +8,7 @@
 # #############################################################################
 # Globals & Options
 
-export DOTFILES_AT_GITHUB="https://github.com/stroparo/dotfiles/archive/master.zip"
-export DOTFILES_AT_GITLAB="https://gitlab.com/stroparo/dotfiles/repository/master/archive.zip"
+export PROGNAME="setupdotfiles.sh"
 
 NO_ACTION=true
 
@@ -38,21 +37,35 @@ export DO_ALIASES DO_PACKAGES DO_DOT DO_SHELL NO_ACTION FULL OVERRIDE_SUBL_PREFS
 # #############################################################################
 # Self provisioning
 
-if [ ! -d ./scripts ] ; then
-
-  curl -LSfs -o "$HOME"/.dotfiles.zip "$DOTFILES_AT_GITLAB" \
-    || curl -LSfs -o "$HOME"/.dotfiles.zip "$DOTFILES_AT_GITHUB"
-
-  unzip -o "$HOME"/.dotfiles.zip -d "$HOME" \
-    && (cd "$HOME"/dotfiles-master \
-    && [ "$PWD" = "$HOME"/dotfiles-master ] \
-    && ./setupdotfiles.sh "$@") \
-    || exit $?
-
-  echo ${BASH_VERSION:+-e} "\n==> dotfiles directory will remain at:"
-  ls -d -l "$HOME"/dotfiles-master
-  exit
+_provision_dotfiles () {
+  export DOTFILES_AT_GITHUB="https://github.com/stroparo/dotfiles/archive/master.zip"
+  export DOTFILES_AT_GITLAB="https://gitlab.com/stroparo/dotfiles/repository/master/archive.zip"
+  if [ -d "${HOME}/dotfiles-master" ] ; then
+    echo "${PROGNAME:+$PROGNAME: }SKIP: '$HOME/dotfiles-master' already in place." 1>&2
+    return
+  fi
+  curl -LSfs -o "${HOME}"/.dotfiles.zip "$DOTFILES_AT_GITLAB" \
+    || curl -LSfs -o "${HOME}"/.dotfiles.zip "$DOTFILES_AT_GITHUB"
+  unzip -o "${HOME}"/.dotfiles.zip -d "${HOME}" \
+    || return $?
+  zip_dir=$(unzip -l "${HOME}"/.dotfiles.zip | head -5 | tail -1 | awk '{print $NF;}')
+  echo "Zip dir: '$zip_dir'" 1>&2
+  if [[ ${zip_dir%/} = *dotfiles-master*[a-z0-9]* ]] ; then
+    (cd "${HOME}"; mv -f -v "${zip_dir}" "${HOME}/dotfiles-master" 1>&2)
+  fi
+  find "${HOME}/dotfiles-master" -name '*.sh' -type f -exec chmod u+x {} \;
+  if ! (echo "$PATH" | grep -q dotfiles) ; then
+    # Root intentionally omitted from PATH as these must be called with absolute path:
+    export PATH="${HOME}/dotfiles-master/installers:${HOME}/dotfiles-master/scripts:$PATH"
+  fi
+}
+if [ ! -e ./setupdotfiles.sh ] ; then
+  if [ ! -d "$HOME/dotfiles-master" ] ; then
+    _provision_dotfiles
+  fi
+  cd "$HOME/dotfiles-master"
 fi
+[ -e ./setupdotfiles.sh ] || exit $?
 
 # #############################################################################
 # Configurations
