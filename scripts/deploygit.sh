@@ -57,13 +57,16 @@ color.ui          auto
 core.autocrlf     false
 core.excludesfile $HOME/.gitignore_global
 core.pager        less -F -X
-credential.helper cache --timeout=36000
 diff.submodule    log
 push.default      simple
 push.recurseSubmodules  check
 sendpack.sideband false
 status.submodulesummary 1
 EOF
+    if ! (git config -f "$gitfile" -l | grep -F -q "credential.helper") ; then
+      git config -f "$gitfile" --replace-all "credential.helper" "cache --timeout=36000"
+    fi
+
     echo
     echo "==> Git config in '$gitfile' file:"
     git config -f "$gitfile" -l
