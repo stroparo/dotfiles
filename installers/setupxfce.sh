@@ -31,7 +31,6 @@ echo ${BASH_VERSION:+-e} "\n==> XFCE setup..."
 
 # #############################################################################
 
-
 if egrep -i -q '(centos|fedora|oracle|red *hat)' /etc/*release ; then
 
   echo ${BASH_VERSION:+-e} "\n==> XFCE dependencies..."

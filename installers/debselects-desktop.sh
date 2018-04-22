@@ -85,6 +85,7 @@ sudo $INSTPROG install -y visualboyadvance-gtk
 sudo $INSTPROG install -y gtypist tuxtype
 
 # Multimedia
+sudo $INSTPROG install -y gnome-alsamixer pulseaudio-equalizer pavucontrol volumeicon-alsa
 sudo $INSTPROG install -y audacious audacious-plugins
 sudo $INSTPROG install -y mp3splt
 sudo $INSTPROG install -y mpv
