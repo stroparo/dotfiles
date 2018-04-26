@@ -12,7 +12,6 @@ if !(uname -a | grep -i -q linux) ; then
   exit 1
 fi
 
-# Check for idempotency
 if type cfssl >/dev/null 2>&1 ; then
   echo "SKIP: Already installed." 1>&2
   exit
