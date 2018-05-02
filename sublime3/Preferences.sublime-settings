@@ -10,6 +10,7 @@
   "theme_accent_blue": true,
   "theme_autocomplete_item_selected_colored": true,
   "theme_bar": true,
+  "theme_scrollbar_colored": true,
   "theme_sidebar_disclosure": true,
   "theme_sidebar_font_md": true,
   "theme_sidebar_indent_sm": true,
