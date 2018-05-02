@@ -44,7 +44,6 @@ if !(uname -a | grep -i -q linux) ; then
   exit 1
 fi
 
-# Check for idempotency
 if type kubectl >/dev/null 2>&1 ; then
   echo "$PROGNAME: SKIP: Already installed." 1>&2
   exit

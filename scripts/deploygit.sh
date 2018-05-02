@@ -63,7 +63,7 @@ push.recurseSubmodules  check
 sendpack.sideband false
 status.submodulesummary 1
 EOF
-    if ! (git config -f "$gitfile" -l | grep -F -q "credential.helper") ; then
+    if ! (git config -l | grep -F -q "credential.helper") ; then
       git config -f "$gitfile" --replace-all "credential.helper" "cache --timeout=36000"
     fi
 
