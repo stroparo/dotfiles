@@ -13,11 +13,15 @@ fi
 # #############################################################################
 # Prep Sublime Text User PATH
 
-SUBL_WIN='C:\Users\cr391577\AppData\Roaming\Sublime Text 3'
+SUBL_WIN="$(cygpath "$USERPROFILE")"'/AppData/Roaming/Sublime Text 3'
 
-if [[ "$(uname -a)" = *[Cc]ygwin* ]]; then
-  if [ -d "`cygpath "${SUBL_WIN}"`" ] ; then
+if echo "$(uname -a)" | egrep -i -q 'cygwin|mingw|msys' ; then
+  if [ -d "${SUBL_WIN}" ] ; then
     SUBL_USER="${SUBL_WIN}/Packages/User"
+  elif [ -d "$(cygpath "$USERPROFILE")/opt/subl" ] ; then
+    SUBL_USER="$(cygpath "$USERPROFILE")/opt/subl/Data/Packages/User"
+  elif [ -d "/c/opt/subl" ] ; then
+    SUBL_USER="/c/opt/subl/Data/Packages/User"
   elif [ -d "/cygdrive/c/opt/subl" ] ; then
     SUBL_USER="/cygdrive/c/opt/subl/Data/Packages/User"
   else
@@ -45,7 +49,7 @@ fi
 # Prep for eval: quote, and translate newlines to space separators:
 subl_files="$(echo "$subl_files" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')"
 
-eval cp -L -R -v "${subl_files}" "${SUBL_USER}"/
+eval cp -L -R -v "${subl_files}" "\"${SUBL_USER}\""/
 
 # #############################################################################
 # Symlink subl
