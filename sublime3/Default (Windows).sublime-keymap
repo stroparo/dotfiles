@@ -1,6 +1,7 @@
 [
     { "keys": ["ctrl+alt+p"], "command": "prompt_select_workspace" },
     { "keys": ["ctrl+shift+a"], "command": "alignment" },
+    { "keys": ["ctrl+shift+t"], "command": "reopen_last_file" }, // back to default, against the Terminal plugin
     { "keys": ["ctrl+v"], "command": "paste_and_indent" },
     { "keys": ["ctrl+shift+v"], "command": "paste" },
     // Close all other tabs
