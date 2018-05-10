@@ -3,6 +3,7 @@
 .*.swo
 .*.swp
 .dropbox*
+.kitchen
 .idea
 .vscode
 *.bak
@@ -15,6 +16,7 @@
 *.swo
 *.swp
 *.(zip|7z|bz2|gz|tar|xz|[zZ])
-[Dd]esktop.ini
-tags
 *stackdump
+[Dd]esktop.ini
+Berksfile.lock
+tags
