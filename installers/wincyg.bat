@@ -4,10 +4,11 @@ CD %~dp0
 
 SETLOCAL
 SET CYGCATS=archive,base,utils
-SET CYGPKGS=%CYGPKGS% mintty bash bashdb bash-completion checkbashisms perl python python3 zsh p7zip unzip zip curl git git-completion lftp mosh ping rsync the_silver_searcher tmux vim vim-common wget whois wput
+SET CYGPKGS=%CYGPKGS%,mintty,bash,bashdb,bash-completion,checkbashisms,perl,python,python3,zsh,p7zip,unzip,zip,curl,git,git-completion,lftp,mosh,ping,rsync,the_silver_searcher,tmux,vim,vim-common,wget,whois,wput
 SET CYGSETUP=%CD%\setup-x86_64.exe
+SET SITE=http://mirrors.kernel.org/sourceware/cygwin/
 rem SET SITE=http://linorg.usp.br/cygwin/
-SET SITE=http://cygwin.osuosl.org/
+rem SET SITE=http://cygwin.osuosl.org/
 SET LOCALDIR=%LOCALAPPDATA%/cygwin
 SET ROOTDIR=C:/cygwin64
 
