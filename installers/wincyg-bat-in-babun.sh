@@ -2,8 +2,8 @@
 
 CYGWINSETUP=wincyg.bat
 
-if [ -e $CYGWINSETUP ] ; then
-  pact install `grep CYGPKGS= "$CYGWINSETUP" | sed -e 's/^SET CYGPKGS=%CYGPKGS%//'`
+if [ -e "$CYGWINSETUP" ] && type pact >/dev/null 2>&1 ; then
+  pact install `grep "CYGSETUP.*-P" "$CYGWINSETUP" | grep -o -- '-P .*$' | sed -e 's/-P //g' | tr , ' '`
   exit $?
 else
   echo "FATAL: Run in the same dir containing '$CYGWINSETUP'." 1>&2
