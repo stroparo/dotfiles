@@ -2,21 +2,19 @@
 
 My environment setup routines and configurations.
 
+## Requirements
+
+* [sudo setup](#sudo-setup)
+
 ## Setup configurations
-
-This will call ```dotify``` and ```deploy*``` in the scripts directory, and also ```setupaliases.sh```. 
-
-Ensure sudo access by editing the sudoers file:
-
-```bash
-sudo visudo
-```
 
 Run and ignore some errors as this sequence is already as fault tolerant as possible:
 
 ```bash
 bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupdotfiles.sh" || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupdotfiles.sh")" dummy -f
 ```
+
+In case you are inside a restricted network and certificate verification fails for the curl download, then try adding the -k option to the curl commands in your command line(s).
 
 Install desktop selections by running:
 
@@ -100,4 +98,25 @@ curl -LSfk -o ~/.dotfiles.zip https://github.com/stroparo/dotfiles/archive/maste
   && cd "$HOME"/dotfiles-master \
   && ./setupdotfiles.sh -a
 ```
+
+## Sudo setup
+
+Ensure sudo access by editing the sudoers file (or making the edit with the commands after this one):
+
+```bash
+sudo visudo
+```
+
+Recipe to add sudo access for your user:
+
+```
+sudo grep -q "$USER" /etc/sudoers || (echo "$USER ALL=(ALL) ALL" | sudo tee -a /etc/sudoers)
+```
+
+For not having to type in the password (not recommended to keep this):
+
+```
+sudo grep -q "$USER" /etc/sudoers || (echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers)
+```
+
 
