@@ -22,37 +22,23 @@ exit 1
 ECHO INSTALLING PACKAGES..
 
 rem %CYGSETUP% -q -v -a x86_64 -d -g -o -Y -O -s %SITE% -l "%LOCALDIR%" -R "%ROOTDIR%" -C %CYGCATS%
+rem ECHO Categories just installed: %CYGCATS%
+rem PAUSE
 
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P curl
+%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P curl,lftp,ping,wget,whois,wput
+%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P perl,python,python3,zsh
+%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P mosh
 %CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P rsync
 %CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P the_silver_searcher
 %CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P tmux
 %CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P p7zip
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P unzip
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P zip
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P bashdb
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P bash-completion
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P checkbashisms
+%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P unzip,zip
+%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P bashdb,bash-completion,checkbashisms
 %CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P git
 %CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P git-completion
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P perl
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P python
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P python3
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P zsh
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P lftp
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P mosh
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P ping
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P wget
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P whois
-%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P wput
 
 ECHO.
-ECHO Cygwin installation updated
-ECHO.
-ECHO Categories: %CYGCATS%
-ECHO.
-ECHO Packages: %CYGPKGS%
-
+ECHO Cygwin installation complete
 ENDLOCAL
 PAUSE
 EXIT /B 0
