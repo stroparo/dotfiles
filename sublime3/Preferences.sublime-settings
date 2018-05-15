@@ -9,8 +9,8 @@
   // "color_scheme": "Packages/Twilightcyanide Colorscheme/Twilightcyanide ColorScheme - Constrasted Semi.tmTheme",
 
   // Theme Boxy
-  // "theme": "Boxy Monokai.sublime-theme",
-  "theme": "Boxy Tomorrow.sublime-theme",
+  "theme": "Boxy Monokai.sublime-theme",
+  // "theme": "Boxy Tomorrow.sublime-theme",
   "theme_accent_blue": true,
   "theme_autocomplete_item_selected_colored": true,
   "theme_bar": true,
