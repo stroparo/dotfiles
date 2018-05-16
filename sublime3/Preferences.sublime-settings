@@ -3,13 +3,14 @@
   // "color_scheme": "Packages/Boxy Theme/schemes/Boxy Tomorrow.tmTheme",
   // "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
   // "color_scheme": "Packages/Monarch/Monarch.tmTheme",
+  "color_scheme": "Packages/RailsCasts Colour Scheme/RailsCastsColorScheme.tmTheme",
   // "color_scheme": "Packages/Theme - Spacegray/base16-eighties.dark.tmTheme",
   // "color_scheme": "Packages/Twilightcyanide Colorscheme/Twilightcyanide ColorScheme - Constrasted Light.tmTheme",
-  "color_scheme": "Packages/Twilightcyanide Colorscheme/Twilightcyanide ColorScheme - Constrasted Semi.tmTheme",
+  // "color_scheme": "Packages/Twilightcyanide Colorscheme/Twilightcyanide ColorScheme - Constrasted Semi.tmTheme",
 
   // Theme Boxy
-  // "theme": "Boxy Monokai.sublime-theme",
-  "theme": "Boxy Tomorrow.sublime-theme",
+  "theme": "Boxy Monokai.sublime-theme",
+  // "theme": "Boxy Tomorrow.sublime-theme",
   "theme_accent_blue": true,
   "theme_autocomplete_item_selected_colored": true,
   "theme_bar": true,
