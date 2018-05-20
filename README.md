@@ -11,7 +11,9 @@ My environment setup routines and configurations.
 Run and ignore some errors as this sequence is already as fault tolerant as possible:
 
 ```bash
-bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupdotfiles.sh" || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupdotfiles.sh")" dummy -f
+bash -c "$(curl -LSf -k "https://gitlab.com/stroparo/dotfiles/raw/master/setupdotfiles.sh" \
+  || curl -LSf -k "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupdotfiles.sh")" \
+  setupdotfiles.sh -f
 ```
 
 In case you are inside a restricted network and certificate verification fails for the curl download, then try adding the -k option to the curl commands in your command line(s).
@@ -31,7 +33,9 @@ bash ./rpmselects-desktop.sh
 ## Setup aliases
 
 ```bash
-bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupaliases.sh" || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupaliases.sh")"
+bash -c "$(curl -LSf -k "https://gitlab.com/stroparo/dotfiles/raw/master/setupaliases.sh" \
+  || curl -LSf -k "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupaliases.sh")"; \
+  . ~/.aliases-cs
 ```
 
 ## Setup shell
