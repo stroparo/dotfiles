@@ -14,7 +14,7 @@ Items: [Aliases](#aliases), dotfiles, [shell setup](#shell-setup) etcetera.
 bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupdotfiles.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupdotfiles.sh")" \
   setupdotfiles.sh -f
-: # Ignore this... Just an empty command for helping copy and paste...
+: # Ignore, this is just an empty command to expedite executing the previous one on paste ;)
 ```
 
 ## Aliases
@@ -23,7 +23,7 @@ bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupdotfi
 bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupaliases.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupaliases.sh")"; \
   . ~/.aliases-cs
-: # Ignore this... Just an empty command for helping copy and paste...
+: # Ignore, this is just an empty command to expedite executing the previous one on paste ;)
 ```
 
 ## Shell setup
@@ -39,7 +39,7 @@ The setupshell.sh routine provides for useful shell features:
 ```bash
 bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupshell.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupshell.sh")"
-: # Ignore this... Just an empty command for helping copy and paste...
+: # Ignore, this is just an empty command to expedite executing the previous one on paste ;)
 ```
 
 ## Linux desktop packages
@@ -51,7 +51,7 @@ curl -LSf -k -o ~/.dotfiles.zip https://github.com/stroparo/dotfiles/archive/mas
   && unzip -o ~/.dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master/installers \
   && (bash ./debselects-desktop.sh || bash ./rpmselects-desktop.sh)
-: # Ignore this... Just an empty command for helping copy and paste...
+: # Ignore, this is just an empty command to expedite executing the previous one on paste ;)
 ```
 
 ---
@@ -62,21 +62,21 @@ Ensure sudo access by editing the sudoers file (or making the edit with the comm
 
 ```bash
 sudo visudo
-: # Ignore this... Just an empty command for helping copy and paste...
+: # Ignore, this is just an empty command to expedite executing the previous one on paste ;)
 ```
 
 Recipe to add sudo access for your user:
 
 ```bash
 sudo grep -q "$USER" /etc/sudoers || (echo "$USER ALL=(ALL) ALL" | sudo tee -a /etc/sudoers)
-: # Ignore this... Just an empty command for helping copy and paste...
+: # Ignore, this is just an empty command to expedite executing the previous one on paste ;)
 ```
 
 For not having to type in the password (not recommended to keep this):
 
 ```bash
 sudo grep -q "$USER" /etc/sudoers || (echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers)
-: # Ignore this... Just an empty command for helping copy and paste...
+: # Ignore, this is just an empty command to expedite executing the previous one on paste ;)
 ```
 
 ---
@@ -98,7 +98,7 @@ curl -LSf -k -o ~/.dotfiles.zip "https://github.com/stroparo/dotfiles/archive/ma
   && unzip -o ~/.dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master \
   && ./setupdotfiles.sh -f
-: # Ignore this... Just an empty command for helping copy and paste...
+: # Ignore, this is just an empty command to expedite executing the previous one on paste ;)
 ```
 
 Aliases:
@@ -107,7 +107,7 @@ Aliases:
 bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupaliases.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupaliases.sh")"; \
   . ~/.aliases-cs
-: # Ignore this... Just an empty command for helping copy and paste...
+: # Ignore, this is just an empty command to expedite executing the previous one on paste ;)
 ```
 
 ---
