@@ -51,7 +51,8 @@ The setupshell.sh routine provides a setup with foundational shell capabilities,
 Setup command:
 
 ```bash
-bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupshell.sh" || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupshell.sh")"
+bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupshell.sh" \
+  || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupshell.sh")"
 ```
 
 Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -``` in the command.
@@ -69,7 +70,8 @@ This setup is comprehensive and it does the following:
 Setup command:
 
 ```bash
-bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setuppackages.sh" || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setuppackages.sh")"
+bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setuppackages.sh" \
+  || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setuppackages.sh")"
 ```
 
 Note: if you do not have curl, substitute ```curl [options]``` for ```wget -O -``` in the command.
