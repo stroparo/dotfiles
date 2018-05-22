@@ -8,18 +8,22 @@ Custom configuration files and environment setup routines.
 
 ## Comprehensive setup
 
+Items: [Aliases](#aliases), dotfiles, [shell setup](#shell-setup) etcetera.
+
 ```bash
 bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupdotfiles.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupdotfiles.sh")" \
   setupdotfiles.sh -f
+: # empty command, makes no need to pressing ENTER for the previous command ;)
 ```
 
-## Aliases only
+## Aliases
 
 ```bash
 bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupaliases.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupaliases.sh")"; \
   . ~/.aliases-cs
+: # empty command, makes no need to pressing ENTER for the previous command ;)
 ```
 
 ## Shell setup
@@ -35,6 +39,7 @@ The setupshell.sh routine provides for useful shell features:
 ```bash
 bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupshell.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupshell.sh")"
+: # empty command, makes no need to pressing ENTER for the previous command ;)
 ```
 
 ## Linux desktop packages
@@ -46,6 +51,7 @@ curl -LSf -k -o ~/.dotfiles.zip https://github.com/stroparo/dotfiles/archive/mas
   && unzip -o ~/.dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master/installers \
   && (bash ./debselects-desktop.sh || bash ./rpmselects-desktop.sh)
+: # empty command, makes no need to pressing ENTER for the previous command ;)
 ```
 
 ---
@@ -56,18 +62,21 @@ Ensure sudo access by editing the sudoers file (or making the edit with the comm
 
 ```bash
 sudo visudo
+: # empty command, makes no need to pressing ENTER for the previous command ;)
 ```
 
 Recipe to add sudo access for your user:
 
-```
+```bash
 sudo grep -q "$USER" /etc/sudoers || (echo "$USER ALL=(ALL) ALL" | sudo tee -a /etc/sudoers)
+: # empty command, makes no need to pressing ENTER for the previous command ;)
 ```
 
 For not having to type in the password (not recommended to keep this):
 
-```
+```bash
 sudo grep -q "$USER" /etc/sudoers || (echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers)
+: # empty command, makes no need to pressing ENTER for the previous command ;)
 ```
 
 ## Troubleshoot curl not available / not found
@@ -85,6 +94,7 @@ curl -LSf -k -o ~/.dotfiles.zip https://github.com/stroparo/dotfiles/archive/mas
   && unzip -o ~/.dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master \
   && ./setupdotfiles.sh -f
+: # empty command, makes no need to pressing ENTER for the previous command ;)
 ```
 
 Setup only aliases:
@@ -94,6 +104,7 @@ curl -LSfk -o ~/.dotfiles.zip https://github.com/stroparo/dotfiles/archive/maste
   && unzip -o ~/.dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master \
   && ./setupdotfiles.sh -a
+: # empty command, makes no need to pressing ENTER for the previous command ;)
 ```
 
 
