@@ -79,32 +79,36 @@ sudo grep -q "$USER" /etc/sudoers || (echo "$USER ALL=(ALL) NOPASSWD: ALL" | sud
 : # empty command, makes no need to pressing ENTER for the previous command ;)
 ```
 
+---
+
 ## Troubleshoot curl not available / not found
 
 If you do not have curl, substitute ```wget -O -``` for ```curl [options]``` in the command.
+
+---
 
 ## Troubleshoot certificate issues in restricted networks
 
 In case you are inside a restricted network and certificate verification fails for the curl download then try using curl's -k option.
 
-Download the zip file, unzip, and run setupdotfiles.sh:
+Download & comprehensive setup:
 
 ```bash
-curl -LSf -k -o ~/.dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
+curl -LSf -k -o ~/.dotfiles.zip "https://github.com/stroparo/dotfiles/archive/master.zip" \
   && unzip -o ~/.dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master \
   && ./setupdotfiles.sh -f
 : # empty command, makes no need to pressing ENTER for the previous command ;)
 ```
 
-Setup only aliases:
+Aliases:
 
 ```bash
-curl -LSfk -o ~/.dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
-  && unzip -o ~/.dotfiles.zip -d "$HOME" \
-  && cd "$HOME"/dotfiles-master \
-  && ./setupdotfiles.sh -a
+bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupaliases.sh" \
+  || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupaliases.sh")"; \
+  . ~/.aliases-cs
 : # empty command, makes no need to pressing ENTER for the previous command ;)
 ```
 
+---
 
