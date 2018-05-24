@@ -15,7 +15,7 @@ fi
 
 SUBL_WIN="$(cygpath "$USERPROFILE")"'/AppData/Roaming/Sublime Text 3'
 
-if echo "$(uname -a)" | egrep -i -q 'cygwin|mingw|msys' ; then
+if uname -a | egrep -i -q 'cygwin|mingw|msys' ; then
   if [ -d "${SUBL_WIN}" ] ; then
     SUBL_USER="${SUBL_WIN}/Packages/User"
   elif [ -d "$(cygpath "$USERPROFILE")/opt/subl" ] ; then
