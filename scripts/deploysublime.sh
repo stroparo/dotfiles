@@ -3,7 +3,7 @@
 # Cristian Stroparo's dotfiles
 
 echo
-echo "==> Setting up sublime text..."
+echo "==> Setting up sublime text... This script's location: '$0'; PWD='$PWD'"
 
 if ! (which sublime_text || which subl) >/dev/null 2>&1 ; then
   echo "deploysublime: SKIP: sublime text not in the path" 1>&2
