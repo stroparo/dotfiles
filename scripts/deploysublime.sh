@@ -3,7 +3,7 @@
 # Cristian Stroparo's dotfiles
 
 echo
-echo "==> Setting up sublime text..."
+echo "==> Setting up sublime text... This script's location: '$0'; PWD='$PWD'"
 
 if ! (which sublime_text || which subl) >/dev/null 2>&1 ; then
   echo "deploysublime: SKIP: sublime text not in the path" 1>&2
@@ -15,7 +15,7 @@ fi
 
 SUBL_WIN="$(cygpath "$USERPROFILE")"'/AppData/Roaming/Sublime Text 3'
 
-if echo "$(uname -a)" | egrep -i -q 'cygwin|mingw|msys' ; then
+if uname -a | egrep -i -q 'cygwin|mingw|msys' ; then
   if [ -d "${SUBL_WIN}" ] ; then
     SUBL_USER="${SUBL_WIN}/Packages/User"
   elif [ -d "$(cygpath "$USERPROFILE")/opt/subl" ] ; then

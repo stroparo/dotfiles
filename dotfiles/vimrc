@@ -33,6 +33,8 @@ Plug 'https://github.com/tomtom/ttags_vim'
 Plug 'https://github.com/mbbill/undotree'
 Plug 'https://github.com/tpope/vim-unimpaired'
 Plug 'https://github.com/ajh17/VimCompletesMe'
+" Build
+Plug 'neomake/neomake'
 " Etc
 Plug 'https://github.com/editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
