@@ -9,7 +9,7 @@
   // "color_scheme": "Packages/Twilightcyanide Colorscheme/Twilightcyanide ColorScheme - Constrasted Semi.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
 
   // Theme Boxy
-  "theme_accent_blue": true,
+  "theme_accent_purple": true,
   "theme_autocomplete_item_selected_colored": true,
   "theme_bar": true,
   "theme_bar_colored": true,
