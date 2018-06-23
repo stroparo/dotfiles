@@ -84,3 +84,9 @@ if ${DO_DOT:-false} || ${FULL:-false} || ${NO_ACTION:-true} ; then
   done
 fi
 
+# #############################################################################
+# Recipes
+
+for recipe in "$@" ; do
+  bash ./recipes/"${recipe%.sh}".sh
+done
