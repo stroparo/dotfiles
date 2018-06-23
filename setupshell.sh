@@ -48,9 +48,12 @@ echo "    for this sequence to continue."
 echo
 "$PROGDIR/installers/setupohmyzsh.sh"
 
-echo
-echo "################################################################################"
-echo
-echo "==> sshkeygenrsa.sh"
-echo
-"sshkeygenrsa.sh"
+if [ ! -e "$HOME/.ssh/id_rsa" ] ; then
+  echo
+  echo "################################################################################"
+  echo
+  echo "==> sshkeygenrsa.sh"
+  echo
+  sshkeygenrsa.sh
+fi
+
