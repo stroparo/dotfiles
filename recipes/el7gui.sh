@@ -1,11 +1,20 @@
 #!/usr/bin/env bash
 
+# #############################################################################
+# Globals
+
 PROGNAME=el7gui.sh
+
+# #############################################################################
+# Checks
 
 if ! egrep -i -q '(cent ?os|oracle|red ?hat).* 7' /etc/*release ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: This is not an Enterprise Linux 7 distribution." 1>&2
   exit
 fi
+
+# #############################################################################
+# Main
 
 echo "################################################################################"
 echo "Enterprise Linux 7 GUI graphical desktop environment base"
