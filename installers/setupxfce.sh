@@ -41,7 +41,7 @@ _is_fedora () { egrep -i -q 'fedora' /etc/*release ; }
 
 _install_groups () {
   for group in "$@" ; do
-    echo ${BASH_VERSION:+-e} "Installing RPM group '$group'"
+    echo "Installing RPM group '$group'"
     if ! sudo $RPMGROUP -y "$group" >/dev/null 2>&1 ; then
       echo "${PROGNAME:+$PROGNAME: }WARN: There was an error with group '$group'." 1>&2
     fi
@@ -50,7 +50,7 @@ _install_groups () {
 
 _install_packages () {
   for package in "$@" ; do
-    echo ${BASH_VERSION:+-e} "Installing '$package'..."
+    echo "Installing '$package'..."
     if ! sudo $INSTPROG install -y "$package" >/dev/null 2>&1 ; then
       echo "${PROGNAME:+$PROGNAME: }WARN: There was an error with package '$package'." 1>&2
     fi
@@ -91,7 +91,7 @@ if _is_el_family ; then
   _install_groups xfce
   _install_packages xorg-x11-fonts-Type1 xorg-x11-fonts-misc
 
-  echo ${BASH_VERSION:+-e} "\n==> XFCE Whisker Menu"
+  echo "XFCE Whisker Menu setup..."
   if _is_el ; then
     _install_packages "xfce4-whiskermenu-plugin"
   elif egrep -i -q 'fedora 2[6-9]' /etc/*release ; then
