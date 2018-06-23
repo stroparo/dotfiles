@@ -16,7 +16,7 @@ export INSTPROG="$APTPROG"
 _install_packages () {
   for package in "$@" ; do
     echo "Installing '$package'..."
-    if ! sudo $INSTPROG install -y "$package" >/dev/null 2>/tmp/pkg-install-${package}.log ; then
+    if ! sudo $INSTPROG install -y "$package" >/tmp/pkg-install-${package}.log 2>&1 ; then
       echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${package}.log'." 1>&2
     fi
   done
