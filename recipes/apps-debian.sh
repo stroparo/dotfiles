@@ -3,7 +3,7 @@
 # Cristian Stroparo's dotfiles
 # Custom Debian package selection
 
-PROGNAME=debselects.sh
+PROGNAME=apps-debian.sh
 
 # #############################################################################
 # Checks

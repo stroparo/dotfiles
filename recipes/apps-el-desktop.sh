@@ -3,7 +3,7 @@
 # Cristian Stroparo's dotfiles
 # Custom RPM package selection for desktop environments
 
-PROGNAME=rpmselects-desktop.sh
+PROGNAME=apps-el-desktop.sh
 
 # #############################################################################
 # Check OS

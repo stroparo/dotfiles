@@ -3,7 +3,7 @@
 # Cristian Stroparo's dotfiles
 # Custom Debian package selection for desktop environments
 
-PROGNAME=debselects-desktop.sh
+PROGNAME=apps-debian-desktop.sh
 
 # #############################################################################
 # Checks

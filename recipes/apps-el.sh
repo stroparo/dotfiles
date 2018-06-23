@@ -3,7 +3,7 @@
 # Cristian Stroparo's dotfiles
 # Custom RPM package selection
 
-PROGNAME=rpmselects.sh
+PROGNAME=apps-el.sh
 
 # #############################################################################
 # Checks
