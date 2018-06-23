@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
-if ! egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: Not in an Enterprise Linux 7 distribution." 1>&2
+PROGNAME=el7gui.sh
+
+if ! egrep -i -q '(cent ?os|oracle|red ?hat).* 7' /etc/*release ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: This is not an Enterprise Linux 7 distribution." 1>&2
+  exit
 fi
 
-echo "==> Enterprise Linux 7 Basic Graphical User Interface..."
+echo "################################################################################"
+echo "Enterprise Linux 7 GUI graphical desktop environment base"
+echo "################################################################################"
 
 # Fonts
 sudo yum install -y dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts gnu-free-mono-fonts gnu-free-sans-fonts gnu-free-serif-fonts google-crosextra-caladea-fonts google-crosextra-carlito-fonts liberation-mono-fonts liberation-sans-fonts liberation-serif-fonts open-sans-fonts overpass-fonts ucs-miscfixed-fonts
