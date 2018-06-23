@@ -8,7 +8,7 @@
 # #############################################################################
 # Globals & Options
 
-export PROGNAME="setupdotfiles.sh"
+export PROGNAME="entry.sh"
 
 NO_ACTION=true
 
@@ -59,13 +59,13 @@ _provision_dotfiles () {
     export PATH="${HOME}/dotfiles-master/installers:${HOME}/dotfiles-master/scripts:$PATH"
   fi
 }
-if [ ! -e ./setupdotfiles.sh ] ; then
+if [ ! -e ./entry.sh ] ; then
   if [ ! -d "$HOME/dotfiles-master" ] ; then
     _provision_dotfiles
   fi
   cd "$HOME/dotfiles-master"
 fi
-[ -e ./setupdotfiles.sh ] || exit $?
+[ -e ./entry.sh ] || exit $?
 
 # #############################################################################
 # Configurations

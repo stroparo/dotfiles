@@ -11,9 +11,9 @@ Custom configuration files and environment setup routines.
 Items: [Aliases](#aliases), dotfiles, [shell setup](#shell-setup) etcetera.
 
 ```bash
-bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupdotfiles.sh" \
-  || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupdotfiles.sh")" \
-  setupdotfiles.sh -f
+bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/entry.sh" \
+  || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/entry.sh")" \
+  entry.sh -f
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
 
@@ -97,7 +97,7 @@ Download & comprehensive setup:
 curl -LSf -k -o ~/.dotfiles.zip "https://github.com/stroparo/dotfiles/archive/master.zip" \
   && unzip -o ~/.dotfiles.zip -d "$HOME" \
   && cd "$HOME"/dotfiles-master \
-  && ./setupdotfiles.sh -f
+  && ./entry.sh -f
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
 
