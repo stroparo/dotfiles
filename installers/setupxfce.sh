@@ -33,10 +33,10 @@ shift "$((OPTIND-1))"
 # Helpers
 
 _is_debian_family () { egrep -i -q 'debian|ubuntu' /etc/*release ; }
-_is_el_family () { egrep -i -q '(centos|fedora|oracle|red *hat)' /etc/*release ; }
-_is_el () { egrep -i -q '(centos|oracle|red *hat)' /etc/*release ; }
-_is_el6 () { egrep -i -q '(centos|oracle|red *hat).* 6' /etc/*release ; }
-_is_el7 () { egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release ; }
+_is_el_family () { egrep -i -q '(cent ?os|oracle|red ?hat|fedora)' /etc/*release ; }
+_is_el () { egrep -i -q '(cent ?os|oracle|red ?hat)' /etc/*release ; }
+_is_el6 () { egrep -i -q '(cent ?os|oracle|red ?hat).* 6' /etc/*release ; }
+_is_el7 () { egrep -i -q '(cent ?os|oracle|red ?hat).* 7' /etc/*release ; }
 _is_fedora () { egrep -i -q 'fedora' /etc/*release ; }
 
 _install_packages () {
