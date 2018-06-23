@@ -8,9 +8,14 @@
 PROGNAME="setupxfce.sh"
 export USAGE="[-d] [-h]"
 
+# System installers
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP="dnf group install"
+export INSTPROG="$APTPROG"; which "$RPMPROG" >/dev/null 2>&1 && export INSTPROG="$RPMPROG"
+
+# #############################################################################
+# Specific globals
 
 export DO_DEPS=false
 
@@ -25,62 +30,84 @@ done
 shift "$((OPTIND-1))"
 
 # #############################################################################
-# Main
+# Helpers
 
-echo ${BASH_VERSION:+-e} "\n==> XFCE setup..."
+_is_debian_family () { egrep -i -q 'debian|ubuntu' /etc/*release ; }
+_is_el_family () { egrep -i -q '(centos|fedora|oracle|red *hat)' /etc/*release ; }
+_is_el () { egrep -i -q '(centos|oracle|red *hat)' /etc/*release ; }
+_is_el6 () { egrep -i -q '(centos|oracle|red *hat).* 6' /etc/*release ; }
+_is_el7 () { egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release ; }
+_is_fedora () { egrep -i -q 'fedora' /etc/*release ; }
+
+_install_groups () {
+  for group in "$@" ; do
+    echo ${BASH_VERSION:+-e} "Installing RPM group '$group'"
+    if ! sudo $RPMGROUP -y "$group" >/dev/null 2>&1 ; then
+      echo "${PROGNAME:+$PROGNAME: }WARN: There was an error with group '$group'." 1>&2
+    fi
+  done
+}
+
+_install_packages () {
+  for package in "$@" ; do
+    echo ${BASH_VERSION:+-e} "Installing '$package'..."
+    if ! sudo $INSTPROG install -y "$package" >/dev/null 2>&1 ; then
+      echo "${PROGNAME:+$PROGNAME: }WARN: There was an error with package '$package'." 1>&2
+    fi
+  done
+}
+
+_print_bar () {
+  echo "################################################################################"
+}
+
+_print_header () {
+  _print_bar
+  echo "$@"
+  _print_bar
+}
+
+_set_fedora_version () {
+  export FEDORA_VERSION=$(egrep -i -o 'fedora [0-9]+' /etc/*release \
+    | head -1 \
+    | awk '{ print $2; }')
+}
 
 # #############################################################################
+# Main
 
-if egrep -i -q '(centos|fedora|oracle|red *hat)' /etc/*release ; then
+_print_header "XFCE setup"
 
-  echo ${BASH_VERSION:+-e} "\n==> XFCE dependencies..."
+# #############################################################################
+if _is_el_family ; then
+  _install_groups "x window system"
+  if ! _is_fedora ; then
+    if _is_el6 ; then
+      _install_groups "desktop" "general purpose desktop"
+    elif _is_el7 ; then
+      _install_groups "desktop" "server with gui" "mate desktop"
+    fi
+  fi
+  _install_groups xfce
+  _install_packages xorg-x11-fonts-Type1 xorg-x11-fonts-misc
 
-  sudo $RPMGROUP -y "x window system"
-
-  if ${DO_DEPS:-false} ; then
-    if egrep -i -q '(centos|oracle|red *hat).* 6' /etc/*release ; then
-      sudo $RPMGROUP -y desktop "general purpose desktop"
-    elif egrep -i -q '(centos|oracle|red *hat).* 7' /etc/*release ; then
-      sudo $RPMGROUP -y desktop "server with gui" "mate desktop"
+  echo ${BASH_VERSION:+-e} "\n==> XFCE Whisker Menu"
+  if _is_el ; then
+    _install_packages "xfce4-whiskermenu-plugin"
+  elif egrep -i -q 'fedora 2[6-9]' /etc/*release ; then
+    _set_fedora_version
+    if [ ! -e /etc/yum.repos.d/home:gottcode.repo ] ; then
+      sudo $INSTPROG remove -y "xfce4-whiskermenu-plugin" >/dev/null 2>&1
+      sudo curl -LSf -k -o /etc/yum.repos.d/home:gottcode.repo \
+        "http://download.opensuse.org/repositories/home:\
+/gottcode/Fedora_${FEDORA_VERSION}/home:\
+gottcode.repo"
+      _install_packages "xfce4-whiskermenu-plugin"
     fi
   fi
 
-  sudo $RPMGROUP -y xfce
-
-  echo ${BASH_VERSION:+-e} "\n==> XFCE fonts..."
-  sudo $RPMPROG install -y xorg-x11-fonts-Type1 xorg-x11-fonts-misc
-
-  echo ${BASH_VERSION:+-e} "\n==> XFCE Whisker Menu..."
-
-  if egrep -i -q '(centos|oracle|red *hat)' /etc/*release 2>/dev/null ; then
-
-    echo ${BASH_VERSION:+-e} \
-      "\n==> CentOS & EL ($RPMPROG install xfce4-whiskermenu-plugin)..."
-
-    sudo $RPMPROG install -y xfce4-whiskermenu-plugin
-
-  elif egrep -i -q 'fedora 2[67]' /etc/*release 2>/dev/null ; then
-
-    echo ${BASH_VERSION:+-e} "\n==> Fedora 26 & 27..."
-
-    fedora_version=$(egrep -i -o 'fedora 2[67]' /etc/*release 2>/dev/null \
-      | head -1 \
-      | awk '{ print $2; }')
-
-    sudo $RPMPROG remove -y xfce4-whiskermenu-plugin
-    sudo curl -kLSf -o /etc/yum.repos.d/home:gottcode.repo \
-      "http://download.opensuse.org/repositories/home:\
-  /gottcode/Fedora_${fedora_version}/home:\
-  gottcode.repo"
-    sudo $RPMPROG install -y xfce4-whiskermenu-plugin
-  fi
-
 # #############################################################################
-
-elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
-
-  sudo $APTPROG install -y xfwm4-themes
-
-  echo ${BASH_VERSION:+-e} "\n==> XFCE plugins..."
-  sudo $APTPROG install -y xfce4-clipman-plugin xfce4-mount-plugin xfce4-places-plugin xfce4-terminal xfce4-timer-plugin
+elif _is_debian_family ; then
+  _install_packages "xfwm4-themes"
+  _install_packages xfce4-clipman-plugin xfce4-mount-plugin xfce4-places-plugin xfce4-timer-plugin
 fi
