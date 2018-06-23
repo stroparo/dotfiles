@@ -46,6 +46,7 @@ echo ${BASH_VERSION:+-e} "\n==> Base desktop packages..."
 sudo $INSTPROG install -y bum ssh-askpass xbacklight xclip xscreensaver
 sudo $INSTPROG install -y gnome-themes-standard
 sudo $INSTPROG install -y gnome-themes-ubuntu gtk2-engines-xfce
+sudo $INSTPROG install -y ntfs-3g
 
 echo ${BASH_VERSION:+-e} "\n==> Educational..."
 sudo $INSTPROG install -y gperiodic
