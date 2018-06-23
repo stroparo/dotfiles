@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
 # Cristian Stroparo's dotfiles
+# Custom Debian package selection
 
 # #############################################################################
 # Globals
 
+# System installers
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 export INSTPROG="$APTPROG"
 
