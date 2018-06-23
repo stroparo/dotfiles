@@ -43,7 +43,7 @@ echo ${BASH_VERSION:+-e} "\n==> Upgrade all packages? [y/N]\c" ; read answer
 # Main
 
 echo ${BASH_VERSION:+-e} "\n==> Base desktop packages..."
-sudo $INSTPROG install -y bum ssh-askpass xbacklight xclip
+sudo $INSTPROG install -y bum ssh-askpass xbacklight xclip xscreensaver
 sudo $INSTPROG install -y gnome-themes-standard
 sudo $INSTPROG install -y gnome-themes-ubuntu gtk2-engines-xfce
 

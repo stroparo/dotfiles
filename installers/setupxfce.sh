@@ -79,7 +79,7 @@ if egrep -i -q '(centos|fedora|oracle|red *hat)' /etc/*release ; then
 
 elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
-  sudo $APTPROG install -y xfce4 desktop-base thunar-volman tango-icon-theme xfce4-notifyd xscreensaver light-locker xfce4-volumed tumbler xfwm4-themes
+  sudo $APTPROG install -y xfwm4-themes
 
   echo ${BASH_VERSION:+-e} "\n==> XFCE plugins..."
   sudo $APTPROG install -y xfce4-clipman-plugin xfce4-mount-plugin xfce4-places-plugin xfce4-terminal xfce4-timer-plugin
