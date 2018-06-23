@@ -3,10 +3,27 @@
 # Cristian Stroparo's dotfiles
 # Custom RPM package selection
 
+PROGNAME=rpmselects.sh
+
+# #############################################################################
+# Checks
+
+if ! egrep -i -q '(cent ?os|oracle|red ?hat|fedora)' /etc/*release ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: This is not an Enterprise Linux family instance." 1>&2
+  exit
+fi
+
+if ! which sudo >/dev/null 2>&1 ; then
+  echo "${PROGNAME:+$PROGNAME: }WARN: Installing sudo via root and opening up visudo" 1>&2
+  su - -c "bash -c '$INSTPROG install sudo; visudo'"
+fi
+if ! sudo whoami >/dev/null 2>&1 ; then
+  echo "${PROGNAME:+$PROGNAME: }FATAL: No sudo access." 1>&2
+  exit 1
+fi
+
 # #############################################################################
 # Globals
-
-PROGNAME=rpmselects.sh
 
 # System installers
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
@@ -16,7 +33,6 @@ export INSTPROG="$RPMPROG"
 # #############################################################################
 # Helpers
 
-_is_el_family () { egrep -i -q '(cent ?os|oracle|red ?hat|fedora)' /etc/*release ; }
 _is_el () { egrep -i -q '(cent ?os|oracle|red ?hat)' /etc/*release ; }
 _is_el6 () { egrep -i -q '(cent ?os|oracle|red ?hat).* 6' /etc/*release ; }
 _is_el7 () { egrep -i -q '(cent ?os|oracle|red ?hat).* 7' /etc/*release ; }
@@ -34,7 +50,7 @@ _install_packages () {
 _install_rpm_groups () {
   for group in "$@" ; do
     echo "Installing RPM group '$group'"
-    if ! sudo $RPMGROUP -y "$group" >/dev/null 2>/tmp/rpm-group-install-err-$group.log ; then
+    if ! sudo $RPMGROUP -y "$group" >/tmp/rpm-group-install-err-$group.log 2>&1 ; then
       echo "${PROGNAME:+$PROGNAME: }WARN: There was an error with group '$group' - see '/tmp/rpm-group-install-err-$group.log'." 1>&2
     fi
   done
@@ -49,24 +65,6 @@ _print_header () {
   echo "$@"
   _print_bar
 }
-
-# #############################################################################
-# Checks
-
-if ! _is_el_family ; then
-  echo "FATAL: Only Enterprise Linux family allowed to call this script ($0)" 1>&2
-  exit 1
-fi
-
-if ! which sudo >/dev/null 2>&1 ; then
-  echo "FATAL: Please log in as root, install and then configure sudo for your user first.." 1>&2
-  cat "Suggested commands:" <<EOF
-su -
-$RPMPROG install sudo
-visudo
-EOF
-  exit 1
-fi
 
 # #############################################################################
 # Main
@@ -115,8 +113,8 @@ _install_packages perl perl-devel perl-ExtUtils-Embed
 _install_packages --enablerepo=epel tig # git
 
 echo "EL security packages..."
-sudo $INSTPROG install -q -y gnupg pwgen
-sudo $INSTPROG install -q -y oathtool oath-toolkit
+_install_packages gnupg pwgen
+_install_packages oathtool oath-toolkit
 
 echo "EL security SELinux packages..."
 _install_packages setroubleshoot-server selinux-policy-devel
