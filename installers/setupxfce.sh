@@ -42,8 +42,8 @@ _is_fedora () { egrep -i -q 'fedora' /etc/*release ; }
 _install_groups () {
   for group in "$@" ; do
     echo "Installing RPM group '$group'"
-    if ! sudo $RPMGROUP -y "$group" >/dev/null 2>&1 ; then
-      echo "${PROGNAME:+$PROGNAME: }WARN: There was an error with group '$group'." 1>&2
+    if ! sudo $RPMGROUP -y "$group" >/dev/null 2>/tmp/rpm-group-install-err-$group.log ; then
+      echo "${PROGNAME:+$PROGNAME: }WARN: There was an error with group '$group' - see '/tmp/rpm-group-install-err-$group.log'." 1>&2
     fi
   done
 }
@@ -51,8 +51,8 @@ _install_groups () {
 _install_packages () {
   for package in "$@" ; do
     echo "Installing '$package'..."
-    if ! sudo $INSTPROG install -y "$package" >/dev/null 2>&1 ; then
-      echo "${PROGNAME:+$PROGNAME: }WARN: There was an error with package '$package'." 1>&2
+    if ! sudo $INSTPROG install -y "$package" >/dev/null 2>/tmp/pkg-install-${package}.log ; then
+      echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${package}.log'." 1>&2
     fi
   done
 }
