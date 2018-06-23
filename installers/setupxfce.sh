@@ -51,7 +51,7 @@ _install_packages () {
 _install_rpm_groups () {
   for group in "$@" ; do
     echo "Installing RPM group '$group'"
-    if ! sudo $RPMGROUP -y "$group" >/dev/null 2>/tmp/rpm-group-install-err-$group.log ; then
+    if ! sudo $RPMGROUP -y "$group" >/tmp/rpm-group-install-err-$group.log 2>&1 ; then
       echo "${PROGNAME:+$PROGNAME: }WARN: There was an error with group '$group' - see '/tmp/rpm-group-install-err-$group.log'." 1>&2
     fi
   done
