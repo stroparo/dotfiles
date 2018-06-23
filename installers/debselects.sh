@@ -53,7 +53,7 @@ fi
 # #############################################################################
 # Main
 
-_print_header "Debian selects"
+_print_header "Debian package selects"
 
 echo "Debian APT index update..."
 if ! sudo $APTPROG update >/dev/null 2>/tmp/apt-update-err.log ; then
