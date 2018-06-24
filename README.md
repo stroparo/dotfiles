@@ -2,6 +2,8 @@
 
 Custom configuration files and environment setup routines.
 
+These are custom i.e. the better way to seize this is to fork it and have it your own way (change, remove, add new stuff etc.)
+
 ## Requirements
 
 * [sudo setup](#sudo-setup)
@@ -20,9 +22,21 @@ Running with no options nor arguments is the same as ```./entry.sh -d``` which w
   - Vim
 * Create the workspace directory ($HOME/workspace)
 
+#### Other options
+
+* ```-a``` will install (custom) aliases only
+* ```-b``` will install (custom) basic software selects
+* ```-d``` will install (custom) dotfiles i.e. tools' configurations
+* ```-f``` (f for full) all options i.e. aliases, basic software, dotfiles
+* ```-s``` will install shell components such as [Daily Shells](http://stroparo.github.io/ds/), [Oh-My-Zsh](https://ohmyz.sh/) etcetera
+
+#### Recipes
+
+After the options you might give arguments. These are a list of recipes to be executed. These recipes are scripts in the ```recipes``` directory. You might omit the ```.sh``` extension and the script will put it back in.
+
 ## Comprehensive setup
 
-Items: [Aliases](#aliases), dotfiles, [shell setup](#shell-setup) etcetera.
+The script has self-provisioning capabilities so you can skip downloading and setting it up by calling this command:
 
 ```bash
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/entry.sh" \
@@ -31,7 +45,7 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/entry.s
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
 
-## Aliases
+Instead of the ```-f``` option you could give it ```-a``` to have only custom aliases deployed or even directly download the script invoked by ```-a``` (```setupaliases.sh```) and execute it in one fell swoop directly:
 
 ```bash
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/setupaliases.sh" \
