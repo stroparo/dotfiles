@@ -5,6 +5,20 @@ Custom configuration files and environment setup routines.
 ## Requirements
 
 * [sudo setup](#sudo-setup)
+* Call the ```./entry.sh``` script only from inside the dotfiles directory i.e. first ```cd /path/to/dotfiles```
+
+## Basic usage
+
+The main script is ```entry.sh``` at the root directory. Enter the dotfiles directory before calling it -- this is VERY IMPORTANT -- otherwise it will provision itself to ```$HOME/dotfiles-master``` and cd into it by itself before starting.
+
+Running with no options nor arguments is the same as ```./entry.sh -d``` which will have all the custom configurations in scripts/deploy*.sh applied in your environment, providing for:
+
+* Overlay custom dot files in the dotfiles directory over $HOME/
+* Custom configuration for
+  - Git
+  - Sublime Text
+  - Vim
+* Create the workspace directory ($HOME/workspace)
 
 ## Comprehensive setup
 
