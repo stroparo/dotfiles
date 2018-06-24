@@ -49,8 +49,8 @@ Custom selections of Linux desktop packages:
 ```bash
 curl -LSf -k -o ~/.dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
   && unzip -o ~/.dotfiles.zip -d "$HOME" \
-  && cd "$HOME"/dotfiles-master/installers \
-  && (bash ./debselects-desktop.sh || bash ./rpmselects-desktop.sh)
+  && cd "$HOME"/dotfiles-master/recipes \
+  && (bash ./apps-debian-desktop.sh || bash ./apps-el-desktop.sh)
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
 
