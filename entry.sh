@@ -69,7 +69,7 @@ if ${DO_ALIASES:-false} || ${FULL:-false} ; then
 fi
 
 if ${DO_PACKAGES:-false} || ${FULL:-false} ; then
-  ./setuppackages.sh # {deb,rpm}selects etc.
+  ./setupbasicpackages.sh
 fi
 
 if ${DO_SHELL:-false} || ${FULL:-false} ; then
