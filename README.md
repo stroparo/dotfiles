@@ -22,11 +22,11 @@ Running with no options nor arguments is the same as ```./entry.sh -d``` ('d' fo
 
 #### Other options
 
-* ```-a``` will install (custom) aliases only
-* ```-b``` will install (custom) basic software selects
-* ```-d``` will install (custom) dotfiles i.e. tools' configurations
-* ```-f``` (f for full) all options i.e. aliases, basic software, dotfiles
-* ```-s``` will install shell components such as [Daily Shells](http://stroparo.github.io/ds/), [Oh-My-Zsh](https://ohmyz.sh/) etcetera
+* ```-a``` aliases
+* ```-b``` basic software selects
+* ```-d``` dotfiles i.e. tools' configurations
+* ```-s``` shell setup: [Daily Shells](http://stroparo.github.io/ds/), [Oh-My-Zsh](https://ohmyz.sh/) etcetera
+* ```-f``` (f for full): aliases, basic software, dotfiles, shell
 
 #### Recipes
 
