@@ -30,7 +30,7 @@ Running with no options nor arguments is the same as ```./entry.sh -d``` ('d' fo
 
 #### Recipes
 
-After the options you might give arguments. These are a list of recipes to be executed. These recipes are scripts in the ```recipes``` directory. You might omit the ```.sh``` extension and the script will put it back in.
+After the options you might specify arguments. These are a list of recipes to be executed. These recipes are scripts in the ```recipes``` directory. You might omit the ```.sh``` extension and the script will put it back in.
 
 ## Comprehensive setup
 
