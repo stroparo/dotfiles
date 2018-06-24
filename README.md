@@ -13,14 +13,12 @@ These are custom i.e. the best way to seize them is to fork this repository and 
 
 The main script is ```entry.sh``` at the root directory. Enter the dotfiles directory before calling it -- this is VERY IMPORTANT -- otherwise it will provision itself to ```$HOME/dotfiles-master``` and cd into it by itself before starting.
 
-Running with no options nor arguments is the same as ```./entry.sh -d``` ('d' for "dotfiles"). Besides dotfiles themselves this will have some other configurations in scripts/deploy*.sh scripts applied in your environment, providing for:
+Running with no options nor arguments is the same as ```./entry.sh -d``` ('d' for "dotfiles"). Besides dotfiles themselves this will also apply configurations in the ```scripts/deploy*.sh``` routines, providing for:
 
-* Overlay custom dot files in the dotfiles directory over $HOME/
-* Custom configuration for
-  - Git
-  - Sublime Text
-  - Vim
 * Create the workspace directory ($HOME/workspace)
+* Git custom configuration
+* Sublime Text custom configuration
+* Vim custom configuration
 
 #### Other options
 
