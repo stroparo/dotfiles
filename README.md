@@ -2,7 +2,7 @@
 
 Custom configuration files and environment setup routines.
 
-These are custom i.e. the best way to seize this is to fork it and have it your own way (change, remove, add new stuff etc.)
+These are custom i.e. the best way to seize them is to fork this repository and have it your own way by changing, removing or adding new stuff etcetera.
 
 ## Requirements
 
