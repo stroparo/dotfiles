@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
-echo
-echo "==> Setting up the shell with Daily Shells and some of its own setups..."
+PROGNAME=setupshell.sh
+SCRIPT_DIR="$(dirname "${0%/*}")"
+SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
 
 # #############################################################################
 # Globals
-
-export PROGNAME=setupshell.sh
-export PROGDIR="$(dirname "$0")"
 
 export DS_SETUP_URL="https://raw.githubusercontent.com/stroparo/ds/master/setup.sh"
 
@@ -25,35 +21,28 @@ else
 fi
 
 # #############################################################################
+# Helpers
 
-# Daily Shells
+_print_header () {
+  echo "################################################################################"
+  echo "$@"
+  echo "################################################################################"
+}
+
+# #############################################################################
+_print_header "Shell setup"
+
+_print_header "Daily Shells"
 bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}")"
 . ~/.ds/ds.sh
 if ! ${DS_LOADED:-false} ; then
   echo "${PROGNAME:+${PROGNAME}: }FATAL: Could not load Daily Shells." 1>&2
   exit 1
 fi
-
-"dsplugin.sh" "stroparo/ds-extras"
+dsplugin.sh "stroparo/ds-extras"
 . ~/.ds/ds.sh
 
-echo
-echo "################################################################################"
-echo
-echo "==> After installing oh-my-zsh, it will change"
-echo "    the default shell to zsh and log into it."
-echo "    IF THAT IS THE CASE (like the prompt stopped"
-echo "    and nothing else happened), then exit or ctrl+d"
-echo "    for this sequence to continue."
-echo
-"$PROGDIR/installers/setupohmyzsh.sh"
+"$SCRIPT_DIR"/installers/setupohmyzsh.sh
 
-if [ ! -e "$HOME/.ssh/id_rsa" ] ; then
-  echo
-  echo "################################################################################"
-  echo
-  echo "==> sshkeygenrsa.sh"
-  echo
-  sshkeygenrsa.sh
-fi
+sshkeygenrsa.sh
 
