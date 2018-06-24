@@ -11,7 +11,7 @@ Custom configuration files and environment setup routines.
 Items: [Aliases](#aliases), dotfiles, [shell setup](#shell-setup) etcetera.
 
 ```bash
-bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/entry.sh" \
+bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/entry.sh")" \
   entry.sh -f
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
@@ -20,7 +20,7 @@ bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/entry.sh" 
 ## Aliases
 
 ```bash
-bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupaliases.sh" \
+bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/setupaliases.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupaliases.sh")"; \
   . ~/.aliases-cs
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
@@ -37,7 +37,7 @@ The setupshell.sh routine provides for useful shell features:
 * Makes an SSH RSA key-pair and prints the public key
 
 ```bash
-bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupshell.sh" \
+bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/setupshell.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupshell.sh")"
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
@@ -104,7 +104,7 @@ curl -LSf -k -o ~/.dotfiles.zip "https://github.com/stroparo/dotfiles/archive/ma
 Aliases:
 
 ```bash
-bash -c "$(curl -LSf "https://gitlab.com/stroparo/dotfiles/raw/master/setupaliases.sh" \
+bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/setupaliases.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupaliases.sh")"; \
   . ~/.aliases-cs
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
