@@ -13,15 +13,6 @@ if ! egrep -i -q '(cent ?os|oracle|red ?hat|fedora)' /etc/*release ; then
   exit
 fi
 
-if ! which sudo >/dev/null 2>&1 ; then
-  echo "${PROGNAME:+$PROGNAME: }WARN: Installing sudo via root and opening up visudo" 1>&2
-  su - -c "bash -c '$INSTPROG install sudo; visudo'"
-fi
-if ! sudo whoami >/dev/null 2>&1 ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: No sudo access." 1>&2
-  exit 1
-fi
-
 # #############################################################################
 # Globals
 
