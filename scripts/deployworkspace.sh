@@ -5,7 +5,7 @@
 : ${DEV:=${HOME}/workspace} ; export DEV
 
 echo
-echo "==> Setting up the workspace directory (DEV global)..."
+echo "==> Workspace directory setup in the DEV global variable"
 
 if [ ! -d "$DEV" ] ; then
   echo "Making the DEV directory '${DEV}'..."

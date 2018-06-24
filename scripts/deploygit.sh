@@ -2,13 +2,10 @@
 
 # Cristian Stroparo's dotfiles
 
+PROGNAME=deploygit.sh
+
 echo
 echo "==> Setting up git..."
-
-# #############################################################################
-# Globals
-
-PROGNAME=deploygit.sh
 
 # #############################################################################
 # Prep
@@ -25,7 +22,7 @@ if ! which git >/dev/null 2>&1 ; then
 fi
 
 # #############################################################################
-# Routines
+# Helpers
 
 _prep_git_config_file () {
   typeset gitfile
