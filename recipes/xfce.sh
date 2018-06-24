@@ -57,14 +57,10 @@ _install_rpm_groups () {
   done
 }
 
-_print_bar () {
-  echo "################################################################################"
-}
-
 _print_header () {
-  _print_bar
+  echo "################################################################################"
   echo "$@"
-  _print_bar
+  echo "################################################################################"
 }
 
 _set_fedora_version () {
@@ -91,7 +87,7 @@ if _is_el_family ; then
   _install_rpm_groups xfce
   _install_packages xorg-x11-fonts-Type1 xorg-x11-fonts-misc
 
-  echo "XFCE Whisker Menu setup..."
+  _print_header "XFCE Whisker Menu setup..."
   if _is_el ; then
     _install_packages "xfce4-whiskermenu-plugin"
   elif egrep -i -q 'fedora 2[6-9]' /etc/*release ; then
