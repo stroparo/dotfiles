@@ -41,20 +41,12 @@ _install_packages () {
   done
 }
 
-_print_bar () {
-  echo "################################################################################"
-}
-
-_print_header () {
-  _print_bar
-  echo "$@"
-  _print_bar
-}
-
 # #############################################################################
 # Main
 
-_print_header "Debian package selects"
+echo "################################################################################"
+echo "Debian package selects"
+echo "################################################################################"
 
 echo "Debian APT index update..."
 if ! sudo $APTPROG update >/dev/null 2>/tmp/apt-update-err.log ; then

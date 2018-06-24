@@ -56,20 +56,12 @@ _install_rpm_groups () {
   done
 }
 
-_print_bar () {
-  echo "################################################################################"
-}
-
-_print_header () {
-  _print_bar
-  echo "$@"
-  _print_bar
-}
-
 # #############################################################################
 # Main
 
-_print_header "Enterprise Linux package selects"
+echo "################################################################################"
+echo "Enterprise Linux package selects"
+echo "################################################################################"
 
 # EPEL extra packages
 if ! _is_fedora ; then

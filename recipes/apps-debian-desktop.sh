@@ -32,19 +32,13 @@ _install_packages () {
   done
 }
 
-_print_bar () {
+_print_header () {
+  echo "################################################################################"
+  echo "$@"
   echo "################################################################################"
 }
 
-_print_header () {
-  _print_bar
-  echo "$@"
-  _print_bar
-}
-
 # #############################################################################
-# Main
-
 _print_header "Debian desktop package selects"
 
 echo "Debian APT index update..."
@@ -70,15 +64,13 @@ echo ${BASH_VERSION:+-e} "Debian desktop - miscellaneous packages..."
 _install_packages autorenamer
 
 # #############################################################################
-# Cleanup
+_print_header "Debian APT repository clean up..."
 
-echo "Debian APT repository clean up..."
 sudo $APTPROG autoremove -y
 sudo $APTPROG clean -y
 
 # #############################################################################
-echo
-echo "==> Suggestions"
+_print_header "Debian GUI app recommendations"
 
 cat <<EOF | tee ~/README-debian-gui-apps.lst
 
