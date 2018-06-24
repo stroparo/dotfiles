@@ -41,6 +41,10 @@ while getopts ':abdfps' option ; do
 done
 shift "$((OPTIND-1))"
 
+if [ $# -gt 0 ] ; then
+  NO_ACTION=false
+fi
+
 export DO_ALIASES DO_PACKAGES DO_DOT DO_SHELL NO_ACTION FULL
 
 # #############################################################################
