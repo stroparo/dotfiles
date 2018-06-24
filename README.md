@@ -56,13 +56,15 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/setupal
 
 ## Shell setup
 
-If only shell setup is desired then execute this sequence.
+If only shell setup is desired then execute ```./entry.sh -s```.
 
-The setupshell.sh routine provides for useful shell features:
+The ```setupshell.sh``` routine provides for useful shell features:
 
 * Installs [Daily Shells](http://stroparo.github.io/ds/) and [Daily Shells Extras](https://github.com/stroparo/ds-extras)
 * Installs Oh-My-Zsh (zsh configuration framework)
 * Makes an SSH RSA key-pair and prints the public key
+
+Direct download and execution:
 
 ```bash
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/setupshell.sh" \
