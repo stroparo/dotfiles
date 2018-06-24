@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
 set -e
-
-# #############################################################################
-# Globals
-
 PROGNAME="base-el7-gui-fonts.sh"
 
 # #############################################################################
@@ -110,4 +106,4 @@ fi
 
 # #############################################################################
 echo
-echo 'log out and log back in for clear looking fonts.'
+echo 'Log out and log back in for clear looking fonts.'

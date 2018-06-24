@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROGNAME=el7gui.sh
+PROGNAME=base-el7-gui.sh
 
 # #############################################################################
 # Early checks
