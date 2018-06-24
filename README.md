@@ -13,7 +13,7 @@ These are custom i.e. the best way to seize them is to fork this repository and 
 
 The main script is ```entry.sh``` at the root directory. Enter the dotfiles directory before calling it -- this is VERY IMPORTANT -- otherwise it will provision itself to ```$HOME/dotfiles-master``` and cd into it by itself before starting.
 
-Running with no options nor arguments is the same as ```./entry.sh -d``` which will have all the custom configurations (the d option stands for dotfiles here) in scripts/deploy*.sh applied in your environment, providing for:
+Running with no options nor arguments is the same as ```./entry.sh -d``` ('d' for "dotfiles"). Besides dotfiles themselves this will have some other configurations in scripts/deploy*.sh scripts applied in your environment, providing for:
 
 * Overlay custom dot files in the dotfiles directory over $HOME/
 * Custom configuration for
