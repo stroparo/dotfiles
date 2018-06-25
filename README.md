@@ -7,7 +7,7 @@ These are custom i.e. the best way to seize them is to fork this repository and 
 ## Requirements
 
 * [sudo setup](#sudo-setup)
-* Call the ```./entry.sh``` script only from inside the dotfiles directory i.e. first ```cd /path/to/dotfiles```
+* Call the ```./entry.sh``` script only from inside the dotfiles directory i.e. first ```cd /path/to/dotfiles``` (automatically done by the automated remote setup below)
 
 ## Basic usage
 
@@ -32,7 +32,7 @@ Running with no options nor arguments is the same as ```./entry.sh -d``` ('d' fo
 
 After the options you might specify arguments. These are a list of recipes to be executed. These recipes are scripts in the ```recipes``` directory. You might omit the ```.sh``` extension and the script will put it back in.
 
-## Comprehensive setup
+## Automated Remote Setup
 
 The script has self-provisioning capabilities so you can skip downloading and setting it up by calling this command:
 
@@ -70,9 +70,11 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/setupsh
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
 
-## Linux desktop packages
+---
 
-Custom selections of Linux desktop packages:
+## Linux desktop package selects
+
+Download of the dotfiles package plus installation of custom desktop package selects for Debian and Enterprise Linux families:
 
 ```bash
 curl -LSf -k -o ~/.dotfiles.zip https://github.com/stroparo/dotfiles/archive/master.zip \
