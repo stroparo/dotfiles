@@ -62,11 +62,3 @@ then
 fi
 
 # #############################################################################
-# Windows specific
-
-if [[ "$(uname -a)" = *[Cc]ygwin* ]]; then
-  sed -i -e 's/Knack Nerd Font Mono/Knack NF/' \
-    "${SUBL_USER}"/Preferences.sublime-settings
-fi
-
-# #############################################################################
