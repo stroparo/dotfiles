@@ -41,6 +41,8 @@ echo "##########################################################################
 echo "Ubuntu PPA applications"
 echo "################################################################################"
 
+# TODO parameterize list of apps to be installed
+
 dpkg -s qdirstat      || _add_ppa_repo 'nathan-renniewaldock/qdirstat'
 dpkg -s woeusb        || _add_ppa_repo 'nilarimogard/webupd8'
 dpkg -s y-ppa-manager || _add_ppa_repo 'webupd8team/y-ppa-manager'
