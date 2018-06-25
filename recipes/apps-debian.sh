@@ -48,7 +48,7 @@ echo "Debian base packages..."
 _install_packages curl lftp mosh net-tools rsync wget
 # _install_packages gdebi-core
 _install_packages less
-_install_packages localepurge
+sudo $INSTPROG install -y localepurge
 _install_packages logrotate
 _install_packages parted
 _install_packages p7zip-full p7zip-rar
