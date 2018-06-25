@@ -48,8 +48,6 @@ fi
 
 echo ${BASH_VERSION:+-e} "Debian desktop - base packages..."
 _install_packages bum ssh-askpass xbacklight xclip xscreensaver
-_install_packages gnome-themes-standard
-_install_packages gnome-themes-ubuntu gtk2-engines-xfce
 _install_packages ntfs-3g
 
 echo ${BASH_VERSION:+-e} "Debian desktop - educational packages..."
@@ -58,7 +56,6 @@ _install_packages gperiodic
 echo ${BASH_VERSION:+-e} "Debian desktop - productivity packages..."
 _install_packages atril galculator guake meld
 _install_packages gnome-shell-pomodoro
-_install_packages shutter # screenshots
 
 echo ${BASH_VERSION:+-e} "Debian desktop - miscellaneous packages..."
 _install_packages autorenamer
@@ -103,6 +100,7 @@ sudo $INSTPROG install -y mobile-broadband-provider-info modemmanager usb-modesw
 # Productivity
 sudo $INSTPROG install -y gnucash
 sudo $INSTPROG install -y libreoffice-calc
+sudo $INSTPROG install -y shutter # screenshots
 
 EOF
 
