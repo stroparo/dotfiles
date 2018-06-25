@@ -62,13 +62,15 @@ _install_packages () {
 # #############################################################################
 # Dependencies
 
-if ! which sudo >/dev/null 2>&1 ; then
-  echo "${PROGNAME:+$PROGNAME: }WARN: Installing sudo via root and opening up visudo" 1>&2
-  su - -c "bash -c '$INSTPROG install sudo; visudo'"
-fi
-if ! sudo whoami >/dev/null 2>&1 ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: No sudo access." 1>&2
-  exit 1
+if (uname | grep -q linux) ; then
+  if ! which sudo >/dev/null 2>&1 ; then
+    echo "${PROGNAME:+$PROGNAME: }WARN: Installing sudo via root and opening up visudo" 1>&2
+    su - -c "bash -c '$INSTPROG install sudo; visudo'"
+  fi
+  if ! sudo whoami >/dev/null 2>&1 ; then
+    echo "${PROGNAME:+$PROGNAME: }FATAL: No sudo access." 1>&2
+    exit 1
+  fi
 fi
 
 if ! which unzip >/dev/null 2>&1 ; then
