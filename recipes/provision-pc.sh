@@ -13,8 +13,6 @@ _print_header () {
 
 # #############################################################################
 
-bash "${DOTFILES_DIR:-.}"/entry.sh -f
-
 _print_header "Basic dev tools"
 bash "${DOTFILES_DIR:-.}"/installers/setuppython.sh
 bash "${DOTFILES_DIR:-.}"/installers/setupdocker.sh
