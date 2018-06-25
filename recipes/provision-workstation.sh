@@ -28,9 +28,9 @@ bash "${DOTFILES_DIR:-.}"/recipes/base-el7-gui-fonts.sh
 bash "${DOTFILES_DIR:-.}"/recipes/xfce.sh
 bash "${DOTFILES_DIR:-.}"/recipes/fonts-for-devel.sh
 
-_print_header "Deploying fixes"
-bash "${DOTFILES_DIR:-.}"/recipes/fixfedorainput.sh
-bash "${DOTFILES_DIR:-.}"/recipes/fixguake.sh
+_print_header "Applying fixes"
+bash "${DOTFILES_DIR:-.}"/recipes/fix-fedora-input.sh
+bash "${DOTFILES_DIR:-.}"/recipes/fix-guake-python2.sh
 
 _print_header "Applications"
 bash "${DOTFILES_DIR:-.}"/installers/setupchrome.sh
