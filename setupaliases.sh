@@ -2,7 +2,7 @@
 # Cristian Stroparo's dotfiles
 
 echo "################################################################################"
-echo "Aliases ==> '$HOME/.aliases-cs'
+echo "Aliases ==> '$HOME/.aliases-cs'"
 echo "################################################################################"
 
 echo "==> Setting up aliases..."
