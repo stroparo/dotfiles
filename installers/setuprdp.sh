@@ -49,13 +49,14 @@ if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release 2>/dev/null ; then
           read ans
         fi
         if [ "$ans" = y ] ; then
-          sudo mv -v /etc/X11/xinit/Xclients /etc/X11/xinit/Xclients.bak.$(date '+%Y-%m-%d-%OH%OM%OS')
-          cat <<'EOF' | sudo tee /etc/X11/xinit/Xclients
+          # Root Xclients is in /etc/X11/xinit/Xclients but prefer the local one:
+          sudo mv -v ~/.Xclients ~/.Xclients.bak.$(date '+%Y-%m-%d-%OH%OM%OS')
+          cat <<'EOF' | sudo tee ~/.Xclients
 #!/usr/bin/env bash
 exec $(which startxfce4)
 EOF
         fi
-        sudo chmod 755 /etc/X11/xinit/Xclients
+        sudo chmod 755 ~/.Xclients
       fi
 
     fi
