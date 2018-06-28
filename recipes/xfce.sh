@@ -17,13 +17,11 @@ export INSTPROG="$APTPROG"; which "$RPMPROG" >/dev/null 2>&1 && export INSTPROG=
 # #############################################################################
 # Specific globals
 
-export DO_DEPS=false
 
 # Options:
 OPTIND=1
-while getopts ':dh' option ; do
+while getopts ':h' option ; do
   case "${option}" in
-    d) export DO_DEPS=true;;
     h) echo "$USAGE"; exit;;
   esac
 done
