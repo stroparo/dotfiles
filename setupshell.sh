@@ -39,8 +39,15 @@ if ! ${DS_LOADED:-false} ; then
   echo "${PROGNAME:+${PROGNAME}: }FATAL: Could not load Daily Shells." 1>&2
   exit 1
 fi
-dsplugin.sh "stroparo/ds-extras"
-. ~/.ds/ds.sh
+
+_print_header "Daily Shells Extras"
+dsextras_max_tries=3
+while [ ! -e ~/.ds/functions/gitextras.sh ] ; do
+  dsplugin.sh "stroparo/ds-extras"
+  . ~/.ds/ds.sh
+  dsextras_max_tries=$((dsextras_max_tries-1))
+  if [ $dsextras_max_tries -le 0 ] ; then break ; fi
+done
 
 "$SCRIPT_DIR"/installers/setupohmyzsh.sh
 
