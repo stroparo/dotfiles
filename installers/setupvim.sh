@@ -68,6 +68,15 @@ shift "$((OPTIND-1))"
 echo ${BASH_VERSION:+-e} "\n==> $PROGNAME started..."
 
 # #############################################################################
+# Check if already compiled and prompt
+
+if (vim --version | grep -q 'stroparo/dotfiles') ; then
+  if ! ${INTERACTIVE:-false} || ! _user_confirm "VIM already compiled. Recompile?" ; then
+    exit
+  fi
+fi
+
+# #############################################################################
 # Prompt for specific support
 
 for arg in "$@" ; do
@@ -292,7 +301,7 @@ eval ./configure \
   --enable-fontset \
   --enable-largefile \
   --disable-netbeans \
-  --with-compiledby="ds-extras" \
+  --with-compiledby="stroparo/dotfiles" \
   --enable-fail-if-missing \
   && make
 
