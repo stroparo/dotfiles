@@ -137,6 +137,8 @@ if ${DO_DOT:-false} || ${FULL:-false} || ${NO_ACTION:-true} ; then
   for deploy_script in $DEPLOY_SCRIPTS ; do
     "$deploy_script"
   done
+
+  _print_bar
 fi
 
 # #############################################################################
