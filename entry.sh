@@ -57,6 +57,10 @@ _install_packages () {
   done
 }
 
+_print_bar () {
+  echo "################################################################################"
+}
+
 # #############################################################################
 # Dependencies
 
@@ -125,6 +129,9 @@ if ${DO_SHELL:-false} || ${FULL:-false} ; then
 fi
 
 if ${DO_DOT:-false} || ${FULL:-false} || ${NO_ACTION:-true} ; then
+
+  _print_bar ; echo "Dotfiles deployments (stroparo/dotfiles)" ; _print_bar
+
   DEPLOY_SCRIPTS="$(ls -1 ./scripts/deploy*sh | grep -v deploypackages)"
 
   for deploy_script in $DEPLOY_SCRIPTS ; do
