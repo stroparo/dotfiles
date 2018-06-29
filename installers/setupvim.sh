@@ -72,6 +72,7 @@ echo ${BASH_VERSION:+-e} "\n==> $PROGNAME started..."
 
 if (vim --version | grep -q 'stroparo/dotfiles') ; then
   if ! ${INTERACTIVE:-false} || ! _user_confirm "VIM already compiled. Recompile?" ; then
+    echo "${PROGNAME:+$PROGNAME: }SKIP: VIM already compiled."
     exit
   fi
 fi
