@@ -26,7 +26,7 @@ _install_exa_deb () {
 
   # Deps - Install the Rust language platform:
   [ -d ~/.cargo/bin ] || (curl https://sh.rustup.rs -sSf | sh)
-  pathmunge -x ~/.cargo/bin
+  export PATH="$HOME/.cargo/bin:$PATH"
 
   # Deps - Install from APT repos:
   sudo apt update || exit 1
