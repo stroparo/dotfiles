@@ -34,7 +34,7 @@ _print_header "Shell setup"
 
 _print_header "Daily Shells"
 bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}")"
-. ~/.ds/ds.sh
+. "${DS_HOME:-$HOME/.ds}/ds.sh"
 if ! ${DS_LOADED:-false} ; then
   echo "${PROGNAME:+${PROGNAME}: }FATAL: Could not load Daily Shells." 1>&2
   exit 1
@@ -44,7 +44,7 @@ _print_header "Daily Shells Extras"
 dsextras_max_tries=3
 while [ ! -e ~/.ds/functions/gitextras.sh ] ; do
   dsplugin.sh "stroparo/ds-extras"
-  . ~/.ds/ds.sh
+  . "${DS_HOME:-$HOME/.ds}/ds.sh"
   dsextras_max_tries=$((dsextras_max_tries-1))
   if [ $dsextras_max_tries -le 0 ] ; then break ; fi
 done
@@ -52,4 +52,6 @@ done
 "$SCRIPT_DIR"/installers/setupohmyzsh.sh
 
 sshkeygenrsa.sh
+
+echo "################################################################################"
 
