@@ -83,7 +83,7 @@ fi
 # #############################################################################
 # Cygwin / Windows
 
-if (uname -a | grep -i -q cygwin) ; then
+if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
 
   GITCONFIG_CYGWIN="$(cygpath "$USERPROFILE")/.gitconfig"
   touch "$GITCONFIG_CYGWIN"

@@ -14,7 +14,7 @@ fi
 # Prep Sublime Text User PATH
 
 
-if uname -a | egrep -i -q 'cygwin|mingw|msys' ; then
+if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
   SUBL_WIN="$(cygpath "$USERPROFILE")"'/AppData/Roaming/Sublime Text 3'
   if [ -d "${SUBL_WIN}" ] ; then
     SUBL_USER="${SUBL_WIN}/Packages/User"
