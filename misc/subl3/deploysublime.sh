@@ -1,18 +1,10 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
-echo
-echo "==> Setting up sublime text... This script's location: '$0'; PWD='$PWD'"
-
-if ! (which sublime_text || which subl) >/dev/null 2>&1 ; then
-  echo "deploysublime: SKIP: sublime text not in the path" 1>&2
-  exit
-fi
+echo ; echo "==> Sublime Text setup; \$0='$0'; \$PWD='$PWD'"
+if ! (which sublime_text || which subl) >/dev/null 2>&1 ; then exit ; fi
 
 # #############################################################################
 # Prep Sublime Text User PATH
-
 
 if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
   SUBL_WIN="$(cygpath "$USERPROFILE")"'/AppData/Roaming/Sublime Text 3'
@@ -34,25 +26,22 @@ elif [[ "$(uname -a)" = *[Ll]inux* ]] ; then
 fi
 
 # #############################################################################
-# Deploy Sublime Text configuration
+# Deploy
 
 mkdir -p "${SUBL_USER}"
-
-subl_files="$(ls -1d ./sublime3/*)"
-
-if ! ${OVERRIDE_SUBL_PREFS:-false} \
-  && [ -f "${SUBL_USER}/Preferences.sublime-settings" ]
-then
-  subl_files="$(echo "$subl_files" | grep -F -v Preferences.sublime-settings)"
+subl_files_dir=$(dirname "$(find . -type f -name 'Preferences.sublime-settings')")
+if [ -z "$subl_files_dir" ] ; then
+  echo "${PROGNAME:+$PROGNAME: }FATAL: No sublimetext conf files dir found." 1>&2
+  exit 1
+fi
+subl_files="$(ls -1d ${subl_files_dir:-.}/*)"
+subl_files="$(echo "$subl_files" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
+if ! eval cp -L -R "${subl_files}" "\"${SUBL_USER}\""/ ; then
+  echo "${PROGNAME:+$PROGNAME: }ERROR: Deploying sublimetext files." 1>&2
 fi
 
-# Prep for eval: quote, and translate newlines to space separators:
-subl_files="$(echo "$subl_files" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')"
-
-eval cp -L -R -v "${subl_files}" "\"${SUBL_USER}\""/
-
 # #############################################################################
-# Symlink subl
+# Symlink for any existing portable instance
 
 if [ ! -e /usr/local/bin/subl ] \
   && which sublime_text >/dev/null 2>&1 \
