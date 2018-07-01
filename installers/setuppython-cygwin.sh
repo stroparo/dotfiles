@@ -11,7 +11,10 @@ export PYV2='2.7.13'
 export PYV3='3.6.0'
 
 # Dependencies
-(uname -a | grep -i -q cygwin) && exit
+if ! (uname -a | grep -i -q "cygwin") ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Only cygwin supported." 1>&2
+  exit
+fi
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 [ -n "$ZSH_VERSION" ] && set -o shwordsplit
 
