@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[
+for arg in "\$@" ; do
+  if echo "\$arg" | grep -q '[^${1:a-zA-Z0-9_.*?-}]' ; then
+    echo "FATAL: Arguments should contain only characters in the list: [${1:a-zA-Z0-9_.*?-}]" 1>&2
+    return 1
+  fi
+done
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>argvalidation</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.shell</scope> -->
+</snippet>

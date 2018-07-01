@@ -1,0 +1,21 @@
+<snippet>
+    <content><![CDATA[
+# Setup the downloader program (curl/wget)
+if which curl >/dev/null 2>&1 ; then
+  export DLPROG=curl
+  export DLOPT='-LSfs'
+  export DLOUT='-o'
+elif which wget >/dev/null 2>&1 ; then
+  export DLPROG=wget
+  export DLOPT=''
+  export DLOUT='-O'
+else
+  echo "FATAL: curl and wget missing" 1>&2
+  exit 1
+fi
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>setvardlprog</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.shell</scope> -->
+</snippet>

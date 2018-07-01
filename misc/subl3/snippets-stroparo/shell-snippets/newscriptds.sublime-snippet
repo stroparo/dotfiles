@@ -1,0 +1,103 @@
+<snippet>
+  <content><![CDATA[
+#!/usr/bin/env bash
+
+# DS - Daily Shells Library
+# License:
+#   See README.md document in projects page at
+#   https://github.com/stroparo/ds
+
+ckds () {
+  if [ -z "\${DS_VERSION}" ] && ! . "\${DS_HOME}/ds.sh" "\${DS_HOME}" >/dev/null 2>&1
+  then
+    echo "No DS Daily Shells loaded. Fix it and call this again." 1>&2
+    echo "Tips:" 1>&2
+    echo "curl -o - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh' | bash" 1>&2
+    echo "wget -O - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh' | bash" 1>&2
+    return 1
+  fi
+}
+ckds || exit \$?
+
+# #############################################################################
+# Globals
+
+export PNAME="\$(basename "\$0")"
+export USAGE="
+NAME
+  \${PNAME} - ${1}
+
+SYNOPSIS
+  \${PNAME} ${2}
+
+DESCRIPTION
+
+"
+
+# #############################################################################
+# Prep args
+
+# Options:
+
+export DESTDIR=''
+export SRCDIR=''
+
+export DRYRUN=false
+export EXCLUDE='@@@@EXCLUDEDUMMY@@@@'
+export FORCE=false
+export INTERACTIVE=false
+export QUIET=false
+export VERBOSE=false
+
+OPTIND=1
+while getopts ':${3:d:fhinqs:vx:}' opt ; do
+  case \${opt} in
+
+    h) echo "\${USAGE}" ; exit ;;
+
+    d) export DESTDIR="\${OPTARG}";;
+    s) export SRCDIR="\${OPTARG}";;
+
+    f) export FORCE=true;;
+    i) export INTERACTIVE=true;;
+    n) export DRYRUN=true;;
+    q) export QUIET=true;;
+    v) export VERBOSE=true;;
+    x) export EXCLUDE="\${OPTARG}";;
+
+  esac
+done
+shift \$((OPTIND - 1))
+
+# Arguments:
+# VAR="\${1}"
+# ...
+
+# #############################################################################
+# Functions
+
+prep () {
+
+  for i in "\$@" ; do
+    ${4:# TODO Process each argument in "\${i\}"}
+  done
+}
+
+${5:main} () {
+
+  ${6:# TODO implement}
+}
+
+# #############################################################################
+# Main
+
+prep "\$@"
+${5:main} "\$@"
+exit "\$?"
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>newscriptds</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope>source.shell</scope> -->
+</snippet>

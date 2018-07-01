@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+# Options:
+typeset oldind="\${OPTIND}"
+OPTIND=1
+while getopts ':${1}' option ; do
+  case "\${option}" in
+    ${2}) ${3}=${4:true}${5:"\${OPTARG\}"};;
+  esac
+done
+shift \$((OPTIND-1)) ; OPTIND="\${oldind}"
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>fgetopts</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell</scope>
+</snippet>

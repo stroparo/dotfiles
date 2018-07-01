@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[
+if [ ! -e ~/.ds/ds.sh ] ; then
+  FORCE=true bash -c "\$(curl -LSf -k -o - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh')"
+fi
+. ~/.ds/ds.sh
+if [ -z "\$DS_HOME" ] ; then
+  echo "\${PROGNAME:+\$PROGNAME: }FATAL: Could not load Daily Shells." 1>&2
+  exit 1
+fi
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>depds</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope>source.shell</scope> -->
+</snippet>

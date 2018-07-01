@@ -1,0 +1,20 @@
+<snippet>
+    <content><![CDATA[
+_user_confirm () {
+  # Info: Ask a question and yield success if user responded [yY]*
+
+  typeset confirm
+  typeset result=1
+
+  echo \${BASH_VERSION:+-e} "\$@" "[y/N] \c"
+  read confirm
+  if [[ \$confirm = [yY]* ]] ; then return 0 ; fi
+  return 1
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>funcuserconfirm</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.shell</scope> -->
+</snippet>
