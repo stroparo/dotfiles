@@ -43,7 +43,8 @@ fi
 # #############################################################################
 # Symlink for any existing portable instance
 
-if [ ! -e /usr/local/bin/subl ] \
+if (uname -a | grep -i -q linux) \
+  && [ ! -e /usr/local/bin/subl ] \
   && which sublime_text >/dev/null 2>&1 \
   && [[ $(which sublime_text) != ${HOME}* ]]
 then
