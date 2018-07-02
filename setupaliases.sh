@@ -199,7 +199,9 @@ fi
 # #############################################################################
 # Packaging RPM etcetera
 
-if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+if (uname -a | grep -i -q linux) \
+  && egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release
+then
   alias yumepel='sudo yum --enablerepo=epel'
 fi
 
