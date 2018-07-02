@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 # Cristian Stroparo's dotfiles
 
-echo "################################################################################"
-echo "Aliases ==> '$HOME/.aliases-cs'"
-echo "################################################################################"
-
 # Globals
 ALIASES_FILE="$HOME/.aliases-cs"
-echo "INFO: ALIASES_FILE='$ALIASES_FILE'"
+
+echo "################################################################################"
+echo "Aliases ==> '$ALIASES_FILE'"
 
 # #############################################################################
 # Shell profiles

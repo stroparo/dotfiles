@@ -1,14 +1,35 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
 PROGNAME=deploygit.sh
-
-echo
-echo "==> Setting up git..."
+USAGE="[-v] [git files --default--> \$HOME/.gitconfig]"
 
 # #############################################################################
-# Prep
+# Globals
+
+VERBOSE=false
+
+# #############################################################################
+# Helpers
+
+_print_bar () {
+  echo "################################################################################"
+}
+
+# #############################################################################
+# Options:
+OPTIND=1
+while getopts ':hv' option ; do
+  case "${option}" in
+    v) VERBOSE=true;;
+    h) echo "$USAGE"; exit;;
+  esac
+done
+shift "$((OPTIND-1))"
+
+# #############################################################################
+# Begin
+
+if ${VERBOSE:-false} ; then _print_bar ; echo "Git setup; \$0='$0'; \$PWD='$PWD'" ; fi
 
 # Install Git
 which git >/dev/null 2>&1 \
@@ -22,7 +43,7 @@ if ! which git >/dev/null 2>&1 ; then
 fi
 
 # #############################################################################
-# Helpers
+# Routines
 
 _prep_git_config_file () {
   typeset gitfile
@@ -64,9 +85,11 @@ EOF
       git config -f "$gitfile" --replace-all "credential.helper" "cache --timeout=36000"
     fi
 
-    echo
-    echo "==> Git config in '$gitfile' file:"
-    git config -f "$gitfile" -l
+    if ${VERBOSE:-false} ; then
+      echo
+      echo "==> Git config in '$gitfile' file:"
+      git config -f "$gitfile" -l
+    fi
   done
 }
 
@@ -94,9 +117,14 @@ if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
   git config --global core.fscache true
   git config --global gc.auto 256
 
-  echo
-  echo "==> Git config in '$GITCONFIG_CYGWIN' file:"
-  git config -f "$GITCONFIG_CYGWIN" -l
+  if ${VERBOSE:-false} ; then
+    echo
+    echo "==> Git config in '$GITCONFIG_CYGWIN' file:"
+    git config -f "$GITCONFIG_CYGWIN" -l
+  fi
 fi
 
 # #############################################################################
+# Finish
+
+if ${VERBOSE:-false} ; then echo "Git setup complete" ; _print_bar ; fi

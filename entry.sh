@@ -129,16 +129,10 @@ if ${DO_SHELL:-false} || ${FULL:-false} ; then
 fi
 
 if ${DO_DOT:-false} || ${FULL:-false} || ${NO_ACTION:-true} ; then
-
-  _print_bar ; echo "Dotfiles deployments (stroparo/dotfiles)" ; _print_bar
-
-  DEPLOY_SCRIPTS="$(ls -1 ./scripts/deploy*sh | grep -v deploypackages)"
-
-  for deploy_script in $DEPLOY_SCRIPTS ; do
-    "$deploy_script"
-  done
-
-  _print_bar
+  ./scripts/deploydotfiles.sh -v
+  ./scripts/deploygit.sh
+  ./scripts/deployvim.sh
+  ./scripts/deployworkspace.sh
 fi
 
 # #############################################################################

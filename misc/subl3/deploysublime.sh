@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo ; echo "==> Sublime Text setup; \$0='$0'; \$PWD='$PWD'"
+echo "==> Sublime Text setup; \$0='$0'; \$PWD='$PWD'"
 if ! (which sublime_text || which subl) >/dev/null 2>&1 ; then exit ; fi
 
 # #############################################################################
@@ -50,4 +50,3 @@ then
   sudo ln -s $(which sublime_text) /usr/local/bin/subl
 fi
 
-# #############################################################################
