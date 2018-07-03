@@ -1,15 +1,26 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
+# Install exa file listing program
 
-echo ${BASH_VERSION:+-e} '\n\n==> Installing exa...' 1>&2
+# #############################################################################
+# Helpers
+
+_print_bar () {
+  echo "################################################################################"
+}
+
+_print_started () {
+  echo "################################################################################"
+  echo "exa - file listing program"
+  echo "################################################################################"
+}
 
 # #############################################################################
 # Checks
 
 if !(uname -a | grep -i -q linux) ; then
-  echo "FATAL: Only Linux is supported." 1>&2
-  exit 1
+  echo "SKIP: Only Linux is supported." 1>&2
+  exit
 fi
 
 # Check for idempotency
@@ -24,13 +35,16 @@ fi
 _install_exa_deb () {
   [ ! -d ~/bin ] && ! mkdir ~/bin && exit 1
 
-  # Deps - Install the Rust language platform:
-  [ -d ~/.cargo/bin ] || (curl https://sh.rustup.rs -sSf | sh)
+  # Dependency - Rust language platform:
+  [ -d ~/.cargo/bin ] || (curl "https://sh.rustup.rs" -sSf | sh)
   export PATH="$HOME/.cargo/bin:$PATH"
 
-  # Deps - Install from APT repos:
+  # Dependency - APT packages:
   sudo apt update || exit 1
-  sudo apt install -y libgit2-dev libhttp-parser2.1 || exit $?
+  sudo apt install -y libgit2-dev
+  sudo apt install -y libhttp-parser2.1 \
+    || sudo apt install -y libhttp-parser2.7.1 \
+    || exit $?
   which cmake >/dev/null 2>&1 || sudo apt install -y cmake || exit $?
   which git >/dev/null 2>&1 || sudo apt install -y git || exit $?
 
@@ -49,17 +63,15 @@ _install_exa_deb () {
 # #############################################################################
 # Main
 
-if egrep -i -q 'debian|ubuntu' /etc/*release ; then
+_print_started
 
+if egrep -i -q 'debian|ubuntu' /etc/*release ; then
   _install_exa_deb "$@"
   exit $?
-
 elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
-
-  echo "FATAL: _install_exa_rpm routine still to be implemented"
-  exit 1
-
+  echo "SKIP: _install_exa_rpm routine still to be implemented"
+  exit $?
 else
-  echo "FATAL: OS not handled." 1>&2
-  exit 1
+  echo "SKIP: OS not handled." 1>&2
+  exit $?
 fi
