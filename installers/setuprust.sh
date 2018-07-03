@@ -29,3 +29,9 @@ fi
 PATH_STRING='export PATH="$HOME/.cargo/bin:$PATH"'
 grep -q 'PATH=.*[.]cargo' ~/.bashrc || echo "$PATH_STRING" >> ~/.bashrc
 grep -q 'PATH=.*[.]cargo' ~/.zshrc  || echo "$PATH_STRING" >> ~/.zshrc
+
+eval $PATH_STRING
+if ! which rustc 2>/dev/null ; then
+  echo "${PROGNAME:+$PROGNAME: }FATAL: rustc compiler not found." 1>&2
+  exit 1
+fi
