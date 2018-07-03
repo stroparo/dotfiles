@@ -102,7 +102,7 @@ _provision_dotfiles () {
     curl -LSfs -o "${HOME}"/.dotfiles.zip "$DOTFILES_SRC" \
       || curl -LSfs -o "${HOME}"/.dotfiles.zip "$DOTFILES_SRC_ALT"
     unzip -o "${HOME}"/.dotfiles.zip -d "${HOME}" \
-      || return $?
+      || exit $?
     zip_dir=$(unzip -l "${HOME}"/.dotfiles.zip | head -5 | tail -1 | awk '{print $NF;}')
     echo "Zip dir: '$zip_dir'" 1>&2
     if [[ ${zip_dir%/} = *stroparo-dotfiles-* ]] ; then
