@@ -29,6 +29,15 @@ _is_el6 () { egrep -i -q '(cent ?os|oracle|red ?hat).* 6' /etc/*release ; }
 _is_el7 () { egrep -i -q '(cent ?os|oracle|red ?hat).* 7' /etc/*release ; }
 _is_fedora () { egrep -i -q 'fedora' /etc/*release ; }
 
+_install_epel_packages () {
+  for package in "$@" ; do
+    echo "Installing '$package'..."
+    if ! sudo $INSTPROG install -y --enablerepo=epel "$package" >/tmp/pkg-install-${package}.log 2>&1 ; then
+      echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${package}.log'." 1>&2
+    fi
+  done
+}
+
 _install_packages () {
   for package in "$@" ; do
     echo "Installing '$package'..."
@@ -75,12 +84,12 @@ sudo yum makecache fast
 
 echo "EL base packages..."
 _install_packages curl lftp rsync wget
-_install_packages --enablerepo=epel mosh
+_install_epel_packages mosh
 _install_packages less
-_install_packages --enablerepo=epel p7zip p7zip-plugins lzip cabextract unrar
+_install_epel_packages p7zip p7zip-plugins lzip cabextract unrar
 which tmux >/dev/null 2>&1 || _install_packages tmux
 _install_packages sqlite libdbi-dbd-sqlite
-_install_packages --enablerepo=epel the_silver_searcher # ag
+_install_epel_packages the_silver_searcher # ag
 _install_packages unzip zip
 _install_packages zsh
 
@@ -89,11 +98,11 @@ echo "EL devel packages..."
 sudo $RPMGROUP -q -y --enablerepo=epel 'Development Tools'
 _install_packages ctags
 # _install_packages golang
-_install_packages --enablerepo=epel jq
+_install_epel_packages jq
 _install_packages make
 _install_packages perl perl-devel perl-ExtUtils-Embed
 # _install_packages ruby ruby-devel
-_install_packages --enablerepo=epel tig # git
+_install_epel_packages tig # git
 
 echo "EL security packages..."
 _install_packages gnupg pwgen
