@@ -88,8 +88,13 @@ _provision_dotfiles () {
   if [ ! -e ./entry.sh ] && [ ! -d ./dotfiles ] ; then
 
     if [ -d "${HOME}/dotfiles-master" ] ; then
-      if ! mv -f "${HOME}/dotfiles-master" "${HOME}/.dotfiles-master.bak.$(date '+%Y%m%d-%OH%OM%OS')" ; then
+      export DOTFILES_BAK_DIRNAME="${HOME}/.dotfiles-master.bak.$(date '+%Y%m%d-%OH%OM%OS')"
+      if mv -f "${HOME}/dotfiles-master" "$DOTFILES_BAK_DIRNAME" ; then
+        tar czf "${DOTFILES_BAK_DIRNAME}.tar.gz" "$DOTFILES_BAK_DIRNAME" \
+          && rm -f -r "$DOTFILES_BAK_DIRNAME"
+      else
         echo "${PROGNAME:+$PROGNAME: }FATAL: Could not archive existing ~/dotfiles-master." 1>&2
+        exit 1
       fi
     fi
 
