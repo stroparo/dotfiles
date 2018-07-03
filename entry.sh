@@ -86,22 +86,29 @@ _provision_dotfiles () {
   export DOTFILES_SRC_ALT="https://github.com/stroparo/dotfiles/archive/master.zip"
 
   if [ ! -e ./entry.sh ] && [ ! -d ./dotfiles ] ; then
-    if [ ! -d "${HOME}/dotfiles-master" ] ; then
-      curl -LSfs -o "${HOME}"/.dotfiles.zip "$DOTFILES_SRC" \
-        || curl -LSfs -o "${HOME}"/.dotfiles.zip "$DOTFILES_SRC_ALT"
-      unzip -o "${HOME}"/.dotfiles.zip -d "${HOME}" \
-        || return $?
-      zip_dir=$(unzip -l "${HOME}"/.dotfiles.zip | head -5 | tail -1 | awk '{print $NF;}')
-      echo "Zip dir: '$zip_dir'" 1>&2
-      if [[ ${zip_dir%/} = *stroparo-dotfiles-* ]] ; then
-        (cd "${HOME}"; mv -f -v "${zip_dir}" "${HOME}/dotfiles-master" 1>&2)
+
+    if [ -d "${HOME}/dotfiles-master" ] ; then
+      if ! mv -f "${HOME}/dotfiles-master" "${HOME}/.dotfiles-master.bak.$(date '+%Y%m%d-%OH%OM%OS')" ; then
+        echo "${PROGNAME:+$PROGNAME: }FATAL: Could not archive existing ~/dotfiles-master." 1>&2
       fi
     fi
+
+    # Provide an updated 'dotfiles-master' directory:
+    curl -LSfs -o "${HOME}"/.dotfiles.zip "$DOTFILES_SRC" \
+      || curl -LSfs -o "${HOME}"/.dotfiles.zip "$DOTFILES_SRC_ALT"
+    unzip -o "${HOME}"/.dotfiles.zip -d "${HOME}" \
+      || return $?
+    zip_dir=$(unzip -l "${HOME}"/.dotfiles.zip | head -5 | tail -1 | awk '{print $NF;}')
+    echo "Zip dir: '$zip_dir'" 1>&2
+    if [[ ${zip_dir%/} = *stroparo-dotfiles-* ]] ; then
+      (cd "${HOME}"; mv -f -v "${zip_dir}" "${HOME}/dotfiles-master" 1>&2)
+    fi
+
     cd "$HOME/dotfiles-master"
   fi
 
   if [ ! -e ./entry.sh ] && [ ! -d ./dotfiles ] ; then
-    echo "FATAL: could not provision dotfiles." 1>&2
+    echo "${PROGNAME:+$PROGNAME: }FATAL: Could not provision dotfiles." 1>&2
   fi
 
   export DOTFILES_DIR="$PWD"
