@@ -18,6 +18,7 @@ bash ./entry.sh -b
 
 _print_header "Basic dev tools"
 bash "${DOTFILES_DIR:-.}"/installers/setuppython.sh
+bash "${DOTFILES_DIR:-.}"/installers/setuprust.sh
 bash "${DOTFILES_DIR:-.}"/installers/setupdocker.sh
 bash "${DOTFILES_DIR:-.}"/installers/setupdocker-compose.sh
 bash "${DOTFILES_DIR:-.}"/installers/setupexa.sh
