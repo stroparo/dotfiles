@@ -125,7 +125,9 @@ fi
 # Docker
 
 alias dc='docker-compose'
-alias de='docker-compose exec'
+alias dce='docker-compose exec'
+alias dk='docker'
+alias dke='docker exec'
 
 # #############################################################################
 # Git
@@ -134,6 +136,9 @@ if which git >/dev/null 2>&1 ; then
 
   alias bv='git branch -vv'
   alias bav='git branch -avv'
+  alias gfa='git fetch --all'
+  alias gfap='git fetch --all -p'
+  alias gfp='git fetch -p'
   alias gh='git diff HEAD'
   alias glggas='git log --graph --decorate --all --stat'
   alias glogas='git log --graph --decorate --all --stat --oneline'
