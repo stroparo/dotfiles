@@ -14,7 +14,7 @@ _print_header () {
 # #############################################################################
 
 _print_header "Basic tools"
-bash ./entry.sh -b
+bash "${DOTFILES_DIR:-.}"/entry.sh -b
 
 _print_header "Basic dev tools"
 bash "${DOTFILES_DIR:-.}"/installers/setuppython.sh
