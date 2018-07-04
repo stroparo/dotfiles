@@ -16,15 +16,14 @@ _print_header () {
 _print_header "Basic tools"
 bash "${DOTFILES_DIR:-.}"/entry.sh -b
 
-_print_header "Basic system"
-bash "${DOTFILES_DIR:-.}"/recipes/fonts-for-devel.sh
+# Devel
+bash "${DOTFILES_DIR:-.}"/recipes/devel-fonts.sh
 
 _print_header "Applying fixes"
 bash "${DOTFILES_DIR:-.}"/recipes/fix-fedora-input.sh
 bash "${DOTFILES_DIR:-.}"/recipes/fix-guake-python2.sh
 
 _print_header "Applications"
-bash "${DOTFILES_DIR:-.}"/installers/setupchrome.sh
 bash "${DOTFILES_DIR:-.}"/installers/setuprdp.sh xfce
 
 # #############################################################################

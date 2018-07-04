@@ -2,7 +2,7 @@
 
 # Cristian Stroparo's dotfiles
 
-PROGNAME=fonts-for-devel.sh
+PROGNAME=devel-fonts.sh
 
 # #############################################################################
 # Globals
