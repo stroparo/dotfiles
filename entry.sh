@@ -151,5 +151,10 @@ fi
 # Recipes
 
 for recipe in "$@" ; do
-  bash ./recipes/"${recipe%.sh}".sh
+  if [ -f ./installers/"${recipe%.sh}".sh ] ; then
+    bash ./installers/"${recipe%.sh}".sh
+  fi
+  if [ -f ./recipes/"${recipe%.sh}".sh ] ; then
+    bash ./recipes/"${recipe%.sh}".sh
+  fi
 done
