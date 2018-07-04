@@ -10,17 +10,20 @@ export USAGE="[-h] [-y]"
 
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 
-export FORCE_YES=false
+export STARTXFCE=false
 
 # Options:
 OPTIND=1
-while getopts ':hy' option ; do
+while getopts ':h' option ; do
   case "${option}" in
     h) echo "$USAGE"; exit;;
-    y) export FORCE_YES=true;;
   esac
 done
 shift "$((OPTIND-1))"
+
+if echo "$@" | grep -q -w 'xfce' ; then
+  export STARTXFCE=true
+fi
 
 # #############################################################################
 
@@ -42,7 +45,7 @@ if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release 2>/dev/null ; then
       # Xclients customization in /etc/X11/xinit for XFCE:
       # TODO verify if applies to centos & fedora
       if which startxfce4 >/dev/null 2>&1 ; then
-        if ${FORCE_YES:-false} ; then
+        if ${STARTXFCE:-false} ; then
           ans=y
         else
           echo ${BASH_VERSION:+-e} "Force Xclients to startxfce4? [y/N]\c"

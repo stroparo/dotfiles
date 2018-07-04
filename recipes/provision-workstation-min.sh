@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROG=provision-workstation.sh
+PROG=provision-workstation-min.sh
 
 # #############################################################################
 # Helpers
@@ -16,18 +16,7 @@ _print_header () {
 _print_header "Basic tools"
 bash ./entry.sh -b
 
-_print_header "Basic dev tools"
-bash "${DOTFILES_DIR:-.}"/installers/setuppython.sh
-bash "${DOTFILES_DIR:-.}"/installers/setuprust.sh
-bash "${DOTFILES_DIR:-.}"/installers/setupdocker.sh
-bash "${DOTFILES_DIR:-.}"/installers/setupdocker-compose.sh
-bash "${DOTFILES_DIR:-.}"/installers/setupexa.sh
-bash "${DOTFILES_DIR:-.}"/installers/setupvim.sh python3
-
 _print_header "Basic system"
-bash "${DOTFILES_DIR:-.}"/recipes/base-el7-gui.sh
-bash "${DOTFILES_DIR:-.}"/recipes/base-el7-gui-fonts.sh
-bash "${DOTFILES_DIR:-.}"/recipes/xfce.sh
 bash "${DOTFILES_DIR:-.}"/recipes/fonts-for-devel.sh
 
 _print_header "Applying fixes"
