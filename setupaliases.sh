@@ -134,6 +134,7 @@ if which git >/dev/null 2>&1 ; then
 
   alias bv='git branch -vv'
   alias bav='git branch -avv'
+  alias gdnoeof='git diff --ignore-space-at-eol'
   alias gfa='git fetch --all'
   alias gfap='git fetch --all -p'
   alias gfp='git fetch -p'
