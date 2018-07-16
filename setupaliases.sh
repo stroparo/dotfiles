@@ -151,6 +151,7 @@ if which git >/dev/null 2>&1 ; then
     alias gb='git branch'
     alias gc='git commit -v'
     alias gcb='git checkout -b'
+    alias gcf='git config -l'
     alias gcl='git clone --recursive'
     alias gco='git checkout'
     alias gd='git diff'
