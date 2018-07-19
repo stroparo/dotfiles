@@ -54,7 +54,7 @@ _print_header "Oh-My-Zsh plugin: zsh-syntax-highlighting"
 
 if [ ! -d "$OMZ_SYN_PATH" ] ; then
   echo git clone "$OMZ_SYN_URL" "$OMZ_SYN_PATH"
-  git clone "$OMZ_SYN_URL" "$OMZ_SYN_PATH"
+  git clone --depth 1 "$OMZ_SYN_URL" "$OMZ_SYN_PATH"
 fi
 ls -d -l "$OMZ_SYN_PATH"
 

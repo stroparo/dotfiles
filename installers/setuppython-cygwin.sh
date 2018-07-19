@@ -85,11 +85,11 @@ _install_tools () {
     done
 }
 
-_install_vewrapper () {
+_install_venvwrapper () {
 
     if [ ! -d ~/.pyenv/plugins/pyenv-virtualenvwrapper ] ; then
-        git clone \
-            https://github.com/yyuu/pyenv-virtualenvwrapper.git \
+        git clone --depth 1 \
+            "https://github.com/yyuu/pyenv-virtualenvwrapper.git" \
             ~/.pyenv/plugins/pyenv-virtualenvwrapper \
             || return $?
     fi
@@ -142,7 +142,7 @@ _install_tools "$@"
 # Set pyenv's PATH priority
 pyenv global "$PYV3" "$PYV2" jupyter3 ipython2 tools3 tools2
 
-_install_vewrapper || exit $?
+_install_venvwrapper || exit $?
 
 # Load virtualenvwrapper into this session:
 eval "$("$HOME/.pyenv/bin/pyenv" init -)"

@@ -37,7 +37,7 @@ echo "${PROGNAME:+$PROGNAME: }INFO: Installing atomic..." 1>&2
 echo "${PROGNAME:+$PROGNAME: }INFO: Cloning openshift-ansible..." 1>&2
 cd ~
 if [ ! -d openshift-ansible ] ; then
-  git clone https://github.com/openshift/openshift-ansible
+  git clone --depth 1 https://github.com/openshift/openshift-ansible
 fi
 cd openshift-ansible
 git pull

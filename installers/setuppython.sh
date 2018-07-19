@@ -264,8 +264,8 @@ pip install pipenv
 echo ${BASH_VERSION:+-e} "\n\n==> virtualenvwrapper installation"
 
 if [ ! -d "$HOME"/.pyenv/plugins/pyenv-virtualenvwrapper ] ; then
-  git clone \
-    https://github.com/yyuu/pyenv-virtualenvwrapper.git \
+  git clone --depth 1 \
+    "https://github.com/yyuu/pyenv-virtualenvwrapper.git" \
     "$HOME"/.pyenv/plugins/pyenv-virtualenvwrapper \
     || exit $?
 fi

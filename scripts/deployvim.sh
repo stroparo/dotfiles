@@ -38,13 +38,13 @@ mkdir -p "$HOME"/.vim/undodir
 # Themes
 
 if [ ! -e "$HOME"/.vim/colors/zenburn.vim ] ; then
-  git clone 'https://github.com/jnurmine/Zenburn.git' "$HOME"/vim-zenburn \
+  git clone --depth 1 'https://github.com/jnurmine/Zenburn.git' "$HOME"/vim-zenburn \
     && mv -f "$HOME"/vim-zenburn/colors/zenburn.vim "$HOME"/.vim/colors/ \
     && rm -f -r "$HOME"/vim-zenburn
 fi
 
 if [ ! -e "$HOME"/.vim/colors/jellybeans.vim ] ; then
-  git clone 'https://github.com/nanotech/jellybeans.vim' "$HOME"/vim-jellybeans \
+  git clone --depth 1 'https://github.com/nanotech/jellybeans.vim' "$HOME"/vim-jellybeans \
     && mv -f "$HOME"/vim-jellybeans/colors/jellybeans.vim "$HOME"/.vim/colors/ \
     && rm -f -r "$HOME"/vim-jellybeans
 fi

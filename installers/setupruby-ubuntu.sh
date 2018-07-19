@@ -33,11 +33,11 @@ export PATH=\"\$HOME/.rbenv/plugins/ruby-build/bin:\$PATH\""
         echo 'installRbenv: SKIP: ~/.rbenv present already.' 1>&2
         return
     else
-        git clone https://github.com/rbenv/rbenv.git ~/.rbenv || return $?
+        git clone --depth 1 "https://github.com/rbenv/rbenv.git" ~/.rbenv || return $?
     fi
 
     if [ ! -e ~/.rbenv/plugins/ruby-build ] ; then
-        git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build || return $?
+        git clone --depth 1 "https://github.com/rbenv/ruby-build.git" ~/.rbenv/plugins/ruby-build || return $?
     fi
 
     if [[ "$(uname -a)" = *[Uu]buntu* ]] && [[ "$-" = *i* ]] ; then

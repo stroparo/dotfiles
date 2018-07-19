@@ -49,7 +49,7 @@ _install_exa_deb () {
   which git >/dev/null 2>&1 || sudo apt install -y git || exit $?
 
   # Compile:
-  git clone https://github.com/ogham/exa.git /tmp/exa \
+  git clone --depth 1 "https://github.com/ogham/exa.git" /tmp/exa \
     && (cd /tmp/exa && make install)
 
   # Install:

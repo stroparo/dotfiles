@@ -24,7 +24,7 @@ echo "##########################################################################
 echo "Fonts installation"
 echo "################################################################################"
 
-git clone --depth=1 "https://github.com/powerline/fonts.git" ~/.powerline-fonts
+git clone --depth 1 "https://github.com/powerline/fonts.git" ~/.powerline-fonts
 cd ~/.powerline-fonts
 ./install.sh && cd && rm -rf ~/.powerline-fonts
 
