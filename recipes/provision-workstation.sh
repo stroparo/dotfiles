@@ -14,7 +14,7 @@ _print_header () {
 # #############################################################################
 
 _print_header "Basic tools"
-bash "${DOTFILES_DIR:-.}"/entry.sh -b
+bash "${DOTFILES_DIR:-.}"/entry.sh -b setupds sshkeygen
 
 # Devel
 bash "${DOTFILES_DIR:-.}"/recipes/devel-stacks.sh

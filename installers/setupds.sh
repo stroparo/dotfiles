@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-PROGNAME=setupshell.sh
-SCRIPT_DIR="$(dirname "${0%/*}")"
-SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
+# Install Daily Shells & DS-Extras plugin
+
+PROGNAME=setupds.sh
 
 # #############################################################################
 # Globals
@@ -34,10 +34,13 @@ _print_header () {
 }
 
 # #############################################################################
-_print_header "Shell setup"
-
 _print_header "Daily Shells"
+
 bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}")"
+
+# #############################################################################
+# DS-Extras
+
 . "${DS_HOME:-$HOME/.ds}/ds.sh"
 if ! ${DS_LOADED:-false} ; then
   echo "${PROGNAME:+${PROGNAME}: }FATAL: Could not load Daily Shells." 1>&2
@@ -53,7 +56,5 @@ while [ ! -e ~/.ds/functions/gitextras.sh ] ; do
   if [ $dsextras_max_tries -le 0 ] ; then break ; fi
 done
 
-sshkeygenrsa.sh
-
+# #############################################################################
 _print_bar
-

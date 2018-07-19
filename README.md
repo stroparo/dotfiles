@@ -54,19 +54,18 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/setupal
 
 ## Shell setup
 
-If only shell setup is desired then execute ```./entry.sh -s```.
+For Daily Shells installation execute ```./entry.sh setupds```.
 
-The ```setupshell.sh``` routine provides for useful shell features:
+For oh-my-zsh execute ```./entry.sh setupohmyzsh```.
 
-* Installs [Daily Shells](http://stroparo.github.io/ds/) and [Daily Shells Extras](https://github.com/stroparo/ds-extras)
-* Installs Oh-My-Zsh (zsh configuration framework)
-* Makes an SSH RSA key-pair and prints the public key
+For SSH default key generation execute ```./entry.sh sshkeygen```.
 
-Direct download and execution:
+Direct download and execution of all these shell recipes & setups:
 
 ```bash
-bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/setupshell.sh" \
-  || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupshell.sh")"
+bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/entry.sh" \
+  || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/entry.sh")" \
+  entry.sh setupds setupohmyzsh sshkeygen
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
 

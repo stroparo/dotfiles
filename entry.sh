@@ -136,11 +136,9 @@ if ${DO_PACKAGES:-false} || ${FULL:-false} ; then
   ./setupbasicpackages.sh
 fi
 
-if ${DO_SHELL:-false} || ${FULL:-false} ; then
-  ./setupshell.sh
-fi
-
 if ${DO_DOT:-false} || ${FULL:-false} || ${NO_ACTION:-true} ; then
+  ./installers/setupds.sh
+  ./recipes/sshkeygen.sh
   ./scripts/deploydotfiles.sh -v
   ./scripts/deploygit.sh
   ./scripts/deployvim.sh
