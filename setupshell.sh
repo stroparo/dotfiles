@@ -53,8 +53,6 @@ while [ ! -e ~/.ds/functions/gitextras.sh ] ; do
   if [ $dsextras_max_tries -le 0 ] ; then break ; fi
 done
 
-"$SCRIPT_DIR"/installers/setupohmyzsh.sh
-
 sshkeygenrsa.sh
 
 _print_bar
