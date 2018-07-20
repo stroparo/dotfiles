@@ -7,7 +7,8 @@ PROGNAME=setupds.sh
 # #############################################################################
 # Globals
 
-export DS_SETUP_URL="https://raw.githubusercontent.com/stroparo/ds/master/setup.sh"
+export DS_SETUP_URL="https://bitbucket.org/stroparo/ds/raw/master/setup.sh"
+export DS_SETUP_URL_ALT="https://raw.githubusercontent.com/stroparo/ds/master/setup.sh"
 
 if which curl >/dev/null 2>&1 ; then
   export DLPROG=curl
@@ -36,7 +37,7 @@ _print_header () {
 # #############################################################################
 _print_header "Daily Shells"
 
-bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}")"
+bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}" || ${DLPROG} ${DLOPT} "${DS_SETUP_URL_ALT}")"
 
 # #############################################################################
 # DS-Extras
