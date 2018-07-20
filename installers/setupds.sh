@@ -51,7 +51,8 @@ fi
 _print_header "Daily Shells Extras"
 dsextras_max_tries=3
 while [ ! -e ~/.ds/functions/gitextras.sh ] ; do
-  dsplugin.sh "stroparo/ds-extras"
+  dsplugin.sh "bitbucket.org/stroparo/ds-extras" \
+    || dsplugin.sh "stroparo/ds-extras"
   dsextras_max_tries=$((dsextras_max_tries-1))
   if [ $dsextras_max_tries -le 0 ] ; then break ; fi
 done
