@@ -22,13 +22,14 @@ _print_header () {
 # #############################################################################
 _print_header "SSH RSA key"
 
-[ -d "${DS_HOME:-$HOME/.ds}/ds.sh" ] || ./installers/setupds.sh
-if [ ! -d "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
+if [ ! -e "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
+  ./installers/setupds.sh
+fi
+if [ ! -e "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: No Daily Shells directory available." 1>&2
   exit 1
 fi
 "${DS_HOME:-$HOME/.ds}"/scripts/sshkeygenrsa.sh
-fi
 
 # #############################################################################
 _print_bar
