@@ -42,19 +42,22 @@ bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}" || ${DLPROG} ${DLOPT} "${DS_SETU
 # #############################################################################
 # DS-Extras
 
-. "${DS_HOME:-$HOME/.ds}/ds.sh"
+. "${DS_HOME:-$HOME/.ds}"/ds.sh
 if ! ${DS_LOADED:-false} ; then
   echo "${PROGNAME:+${PROGNAME}: }FATAL: Could not load Daily Shells." 1>&2
   exit 1
 fi
 
-_print_header "Daily Shells Extras"
 dsextras_max_tries=3
-while [ ! -e ~/.ds/functions/gitextras.sh ] ; do
+dsextras_trial_count=0
+while [ ! -e "${DS_HOME:-$HOME/.ds}"/functions/gitextras.sh ] ; do
+  "Daily Shells Extras installation trial $((dsextras_trial_count+1)) of ${dsextras_max_tries}..."
   dsplugin.sh "bitbucket.org/stroparo/ds-extras" \
     || dsplugin.sh "stroparo/ds-extras"
-  dsextras_max_tries=$((dsextras_max_tries-1))
-  if [ $dsextras_max_tries -le 0 ] ; then break ; fi
+  dsextras_trial_count=$((dsextras_trial_count+1))
+  if [ $dsextras_trial_count -ge $dsextras_max_tries ] ; then
+    break
+  fi
 done
 
 # #############################################################################
