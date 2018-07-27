@@ -105,8 +105,9 @@ _provision_dotfiles () {
       || exit $?
     zip_dir=$(unzip -l "${HOME}"/.dotfiles.zip | head -5 | tail -1 | awk '{print $NF;}')
     echo "Zip dir: '$zip_dir'" 1>&2
-    if [[ ${zip_dir%/} = *stroparo-dotfiles-* ]] ; then
-      (cd "${HOME}"; mv -f -v "${zip_dir}" "${HOME}/dotfiles-master" 1>&2)
+    if ! (cd "${HOME}"; mv -f -v "${zip_dir}" "${HOME}/dotfiles-master" 1>&2) ; then
+      echo "${PROGNAME:+$PROGNAME: }FATAL: Could not move '$zip_dir' to ~/dotfiles-master" 1>&2
+      exit 1
     fi
 
     cd "$HOME/dotfiles-master"
