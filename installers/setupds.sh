@@ -48,4 +48,4 @@ while [ ! -e "${DS_HOME:-$HOME/.ds}"/functions/gitextras.sh ] ; do
   fi
 done
 
-echo "Daily Shells setup complete"
+echo "SUCCESS: Daily Shells setup complete"
