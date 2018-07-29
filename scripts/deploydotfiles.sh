@@ -46,5 +46,5 @@ done
 # #############################################################################
 # Finish
 
-echo "FINISHED stroparo/dotfiles copying of dotfiles in conf/"
+echo "FINISHED stroparo/dotfiles deploying dotfiles in ${DOTDIR}"
 echo
