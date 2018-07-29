@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
-echo ${BASH_VERSION:+-e} '\n\n==> Installing GCP client...' 1>&2
+echo
+echo "################################################################################"
+echo "Setup GCP - Google Cloud Platform - client"
 
 # #############################################################################
 # Checks
 
 if !(uname -a | grep -i -q linux) ; then
-  echo "FATAL: Only Linux is supported." 1>&2
-  exit 1
+  echo "SKIP: Only Linux is supported." 1>&2
 fi
 
 # TODO idempotency check
@@ -73,3 +72,9 @@ fi
 # Install
 
 ./google-cloud-sdk/install.sh
+
+# #############################################################################
+# Finish
+
+echo "FINISHED GCP client setup"
+echo

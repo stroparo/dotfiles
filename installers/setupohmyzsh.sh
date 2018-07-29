@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 
+echo
+echo "################################################################################"
+echo "Setup Oh-My-Zsh"
+
+# #############################################################################
+# Globals
+
 PROGNAME=setupohmyzsh.sh
+OMZ_SYN_PATH="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+OMZ_SYN_URL="https://github.com/zsh-users/zsh-syntax-highlighting.git"
+OMZ_URL="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
 
 # #############################################################################
 # Checks
@@ -11,23 +21,7 @@ if ! type zsh >/dev/null 2>&1 ; then
 fi
 
 # #############################################################################
-# Globals
-
-OMZ_SYN_PATH="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-OMZ_SYN_URL="https://github.com/zsh-users/zsh-syntax-highlighting.git"
-OMZ_URL="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
-
-# #############################################################################
-# Helpers
-
-_print_header () {
-  echo "################################################################################"
-  echo "$@"
-  echo "################################################################################"
-}
-
-# #############################################################################
-_print_header "Oh-My-Zsh"
+# Main
 
 echo
 echo ">>> IMPORTANT <<<"
@@ -50,7 +44,10 @@ if [ -s "${HOME}/.zshrc.pre-oh-my-zsh" ] ; then
 fi
 
 # #############################################################################
-_print_header "Oh-My-Zsh plugin: zsh-syntax-highlighting"
+
+echo
+echo "Installing ohmyzsh plugin zsh-syntax-highlighting"
+echo
 
 if [ ! -d "$OMZ_SYN_PATH" ] ; then
   echo git clone "$OMZ_SYN_URL" "$OMZ_SYN_PATH"
@@ -67,3 +64,7 @@ else
 fi
 
 # #############################################################################
+# Finish
+
+echo "FINISHED Oh-My-Zsh setup"
+echo

@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
+echo
+echo "################################################################################"
+echo "Setup OpenShift for Enterprise Linux 7"
 
-# OpenShift installer for Enterprise Linux 7
+# #############################################################################
+# Globals
 
 set -e
 PROGNAME=setupopenshift-el7.sh
@@ -12,11 +15,13 @@ VG_NAME=docker-vg
 # Checks
 
 if ! egrep -i -q 'red *hat.* 7' /etc/*release ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: Only EL7 supported." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Only EL7 supported." 1>&2
+  exit
 fi
 
 if [ "$(id -u)" -ne 0 ]; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: Must be root." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Must be root." 1>&2
+  exit
 fi
 
 # #############################################################################
@@ -74,3 +79,9 @@ lvs
 echo "${PROGNAME:+$PROGNAME: }INFO: Enabling and starting up Docker...." 1>&2
 systemctl enable docker
 systemctl start docker
+
+# #############################################################################
+# Finish
+
+echo "FINISHED OpenShift for Enterprise Linux 7 setup"
+echo

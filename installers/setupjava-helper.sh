@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
-# Rmk:
-# This script must have all the uppercase variables
-# in its code exported prior to being called.
+# Java setup helper
+# IMPORTANT:
+#   This script must have all the uppercase variables
+#   in its code exported prior to being called.
 
 # #############################################################################
 # Checks

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
+echo
+echo "################################################################################"
+echo "Setup Lua platform"
 
 # #############################################################################
 # Globals
@@ -19,6 +21,11 @@ if egrep -i -q 'debian|ubuntu' /etc/*release ; then
   sudo $APTPROG install -y liblua5.1-dev luajit libluajit-5.1
 elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
   echo "${PROGNAME}: SKIP: TODO implement Lua for Enterprise Linux distributions..." 1>&2
+  exit
 fi
 
 # #############################################################################
+# Finish
+
+echo "FINISHED Lua platform setup"
+echo

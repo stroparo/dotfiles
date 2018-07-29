@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
-echo ${BASH_VERSION:+-e} '\n\n==> Installing atom...' 1>&2
+echo
+echo "################################################################################"
+echo "Setup Atom editor..."
 
 # #############################################################################
 # Checks
@@ -43,6 +43,12 @@ elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 # #############################################################################
 
 else
-  echo "FATAL: OS not handled." 1>&2
-  exit 1
+  echo "SKIP: OS not handled." 1>&2
+  exit
 fi
+
+# #############################################################################
+# Finish
+
+echo "FINISHED Atom setup"
+echo

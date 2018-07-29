@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
+echo
+echo "################################################################################"
+echo "Setup RDP"
 
 # #############################################################################
 # Globals
@@ -67,5 +69,13 @@ EOF
 
   sudo systemctl enable xrdp
   sudo systemctl start xrdp
+else
+  echo "${PROGNAME:+$PROGNAME: }SKIP: OS not supported." 1>&2
+  exit
 fi
 
+# #############################################################################
+# Finish
+
+echo "FINISHED RDP setup"
+echo

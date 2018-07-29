@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
-# Install Python in a Cygwin environment
+echo
+echo "################################################################################"
+echo "Setup Python in a Cygwin environment"
 
 # Arguments of filenames ending '-xyz' will have a list of pip packages to be installed
 # into the 'xyz' virtualenv.
@@ -22,82 +22,82 @@ export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 # Functions
 
 appendunique () {
-    # Syntax: string file1 [file2 ...]
-    [ -z "$1" ] && return 0
-    typeset fail=0
-    typeset text="${1}" ; shift
-    for f in "$@" ; do
-        [ ! -e "$f" ] && fail=1 && echo "ERROR '${f}' does not exist" 1>&2 && continue
-        if ! fgrep -q "${text}" "${f}" ; then
-            ! echo "${text}" >> "${f}" && fail=1 && echo "ERROR appending '${f}'" 1>&2
-        fi
-    done
-    return ${fail}
+  # Syntax: string file1 [file2 ...]
+  [ -z "$1" ] && return 0
+  typeset fail=0
+  typeset text="${1}" ; shift
+  for f in "$@" ; do
+    [ ! -e "$f" ] && fail=1 && echo "ERROR '${f}' does not exist" 1>&2 && continue
+    if ! fgrep -q "${text}" "${f}" ; then
+      ! echo "${text}" >> "${f}" && fail=1 && echo "ERROR appending '${f}'" 1>&2
+    fi
+  done
+  return ${fail}
 }
 
 _make_dirs () {
-    # virtualenvs in ~/.ve and projects in ~/workspace
-    mkdir ~/.ve
-    mkdir ~/workspace
-    [ -d ~/.ve ] && [ -d ~/workspace ]
+  # virtualenvs in ~/.ve and projects in ~/workspace
+  mkdir ~/.ve
+  mkdir ~/workspace
+  [ -d ~/.ve ] && [ -d ~/workspace ]
 }
 
 _prep_profiles () {
-    appendunique 'export WORKON_HOME=~/.ve' \
-        "${HOME}/.bashrc" \
-        "${HOME}/.zshrc" \
-        || return $?
-    appendunique 'export PROJECT_HOME=~/workspace' \
-        "${HOME}/.bashrc" \
-        "${HOME}/.zshrc" \
-        || return $?
+  appendunique 'export WORKON_HOME=~/.ve' \
+    "${HOME}/.bashrc" \
+    "${HOME}/.zshrc" \
+    || return $?
+  appendunique 'export PROJECT_HOME=~/workspace' \
+    "${HOME}/.bashrc" \
+    "${HOME}/.zshrc" \
+    || return $?
 }
 
 _install_deps () {
-    sudo apt-add-repository 'ppa:jonathonf/python-3.6'
-    sudo $APTPROG update || return $?
-    sudo $APTPROG install -y git-core curl sqlite3 || return $?
+  sudo apt-add-repository 'ppa:jonathonf/python-3.6'
+  sudo $APTPROG update || return $?
+  sudo $APTPROG install -y git-core curl sqlite3 || return $?
 }
 
 _install_pyenv () {
-    # Pyenv projects:
-    # https://github.com/yyuu/pyenv-installer (https://github.com/yyuu/pyenv)
-    # https://github.com/yyuu/pyenv-virtualenv
-    # https://github.com/yyuu/pyenv-virtualenvwrapper
+  # Pyenv projects:
+  # https://github.com/yyuu/pyenv-installer (https://github.com/yyuu/pyenv)
+  # https://github.com/yyuu/pyenv-virtualenv
+  # https://github.com/yyuu/pyenv-virtualenvwrapper
 
-    # Skip if already installed
-    test -x "$HOME/.pyenv/bin/pyenv" && return
+  # Skip if already installed
+  test -x "$HOME/.pyenv/bin/pyenv" && return
 
-    curl -L "$PYENV_INSTALLER" | bash
-    appendunique 'export PATH="$HOME/.pyenv/bin:$PATH"' ~/.bashrc ~/.zshrc
-    appendunique 'eval "$(pyenv init -)"' ~/.bashrc ~/.zshrc
-    # Commenting this LOC out avoids conflicting with virtualenvwrapper...
-    appendunique '#eval "$(pyenv virtualenv-init -)"' ~/.bashrc ~/.zshrc
+  curl -L "$PYENV_INSTALLER" | bash
+  appendunique 'export PATH="$HOME/.pyenv/bin:$PATH"' ~/.bashrc ~/.zshrc
+  appendunique 'eval "$(pyenv init -)"' ~/.bashrc ~/.zshrc
+  # Commenting this LOC out avoids conflicting with virtualenvwrapper...
+  appendunique '#eval "$(pyenv virtualenv-init -)"' ~/.bashrc ~/.zshrc
 
-    test -x "$HOME/.pyenv/bin/pyenv"
+  test -x "$HOME/.pyenv/bin/pyenv"
 }
 
 _install_tools () {
-    for piplist in "$@" ; do
-        pyenv activate ${piplist##*-}
-        pip install $(cat "$piplist")
-        pyenv deactivate
-    done
+  for piplist in "$@" ; do
+    pyenv activate ${piplist##*-}
+    pip install $(cat "$piplist")
+    pyenv deactivate
+  done
 }
 
 _install_venvwrapper () {
 
-    if [ ! -d ~/.pyenv/plugins/pyenv-virtualenvwrapper ] ; then
-        git clone --depth 1 \
-            "https://github.com/yyuu/pyenv-virtualenvwrapper.git" \
-            ~/.pyenv/plugins/pyenv-virtualenvwrapper \
-            || return $?
-    fi
+  if [ ! -d ~/.pyenv/plugins/pyenv-virtualenvwrapper ] ; then
+    git clone --depth 1 \
+      "https://github.com/yyuu/pyenv-virtualenvwrapper.git" \
+      ~/.pyenv/plugins/pyenv-virtualenvwrapper \
+      || return $?
+  fi
 
-    appendunique 'pyenv virtualenvwrapper_lazy' \
-        "${HOME}/.bashrc" \
-        "${HOME}/.zshrc" \
-        || return $?
+  appendunique 'pyenv virtualenvwrapper_lazy' \
+    "${HOME}/.bashrc" \
+    "${HOME}/.zshrc" \
+    || return $?
 }
 
 # #############################################################################
@@ -115,7 +115,8 @@ pyenv install "$PYV3"
 pyenv install "$PYV2"
 
 if ! (pyenv versions | fgrep -q "$PYV3") ; then
-    echo "FATAL: $PYV3 version could not be installed." 1>&2
+  echo "FATAL: $PYV3 version could not be installed." 1>&2
+  exit 1
 fi
 
 # Environments:
@@ -152,7 +153,7 @@ pyenv virtualenvwrapper_lazy
 # iPython virtualenv detection (by Henrique Bastos):
 ipython profile create
 # curl -L http://hbn.link/hb-ipython-startup-script \
-#     > ~/.ipython/profile_default/startup/00-venv-sitepackages.py
+#   > ~/.ipython/profile_default/startup/00-venv-sitepackages.py
 cat > ~/.ipython/profile_default/startup/00-venv-sitepackages.py <<'EOF'
 """IPython startup script to detect and inject VIRTUAL_ENV's site-packages dirs.
 
@@ -179,15 +180,20 @@ virtualenv = os.environ.get('VIRTUAL_ENV')
 
 if virtualenv:
 
-    version = os.listdir(os.path.join(virtualenv, 'lib'))[0]
-    site_packages = os.path.join(virtualenv, 'lib', version, 'site-packages')
-    lib_dynload = os.path.join(virtualenv, 'lib', version, 'lib-dynload')
+  version = os.listdir(os.path.join(virtualenv, 'lib'))[0]
+  site_packages = os.path.join(virtualenv, 'lib', version, 'site-packages')
+  lib_dynload = os.path.join(virtualenv, 'lib', version, 'lib-dynload')
 
-    if not (os.path.exists(site_packages) and os.path.exists(lib_dynload)):
-        msg = 'Virtualenv site-packages discovery went wrong for %r' % repr([site_packages, lib_dynload])
-        warn(msg)
+  if not (os.path.exists(site_packages) and os.path.exists(lib_dynload)):
+    msg = 'Virtualenv site-packages discovery went wrong for %r' % repr([site_packages, lib_dynload])
+    warn(msg)
 
-    sys.path.insert(0, site_packages)
-    sys.path.insert(1, lib_dynload)
+  sys.path.insert(0, site_packages)
+  sys.path.insert(1, lib_dynload)
 EOF
 
+# #############################################################################
+# Finish
+
+echo "FINISHED Python setup for Cygwin"
+echo

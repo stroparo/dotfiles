@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
-echo ${BASH_VERSION:+-e} '\n\n==> Installing sublime-text...' 1>&2
+echo
+echo "################################################################################"
+echo "Setup sublimetext editor"
 
 # #############################################################################
 # Globals
@@ -95,6 +95,12 @@ elif [[ "$(uname -a)" = *[Cc]ygwin* ]] ; then
 # #############################################################################
 
 else
-  echo "FATAL: OS not handled." 1>&2
-  exit 1
+  echo "SKIP: OS not handled." 1>&2
+  exit
 fi
+
+# #############################################################################
+# Finish
+
+echo "FINISHED sublimetext setup"
+echo

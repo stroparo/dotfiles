@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
+echo
+echo "################################################################################"
+echo "Setup Vim latest from source"
 
-# Install Vim devel/latest from source.
 # Supports Lua, Perl Python, Ruby
 
 # #############################################################################
@@ -61,11 +62,6 @@ while getopts ':hip:' option ; do
   esac
 done
 shift "$((OPTIND-1))"
-
-# #############################################################################
-# Inform of start
-
-echo ${BASH_VERSION:+-e} "\n==> $PROGNAME started..."
 
 # #############################################################################
 # Check if already compiled and prompt
@@ -316,3 +312,9 @@ if [ "$?" -eq 0 ] \
 then
   sudo make install
 fi
+
+# #############################################################################
+# Finish
+
+echo "FINISHED Vim setup"
+echo

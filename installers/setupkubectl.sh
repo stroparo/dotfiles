@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
+echo
+echo "################################################################################"
+echo "Setup Kubernetes kubectl"
 
 # #############################################################################
 # Globals
@@ -40,8 +42,8 @@ shift "$((OPTIND-1))"
 # Checks
 
 if !(uname -a | grep -i -q linux) ; then
-  echo "$PROGNAME: FATAL: Only Linux is supported." 1>&2
-  exit 1
+  echo "$PROGNAME: SKIP: Only Linux is supported." 1>&2
+  exit
 fi
 
 if type kubectl >/dev/null 2>&1 ; then
@@ -57,8 +59,6 @@ cd "$WORK_DIR"
 # #############################################################################
 # Main
 
-echo ${BASH_VERSION:+-e} '\n\n==> Installing kubectl...' 1>&2
-
 if ${FORCE:-false} || [ ! -e "${INSTALL_DIR}"/kubectl ] ; then
   "$DLPROG" ${DLOPT} ${DLOUT} kubectl "$KUBE_URL"
   chmod -v 755 kubectl
@@ -72,3 +72,7 @@ else
 fi
 
 # #############################################################################
+# Finish
+
+echo "FINISHED Kubernetes kubectl setup"
+echo

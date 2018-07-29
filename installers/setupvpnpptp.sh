@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# Set a PPTP vpn up for Linux.
+echo
+echo "################################################################################"
+echo "Set a PPTP vpn up for Linux"
 
 export USAGE='{connection name} {host address[|other hosts up script]} [up command]'
 
@@ -71,3 +73,9 @@ if [ "$#" -gt 1 ] ; then
     setvpnpptp "$@"
     exit "$?"
 fi
+
+# #############################################################################
+# Finish
+
+echo "FINISHED PPTP vpn setup"
+echo

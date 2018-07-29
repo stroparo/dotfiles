@@ -12,6 +12,7 @@ SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
 # #############################################################################
 # Prep
 
+# Daily Shells dependency
 if [ ! -e "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
   ./installers/setupds.sh
 fi

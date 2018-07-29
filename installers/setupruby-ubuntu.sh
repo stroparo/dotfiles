@@ -1,16 +1,41 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
-# Made for Ubuntu 16.04
 # Install Ruby, Rails, Bundler and common gems
-
 # Argument is a gemfile to use to install global packages
 
-# Dependencies
-(! grep -q Ubuntu /etc/os-release || ! grep -q '16[.]04' /etc/os-release) && exit
-. "${DS_HOME:-$HOME}"/ds.sh "${DS_HOME:-$HOME}" || exit 101
+UBUNTU_VERSION_SUPPORTED="16.04"
+
+echo
+echo "################################################################################"
+echo "Setup Ruby stack in Ubuntu $UBUNTU_VERSION_SUPPORTED"
+
+# #############################################################################
+# Globals
+
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
+
+# #############################################################################
+# Checks
+
+if (! grep -q "Ubuntu" /etc/os-release || ! fgrep -q "$UBUNTU_VERSION_SUPPORTED" /etc/os-release) ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Only Ubuntu supported." 1>&2
+  exit
+fi
+
+# #############################################################################
+# Helpers
+
+_user_confirm () {
+  # Info: Ask a question and yield success if user responded [yY]*
+
+  typeset confirm
+  typeset result=1
+
+  echo ${BASH_VERSION:+-e} "$@" "[y/N] \c"
+  read confirm
+  if [[ $confirm = [yY]* ]] ; then return 0 ; fi
+  return 1
+}
 
 # #############################################################################
 # Functions
@@ -25,7 +50,8 @@ installDependencies () {
 
 installRbenv () {
 
-    type rbenvprofile="export PATH=\"\$HOME/.rbenv/bin:\$PATH\"
+    typeset rbenvcheckexpr=".rbenv/"
+    typeset rbenvprofile="export PATH=\"\$HOME/.rbenv/bin:\$PATH\"
 eval \"\$(rbenv init -)\"
 export PATH=\"\$HOME/.rbenv/plugins/ruby-build/bin:\$PATH\""
 
@@ -43,13 +69,19 @@ export PATH=\"\$HOME/.rbenv/plugins/ruby-build/bin:\$PATH\""
     if [[ "$(uname -a)" = *[Uu]buntu* ]] && [[ "$-" = *i* ]] ; then
         # Ubuntu desktop edge case as pointed out in
         #   https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-14-04
-        appendunique "$rbenvprofile" ~/.bashrc
+        if ! grep -F -q "$rbenvcheckexpr" ~/.bashrc ; then
+            echo "$rbenvprofile" >> ~/.bashrc
+        fi
     else
-        appendunique "$rbenvprofile" ~/.bash_profile
+        if ! grep -F -q "$rbenvcheckexpr" ~/.bash_profile ; then
+            echo "$rbenvprofile" >> ~/.bash_profile
+        fi
     fi
 
     if [ -e ~/.zshrc ] ; then
-        appendunique "$rbenvprofile" ~/.zshrc
+        if ! grep -F -q "$rbenvcheckexpr" ~/.zshrc ; then
+            echo "$rbenvprofile" >> ~/.zshrc
+        fi
     fi
 
     exec $SHELL
@@ -84,11 +116,11 @@ installGemDeps () {
 
     typeset deps
 
-    if userconfirm "Install imagemagick?" ; then
+    if _user_confirm "Install imagemagick?" ; then
         deps="$deps imagemagick libmagick++-dev"
     fi
 
-    if userconfirm "Install PostgreSQL database?" ; then
+    if _user_confirm "Install PostgreSQL database?" ; then
         deps="$deps postgresql postgresql-doc libpq-dev postgresql-server-dev-all"
     fi
 
@@ -124,3 +156,9 @@ fi
 echo ${BASH_VERSION:+-e} "sqlite3\c " ; sqlite3 --version
 ruby -v
 rails -v
+
+# #############################################################################
+# Finish
+
+echo "FINISHED Ruby setup"
+echo

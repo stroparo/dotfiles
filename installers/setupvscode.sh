@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
+echo
+echo "################################################################################"
+echo "Aiding VSCode setup..."
 
 # #############################################################################
 # Globals
@@ -28,7 +30,7 @@ EOF
 
 if (ps -ef | grep -i -q xorg) && which firefox >/dev/null 2>&1 ; then
 
-  echo ${BASH_VERSION:+-e} "\n==> Opening download and gist links...\n"
+  echo ${BASH_VERSION:+-e} "\n==> Opening VSCode download and gist links...\n"
   eval firefox $LINKS & disown
 fi
 
@@ -51,4 +53,7 @@ Solarized Light
 EOF
 
 # #############################################################################
+# Finish
 
+echo "FINISHED aiding VSCode setup"
+echo

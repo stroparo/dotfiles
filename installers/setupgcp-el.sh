@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
+echo
+echo "################################################################################"
+echo "Setup GCP - Google Cloud Platform - SDK - google-cloud-sdk"
 
 # #############################################################################
 # Globals
@@ -11,8 +13,8 @@ export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 # Checks
 
 if ! egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
-  echo "FATAL: Only Red Hat distros supported." 1>&2
-  exit 1
+  echo "SKIP: Only Red Hat distros supported." 1>&2
+  exit
 fi
 
 # #############################################################################
@@ -34,3 +36,9 @@ EOM
 
 # Install the Cloud SDK
 sudo $RPMPROG install google-cloud-sdk
+
+# #############################################################################
+# Finish
+
+echo "FINISHED GCP SDK setup"
+echo

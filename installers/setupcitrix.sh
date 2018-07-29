@@ -22,7 +22,9 @@ ${CITRIX_MAJOR_VERSION}-${CITRIX_MINOR_VERSION}.html"
 
 # #############################################################################
 
-echo ${BASH_VERSION:+-e} "\n\n==> Citrix setup started...\n" 1>&2
+echo
+echo "################################################################################"
+echo "Setup Citrix..."
 
 # #############################################################################
 # Checks
@@ -112,3 +114,7 @@ fi
 # xdg-mime default wfica.desktop application/x-ica
 
 # #############################################################################
+# Finish
+
+echo "FINISHED Citrix setup"
+echo

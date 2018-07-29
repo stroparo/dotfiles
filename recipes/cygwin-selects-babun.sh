@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CYGWINSETUP=wincyg.bat
+CYGWINSETUP=cygwin-selects.bat
 
 if [ -e "$CYGWINSETUP" ] && type pact >/dev/null 2>&1 ; then
   pact install `grep "CYGSETUP.*-P" "$CYGWINSETUP" | grep -o -- '-P .*$' | sed -e 's/-P //g' | tr , ' '`

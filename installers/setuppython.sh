@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
-# Install Python, pyenv etcetera, and Python packages
+echo
+echo "################################################################################"
+echo "Setup Python"
 
 # Arguments of filenames ending '-xyz' will have a list of pip packages to be installed
 # into the 'xyz' virtualenv.
@@ -33,8 +33,8 @@ fi
 if ! egrep -i -q 'ubuntu' /etc/*release \
   && ! egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release
 then
-  echo "FATAL: Only Debian/RHEL family distros are supported." 1>&2
-  exit 1
+  echo "SKIP: Only Debian and Enterprise Linux distributions are supported." 1>&2
+  exit
 fi
 
 # #############################################################################
@@ -333,3 +333,9 @@ echo ${BASH_VERSION:+-e} "\n\n==> Etcetera"
 if which "pythonselects.sh" >/dev/null 2>&1; then
   "pythonselects.sh"
 fi
+
+# #############################################################################
+# Finish
+
+echo "FINISHED Python setup"
+echo

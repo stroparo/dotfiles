@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
 set -e
 
-echo ${BASH_VERSION:+-e} '\n\n==> Installing tmux...' 1>&2
+echo
+echo "################################################################################"
+echo "Setup tmux Terminal MUltipleXer"
 
 # #############################################################################
 # Globals
@@ -40,8 +40,8 @@ _make_install () {
 
 # Check OS
 if !(uname -a | grep -i -q linux) ; then
-  echo "FATAL: Only Linux is supported." 1>&2
-  exit 1
+  echo "SKIP: Only Linux is supported." 1>&2
+  exit
 fi
 
 mkdir -p "$PREFIX"/
@@ -103,3 +103,9 @@ LDFLAGS="-L$PREFIX/lib -Wl,-rpath=$PREFIX/lib" \
   ./configure --prefix="$PREFIX"
 make
 _make_install
+
+# #############################################################################
+# Finish
+
+echo "FINISHED tmux setup"
+echo

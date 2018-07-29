@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
-echo ${BASH_VERSION:+-e} '\n\n==> Installing jenkins (RHEL)...' 1>&2
+echo
+echo "################################################################################"
+echo "Setup Jenkins for EL Enterprise Linux based distributions"
 
 # #############################################################################
 # Checks
 
 if ! egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
-  echo "FATAL: Only Red Hat distros supported." 1>&2
-  exit 1
+  echo "SKIP: Only Red Hat distros supported." 1>&2
+  exit
 fi
 
 # #############################################################################
@@ -41,3 +41,7 @@ sudo grep -A 5 password /var/log/jenkins/jenkins.log
 EOF
 
 # #############################################################################
+# Finish
+
+echo "FINISHED Jenkins for EL Enterprise Linux distros setup"
+echo

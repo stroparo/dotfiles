@@ -1,19 +1,8 @@
 #!/usr/bin/env bash
 
-# Install exa file listing program
-
-# #############################################################################
-# Helpers
-
-_print_bar () {
-  echo "################################################################################"
-}
-
-_print_started () {
-  echo "################################################################################"
-  echo "exa - file listing program"
-  echo "################################################################################"
-}
+echo
+echo "################################################################################"
+echo "Setup exa file listing"
 
 # #############################################################################
 # Checks
@@ -63,15 +52,19 @@ _install_exa_deb () {
 # #############################################################################
 # Main
 
-_print_started
-
 if egrep -i -q 'debian|ubuntu' /etc/*release ; then
   _install_exa_deb "$@"
   exit $?
 elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
-  echo "SKIP: _install_exa_rpm routine still to be implemented"
-  exit $?
+  echo "SKIP: _install_exa_rpm routine still to be implemented" 1>&2
+  exit
 else
   echo "SKIP: OS not handled." 1>&2
-  exit $?
+  exit
 fi
+
+# #############################################################################
+# Finish
+
+echo "FINISHED exa setup"
+echo

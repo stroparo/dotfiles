@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
-echo ${BASH_VERSION:+-e} '\n\n==> Installing docker-compose...' 1>&2
+echo
+echo "################################################################################"
+echo "Setup docker-compose..."
 
 # #############################################################################
 # Globals
@@ -14,8 +14,8 @@ COMPLETION_URL="https://raw.githubusercontent.com/docker/compose/1.18.0/contrib/
 # Checks
 
 if !(uname -a | grep -i -q linux) ; then
-  echo "FATAL: Only Linux is supported." 1>&2
-  exit 1
+  echo "SKIP: Only Linux is supported." 1>&2
+  exit
 fi
 
 # Check for idempotency
@@ -71,3 +71,7 @@ if which zsh >/dev/null 2>&1 ; then
 fi
 
 # #############################################################################
+# Finish
+
+echo "FINISHED docker-compose setup"
+echo

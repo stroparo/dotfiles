@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
-echo ${BASH_VERSION:+-e} '\n\n==> Installing docker...' 1>&2
+echo
+echo "################################################################################"
+echo "Setup Docker..."
 
 # #############################################################################
 # Checks
 
 if !(uname -a | grep -i -q linux) ; then
-  echo "FATAL: Only Linux is supported." 1>&2
-  exit 1
+  echo "SKIP: Only Linux is supported." 1>&2
+  exit
 fi
 
 # Check for idempotency
@@ -35,3 +35,7 @@ echo
 sudo docker run hello-world
 
 # #############################################################################
+# Finish
+
+echo "FINISHED Docker setup"
+echo

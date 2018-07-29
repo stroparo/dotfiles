@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
+echo
+echo "################################################################################"
+echo "Setup Perl"
 
 # #############################################################################
 # Globals
@@ -20,3 +22,7 @@ elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 fi
 
 # #############################################################################
+# Finish
+
+echo "FINISHED Perl setup"
+echo

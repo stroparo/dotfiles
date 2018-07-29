@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
+echo
+echo "################################################################################"
+echo "Setup Chrome browser..."
 
 # #############################################################################
 # Globals
@@ -11,8 +13,6 @@ export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP
 
 # #############################################################################
 # Main
-
-echo ${BASH_VERSION:+-e} "\n==> Setting up Google Chrome..."
 
 if egrep -i -q '(centos|fedora|oracle|red *hat).* 7' /etc/*release ; then
 
@@ -37,4 +37,13 @@ elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
   sudo $APTPROG update
   sudo $APTPROG install -y google-chrome-stable
+else
+  echo "${PROGNAME:+$PROGNAME: }SKIP: OS not supported." 1>&2
+  exit
 fi
+
+# #############################################################################
+# Finish
+
+echo "FINISHED Chrome browser setup"
+echo

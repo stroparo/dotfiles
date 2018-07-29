@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
-# Rmk: Find OpenJDK packages at http://jdk.java.net
-
-echo ${BASH_VERSION:+-e} '\n\n==> Installing openjdk9...' 1>&2
+# Remark: OpenJDK packages are at http://jdk.java.net
 
 # #############################################################################
 # Globals
@@ -23,4 +19,14 @@ export REQ_HEADER="Cookie: oraclelicense=accept-securebackup-cookie"
 # #############################################################################
 # Main
 
+echo
+echo "################################################################################"
+echo "Setup Java OpenJDK ${VER_MAJOR} version ${VER_FULL}"
+
 ./setupjava-helper.sh
+
+# #############################################################################
+# Finish
+
+echo "FINISHED Java OpenJDK setup"
+echo

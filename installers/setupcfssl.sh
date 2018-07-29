@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
-echo ${BASH_VERSION:+-e} '\n\n==> Installing cfssl...' 1>&2
+echo
+echo "################################################################################"
+echo "Setup cfssl..."
 
 # #############################################################################
 # Checks
 
 if !(uname -a | grep -i -q linux) ; then
-  echo "FATAL: Only Linux is supported." 1>&2
-  exit 1
+  echo "SKIP: Only Linux is supported." 1>&2
+  exit
 fi
 
 if type cfssl >/dev/null 2>&1 ; then
@@ -49,3 +49,7 @@ ls -l "${INSTALL_DIR}"/cfssl*
 which cfssl cfssljson
 
 # #############################################################################
+# Finish
+
+echo "FINISHED cfssl setup"
+echo

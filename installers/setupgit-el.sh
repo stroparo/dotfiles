@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
+echo
+echo "################################################################################"
+echo "Setup Git for EL Enterprise Linux based distributions"
 
 # #############################################################################
 # Globals
@@ -13,16 +15,16 @@ export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 # Check OS
 
 if ! egrep -i -q 'cent ?os|fedora|oracle|red ?hat' /etc/*release ; then
-  echo "FATAL: Only Red Hat based distros are allowed to call this script ($0)" 1>&2
-  exit 1
+  echo "SKIP: Only Red Hat based distros are allowed to call this script ($0)" 1>&2
+  exit
 fi
 
 # #############################################################################
 # Pre-requisites
 
 if $UID != 0 ; then
-  echo "FATAL: Must run this as root" 1>&2
-  exit 1
+  echo "SKIP: Must run this as root" 1>&2
+  exit
 fi
 
 # #############################################################################
@@ -44,3 +46,9 @@ if ! grep -q '/git' /etc/bashrc ; then
 fi
 
 git --version
+
+# #############################################################################
+# Finish
+
+echo "FINISHED Git for EL setup"
+echo
