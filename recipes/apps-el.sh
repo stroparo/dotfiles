@@ -61,7 +61,6 @@ _install_rpm_groups () {
 
 echo "################################################################################"
 echo "Enterprise Linux package selects"
-echo "################################################################################"
 
 # EPEL extra packages
 if ! _is_fedora ; then

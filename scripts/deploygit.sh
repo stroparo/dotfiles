@@ -29,7 +29,8 @@ shift "$((OPTIND-1))"
 # #############################################################################
 # Begin
 
-if ${VERBOSE:-false} ; then _print_bar ; echo "Git setup; \$0='$0'; \$PWD='$PWD'" ; fi
+_print_bar
+echo "Git setup; \$0='$0'; \$PWD='$PWD'"
 
 # Install Git
 which git >/dev/null 2>&1 \
@@ -127,4 +128,5 @@ fi
 # #############################################################################
 # Finish
 
-if ${VERBOSE:-false} ; then echo "Git setup complete" ; _print_bar ; fi
+echo "FINISHED Git setup"
+_print_bar

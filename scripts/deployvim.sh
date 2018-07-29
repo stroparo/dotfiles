@@ -29,7 +29,8 @@ shift "$((OPTIND-1))"
 # #############################################################################
 # Begin
 
-if ${VERBOSE:-false} ; then _print_bar ; echo "Vim setup; \$0='$0'; \$PWD='$PWD'" ; fi
+_print_bar
+echo "Vim setup; \$0='$0'; \$PWD='$PWD'"
 
 mkdir -p "$HOME"/.vim/colors
 mkdir -p "$HOME"/.vim/undodir
@@ -62,5 +63,5 @@ if ${VERBOSE:-false} ; then
   echo
 fi
 
-if ${VERBOSE:-false} ; then echo "Vim setup complete" ; _print_bar ; fi
-
+echo "FINISHED Vim setup"
+_print_bar

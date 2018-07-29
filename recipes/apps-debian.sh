@@ -37,7 +37,6 @@ _install_packages () {
 
 echo "################################################################################"
 echo "Debian package selects"
-echo "################################################################################"
 
 echo "Debian APT index update..."
 if ! sudo $APTPROG update >/dev/null 2>/tmp/apt-update-err.log ; then
