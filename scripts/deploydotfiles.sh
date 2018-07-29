@@ -6,8 +6,8 @@ USAGE="[-v]"
 # #############################################################################
 # Globals
 
-DOTDIR=./dotfiles
-VERBOSE=false
+DOTDIR="$PWD"/dotfiles
+: ${VERBOSE:=false} ; export VERBOSE
 
 # #############################################################################
 # Options:
@@ -25,7 +25,7 @@ shift "$((OPTIND-1))"
 
 echo "################################################################################"
 echo "Dotfiles setup; \$0='$0'; \$PWD='$PWD'"
-echo "Op: conf/* -> \$HOME/.*"
+echo "Op: $DOTDIR/* -> \$HOME/.*"
 
 for dotfilename in $(ls -d "$DOTDIR"/*) ; do
   destname="${HOME}/.${dotfilename#$DOTDIR/}"

@@ -30,7 +30,7 @@ export EXCLUDE='@@@@EXCLUDEDUMMY@@@@'
 export FORCE=false
 export INTERACTIVE=false
 export QUIET=false
-export VERBOSE=false
+: ${VERBOSE:=false} ; export VERBOSE
 
 OPTIND=1
 while getopts ':${3:d:fhinqs:vx:}' opt ; do
