@@ -54,5 +54,5 @@ fi
 # #############################################################################
 # Finish
 
-echo "SUCCESS: Daily Shells setup complete"
+echo "FINISHED Daily Shells setup"
 echo
