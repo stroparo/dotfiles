@@ -225,5 +225,5 @@ EOF
 # #############################################################################
 # Finish
 
-echo "FINISHED stroparo/dotfiles aliases setup at ${ALIASES_FILE}"
+echo "FINISHED aliases setup at ${ALIASES_FILE}"
 echo

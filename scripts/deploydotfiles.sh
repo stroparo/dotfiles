@@ -46,5 +46,5 @@ done
 # #############################################################################
 # Finish
 
-echo "FINISHED stroparo/dotfiles deploying dotfiles in ${DOTDIR}"
+echo "FINISHED deploying dotfiles in ${DOTDIR}"
 echo

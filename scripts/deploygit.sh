@@ -121,5 +121,5 @@ fi
 # #############################################################################
 # Finish
 
-echo "FINISHED stroparo/dotfiles Git setup"
+echo "FINISHED custom deployment of Git"
 echo

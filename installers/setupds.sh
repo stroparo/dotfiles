@@ -51,4 +51,8 @@ if [ ! -e "${DS_HOME:-$HOME/.ds}"/functions/gitextras.sh ] ; then
   done
 fi
 
+# #############################################################################
+# Finish
+
 echo "SUCCESS: Daily Shells setup complete"
+echo

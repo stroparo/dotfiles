@@ -28,5 +28,5 @@ fi
 # #############################################################################
 # Finish
 
-echo "FINISHED stroparo/dotfiles sshkeygen recipe"
+echo "FINISHED sshkeygen recipe"
 echo

@@ -56,5 +56,5 @@ if ${VERBOSE:-false} ; then
   echo
 fi
 
-echo "FINISHED stroparo/dotfiles Vim setup"
+echo "FINISHED custom deployment of Vim"
 echo
