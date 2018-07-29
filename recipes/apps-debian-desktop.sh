@@ -104,4 +104,7 @@ sudo $INSTPROG install -y shutter # screenshots
 EOF
 
 # #############################################################################
+# Finish
 
+echo "FINISHED Debian desktop package installations"
+echo

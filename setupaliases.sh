@@ -223,6 +223,7 @@ alias tks='tmux kill-session -t'
 EOF
 
 # #############################################################################
+# Finish
 
-echo "################################################################################"
-
+echo "FINISHED stroparo/dotfiles aliases setup at ${ALIASES_FILE}"
+echo

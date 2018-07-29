@@ -10,6 +10,7 @@ export PROGNAME="entry.sh"
 
 : ${DEV:=${HOME}/workspace} ; export DEV
 : ${OVERRIDE_SUBL_PREFS:=false} ; export OVERRIDE_SUBL_PREFS
+: ${VERBOSE:=false} ; export VERBOSE
 
 # System installers
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
@@ -30,13 +31,14 @@ NO_ACTION=true
 
 # Options:
 OPTIND=1
-while getopts ':abdfps' option ; do
+while getopts ':abdfpsv' option ; do
   case "${option}" in
     a) DO_ALIASES=true; NO_ACTION=false;;
     b|p) DO_PACKAGES=true; NO_ACTION=false;;
     d) DO_DOT=true;;
     f) FULL=true;;
     s) DO_SHELL=true; NO_ACTION=false;;
+    v) VERBOSE=true;;
   esac
 done
 shift "$((OPTIND-1))"
@@ -140,10 +142,11 @@ fi
 if ${DO_DOT:-false} || ${FULL:-false} || ${NO_ACTION:-true} ; then
   ./installers/setupds.sh
   ./recipes/sshkeygen.sh
-  ./scripts/deploydotfiles.sh -v
+  ./scripts/deploydotfiles.sh
   ./scripts/deploygit.sh
   ./scripts/deployvim.sh
   ./scripts/deployworkspace.sh
+  echo "################################################################################"
 fi
 
 # #############################################################################

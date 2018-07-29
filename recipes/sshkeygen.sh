@@ -26,3 +26,7 @@ fi
 "${DS_HOME:-$HOME/.ds}"/scripts/sshkeygenrsa.sh
 
 # #############################################################################
+# Finish
+
+echo "FINISHED stroparo/dotfiles sshkeygen recipe"
+echo

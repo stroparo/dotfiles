@@ -9,13 +9,6 @@ USAGE="[-v]"
 VERBOSE=false
 
 # #############################################################################
-# Helpers
-
-_print_bar () {
-  echo "################################################################################"
-}
-
-# #############################################################################
 # Options:
 OPTIND=1
 while getopts ':hv' option ; do
@@ -27,9 +20,9 @@ done
 shift "$((OPTIND-1))"
 
 # #############################################################################
-# Begin
+# Main
 
-_print_bar
+echo "################################################################################"
 echo "Vim setup; \$0='$0'; \$PWD='$PWD'"
 
 mkdir -p "$HOME"/.vim/colors
@@ -63,5 +56,5 @@ if ${VERBOSE:-false} ; then
   echo
 fi
 
-echo "FINISHED Vim setup"
-_print_bar
+echo "FINISHED stroparo/dotfiles Vim setup"
+echo

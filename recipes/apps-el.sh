@@ -60,7 +60,7 @@ _install_rpm_groups () {
 # Main
 
 echo "################################################################################"
-echo "Enterprise Linux package selects"
+echo "EL Enterprise Linux package selects"
 
 # EPEL extra packages
 if ! _is_fedora ; then
@@ -113,3 +113,8 @@ _install_packages setroubleshoot-server selinux-policy-devel
 echo "EL system packages..."
 _install_packages yum-utils
 
+# #############################################################################
+# Finish
+
+echo "FINISHED EL Enterprise Linux package installations"
+echo

@@ -10,13 +10,6 @@ DOTDIR=./dotfiles
 VERBOSE=false
 
 # #############################################################################
-# Helpers
-
-_print_bar () {
-  echo "################################################################################"
-}
-
-# #############################################################################
 # Options:
 OPTIND=1
 while getopts ':hv' option ; do
@@ -30,11 +23,9 @@ shift "$((OPTIND-1))"
 # #############################################################################
 # Main
 
-if ${VERBOSE:-false} ; then
-  _print_bar
-  echo "Dotfiles setup; \$0='$0'; \$PWD='$PWD'"
-  echo "Op: conf/* -> \$HOME/.*"
-fi
+echo "################################################################################"
+echo "Dotfiles setup; \$0='$0'; \$PWD='$PWD'"
+echo "Op: conf/* -> \$HOME/.*"
 
 for dotfilename in $(ls -d "$DOTDIR"/*) ; do
   destname="${HOME}/.${dotfilename#$DOTDIR/}"
@@ -55,4 +46,5 @@ done
 # #############################################################################
 # Finish
 
-if ${VERBOSE:-false} ; then echo "Dotfiles setup complete" ; _print_bar ; fi
+echo "FINISHED stroparo/dotfiles copying of dotfiles in conf/"
+echo

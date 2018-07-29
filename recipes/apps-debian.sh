@@ -83,3 +83,9 @@ _install_packages oathtool
 echo "Debian APT repository clean up..."
 sudo $APTPROG autoremove -y
 sudo $APTPROG clean -y
+
+# #############################################################################
+# Finish
+
+echo "FINISHED Debian package installations"
+echo
