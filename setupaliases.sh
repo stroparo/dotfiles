@@ -129,6 +129,7 @@ alias dke='docker exec'
 ​alias dkl='docker ps -l -q'
 ​alias dkps="docker ps"
 alias dkrm="docker rm"
+alias dkrmi="docker rmi"
 
 # #############################################################################
 # Git
