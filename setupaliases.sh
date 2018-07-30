@@ -126,6 +126,7 @@ alias dc='docker-compose'
 alias dce='docker-compose exec'
 alias dk='docker'
 alias dke='docker exec'
+alias dkipaddr="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 ​alias dkl='docker ps -l -q'
 ​alias dkps="docker ps"
 alias dkrm="docker rm"
