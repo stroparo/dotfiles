@@ -126,6 +126,9 @@ alias dc='docker-compose'
 alias dce='docker-compose exec'
 alias dk='docker'
 alias dke='docker exec'
+​alias dkl='docker ps -l -q'
+​alias dkps="docker ps"
+alias dkrm="docker rm"
 
 # #############################################################################
 # Git
