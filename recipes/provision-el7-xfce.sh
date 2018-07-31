@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROG=provision-workstation.sh
+PROG=provision-el7-xfce.sh
 
 _print_header () {
   echo "################################################################################"

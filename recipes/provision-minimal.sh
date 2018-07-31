@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROG=provision-workstation.sh
+PROG=provision-minimal.sh
 
 _print_header () {
   echo "################################################################################"
