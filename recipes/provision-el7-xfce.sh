@@ -2,16 +2,10 @@
 
 PROG=provision-workstation.sh
 
-# #############################################################################
-# Helpers
-
 _print_header () {
   echo "################################################################################"
   echo "$@"
-  echo "################################################################################"
 }
-
-# #############################################################################
 
 _print_header "Basic tools"
 bash "${DOTFILES_DIR:-.}"/entry.sh -b setupds sshkeygen
@@ -32,5 +26,3 @@ bash "${DOTFILES_DIR:-.}"/recipes/fix-guake-python2.sh
 _print_header "Applications"
 bash "${DOTFILES_DIR:-.}"/installers/setupchrome.sh
 bash "${DOTFILES_DIR:-.}"/installers/setuprdp.sh xfce
-
-# #############################################################################

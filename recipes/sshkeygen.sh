@@ -24,6 +24,12 @@ fi
 # #############################################################################
 # Main
 
+mkdir ~/.ssh 2>/dev/null
+if [ ! -d ~/.ssh ] ; then
+  echo "${PROGNAME:+$PROGNAME: }FATAL: Could not create ~/.ssh directory." 1>&2
+  exit 1
+fi
+
 "${DS_HOME:-$HOME/.ds}"/scripts/sshkeygenrsa.sh
 
 # #############################################################################
