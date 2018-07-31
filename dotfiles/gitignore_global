@@ -12,6 +12,7 @@
 *.log
 *.out
 *.pyc
+*.sublime-project
 *.sublime-workspace
 *.swo
 *.swp
