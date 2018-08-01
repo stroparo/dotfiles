@@ -2,19 +2,13 @@
 
 PROG=provision-pc.sh
 
-# #############################################################################
-# Helpers
-
 _print_header () {
   echo "################################################################################"
   echo "$@"
-  echo "################################################################################"
 }
 
-# #############################################################################
-
 _print_header "Basic tools"
-bash "${DOTFILES_DIR:-.}"/entry.sh -b
+bash "${DOTFILES_DIR:-.}"/entry.sh -b setupds sshkeygen sshmodes
 
 # Devel
 bash "${DOTFILES_DIR:-.}"/recipes/devel-stacks.sh
@@ -34,5 +28,3 @@ bash "${DOTFILES_DIR:-.}"/recipes/apps-ubuntu-ppa.sh
 bash "${DOTFILES_DIR:-.}"/installers/setupanki.sh
 bash "${DOTFILES_DIR:-.}"/installers/setupchrome.sh
 bash "${DOTFILES_DIR:-.}"/installers/setupdropbox.sh
-
-# #############################################################################

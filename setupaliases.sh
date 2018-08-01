@@ -4,6 +4,7 @@
 # Globals
 ALIASES_FILE="$HOME/.aliases-cs"
 
+echo
 echo "################################################################################"
 echo "Aliases ==> '$ALIASES_FILE'"
 

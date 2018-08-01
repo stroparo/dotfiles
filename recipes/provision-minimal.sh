@@ -8,4 +8,6 @@ _print_header () {
 }
 
 _print_header "Minimal provisioning"
+
+_print_header "Basic Tools"
 bash "${DOTFILES_DIR:-.}"/entry.sh -b setupds sshkeygen sshmodes
