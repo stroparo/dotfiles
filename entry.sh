@@ -139,9 +139,13 @@ if ${DO_PACKAGES:-false} || ${FULL:-false} ; then
   ./setupbasicpackages.sh
 fi
 
-if ${DO_DOT:-false} || ${FULL:-false} || ${NO_ACTION:-true} ; then
+if ${DO_SHELL:-false} || ${FULL:-false} ; then
   ./installers/setupds.sh
   ./recipes/sshkeygen.sh
+  ./recipes/sshmodes.sh
+fi
+
+if ${DO_DOT:-false} || ${FULL:-false} || ${NO_ACTION:-true} ; then
   ./scripts/deploydotfiles.sh
   ./scripts/deploygit.sh
   ./scripts/deployvim.sh
