@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-cat <<EOF
-################################################################################
-Development tools
-################################################################################
-EOF
+
+echo "################################################################################"
+echo "Development tools"
 
 bash "${DOTFILES_DIR:-.}"/installers/setupdocker.sh
 bash "${DOTFILES_DIR:-.}"/installers/setupdocker-compose.sh
