@@ -9,6 +9,8 @@ These are custom i.e. the best way to seize them is to fork this repository and 
 * [sudo setup](#sudo-setup)
 * Call the ```./entry.sh``` script only from inside the dotfiles directory i.e. first ```cd /path/to/dotfiles``` (automatically done by the automated remote setup below)
 
+---
+
 ## Basic usage
 
 The main script is ```entry.sh``` at the root directory. Enter the dotfiles directory before calling it -- this is VERY IMPORTANT -- otherwise it will provision itself to ```$HOME/dotfiles-master``` and cd into it by itself before starting.
@@ -30,7 +32,9 @@ Running with no options nor arguments is the same as ```./entry.sh -d``` ('d' fo
 
 #### Recipes
 
-After the options you might specify arguments. These are a list of recipes to be executed. These recipes are scripts in the ```recipes``` directory. You might omit the ```.sh``` extension and the script will put it back in.
+After the options you might specify arguments. These are a list of recipes to be executed. These recipes are scripts filenames in either the ```installers``` or ```recipes``` directory. You might omit the ```.sh``` extension and that recipe/script will still be called correctly.
+
+---
 
 ## Automated Remote Setup
 
@@ -53,6 +57,8 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/setupal
   . ~/.aliases-cs
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
+
+---
 
 ## Shell setup
 
