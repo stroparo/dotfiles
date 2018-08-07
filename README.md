@@ -15,24 +15,19 @@ These are custom i.e. the best way to seize them is to fork this repository and 
 
 The main script is ```entry.sh``` at the root directory. Enter the dotfiles directory before calling it -- this is VERY IMPORTANT -- otherwise it will provision itself to ```$HOME/dotfiles-master``` and cd into it by itself before starting.
 
-Running with no options nor arguments is the same as ```./entry.sh -d``` ('d' for "dotfiles"). Besides dotfiles themselves this will also apply configurations in the ```scripts/deploy*.sh``` routines, providing for:
+Running with no options nor arguments is the same as ```./entry.sh -d``` ('d' for "dotfiles"). This "dotfiles step" runs scripts/deploydotfiles.sh and all other routines in the ```scripts/deploy*.sh``` files as well.
 
-* Create the workspace directory ($HOME/workspace)
-* Git custom configuration
-* Sublime Text custom configuration
-* Vim custom configuration
+#### Options
 
-#### Other options
-
-* ```-a``` aliases
+* ```-a``` aliases deployment as per the setupaliases.sh script
 * ```-b``` basic software selects
 * ```-d``` dotfiles i.e. tools' configurations
-* ```-s``` shell setup: [Daily Shells](http://stroparo.github.io/ds/), [Oh-My-Zsh](https://ohmyz.sh/) etcetera
-* ```-f``` (f for full): aliases, basic software, dotfiles, shell
+* ```-s``` shell setup will install [Daily Shells](http://stroparo.github.io/ds/) and generate an SSH key
+* ```-f``` full run i.e. will activate all other options
 
 #### Recipes
 
-After the options you might specify arguments. These are a list of recipes to be executed. These recipes are scripts filenames in either the ```installers``` or ```recipes``` directory. You might omit the ```.sh``` extension and that recipe/script will still be called correctly.
+After the options you might specify arguments. These are a list of recipes to be executed. These recipes are scripts inside either the ```installers``` or ```recipes``` directory. You might omit the ```.sh``` extension and they will still be called correctly.
 
 ---
 
