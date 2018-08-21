@@ -1,0 +1,266 @@
+{
+	"argvalidation": {
+		"prefix": "argvalidation",
+		"body": "\nfor arg in \"$@\" ; do\n  if echo \"$arg\" | grep -q '[^${1:a-zA-Z0-9_.*?-}]' ; then\n    echo \"FATAL: Arguments should contain only characters in the list: [${1:a-zA-Z0-9_.*?-}]\" 1>&2\n    return 1\n  fi\ndone\n",
+		"description": "",
+		"scope": ""
+	},
+	"awklo": {
+		"prefix": "awklo",
+		"body": "\n| awk '{print tolower($0)}'\n",
+		"description": "",
+		"scope": ""
+	},
+	"awkup": {
+		"prefix": "awkup",
+		"body": "\n| awk '{print toupper($0)}'\n",
+		"description": "",
+		"scope": ""
+	},
+	"bashabang": {
+		"prefix": "bashabang",
+		"body": "\n#!/usr/bin/env bash\n",
+		"description": "",
+		"scope": ""
+	},
+	"ckpath": {
+		"prefix": "ckpath",
+		"body": "\nif ! which \"${1}\" > /dev/null ; then\n  echo \"FATAL: '${1}' not in path\" 1>&2\n  exit 1\nfi\n",
+		"description": "",
+		"scope": ""
+	},
+	"depds": {
+		"prefix": "depds",
+		"body": "\nif [ ! -e ~/.ds/ds.sh ] ; then\n  FORCE=true bash -c \"$(curl -LSf -k -o - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh')\"\nfi\n. ~/.ds/ds.sh\nif [ -z \"$DS_HOME\" ] ; then\n  echo \"${PROGNAME:+$PROGNAME: }FATAL: Could not load Daily Shells.\" 1>&2\n  exit 1\nfi\n",
+		"description": "",
+		"scope": ""
+	},
+	"dlprogcall": {
+		"prefix": "dlprogcall",
+		"body": "\n\"$DLPROG\" ${DLOPT} ${1:$\\{DLOUT\\}} ${2:-} \"${3:https://}\"\n",
+		"description": "",
+		"scope": ""
+	},
+	"dlprogexec": {
+		"prefix": "dlprogexec",
+		"body": "\nbash -c \"$(\"${DLPROG}\" ${DLOPT} ${1:$\\{DLOUT\\}} ${2:-} \"${3:https://}\")\"\n",
+		"description": "",
+		"scope": ""
+	},
+	"echoext": {
+		"prefix": "echoext",
+		"body": "\necho ${BASH_VERSION:+-e} \"${1}\"\n",
+		"description": "",
+		"scope": "source.shell"
+	},
+	"echofatal": {
+		"prefix": "echofatal",
+		"body": "\necho \"${PROGNAME:+$PROGNAME: }${1:FATAL}: ${2:There was some error}.\" 1>&2\n",
+		"description": "",
+		"scope": "source.shell"
+	},
+	"fgetopts": {
+		"prefix": "fgetopts",
+		"body": "\n# Options:\ntypeset oldind=\"${OPTIND}\"\nOPTIND=1\nwhile getopts ':${1}' option ; do\n  case \"${option}\" in\n    ${2}) ${3}=${4:true}${5:\"${OPTARG\\}\"};;\n  esac\ndone\nshift $((OPTIND-1)) ; OPTIND=\"${oldind}\"\n",
+		"description": "",
+		"scope": "source.shell"
+	},
+	"funcisinteractive": {
+		"prefix": "funcisinteractive",
+		"body": "\n_is_interactive () { [[ $- = *i* ]] ; }\n",
+		"description": "",
+		"scope": ""
+	},
+	"funcprintbar": {
+		"prefix": "funcprintbar",
+		"body": "\n_print_bar () {\n  echo \"################################################################################\"\n}\n",
+		"description": "",
+		"scope": ""
+	},
+	"funcprintheader": {
+		"prefix": "funcprintheader",
+		"body": "\n_print_header () {\n  echo \"################################################################################\"\n  echo \"$@\"\n  echo \"################################################################################\"\n}\n",
+		"description": "",
+		"scope": ""
+	},
+	"funcprovidedotfiles": {
+		"prefix": "funcprovidedotfiles",
+		"body": "\n# #############################################################################\n_provision_dotfiles () {\n  export DOTFILES_SRC=\"https://bitbucket.org/stroparo/dotfiles/get/master.zip\"\n  export DOTFILES_SRC_ALT=\"https://github.com/stroparo/dotfiles/archive/master.zip\"\n\n  if [ ! -e ./entry.sh ] && [ ! -d ./dotfiles ] ; then\n    if [ ! -d \"${HOME}/dotfiles-master\" ] ; then\n      curl -LSfs -o \"${HOME}\"/.dotfiles.zip \"$DOTFILES_SRC\" \\\n        || curl -LSfs -o \"${HOME}\"/.dotfiles.zip \"$DOTFILES_SRC_ALT\"\n      unzip -o \"${HOME}\"/.dotfiles.zip -d \"${HOME}\" \\\n        || return $?\n      zip_dir=$(unzip -l \"${HOME}\"/.dotfiles.zip | head -5 | tail -1 | awk '{print $NF;}')\n      echo \"Zip dir: '$zip_dir'\" 1>&2\n      if [[ ${zip_dir%/} = *stroparo-dotfiles-* ]] ; then\n        (cd \"${HOME}\"; mv -f -v \"${zip_dir}\" \"${HOME}/dotfiles-master\" 1>&2)\n      fi\n    fi\n    cd \"$HOME/dotfiles-master\"\n  fi\n\n  if [ ! -e ./entry.sh ] && [ ! -d ./dotfiles ] ; then\n    echo \"FATAL: could not provision dotfiles.\" 1>&2\n  fi\n\n  find \"$PWD\" -name '*.sh' -type f -exec chmod u+x {} \\;\n\n  if ! (echo \"$PATH\" | grep -q dotfiles) ; then\n    # Root intentionally omitted from PATH as these must be called with absolute path:\n    export PATH=\"$PWD/installers:$PWD/scripts:$PATH\"\n  fi\n}\n_provision_dotfiles\n\n",
+		"description": "",
+		"scope": ""
+	},
+	"funcuserconfirm": {
+		"prefix": "funcuserconfirm",
+		"body": "\n_user_confirm () {\n  # Info: Ask a question and yield success if user responded [yY]*\n\n  typeset confirm\n  typeset result=1\n\n  echo ${BASH_VERSION:+-e} \"$@\" \"[y/N] \\c\"\n  read confirm\n  if [[ $confirm = [yY]* ]] ; then return 0 ; fi\n  return 1\n}\n\n",
+		"description": "",
+		"scope": ""
+	},
+	"getopts": {
+		"prefix": "getopts",
+		"body": "\n# Options:\nOPTIND=1\nwhile getopts ':${1}' option ; do\n  case \"${option}\" in\n    ${2}) ${3}=${4:true}${5:\"${OPTARG\\}\"};;\n    ${6:h) echo \"$USAGE\"; exit;;}\n  esac\ndone\nshift \"$((OPTIND-1))\"\n",
+		"description": "",
+		"scope": "source.shell"
+	},
+	"isaix": {
+		"prefix": "isaix",
+		"body": "\n(uname -a | grep -i -q aix)\n",
+		"description": "",
+		"scope": ""
+	},
+	"iscygwin": {
+		"prefix": "iscygwin",
+		"body": "\n(uname -a | egrep -i -q \"cygwin|mingw|msys|win32|windows\")\n",
+		"description": "",
+		"scope": ""
+	},
+	"isgui": {
+		"prefix": "isgui",
+		"body": "\n(which startx || which firefox || which google-chrome || which subl) \\\n  >/dev/null 2>&1\n",
+		"description": "",
+		"scope": ""
+	},
+	"isinteractive": {
+		"prefix": "isinteractive",
+		"body": "\n[[ $- = *i* ]]\n",
+		"description": "",
+		"scope": "source.shell"
+	},
+	"islinux": {
+		"prefix": "islinux",
+		"body": "\n(uname -a | grep -i -q linux)\n",
+		"description": "",
+		"scope": ""
+	},
+	"islinuxdeb": {
+		"prefix": "islinuxdeb",
+		"body": "\negrep -i -q 'debian|ubuntu' /etc/*release\n",
+		"description": "",
+		"scope": ""
+	},
+	"islinuxel": {
+		"prefix": "islinuxel",
+		"body": "\negrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release\n",
+		"description": "",
+		"scope": ""
+	},
+	"islinuxfedora": {
+		"prefix": "islinuxfedora",
+		"body": "\negrep -i -q 'fedora' /etc/*release\n",
+		"description": "",
+		"scope": ""
+	},
+	"islinuxubuntu": {
+		"prefix": "islinuxubuntu",
+		"body": "\negrep -i -q 'ubuntu' /etc/*release\n",
+		"description": "",
+		"scope": ""
+	},
+	"newfunction": {
+		"prefix": "newfunction",
+		"body": "\n${1} () {\n  # Info: ${2}\n  # Syntax: ${3}\n\n  ${4:echo '${1} started ...' 1>&2}\n}\n\n",
+		"description": "",
+		"scope": "source.shell"
+	},
+	"newoneliner": {
+		"prefix": "newoneliner",
+		"body": "\n${1} () { ${2} ; }\n",
+		"description": "",
+		"scope": "source.shell"
+	},
+	"newscript": {
+		"prefix": "newscript",
+		"body": "\n#!/usr/bin/env bash\n\n# #############################################################################\n# Globals\n\nexport PNAME=\"$(basename \"$0\")\"\nexport USAGE=\"\nNAME\n  ${PNAME} - ${1}\n\nSYNOPSIS\n  ${PNAME} ${2}\n\nDESCRIPTION\n\n\"\n\n# #############################################################################\n# Prep args\n\n# Options:\n\nexport DESTDIR=''\nexport SRCDIR=''\n\nexport DRYRUN=false\nexport EXCLUDE='@@@@EXCLUDEDUMMY@@@@'\nexport FORCE=false\nexport INTERACTIVE=false\nexport QUIET=false\n: ${VERBOSE:=false} ; export VERBOSE\n\nOPTIND=1\nwhile getopts ':${3:d:fhinqs:vx:}' opt ; do\n  case ${opt} in\n\n    h) echo \"${USAGE}\" ; exit ;;\n\n    d) export DESTDIR=\"${OPTARG}\";;\n    s) export SRCDIR=\"${OPTARG}\";;\n\n    f) export FORCE=true;;\n    i) export INTERACTIVE=true;;\n    n) export DRYRUN=true;;\n    q) export QUIET=true;;\n    v) export VERBOSE=true;;\n    x) export EXCLUDE=\"${OPTARG}\";;\n\n  esac\ndone\nshift $((OPTIND - 1))\n\n# Arguments:\n# VAR=\"${1}\"\n# ...\n\n# #############################################################################\n# Functions\n\nprep () {\n\n  for i in \"$@\" ; do\n    ${4:# TODO Process each argument in \"${i\\}\"}\n  done\n}\n\n${5:main} () {\n\n  ${6:# TODO implement}\n}\n\n# #############################################################################\n# Main\n\nprep \"$@\"\n${5:main} \"$@\"\nexit \"$?\"\n\n",
+		"description": "",
+		"scope": ""
+	},
+	"newscriptds": {
+		"prefix": "newscriptds",
+		"body": "\n#!/usr/bin/env bash\n\n# DS - Daily Shells Library\n# License:\n#   See README.md document in projects page at\n#   https://github.com/stroparo/ds\n\nckds () {\n  if [ -z \"${DS_VERSION}\" ] && ! . \"${DS_HOME}/ds.sh\" \"${DS_HOME}\" >/dev/null 2>&1\n  then\n    echo \"No DS Daily Shells loaded. Fix it and call this again.\" 1>&2\n    echo \"Tips:\" 1>&2\n    echo \"curl -o - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh' | bash\" 1>&2\n    echo \"wget -O - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh' | bash\" 1>&2\n    return 1\n  fi\n}\nckds || exit $?\n\n# #############################################################################\n# Globals\n\nexport PNAME=\"$(basename \"$0\")\"\nexport USAGE=\"\nNAME\n  ${PNAME} - ${1}\n\nSYNOPSIS\n  ${PNAME} ${2}\n\nDESCRIPTION\n\n\"\n\n# #############################################################################\n# Prep args\n\n# Options:\n\nexport DESTDIR=''\nexport SRCDIR=''\n\nexport DRYRUN=false\nexport EXCLUDE='@@@@EXCLUDEDUMMY@@@@'\nexport FORCE=false\nexport INTERACTIVE=false\nexport QUIET=false\n: ${VERBOSE:=false} ; export VERBOSE\n\nOPTIND=1\nwhile getopts ':${3:d:fhinqs:vx:}' opt ; do\n  case ${opt} in\n\n    h) echo \"${USAGE}\" ; exit ;;\n\n    d) export DESTDIR=\"${OPTARG}\";;\n    s) export SRCDIR=\"${OPTARG}\";;\n\n    f) export FORCE=true;;\n    i) export INTERACTIVE=true;;\n    n) export DRYRUN=true;;\n    q) export QUIET=true;;\n    v) export VERBOSE=true;;\n    x) export EXCLUDE=\"${OPTARG}\";;\n\n  esac\ndone\nshift $((OPTIND - 1))\n\n# Arguments:\n# VAR=\"${1}\"\n# ...\n\n# #############################################################################\n# Functions\n\nprep () {\n\n  for i in \"$@\" ; do\n    ${4:# TODO Process each argument in \"${i\\}\"}\n  done\n}\n\n${5:main} () {\n\n  ${6:# TODO implement}\n}\n\n# #############################################################################\n# Main\n\nprep \"$@\"\n${5:main} \"$@\"\nexit \"$?\"\n\n",
+		"description": "",
+		"scope": ""
+	},
+	"nullboth": {
+		"prefix": "nullboth",
+		"body": "\n>/dev/null 2>&1\n",
+		"description": "",
+		"scope": ""
+	},
+	"nullerr": {
+		"prefix": "nullerr",
+		"body": "\n2>/dev/null\n",
+		"description": "",
+		"scope": ""
+	},
+	"nullout": {
+		"prefix": "nullout",
+		"body": "\n>/dev/null\n",
+		"description": "",
+		"scope": ""
+	},
+	"redir1to2": {
+		"prefix": "redir1to2",
+		"body": "\n1>&2\n",
+		"description": "",
+		"scope": ""
+	},
+	"setvardlprog": {
+		"prefix": "setvardlprog",
+		"body": "\n# Setup the downloader program (curl/wget)\nif which curl >/dev/null 2>&1 ; then\n  export DLPROG=curl\n  export DLOPT='-LSfs'\n  export DLOUT='-o'\nelif which wget >/dev/null 2>&1 ; then\n  export DLPROG=wget\n  export DLOPT=''\n  export DLOUT='-O'\nelse\n  echo \"FATAL: curl and wget missing\" 1>&2\n  exit 1\nfi\n",
+		"description": "",
+		"scope": ""
+	},
+	"setvarinstprog": {
+		"prefix": "setvarinstprog",
+		"body": "\n# System installers\nexport APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt\nexport RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf\nexport RPMGROUP=\"yum groupinstall\"; which dnf >/dev/null 2>&1 && export RPMGROUP=\"dnf group install\"\nexport INSTPROG=\"$APTPROG\"; which \"$RPMPROG\" >/dev/null 2>&1 && export INSTPROG=\"$RPMPROG\"\n",
+		"description": "",
+		"scope": ""
+	},
+	"setvarinteractive": {
+		"prefix": "setvarinteractive",
+		"body": "\nINTERACTIVE=false ; [ \"$1\" = '-i' ] && INTERACTIVE=true && shift\n",
+		"description": "",
+		"scope": "source.shell"
+	},
+	"trlo": {
+		"prefix": "trlo",
+		"body": "\n| tr '[[:upper:]]' '[[:lower:]]'\n",
+		"description": "",
+		"scope": ""
+	},
+	"trup": {
+		"prefix": "trup",
+		"body": "\n| tr '[[:lower:]]' '[[:upper:]]'\n",
+		"description": "",
+		"scope": ""
+	},
+	"var": {
+		"prefix": "var",
+		"body": "\n${${1:varname}}\n",
+		"description": "",
+		"scope": ""
+	},
+	"varquoted": {
+		"prefix": "varquoted",
+		"body": "\n\"${${1:varname}}\"\n",
+		"description": "",
+		"scope": ""
+	},
+	"varsetdefault": {
+		"prefix": "varsetdefault",
+		"body": "\n: ${${1:varname}:=${2}} ; export ${1:varname}\n",
+		"description": "",
+		"scope": ""
+	},
+	"whileheredoc": {
+		"prefix": "whileheredoc",
+		"body": "\nwhile read ${1:var} ; do\ndone <<EOF\n$()\nEOF\n",
+		"description": "",
+		"scope": ""
+	},
+	"zshabang": {
+		"prefix": "zshabang",
+		"body": "\n#!/usr/bin/env zsh\n",
+		"description": "",
+		"scope": ""
+	}
+}
