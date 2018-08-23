@@ -19,7 +19,7 @@
 	},
 	"bashabang": {
 		"prefix": "bashabang",
-		"body": "\n#!/usr/bin/env bash\n",
+		"body": "#!/usr/bin/env bash\n",
 		"description": "",
 		"scope": ""
 	},
