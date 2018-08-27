@@ -37,7 +37,7 @@ One could also directly download whatever script in this repository and have its
 
 ```bash
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/recipes/alias.sh" \
-  || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/recipes/alias.sh")"; \
+  || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/recipes/alias.sh")"; \
   . ~/.aliases-cs
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
