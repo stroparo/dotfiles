@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
-
 # #############################################################################
 # Globals
 

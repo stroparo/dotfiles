@@ -1,7 +1,7 @@
 {
-	"hdrdotfiles": {
-		"prefix": "hdrdotfiles",
-		"body": "\n# Cristian Stroparo's dotfiles - https://github.com/stroparo/dotfiles\n",
+	"hdrrunr": {
+		"prefix": "hdrrunr",
+		"body": "\n# Cristian Stroparo's runr - https://github.com/stroparo/runr\n",
 		"description": "",
 		"scope": ""
 	},

@@ -31,7 +31,7 @@ fi
 # Deploy
 
 mkdir -p "${SUBL_USER}"
-subl_files_dir=$(dirname "$(find . -type f -name 'Preferences.sublime-settings')")
+subl_files_dir=$(dirname "$(find "$PWD" -type f -name 'Preferences.sublime-settings')")
 if [ -z "$subl_files_dir" ] ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: No sublimetext conf files dir found." 1>&2
   exit 1

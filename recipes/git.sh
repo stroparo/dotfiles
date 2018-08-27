@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROGNAME=deploygit.sh
+PROGNAME=git.sh
 USAGE="[-v] [git files --default--> \$HOME/.gitconfig]"
 
 # #############################################################################

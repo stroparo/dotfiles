@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROGNAME=deployvim.sh
+PROGNAME=vim.sh
 USAGE="[-v]"
 
 # #############################################################################

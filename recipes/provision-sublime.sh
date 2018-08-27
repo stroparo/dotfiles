@@ -2,7 +2,7 @@
 
 PROG=provision-sublime.sh
 
-cd "${DOTFILES_DIR:-.}"
+cd "${RUNR_DIR:-.}"
 
 # #############################################################################
 # Setup sublime
@@ -17,6 +17,6 @@ if ! type subl >/dev/null 2>&1 && ! type sublime_text >/dev/null 2>&1 ; then
 fi
 
 # #############################################################################
-# Deploy dotfiles
+# Deploy
 
-bash ./misc/subl3/deploysublime.sh
+bash ./subl3/sublime.sh

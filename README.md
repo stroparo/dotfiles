@@ -6,28 +6,19 @@ These are custom i.e. the best way to seize them is to fork this repository and 
 
 ## Requirements
 
+* [runr]() - routine runner, be acquainted with it first by reading its README
 * [sudo setup](#sudo-setup)
-* Call the ```./entry.sh``` script only from inside the dotfiles directory i.e. first ```cd /path/to/dotfiles``` (automatically done by the automated remote setup below)
 
 ---
 
 ## Basic usage
 
-The main script is ```entry.sh``` at the root directory. Enter the dotfiles directory before calling it -- this is VERY IMPORTANT -- otherwise it will provision itself to ```$HOME/dotfiles-master``` and cd into it by itself before starting.
+#### Base recipes
 
-Running with no options nor arguments is the same as ```./entry.sh -d``` ('d' for "dotfiles"). This "dotfiles step" runs scripts/deploydotfiles.sh and all other routines in the ```scripts/deploy*.sh``` files as well.
-
-#### Options
-
-* ```-a``` aliases deployment as per the setupaliases.sh script
-* ```-b``` basic software selects
-* ```-d``` dotfiles i.e. tools' configurations
-* ```-s``` shell setup will install [Daily Shells](http://stroparo.github.io/ds/) and generate an SSH key
-* ```-f``` full run i.e. will activate all other options
-
-#### Recipes
-
-After the options you might specify arguments. These are a list of recipes to be executed. These recipes are scripts inside either the ```installers``` or ```recipes``` directory. You might omit the ```.sh``` extension and they will still be called correctly.
+* alias
+* apps
+* dotfiles
+* shell
 
 ---
 
@@ -36,39 +27,37 @@ After the options you might specify arguments. These are a list of recipes to be
 The script has self-provisioning capabilities so you can skip downloading and setting it up by calling this command:
 
 ```bash
-bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/entry.sh" \
-  || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/entry.sh")" \
-  entry.sh -f
+bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
+  || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
+  entry.sh alias apps dotfiles shell
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
-
-Instead of the ```-f``` option you could give it ```-a``` to have only the custom aliases deployed.
 
 One could also directly download whatever script in this repository and have its sequence executed in one fell swoop, like in this example for the custom aliases:
 
 ```bash
-bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/setupaliases.sh" \
-  || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/setupaliases.sh")"; \
+bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/recipes/alias.sh" \
+  || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/recipes/alias.sh")"; \
   . ~/.aliases-cs
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
 
 ---
 
-## Shell setup
+## Other recipes
 
-For Daily Shells installation execute ```./entry.sh setupds```.
+For Daily Shells installation: setupds
 
-For oh-my-zsh execute ```./entry.sh setupohmyzsh```.
+For oh-my-zsh: setupohmyzsh
 
-For SSH default key generation execute ```./entry.sh sshkeygen```.
+For SSH default key generation: sshkeygen sshmodes
 
-Direct download and execution of all these shell recipes & setups:
+Example issuing a direct download and execution of all these:
 
 ```bash
-bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/entry.sh" \
-  || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/entry.sh")" \
-  entry.sh setupds setupohmyzsh sshkeygen
+bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
+  || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
+  entry.sh setupds setupohmyzsh sshkeygen sshmodes
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
 
@@ -76,11 +65,11 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/entry.s
 
 ## Linux desktop package selects
 
-Download of the dotfiles package plus installation of custom desktop package selects for Debian and Enterprise Linux families:
+Download of the runr package plus installation of custom desktop package selects for Debian and Enterprise Linux families:
 
 ```bash
-bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/entry.sh" \
-  || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/entry.sh")" \
+bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
+  || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
   entry.sh apps-debian-desktop apps-el-desktop
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
@@ -120,10 +109,10 @@ In case you are inside a restricted network and certificate verification fails f
 Download & comprehensive setup:
 
 ```bash
-curl -LSf -k -o ~/.dotfiles.zip "https://github.com/stroparo/dotfiles/archive/master.zip" \
-  && unzip -o ~/.dotfiles.zip -d "$HOME" \
-  && cd "$HOME"/dotfiles-master \
-  && ./entry.sh -f
+curl -LSf -k -o ~/.runr.zip "https://github.com/stroparo/runr/archive/master.zip" \
+  && unzip -o ~/.runr.zip -d "$HOME" \
+  && cd "$HOME"/runr-master \
+  && ./entry.sh alias apps dotfiles shell
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
 

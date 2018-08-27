@@ -71,7 +71,7 @@ if !(uname -a | grep -i -q linux) ; then
   exit
 fi
 
-if (vim --version | grep -q 'stroparo/dotfiles') ; then
+if (vim --version | grep -q 'stroparo') ; then
   if ! ${INTERACTIVE:-false} || ! _user_confirm "VIM already compiled. Recompile?" ; then
     echo "${PROGNAME:+$PROGNAME: }SKIP: VIM already compiled."
     exit
@@ -303,7 +303,7 @@ eval ./configure \
   --enable-fontset \
   --enable-largefile \
   --disable-netbeans \
-  --with-compiledby="stroparo/dotfiles" \
+  --with-compiledby="stroparo" \
   --enable-fail-if-missing \
   && make
 

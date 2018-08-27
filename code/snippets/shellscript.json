@@ -83,12 +83,6 @@
 		"description": "",
 		"scope": ""
 	},
-	"funcprovidedotfiles": {
-		"prefix": "funcprovidedotfiles",
-		"body": "\n# #############################################################################\n_provision_dotfiles () {\n  export DOTFILES_SRC=\"https://bitbucket.org/stroparo/dotfiles/get/master.zip\"\n  export DOTFILES_SRC_ALT=\"https://github.com/stroparo/dotfiles/archive/master.zip\"\n\n  if [ ! -e ./entry.sh ] && [ ! -d ./dotfiles ] ; then\n    if [ ! -d \"${HOME}/dotfiles-master\" ] ; then\n      curl -LSfs -o \"${HOME}\"/.dotfiles.zip \"$DOTFILES_SRC\" \\\n        || curl -LSfs -o \"${HOME}\"/.dotfiles.zip \"$DOTFILES_SRC_ALT\"\n      unzip -o \"${HOME}\"/.dotfiles.zip -d \"${HOME}\" \\\n        || return $?\n      zip_dir=$(unzip -l \"${HOME}\"/.dotfiles.zip | head -5 | tail -1 | awk '{print $NF;}')\n      echo \"Zip dir: '$zip_dir'\" 1>&2\n      if [[ ${zip_dir%/} = *stroparo-dotfiles-* ]] ; then\n        (cd \"${HOME}\"; mv -f -v \"${zip_dir}\" \"${HOME}/dotfiles-master\" 1>&2)\n      fi\n    fi\n    cd \"$HOME/dotfiles-master\"\n  fi\n\n  if [ ! -e ./entry.sh ] && [ ! -d ./dotfiles ] ; then\n    echo \"FATAL: could not provision dotfiles.\" 1>&2\n  fi\n\n  find \"$PWD\" -name '*.sh' -type f -exec chmod u+x {} \\;\n\n  if ! (echo \"$PATH\" | grep -q dotfiles) ; then\n    # Root intentionally omitted from PATH as these must be called with absolute path:\n    export PATH=\"$PWD/installers:$PWD/scripts:$PATH\"\n  fi\n}\n_provision_dotfiles\n\n",
-		"description": "",
-		"scope": ""
-	},
 	"funcuserconfirm": {
 		"prefix": "funcuserconfirm",
 		"body": "\n_user_confirm () {\n  # Info: Ask a question and yield success if user responded [yY]*\n\n  typeset confirm\n  typeset result=1\n\n  echo ${BASH_VERSION:+-e} \"$@\" \"[y/N] \\c\"\n  read confirm\n  if [[ $confirm = [yY]* ]] ; then return 0 ; fi\n  return 1\n}\n\n",

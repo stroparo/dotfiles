@@ -3,5 +3,5 @@
 echo "################################################################################"
 echo "Development stacks"
 
-bash "${DOTFILES_DIR:-.}"/installers/setuppython.sh
-bash "${DOTFILES_DIR:-.}"/installers/setuprust.sh
+bash "${RUNR_DIR:-.}"/installers/setuppython.sh
+bash "${RUNR_DIR:-.}"/installers/setuprust.sh
