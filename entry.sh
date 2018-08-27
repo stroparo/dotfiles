@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
 # Remark: Run this script from its directory.
 
 export PROGNAME="entry.sh"
@@ -21,31 +20,18 @@ export INSTPROG="$APTPROG"; which "$RPMPROG" >/dev/null 2>&1 && export INSTPROG=
 # #############################################################################
 # Options
 
-NO_ACTION=true
-
-: ${DO_ALIASES:=false}
-: ${DO_PACKAGES:=false}
-: ${DO_DOT:=false}
-: ${DO_SHELL:=false}
-: ${FULL:=false}
+: ${REPOS:=https://github.com/stroparo/dotfiles.git}; export REPOS
+: ${VERBOSE:=false}
 
 # Options:
 OPTIND=1
-while getopts ':abdfpsv' option ; do
+while getopts ':r:v' option ; do
   case "${option}" in
-    a) DO_ALIASES=true; NO_ACTION=false;;
-    b|p) DO_PACKAGES=true; NO_ACTION=false;;
-    d) DO_DOT=true;;
-    f) FULL=true;;
-    s) DO_SHELL=true; NO_ACTION=false;;
+    r) export REPOS="$OPTARG";;
     v) VERBOSE=true;;
   esac
 done
 shift "$((OPTIND-1))"
-
-if [ $# -gt 0 ] ; then
-  NO_ACTION=false
-fi
 
 # #############################################################################
 # Helpers
@@ -77,90 +63,87 @@ if (uname | grep -q linux) ; then
   fi
 fi
 
-if ! which unzip >/dev/null 2>&1 ; then
+if (! which curl || ! which git || ! which unzip) >/dev/null 2>&1 ; then
   which $APTPROG >/dev/null 2>&1 && sudo $APTPROG update
-  _install_packages unzip
+  _install_packages curl git unzip
 fi
 
 # #############################################################################
-_provision_dotfiles () {
-  export DOTFILES_SRC="https://bitbucket.org/stroparo/dotfiles/get/master.zip"
-  export DOTFILES_SRC_ALT="https://github.com/stroparo/dotfiles/archive/master.zip"
+_provision_runr () {
+  export RUNR_SRC="https://bitbucket.org/stroparo/runr/get/master.zip"
+  export RUNR_SRC_ALT="https://github.com/stroparo/runr/archive/master.zip"
 
-  if [ ! -e ./entry.sh ] && [ ! -d ./dotfiles ] ; then
+  if [ ! -e ./entry.sh ] && [ ! -d ./runr ] ; then
 
-    if [ -d "${HOME}/dotfiles-master" ] ; then
-      export DOTFILES_BAK_DIRNAME="${HOME}/.dotfiles-master.bak.$(date '+%Y%m%d-%OH%OM%OS')"
-      if mv -f "${HOME}/dotfiles-master" "$DOTFILES_BAK_DIRNAME" ; then
-        tar czf "${DOTFILES_BAK_DIRNAME}.tar.gz" "$DOTFILES_BAK_DIRNAME" \
-          && rm -f -r "$DOTFILES_BAK_DIRNAME"
+    if [ -d "${HOME}/runr-master" ] ; then
+      export RUNR_BAK_DIRNAME="${HOME}/.runr-master.bak.$(date '+%Y%m%d-%OH%OM%OS')"
+      if mv -f "${HOME}/runr-master" "$RUNR_BAK_DIRNAME" ; then
+        tar czf "${RUNR_BAK_DIRNAME}.tar.gz" "$RUNR_BAK_DIRNAME" \
+          && rm -f -r "$RUNR_BAK_DIRNAME"
       else
-        echo "${PROGNAME:+$PROGNAME: }FATAL: Could not archive existing ~/dotfiles-master." 1>&2
+        echo "${PROGNAME:+$PROGNAME: }FATAL: Could not archive existing ~/runr-master." 1>&2
         exit 1
       fi
     fi
 
-    # Provide an updated 'dotfiles-master' directory:
-    curl -LSfs -o "${HOME}"/.dotfiles.zip "$DOTFILES_SRC" \
-      || curl -LSfs -o "${HOME}"/.dotfiles.zip "$DOTFILES_SRC_ALT"
-    unzip -o "${HOME}"/.dotfiles.zip -d "${HOME}" \
+    # Provide an updated 'runr-master' directory:
+    curl -LSfs -o "${HOME}"/.runr.zip "$RUNR_SRC" \
+      || curl -LSfs -o "${HOME}"/.runr.zip "$RUNR_SRC_ALT"
+    unzip -o "${HOME}"/.runr.zip -d "${HOME}" \
       || exit $?
-    zip_dir=$(unzip -l "${HOME}"/.dotfiles.zip | head -5 | tail -1 | awk '{print $NF;}')
+    zip_dir=$(unzip -l "${HOME}"/.runr.zip | head -5 | tail -1 | awk '{print $NF;}')
     echo "Zip dir: '$zip_dir'" 1>&2
-    if ! (cd "${HOME}"; mv -f -v "${zip_dir}" "${HOME}/dotfiles-master" 1>&2) ; then
-      echo "${PROGNAME:+$PROGNAME: }FATAL: Could not move '$zip_dir' to ~/dotfiles-master" 1>&2
+    if ! (cd "${HOME}"; mv -f -v "${zip_dir}" "${HOME}/runr-master" 1>&2) ; then
+      echo "${PROGNAME:+$PROGNAME: }FATAL: Could not move '$zip_dir' to ~/runr-master" 1>&2
       exit 1
     fi
 
-    cd "$HOME/dotfiles-master"
+    cd "$HOME/runr-master"
   fi
 
-  if [ ! -e ./entry.sh ] && [ ! -d ./dotfiles ] ; then
-    echo "${PROGNAME:+$PROGNAME: }FATAL: Could not provision dotfiles." 1>&2
+  if [ ! -e ./entry.sh ] && [ ! -d ./runr ] ; then
+    echo "${PROGNAME:+$PROGNAME: }FATAL: Could not provision runr." 1>&2
   fi
 
-  export DOTFILES_DIR="$PWD"
-  find "$DOTFILES_DIR" -name '*.sh' -type f -exec chmod u+x {} \;
-  if ! (echo "$PATH" | fgrep -q "$(basename "$DOTFILES_DIR")") ; then
+  export RUNR_DIR="$PWD"
+  find "$RUNR_DIR" -name '*.sh' -type f -exec chmod u+x {} \;
+  if ! (echo "$PATH" | fgrep -q "$(basename "$RUNR_DIR")") ; then
     # Root intentionally omitted from PATH as these must be called with absolute path:
-    export PATH="$DOTFILES_DIR/installers:$DOTFILES_DIR/recipes:$DOTFILES_DIR/scripts:$PATH"
+    export PATH="$RUNR_DIR/installers:$RUNR_DIR/recipes:$RUNR_DIR/scripts:$PATH"
   fi
 }
-_provision_dotfiles
+_provision_runr
 
 # #############################################################################
-# Configurations
+# Clone repos with sequences to be ran
 
-if ${DO_ALIASES:-false} || ${FULL:-false} ; then
-  ./setupaliases.sh
+mkdir "${RUNR_DIR}/tmp"
+if [ ! -d "${RUNR_DIR}/tmp" ] ; then
+  echo "${PROGNAME:+$PROGNAME: }FATAL: There was some error creating temp dir at '${RUNR_DIR}/tmp'." 1>&2
+  exit 1
 fi
 
-if ${DO_PACKAGES:-false} || ${FULL:-false} ; then
-  ./setupbasicpackages.sh
-fi
-
-if ${DO_SHELL:-false} || ${FULL:-false} ; then
-  ./installers/setupds.sh
-  ./recipes/sshkeygen.sh
-  ./recipes/sshmodes.sh
-fi
-
-if ${DO_DOT:-false} || ${FULL:-false} || ${NO_ACTION:-true} ; then
-  ./scripts/deploydotfiles.sh
-  ./scripts/deploygit.sh
-  ./scripts/deployvim.sh
-  ./scripts/deployworkspace.sh
-  echo "################################################################################"
+if [ -n "$REPOS" ] ; then
+  while read repo ; do
+    git archive --remote="$repo" master | tar -xf - -C "${RUNR_DIR}/tmp"
+    repo_basename=$(basename "${repo%.git}")
+    if mv -i "${RUNR_DIR}/tmp/${repo_basename}"/* "${RUNR_DIR}"/ ; then
+      rm -f -r "${RUNR_DIR}/tmp/${repo_basename}"
+    else
+      echo "${PROGNAME:+$PROGNAME: }WARN: There was some error deploying '${RUNR_DIR}/tmp/${repo_basename}' files to '${RUNR_DIR}'." 1>&2
+    fi
+  done <<EOF
+$REPOS
+EOF
 fi
 
 # #############################################################################
-# Recipes
+# Run sequences
 
 for recipe in "$@" ; do
-  if [ -f ./installers/"${recipe%.sh}".sh ] ; then
-    bash ./installers/"${recipe%.sh}".sh
-  fi
-  if [ -f ./recipes/"${recipe%.sh}".sh ] ; then
-    bash ./recipes/"${recipe%.sh}".sh
-  fi
+  for dir in */ ; do
+    if [ -f ./"${dir}/${recipe%.sh}".sh ] ; then
+      bash ./"${dir}/${recipe%.sh}".sh
+    fi
+  done
 done

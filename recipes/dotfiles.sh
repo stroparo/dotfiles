@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-PROGNAME=deploydotfiles.sh
+PROGNAME=dotfiles.sh
 USAGE="[-v]"
 
 # #############################################################################
 # Globals
 
-DOTDIR="$PWD"/dotfiles
+DOT_ASSETS_DIR="$PWD"/dotfiles
 : ${VERBOSE:=false} ; export VERBOSE
 
 # #############################################################################
@@ -25,10 +25,10 @@ shift "$((OPTIND-1))"
 
 echo "################################################################################"
 echo "Dotfiles setup; \$0='$0'; \$PWD='$PWD'"
-echo "Op: $DOTDIR/* -> \$HOME/.*"
+echo "Op: $DOT_ASSETS_DIR/* -> \$HOME/.*"
 
-for dotfilename in $(ls -d "$DOTDIR"/*) ; do
-  destname="${HOME}/.${dotfilename#$DOTDIR/}"
+for dotfilename in $(ls -d "$DOT_ASSETS_DIR"/*) ; do
+  destname="${HOME}/.${dotfilename#$DOT_ASSETS_DIR/}"
   if [ -d "$dotfilename" ] ; then
     if [ ! -d "$destname" ] ; then
       mkdir "$destname" 2>/dev/null
@@ -46,5 +46,5 @@ done
 # #############################################################################
 # Finish
 
-echo "FINISHED deploying dotfiles in ${DOTDIR}"
+echo "FINISHED deploying dotfiles in ${DOT_ASSETS_DIR}"
 echo

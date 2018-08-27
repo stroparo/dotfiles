@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
 # Custom RPM package selection for desktop environments
 
 PROGNAME=apps-el-desktop.sh

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Cristian Stroparo's dotfiles
+
+# Custom aliases
 
 # Globals
 ALIASES_FILE="$HOME/.aliases-cs"

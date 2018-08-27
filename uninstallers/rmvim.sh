@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Cristian Stroparo's dotfiles
+
 # Remove Vim from the system
 
 # #############################################################################

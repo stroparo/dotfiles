@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
 # Custom RPM package selection
 
 PROGNAME=apps-el.sh

@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Cristian Stroparo's dotfiles
 # Custom Debian package selection
 
 PROGNAME=apps-debian.sh
