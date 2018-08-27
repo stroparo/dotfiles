@@ -6,7 +6,7 @@ These are custom i.e. the best way to seize them is to fork this repository and 
 
 ## Requirements
 
-* [runr]() - routine runner, be acquainted with it first by reading its README
+* [runr](https://github.com/stroparo/runr) - routine runner, be acquainted with it first by reading its README
 * [sudo setup](#sudo-setup)
 
 ---
