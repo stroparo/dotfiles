@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
+PROGNAME=sublime.sh
+
 echo
 echo "################################################################################"
 echo "Sublime Text setup; \$0='$0'; \$PWD='$PWD'"
-if ! (which sublime_text || which subl) >/dev/null 2>&1 ; then exit ; fi
 
 # #############################################################################
-# Prep Sublime Text User PATH
+# Prep User PATH
 
 if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
   SUBL_WIN="$(cygpath "$USERPROFILE")"'/AppData/Roaming/Sublime Text 3'
@@ -27,19 +28,24 @@ elif [[ "$(uname -a)" = *[Ll]inux* ]] ; then
   SUBL_USER="$HOME/.config/sublime-text-3/Packages/User"
 fi
 
+if [ ! -d "$SUBL_USER" ] ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: No SUBL_USER dir ('$SUBL_USER')." 1>&2
+  exit
+fi
+
 # #############################################################################
 # Deploy
 
 mkdir -p "${SUBL_USER}"
-subl_files_dir=$(dirname "$(find "$PWD" -type f -name 'Preferences.sublime-settings')")
-if [ -z "$subl_files_dir" ] ; then
+assets_dir=$(dirname "$(find "$PWD" -type f -name 'Preferences.sublime-settings')")
+if [ -z "$assets_dir" ] ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: No sublimetext conf files dir found." 1>&2
   exit 1
 fi
-subl_files="$(ls -1d ${subl_files_dir:-.}/*)"
-subl_files="$(echo "$subl_files" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
-if ! eval cp -L -R "${subl_files}" "\"${SUBL_USER}\""/ ; then
-  echo "${PROGNAME:+$PROGNAME: }ERROR: Deploying sublimetext files." 1>&2
+assets="$(ls -1d ${assets_dir:-.}/*)"
+assets="$(echo "$assets" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
+if ! eval cp -L -R "${assets}" "\"${SUBL_USER}\""/ ; then
+  echo "${PROGNAME:+$PROGNAME: }ERROR deploying sublimetext files." 1>&2
 fi
 
 # #############################################################################
@@ -53,5 +59,5 @@ then
   sudo ln -s $(which sublime_text) /usr/local/bin/subl
 fi
 
-echo "FINISHED sublimetext deployment"
+echo "${PROGNAME:+$PROGNAME: }COMPLETE"
 echo
