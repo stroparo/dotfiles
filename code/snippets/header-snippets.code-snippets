@@ -1,31 +1,31 @@
 {
 	"hdrrunr": {
 		"prefix": "hdrrunr",
-		"body": "\n# Cristian Stroparo's runr - https://github.com/stroparo/runr\n",
+		"body": "# Cristian Stroparo's runr - https://github.com/stroparo/runr\n",
 		"description": "",
 		"scope": ""
 	},
 	"hdrds": {
 		"prefix": "hdrds",
-		"body": "\n# Daily Shells Library\n# More instructions and licensing at:\n# https://github.com/stroparo/ds\n",
+		"body": "# Daily Shells Library\n# More instructions and licensing at:\n# https://github.com/stroparo/ds\n",
 		"description": "",
 		"scope": ""
 	},
 	"hdrdscz": {
 		"prefix": "hdrdscz",
-		"body": "\n# Daily Shells Private Stroparo extensions\n# More instructions and licensing at:\n# https://bitbucket.org/stroparo/ds-cz\n",
+		"body": "# Daily Shells Private Stroparo extensions\n# More instructions and licensing at:\n# https://bitbucket.org/stroparo/ds-cz\n",
 		"description": "",
 		"scope": ""
 	},
 	"hdrdsextras": {
 		"prefix": "hdrdsextras",
-		"body": "\n# Daily Shells Extras extensions\n# More instructions and licensing at:\n# https://github.com/stroparo/ds-extras\n",
+		"body": "# Daily Shells Extras extensions\n# More instructions and licensing at:\n# https://github.com/stroparo/ds-extras\n",
 		"description": "",
 		"scope": ""
 	},
 	"hdrdsstroparo": {
 		"prefix": "hdrdsstroparo",
-		"body": "\n# Daily Shells Stroparo extensions\n# More instructions and licensing at:\n# https://github.com/stroparo/ds-stroparo\n",
+		"body": "# Daily Shells Stroparo extensions\n# More instructions and licensing at:\n# https://github.com/stroparo/ds-stroparo\n",
 		"description": "",
 		"scope": ""
 	}

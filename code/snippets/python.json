@@ -1,19 +1,19 @@
 {
 	"pdb": {
 		"prefix": "pdb",
-		"body": "\nimport pdb; pdb.set_trace()\n",
+		"body": "import pdb; pdb.set_trace()\n",
 		"description": "",
 		"scope": "source.python"
 	},
 	"pyshabang": {
 		"prefix": "pyshabang",
-		"body": "\n#!/usr/bin/env python\n",
+		"body": "#!/usr/bin/env python\n",
 		"description": "",
 		"scope": ""
 	},
 	"testcase": {
 		"prefix": "testcase",
-		"body": "\nclass ${1:ClassTestName}(unittest.TestCase):\n    def setUp(self):\n        ${2:pass}\n    def tearDown(self):\n        ${3:pass}\n    ",
+		"body": "class ${1:ClassTestName}(unittest.TestCase):\n    def setUp(self):\n        ${2:pass}\n    def tearDown(self):\n        ${3:pass}\n    ",
 		"description": "Adds a unittest TestCase skeleton at current pointer",
 		"scope": "source.python"
 	}
