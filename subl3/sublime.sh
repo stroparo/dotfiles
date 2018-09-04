@@ -39,7 +39,7 @@ fi
 mkdir -p "${SUBL_USER}"
 assets_dir=$(dirname "$(find "$PWD" -type f -name 'Preferences.sublime-settings')")
 if [ -z "$assets_dir" ] ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: No sublimetext conf files dir found." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }FATAL: No assets dir found ($assets_dir)." 1>&2
   exit 1
 fi
 assets="$(ls -1d ${assets_dir:-.}/*)"
