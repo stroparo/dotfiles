@@ -8,7 +8,7 @@ _print_header () {
 }
 
 _print_header "Basic tools"
-bash "${RUNR_DIR:-.}"/entry.sh -b setupds sshkeygen sshmodes
+bash "${RUNR_DIR:-.}"/entry.sh apps setupds sshkeygen sshmodes
 
 # Devel
 bash "${RUNR_DIR:-.}"/recipes/devel-stacks.sh
