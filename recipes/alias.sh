@@ -56,6 +56,7 @@ alias nhr='rm nohup.out'
 alias nht='tail -9999f nohup.out'
 alias server='python3 -m http.server'
 alias sourceds='. "$HOME/.ds/ds.sh"'
+alias tpf='typeset -f'
 alias sourcevirtualenv='. ./bin/activate'
 alias xcd="alias | egrep \"'c?d \" | fgrep -v 'cd -'"
 alias xgit="alias | grep -w git"
