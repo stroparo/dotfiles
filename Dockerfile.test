@@ -1,0 +1,6 @@
+FROM debian
+RUN apt update \
+  && apt install -y curl \
+  && bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
+    || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
+    entry.sh alias dotfiles shell
