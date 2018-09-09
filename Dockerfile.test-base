@@ -1,0 +1,4 @@
+FROM debian
+RUN apt update \
+  && apt install -y curl sudo \
+  && sudo grep -q "$USER" /etc/sudoers || (echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers)
