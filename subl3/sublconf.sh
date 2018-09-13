@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROGNAME=sublime.sh
+PROGNAME=sublconf.sh
 
 echo
 echo "################################################################################"

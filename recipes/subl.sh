@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROG=provision-sublime.sh
+PROG=subl.sh
 
 cd "${RUNR_DIR:-.}"
 
@@ -19,4 +19,4 @@ fi
 # #############################################################################
 # Deploy
 
-bash ./subl3/sublime.sh
+bash ./subl3/sublconf.sh
