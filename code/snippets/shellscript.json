@@ -1,7 +1,7 @@
 {
 	"argvalidation": {
 		"prefix": "argvalidation",
-		"body": "for arg in \"$@\" ; do\n  if echo \"\$arg\" | grep -q '[^${1:a-zA-Z0-9_.*?-}]' ; then\n    echo \"FATAL: Arguments should contain only characters in the list: [${1:a-zA-Z0-9_.*?-}]\" 1>&2\n    return 1\n  fi\ndone\n",
+		"body": "for arg in \"$@\" ; do\n  if echo \"\\$arg\" | grep -q '[^${1:a-zA-Z0-9_.*?-}]' ; then\n    echo \"FATAL: Arguments should contain only characters in the list: [${1:a-zA-Z0-9_.*?-}]\" 1>&2\n    return 1\n  fi\ndone\n",
 		"description": "",
 		"scope": ""
 	},
@@ -31,37 +31,37 @@
 	},
 	"depds": {
 		"prefix": "depds",
-		"body": "if [ ! -e ~/.ds/ds.sh ] ; then\n  FORCE=true bash -c \"$(curl -LSf -k -o - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh')\"\nfi\n. ~/.ds/ds.sh\nif [ -z \"\$DS_HOME\" ] ; then\n  echo \"\${PROGNAME:+\$PROGNAME: }FATAL: Could not load Daily Shells.\" 1>&2\n  exit 1\nfi\n",
+		"body": "if [ ! -e ~/.ds/ds.sh ] ; then\n  FORCE=true bash -c \"$(curl -LSf -k -o - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh')\"\nfi\n. ~/.ds/ds.sh\nif [ -z \"\\$DS_HOME\" ] ; then\n  echo \"\\${PROGNAME:+\\$PROGNAME: }FATAL: Could not load Daily Shells.\" 1>&2\n  exit 1\nfi\n",
 		"description": "",
 		"scope": ""
 	},
 	"dlprogcall": {
 		"prefix": "dlprogcall",
-		"body": "\"\$DLPROG\" \${DLOPT} ${1:$\\{DLOUT\\}} ${2:-} \"${3:https://}\"\n",
+		"body": "\"\\$DLPROG\" \\${DLOPT} ${1:\\${DLOUT\\}} ${2:-} \"${3:https://}\"\n",
 		"description": "",
 		"scope": ""
 	},
 	"dlprogexec": {
 		"prefix": "dlprogexec",
-		"body": "bash -c \"$(\"\${DLPROG}\" \${DLOPT} ${1:$\\{DLOUT\\}} ${2:-} \"${3:https://}\")\"\n",
+		"body": "bash -c \"$(\"\\${DLPROG}\" \\${DLOPT} ${1:\\${DLOUT\\}} ${2:-} \"${3:https://}\")\"\n",
 		"description": "",
 		"scope": ""
 	},
 	"echoext": {
 		"prefix": "echoext",
-		"body": "echo \${BASH_VERSION:+-e} \"${1}\"\n",
+		"body": "echo \\${BASH_VERSION:+-e} \"${1}\"\n",
 		"description": "",
 		"scope": "source.shell"
 	},
 	"echofatal": {
 		"prefix": "echofatal",
-		"body": "echo \"\${PROGNAME:+\$PROGNAME: }${1:FATAL}: ${2:There was some error}.\" 1>&2\n",
+		"body": "echo \"\\${PROGNAME:+\\$PROGNAME: }${1:FATAL}: ${2:There was some error}.\" 1>&2\n",
 		"description": "",
 		"scope": "source.shell"
 	},
 	"fgetopts": {
 		"prefix": "fgetopts",
-		"body": "# Options:\ntypeset oldind=\"\${OPTIND}\"\nOPTIND=1\nwhile getopts ':${1}' option ; do\n  case \"\${option}\" in\n    ${2}) ${3}=${4:true}${5:\"\${OPTARG\\}\"};;\n  esac\ndone\nshift $((OPTIND-1)) ; OPTIND=\"\${oldind}\"\n",
+		"body": "# Options:\ntypeset oldind=\"\\${OPTIND}\"\nOPTIND=1\nwhile getopts ':${1}' option ; do\n  case \"\\${option}\" in\n    ${2}) ${3}=${4:true}${5:\"\\${OPTARG\\}\"};;\n  esac\ndone\nshift $((OPTIND-1)) ; OPTIND=\"\\${oldind}\"\n",
 		"description": "",
 		"scope": "source.shell"
 	},
@@ -85,13 +85,13 @@
 	},
 	"funcuserconfirm": {
 		"prefix": "funcuserconfirm",
-		"body": "_user_confirm () {\n  # Info: Ask a question and yield success if user responded [yY]*\n\n  typeset confirm\n  typeset result=1\n\n  echo \${BASH_VERSION:+-e} \"$@\" \"[y/N] \\c\"\n  read confirm\n  if [[ \$confirm = [yY]* ]] ; then return 0 ; fi\n  return 1\n}\n\n",
+		"body": "_user_confirm () {\n  # Info: Ask a question and yield success if user responded [yY]*\n\n  typeset confirm\n  typeset result=1\n\n  echo \\${BASH_VERSION:+-e} \"$@\" \"[y/N] \\c\"\n  read confirm\n  if [[ \\$confirm = [yY]* ]] ; then return 0 ; fi\n  return 1\n}\n\n",
 		"description": "",
 		"scope": ""
 	},
 	"getopts": {
 		"prefix": "getopts",
-		"body": "# Options:\nOPTIND=1\nwhile getopts ':${1}' option ; do\n  case \"\${option}\" in\n    ${2}) ${3}=${4:true}${5:\"\${OPTARG\\}\"};;\n    ${6:h) echo \"\$USAGE\"; exit;;}\n  esac\ndone\nshift \"$((OPTIND-1))\"\n",
+		"body": "# Options:\nOPTIND=1\nwhile getopts ':${1}' option ; do\n  case \"\\${option}\" in\n    ${2}) ${3}=${4:true}${5:\"\\${OPTARG\\}\"};;\n    ${6:h) echo \"\\$USAGE\"; exit;;}\n  esac\ndone\nshift \"$((OPTIND-1))\"\n",
 		"description": "",
 		"scope": "source.shell"
 	},
@@ -163,13 +163,13 @@
 	},
 	"newscript": {
 		"prefix": "newscript",
-		"body": "#!/usr/bin/env bash\n\n# #############################################################################\n# Globals\n\nexport PNAME=\"$(basename \"$0\")\"\nexport USAGE=\"\nNAME\n  \${PNAME} - ${1}\n\nSYNOPSIS\n  \${PNAME} ${2}\n\nDESCRIPTION\n\n\"\n\n# #############################################################################\n# Prep args\n\n# Options:\n\nexport DESTDIR=''\nexport SRCDIR=''\n\nexport DRYRUN=false\nexport EXCLUDE='@@@@EXCLUDEDUMMY@@@@'\nexport FORCE=false\nexport INTERACTIVE=false\nexport QUIET=false\n: \${VERBOSE:=false} ; export VERBOSE\n\nOPTIND=1\nwhile getopts ':${3:d:fhinqs:vx:}' opt ; do\n  case \${opt} in\n\n    h) echo \"\${USAGE}\" ; exit ;;\n\n    d) export DESTDIR=\"\${OPTARG}\";;\n    s) export SRCDIR=\"\${OPTARG}\";;\n\n    f) export FORCE=true;;\n    i) export INTERACTIVE=true;;\n    n) export DRYRUN=true;;\n    q) export QUIET=true;;\n    v) export VERBOSE=true;;\n    x) export EXCLUDE=\"\${OPTARG}\";;\n\n  esac\ndone\nshift $((OPTIND - 1))\n\n# Arguments:\n# VAR=\"${1}\"\n# ...\n\n# #############################################################################\n# Functions\n\nprep () {\n\n  for i in \"$@\" ; do\n    ${4:# TODO Process each argument in \"\${i\\}\"}\n  done\n}\n\n${5:main} () {\n\n  ${6:# TODO implement}\n}\n\n# #############################################################################\n# Main\n\nprep \"$@\"\n${5:main} \"$@\"\nexit \"$?\"\n\n",
+		"body": "#!/usr/bin/env bash\n\n# #############################################################################\n# Globals\n\nexport PNAME=\"$(basename \"$0\")\"\nexport USAGE=\"\nNAME\n  \\${PNAME} - ${1}\n\nSYNOPSIS\n  \\${PNAME} ${2}\n\nDESCRIPTION\n\n\"\n\n# #############################################################################\n# Prep args\n\n# Options:\n\nexport DESTDIR=''\nexport SRCDIR=''\n\nexport DRYRUN=false\nexport EXCLUDE='@@@@EXCLUDEDUMMY@@@@'\nexport FORCE=false\nexport INTERACTIVE=false\nexport QUIET=false\n: \\${VERBOSE:=false} ; export VERBOSE\n\nOPTIND=1\nwhile getopts ':${3:d:fhinqs:vx:}' opt ; do\n  case \\${opt} in\n\n    h) echo \"\\${USAGE}\" ; exit ;;\n\n    d) export DESTDIR=\"\\${OPTARG}\";;\n    s) export SRCDIR=\"\\${OPTARG}\";;\n\n    f) export FORCE=true;;\n    i) export INTERACTIVE=true;;\n    n) export DRYRUN=true;;\n    q) export QUIET=true;;\n    v) export VERBOSE=true;;\n    x) export EXCLUDE=\"\\${OPTARG}\";;\n\n  esac\ndone\nshift $((OPTIND - 1))\n\n# Arguments:\n# VAR=\"${1}\"\n# ...\n\n# #############################################################################\n# Functions\n\nprep () {\n\n  for i in \"$@\" ; do\n    ${4:# TODO Process each argument in \"\\${i\\}\"}\n  done\n}\n\n${5:main} () {\n\n  ${6:# TODO implement}\n}\n\n# #############################################################################\n# Main\n\nprep \"$@\"\n${5:main} \"$@\"\nexit \"$?\"\n\n",
 		"description": "",
 		"scope": ""
 	},
 	"newscriptds": {
 		"prefix": "newscriptds",
-		"body": "#!/usr/bin/env bash\n\n# DS - Daily Shells Library\n# License:\n#   See README.md document in projects page at\n#   https://github.com/stroparo/ds\n\nckds () {\n  if [ -z \"\${DS_VERSION}\" ] && ! . \"\${DS_HOME}/ds.sh\" \"\${DS_HOME}\" >/dev/null 2>&1\n  then\n    echo \"No DS Daily Shells loaded. Fix it and call this again.\" 1>&2\n    echo \"Tips:\" 1>&2\n    echo \"curl -o - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh' | bash\" 1>&2\n    echo \"wget -O - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh' | bash\" 1>&2\n    return 1\n  fi\n}\nckds || exit $?\n\n# #############################################################################\n# Globals\n\nexport PNAME=\"$(basename \"$0\")\"\nexport USAGE=\"\nNAME\n  \${PNAME} - ${1}\n\nSYNOPSIS\n  \${PNAME} ${2}\n\nDESCRIPTION\n\n\"\n\n# #############################################################################\n# Prep args\n\n# Options:\n\nexport DESTDIR=''\nexport SRCDIR=''\n\nexport DRYRUN=false\nexport EXCLUDE='@@@@EXCLUDEDUMMY@@@@'\nexport FORCE=false\nexport INTERACTIVE=false\nexport QUIET=false\n: \${VERBOSE:=false} ; export VERBOSE\n\nOPTIND=1\nwhile getopts ':${3:d:fhinqs:vx:}' opt ; do\n  case \${opt} in\n\n    h) echo \"\${USAGE}\" ; exit ;;\n\n    d) export DESTDIR=\"\${OPTARG}\";;\n    s) export SRCDIR=\"\${OPTARG}\";;\n\n    f) export FORCE=true;;\n    i) export INTERACTIVE=true;;\n    n) export DRYRUN=true;;\n    q) export QUIET=true;;\n    v) export VERBOSE=true;;\n    x) export EXCLUDE=\"\${OPTARG}\";;\n\n  esac\ndone\nshift $((OPTIND - 1))\n\n# Arguments:\n# VAR=\"${1}\"\n# ...\n\n# #############################################################################\n# Functions\n\nprep () {\n\n  for i in \"$@\" ; do\n    ${4:# TODO Process each argument in \"\${i\\}\"}\n  done\n}\n\n${5:main} () {\n\n  ${6:# TODO implement}\n}\n\n# #############################################################################\n# Main\n\nprep \"$@\"\n${5:main} \"$@\"\nexit \"$?\"\n\n",
+		"body": "#!/usr/bin/env bash\n\n# DS - Daily Shells Library\n# License:\n#   See README.md document in projects page at\n#   https://github.com/stroparo/ds\n\nckds () {\n  if [ -z \"\\${DS_VERSION}\" ] && ! . \"\\${DS_HOME}/ds.sh\" \"\\${DS_HOME}\" >/dev/null 2>&1\n  then\n    echo \"No DS Daily Shells loaded. Fix it and call this again.\" 1>&2\n    echo \"Tips:\" 1>&2\n    echo \"curl -o - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh' | bash\" 1>&2\n    echo \"wget -O - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh' | bash\" 1>&2\n    return 1\n  fi\n}\nckds || exit $?\n\n# #############################################################################\n# Globals\n\nexport PNAME=\"$(basename \"$0\")\"\nexport USAGE=\"\nNAME\n  \\${PNAME} - ${1}\n\nSYNOPSIS\n  \\${PNAME} ${2}\n\nDESCRIPTION\n\n\"\n\n# #############################################################################\n# Prep args\n\n# Options:\n\nexport DESTDIR=''\nexport SRCDIR=''\n\nexport DRYRUN=false\nexport EXCLUDE='@@@@EXCLUDEDUMMY@@@@'\nexport FORCE=false\nexport INTERACTIVE=false\nexport QUIET=false\n: \\${VERBOSE:=false} ; export VERBOSE\n\nOPTIND=1\nwhile getopts ':${3:d:fhinqs:vx:}' opt ; do\n  case \\${opt} in\n\n    h) echo \"\\${USAGE}\" ; exit ;;\n\n    d) export DESTDIR=\"\\${OPTARG}\";;\n    s) export SRCDIR=\"\\${OPTARG}\";;\n\n    f) export FORCE=true;;\n    i) export INTERACTIVE=true;;\n    n) export DRYRUN=true;;\n    q) export QUIET=true;;\n    v) export VERBOSE=true;;\n    x) export EXCLUDE=\"\\${OPTARG}\";;\n\n  esac\ndone\nshift $((OPTIND - 1))\n\n# Arguments:\n# VAR=\"${1}\"\n# ...\n\n# #############################################################################\n# Functions\n\nprep () {\n\n  for i in \"$@\" ; do\n    ${4:# TODO Process each argument in \"\\${i\\}\"}\n  done\n}\n\n${5:main} () {\n\n  ${6:# TODO implement}\n}\n\n# #############################################################################\n# Main\n\nprep \"$@\"\n${5:main} \"$@\"\nexit \"$?\"\n\n",
 		"description": "",
 		"scope": ""
 	},
@@ -205,7 +205,7 @@
 	},
 	"setvarinstprog": {
 		"prefix": "setvarinstprog",
-		"body": "# System installers\nexport APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt\nexport RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf\nexport RPMGROUP=\"yum groupinstall\"; which dnf >/dev/null 2>&1 && export RPMGROUP=\"dnf group install\"\nexport INSTPROG=\"\$APTPROG\"; which \"\$RPMPROG\" >/dev/null 2>&1 && export INSTPROG=\"\$RPMPROG\"\n",
+		"body": "# System installers\nexport APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt\nexport RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf\nexport RPMGROUP=\"yum groupinstall\"; which dnf >/dev/null 2>&1 && export RPMGROUP=\"dnf group install\"\nexport INSTPROG=\"\\$APTPROG\"; which \"\\$RPMPROG\" >/dev/null 2>&1 && export INSTPROG=\"\\$RPMPROG\"\n",
 		"description": "",
 		"scope": ""
 	},
