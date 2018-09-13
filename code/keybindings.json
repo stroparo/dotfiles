@@ -14,4 +14,8 @@
     "command": "editor.action.joinLines",
     "when": "editorTextFocus && !editorReadonly"
   },
+  {
+    "key": "ctrl+shift+j",
+    "command": "workbench.action.togglePanel",
+  },
 ]
