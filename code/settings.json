@@ -97,6 +97,7 @@
     "editor.selectionHighlightBackground": "#7722aa"
   },
   "workbench.iconTheme": "material-icon-theme",
+  "workbench.settings.editor": "json",
   "workbench.sideBar.location": "right",
   "zenMode.fullScreen": true,
   "[markdown]": {

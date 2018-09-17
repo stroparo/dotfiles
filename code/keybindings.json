@@ -1,21 +1,16 @@
 // Empty
 [
-  {
-    "key": "alt+b",
+  { "key": "alt+b",
     "command": "multiCommand.makeRoom"
   },
-  {
-    "key": "ctrl+enter",
+  { "key": "ctrl+enter",
     "command": "editor.action.insertLineAfter",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "ctrl+j",
+    "when": "editorTextFocus && !editorReadonly" },
+  { "key": "ctrl+j",
     "command": "editor.action.joinLines",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "ctrl+shift+j",
-    "command": "workbench.action.togglePanel",
-  },
+    "when": "editorTextFocus && !editorReadonly" },
+  { "key": "ctrl+shift+j",
+    "command": "workbench.action.togglePanel", },
+  { "key": "ctrl+w",
+    "command": "-workbench.action.closeWindow" },
 ]
