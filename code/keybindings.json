@@ -1,16 +1,52 @@
 // Empty
 [
+  // Editor command to insert line after:
+  { "key": "ctrl+enter",
+    "command": "editor.action.insertLineAfter",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+
+  // Editor toggle sidebar:
   { "key": "alt+b",
     "command": "multiCommand.makeRoom"
   },
-  { "key": "ctrl+enter",
-    "command": "editor.action.insertLineAfter",
-    "when": "editorTextFocus && !editorReadonly" },
+
+  // Override line vertical movements to ctrl+shift+{up,down}:
+  { "key": "ctrl+shift+up",
+    "command": "-cursorUpSelect"
+  },
+  { "key": "ctrl+shift+up",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  { "key": "ctrl+shift+down",
+    "command": "-cursorDownSelect"
+  },
+  { "key": "ctrl+shift+down",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+
+  // Override ctrl+j = join lines, ctrl+shift+j = panel toggle:
   { "key": "ctrl+j",
     "command": "editor.action.joinLines",
-    "when": "editorTextFocus && !editorReadonly" },
+    "when": "editorTextFocus && !editorReadonly"
+  },
   { "key": "ctrl+shift+j",
-    "command": "workbench.action.togglePanel", },
+    "command": "workbench.action.togglePanel",
+  },
+
+  // Plugin to duplicate lines:
+  { "key": "ctrl+d",
+    "command": "-geeebe.duplicateText",
+  },
+  { "key": "ctrl+shift+d",
+    "command": "geeebe.duplicateText",
+    "when": "editorTextFocus"
+  },
+
+  // Prevent window closure:
   { "key": "ctrl+w",
-    "command": "-workbench.action.closeWindow" },
+    "command": "-workbench.action.closeWindow"
+  },
 ]
