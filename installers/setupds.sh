@@ -29,10 +29,9 @@ fi
 _install_fresh () {
 
   # Forced unset eg for when in an old DS loaded session but having removed DS:
-  export DS_HOME=""
   export DS_LOADED=false
 
-  bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}" || ${DLPROG} ${DLOPT} "${DS_SETUP_URL_ALT}")"
+  bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}" || ${DLPROG} ${DLOPT} "${DS_SETUP_URL_ALT}")" setup.sh "${DS_HOME}"
 
   # DS Extras
   if [ ! -e "${DS_HOME:-$HOME/.ds}"/functions/gitextras.sh ] ; then
