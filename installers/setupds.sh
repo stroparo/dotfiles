@@ -11,6 +11,7 @@ echo "Daily Shells setup \$0='$0'"
 # #############################################################################
 # Globals
 
+export DS_HOME="${DS_HOME:-${HOME}/.ds}"
 export DS_SETUP_URL="https://bitbucket.org/stroparo/ds/raw/master/setup.sh"
 export DS_SETUP_URL_ALT="https://raw.githubusercontent.com/stroparo/ds/master/setup.sh"
 
@@ -36,9 +37,7 @@ _install_fresh () {
 
 
 _main () {
-  typeset dshome="${DS_HOME:-${HOME}/.ds}"
-
-  if [ -z "${dshome}" ] || [ ! -f "${dshome}/ds.sh" ] ; then
+  if [ ! -f "${DS_HOME}/ds.sh" ] ; then
     _install_fresh
   elif [ -f "${HOME}/.ds/ds.sh" ] ; then
     . "${HOME}/.ds/ds.sh" && dsupgrade
