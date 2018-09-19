@@ -27,12 +27,17 @@ fi
 
 
 _install_fresh () {
+
+  # Forced unset eg for when in an old DS loaded session but having removed DS:
+  export DS_HOME=""
+  export DS_LOADED=false
+
   bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}" || ${DLPROG} ${DLOPT} "${DS_SETUP_URL_ALT}")"
 
   # DS Extras
   if [ ! -e "${DS_HOME:-$HOME/.ds}"/functions/gitextras.sh ] ; then
     if ! ${DS_LOADED:-false} ; then
-      . "${DS_HOME:-$HOME/.ds}"/ds.sh
+      . "${DS_HOME:-$HOME/.ds}"/ds.sh "${DS_HOME:-$HOME/.ds}"
     fi
     if ! ${DS_LOADED:-false} ; then
       echo "${PROGNAME:+${PROGNAME}: }FATAL: Could not load Daily Shells." 1>&2
@@ -55,7 +60,9 @@ _install_fresh () {
 
 
 _main () {
-  if [ -z "${DS_HOME}" ] && [ ! -f "${HOME}/.ds/ds.sh" ] ; then
+  typeset dshome="${DS_HOME:-${HOME}/.ds}"
+
+  if [ -z "${dshome}" ] || [ ! -f "${dshome}/ds.sh" ] ; then
     _install_fresh
   elif [ -f "${HOME}/.ds/ds.sh" ] ; then
     . "${HOME}/.ds/ds.sh" && dsupgrade
