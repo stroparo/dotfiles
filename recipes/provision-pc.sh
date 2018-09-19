@@ -8,7 +8,7 @@ _print_header () {
 }
 
 _print_header "Basic tools"
-bash "${RUNR_DIR:-.}"/entry.sh apps shell
+bash "${RUNR_DIR:-.}"/entry.sh -p apps shell
 
 # Devel
 bash "${RUNR_DIR:-.}"/recipes/devel-stacks.sh

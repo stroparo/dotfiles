@@ -111,7 +111,7 @@ Download & comprehensive setup:
 ```bash
 curl -LSf -k -o ~/.runr.zip "https://github.com/stroparo/runr/archive/master.zip" \
   && unzip -o ~/.runr.zip -d "$HOME" \
-  && cd "$HOME"/runr-master \
+  && cd "$HOME"/.runr \
   && ./entry.sh alias apps dotfiles shell
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
