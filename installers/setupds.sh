@@ -4,6 +4,10 @@
 
 PROGNAME=setupds.sh
 
+echo
+echo "################################################################################"
+echo "Daily Shells setup \$0='$0'"
+
 # #############################################################################
 # Globals
 
@@ -21,40 +25,44 @@ else
   exit 1
 fi
 
-# #############################################################################
-# Main
 
-echo
-echo "################################################################################"
-echo "Daily Shells"
+_install_fresh () {
+  bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}" || ${DLPROG} ${DLOPT} "${DS_SETUP_URL_ALT}")"
 
-bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}" || ${DLPROG} ${DLOPT} "${DS_SETUP_URL_ALT}")"
-
-# DS Extras
-if [ ! -e "${DS_HOME:-$HOME/.ds}"/functions/gitextras.sh ] ; then
-  if ! ${DS_LOADED:-false} ; then
-    . "${DS_HOME:-$HOME/.ds}"/ds.sh
-  fi
-  if ! ${DS_LOADED:-false} ; then
-    echo "${PROGNAME:+${PROGNAME}: }FATAL: Could not load Daily Shells." 1>&2
-    exit 1
-  fi
-
-  dsextras_max_tries=3
-  dsextras_trial_count=0
-  while [ ! -e "${DS_HOME:-$HOME/.ds}"/functions/gitextras.sh ] ; do
-    echo "Daily Shells Extras installation trial $((dsextras_trial_count+1)) of ${dsextras_max_tries}..."
-    dsplugin.sh "bitbucket.org/stroparo/ds-extras" \
-      || dsplugin.sh "stroparo/ds-extras"
-    dsextras_trial_count=$((dsextras_trial_count+1))
-    if [ $dsextras_trial_count -ge $dsextras_max_tries ] ; then
-      break
+  # DS Extras
+  if [ ! -e "${DS_HOME:-$HOME/.ds}"/functions/gitextras.sh ] ; then
+    if ! ${DS_LOADED:-false} ; then
+      . "${DS_HOME:-$HOME/.ds}"/ds.sh
     fi
-  done
-fi
+    if ! ${DS_LOADED:-false} ; then
+      echo "${PROGNAME:+${PROGNAME}: }FATAL: Could not load Daily Shells." 1>&2
+      exit 1
+    fi
 
-# #############################################################################
-# Finish
+    dsextras_max_tries=3
+    dsextras_trial_count=0
+    while [ ! -e "${DS_HOME:-$HOME/.ds}"/functions/gitextras.sh ] ; do
+      echo "Daily Shells Extras installation trial $((dsextras_trial_count+1)) of ${dsextras_max_tries}..."
+      dsplugin.sh "bitbucket.org/stroparo/ds-extras" \
+        || dsplugin.sh "stroparo/ds-extras"
+      dsextras_trial_count=$((dsextras_trial_count+1))
+      if [ $dsextras_trial_count -ge $dsextras_max_tries ] ; then
+        break
+      fi
+    done
+  fi
+}
 
-echo "FINISHED Daily Shells setup"
-echo
+
+_main () {
+  if [ -z "${DS_HOME}" ] && [ ! -f "${HOME}/.ds/ds.sh" ] ; then
+    _install_fresh
+  elif [ -f "${HOME}/.ds/ds.sh" ] ; then
+    . "${HOME}/.ds/ds.sh" && dsupgrade
+  fi
+  echo "${PROGNAME}: FINISHED Daily Shells setup"
+  echo
+}
+
+
+_main "$@" || exit $?
