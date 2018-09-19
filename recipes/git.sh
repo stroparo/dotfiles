@@ -100,7 +100,7 @@ fi
 # #############################################################################
 # Cygwin / Windows
 
-if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
+if (uname -a | egrep -i -q "cygwin") ; then
 
   GITCONFIG_CYGWIN="$(cygpath "$USERPROFILE")/.gitconfig"
   touch "$GITCONFIG_CYGWIN"
@@ -115,6 +115,23 @@ if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
     echo
     echo "==> Git config in '$GITCONFIG_CYGWIN' file:"
     git config -f "$GITCONFIG_CYGWIN" -l
+  fi
+fi
+if (uname -a | egrep -i -q "mingw|msys|win32|windows") ; then
+
+  GITCONFIG_MINGW="$(cygpath "$USERPROFILE")/.gitconfig"
+  touch "$GITCONFIG_MINGW"
+
+  _git_config "$GITCONFIG_MINGW"
+
+  git config --global core.preloadindex true
+  git config --global core.fscache true
+  git config --global gc.auto 256
+
+  if ${VERBOSE:-false} ; then
+    echo
+    echo "==> Git config in '$GITCONFIG_MINGW' file:"
+    git config -f "$GITCONFIG_MINGW" -l
   fi
 fi
 
