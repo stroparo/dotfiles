@@ -10,9 +10,23 @@
   "editor.lineNumbers": "on",
   "editor.matchBrackets": true,
   "editor.minimap.enabled": false,
-  "editor.renderIndentGuides": false,
+  "editor.renderIndentGuides": true,
   "editor.renderWhitespace": "boundary",
   "editor.tabSize": 2,
+  "editor.tokenColorCustomizations": {
+    "[Material Theme Darker High Contrast]": {
+      "comments": "#888",
+      "textMateRules": [
+        {
+          "name": "Comment punctuation",
+          "scope": "punctuation.definition.comment",
+          "settings": {
+            "foreground": "#888"
+          }
+        }
+      ]
+    }
+  },
   "explorer.confirmDelete": false,
   "extensions.ignoreRecommendations": false,
   "files.autoSave": "afterDelay",
@@ -90,11 +104,12 @@
   "window.title": "${activeEditorLong}${separator}${rootName}",
   "window.zoomLevel": 0,
   "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "Tomorrow Night",
+  "workbench.colorTheme": "Material Theme Darker High Contrast",
   "workbench.colorCustomizations": {
-    "editorIndentGuide.background": "#0000ff",
+    // "editorIndentGuide.background": "#0000ff",
     "editor.selectionBackground": "#aa44ff",
-    "editor.selectionHighlightBackground": "#7722aa"
+    "editor.selectionHighlightBackground": "#7722aa",
+    "editorWhitespace.foreground": "#444444",
   },
   "workbench.iconTheme": "material-icon-theme",
   "workbench.settings.editor": "json",
