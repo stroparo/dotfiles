@@ -11,6 +11,11 @@
     "command": "multiCommand.makeRoom"
   },
 
+  // Editor transform to lowercase:
+  { "key": "ctrl+k ctrl+l",
+    "command": "editor.action.transformToLowercase"
+  },
+
   // Override line join with ctrl+j;
   // ... panel toggle changed to ctrl+shift+j:
   { "key": "ctrl+j",
