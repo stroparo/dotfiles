@@ -11,6 +11,19 @@
     "command": "multiCommand.makeRoom"
   },
 
+  // Override line join with ctrl+j;
+  // ... panel toggle changed to ctrl+shift+j:
+  { "key": "ctrl+j",
+    "command": "-workbench.action.togglePanel"
+  },
+  { "key": "ctrl+j",
+    "command": "editor.action.joinLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  { "key": "ctrl+shift+j",
+    "command": "workbench.action.togglePanel"
+  },
+
   // Override line vertical movements to ctrl+shift+{up,down}:
   { "key": "ctrl+shift+up",
     "command": "-cursorUpSelect"
@@ -27,14 +40,13 @@
     "when": "editorTextFocus && !editorReadonly"
   },
 
-  // Override ctrl+j = join lines, ctrl+shift+j = panel toggle:
-  { "key": "ctrl+j",
-    "command": "editor.action.joinLines",
-    "when": "editorTextFocus && !editorReadonly"
+  // Override uppercase with ctrl+u
+  { "key": "ctrl+k ctrl+u",
+    "command": "-editor.action.removeCommentLine"
   },
-  { "key": "ctrl+shift+j",
-    "command": "workbench.action.togglePanel",
-  },
+  { "key": "ctrl+k ctrl+u",
+    "command": "editor.action.transformToUppercase",
+    "when": "editorTextFocus && !editorReadonly" },
 
   // Plugin to duplicate lines:
   { "key": "ctrl+d",
