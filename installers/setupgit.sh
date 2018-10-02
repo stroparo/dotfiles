@@ -45,6 +45,7 @@ $RPMPROG install -y curl-devel expat-devel gettext-devel openssl-devel zlib-deve
   && curl -LSf -o git-${VER_FULL}.tar.gz \"$GIT_URL\" \
   && tar xvzf git-${VER_FULL}.tar.gz \
   && cd git-${VER_FULL} \
+  && (sed -i -e 's/DOCBOOK2X_TEXI = docbook2x-texi/DOCBOOK2X_TEXI = db2x_docbook2texi/' \"./Documentation/Makefile\"; true) \
   && make prefix=${GIT_PREFIX:-/usr/local/git} all doc info \
   && make prefix=${GIT_PREFIX:-/usr/local/git} install install-doc install-html install-info
 "
