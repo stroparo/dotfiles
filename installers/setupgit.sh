@@ -40,7 +40,7 @@ $RPMPROG install -y curl-devel expat-devel gettext-devel openssl-devel zlib-deve
   && make prefix=${GIT_PREFIX:-/usr/local/git} install install-doc install-html install-info
 EOF
   # TODO add update-alternativas logic as well as manpages slaves
-else egrep -i -q 'debian|ubuntu' /etc/*release ; then
+elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
   : # TODO implement
 fi
 
