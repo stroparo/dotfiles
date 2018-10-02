@@ -9,7 +9,7 @@ echo "Setup Git from source"
 
 VER_FULL=2.18.0
 export GIT_PREFIX="/usr/local/git"
-export GIT_URL='https://www.kernel.org/pub/software/scm/git/git-${VER_FULL}.tar.gz'
+export GIT_URL="https://www.kernel.org/pub/software/scm/git/git-${VER_FULL}.tar.gz"
 export PROFILE_STRING="export PATH=\"${GIT_PREFIX:-/usr/local/git}/bin:\$PATH\""
 
 # Package installers:
