@@ -18,6 +18,7 @@ fi
 # Requirements
 
 "${RUNR_DIR:-$PWD}"/installers/setupepel.sh
+sudo yum install -y wget
 
 # #############################################################################
 # Globals
