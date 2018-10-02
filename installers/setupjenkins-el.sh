@@ -42,14 +42,14 @@ shift "$((OPTIND-1))"
 # #############################################################################
 # Install
 
-if ! (java -version | egrep -i -q '(openjdk.*1[.]8|oracle)') ; then
+if ! (java -version 2>/dev/null | egrep -i -q '(openjdk.*1[.]8|oracle)') ; then
   sudo yum -y remove java
   sudo yum -y install java-1.8.0-openjdk
 fi
 
 if ${STABLE_OPTION:-false} ; then
-  sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
-    && sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+  sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo \
+    && sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key \
     && sudo yum -y install jenkins-2.121.1
 else
   sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat/jenkins.repo \
