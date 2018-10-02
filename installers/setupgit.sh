@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
+PROGNAME="setupgit.sh"
+
 echo
 echo "################################################################################"
 echo "Setup Git from source"
 
 # #############################################################################
 # Globals
-
 VER_FULL=2.18.0
 export GIT_PREFIX="/usr/local/git"
 export GIT_URL="https://www.kernel.org/pub/software/scm/git/git-${VER_FULL}.tar.gz"
@@ -25,6 +26,14 @@ if ! (uname -a | grep -i -q linux) ; then
 fi
 
 # #############################################################################
+# Functions
+
+_error_exit () {
+  echo "${PROGNAME:+$PROGNAME: }FATAL: There was some error." 1>&2
+  exit 1
+}
+
+# #############################################################################
 # Main
 
 if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
@@ -38,6 +47,9 @@ $RPMPROG install -y curl-devel expat-devel gettext-devel openssl-devel zlib-deve
   && make prefix=${GIT_PREFIX:-/usr/local/git} all doc info \
   && make prefix=${GIT_PREFIX:-/usr/local/git} install install-doc install-html install-info
 "
+  if [ $? -ne 0 ] ; then
+    _error_exit
+  fi
   # TODO add update-alternativas logic as well as manpages slaves
 elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
   : # TODO implement
@@ -59,5 +71,5 @@ git --version
 # #############################################################################
 # Finish
 
-echo "FINISHED Git from source setup"
+echo "${PROGNAME:+$PROGNAME: }INFO: Git from source setup complete." 1>&2
 echo
