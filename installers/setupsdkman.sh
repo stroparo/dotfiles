@@ -2,12 +2,32 @@
 
 PROGNAME="setupsdkman.sh"
 
+# #############################################################################
+# Globals
+
 export SDKMAN_DIR="/usr/local/sdkman"
+
+# #############################################################################
+# Functions
 
 _error_exit () {
   echo "${PROGNAME:+$PROGNAME: }FATAL: There was some error installing sdkman." 1>&2
   exit 1
 }
+
+# #############################################################################
+# Reqs
+
+if ! which zip ; then
+  if egrep -i -q 'debian|ubuntu' /etc/*release ; then
+    sudo apt update && sudo apt install -y zip
+  elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+    sudo yum install -y zip
+  fi
+fi
+
+# #############################################################################
+# Main
 
 if ! curl -s "https://get.sdkman.io" | bash ; then
   _error_exit
