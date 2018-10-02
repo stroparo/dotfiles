@@ -195,6 +195,14 @@ if which git >/dev/null 2>&1 ; then
 fi
 
 # #############################################################################
+# Gradle
+
+if which gradle ; then
+  alias gdl='gradle --console=plain'
+  alias gdle='gradle'
+fi
+
+# #############################################################################
 # Packaging APT dpkg etcetera
 
 if which apt >/dev/null 2>&1 || which apt-get >/dev/null 2>&1 ; then
