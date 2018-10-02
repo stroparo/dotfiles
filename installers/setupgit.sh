@@ -32,7 +32,7 @@ if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
 $RPMPROG install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel \
   && $RPMPROG install -y gcc perl-ExtUtils-MakeMaker \
   && cd /usr/src \
-  && curl -o git-${VER_FULL}.tar.gz \"$GIT_URL\" \
+  && curl -LSf -o git-${VER_FULL}.tar.gz \"$GIT_URL\" \
   && tar xvzf git-${VER_FULL}.tar.gz \
   && cd git-${VER_FULL} \
   && make prefix=${GIT_PREFIX:-/usr/local/git} all doc info \
