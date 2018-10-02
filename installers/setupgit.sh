@@ -28,16 +28,16 @@ fi
 # Main
 
 if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
-  cat <<EOF | sudo bash
+  sudo bash -c "
 $RPMPROG install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel \
   && $RPMPROG install -y gcc perl-ExtUtils-MakeMaker \
   && cd /usr/src \
-  && curl -o git-${VER_FULL}.tar.gz "$GIT_URL" \
+  && curl -o git-${VER_FULL}.tar.gz \"$GIT_URL\" \
   && tar xvzf git-${VER_FULL}.tar.gz \
   && cd git-${VER_FULL} \
   && make prefix=${GIT_PREFIX:-/usr/local/git} all doc info \
   && make prefix=${GIT_PREFIX:-/usr/local/git} install install-doc install-html install-info
-EOF
+"
   # TODO add update-alternativas logic as well as manpages slaves
 elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
   : # TODO implement
@@ -47,8 +47,8 @@ fi
 # Post installation
 
 if [ ! -f /etc/profile.d/gitsrc.sh ] ; then
-  echo "${PROFILE_STRING}" > /etc/profile.d/gitsrc.sh
-  chmod 755 /etc/profile.d/gitsrc.sh
+  echo "${PROFILE_STRING}" | sudo tee /etc/profile.d/gitsrc.sh > /dev/null
+  sudo chmod 755 /etc/profile.d/gitsrc.sh
 fi
 
 echo "${PROGNAME:+$PROGNAME: }INFO: Git path:" 1>&2
