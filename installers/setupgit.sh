@@ -28,7 +28,6 @@ fi
 # Main
 
 if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
-  sudo $RPMPROG remove -y git
   cat <<EOF | sudo bash
 $RPMPROG install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel \
   && $RPMPROG install -y gcc perl-ExtUtils-MakeMaker \
