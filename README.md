@@ -36,7 +36,7 @@ dsload || . "${DS_HOME:-$HOME/.ds}/ds.sh"
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
 
-One could also directly download whatever script in this repository and have its sequence executed in one fell swoop, like in this example for the custom aliases:
+One can also get a specific script in this repository and have it executed in one fell swoop, like in this example:
 
 ```bash
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/recipes/alias.sh" \
@@ -49,11 +49,9 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/recipes
 
 ## Other recipes
 
-For Daily Shells installation: setupds
-
-For oh-my-zsh: setupohmyzsh
-
-For SSH default key generation: sshkeygen sshmodes
+* For Daily Shells installation: setupds
+* For oh-my-zsh: setupohmyzsh
+* For SSH default key generation: sshkeygen sshmodes
 
 Example issuing a direct download and execution of all these:
 
@@ -62,6 +60,15 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
   entry.sh setupds setupohmyzsh sshkeygen sshmodes
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
+```
+
+More recipes:
+
+```bash
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh alias && . ~/.aliases-cs
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh setupds
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh setupohmyzsh
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh sshkeygen sshmodes
 ```
 
 ---
