@@ -5,8 +5,11 @@ bash "${RUNR_DIR:-.}"/recipes/shell.sh
 bash "${RUNR_DIR:-.}"/recipes/apps.sh
 
 # Desktop
+bash "${RUNR_DIR:-.}"/recipes/base-el7-gui.sh
+bash "${RUNR_DIR:-.}"/recipes/base-el7-gui-fonts.sh
 bash "${RUNR_DIR:-.}"/recipes/xfce.sh
-bash "${RUNR_DIR:-.}"/recipes/apps-desktop.sh
+bash "${RUNR_DIR:-.}"/installers/setupchrome.sh
+bash "${RUNR_DIR:-.}"/installers/setuprdp.sh xfce
 
 # System
 bash "${RUNR_DIR:-.}"/recipes/fix.sh

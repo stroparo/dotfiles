@@ -20,7 +20,6 @@ fi
 
 echo "################################################################################"
 echo "Fonts installation"
-echo "################################################################################"
 
 git clone --depth 1 "https://github.com/powerline/fonts.git" ~/.powerline-fonts
 cd ~/.powerline-fonts
