@@ -27,9 +27,12 @@ These are custom i.e. the best way to seize them is to fork this repository and 
 The script has self-provisioning capabilities so you can skip downloading and setting it up by calling this command:
 
 ```bash
+{
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
-  entry.sh alias apps dotfiles shell
+  entry.sh shell apps alias dotfiles
+dsload || . "${DS_HOME:-$HOME/.ds}/ds.sh"
+}
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
 
@@ -65,12 +68,12 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
 
 ## Linux desktop package selects
 
-Download of the runr package plus installation of custom desktop package selects for Debian and Enterprise Linux families:
+Download of the runr package plus installation of custom desktop package selects for Linux distributions:
 
 ```bash
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
-  entry.sh apps-debian-desktop apps-el-desktop
+  entry.sh apps-desktop
 : # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
 ```
 
