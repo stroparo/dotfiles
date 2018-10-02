@@ -39,7 +39,8 @@ _error_exit () {
 if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
   sudo bash -c "
 $RPMPROG install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel \
-  && $RPMPROG install -y gcc perl-ExtUtils-MakeMaker \
+  && $RPMPROG install -y asciidoc gcc perl-ExtUtils-MakeMaker xmlto \
+  && $RPMPROG install -y --enablerepo=epel docbook2X \
   && cd /usr/src \
   && curl -LSf -o git-${VER_FULL}.tar.gz \"$GIT_URL\" \
   && tar xvzf git-${VER_FULL}.tar.gz \
