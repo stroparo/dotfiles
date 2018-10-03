@@ -135,7 +135,9 @@ if which docker >/dev/null 2>&1 ; then
   alias dke='docker exec'
   alias dkipaddr="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
   alias dkl='docker ps -l -q'
+  alias dkla='docker ps -a -q'
   alias dkps="docker ps"
+  alias dkpsa="docker ps -a"
   alias dkrm="docker rm"
   alias dkrmi="docker rmi"
 fi
@@ -197,7 +199,7 @@ fi
 # #############################################################################
 # Gradle
 
-if which gradle ; then
+if which gradle >/dev/null 2>&1 ; then
   alias gdl='gradle --console=plain'
   alias gdle='gradle'
 fi
