@@ -45,7 +45,7 @@ shift "$((OPTIND-1))"
 
 if ! (java -version 2>/dev/null | egrep -i -q '(openjdk.*1[.]8|oracle)') ; then
   sudo yum -y remove java
-  sudo yum -y install java-1.8.0-openjdk
+  sudo yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
 fi
 
 if ${STABLE_OPTION:-false} ; then
