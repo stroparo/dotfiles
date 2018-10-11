@@ -134,12 +134,6 @@ if which docker >/dev/null 2>&1 ; then
   alias dk='docker'
   alias dke='docker exec'
   alias dkipaddr="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
-  alias dkl='docker ps -l -q'
-  alias dkla='docker ps -a -q'
-  alias dkps="docker ps"
-  alias dkpsa="docker ps -a"
-  alias dkrm="docker rm"
-  alias dkrmi="docker rmi"
 fi
 
 # #############################################################################
@@ -200,29 +194,27 @@ fi
 # Gradle
 
 if which gradle >/dev/null 2>&1 ; then
-  alias gdl='gradle --console=plain'
-  alias gdle='gradle'
+  alias gdl='gradle'
+  alias gdlc='gradle --console=plain'
 fi
 
 # #############################################################################
 # Packaging APT dpkg etcetera
 
 if which apt >/dev/null 2>&1 || which apt-get >/dev/null 2>&1 ; then
-  alias apd='sudo aptitude update && sudo aptitude'
-  alias apdi='sudo aptitude install -y'
-  alias apdnoup='sudo aptitude'
-  alias apdup='sudo aptitude update'
-  alias apdupsafe='sudo aptitude update && sudo aptitude safe-upgrade'
+  alias apd='sudo aptitude'
+  alias apdup='sudo aptitude update && sudo aptitude'
+  alias apdupgrade='sudo aptitude update && sudo aptitude safe-upgrade'
   alias apti='sudo apt install -y'
   alias apts='apt-cache search'
   alias aptshow='apt-cache show'
   alias aptshowpkg='apt-cache showpkg'
-  alias aptup='sudo apt update'
+  alias aptup='sudo apt update && sudo apt'
   alias aptupgrade='sudo apt update && sudo apt upgrade'
   alias dpkgl='dpkg -L'
   alias dpkgs='dpkg -s'
   alias dpkgsel='dpkg --get-selections | egrep -i'
-  alias upalt='sudo update-alternatives'
+  alias updalt='sudo update-alternatives'
 fi
 
 # #############################################################################
