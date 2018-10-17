@@ -6,6 +6,12 @@
     { "keys": ["ctrl+shift+v"], "command": "paste" },
     // Close all other tabs
     { "keys": ["ctrl+shift+c"], "command": "copy_path_to_clipboard" },
+    { "keys": ["ctrl+alt+b"], "command": "run_existing_window_command", "args":
+      {
+        "id": "repl_python_run",
+        "file": "config/Python/Main.sublime-menu",
+      }
+    },
     { "keys": ["ctrl+alt+w"], "command": "close_tabs" },
     { "keys": ["f9"], "command": "unbound" }
 ]
