@@ -10,7 +10,7 @@ echo "Setup sublimetext editor"
 PROGNAME="setupsubl.sh"
 USAGE="$PROGNAME [-d opt dir (effect with -p only)] [-h] [-p]"
 
-DO_PORTABLE=false
+DO_REPO=false
 
 # Deb-based package
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
@@ -31,22 +31,37 @@ SUBL_PORTABLE_WINDOWS='https://download.sublimetext.com/Sublime%20Text%20Build%2
 # Options
 
 OPTIND=1
-while getopts ':d:hp' option ; do
+while getopts ':d:hr' option ; do
   case "${option}" in
     d) SUBL_OPT_DIR="${OPTARG}";;
     h) echo "$USAGE"; exit;;
-    p) DO_PORTABLE=true;;
+    r) DO_REPO=true;;
   esac
 done
 shift "$((OPTIND-1))"
 
-export DO_PORTABLE
+export DO_REPO
 export SUBL_OPT_DIR
+
+# #############################################################################
+# Functions
+
+_skip_if_installed_in_opt () {
+  if ls "${SUBL_OPT_DIR}"/subl* >/dev/null 2>&1 ; then
+    echo "${PROGNAME:+$PROGNAME: }SKIP: Already installed." 1>&2
+    exit
+  fi
+}
 
 # #############################################################################
 # Distribution-wise package
 
-if ! ${DO_PORTABLE:-false} ; then
+if ${DO_REPO:-false} ; then
+
+  if which subl >/dev/null 2>&1 ; then
+    echo "${PROGNAME:+$PROGNAME: }SKIP: Already installed." 1>&2
+    exit
+  fi
 
   if egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
@@ -75,7 +90,7 @@ if ! ${DO_PORTABLE:-false} ; then
 elif egrep -i -q 'linux' /etc/*release ; then
 
   mkdir -p "$SUBL_OPT_DIR"
-  cd "$SUBL_OPT_DIR"
+  _skip_if_installed_in_opt
   curl -k -L -o ./subl3.tar.bz2 "$SUBL_PORTABLE_LINUX"
   sudo tar xjvf ./subl3.tar.bz2
   sudo ln -s -v ./sublime_text_3 ./subl # directory
@@ -86,7 +101,8 @@ elif egrep -i -q 'linux' /etc/*release ; then
 
 elif [[ "$(uname -a)" = *[Cc]ygwin* ]] ; then
 
-  SUBL_OPT_DIR="$(cygpath 'C:\opt')"
+  export SUBL_OPT_DIR="$(cygpath 'C:\opt')"
+  _skip_if_installed_in_opt
   mkdir -p "$SUBL_OPT_DIR"
   cd "$SUBL_OPT_DIR"
   curl -k -L -o ./subl3.zip "$SUBL_PORTABLE_WINDOWS"
