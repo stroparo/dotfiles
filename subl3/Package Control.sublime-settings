@@ -18,6 +18,7 @@
     "SublimeLinter-jshint",
     "SublimeLinter-json",
     "SublimeLinter-rubocop",
+    "SublimeREPL",
     // "Text Pastry",
     "TrailingSpaces",
 
@@ -33,7 +34,6 @@
 
     // Themes
     "Boxy Theme",
-    "Monarch",
     "RailsCasts Colour Scheme",
     "Theme - Spacegray",
     "Twilightcyanide Colorscheme",
