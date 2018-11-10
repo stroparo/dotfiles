@@ -89,8 +89,9 @@ if ${DO_REPO:-false} ; then
 
 elif egrep -i -q 'linux' /etc/*release ; then
 
-  mkdir -p "$SUBL_OPT_DIR"
   _skip_if_installed_in_opt
+  mkdir -p "$SUBL_OPT_DIR"
+  cd "$SUBL_OPT_DIR"
   curl -k -L -o ./subl3.tar.bz2 "$SUBL_PORTABLE_LINUX"
   sudo tar xjvf ./subl3.tar.bz2
   sudo ln -s -v ./sublime_text_3 ./subl # directory
