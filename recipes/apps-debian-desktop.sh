@@ -51,6 +51,12 @@ _install_packages ntfs-3g
 echo ${BASH_VERSION:+-e} "Debian desktop - educational packages..."
 _install_packages gperiodic
 
+echo ${BASH_VERSION:+-e} "Debian desktop - multimedia packages..."
+_install_packages mp3splt parole ristretto
+
+echo ${BASH_VERSION:+-e} "Debian desktop - networking packages..."
+_install_packages gigolo # remote filesystem management
+
 echo ${BASH_VERSION:+-e} "Debian desktop - productivity packages..."
 _install_packages atril galculator guake meld
 _install_packages gnome-shell-pomodoro
@@ -86,13 +92,9 @@ sudo $INSTPROG install -y gtypist tuxtype
 # Multimedia
 sudo $INSTPROG install -y gnome-alsamixer pulseaudio-equalizer pavucontrol volumeicon-alsa
 sudo $INSTPROG install -y audacious audacious-plugins
-sudo $INSTPROG install -y mp3splt
 sudo $INSTPROG install -y mpv
-sudo $INSTPROG install -y parole
-sudo $INSTPROG install -y ristretto
 
 # Networking
-sudo $INSTPROG install -y gigolo # remote filesystem management
 sudo $INSTPROG install -y mobile-broadband-provider-info modemmanager usb-modeswitch # mobile modem
 
 # Productivity
