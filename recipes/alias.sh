@@ -45,7 +45,8 @@ alias capsctrl='setxkbmap -option "ctrl:nocaps"'
 alias cls='clear'
 alias dfg='df -gP'
 alias dfh='df -hP'
-alias dsloaddefault='. ~/.ds/ds.sh'
+alias dsh='dshash -r'
+alias dsloaddefault='. "$HOME/.ds/ds.sh"'
 alias dumr='du -ma | sort -rn'
 alias dums='du -ma | sort -n'
 alias e='exa -hil'
@@ -55,7 +56,6 @@ alias findf='find . -type f'
 alias nhr='rm nohup.out'
 alias nht='tail -9999f nohup.out'
 alias server='python3 -m http.server'
-alias sourceds='. "$HOME/.ds/ds.sh"'
 alias tpf='typeset -f'
 alias sourcevirtualenv='. ./bin/activate'
 alias xcd="alias | egrep \"'c?d \" | fgrep -v 'cd -'"
@@ -220,7 +220,7 @@ fi
 # Packaging RPM etcetera
 
 if (uname -a | grep -i -q linux) \
-  && egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release
+  && egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release
 then
   alias yumepel='sudo yum --enablerepo=epel'
 fi
