@@ -17,7 +17,7 @@ export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 # #############################################################################
 # Checks
 
-if (! grep -q "Ubuntu" /etc/os-release || ! fgrep -q "$UBUNTU_VERSION_SUPPORTED" /etc/os-release) ; then
+if (! grep -q "Ubuntu" /etc/os-release || ! fgrep -q -r "$UBUNTU_VERSION_SUPPORTED" /etc/os-release) ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: Only Ubuntu supported." 1>&2
   exit
 fi

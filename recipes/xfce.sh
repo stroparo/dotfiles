@@ -28,12 +28,12 @@ shift "$((OPTIND-1))"
 # #############################################################################
 # Helpers
 
-_is_debian_family () { egrep -i -q 'debian|ubuntu' /etc/*release ; }
-_is_el_family () { egrep -i -q '(cent ?os|oracle|red ?hat|fedora)' /etc/*release ; }
-_is_el () { egrep -i -q '(cent ?os|oracle|red ?hat)' /etc/*release ; }
-_is_el6 () { egrep -i -q '(cent ?os|oracle|red ?hat).* 6' /etc/*release ; }
-_is_el7 () { egrep -i -q '(cent ?os|oracle|red ?hat).* 7' /etc/*release ; }
-_is_fedora () { egrep -i -q 'fedora' /etc/*release ; }
+_is_debian_family () { egrep -i -q -r 'debian|ubuntu' /etc/*release ; }
+_is_el_family () { egrep -i -q -r '(cent ?os|oracle|red ?hat|fedora)' /etc/*release ; }
+_is_el () { egrep -i -q -r '(cent ?os|oracle|red ?hat)' /etc/*release ; }
+_is_el6 () { egrep -i -q -r '(cent ?os|oracle|red ?hat).* 6' /etc/*release ; }
+_is_el7 () { egrep -i -q -r '(cent ?os|oracle|red ?hat).* 7' /etc/*release ; }
+_is_fedora () { egrep -i -q -r 'fedora' /etc/*release ; }
 
 _install_packages () {
   for package in "$@" ; do
@@ -60,7 +60,7 @@ _print_header () {
 }
 
 _set_fedora_version () {
-  export FEDORA_VERSION=$(egrep -i -o 'fedora [0-9]+' /etc/*release \
+  export FEDORA_VERSION=$(egrep -i -o -r 'fedora [0-9]+' /etc/*release \
     | head -1 \
     | awk '{ print $2; }')
 }
@@ -86,7 +86,7 @@ if _is_el_family ; then
   _print_header "XFCE Whisker Menu setup..."
   if _is_el ; then
     _install_packages "xfce4-whiskermenu-plugin"
-  elif egrep -i -q 'fedora 2[6-9]' /etc/*release ; then
+  elif egrep -i -q -r 'fedora 2[6-9]' /etc/*release ; then
     _set_fedora_version
     if [ ! -e /etc/yum.repos.d/home:gottcode.repo ] ; then
       sudo $INSTPROG remove -y "xfce4-whiskermenu-plugin" >/dev/null 2>&1

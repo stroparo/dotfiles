@@ -30,8 +30,8 @@ fi
 # #############################################################################
 # Check OS
 
-if ! egrep -i -q 'ubuntu' /etc/*release \
-  && ! egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release
+if ! egrep -i -q -r 'ubuntu' /etc/*release \
+  && ! egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release
 then
   echo "SKIP: Only Debian and Enterprise Linux distributions are supported." 1>&2
   exit
@@ -73,7 +73,7 @@ shift "$((OPTIND-1))"
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Python system dependencies"
 
-if egrep -i -q 'debian|ubuntu' /etc/*release ; then
+if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
 
   sudo $APTPROG update || exit $?
 
@@ -90,7 +90,7 @@ if egrep -i -q 'debian|ubuntu' /etc/*release ; then
   which git >/dev/null 2>&1 || sudo $APTPROG install -y git-core || exit $?
   which sqlite3 >/dev/null 2>&1 || sudo $APTPROG install -y sqlite3 || exit $?
 
-elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
   # Python 2
   sudo $RPMPROG install -q -y --enablerepo=epel python python-devel

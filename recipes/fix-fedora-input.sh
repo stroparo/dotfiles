@@ -9,7 +9,7 @@ COMPOSE_FILE="/usr/share/X11/locale/en_US.UTF-8/Compose"
 # #############################################################################
 # Prep
 
-if ! egrep -i -q 'fedora' /etc/*release ; then
+if ! egrep -i -q -r 'fedora' /etc/*release ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: this is a Fedora Linux routine." 1>&2
   exit
 elif ! which dnf >/dev/null 2>&1 ; then

@@ -10,7 +10,7 @@ echo "Setup EPEL repository..."
 # Checks
 
 # Check for idempotency
-if ! egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+if ! egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
   echo "${PROGNAME}: SKIP: Only Enterprise Linux distributions are supported." 1>&2
   exit
 fi

@@ -36,7 +36,7 @@ _error_exit () {
 # #############################################################################
 # Main
 
-if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+if egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
   sudo bash -c "
 $RPMPROG install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel \
   && $RPMPROG install -y asciidoc gcc perl-ExtUtils-MakeMaker xmlto \
@@ -53,7 +53,7 @@ $RPMPROG install -y curl-devel expat-devel gettext-devel openssl-devel zlib-deve
     _error_exit
   fi
   # TODO add update-alternativas logic as well as manpages slaves
-elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
+elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   : # TODO implement
 fi
 

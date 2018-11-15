@@ -102,7 +102,7 @@ if ${DO_PYTHON2:-false} || ${DO_PYTHON3:-false} ; then "setuppython.sh" "system"
 
 echo ${BASH_VERSION:+-e} "\n==> Dependencies from OS repos (deb, rpm)...\n"
 
-if egrep -i -q 'debian|ubuntu' /etc/*release ; then
+if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
 
   # Utilities:
   sudo $APTPROG install -y exuberant-ctags
@@ -121,7 +121,7 @@ if egrep -i -q 'debian|ubuntu' /etc/*release ; then
   # checkinstall will allow for vim to be uninstalled via `dpkg -r vim`
   sudo $APTPROG install -y checkinstall
 
-elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
   # Utilities:
   sudo $RPMPROG install -q -y --enablerepo=epel ctags
@@ -180,9 +180,9 @@ _prep_python2 () {
       echo
       echo 'Enter the Python 2 config dir:'
       read PYTHON2_CONFIG_DIR
-    elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+    elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
       PYTHON2_CONFIG_DIR="/usr/lib64/python2.7/config"
-    elif egrep -i -q 'ubuntu' /etc/*release ; then
+    elif egrep -i -q -r 'ubuntu' /etc/*release ; then
       PYTHON2_CONFIG_DIR="/usr/lib/python2.7/config-x86_64-linux-gnu"
     else
       DO_PYTHON2=false
@@ -216,9 +216,9 @@ _prep_python3 () {
       echo
       echo 'Enter the Python 3 config dir:'
       read PYTHON3_CONFIG_DIR
-    elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+    elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
       PYTHON3_CONFIG_DIR="/usr/lib64/python3.4/config-3.4m-x86_64-linux-gnu"
-    elif egrep -i -q 'ubuntu' /etc/*release ; then
+    elif egrep -i -q -r 'ubuntu' /etc/*release ; then
       PYTHON3_CONFIG_DIR="/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu"
     else
       DO_PYTHON3=false

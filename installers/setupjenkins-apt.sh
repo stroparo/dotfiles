@@ -9,7 +9,7 @@ echo "Setup Jenkins for Debian based distributions"
 # #############################################################################
 # Checks
 
-if ! egrep -i -q 'debian|ubuntu' /etc/*release ; then
+if ! egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   echo "${PROGNAME}: SKIP: Only APT (Debian, Ubuntu etc.) Linux distributions supported." 1>&2
   exit
 fi

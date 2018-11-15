@@ -9,7 +9,7 @@ echo "Setup Jenkins for EL Enterprise Linux based distributions"
 # #############################################################################
 # Checks
 
-if ! egrep -i -q '(centos|fedora|oracle|red *hat).*7' /etc/*release ; then
+if ! egrep -i -q -r '(centos|fedora|oracle|red *hat).*7' /etc/*release ; then
   echo "${PROGNAME}: SKIP: Only Red Hat 7.x Linux distributions are supported." 1>&2
   exit
 fi

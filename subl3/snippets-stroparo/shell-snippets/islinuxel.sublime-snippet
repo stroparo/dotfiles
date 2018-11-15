@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release
+egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>islinuxel</tabTrigger>

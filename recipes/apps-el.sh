@@ -7,7 +7,7 @@ PROGNAME=apps-el.sh
 # #############################################################################
 # Checks
 
-if ! egrep -i -q '(cent ?os|oracle|red ?hat|fedora)' /etc/*release ; then
+if ! egrep -i -q -r '(cent ?os|oracle|red ?hat|fedora)' /etc/*release ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: This is not an Enterprise Linux family instance." 1>&2
   exit
 fi
@@ -23,10 +23,10 @@ export INSTPROG="$RPMPROG"
 # #############################################################################
 # Helpers
 
-_is_el () { egrep -i -q '(cent ?os|oracle|red ?hat)' /etc/*release ; }
-_is_el6 () { egrep -i -q '(cent ?os|oracle|red ?hat).* 6' /etc/*release ; }
-_is_el7 () { egrep -i -q '(cent ?os|oracle|red ?hat).* 7' /etc/*release ; }
-_is_fedora () { egrep -i -q 'fedora' /etc/*release ; }
+_is_el () { egrep -i -q -r '(cent ?os|oracle|red ?hat)' /etc/*release ; }
+_is_el6 () { egrep -i -q -r '(cent ?os|oracle|red ?hat).* 6' /etc/*release ; }
+_is_el7 () { egrep -i -q -r '(cent ?os|oracle|red ?hat).* 7' /etc/*release ; }
+_is_fedora () { egrep -i -q -r 'fedora' /etc/*release ; }
 
 _install_epel_packages () {
   for package in "$@" ; do

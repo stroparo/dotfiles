@@ -12,7 +12,7 @@ export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 # #############################################################################
 # Checks
 
-if ! egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+if ! egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
   echo "SKIP: Only Red Hat distros supported." 1>&2
   exit
 fi

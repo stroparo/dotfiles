@@ -7,7 +7,7 @@ PROGNAME=apps-el-desktop.sh
 # #############################################################################
 # Check OS
 
-if ! egrep -i -q 'cent ?os|fedora|oracle|red ?hat' /etc/*release 2>/dev/null ; then
+if ! egrep -i -q -r 'cent ?os|fedora|oracle|red ?hat' /etc/*release 2>/dev/null ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: Only Red Hat based distros are supported" 1>&2
   exit
 fi
@@ -54,7 +54,7 @@ _install_packages gnome-shell-extension-pomodoro
 _install_packages shutter # screenshots
 
 # #############################################################################
-if egrep -i -q 'fedora' /etc/*release 2>/dev/null ; then
+if egrep -i -q -r 'fedora' /etc/*release 2>/dev/null ; then
 
   _print_header "Fedora"
 
@@ -93,7 +93,7 @@ if egrep -i -q 'fedora' /etc/*release 2>/dev/null ; then
 fi
 
 # #############################################################################
-if egrep -i -q 'fedora 27' /etc/*release 2>/dev/null ; then
+if egrep -i -q -r 'fedora 27' /etc/*release 2>/dev/null ; then
 
   _print_header "Fedora 27"
 

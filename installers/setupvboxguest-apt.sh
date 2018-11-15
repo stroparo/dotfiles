@@ -7,7 +7,7 @@ echo "Setup VirtualBox guest for Debian based distributions"
 # #############################################################################
 # Check OS
 
-if ! egrep -i -q 'debian|ubuntu' /etc/*release ; then
+if ! egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   echo "SKIP: Only Debian/Ubuntu based distros supported by '$0'" 1>&2
   exit
 fi

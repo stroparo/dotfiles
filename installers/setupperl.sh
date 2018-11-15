@@ -15,9 +15,9 @@ export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP
 # #############################################################################
 # Main
 
-if egrep -i -q 'debian|ubuntu' /etc/*release ; then
+if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   sudo $APTPROG install -y perl libperl-dev
-elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
   sudo $RPMPROG install -y --enablerepo=epel perl perl-devel perl-ExtUtils-Embed
 fi
 

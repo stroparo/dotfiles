@@ -14,7 +14,7 @@ export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP
 # #############################################################################
 # Main
 
-if egrep -i -q '(centos|fedora|oracle|red *hat).* 7' /etc/*release ; then
+if egrep -i -q -r '(centos|fedora|oracle|red *hat).* 7' /etc/*release ; then
 
   cat <<EOF | sudo tee /etc/yum.repos.d/google-x86_64.repo
 [google64]
@@ -26,7 +26,7 @@ gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 EOF
   sudo $RPMPROG install -y google-chrome-stable
 
-elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
+elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
 
   curl -LSfs "https://dl-ssl.google.com/linux/linux_signing_key.pub" | sudo apt-key add -
 

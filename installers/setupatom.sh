@@ -25,7 +25,7 @@ if [[ "$(uname -a)" = *[Cc]ygwin* ]] ; then
 # #############################################################################
 # Debian/Ubuntu
 
-elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
+elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
 
   wget -O "$HOME"/atom.deb 'https://atom.io/download/deb'
   sudo dpkg -i "$HOME"/atom.deb && rm -f "$HOME"/atom.deb
@@ -33,7 +33,7 @@ elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
 # #############################################################################
 # Red Hat family
 
-elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
   wget -O "$HOME"/atom.rpm 'https://atom.io/download/rpm'
   sudo yum-config-manager --enable epel.repo

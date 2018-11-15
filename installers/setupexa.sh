@@ -52,10 +52,10 @@ _install_exa_deb () {
 # #############################################################################
 # Main
 
-if egrep -i -q 'debian|ubuntu' /etc/*release ; then
+if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   _install_exa_deb "$@"
   exit $?
-elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
   echo "SKIP: _install_exa_rpm routine still to be implemented" 1>&2
   exit
 else

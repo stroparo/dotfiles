@@ -5,7 +5,7 @@ PROGNAME=apps-ubuntu-ppa.sh
 # #############################################################################
 # Early checks
 
-if ! egrep -i -q 'ubuntu' /etc/*release ; then
+if ! egrep -i -q -r 'ubuntu' /etc/*release ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: This is not an Ubuntu distribution." 1>&2
   exit
 fi

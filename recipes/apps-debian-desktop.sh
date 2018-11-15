@@ -7,7 +7,7 @@ PROGNAME=apps-debian-desktop.sh
 # #############################################################################
 # Checks
 
-if ! egrep -i -q 'debian|ubuntu' /etc/*release ; then
+if ! egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: This is not an Debian/Ubuntu Linux family instance." 1>&2
   exit
 fi

@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-egrep -i -q 'debian|ubuntu' /etc/*release
+egrep -i -q -r 'debian|ubuntu' /etc/*release
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>islinuxdeb</tabTrigger>

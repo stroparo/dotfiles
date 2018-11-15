@@ -29,11 +29,11 @@ fi
 
 # #############################################################################
 
-if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release 2>/dev/null ; then
+if egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release 2>/dev/null ; then
 
   sudo $RPMPROG install -y xrdp tigervnc-server
 
-  if egrep -i -q '(oracle|red *hat)' /etc/*release 2>/dev/null ; then
+  if egrep -i -q -r '(oracle|red *hat)' /etc/*release 2>/dev/null ; then
 
     echo "$PROGNAME: INFO: setting up firewall"
     if [ "$(sudo firewall-cmd --state)" = "not running" ] ; then
@@ -42,7 +42,7 @@ if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release 2>/dev/null ; then
     sudo firewall-cmd --permanent --zone=public --add-port=5904-5905/tcp \
       && sudo firewall-cmd --reload
 
-    if egrep -i -q '(oracle|red *hat).* [67]' /etc/*release 2>/dev/null ; then
+    if egrep -i -q -r '(oracle|red *hat).* [67]' /etc/*release 2>/dev/null ; then
 
       # Xclients customization in /etc/X11/xinit for XFCE:
       # TODO verify if applies to centos & fedora

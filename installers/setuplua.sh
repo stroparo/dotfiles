@@ -17,9 +17,9 @@ export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP
 # #############################################################################
 # Main
 
-if egrep -i -q 'debian|ubuntu' /etc/*release ; then
+if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   sudo $APTPROG install -y liblua5.1-dev luajit libluajit-5.1
-elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
   echo "${PROGNAME}: SKIP: TODO implement Lua for Enterprise Linux distributions..." 1>&2
   exit
 fi

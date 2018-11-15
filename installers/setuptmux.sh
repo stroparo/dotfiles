@@ -51,13 +51,13 @@ if [ ! -d "$PREFIX" ] ; then
 fi
 
 echo ${BASH_VERSION:+-e} "\n==> Installing dependencies..."
-if egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+if egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
   sudo $RPMPROG install -y automake make gcc
   sudo $RPMPROG install -y glibc-static
   sudo $RPMPROG install -y kernel-devel
   sudo $RPMPROG install -y libevent libevent-devel libevent-headers
   sudo $RPMPROG install -y ncurses ncurses-devel
-elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
+elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   sudo $APTPROG install -y automake make gcc
 fi
 

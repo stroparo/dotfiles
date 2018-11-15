@@ -63,7 +63,7 @@ if ${DO_REPO:-false} ; then
     exit
   fi
 
-  if egrep -i -q 'debian|ubuntu' /etc/*release ; then
+  if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
 
     curl -LSf "$SUBL_APT_KEY" | sudo apt-key add -
     sudo $APTPROG install -y apt-transport-https
@@ -71,7 +71,7 @@ if ${DO_REPO:-false} ; then
     sudo $APTPROG update
     sudo $APTPROG install -y "$SUBL_APT_PKG"
 
-  elif egrep -i -q 'centos|fedora|oracle|red *hat' /etc/*release ; then
+  elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
     if which dnf 2>/dev/null ; then
       sudo rpm -v --import "$SUBL_RPM_KEY"
@@ -87,7 +87,7 @@ if ${DO_REPO:-false} ; then
 # #############################################################################
 # Portable for Linux
 
-elif egrep -i -q 'linux' /etc/*release ; then
+elif egrep -i -q -r 'linux' /etc/*release ; then
 
   _skip_if_installed_in_opt
   mkdir -p "$SUBL_OPT_DIR"
