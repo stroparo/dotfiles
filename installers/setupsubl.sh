@@ -4,6 +4,11 @@ echo
 echo "################################################################################"
 echo "Setup sublimetext editor"
 
+if which subl >/dev/null 2>&1 ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Already installed." 1>&2
+  exit
+fi
+
 # #############################################################################
 # Globals
 
@@ -31,16 +36,14 @@ SUBL_PORTABLE_WINDOWS='https://download.sublimetext.com/Sublime%20Text%20Build%2
 # Options
 
 OPTIND=1
-while getopts ':d:hr' option ; do
+while getopts ':d:h' option ; do
   case "${option}" in
     d) SUBL_OPT_DIR="${OPTARG}";;
     h) echo "$USAGE"; exit;;
-    r) DO_REPO=true;;
   esac
 done
 shift "$((OPTIND-1))"
 
-export DO_REPO
 export SUBL_OPT_DIR
 
 # #############################################################################
@@ -56,12 +59,11 @@ _skip_if_installed_in_opt () {
 # #############################################################################
 # Distribution-wise package
 
-if ${DO_REPO:-false} ; then
+if (echo "$@" | egrep -q "local") ; then
+  DO_REPO=false
+fi
 
-  if which subl >/dev/null 2>&1 ; then
-    echo "${PROGNAME:+$PROGNAME: }SKIP: Already installed." 1>&2
-    exit
-  fi
+if ${DO_REPO:-true} ; then
 
   if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
 
@@ -83,11 +85,12 @@ if ${DO_REPO:-false} ; then
       sudo yum install -y "$SUBL_RPM_PKG"
     fi
   fi
+fi
 
 # #############################################################################
 # Portable for Linux
 
-elif egrep -i -q -r 'linux' /etc/*release ; then
+if egrep -i -q -r 'linux' /etc/*release && ! which subl >/dev/null 2>&1 ; then
 
   _skip_if_installed_in_opt
   mkdir -p "$SUBL_OPT_DIR"
