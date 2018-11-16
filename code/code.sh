@@ -4,7 +4,7 @@ PROGNAME="code.sh"
 
 echo
 echo "################################################################################"
-echo "Visual Studio Code setup; \$0='$0'; \$PWD='$PWD'"
+echo "Visual Studio Code editor setup; \$0='$0'; \$PWD='$PWD'"
 
 # System installers
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt

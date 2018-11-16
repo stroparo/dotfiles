@@ -2,7 +2,7 @@
 
 echo
 echo "################################################################################"
-echo "Setup sublimetext editor"
+echo "SublimeText editor setup; \$0='$0'; \$PWD='$PWD'"
 
 if which subl >/dev/null 2>&1 ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: Already installed." 1>&2
