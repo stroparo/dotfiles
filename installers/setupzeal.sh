@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-PROGNAME=apps-ubuntu-ppa.sh
+PROGNAME=setupzeal.sh
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 
 echo "################################################################################"
-echo "Ubuntu PPA selects"
+echo "Ubuntu PPA - Zeal offline docs application"
 echo "################################################################################"
 
 # #############################################################################
@@ -42,13 +42,6 @@ _install_packages () {
 # #############################################################################
 # Main
 
-# TODO parameterize list of apps to be installed
-
-dpkg -s qdirstat      || _add_ppa_repo 'nathan-renniewaldock/qdirstat'
-dpkg -s stacer        || _add_ppa_repo 'oguzhaninan/stacer'
-dpkg -s woeusb        || _add_ppa_repo 'nilarimogard/webupd8'
-dpkg -s y-ppa-manager || _add_ppa_repo 'webupd8team/y-ppa-manager'
-
+dpkg -s zeal || _add_ppa_repo 'zeal-developers/ppa'
 sudo ${APTPROG} update
-
-_install_packages qdirstat stacer woeusb y-ppa-manager
+_install_packages zeal
