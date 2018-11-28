@@ -33,10 +33,10 @@ elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
   # Install
   if egrep -i -q -r 'fedora' /etc/*release ; then
-    dnf check-update
+    sudo dnf check-update
     sudo dnf install code
   else
-    yum check-update
+    sudo yum check-update
     sudo yum install code
   fi
 fi
