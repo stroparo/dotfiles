@@ -44,10 +44,6 @@ if ! sudo $APTPROG update >/dev/null 2>/tmp/apt-update-err.log ; then
   echo "WARN: There was some failure during APT index update - see '/tmp/apt-update-err.log'." 1>&2
 fi
 
-echo ${BASH_VERSION:+-e} "Debian desktop - base packages..."
-_install_packages bum ssh-askpass xbacklight xclip xscreensaver
-_install_packages ntfs-3g
-
 echo ${BASH_VERSION:+-e} "Debian desktop - educational packages..."
 _install_packages gperiodic
 
@@ -74,34 +70,47 @@ sudo $APTPROG clean -y
 _print_header "Debian GUI app recommendations"
 
 cat <<EOF | tee ~/README-debian-gui-apps.lst
+# Favorites
+{
+sudo $INSTPROG update
 
-# Drivers - Have linux-headers-... installed.
-sudo aptitude install -y "nvidia-kernel-$(uname -r)" nvidia-{settings,xconfig}
+# Apps
+sudo $INSTPROG install -y gnucash
+sudo $INSTPROG install -y gtypist tuxtype
+sudo $INSTPROG install -y libreoffice-calc
 
 # Games
 sudo $INSTPROG install -y chocolate-doom
 sudo $INSTPROG install -y dosbox stella zsnes
 sudo $INSTPROG install -y gnome-games gnome-sudoku gnuchess
-sudo $INSTPROG install -y joy2key joystick inputattach
 sudo $INSTPROG install -y openttd openttd-opengfx openttd-openmsx openttd-opensfx timidity
+}
+
+# Etc - Desktop
+sudo $INSTPROG install -y bum
+sudo $INSTPROG install -y ssh-askpass
+sudo $INSTPROG install -y xbacklight xclip xscreensaver
+
+# Etc - Drivers - Have linux-headers-... installed.
+sudo $INSTPROG install -y "nvidia-kernel-$(uname -r)" nvidia-{settings,xconfig}
+
+# Etc - Games
+sudo $INSTPROG install -y joy2key joystick inputattach
 sudo $INSTPROG install -y visualboyadvance-gtk
 
-# Educational
-sudo $INSTPROG install -y gtypist tuxtype
-
-# Multimedia
+# Etc - Multimedia
 sudo $INSTPROG install -y gnome-alsamixer pulseaudio-equalizer pavucontrol volumeicon-alsa
 sudo $INSTPROG install -y audacious audacious-plugins
 sudo $INSTPROG install -y mpv
 
-# Networking
+# Etc - Networking
 sudo $INSTPROG install -y mobile-broadband-provider-info modemmanager usb-modeswitch # mobile modem
 
-# Productivity
-sudo $INSTPROG install -y gnucash
-sudo $INSTPROG install -y libreoffice-calc
+# Etc - Productivity
 sudo $INSTPROG install -y shutter # screenshots
 
+# Etc - System
+sudo $INSTPROG install -y ntfs-3g
 EOF
 
 # #############################################################################
