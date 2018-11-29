@@ -60,10 +60,8 @@ fi
 # #############################################################################
 # Conf - User settings
 
-if ! (ps -ef | grep -v grep | grep -w -q code) ; then
-  ${VSCODE_CMD:-code} >/dev/null 2>&1 & disown
-  sleep 4
-fi
+${VSCODE_CMD:-code} >/dev/null 2>&1 & disown
+sleep 4
 
 if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
   CODE_USER_DIR="$(cygpath "${USERPROFILE}")/AppData/Roaming/Code/User"
