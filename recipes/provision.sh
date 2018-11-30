@@ -25,7 +25,7 @@ fi
 bash "${RUNR_DIR:-.}"/recipes/fix.sh
 
 # Dev platforms
-bash "${RUNR_DIR:-.}"/installers/setuppython.sh
+bash "${RUNR_DIR:-.}"/recipes/python.sh
 bash "${RUNR_DIR:-.}"/installers/setuprust.sh
 
 # Dev tools

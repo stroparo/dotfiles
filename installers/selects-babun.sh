@@ -2,9 +2,9 @@
 
 # Globals
 
-PROGNAME=babunselects.sh
+PROGNAME=selects-babun.sh
 
-CYGWINSETUP=cygwinselects.bat
+CYGWINSETUP=selects-cygwin.bat
 if ls "./installers/$CYGWINSETUP" >/dev/null 2>&1 ; then
   CYGWINSETUP="./installers/$CYGWINSETUP"
 elif [ ! -e "$CYGWINSETUP" ] ; then
