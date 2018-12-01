@@ -5,6 +5,7 @@
   "editor.fontFamily": "'Ubuntu Mono derivative Powerline', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 15,
+  "editor.formatOnSave": false,
   "editor.insertSpaces": true,
   "editor.lineHeight": 15,
   "editor.lineNumbers": "on",
@@ -27,6 +28,7 @@
       ]
     }
   },
+  "editor.wordWrap": "off",
   "explorer.confirmDelete": false,
   "extensions.ignoreRecommendations": false,
   "files.autoSave": "afterDelay",
@@ -110,10 +112,15 @@
     "editor.selectionBackground": "#aa44ff",
     "editor.selectionHighlightBackground": "#7722aa",
     "editorWhitespace.foreground": "#444444",
+    "statusBar.background": "#663366",
+    "statusBar.foreground": "#cac",
+    "statusBar.noFolderBackground": "#663333",
+    "statusBar.debuggingBackground": "#263238"
   },
   "workbench.iconTheme": "material-icon-theme",
   "workbench.settings.editor": "json",
   "workbench.sideBar.location": "right",
+  "workbench.statusBar.visible": true,
   "zenMode.fullScreen": true,
   "[markdown]": {
     "files.trimTrailingWhitespace": false,
