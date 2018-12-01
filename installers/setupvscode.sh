@@ -1,59 +1,58 @@
 #!/usr/bin/env bash
 
+PROGNAME="setupvscode.sh"
+
 echo
 echo "################################################################################"
-echo "Aiding VSCode setup..."
+echo "Setup Visual Studio Code editor; \$0='$0'; \$PWD='$PWD'"
+
+if which ${VSCODE_CMD:-code} >/dev/null 2>&1 ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: already installed." 1>&2
+  exit
+fi
 
 # #############################################################################
 # Globals
 
-PROGNAME="setupvscode.sh"
+export VSCODE_CMD="code"
 
-LINKS="https://code.visualstudio.com/download
-https://marketplace.visualstudio.com/items?itemName=nonoroazoro.syncing
-https://gist.github.com/stroparo/5ae1e0c8fe2e7a5401a9f52b3aaec9f1
-https://github.com/viatsko/awesome-vscode"
-
-# #############################################################################
-# Main
-
-echo ${BASH_VERSION:+-e} "\n==> Visual Studio Code setup guide\n"
-
-cat <<EOF
-
-Links:
-$LINKS
-EOF
+# System installers
+export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
+export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
+export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP="dnf group install"
+export INSTPROG="$APTPROG"; which "$RPMPROG" >/dev/null 2>&1 && export INSTPROG="$RPMPROG"
 
 # #############################################################################
-# Open links
+# Install
 
-if (ps -ef | grep -i -q xorg) && which firefox >/dev/null 2>&1 ; then
+if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
+  # Add repo
+  curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+  sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+  sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
-  echo ${BASH_VERSION:+-e} "\n==> Opening VSCode download and gist links...\n"
-  eval firefox $LINKS & disown
+  # Install
+  sudo $INSTPROG install -y apt-transport-https
+  sudo $INSTPROG update
+  sudo $INSTPROG install -y code # or code-insiders
+
+elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
+  # Add repo
+  sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+  sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+
+  # Install
+  if egrep -i -q -r 'fedora' /etc/*release ; then
+    sudo dnf check-update
+    sudo dnf install code
+  else
+    sudo yum check-update
+    sudo yum install code
+  fi
 fi
 
 # #############################################################################
-# Tips on extensions
+# Final sequence
 
-cat <<EOF
-
-Dark themes:
-
-Chocolate Contrast (rainglow)
-Heroku (rainglow)
-Jewel Contrast (rainglow)
-Juicy (rainglow)
-
-Light themes:
-
-Quiet Light
-Solarized Light
-EOF
-
-# #############################################################################
-# Finish
-
-echo "FINISHED aiding VSCode setup"
+echo "${PROGNAME:+$PROGNAME: }COMPLETE"
 echo

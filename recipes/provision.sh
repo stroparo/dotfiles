@@ -17,8 +17,8 @@ if ! ${NODESKTOP:-false} ; then
     bash "${RUNR_DIR:-.}"/recipes/apps-desktop.sh
   fi
   bash "${RUNR_DIR:-.}"/recipes/powerline-fonts.sh
-  bash "${RUNR_DIR:-.}"/code/code.sh
   bash "${RUNR_DIR:-.}"/recipes/subl.sh
+  bash "${RUNR_DIR:-.}"/recipes/vscode.sh
 fi
 
 # System

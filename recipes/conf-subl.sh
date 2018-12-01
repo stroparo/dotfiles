@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-PROGNAME=sublconf.sh
+PROGNAME=conf-subl.sh
 
 echo
 echo "################################################################################"
-echo "Sublime Text setup; \$0='$0'; \$PWD='$PWD'"
+echo "Configure Sublime Text editor; \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Prep User PATH
@@ -42,7 +42,7 @@ if [ -z "$assets_dir" ] ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: No assets dir found ($assets_dir)." 1>&2
   exit 1
 fi
-assets="$(ls -1d ${assets_dir:-.}/*)"
+assets="$(ls -1d ${assets_dir:-./subl3}/*)"
 assets="$(echo "$assets" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
 if ! eval cp -L -R "${assets}" "\"${SUBL_USER}\""/ ; then
   echo "${PROGNAME:+$PROGNAME: }ERROR deploying sublimetext files." 1>&2

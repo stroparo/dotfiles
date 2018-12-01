@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
+PROGNAME="setupsubl.sh"
+
 echo
 echo "################################################################################"
-echo "SublimeText editor setup; \$0='$0'; \$PWD='$PWD'"
+echo "Setup Sublime Text editor; \$0='$0'; \$PWD='$PWD'"
 
-if which subl >/dev/null 2>&1 ; then
+if which subl >/dev/null 2>&1 || which sublime_text >/dev/null 2>&1 ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: Already installed." 1>&2
   exit
 fi
@@ -12,10 +14,9 @@ fi
 # #############################################################################
 # Globals
 
-PROGNAME="setupsubl.sh"
-USAGE="$PROGNAME [-d opt dir (effect with -p only)] [-h] [-p]"
+USAGE="$PROGNAME [-d opt_dir (effect with -p only)] [-h] [-p]"
 
-DO_REPO=false
+DO_PORTABLE=false
 
 # Deb-based package
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
@@ -36,10 +37,11 @@ SUBL_PORTABLE_WINDOWS='https://download.sublimetext.com/Sublime%20Text%20Build%2
 # Options
 
 OPTIND=1
-while getopts ':d:h' option ; do
+while getopts ':d:hp' option ; do
   case "${option}" in
     d) SUBL_OPT_DIR="${OPTARG}";;
     h) echo "$USAGE"; exit;;
+    p) DO_PORTABLE=true;;
   esac
 done
 shift "$((OPTIND-1))"
@@ -57,24 +59,41 @@ _skip_if_installed_in_opt () {
 }
 
 # #############################################################################
-# Distribution-wise package
+# Main
 
-if (echo "$@" | egrep -q "local") ; then
-  DO_REPO=false
-fi
+if ${DO_PORTABLE:-false} ; then
+  if egrep -i -q -r 'linux' /etc/*release \
+    && ! (which subl >/dev/null 2>&1 || which sublime_text >/dev/null 2>&1)
+  then
+    _skip_if_installed_in_opt
+    mkdir -p "$SUBL_OPT_DIR"
+    cd "$SUBL_OPT_DIR"
+    curl -k -L -o ./subl3.tar.bz2 "$SUBL_PORTABLE_LINUX"
+    sudo tar xjvf ./subl3.tar.bz2
+    sudo ln -s -v ./sublime_text_3 ./subl # directory
+    sudo ln -s -v sublime_text ./subl/subl # binary
 
-if ${DO_REPO:-true} ; then
+  elif [[ "$(uname -a)" = *[Cc]ygwin* ]] ; then
+    export SUBL_OPT_DIR="$(cygpath 'C:\opt')"
+    _skip_if_installed_in_opt
+    mkdir -p "$SUBL_OPT_DIR"
+    cd "$SUBL_OPT_DIR"
+    curl -k -L -o ./subl3.zip "$SUBL_PORTABLE_WINDOWS"
+    unzip ./subl3.zip
+    # TODO rename the unpackaged dir to the final '/.../...opt.../subl' dir
 
+  else
+    echo "SKIP: OS not handled." 1>&2
+    exit
+  fi
+else # not portable i.e. via distribution packages
   if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
-
     curl -LSf "$SUBL_APT_KEY" | sudo apt-key add -
     sudo $APTPROG install -y apt-transport-https
     echo "$SUBL_APT_REPO" | sudo tee /etc/apt/sources.list.d/sublime-text.list
     sudo $APTPROG update
     sudo $APTPROG install -y "$SUBL_APT_PKG"
-
   elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
-
     if which dnf 2>/dev/null ; then
       sudo rpm -v --import "$SUBL_RPM_KEY"
       sudo dnf config-manager --add-repo "$SUBL_RPM_REPO"
@@ -88,39 +107,7 @@ if ${DO_REPO:-true} ; then
 fi
 
 # #############################################################################
-# Portable for Linux
-
-if egrep -i -q -r 'linux' /etc/*release && ! which subl >/dev/null 2>&1 ; then
-
-  _skip_if_installed_in_opt
-  mkdir -p "$SUBL_OPT_DIR"
-  cd "$SUBL_OPT_DIR"
-  curl -k -L -o ./subl3.tar.bz2 "$SUBL_PORTABLE_LINUX"
-  sudo tar xjvf ./subl3.tar.bz2
-  sudo ln -s -v ./sublime_text_3 ./subl # directory
-  sudo ln -s -v sublime_text ./subl/subl # binary
-
-# #############################################################################
-# Portable for Windows
-
-elif [[ "$(uname -a)" = *[Cc]ygwin* ]] ; then
-
-  export SUBL_OPT_DIR="$(cygpath 'C:\opt')"
-  _skip_if_installed_in_opt
-  mkdir -p "$SUBL_OPT_DIR"
-  cd "$SUBL_OPT_DIR"
-  curl -k -L -o ./subl3.zip "$SUBL_PORTABLE_WINDOWS"
-  unzip ./subl3.zip
-
-# #############################################################################
-
-else
-  echo "SKIP: OS not handled." 1>&2
-  exit
-fi
-
-# #############################################################################
 # Finish
 
-echo "FINISHED sublimetext setup"
+echo "FINISHED setting up Sublime Text editor"
 echo
