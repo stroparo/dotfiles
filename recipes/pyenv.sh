@@ -2,7 +2,7 @@
 
 echo
 echo "################################################################################"
-echo "Setup pyenv virtualenv wrapper based on Henrique Bastos article at"
+echo " pyenv virtualenv wrapper env based on Henrique Bastos article at"
 echo "https://medium.com/@henriquebastos/the-definitive-guide-to-setup-my-python-workspace-628d68552e14"
 
 # Arguments of filenames ending '-xyz' will have a list of pip packages to be installed
@@ -125,13 +125,6 @@ else
 fi
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> pyenv virtualenv disable \
-(conflicts with virtualenvwrapper)"
-
-sed -i -e 's/^[^#].*pyenv virtualenv-init.*$/# &/' \
-  "$HOME/.bashrc" "$HOME/.zshrc"
-
-# #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> pyenv install $PYV3 and $PYV2 ..."
 
 pyenv install "$PYV3"
@@ -173,11 +166,6 @@ pyenv deactivate
 echo ${BASH_VERSION:+-e} "\n\n==> pyenv PATH priority"
 
 pyenv global "$PYV3" "$PYV2" jupyter3 ipython2 tools3 tools2
-
-# #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Python 3 base utilities"
-
-pip install pipenv
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> virtualenvwrapper installation"
