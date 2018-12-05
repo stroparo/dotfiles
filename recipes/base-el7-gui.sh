@@ -22,12 +22,10 @@ export INSTPROG="$RPMPROG"
 # Helpers
 
 _install_packages () {
-  for package in "$@" ; do
-    echo "Installing '$package'..."
-    if ! sudo $INSTPROG install -y "$package" >/tmp/pkg-install-${package}.log 2>&1 ; then
-      echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${package}.log'." 1>&2
-    fi
-  done
+  typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')-${RANDOM}"
+  if ! sudo $INSTPROG install -y "$@" >/tmp/pkg-install-${filestamp}.log 2>&1 ; then
+    echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing packages - see '/tmp/pkg-install-${filestamp}.log'." 1>&2
+  fi
 }
 
 # #############################################################################
