@@ -45,13 +45,10 @@ _print_header () {
 _print_header "EL Enterprise Linux desktop package selects"
 
 echo ${BASH_VERSION:+-e} "\n==> Base desktop packages..."
-_install_packages x11-ssh-askpass xbacklight xclip
-_install_packages gnome-themes-standard
+_install_packages gnome-themes-standard x11-ssh-askpass xbacklight xclip
 
 echo ${BASH_VERSION:+-e} "\n==> Productivity..."
-_install_packages atril galculator guake meld
-_install_packages gnome-shell-extension-pomodoro
-_install_packages shutter # screenshots
+_install_packages atril galculator gnome-shell-extension-pomodoro guake meld shutter
 
 # #############################################################################
 if egrep -i -q -r 'fedora' /etc/*release 2>/dev/null ; then
