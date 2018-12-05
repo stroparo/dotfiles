@@ -85,33 +85,20 @@ fi
 sudo yum makecache fast
 
 echo "EL base packages..."
-_install_packages curl lftp rsync wget
-_install_epel_packages mosh
-_install_packages less
-_install_epel_packages p7zip p7zip-plugins lzip cabextract unrar
+_install_packages curl less lftp rsync wget sqlite libdbi-dbd-sqlite unzip zip zsh
+_install_epel_packages mosh p7zip p7zip-plugins lzip cabextract unrar the_silver_searcher
 which tmux >/dev/null 2>&1 || _install_packages tmux
-_install_packages sqlite libdbi-dbd-sqlite
-_install_epel_packages the_silver_searcher # ag
-_install_packages unzip zip
-_install_packages zsh
 
 echo "EL devel packages..."
-
 sudo $RPMGROUP -q -y --enablerepo=epel 'Development Tools'
-_install_packages ctags
-# _install_packages golang
 _install_epel_packages jq
-_install_packages make
-_install_packages perl perl-devel perl-ExtUtils-Embed
+_install_packages ctags make perl perl-devel perl-ExtUtils-Embed
+# _install_packages golang
 # _install_packages ruby ruby-devel
-_install_epel_packages tig # git
 
 echo "EL security packages..."
-_install_packages gnupg pwgen
-_install_packages oathtool oath-toolkit
-
-echo "EL security SELinux packages..."
-_install_packages setroubleshoot-server selinux-policy-devel
+_install_packages gnupg pwgen oathtool oath-toolkit
+_install_packages setroubleshoot-server selinux-policy-devel # SELinux
 
 echo "EL system packages..."
 _install_packages yum-utils
