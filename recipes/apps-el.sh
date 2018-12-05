@@ -33,30 +33,24 @@ else
 fi
 
 _install_epel_packages () {
-  for package in "$@" ; do
-    echo "Installing '$package'..."
-    if ! sudo $INSTPROG install -y --enablerepo=epel "$package" >/tmp/pkg-install-${package}.log 2>&1 ; then
-      echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${package}.log'." 1>&2
-    fi
-  done
+  typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')-${RANDOM}"
+  if ! sudo $INSTPROG install -y --enablerepo=epel "$@" >/tmp/pkg-install-${filestamp}.log 2>&1 ; then
+    echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${filestamp}.log'." 1>&2
+  fi
 }
 
 _install_packages () {
-  for package in "$@" ; do
-    echo "Installing '$package'..."
-    if ! sudo $INSTPROG install -y "$package" >/tmp/pkg-install-${package}.log 2>&1 ; then
-      echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${package}.log'." 1>&2
-    fi
-  done
+  typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')-${RANDOM}"
+  if ! sudo $INSTPROG install -y "$@" >/tmp/pkg-install-${filestamp}.log 2>&1 ; then
+    echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${filestamp}.log'." 1>&2
+  fi
 }
 
 _install_rpm_groups () {
-  for group in "$@" ; do
-    echo "Installing RPM group '$group'"
-    if ! sudo $RPMGROUP -y "$group" >/tmp/rpm-group-install-err-$group.log 2>&1 ; then
-      echo "${PROGNAME:+$PROGNAME: }WARN: There was an error with group '$group' - see '/tmp/rpm-group-install-err-$group.log'." 1>&2
-    fi
-  done
+  typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')-${RANDOM}"
+  if ! sudo $RPMGROUP -y "$group" >/tmp/rpm-group-install-err-${filestamp}.log 2>&1 ; then
+    echo "${PROGNAME:+$PROGNAME: }WARN: There was an error with group '$group' - see '/tmp/rpm-group-install-err-${filestamp}.log'." 1>&2
+  fi
 }
 
 # #############################################################################
