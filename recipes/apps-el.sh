@@ -35,21 +35,21 @@ fi
 _install_epel_packages () {
   typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')-${RANDOM}"
   if ! sudo $INSTPROG install -y --enablerepo=epel "$@" >/tmp/pkg-install-${filestamp}.log 2>&1 ; then
-    echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${filestamp}.log'." 1>&2
+    echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing packages - see '/tmp/pkg-install-${filestamp}.log'." 1>&2
   fi
 }
 
 _install_packages () {
   typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')-${RANDOM}"
   if ! sudo $INSTPROG install -y "$@" >/tmp/pkg-install-${filestamp}.log 2>&1 ; then
-    echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${filestamp}.log'." 1>&2
+    echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing packages - see '/tmp/pkg-install-${filestamp}.log'." 1>&2
   fi
 }
 
 _install_rpm_groups () {
   typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')-${RANDOM}"
-  if ! sudo $RPMGROUP -y "$group" >/tmp/rpm-group-install-err-${filestamp}.log 2>&1 ; then
-    echo "${PROGNAME:+$PROGNAME: }WARN: There was an error with group '$group' - see '/tmp/rpm-group-install-err-${filestamp}.log'." 1>&2
+  if ! sudo $RPMGROUP -y "$@" >/tmp/rpm-group-install-err-${filestamp}.log 2>&1 ; then
+    echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing groups - see '/tmp/rpm-group-install-err-${filestamp}.log'." 1>&2
   fi
 }
 

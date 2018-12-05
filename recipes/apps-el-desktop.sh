@@ -30,7 +30,7 @@ URL_STACER='https://github.com/oguzhaninan/Stacer/releases/download/v1.0.8/stace
 _install_packages () {
   typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')-${RANDOM}"
   if ! sudo $INSTPROG install -y "$@" >/tmp/pkg-install-${filestamp}.log 2>&1 ; then
-    echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${filestamp}.log'." 1>&2
+    echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing packages - see '/tmp/pkg-install-${filestamp}.log'." 1>&2
   fi
 }
 
