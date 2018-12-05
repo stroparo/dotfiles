@@ -6,10 +6,12 @@ bash "${RUNR_DIR:-.}"/recipes/shell.sh
 
 # Desktop
 if ! ${NODESKTOP:-false} ; then
-  if [ "$1" = "workstation" ] ; then
+  if [[ $PROVISION_OPTIONS = *workstation* ]] ; then
     bash "${RUNR_DIR:-.}"/recipes/base-el7-gui.sh
     bash "${RUNR_DIR:-.}"/recipes/xfce.sh
     bash "${RUNR_DIR:-.}"/recipes/base-el7-gui-fonts.sh
+    bash "${RUNR_DIR:-.}"/recipes/apps-el-desktop.sh
+    bash "${RUNR_DIR:-.}"/installers/setupanki.sh
     bash "${RUNR_DIR:-.}"/installers/setupchrome.sh
     bash "${RUNR_DIR:-.}"/installers/setuprdp.sh xfce
   else
