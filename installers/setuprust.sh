@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+(uname | grep -i -q linux) || exit
+
+PROGNAME=setuprust.sh
+
 echo
 echo "################################################################################"
 echo "Setup Rust"
@@ -7,14 +11,9 @@ echo "Setup Rust"
 # #############################################################################
 # Checks
 
-if !(uname -a | grep -i -q linux) ; then
-  echo "SKIP: Only Linux is supported." 1>&2
-  exit
-fi
-
 # Check for idempotency
 if type rustc >/dev/null 2>&1 ; then
-  echo "SKIP: Rust already installed." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Rust already installed." 1>&2
   exit
 fi
 
@@ -38,5 +37,5 @@ fi
 # #############################################################################
 # Finish
 
-echo "FINISHED Rust setup"
+echo "${PROGNAME:+$PROGNAME: }INFO: Rust setup complete"
 echo

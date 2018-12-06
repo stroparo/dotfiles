@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+(uname | grep -i -q linux) || exit
+
 echo
 echo "################################################################################"
 echo "Setup Vim latest from source"
@@ -66,11 +68,6 @@ shift "$((OPTIND-1))"
 # #############################################################################
 # Check if already compiled and prompt
 
-if !(uname -a | grep -i -q linux) ; then
-  echo "SKIP: Only Linux is supported." 1>&2
-  exit
-fi
-
 if (vim --version | grep -q 'stroparo') ; then
   if ! ${INTERACTIVE:-false} || ! _user_confirm "VIM already compiled. Recompile?" ; then
     echo "${PROGNAME:+$PROGNAME: }SKIP: VIM already compiled."
@@ -94,13 +91,13 @@ done
 # #############################################################################
 # Prep dependencies
 
-echo ${BASH_VERSION:+-e} "\n==> Dependencies custom scripts...\n"
+echo ${BASH_VERSION:+-e} "\n${PROGNAME:+$PROGNAME: }INFO: Dependencies custom scripts...\n"
 
 if ${DO_LUA:-false} ; then "setuplua.sh" ; fi
 if ${DO_PERL:-false} ; then "setupperl.sh" ; fi
 if ${DO_PYTHON2:-false} || ${DO_PYTHON3:-false} ; then "setuppython.sh" "system" ; fi
 
-echo ${BASH_VERSION:+-e} "\n==> Dependencies from OS repos (deb, rpm)...\n"
+echo ${BASH_VERSION:+-e} "\n${PROGNAME:+$PROGNAME: }INFO: Dependencies from OS repos (deb, rpm)...\n"
 
 if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
 
@@ -276,7 +273,7 @@ if [ ! -e "$VIM_PKG" ] ; then
 fi
 
 if ! unzip -o "$VIM_PKG" -d "$VIM_PKG_DIR" ; then
-  echo "FATAL: unzipping '$VIM_PKG'." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }FATAL: unzipping '$VIM_PKG'." 1>&2
   exit 1
 fi
 
@@ -316,5 +313,5 @@ fi
 # #############################################################################
 # Finish
 
-echo "FINISHED Vim setup"
+echo "${PROGNAME:+$PROGNAME: }COMPLETE: Vim setup complete"
 echo

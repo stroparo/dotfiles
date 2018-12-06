@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+(uname | grep -i -q linux) || exit
+
 echo
 echo "################################################################################"
 echo "Setup docker-compose..."
@@ -13,11 +15,6 @@ COMPLETION_URL="https://raw.githubusercontent.com/docker/compose/1.18.0/contrib/
 # #############################################################################
 # Checks
 
-if !(uname -a | grep -i -q linux) ; then
-  echo "SKIP: Only Linux is supported." 1>&2
-  exit
-fi
-
 # Check for idempotency
 if type docker-compose >/dev/null 2>&1 ; then
   INSTALLED=true
@@ -27,7 +24,7 @@ fi
 # Install
 
 if ${INSTALLED:-false} ; then
-  echo "SKIP: Already installed." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Already installed." 1>&2
 elif which pip >/dev/null 2>&1 ; then
   pip install --user docker-compose
 fi
@@ -43,7 +40,7 @@ fi
 
 echo
 if ! docker-compose --version ; then
-  echo "FATAL: docker-compose is not available." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }FATAL: docker-compose is not available." 1>&2
   exit 1
 fi
 
@@ -55,7 +52,7 @@ if which zsh >/dev/null 2>&1 ; then
   mkdir -p "${HOME}"/.zsh/completion
 
   echo
-  echo "Fetching '$COMPLETION_URL' into '$COMPLETION_FILE'"
+  echo "${PROGNAME:+$PROGNAME: }INFO: Fetching '$COMPLETION_URL' into '$COMPLETION_FILE'"
   curl -L "$COMPLETION_URL" > "$COMPLETION_FILE"
   ls -l "$COMPLETION_FILE"
 
@@ -73,5 +70,5 @@ fi
 # #############################################################################
 # Finish
 
-echo "FINISHED docker-compose setup"
+echo "${PROGNAME:+$PROGNAME: }SUCCESS: docker-compose setup complete"
 echo

@@ -45,4 +45,4 @@ if [ ! -f /etc/profile.d/sdkman.sh ] ; then
   _error_exit
 fi
 
-echo "${PROGNAME:+$PROGNAME: }INFO: installation complete." 1>&2
+echo "${PROGNAME:+$PROGNAME: }COMPLETE: sdkman setup complete." 1>&2

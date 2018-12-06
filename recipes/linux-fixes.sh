@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+(uname | grep -i -q linux) || exit
+
 echo "################################################################################"
 echo "Applying fixes list in '$0'..."
 

@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+(uname | grep -i -q linux) || exit
+
+PROGNAME="setupdocker.sh"
+
 echo
 echo "################################################################################"
 echo "Setup Docker..."
@@ -7,14 +11,9 @@ echo "Setup Docker..."
 # #############################################################################
 # Checks
 
-if !(uname -a | grep -i -q linux) ; then
-  echo "SKIP: Only Linux is supported." 1>&2
-  exit
-fi
-
 # Check for idempotency
 if type docker >/dev/null 2>&1 ; then
-  echo "SKIP: Already installed." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Docker is already installed." 1>&2
   exit
 fi
 
@@ -37,5 +36,5 @@ sudo docker run hello-world
 # #############################################################################
 # Finish
 
-echo "FINISHED Docker setup"
+echo "${PROGNAME:+$PROGNAME: }COMPLETE: Docker setup complete"
 echo

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+(uname | grep -i -q linux) || exit
+
 PROGNAME="python.sh"
 
 cd "${RUNR_DIR:-.}"

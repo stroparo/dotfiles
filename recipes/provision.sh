@@ -1,22 +1,26 @@
 #!/usr/bin/env bash
 
 # Base
-bash "${RUNR_DIR:-.}"/recipes/apps.sh
-bash "${RUNR_DIR:-.}"/recipes/shell.sh
+if ! ${STEP_BASE_SYSTEM_DONE:-false} ; then # Against provisioning scripts redundancy
+  bash "${RUNR_DIR:-.}"/recipes/apps.sh
+  bash "${RUNR_DIR:-.}"/recipes/shell.sh
+fi
 
 # Desktop
 if ! ${NODESKTOP:-false} ; then
-  if [[ $PROVISION_OPTIONS = *workstation* ]] ; then
-    bash "${RUNR_DIR:-.}"/recipes/base-el7-gui.sh
-    bash "${RUNR_DIR:-.}"/recipes/xfce.sh
-    bash "${RUNR_DIR:-.}"/recipes/base-el7-gui-fonts.sh
-    bash "${RUNR_DIR:-.}"/recipes/apps-el-desktop.sh
-    bash "${RUNR_DIR:-.}"/installers/setupanki.sh
-    bash "${RUNR_DIR:-.}"/installers/setupchrome.sh
-    bash "${RUNR_DIR:-.}"/installers/setuprdp.sh xfce
-  else
-    bash "${RUNR_DIR:-.}"/recipes/xfce.sh
-    bash "${RUNR_DIR:-.}"/recipes/apps-desktop.sh
+  if (uname | grep -i -q linux) ; then
+    if [[ $PROVISION_OPTIONS = *workstation* ]] ; then
+      bash "${RUNR_DIR:-.}"/recipes/base-el7-gui.sh
+      bash "${RUNR_DIR:-.}"/recipes/xfce.sh
+      bash "${RUNR_DIR:-.}"/recipes/base-el7-gui-fonts.sh
+      bash "${RUNR_DIR:-.}"/recipes/apps-el-desktop.sh
+      bash "${RUNR_DIR:-.}"/installers/setupanki.sh
+      bash "${RUNR_DIR:-.}"/installers/setupchrome.sh
+      bash "${RUNR_DIR:-.}"/installers/setuprdp.sh xfce
+    else
+      bash "${RUNR_DIR:-.}"/recipes/xfce.sh
+      bash "${RUNR_DIR:-.}"/recipes/apps-desktop.sh
+    fi
   fi
   bash "${RUNR_DIR:-.}"/recipes/powerline-fonts.sh
   bash "${RUNR_DIR:-.}"/recipes/subl.sh
@@ -24,7 +28,7 @@ if ! ${NODESKTOP:-false} ; then
 fi
 
 # System
-bash "${RUNR_DIR:-.}"/recipes/fix.sh
+bash "${RUNR_DIR:-.}"/recipes/linux-fixes.sh
 
 # Dev platforms
 bash "${RUNR_DIR:-.}"/recipes/python.sh

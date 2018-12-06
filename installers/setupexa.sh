@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+(uname | grep -i -q linux) || exit
+
+PROGNAME="setupexa.sh"
+
 echo
 echo "################################################################################"
 echo "Setup exa file listing"
@@ -7,14 +11,9 @@ echo "Setup exa file listing"
 # #############################################################################
 # Checks
 
-if !(uname -a | grep -i -q linux) ; then
-  echo "SKIP: Only Linux is supported." 1>&2
-  exit
-fi
-
 # Check for idempotency
 if type exa >/dev/null 2>&1 ; then
-  echo "SKIP: exa already installed." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: exa already installed." 1>&2
   exit
 fi
 
@@ -56,15 +55,15 @@ if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   _install_exa_deb "$@"
   exit $?
 elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
-  echo "SKIP: _install_exa_rpm routine still to be implemented" 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: _install_exa_rpm routine still to be implemented" 1>&2
   exit
 else
-  echo "SKIP: OS not handled." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: this OS distribution is not handled" 1>&2
   exit
 fi
 
 # #############################################################################
 # Finish
 
-echo "FINISHED exa setup"
+echo "${PROGNAME:+$PROGNAME: }COMPLETE: exa setup complete"
 echo
