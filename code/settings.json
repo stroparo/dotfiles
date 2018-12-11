@@ -1,7 +1,7 @@
 {
   "alt-editor.name": "subl",
   "editor.autoIndent": true,
-  "editor.cursorStyle": "block-outline",
+  "editor.cursorStyle": "block",
   "editor.fontFamily": "'Ubuntu Mono derivative Powerline', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 15,
@@ -109,9 +109,11 @@
   "workbench.colorTheme": "Material Theme Darker High Contrast",
   "workbench.colorCustomizations": {
     // "editorIndentGuide.background": "#0000ff",
+    "editorCursor.background": "#bb55dd",
+    "editorCursor.foreground": "#aaccff",
     "editor.selectionBackground": "#bb55dd",
     "editor.selectionForeground": "#442288",
-    "editor.selectionHighlightBackground": "#0088aa",
+    "editor.selectionHighlightBackground": "#9933bb",
     "editorWhitespace.foreground": "#444444",
     "statusBar.background": "#663366",
     "statusBar.foreground": "#cac",

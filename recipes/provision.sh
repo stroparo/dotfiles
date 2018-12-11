@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Base
-if ! ${STEP_BASE_SYSTEM_DONE:-false} ; then # Against provisioning scripts redundancy
+if ! ${STEP_BASE_SYSTEM_DONE:-false} ; then # Avoid redundancy with other provisioning scripts
   bash "${RUNR_DIR:-.}"/recipes/apps.sh
   bash "${RUNR_DIR:-.}"/recipes/shell.sh
 fi
