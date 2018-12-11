@@ -11,8 +11,8 @@ if ! ${NODESKTOP:-false} ; then
   if (uname | grep -i -q linux) ; then
     if [[ $PROVISION_OPTIONS = *workstation* ]] ; then
       bash "${RUNR_DIR:-.}"/recipes/base-el7-gui.sh
-      bash "${RUNR_DIR:-.}"/recipes/xfce.sh
       bash "${RUNR_DIR:-.}"/recipes/base-el7-gui-fonts.sh
+      bash "${RUNR_DIR:-.}"/recipes/xfce.sh
       bash "${RUNR_DIR:-.}"/recipes/apps-el-desktop.sh
       bash "${RUNR_DIR:-.}"/installers/setupanki.sh
       bash "${RUNR_DIR:-.}"/installers/setupchrome.sh

@@ -109,8 +109,9 @@
   "workbench.colorTheme": "Material Theme Darker High Contrast",
   "workbench.colorCustomizations": {
     // "editorIndentGuide.background": "#0000ff",
-    "editor.selectionBackground": "#aa44ff",
-    "editor.selectionHighlightBackground": "#7722aa",
+    "editor.selectionBackground": "#bb55dd",
+    "editor.selectionForeground": "#442288",
+    "editor.selectionHighlightBackground": "#0088aa",
     "editorWhitespace.foreground": "#444444",
     "statusBar.background": "#663366",
     "statusBar.foreground": "#cac",
