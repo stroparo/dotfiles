@@ -3,8 +3,7 @@
 # Custom aliases
 
 # Globals
-ALIASES_FILE="${HOME}/.aliases-cs"
-ALIASES_FILE_FIXED='${HOME}/.aliases-cs'
+ALIASES_FILE='${HOME}/.aliases-cs'
 
 echo
 echo "################################################################################"
@@ -14,20 +13,20 @@ echo "Aliases ==> '$ALIASES_FILE'"
 # Shell profiles
 
 if [ -r ~/.bashrc ] && [ -w ~/.bashrc ] ; then
-  fgrep -i -q "${ALIASES_FILE_FIXED}" ~/.bashrc \
-    || echo ". '${ALIASES_FILE_FIXED}'" >> ~/.bashrc
+  fgrep -i -q "\"${ALIASES_FILE}\"" ~/.bashrc \
+    || echo ". \"${ALIASES_FILE}\"" >> ~/.bashrc
 fi
 
 # Zsh profile
 if [ -r ~/.zshrc ] && [ -w ~/.zshrc ] ; then
-  fgrep -i -q "${ALIASES_FILE_FIXED}" ~/.zshrc \
-    || echo ". '${ALIASES_FILE_FIXED}'" >> ~/.zshrc
+  fgrep -i -q "\"${ALIASES_FILE}\"" ~/.zshrc \
+    || echo ". \"${ALIASES_FILE}\"" >> ~/.zshrc
 fi
 
 # #############################################################################
 # Aliases file
 
-cat > "$ALIASES_FILE" <<'EOF'
+cat > $(eval echo "${ALIASES_FILE}") <<'EOF'
 unalias d 2>/dev/null
 unset d 2>/dev/null
 d () {
