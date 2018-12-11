@@ -26,7 +26,7 @@ fi
 # #############################################################################
 # Aliases file
 
-cat > $(eval echo "${ALIASES_FILE}") <<'EOF'
+cat > "$(eval echo "\"${ALIASES_FILE}\"")" <<'EOF'
 unalias d 2>/dev/null
 unset d 2>/dev/null
 d () {
