@@ -48,7 +48,8 @@ dpkg -s qdirstat      || _add_ppa_repo 'nathan-renniewaldock/qdirstat'
 dpkg -s stacer        || _add_ppa_repo 'oguzhaninan/stacer'
 dpkg -s woeusb        || _add_ppa_repo 'nilarimogard/webupd8'
 dpkg -s y-ppa-manager || _add_ppa_repo 'webupd8team/y-ppa-manager'
+dpkg -s zeal          || _add_ppa_repo 'zeal-developers/ppa'
 
 sudo ${APTPROG} update
 
-_install_packages qdirstat stacer woeusb y-ppa-manager
+_install_packages qdirstat stacer woeusb y-ppa-manager zeal
