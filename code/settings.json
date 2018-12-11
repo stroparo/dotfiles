@@ -31,7 +31,7 @@
   "editor.wordWrap": "off",
   "explorer.confirmDelete": false,
   "extensions.ignoreRecommendations": false,
-  "files.autoSave": "afterDelay",
+  "files.autoSave": "off",
   "files.autoSaveDelay": 10000,
   "files.encoding": "utf8",
   "files.eol": "\n",
