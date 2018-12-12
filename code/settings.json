@@ -7,7 +7,7 @@
   "editor.fontSize": 15,
   "editor.formatOnSave": false,
   "editor.insertSpaces": true,
-  "editor.lineHeight": 15,
+  "editor.lineHeight": 17,
   "editor.lineNumbers": "on",
   "editor.matchBrackets": true,
   "editor.minimap.enabled": false,
@@ -130,5 +130,6 @@
   },
   "[python]": {
     "editor.tabSize": 4,
-  }
+  },
+  "git.ignoreMissingGitWarning": true
 }
