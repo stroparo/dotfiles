@@ -1,19 +1,24 @@
 #!/bin/bash
 
-USR_DIR_BABUN="/usr/local/etc/babun"
-WIN_HOME="$(cygpath "$USERPROFILE")"
+BABUN_USR_DIR="/usr/local/etc/babun"
 
 for file in \
-  "${USR_DIR_BABUN}"/source/babun-core/plugins/core/src/babun.rc \
-  "${USR_DIR_BABUN}"/source/babun-core/plugins/pact/src/pact \
-  "${USR_DIR_BABUN}"/source/babun-packages/packages.groovy \
-  "${WIN_HOME}"/.babun/*.bat
+  "${BABUN_USR_DIR}"/source/babun-core/plugins/core/src/babun.rc \
+  "${BABUN_USR_DIR}"/source/babun-core/plugins/pact/src/pact \
+  "${BABUN_USR_DIR}"/source/babun-packages/packages.groovy \
+  "$(cygpath "$BABUN_HOME")"/*.bat
 do
-  if ! grep -q 'wget .*--no-check-certificate' "$file" ; then
+  if ! grep -q -- 'curl .*-k' "$file" ; then
+    sed -i -e 's/curl /curl -k /' "$file"
+  fi
+  if ! grep -q -- 'wget .*--no-check-certificate' "$file" ; then
     sed -i -e 's/wget /wget --no-check-certificate /' "$file"
   fi
   if [[ $file = *.bat ]] ; then
-    if ! grep -q 'wget.exe .*--no-check-certificate' "$file" ; then
+    if ! grep -q -- 'curl.exe .*-k' "$file" ; then
+      sed -i -e 's/curl.exe /curl -k /' "$file"
+    fi
+    if ! grep -q -- 'wget.exe .*--no-check-certificate' "$file" ; then
       sed -i -e 's/wget.exe /wget.exe --no-check-certificate /' "$file"
     fi
   fi
