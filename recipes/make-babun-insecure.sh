@@ -9,10 +9,10 @@ for file in \
   "$(cygpath "$BABUN_HOME")"/*.bat
 do
   if ! grep -q -- 'curl .*-k' "$file" ; then
-    sed -i -e 's/curl /curl -k /' "$file"
+    sed -i -e '!/\(dontremove=\|which\).*curl/s/curl /curl -k /' "$file"
   fi
   if ! grep -q -- 'wget .*--no-check-certificate' "$file" ; then
-    sed -i -e 's/wget /wget --no-check-certificate /' "$file"
+    sed -i -e '!/\(dontremove=\|which\).*wget/s/wget /wget --no-check-certificate /' "$file"
   fi
   grep --color=auto -- 'curl .*-k' "$file"
   grep --color=auto  -- 'wget .*--no-check-certificate' "$file"
@@ -20,10 +20,10 @@ do
   # Calls suffixed with '.exe':
   if [[ $file = *.bat ]] ; then
     if ! grep -q -- 'curl.exe .*-k' "$file" ; then
-      sed -i -e 's/curl.exe /curl -k /' "$file"
+      sed -i -e '!/\(dontremove=\|which\).*curl/s/curl.exe /curl -k /' "$file"
     fi
     if ! grep -q -- 'wget.exe .*--no-check-certificate' "$file" ; then
-      sed -i -e 's/wget.exe /wget.exe --no-check-certificate /' "$file"
+      sed -i -e '!/\(dontremove=\|which\).*wget/s/wget.exe /wget.exe --no-check-certificate /' "$file"
     fi
     grep --color=auto -- 'curl.exe .*-k' "$file"
     grep --color=auto -- 'wget.exe .*--no-check-certificate' "$file"
