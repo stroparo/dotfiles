@@ -63,6 +63,12 @@ alias xgit="alias | grep -w git"
 # Breaking aliases
 which vim >/dev/null 2>&1 && alias vi=vim
 
+# Clipboard
+if [ -e /dev/clipboard ]; then
+  alias pbcopy='cat >/dev/clipboard'
+  alias pbpaste='cat /dev/clipboard'
+fi
+
 # Grep
 if (command grep --help | command grep -q -- --color) ; then
   alias grep='grep --color=auto'
