@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-(uname | grep -i -q linux) || exit
+PROGNAME="$(basename "${0:-setupvim.sh}")"
 
 echo
 echo "################################################################################"
-echo "Setup Vim latest from source"
+echo "Setup Vim compiling from source"
 
 # Supports Lua, Perl Python, Ruby
 
@@ -18,9 +18,16 @@ echo "Setup Vim latest from source"
 # https://gist.github.com/odiumediae/3b22d09b62e9acb7788baf6fdbb77cf8
 
 # #############################################################################
+# Env check
+
+if ! (uname | grep -i -q linux) ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Only Linux is supported." 1>&2
+  exit 0
+fi
+
+# #############################################################################
 # Globals
 
-PROGNAME="$(basename "${0:-setupvim.sh}")"
 USAGE="[-h] [-i] [-p prefix_path] [lua] [perl] [python|python2] [ruby]"
 
 export INTERACTIVE=false
