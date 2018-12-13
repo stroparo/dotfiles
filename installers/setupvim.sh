@@ -36,6 +36,8 @@ unset CONF_ARGS_PERL
 unset CONF_ARGS_PYTHON
 unset CONF_ARGS_RUBY
 
+NO_PYTHON=false
+
 # #############################################################################
 # Routines
 
@@ -82,8 +84,8 @@ for arg in "$@" ; do
   case $arg in
     lua)      DO_LUA=true;;
     perl)     DO_PERL=true;;
-    python2|python) DO_PYTHON2=true;;
-    python3)  DO_PYTHON3=true;;
+    nopython) NO_PYTHON=true;;
+    python2)  DO_PYTHON2=true;;
     ruby)     DO_RUBY=true;;
   esac
 done
@@ -93,9 +95,9 @@ done
 
 echo ${BASH_VERSION:+-e} "\n${PROGNAME:+$PROGNAME: }INFO: Dependencies custom scripts...\n"
 
-if ${DO_LUA:-false} ; then "setuplua.sh" ; fi
-if ${DO_PERL:-false} ; then "setupperl.sh" ; fi
-if ${DO_PYTHON2:-false} || ${DO_PYTHON3:-false} ; then "setuppython.sh" "system" ; fi
+if ${DO_LUA:-false} ; then "${RUNR_DIR:-.}/installers/setuplua.sh" ; fi
+if ${DO_PERL:-false} ; then "${RUNR_DIR:-.}/installers/setupperl.sh" ; fi
+if ! ${NO_PYTHON:-false} ; then "${RUNR_DIR:-.}/installers/setuppython.sh" "system" ; fi
 
 echo ${BASH_VERSION:+-e} "\n${PROGNAME:+$PROGNAME: }INFO: Dependencies from OS repos (deb, rpm)...\n"
 
@@ -145,7 +147,6 @@ _prep_lua () {
     return
   fi
 }
-_prep_lua
 
 # #############################################################################
 
@@ -158,11 +159,15 @@ _prep_perl () {
     return
   fi
 }
-_prep_perl
 
 # #############################################################################
 
 _prep_python2 () {
+  if ${NO_PYTHON:-false} ; then
+    DO_PYTHON2=false
+    return
+  fi
+
   if [ "$DO_PYTHON2" = y ] || [ "$DO_PYTHON2" = true ] ; then
 
     DO_PYTHON2=true
@@ -186,51 +191,60 @@ _prep_python2 () {
       return
     fi
 
-    CONF_ARGS_PYTHON2="\
-      --enable-python3interp \
-      --with-python-config-dir=\"$PYTHON2_CONFIG_DIR\""
+    if [ ! -d "${PYTHON2_CONFIG_DIR}" ] ; then
+      DO_PYTHON2=false
+    fi
+
+    if ${DO_PYTHON2:-false} ; then
+      CONF_ARGS_PYTHON2="\
+        --enable-pythoninterp \
+        --with-python-config-dir=\"$PYTHON2_CONFIG_DIR\""
+    fi
   else
     DO_PYTHON2=false
     return
   fi
 }
-_prep_python2
 
 # #############################################################################
 
 _prep_python3 () {
-  if [ "$DO_PYTHON3" = y ] || [ "$DO_PYTHON3" = true ] ; then
+  DO_PYTHON3=true
 
-    DO_PYTHON3=true
+  if ${NO_PYTHON:-false} ; then
+    DO_PYTHON3=false
+    return
+  fi
 
-    if ${INTERACTIVE:-false} ; then
-      echo
-      echo 'Python 3 config dir...'
-      echo
-      echo 'Examples in Fedora 27:'
-      echo '/usr/lib/python3.4/config-3.4m-x86_64-linux-gnu'
-      echo '/usr/lib64/python3.4/config-3.4m-x86_64-linux-gnu'
-      echo
-      echo 'Enter the Python 3 config dir:'
-      read PYTHON3_CONFIG_DIR
-    elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
-      PYTHON3_CONFIG_DIR="/usr/lib64/python3.4/config-3.4m-x86_64-linux-gnu"
-    elif egrep -i -q -r 'ubuntu' /etc/*release ; then
-      PYTHON3_CONFIG_DIR="/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu"
-    else
-      DO_PYTHON3=false
-      return
-    fi
-
-    CONF_ARGS_PYTHON3="\
-      --enable-python3interp \
-      --with-python3-config-dir=\"$PYTHON3_CONFIG_DIR\""
+  if ${INTERACTIVE:-false} ; then
+    echo
+    echo 'Python 3 config dir...'
+    echo
+    echo 'Examples in Fedora 27:'
+    echo '/usr/lib/python3.4/config-3.4m-x86_64-linux-gnu'
+    echo '/usr/lib64/python3.4/config-3.4m-x86_64-linux-gnu'
+    echo
+    echo 'Enter the Python 3 config dir:'
+    read PYTHON3_CONFIG_DIR
+  elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
+    PYTHON3_CONFIG_DIR="/usr/lib64/python3.4/config-3.4m-x86_64-linux-gnu"
+  elif egrep -i -q -r 'ubuntu' /etc/*release ; then
+    PYTHON3_CONFIG_DIR="/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu"
   else
     DO_PYTHON3=false
     return
   fi
+
+  if [ ! -d "${PYTHON3_CONFIG_DIR}" ] ; then
+    DO_PYTHON3=false
+  fi
+
+  if ${DO_PYTHON3:-false} ; then
+    CONF_ARGS_PYTHON3="\
+      --enable-python3interp \
+      --with-python3-config-dir=\"$PYTHON3_CONFIG_DIR\""
+  fi
 }
-_prep_python3
 
 # #############################################################################
 
@@ -258,40 +272,45 @@ _prep_ruby () {
     return
   fi
 }
-_prep_ruby
 
 # #############################################################################
 # Main installation
 # Additional arguments are handed over to the configure call
 
-VIM_PKG="$HOME/vim.zip"
-VIM_PKG_DIR="$(dirname "${VIM_PKG}")"
-VIM_SETUP_DIR="$VIM_PKG_DIR/vim-master"
+_prep_lua
+_prep_perl
+_prep_python2
+_prep_python3
+_prep_ruby
 
-if [ ! -e "$VIM_PKG" ] ; then
-  curl -LSfs https://github.com/vim/vim/archive/master.zip > "$VIM_PKG"
+VIM_PKG="${HOME}/vim.zip"
+VIM_PKG_DIR="$(dirname "${VIM_PKG}")"
+VIM_SETUP_DIR="${VIM_PKG_DIR}/vim-master"
+
+if [ ! -e "${VIM_PKG}" ] ; then
+  curl -LSfs https://github.com/vim/vim/archive/master.zip > "${VIM_PKG}"
 fi
 
-if ! unzip -o "$VIM_PKG" -d "$VIM_PKG_DIR" ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: unzipping '$VIM_PKG'." 1>&2
+if ! unzip -o "${VIM_PKG}" -d "${VIM_PKG_DIR}" ; then
+  echo "${PROGNAME:+$PROGNAME: }FATAL: unzipping '${VIM_PKG}'." 1>&2
   exit 1
 fi
 
-cd "$VIM_SETUP_DIR/src" \
-  && [ "$PWD" = "$VIM_SETUP_DIR/src" ] \
+cd "${VIM_SETUP_DIR}/src" \
+  && [ "${PWD}" = "${VIM_SETUP_DIR}/src" ] \
   && make distclean
 
-cd "$VIM_SETUP_DIR"
-[ "$PWD" = "$VIM_SETUP_DIR" ] || exit $?
+cd "${VIM_SETUP_DIR}"
+[ "${PWD}" = "${VIM_SETUP_DIR}" ] || exit $?
 
 eval ./configure \
   "$@" \
   ${PREFIX:+--prefix="$PREFIX"} \
-  $CONF_ARGS_LUA \
-  $CONF_ARGS_PERL \
-  $CONF_ARGS_PYTHON2 \
-  $CONF_ARGS_PYTHON3 \
-  $CONF_ARGS_RUBY \
+  ${CONF_ARGS_LUA} \
+  ${CONF_ARGS_PERL} \
+  ${CONF_ARGS_PYTHON2} \
+  ${CONF_ARGS_PYTHON3} \
+  ${CONF_ARGS_RUBY} \
   --disable-gui \
   --enable-multibyte \
   --enable-cscope \
