@@ -38,9 +38,11 @@ _install_colorscheme () {
       if git clone --depth 1 "${scheme_url}" "${HOME}/vim-${scheme_filename%.vim}" ; then
         case $scheme_filename in
           Tomorrow*)
+            ls -l "${HOME}/vim-${scheme_filename%.vim}/vim/colors"
             mv -f "${HOME}/vim-${scheme_filename%.vim}/vim/colors/${scheme_filename%.vim}*.vim" "${HOME}"/.vim/colors/
             ;;
           *)
+            ls -l "${HOME}/vim-${scheme_filename%.vim}/colors"
             mv -f "${HOME}/vim-${scheme_filename%.vim}/colors/${scheme_filename%.vim}*.vim" "${HOME}"/.vim/colors/
             ;;
         esac
