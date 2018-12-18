@@ -2,7 +2,7 @@
 
 echo
 echo "################################################################################"
-echo " pyenv virtualenv wrapper env based on Henrique Bastos article at"
+echo "pyenv & virtualenv wrapper setup based on Henrique Bastos article at"
 echo "https://medium.com/@henriquebastos/the-definitive-guide-to-setup-my-python-workspace-628d68552e14"
 
 # Arguments of filenames ending '-xyz' will have a list of pip packages to be installed
@@ -104,9 +104,11 @@ appendunique 'export PYENV_VIRTUALENV_DISABLE_PROMPT=1' \
   "${HOME}/.bashrc" \
   "${HOME}/.zshrc"
 
-# Install
-if [ ! -d "$HOME/.pyenv" ] ; then
+# Install or upgrade
+if [ ! -d "${HOME}/.pyenv" ] ; then
   bash -c "$(curl -L "$PYENV_INSTALLER")"
+else
+  (cd "${HOME}/.pyenv" && git pull)
 fi
 
 # Load
