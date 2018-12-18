@@ -70,7 +70,7 @@ echo
 echo "Selecting ZSH_THEME=\"${ZSH_THEME:-robbyrussell}\""
 echo
 
-sed -i -e "s/^ZSH_THEME=.*$/ZSH_THEME=\"${ZSH_THEME:-robbyrussell}\"/"
+sed -i -e "s/^ZSH_THEME=.*$/ZSH_THEME=\"${ZSH_THEME:-robbyrussell}\"/" "${HOME}/.zshrc"
 
 # #############################################################################
 # Finish
