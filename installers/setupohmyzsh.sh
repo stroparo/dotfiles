@@ -11,6 +11,7 @@ PROGNAME=setupohmyzsh.sh
 OMZ_SYN_PATH="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 OMZ_SYN_URL="https://github.com/zsh-users/zsh-syntax-highlighting.git"
 OMZ_URL="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
+ZSH_THEME="robbyrussell"
 
 # #############################################################################
 # Checks
@@ -62,6 +63,14 @@ if ! grep -q 'plugins=.*zsh-syntax-highlighting' ~/.zshrc ; then
 else
   echo "SKIP: zsh-syntax-highlighting already activated." 1>&2
 fi
+
+# #############################################################################
+
+echo
+echo "Selecting ZSH_THEME=\"${ZSH_THEME:-robbyrussell}\""
+echo
+
+sed -i -e "s/^ZSH_THEME=.*$/ZSH_THEME=\"${ZSH_THEME:-robbyrussell}\"/"
 
 # #############################################################################
 # Finish
