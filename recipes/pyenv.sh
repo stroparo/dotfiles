@@ -144,10 +144,10 @@ pip3 install --upgrade pip
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> virtualenv's..."
 
-pyenv virtualenv "$PYV3" jupyter3
-pyenv virtualenv "$PYV2" ipython2
-pyenv virtualenv "$PYV3" tools3
-pyenv virtualenv "$PYV2" tools2
+pyenv virtualenv -f "$PYV3" jupyter3
+pyenv virtualenv -f "$PYV2" ipython2
+pyenv virtualenv -f "$PYV3" tools3
+pyenv virtualenv -f "$PYV2" tools2
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> IPython for Python 3 & Jupyter"
