@@ -11,7 +11,8 @@ echo "Daily Shells setup \$0='$0'"
 # #############################################################################
 # Globals
 
-export DS_HOME="${DS_HOME:-${HOME}/.ds}"
+export DS_INSTALL_DIR="${1:-\${HOME\}/.ds}"
+export DS_HOME="$(eval echo "\"${DS_INSTALL_DIR}\"")"
 export DS_SETUP_URL="https://bitbucket.org/stroparo/ds/raw/master/setup.sh"
 export DS_SETUP_URL_ALT="https://raw.githubusercontent.com/stroparo/ds/master/setup.sh"
 
@@ -35,7 +36,7 @@ _install_fresh () {
   # Forced unset eg for when in an old DS loaded session but having removed DS:
   export DS_LOADED=false
 
-  bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}" || ${DLPROG} ${DLOPT} "${DS_SETUP_URL_ALT}")" setup.sh "${DS_HOME}"
+  bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}" || ${DLPROG} ${DLOPT} "${DS_SETUP_URL_ALT}")" setup.sh "${DS_INSTALL_DIR}"
 }
 
 
