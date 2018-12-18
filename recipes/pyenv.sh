@@ -130,11 +130,12 @@ fi
 echo ${BASH_VERSION:+-e} "\n\n==> pyenv install $PYV3 and $PYV2 ..."
 
 pyenv install "$PYV3"
-pyenv install "$PYV2"
-
 if ! (pyenv versions | fgrep -q "$PYV3") ; then
   echo "FATAL: $PYV3 version could not be installed." 1>&2
+  exit 1
 fi
+pyenv install "$PYV2"
+pyenv global "$PYV3" "$PYV2"
 
 echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for pyenv's pip...\n"
 pip2 install --upgrade pip
