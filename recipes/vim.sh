@@ -37,9 +37,9 @@ _install_colorscheme () {
     if [ ! -e "${HOME}/.vim/colors/${scheme_filename%.vim}.vim" ] ; then
       if git clone --depth 1 "${scheme_url}" "${HOME}/vim-${scheme_filename%.vim}" ; then
         case $scheme_filename in
-          Tomorrow*)
-            mv -f -v "${HOME}/vim-${scheme_filename%.vim}/vim/colors/${scheme_filename%.vim}"*".vim" "${HOME}"/.vim/colors/
-            ;;
+          # Tomorrow*)
+          #   mv -f -v "${HOME}/vim-${scheme_filename%.vim}/vim/colors/${scheme_filename%.vim}"*".vim" "${HOME}"/.vim/colors/
+          #   ;;
           *)
             mv -f -v "${HOME}/vim-${scheme_filename%.vim}/colors/${scheme_filename%.vim}"*".vim" "${HOME}"/.vim/colors/
             ;;
@@ -69,7 +69,6 @@ mkdir -p "$HOME"/.vim/undodir
 
 _install_colorscheme 'https://github.com/nanotech/jellybeans.vim' jellybeans
 _install_colorscheme 'https://github.com/chriskempson/tomorrow-theme' Tomorrow
-_install_colorscheme 'https://github.com/jnurmine/Zenburn.git' zenburn
 
 # #############################################################################
 # Finish
