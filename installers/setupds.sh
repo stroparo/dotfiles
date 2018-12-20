@@ -11,7 +11,7 @@ echo "Daily Shells setup \$0='$0'"
 # #############################################################################
 # Globals
 
-export DS_INSTALL_DIR="${1:-\${HOME\}/.ds}"
+export DS_INSTALL_DIR="${1:-\$HOME/.ds}"
 export DS_HOME="$(eval echo "\"${DS_INSTALL_DIR}\"")"
 export DS_SETUP_URL="https://bitbucket.org/stroparo/ds/raw/master/setup.sh"
 export DS_SETUP_URL_ALT="https://raw.githubusercontent.com/stroparo/ds/master/setup.sh"
