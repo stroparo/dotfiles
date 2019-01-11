@@ -32,6 +32,8 @@ EOF
 fi
 sed -i -e 's/GRUB_CMDLINE_LINUX_DEFAULT="/GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1 /' "${GRUB_FILE}"
 
+sudo update-grub
+
 # #############################################################################
 # Final sequence
 
