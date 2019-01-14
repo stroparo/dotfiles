@@ -9,17 +9,19 @@ fi
 # Desktop
 if ! ${NODESKTOP:-false} ; then
   if (uname | grep -i -q linux) ; then
-    if [[ $PROVISION_OPTIONS = *workstation* ]] ; then
-      bash "${RUNR_DIR:-.}"/recipes/base-el7-gui.sh
-      bash "${RUNR_DIR:-.}"/recipes/base-el7-gui-fonts.sh
-      bash "${RUNR_DIR:-.}"/recipes/xfce.sh
-      bash "${RUNR_DIR:-.}"/recipes/apps-el-desktop.sh
-      bash "${RUNR_DIR:-.}"/installers/setupanki.sh
-      bash "${RUNR_DIR:-.}"/installers/setupchrome.sh
-      bash "${RUNR_DIR:-.}"/installers/setuprdp.sh xfce
-    else
-      bash "${RUNR_DIR:-.}"/recipes/xfce.sh
-      bash "${RUNR_DIR:-.}"/recipes/apps-desktop.sh
+    if [[ $PROVISION_OPTIONS != *nogui* ]] ; then
+      if [[ $PROVISION_OPTIONS = *workstation* ]] ; then
+        bash "${RUNR_DIR:-.}"/recipes/base-el7-gui.sh
+        bash "${RUNR_DIR:-.}"/recipes/base-el7-gui-fonts.sh
+        bash "${RUNR_DIR:-.}"/recipes/xfce.sh
+        bash "${RUNR_DIR:-.}"/recipes/apps-el-desktop.sh
+        bash "${RUNR_DIR:-.}"/installers/setupanki.sh
+        bash "${RUNR_DIR:-.}"/installers/setupchrome.sh
+        bash "${RUNR_DIR:-.}"/installers/setuprdp.sh xfce
+      else
+        bash "${RUNR_DIR:-.}"/recipes/xfce.sh
+        bash "${RUNR_DIR:-.}"/recipes/apps-desktop.sh
+      fi
     fi
   fi
   bash "${RUNR_DIR:-.}"/recipes/powerline-fonts.sh
