@@ -33,6 +33,7 @@ if ! which rustc 2>/dev/null ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: rustc compiler not found." 1>&2
   exit 1
 fi
+echo "${PROGNAME:+$PROGNAME: }INFO: Rust path='$(which rustc 2>&1)'." 1>&2
 
 # #############################################################################
 # Finish
