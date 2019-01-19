@@ -1,8 +1,6 @@
 # Dotfiles
 
-Custom configuration files and environment setup routines.
-
-These are custom i.e. the best way to seize them is to fork this repository and have it your own way by changing, removing or adding new stuff etcetera.
+Custom configuration files and shell script recipes.
 
 ## Requirements
 
@@ -25,15 +23,6 @@ dsload || . "${DS_HOME:-$HOME/.ds}/ds.sh"
 : # Select the code above, this line being a no-op to help selecting, copying & pasting
 ```
 
-One can also get a specific script in this repository and have it executed in one fell swoop, like in this example:
-
-```bash
-bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/recipes/alias.sh" \
-  || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/recipes/alias.sh")"; \
-  . ~/.aliases-cs
-: # Select the code above, this line being a no-op to help selecting, copying & pasting
-```
-
 ---
 
 ## Specific recipes
@@ -45,22 +34,27 @@ Some recipes aggregate others, e.g. the 'shell' recipe calls all of these:
 * For oh-my-zsh: setupohmyzsh
 * For SSH default key generation: sshkeygen sshmodes
 
-You can always specify exactly which recipes you want and in what order to have them executed:
+Instead of using aggregate recipes like the 'shell' one above, you can always specify exactly which recipes you want and in what order to have them executed, in just one command:
 
 ```bash
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
-  entry.sh setupds setupohmyzsh sshkeygen sshmodes
+  entry.sh alias setupds setupohmyzsh sshkeygen sshmodes
+. ~/.aliases-cs
 : # Select the code above, this line being a no-op to help selecting, copying & pasting
 ```
 
-More recipes:
+Othe examples:
 
 ```bash
 bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh alias && . ~/.aliases-cs
-bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh setupds
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh setupds; . "${DS_HOME:-$HOME/.ds}/ds.sh"
 bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh setupohmyzsh
 bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh sshkeygen sshmodes
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh dotfiles
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh git
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh python
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh setupvim
 ```
 
 ---
