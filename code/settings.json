@@ -1,8 +1,9 @@
 {
+
   "alt-editor.name": "subl",
   "editor.autoIndent": true,
   "editor.cursorStyle": "block",
-  "editor.fontFamily": "'Fira Mono for Powerline', 'Droid Sans Mono Dotted for Powerline', 'Ubuntu Mono derivative Powerline', Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "'Fira Code', 'Fira Mono for Powerline', 'Droid Sans Mono Dotted for Powerline', 'Ubuntu Mono derivative Powerline', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 15,
   "editor.formatOnSave": false,
