@@ -33,7 +33,7 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   entry.sh shell apps alias dotfiles
 dsload || . "${DS_HOME:-$HOME/.ds}/ds.sh"
 }
-: # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
+: # Select the code above, this line being a no-op to help selecting, copying & pasting
 ```
 
 One can also get a specific script in this repository and have it executed in one fell swoop, like in this example:
@@ -42,24 +42,27 @@ One can also get a specific script in this repository and have it executed in on
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/recipes/alias.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/recipes/alias.sh")"; \
   . ~/.aliases-cs
-: # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
+: # Select the code above, this line being a no-op to help selecting, copying & pasting
 ```
 
 ---
 
-## Other recipes
+## Specific recipes
 
+Some recipes aggregate others, e.g. the 'shell' recipe calls all of these:
+
+* Aliases recipe: alias
 * For Daily Shells installation: setupds
 * For oh-my-zsh: setupohmyzsh
 * For SSH default key generation: sshkeygen sshmodes
 
-Example issuing a direct download and execution of all these:
+You can always specify exactly which recipes you want and in what order to have them executed:
 
 ```bash
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
   entry.sh setupds setupohmyzsh sshkeygen sshmodes
-: # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
+: # Select the code above, this line being a no-op to help selecting, copying & pasting
 ```
 
 More recipes:
@@ -81,7 +84,7 @@ Download of the runr package plus installation of custom desktop package selects
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
   entry.sh apps-desktop
-: # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
+: # Select the code above, this line being a no-op to help selecting, copying & pasting
 ```
 
 ---
@@ -94,7 +97,7 @@ A handy command ready to do that edit for your user:
 
 ```bash
 sudo grep -q "$USER" /etc/sudoers || (echo "$USER ALL=(ALL) ALL" | sudo tee -a /etc/sudoers)
-: # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
+: # Select the code above, this line being a no-op to help selecting, copying & pasting
 ```
 
 Same as above but removing the password restriction for each call to sudo (not recommended):
@@ -123,7 +126,7 @@ curl -LSf -k -o ~/.runr.zip "https://github.com/stroparo/runr/archive/master.zip
   && unzip -o ~/.runr.zip -d "$HOME" \
   && cd "$HOME"/.runr \
   && ./entry.sh alias apps dotfiles shell
-: # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
+: # Select the code above, this line being a no-op to help selecting, copying & pasting
 ```
 
 ---
