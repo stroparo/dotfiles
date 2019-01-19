@@ -11,20 +11,9 @@ These are custom i.e. the best way to seize them is to fork this repository and 
 
 ---
 
-## Basic usage
+## Run it!
 
-#### Base recipes
-
-* alias
-* apps
-* dotfiles
-* shell
-
----
-
-## Automated Remote Setup
-
-The script has self-provisioning capabilities so you can skip downloading and setting it up by calling this command:
+The script is self provisioned, just copy & paste the following block in a terminal session:
 
 ```bash
 {
