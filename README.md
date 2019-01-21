@@ -46,16 +46,21 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
 # Select this whole code block, copy and paste in your terminal
 ```
 
-Othe examples:
+Other examples:
 
 ```bash
 bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh alias && . ~/.aliases-cs
+```
+
+```bash
 bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh setupds; . "${DS_HOME:-$HOME/.ds}/ds.sh"
-bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh setupohmyzsh
+```
+
+```bash
 bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh sshkeygen sshmodes
-bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh dotfiles
-bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh git
-bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh python
+```
+
+```bash
 bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh setupvim
 ```
 
