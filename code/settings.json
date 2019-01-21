@@ -1,5 +1,7 @@
 {
-
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
   "alt-editor.name": "subl",
   "editor.autoIndent": true,
   "editor.cursorStyle": "block",
@@ -29,7 +31,7 @@
       ]
     }
   },
-  "editor.wordWrap": "off",
+  "editor.wordWrap": "on",
   "explorer.confirmDelete": false,
   "extensions.ignoreRecommendations": false,
   "files.autoSave": "off",
@@ -46,6 +48,7 @@
     "**/CVS": true,
     "**/.DS_Store": true
   },
+  "git.ignoreMissingGitWarning": true,
   "gitlens.advanced.messages": {
     "suppressCommitHasNoPreviousCommitWarning": false,
     "suppressCommitNotFoundWarning": false,
@@ -131,6 +134,5 @@
   },
   "[python]": {
     "editor.tabSize": 4,
-  },
-  "git.ignoreMissingGitWarning": true
+  }
 }
