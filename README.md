@@ -49,19 +49,25 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
 Other examples:
 
 ```bash
-bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh alias && . ~/.aliases-cs
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
+  entry.sh alias
+. ~/.aliases-cs
 ```
 
 ```bash
-bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh setupds; . "${DS_HOME:-$HOME/.ds}/ds.sh"
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
+  entry.sh setupds
+. "${DS_HOME:-$HOME/.ds}/ds.sh"
 ```
 
 ```bash
-bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh sshkeygen sshmodes
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
+  entry.sh sshkeygen sshmodes
 ```
 
 ```bash
-bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh setupvim
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
+  entry.sh setupvim
 ```
 
 ---
