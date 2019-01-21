@@ -18,9 +18,10 @@ The script is self provisioned, just copy & paste the following block in a termi
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
   entry.sh shell apps alias dotfiles
-dsload || . "${DS_HOME:-$HOME/.ds}/ds.sh"
+. "${DS_HOME:-$HOME/.ds}/ds.sh"
+. ~/.aliases-cs
 }
-: # Select the code above, this line being a no-op to help selecting, copying & pasting
+# Select this whole code block, copy and paste in your terminal
 ```
 
 ---
@@ -40,8 +41,9 @@ Instead of using aggregate recipes like the 'shell' one above, you can always sp
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
   entry.sh alias setupds setupohmyzsh sshkeygen sshmodes
+. "${DS_HOME:-$HOME/.ds}/ds.sh"
 . ~/.aliases-cs
-: # Select the code above, this line being a no-op to help selecting, copying & pasting
+# Select this whole code block, copy and paste in your terminal
 ```
 
 Othe examples:
@@ -67,7 +69,7 @@ Download of the runr package plus installation of custom desktop package selects
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
   entry.sh apps-desktop
-: # Select the code above, this line being a no-op to help selecting, copying & pasting
+# Select this whole code block, copy and paste in your terminal
 ```
 
 ---
@@ -80,7 +82,7 @@ A handy command ready to do that edit for your user:
 
 ```bash
 sudo grep -q "$USER" /etc/sudoers || (echo "$USER ALL=(ALL) ALL" | sudo tee -a /etc/sudoers)
-: # Select the code above, this line being a no-op to help selecting, copying & pasting
+# Select this whole code block, copy and paste in your terminal
 ```
 
 Same as above but removing the password restriction for each call to sudo (not recommended):
@@ -109,7 +111,7 @@ curl -LSf -k -o ~/.runr.zip "https://github.com/stroparo/runr/archive/master.zip
   && unzip -o ~/.runr.zip -d "$HOME" \
   && cd "$HOME"/.runr \
   && ./entry.sh alias apps dotfiles shell
-: # Select the code above, this line being a no-op to help selecting, copying & pasting
+# Select this whole code block, copy and paste in your terminal
 ```
 
 ---
