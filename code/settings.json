@@ -70,8 +70,6 @@
       ]
     }
   ],
-  "npm.enableScriptExplorer": true,
-  "terminal.integrated.shell.windows": "C:\\opt\\git\\bin\\bash.exe",
   "sync.gist": "7fc97ccd1eb6cec364eec3e2bb3d7290",
   "sync.quietSync": false,
   "sync.removeExtensions": false,
@@ -79,6 +77,7 @@
   "sync.autoDownload": false,
   "sync.autoUpload": false,
   "sync.forceDownload": true,
+  "terminal.integrated.shell.windows": "C:\\opt\\git\\bin\\bash.exe",
   "vim.easymotion": true,
   "vim.sneak": true,
   "vim.incsearch": true,
@@ -110,7 +109,6 @@
   "window.title": "${activeEditorLong}${separator}${rootName}",
   "window.zoomLevel": 0,
   "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "Dracula",
   "workbench.colorCustomizations": {
     // "editorIndentGuide.background": "#0000ff",
     "editorCursor.background": "#bb55dd",
@@ -124,6 +122,7 @@
     "statusBar.noFolderBackground": "#663333",
     "statusBar.debuggingBackground": "#263238"
   },
+  "workbench.colorTheme": "Dracula",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.settings.editor": "json",
   "workbench.sideBar.location": "right",
@@ -134,5 +133,9 @@
   },
   "[python]": {
     "editor.tabSize": 4,
-  }
+  },
+
+  // JavaScript
+  "javascript.implicitProjectConfig.checkJs": true,
+  "npm.enableScriptExplorer": true,
 }
