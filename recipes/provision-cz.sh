@@ -18,9 +18,9 @@ _step_custom () {
 
   export PROVISION_OPTIONS="${PROVISION_OPTIONS} xfce"
   runr provision-stroparo
+  runr setupkeybk380
 
   stsetupautostart.sh
-  runr setupkeybk380
   cz-conf-git.sh
 
   echo; echo "==> czsetup.sh <=="

@@ -27,6 +27,9 @@ _step_setup () {
   runr dotfiles
   runr git
   runr provision
+
+  selects-python-stroparo.sh
+
   if [ -e "${DS_HOME}/envst.sh" ] ; then
     st-conf-git.sh
   fi
