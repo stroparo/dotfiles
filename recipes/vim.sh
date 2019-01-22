@@ -32,19 +32,19 @@ _install_colorscheme () {
 
   typeset scheme_filename
   typeset scheme_url="$1"; shift
+  typeset clone_dir
+  typeset package_dir
 
   for scheme_filename in "$@" ; do
-    if [ ! -e "${HOME}/.vim/colors/${scheme_filename%.vim}.vim" ] ; then
-      if git clone --depth 1 "${scheme_url}" "${HOME}/vim-${scheme_filename%.vim}" ; then
-        case $scheme_filename in
-          # Tomorrow*)
-          #   mv -f -v "${HOME}/vim-${scheme_filename%.vim}/vim/colors/${scheme_filename%.vim}"*".vim" "${HOME}"/.vim/colors/
-          #   ;;
-          *)
-            mv -f -v "${HOME}/vim-${scheme_filename%.vim}/colors/${scheme_filename%.vim}"*".vim" "${HOME}"/.vim/colors/
-            ;;
-        esac
-        rm -f -r "${HOME}/vim-${scheme_filename%.vim}"
+    clone_dir"=${HOME}/vim-${scheme_filename%.vim}"
+    if ! ls "${HOME}/.vim/colors/${scheme_filename%.vim}"*".vim" >/dev/null 2>&1 ; then
+      if git clone --depth 1 "${scheme_url}" "${clone_dir}" ; then
+        package_dir="${clone_dir}/colors"
+        if [ -d "${clone_dir}/vim/colors" ] ; then
+          package_dir="${clone_dir}/vim/colors"
+        fi
+        mv -f -v "${package_dir}/${scheme_filename%.vim}"*".vim" "${HOME}"/.vim/colors/ \
+          && rm -f -r "${clone_dir}"
       fi
     fi
   done
@@ -57,16 +57,16 @@ _install_colorscheme () {
 if ! (vim --version | grep -q 'stroparo') ; then
   bash "${RUNR_DIR:-.}"/installers/setupvim.sh
   if ! (vim --version | grep -q 'stroparo') ; then
-    echo "${PROGNAME:+$PROGNAME: }WARN: Error compiling vim, but proceeding with this recipe." 1>&2
+    echo "${PROGNAME:+$PROGNAME: }WARN: Error compiling vim, but will carry on with this recipe." 1>&2
   fi
 fi
 
-mkdir -p "$HOME"/.vim/colors
 mkdir -p "$HOME"/.vim/undodir
 
 # #############################################################################
 # Themes
 
+mkdir -p "$HOME"/.vim/colors
 _install_colorscheme 'https://github.com/nanotech/jellybeans.vim' jellybeans
 _install_colorscheme 'https://github.com/chriskempson/tomorrow-theme' Tomorrow
 
