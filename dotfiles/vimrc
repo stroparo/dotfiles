@@ -42,6 +42,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/xtal8/traces.vim'
 Plug 'https://github.com/airblade/vim-gitgutter'
 Plug 'https://github.com/chaoren/vim-wordmotion'
+Plug 'https://github.com/fvictorio/vim-yank-queue'
 " Python
 Plug 'https://github.com/nvie/vim-flake8'
 Plug 'https://github.com/vim-scripts/indentpython.vim'
