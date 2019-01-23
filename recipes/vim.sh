@@ -36,7 +36,7 @@ _install_colorscheme () {
   typeset package_dir
 
   for scheme_filename in "$@" ; do
-    clone_dir"=${HOME}/vim-${scheme_filename%.vim}"
+    clone_dir="${HOME}/vim-${scheme_filename%.vim}"
     if ! ls "${HOME}/.vim/colors/${scheme_filename%.vim}"*".vim" >/dev/null 2>&1 ; then
       if git clone --depth 1 "${scheme_url}" "${clone_dir}" ; then
         package_dir="${clone_dir}/colors"
