@@ -137,5 +137,5 @@
   // JavaScript
   "javascript.implicitProjectConfig.checkJs": true,
   "npm.enableScriptExplorer": true,
-  "workbench.colorTheme": "IBM Colors Theme",
+  "workbench.colorTheme": "Night Owl",
 }
