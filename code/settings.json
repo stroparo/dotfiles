@@ -1,4 +1,5 @@
 {
+
   "css.validate": false,
   "scss.validate": false,
   "less.validate": false,
@@ -60,6 +61,7 @@
       "suppressWelcomeNotice": true
   },
   "gitlens.keymap": "alternate",
+  "http.proxyStrictSSL": false,
   "material-icon-theme.folders.theme": "specific",
   "multiCommand.commands": [
     {
@@ -72,7 +74,7 @@
   ],
   "sync.gist": "7fc97ccd1eb6cec364eec3e2bb3d7290",
   "sync.quietSync": false,
-  "sync.removeExtensions": false,
+  "sync.removeExtensions": true,
   "sync.syncExtensions": true,
   "sync.autoDownload": false,
   "sync.autoUpload": false,
@@ -137,5 +139,5 @@
   // JavaScript
   "javascript.implicitProjectConfig.checkJs": true,
   "npm.enableScriptExplorer": true,
-  "workbench.colorTheme": "Night Owl",
+  "workbench.colorTheme": "Night Owl No Italics",
 }
