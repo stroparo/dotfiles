@@ -47,7 +47,7 @@ Plug 'https://github.com/nvie/vim-flake8'
 Plug 'https://github.com/vim-scripts/indentpython.vim'
 Plug 'https://github.com/tmhedberg/SimpylFold'
 " Visuals
-" Plug 'https://github.com/rafi/awesome-vim-colorschemes'
+Plug 'https://github.com/rafi/awesome-vim-colorschemes'
 Plug 'https://github.com/c9s/colorselector.vim'
 Plug 'https://github.com/Konfekt/FastFold'
 call plug#end()
