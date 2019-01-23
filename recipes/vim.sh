@@ -68,7 +68,6 @@ mkdir -p "$HOME"/.vim/undodir
 
 mkdir -p "$HOME"/.vim/colors
 _install_colorscheme 'https://github.com/nanotech/jellybeans.vim' jellybeans
-_install_colorscheme 'https://github.com/chriskempson/tomorrow-theme' Tomorrow
 
 # #############################################################################
 # Finish
