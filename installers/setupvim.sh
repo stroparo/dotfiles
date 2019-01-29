@@ -81,7 +81,7 @@ shift "$((OPTIND-1))"
 # Check if already compiled and prompt
 
 if ! ${FORCE:-false} && (vim --version | grep -q "${BUILD_NAME}") ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: VIM '${BUILD_NAME}' already compiled."
+  echo "${PROGNAME:+$PROGNAME: }SKIP: VIM '${BUILD_NAME}' build already compiled."
   echo "${PROGNAME:+$PROGNAME: }TIP: Run '\"${PROGNAME}\" -f' to force a new compilation."
   exit
 fi
