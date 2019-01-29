@@ -96,6 +96,7 @@ _provide_vim_undo_dir
 
 if _provide_vim_colors_dir ; then
   :
+  _install_colorscheme 'https://github.com/AlessandroYorba/Despacio' despacio
   # _install_colorscheme 'https://github.com/nanotech/jellybeans.vim' jellybeans
   _install_colorscheme 'https://github.com/dikiaap/minimalist' minimalist
   _install_colorscheme 'https://github.com/owickstrom/vim-colors-paramount' paramount

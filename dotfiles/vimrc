@@ -83,14 +83,17 @@ set wrapscan
 "   set termguicolors
 " endif
 
-" Theme seoul256 options:
+" Theme options for the despacio & sierra colors by AlessandroYorba:
+let g:despacio_Midnight = 1 " darker
+" let g:despacio_Twilight = 1 " dark
+let g:sierra_Midnight = 1 " darker
+" let g:sierra_Twilight = 1 " dark
+
+" Theme options for the seoul256 colors:
 let g:seoul256_background = 234
 set background=dark
 
-" Theme sierra options:
-let g:sierra_Twilight = 1
-
-" Theme zenburn options:
+" Theme options for the zenburn colors:
 let g:zenburn_transparent = 1
 let g:zenburn_alternate_Visual = 1
 
