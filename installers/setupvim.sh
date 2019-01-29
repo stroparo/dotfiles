@@ -312,6 +312,9 @@ cd "${VIM_SETUP_DIR}/src" \
 cd "${VIM_SETUP_DIR}"
 [ "${PWD}" = "${VIM_SETUP_DIR}" ] || exit $?
 
+# Other configure options:
+  # --enable-gui=auto \
+  # --with-x \
 eval ./configure \
   "$@" \
   ${PREFIX:+--prefix="$PREFIX"} \
@@ -324,11 +327,10 @@ eval ./configure \
   --enable-multibyte \
   --enable-cscope \
   --with-features=huge \
-  --with-x \
   --enable-fontset \
   --enable-largefile \
   --disable-netbeans \
-  --with-compiledby="stroparo" \
+  --with-compiledby="${BUILD_NAME}" \
   --enable-fail-if-missing \
   && make
 
@@ -341,5 +343,5 @@ fi
 # #############################################################################
 # Finish
 
-echo "${PROGNAME:+$PROGNAME: }COMPLETE: Vim setup complete"
+echo "${PROGNAME:+$PROGNAME: }COMPLETE: Vim - '${BUILD_NAME}' build - setup complete"
 echo

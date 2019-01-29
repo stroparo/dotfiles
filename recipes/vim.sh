@@ -10,6 +10,7 @@ echo "Vim custom stroparo/dotfiles setup; \$0='$0'; \$PWD='$PWD'"
 # Globals
 
 : ${VIM_COLORS_DIR:=${HOME}/.vim/colors}
+: ${VIM_UNDO_DIR:=${HOME}/.vim/colors}
 : ${VERBOSE:=false}
 
 # #############################################################################
