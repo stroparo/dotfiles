@@ -21,7 +21,7 @@ echo "Setup Vim compiling from source"
 # Env check
 
 if ! (uname | grep -i -q linux) ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: Only Linux is supported." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Only Linux is supported."
   exit 0
 fi
 
