@@ -78,12 +78,13 @@ set wrapmargin=0
 set wrapscan
 
 " Colors if you have vim >= 8 or Neovim >= 0.1.5
-if (has("termguicolors"))
-  set termguicolors
-endif
+" Commented out as did not work in EL6.x with no X11/GUI
+" if (has("termguicolors"))
+"   set termguicolors
+" endif
 
 " Theme seoul256 options:
-let g:seoul256_background = 235
+let g:seoul256_background = 234
 set background=dark
 
 " Theme sierra options:
