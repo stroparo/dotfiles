@@ -64,9 +64,11 @@ _install_colorscheme () {
 
   for scheme_filename in "$@" ; do
     clone_dir="${HOME}/.vimscheme-${scheme_filename%.vim}"
-    if ! ls "${HOME}/.vim/colors/${scheme_filename%.vim}"*".vim" >/dev/null 2>&1 ; then
+    if ls "${HOME}/.vim/colors/${scheme_filename%.vim}"*".vim" >/dev/null 2>&1 ; then
+      echo "${PROGNAME:+$PROGNAME: }SKIP: colorscheme '${scheme_filename}' was previously installed.."
+    else
       echo
-      echo "${PROGNAME:+$PROGNAME: }INFO: Installing '${scheme_filename}' colorscheme..." 1>&2
+      echo "${PROGNAME:+$PROGNAME: }INFO: Installing '${scheme_filename}' colorscheme..."
 
       if git clone --depth 1 "${scheme_url}" "${clone_dir}" ; then
         package_dir="${clone_dir}/colors"
@@ -109,5 +111,5 @@ fi
 _print_results
 
 echo
-echo "${PROGNAME:+$PROGNAME: }INFO: FINISHED custom deployment of Vim." 1>&2
+echo "${PROGNAME:+$PROGNAME: }INFO: FINISHED custom deployment of Vim."
 echo
