@@ -9,6 +9,7 @@ echo "Vim custom stroparo/dotfiles setup; \$0='$0'; \$PWD='$PWD'"
 # #############################################################################
 # Globals
 
+: ${VIM_COLORS_DIR:=${HOME}/.vim/colors}
 : ${VERBOSE:=false}
 
 # #############################################################################
@@ -26,6 +27,31 @@ shift "$((OPTIND-1))"
 # Functions
 
 
+_print_results () {
+  if ${VERBOSE:-false} ; then
+    echo
+    echo "==> Vim setup results"
+    echo
+    ls -d -l "${VIM_COLORS_DIR}"
+    ls -d -l "${VIM_UNDO_DIR}"
+    ls -l "${VIM_COLORS_DIR}"/*.vim
+    echo
+  fi
+}
+
+
+_provide_vim_colors_dir () {
+  mkdir -p "${VIM_COLORS_DIR}"
+  [ -d "${VIM_COLORS_DIR}" ]
+}
+
+
+_provide_vim_undo_dir () {
+  mkdir -p "${VIM_UNDO_DIR}"
+  [ -d "${VIM_UNDO_DIR}" ]
+}
+
+
 _install_colorscheme () {
   # Syntax: {repo url} {colorscheme filename}
   if [ $# -lt 2 ] ; then return ; fi
@@ -36,14 +62,16 @@ _install_colorscheme () {
   typeset package_dir
 
   for scheme_filename in "$@" ; do
-    clone_dir="${HOME}/vim-${scheme_filename%.vim}"
+    clone_dir="${HOME}/.vimscheme-${scheme_filename%.vim}"
     if ! ls "${HOME}/.vim/colors/${scheme_filename%.vim}"*".vim" >/dev/null 2>&1 ; then
       if git clone --depth 1 "${scheme_url}" "${clone_dir}" ; then
         package_dir="${clone_dir}/colors"
         if [ -d "${clone_dir}/vim/colors" ] ; then
           package_dir="${clone_dir}/vim/colors"
         fi
-        mv -f -v "${package_dir}/${scheme_filename%.vim}"*".vim" "${HOME}"/.vim/colors/ \
+        mv -f -v \
+          "${package_dir}/${scheme_filename%.vim}"*".vim" \
+          "${VIM_COLORS_DIR}/" \
           && rm -f -r "${clone_dir}"
       fi
     fi
@@ -54,33 +82,20 @@ _install_colorscheme () {
 # #############################################################################
 # Main
 
-if ! (vim --version | grep -q 'stroparo') ; then
-  bash "${RUNR_DIR:-.}"/installers/setupvim.sh
-  if ! (vim --version | grep -q 'stroparo') ; then
-    echo "${PROGNAME:+$PROGNAME: }WARN: Error compiling vim, but will carry on with this recipe." 1>&2
-  fi
-fi
-
-mkdir -p "$HOME"/.vim/undodir
+bash "${RUNR_DIR:-.}"/installers/setupvim.sh
+_provide_vim_undo_dir
 
 # #############################################################################
 # Themes
 
-mkdir -p "$HOME"/.vim/colors
-_install_colorscheme 'https://github.com/nanotech/jellybeans.vim' jellybeans
+if _provide_vim_colors_dir ; then
+  _install_colorscheme 'https://github.com/nanotech/jellybeans.vim' jellybeans
+fi
 
 # #############################################################################
 # Finish
 
-if ${VERBOSE:-false} ; then
-  echo
-  echo "==> Vim setup results"
-  echo
-  ls -d -l "$HOME"/.vim/colors
-  ls -d -l "$HOME"/.vim/undodir
-  ls -l "$HOME"/.vim/colors/*.vim
-  echo
-fi
+_print_results
 
 echo "FINISHED custom deployment of Vim"
 echo

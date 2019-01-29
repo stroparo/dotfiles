@@ -43,7 +43,9 @@ unset CONF_ARGS_PERL
 unset CONF_ARGS_PYTHON
 unset CONF_ARGS_RUBY
 
-NO_PYTHON=false
+FORCE="false"
+NO_PYTHON="false"
+BUILD_NAME='stroparo'
 
 # #############################################################################
 # Routines
@@ -65,10 +67,11 @@ _user_confirm () {
 
 # Options:
 OPTIND=1
-while getopts ':hip:' option ; do
+while getopts ':fhip:' option ; do
   case "${option}" in
+    f) FORCE="true"
     h) echo "$USAGE"; exit;;
-    i) export INTERACTIVE=true;;
+    i) export INTERACTIVE="true";;
     p) export PREFIX="${OPTARG}";;
   esac
 done
@@ -77,11 +80,10 @@ shift "$((OPTIND-1))"
 # #############################################################################
 # Check if already compiled and prompt
 
-if (vim --version | grep -q 'stroparo') ; then
-  if ! ${INTERACTIVE:-false} || ! _user_confirm "VIM already compiled. Recompile?" ; then
-    echo "${PROGNAME:+$PROGNAME: }SKIP: VIM already compiled."
-    exit
-  fi
+if ! ${FORCE:-false} && (vim --version | grep -q "${BUILD_NAME}") ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: VIM '${BUILD_NAME}' already compiled."
+  echo "${PROGNAME:+$PROGNAME: }TIP: Run '\"${PROGNAME}\" -f' to force a new compilation."
+  exit
 fi
 
 # #############################################################################
