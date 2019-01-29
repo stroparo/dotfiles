@@ -76,7 +76,7 @@
   "sync.quietSync": false,
   "sync.removeExtensions": true,
   "sync.syncExtensions": true,
-  "sync.autoDownload": false,
+  "sync.autoDownload": true,
   "sync.autoUpload": false,
   "sync.forceDownload": true,
   "terminal.integrated.shell.windows": "C:\\opt\\git\\bin\\bash.exe",
