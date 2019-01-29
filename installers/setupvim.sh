@@ -69,7 +69,7 @@ _user_confirm () {
 OPTIND=1
 while getopts ':fhip:' option ; do
   case "${option}" in
-    f) FORCE="true"
+    f) FORCE="true";;
     h) echo "$USAGE"; exit;;
     i) export INTERACTIVE="true";;
     p) export PREFIX="${OPTARG}";;
