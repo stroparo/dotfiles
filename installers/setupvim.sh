@@ -343,5 +343,10 @@ fi
 # #############################################################################
 # Finish
 
-echo "${PROGNAME:+$PROGNAME: }COMPLETE: Vim - '${BUILD_NAME}' build - setup complete"
 echo
+if (vim --version | grep -q "${BUILD_NAME}") ; then
+  echo "${PROGNAME:+$PROGNAME: }COMPLETE: Vim - '${BUILD_NAME}' build - setup complete"
+else
+  echo "${PROGNAME:+$PROGNAME: }FAIL: Vim - '${BUILD_NAME}' build is unavailable"
+  exit 1
+fi

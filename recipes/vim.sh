@@ -108,5 +108,6 @@ fi
 
 _print_results
 
-echo "FINISHED custom deployment of Vim"
+echo
+echo "${PROGNAME:+$PROGNAME: }INFO: FINISHED custom deployment of Vim." 1>&2
 echo
