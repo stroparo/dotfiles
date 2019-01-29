@@ -65,6 +65,9 @@ _install_colorscheme () {
   for scheme_filename in "$@" ; do
     clone_dir="${HOME}/.vimscheme-${scheme_filename%.vim}"
     if ! ls "${HOME}/.vim/colors/${scheme_filename%.vim}"*".vim" >/dev/null 2>&1 ; then
+      echo
+      echo "${PROGNAME:+$PROGNAME: }INFO: Installing '${scheme_filename}' colorscheme..." 1>&2
+
       if git clone --depth 1 "${scheme_url}" "${clone_dir}" ; then
         package_dir="${clone_dir}/colors"
         if [ -d "${clone_dir}/vim/colors" ] ; then
@@ -90,7 +93,14 @@ _provide_vim_undo_dir
 # Themes
 
 if _provide_vim_colors_dir ; then
-  _install_colorscheme 'https://github.com/nanotech/jellybeans.vim' jellybeans
+  :
+  # _install_colorscheme 'https://github.com/nanotech/jellybeans.vim' jellybeans
+  _install_colorscheme 'https://github.com/dikiaap/minimalist' minimalist
+  _install_colorscheme 'https://github.com/owickstrom/vim-colors-paramount' paramount
+  _install_colorscheme 'https://github.com/AlessandroYorba/Sierra' sierra
+  _install_colorscheme 'https://github.com/junegunn/seoul256.vim' seoul256
+  _install_colorscheme 'https://github.com/jacoborus/tender.vim' tender
+  _install_colorscheme 'https://github.com/vim-scripts/wombat256.vim' wombat256mod
 fi
 
 # #############################################################################

@@ -48,9 +48,10 @@ Plug 'https://github.com/nvie/vim-flake8'
 Plug 'https://github.com/vim-scripts/indentpython.vim'
 Plug 'https://github.com/tmhedberg/SimpylFold'
 " Visuals
-Plug 'https://github.com/rafi/awesome-vim-colorschemes'
 Plug 'https://github.com/c9s/colorselector.vim'
 Plug 'https://github.com/Konfekt/FastFold'
+" Visuals - colorschemes
+" Plug 'https://github.com/rafi/awesome-vim-colorschemes' " several schemes aggregated in one place
 call plug#end()
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -76,13 +77,31 @@ set undodir=~/.vim/undodir
 set wrapmargin=0
 set wrapscan
 
+" Colors if you have vim >= 8 or Neovim >= 0.1.5
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+" Theme seoul256 options:
+let g:seoul256_background = 235
+set background=dark
+
+" Theme sierra options:
+let g:sierra_Twilight = 1
+
 " Theme zenburn options:
 let g:zenburn_transparent = 1
 let g:zenburn_alternate_Visual = 1
 
 " Themes
 set t_Co=256
-colorscheme jellybeans
+" colorscheme jellybeans
+" colorscheme minimalist
+" colorscheme paramount
+colorscheme seoul256
+" colorscheme sierra
+" colorscheme tender
+" colorscheme wombat256mod
 
 " Whitespace
 set autoindent    " align the new line indent with the previous line
