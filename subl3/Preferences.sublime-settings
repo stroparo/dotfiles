@@ -58,7 +58,7 @@
 
   // Fonts
   // "font_face": "Droid Sans Mono Dotted for Powerline", "font_size": 11, // Fine: 11, 12
-  "font_face": "Fira Mono for Powerline", "font_size": 11,
+  "font_face": "Fira Mono for Powerline", "font_size": 12,
   // "font_face": "Inconsolata-dz for Powerline", "font_size": 11, // Fine: 10, 11
   // "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12,
   "font_options": ["subpixel_antialias", "no_bold"],
