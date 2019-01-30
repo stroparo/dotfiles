@@ -1,0 +1,12 @@
+#!/bin/bash 
+
+# Save this script into set_colors.sh, make this file executable and run it: 
+# 
+# $ chmod +x set_colors.sh 
+# $ ./set_colors.sh 
+# 
+# Alternatively copy lines below directly into your shell. 
+
+gconftool-2 -s -t string /apps/guake/style/background/color '#3b3b3b3b3b3b'
+gconftool-2 -s -t string /apps/guake/style/font/color '#ebebe4e4d3d3'
+gconftool-2 -s -t string /apps/guake/style/font/palette '#494949494949:#f2f277777a7a:#9999cccc9999:#fefedbdb7878:#9999cccccccc:#d5d56767afaf:#d2d2fdfdfefe:#eeeee8e8d5d5:#3b3b3b3b3b3b:#f9f991915757:#999999999999:#cccccccccccc:#ebebe4e4d3d3:#cccc9999cccc:#9393a1a1a1a1:#fdfdf6f6e3e3'
