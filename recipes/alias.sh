@@ -45,6 +45,7 @@ d () {
 # Asorted
 alias capsctrl='setxkbmap -option "ctrl:nocaps"'
 alias cls='clear'
+alias ctl='sudo systemctl'
 alias dfg='df -gP'
 alias dfh='df -hP'
 alias dsloaddefault='. "$HOME/.ds/ds.sh"'

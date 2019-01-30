@@ -1,8 +1,12 @@
 {
+
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
   "alt-editor.name": "subl",
   "editor.autoIndent": true,
   "editor.cursorStyle": "block",
-  "editor.fontFamily": "'Ubuntu Mono derivative Powerline', Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "'Fira Code', 'Fira Mono for Powerline', 'Droid Sans Mono Dotted for Powerline', 'Ubuntu Mono derivative Powerline', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 15,
   "editor.formatOnSave": false,
@@ -28,7 +32,7 @@
       ]
     }
   },
-  "editor.wordWrap": "off",
+  "editor.wordWrap": "on",
   "explorer.confirmDelete": false,
   "extensions.ignoreRecommendations": false,
   "files.autoSave": "off",
@@ -45,6 +49,7 @@
     "**/CVS": true,
     "**/.DS_Store": true
   },
+  "git.ignoreMissingGitWarning": true,
   "gitlens.advanced.messages": {
     "suppressCommitHasNoPreviousCommitWarning": false,
     "suppressCommitNotFoundWarning": false,
@@ -56,6 +61,7 @@
       "suppressWelcomeNotice": true
   },
   "gitlens.keymap": "alternate",
+  "http.proxyStrictSSL": false,
   "material-icon-theme.folders.theme": "specific",
   "multiCommand.commands": [
     {
@@ -66,15 +72,14 @@
       ]
     }
   ],
-  "npm.enableScriptExplorer": true,
-  "terminal.integrated.shell.windows": "C:\\opt\\git\\bin\\bash.exe",
   "sync.gist": "7fc97ccd1eb6cec364eec3e2bb3d7290",
   "sync.quietSync": false,
-  "sync.removeExtensions": false,
+  "sync.removeExtensions": true,
   "sync.syncExtensions": true,
-  "sync.autoDownload": false,
+  "sync.autoDownload": true,
   "sync.autoUpload": false,
   "sync.forceDownload": true,
+  "terminal.integrated.shell.windows": "C:\\opt\\git\\bin\\bash.exe",
   "vim.easymotion": true,
   "vim.sneak": true,
   "vim.incsearch": true,
@@ -106,7 +111,6 @@
   "window.title": "${activeEditorLong}${separator}${rootName}",
   "window.zoomLevel": 0,
   "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "Material Theme Darker High Contrast",
   "workbench.colorCustomizations": {
     // "editorIndentGuide.background": "#0000ff",
     "editorCursor.background": "#bb55dd",
@@ -131,5 +135,9 @@
   "[python]": {
     "editor.tabSize": 4,
   },
-  "git.ignoreMissingGitWarning": true
+
+  // JavaScript
+  "javascript.implicitProjectConfig.checkJs": true,
+  "npm.enableScriptExplorer": true,
+  "workbench.colorTheme": "Night Owl No Italics",
 }

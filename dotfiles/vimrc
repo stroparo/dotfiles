@@ -42,14 +42,16 @@ Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/xtal8/traces.vim'
 Plug 'https://github.com/airblade/vim-gitgutter'
 Plug 'https://github.com/chaoren/vim-wordmotion'
+Plug 'https://github.com/fvictorio/vim-yank-queue'
 " Python
 Plug 'https://github.com/nvie/vim-flake8'
 Plug 'https://github.com/vim-scripts/indentpython.vim'
 Plug 'https://github.com/tmhedberg/SimpylFold'
 " Visuals
-" Plug 'https://github.com/rafi/awesome-vim-colorschemes'
 Plug 'https://github.com/c9s/colorselector.vim'
 Plug 'https://github.com/Konfekt/FastFold'
+" Visuals - colorschemes
+" Plug 'https://github.com/rafi/awesome-vim-colorschemes' " several schemes aggregated in one place
 call plug#end()
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -75,13 +77,53 @@ set undodir=~/.vim/undodir
 set wrapmargin=0
 set wrapscan
 
-" Theme zenburn options:
-let g:zenburn_transparent = 1
-let g:zenburn_alternate_Visual = 1
+" Colors if you have vim >= 8 or Neovim >= 0.1.5
+" Commented out as did not work in EL6.x with no X11/GUI
+" if (has("termguicolors"))
+"   set termguicolors
+"   set t_ut=
+" endif
+
+" Theme options for the despacio & sierra colors by AlessandroYorba:
+" let g:despacio_Midnight = 1 " darker
+" let g:despacio_Twilight = 1 " dark
+" let g:sierra_Midnight = 1 " darker
+" let g:sierra_Twilight = 1 " dark
+
+" Theme options for the deus colors:
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" let g:deus_termcolors=256
+" set background=dark
+
+" Theme options for the scheakur colors:
+" set background=dark
+
+" Theme options for the seoul256 colors:
+" let g:seoul256_background = 234
+" set background=dark
+
+" Theme options for the zenburn colors:
+" let g:zenburn_transparent = 1
+" let g:zenburn_alternate_Visual = 1
 
 " Themes
 set t_Co=256
-colorscheme jellybeans
+" colorscheme deus
+" colorscheme despacio
+" colorscheme dracula
+" colorscheme happy_hacking
+" colorscheme iceberg
+" colorscheme jellybeans
+" colorscheme minimalist
+" colorscheme paramount
+" colorscheme parsec
+" colorscheme scheakur
+colorscheme seoul256
+" colorscheme sierra
+" colorscheme tender
+" colorscheme twilight256
+" colorscheme wombat256mod
 
 " Whitespace
 set autoindent    " align the new line indent with the previous line

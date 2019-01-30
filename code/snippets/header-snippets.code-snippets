@@ -17,12 +17,6 @@
 		"description": "",
 		"scope": ""
 	},
-	"hdrdsextras": {
-		"prefix": "hdrdsextras",
-		"body": "# Daily Shells Extras extensions\n# More instructions and licensing at:\n# https://github.com/stroparo/ds-extras\n",
-		"description": "",
-		"scope": ""
-	},
 	"hdrdsstroparo": {
 		"prefix": "hdrdsstroparo",
 		"body": "# Daily Shells Stroparo extensions\n# More instructions and licensing at:\n# https://github.com/stroparo/ds-stroparo\n",

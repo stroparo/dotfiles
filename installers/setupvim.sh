@@ -21,7 +21,7 @@ echo "Setup Vim compiling from source"
 # Env check
 
 if ! (uname | grep -i -q linux) ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: Only Linux is supported." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Only Linux is supported."
   exit 0
 fi
 
@@ -43,7 +43,9 @@ unset CONF_ARGS_PERL
 unset CONF_ARGS_PYTHON
 unset CONF_ARGS_RUBY
 
-NO_PYTHON=false
+FORCE="false"
+NO_PYTHON="false"
+BUILD_NAME='stroparo'
 
 # #############################################################################
 # Routines
@@ -65,10 +67,11 @@ _user_confirm () {
 
 # Options:
 OPTIND=1
-while getopts ':hip:' option ; do
+while getopts ':fhip:' option ; do
   case "${option}" in
+    f) FORCE="true";;
     h) echo "$USAGE"; exit;;
-    i) export INTERACTIVE=true;;
+    i) export INTERACTIVE="true";;
     p) export PREFIX="${OPTARG}";;
   esac
 done
@@ -77,11 +80,10 @@ shift "$((OPTIND-1))"
 # #############################################################################
 # Check if already compiled and prompt
 
-if (vim --version | grep -q 'stroparo') ; then
-  if ! ${INTERACTIVE:-false} || ! _user_confirm "VIM already compiled. Recompile?" ; then
-    echo "${PROGNAME:+$PROGNAME: }SKIP: VIM already compiled."
-    exit
-  fi
+if ! ${FORCE:-false} && (vim --version | grep -q "${BUILD_NAME}") ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: VIM '${BUILD_NAME}' build already compiled."
+  echo "${PROGNAME:+$PROGNAME: }TIP: Run '\"${PROGNAME}\" -f' to force a new compilation."
+  exit
 fi
 
 # #############################################################################
@@ -310,6 +312,9 @@ cd "${VIM_SETUP_DIR}/src" \
 cd "${VIM_SETUP_DIR}"
 [ "${PWD}" = "${VIM_SETUP_DIR}" ] || exit $?
 
+# Other configure options:
+  # --enable-gui=auto \
+  # --with-x \
 eval ./configure \
   "$@" \
   ${PREFIX:+--prefix="$PREFIX"} \
@@ -322,11 +327,10 @@ eval ./configure \
   --enable-multibyte \
   --enable-cscope \
   --with-features=huge \
-  --with-x \
   --enable-fontset \
   --enable-largefile \
   --disable-netbeans \
-  --with-compiledby="stroparo" \
+  --with-compiledby="${BUILD_NAME}" \
   --enable-fail-if-missing \
   && make
 
@@ -339,5 +343,10 @@ fi
 # #############################################################################
 # Finish
 
-echo "${PROGNAME:+$PROGNAME: }COMPLETE: Vim setup complete"
 echo
+if (vim --version | grep -q "${BUILD_NAME}") ; then
+  echo "${PROGNAME:+$PROGNAME: }COMPLETE: Vim - '${BUILD_NAME}' build - setup complete"
+else
+  echo "${PROGNAME:+$PROGNAME: }FAIL: Vim - '${BUILD_NAME}' build is unavailable"
+  exit 1
+fi

@@ -2,9 +2,9 @@
   // "color_scheme": "Packages/Boxy Theme/schemes/Boxy Monokai.tmTheme", "theme": "Boxy Monokai.sublime-theme",
   // "color_scheme": "Packages/Boxy Theme/schemes/Boxy Tomorrow.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
   // "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
-  // "color_scheme": "Packages/Monarch/Monarch.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
-  "color_scheme": "Packages/RailsCasts Colour Scheme/RailsCastsColorScheme.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
-  // "color_scheme": "Packages/Theme - Spacegray/base16-eighties.dark.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
+  "color_scheme": "Packages/Color Schemes - Wicked Schemes by b0xw00d/dark/Cactus.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
+  // "color_scheme": "Packages/Dracula Color Scheme/Dracula.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
+  // "color_scheme": "Packages/RailsCasts Colour Scheme/RailsCastsColorScheme.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
   // "color_scheme": "Packages/Twilightcyanide Colorscheme/Twilightcyanide ColorScheme - Constrasted Light.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
   // "color_scheme": "Packages/Twilightcyanide Colorscheme/Twilightcyanide ColorScheme - Constrasted Semi.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
 
@@ -61,8 +61,9 @@
 
   // Fonts
   // "font_face": "Droid Sans Mono Dotted for Powerline", "font_size": 11, // Fine: 11, 12
+  "font_face": "Fira Mono for Powerline", "font_size": 11,
   // "font_face": "Inconsolata-dz for Powerline", "font_size": 11, // Fine: 10, 11
-  "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12,
+  // "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12,
   "font_options": ["subpixel_antialias", "no_bold"],
 
   // Layout & look-and-feel
@@ -79,7 +80,7 @@
   "indent_guide_options": ["draw_normal", "draw_active"],
   "large_scroll_bars": true,
   "line_numbers": true,
-  "line_padding_bottom": 1,
+  "line_padding_bottom": 0,
   "line_padding_top": 1,
   "margin": 4,
   "overlay_scroll_bars": "disabled",

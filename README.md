@@ -1,8 +1,6 @@
 # Dotfiles
 
-Custom configuration files and environment setup routines.
-
-These are custom i.e. the best way to seize them is to fork this repository and have it your own way by changing, removing or adding new stuff etcetera.
+Custom configuration files and shell script recipes.
 
 ## Requirements
 
@@ -11,64 +9,65 @@ These are custom i.e. the best way to seize them is to fork this repository and 
 
 ---
 
-## Basic usage
+## Run it!
 
-#### Base recipes
-
-* alias
-* apps
-* dotfiles
-* shell
-
----
-
-## Automated Remote Setup
-
-The script has self-provisioning capabilities so you can skip downloading and setting it up by calling this command:
+The script is self provisioned, just copy & paste the following block in a terminal session:
 
 ```bash
 {
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
   entry.sh shell apps alias dotfiles
-dsload || . "${DS_HOME:-$HOME/.ds}/ds.sh"
+. "${DS_HOME:-$HOME/.ds}/ds.sh"
+. ~/.aliases-cs
 }
-: # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
-```
-
-One can also get a specific script in this repository and have it executed in one fell swoop, like in this example:
-
-```bash
-bash -c "$(curl -LSf "https://bitbucket.org/stroparo/dotfiles/raw/master/recipes/alias.sh" \
-  || curl -LSf "https://raw.githubusercontent.com/stroparo/dotfiles/master/recipes/alias.sh")"; \
-  . ~/.aliases-cs
-: # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
+# Select this whole code block, copy and paste in your terminal
 ```
 
 ---
 
-## Other recipes
+## Specific recipes
 
+Some recipes aggregate others, e.g. the 'shell' recipe calls all of these:
+
+* Aliases recipe: alias
 * For Daily Shells installation: setupds
 * For oh-my-zsh: setupohmyzsh
 * For SSH default key generation: sshkeygen sshmodes
 
-Example issuing a direct download and execution of all these:
+Instead of using aggregate recipes like the 'shell' one above, you can always specify exactly which recipes you want and in what order to have them executed, in just one command:
 
 ```bash
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
-  entry.sh setupds setupohmyzsh sshkeygen sshmodes
-: # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
+  entry.sh alias setupds setupohmyzsh sshkeygen sshmodes
+. "${DS_HOME:-$HOME/.ds}/ds.sh"
+. ~/.aliases-cs
+# Select this whole code block, copy and paste in your terminal
 ```
 
-More recipes:
+Other examples:
 
 ```bash
-bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh alias && . ~/.aliases-cs
-bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh setupds
-bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh setupohmyzsh
-bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" entry.sh sshkeygen sshmodes
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
+  entry.sh alias
+. ~/.aliases-cs
+```
+
+```bash
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
+  entry.sh setupds
+. "${DS_HOME:-$HOME/.ds}/ds.sh"
+```
+
+```bash
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
+  entry.sh sshkeygen sshmodes
+```
+
+```bash
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
+  entry.sh setupvim
 ```
 
 ---
@@ -81,7 +80,7 @@ Download of the runr package plus installation of custom desktop package selects
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
   entry.sh apps-desktop
-: # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
+# Select this whole code block, copy and paste in your terminal
 ```
 
 ---
@@ -94,7 +93,7 @@ A handy command ready to do that edit for your user:
 
 ```bash
 sudo grep -q "$USER" /etc/sudoers || (echo "$USER ALL=(ALL) ALL" | sudo tee -a /etc/sudoers)
-: # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
+# Select this whole code block, copy and paste in your terminal
 ```
 
 Same as above but removing the password restriction for each call to sudo (not recommended):
@@ -123,7 +122,7 @@ curl -LSf -k -o ~/.runr.zip "https://github.com/stroparo/runr/archive/master.zip
   && unzip -o ~/.runr.zip -d "$HOME" \
   && cd "$HOME"/.runr \
   && ./entry.sh alias apps dotfiles shell
-: # Ignore this; It expedited running the previous command on paste; Press ENTER ;)
+# Select this whole code block, copy and paste in your terminal
 ```
 
 ---

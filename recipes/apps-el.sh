@@ -79,7 +79,9 @@ fi
 sudo yum makecache fast
 
 echo "EL base packages..."
-_install_packages curl less lftp rsync wget sqlite libdbi-dbd-sqlite unzip zip zsh
+_install_packages deltarpm less unzip zip zsh
+_install_packages curl lftp rsync wget
+_install_packages sqlite libdbi-dbd-sqlite
 _install_epel_packages mosh p7zip p7zip-plugins lzip cabextract unrar the_silver_searcher
 which tmux >/dev/null 2>&1 || _install_packages tmux
 
