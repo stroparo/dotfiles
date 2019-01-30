@@ -81,6 +81,7 @@ set wrapscan
 " Commented out as did not work in EL6.x with no X11/GUI
 " if (has("termguicolors"))
 "   set termguicolors
+"   set t_ut=
 " endif
 
 " Theme options for the despacio & sierra colors by AlessandroYorba:
