@@ -18,6 +18,7 @@ _step_custom () {
 
   export PROVISION_OPTIONS="${PROVISION_OPTIONS} xfce"
   runr provision-stroparo
+  runr disable-ipv6
   runr setupkeybk380
 
   stsetupautostart.sh
