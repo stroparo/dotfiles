@@ -85,27 +85,44 @@ set wrapscan
 " endif
 
 " Theme options for the despacio & sierra colors by AlessandroYorba:
-let g:despacio_Midnight = 1 " darker
+" let g:despacio_Midnight = 1 " darker
 " let g:despacio_Twilight = 1 " dark
-let g:sierra_Midnight = 1 " darker
+" let g:sierra_Midnight = 1 " darker
 " let g:sierra_Twilight = 1 " dark
 
+" Theme options for the deus colors:
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" let g:deus_termcolors=256
+" set background=dark
+
+" Theme options for the scheakur colors:
+" set background=dark
+
 " Theme options for the seoul256 colors:
-let g:seoul256_background = 234
-set background=dark
+" let g:seoul256_background = 234
+" set background=dark
 
 " Theme options for the zenburn colors:
-let g:zenburn_transparent = 1
-let g:zenburn_alternate_Visual = 1
+" let g:zenburn_transparent = 1
+" let g:zenburn_alternate_Visual = 1
 
 " Themes
 set t_Co=256
+" colorscheme deus
+" colorscheme despacio
+" colorscheme dracula
+" colorscheme happy_hacking
+" colorscheme iceberg
 " colorscheme jellybeans
 " colorscheme minimalist
 " colorscheme paramount
+" colorscheme parsec
+" colorscheme scheakur
 colorscheme seoul256
 " colorscheme sierra
 " colorscheme tender
+" colorscheme twilight256
 " colorscheme wombat256mod
 
 " Whitespace
