@@ -106,6 +106,7 @@ if _provide_vim_colors_dir ; then
   _install_colorscheme 'https://github.com/cocopon/iceberg.vim' iceberg
   _install_colorscheme 'https://github.com/nanotech/jellybeans.vim' jellybeans
   _install_colorscheme 'https://github.com/dikiaap/minimalist' minimalist
+  _install_colorscheme 'https://github.com/haishanh/night-owl.vim' night-owl
   _install_colorscheme 'https://github.com/owickstrom/vim-colors-paramount' paramount
   _install_colorscheme 'https://github.com/keith/parsec.vim' parsec
   _install_colorscheme 'https://github.com/scheakur/vim-scheakur' scheakur
