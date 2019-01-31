@@ -1,7 +1,4 @@
 {
-  // "color_scheme": "Packages/Boxy Theme/schemes/Boxy Monokai.tmTheme", "theme": "Boxy Monokai.sublime-theme",
-  // "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
-  // "color_scheme": "Packages/Color Schemes - Wicked Schemes by b0xw00d/dark/Cactus.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
   "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
   // "color_scheme": "Packages/RailsCasts Colour Scheme/RailsCastsColorScheme.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
 
@@ -57,10 +54,10 @@
   "wide_caret": true,
 
   // Fonts
-  // "font_face": "Droid Sans Mono Dotted for Powerline", "font_size": 11, // Fine: 11, 12
-  "font_face": "Fira Mono for Powerline", "font_size": 12,
-  // "font_face": "Inconsolata-dz for Powerline", "font_size": 11, // Fine: 10, 11
-  // "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12,
+  // "font_face": "Droid Sans Mono Dotted for Powerline", "font_size": 13,
+  "font_face": "Fira Mono for Powerline", "font_size": 13,
+  // "font_face": "Inconsolata-dz for Powerline", "font_size": 13,
+  // "font_face": "Ubuntu Mono derivative Powerline", "font_size": 15,
   "font_options": ["subpixel_antialias", "no_bold"],
 
   // Layout & look-and-feel
@@ -95,7 +92,7 @@
   "auto_indent": true,
   "default_line_ending": "unix",
   "detect_indentation": true,
-  "draw_white_space": "selected",
+  "draw_white_space": "all", // all or selected
   "ensure_newline_at_eof_on_save": true,
   "indent_subsequent_lines": true,
   "indent_to_bracket": true, // requires auto_indent
