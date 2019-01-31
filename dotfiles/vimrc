@@ -109,8 +109,8 @@ set wrapscan
 
 " Themes
 set t_Co=256
-" colorscheme deus
 " colorscheme despacio
+" colorscheme deus
 " colorscheme dracula
 " colorscheme happy_hacking
 " colorscheme iceberg
