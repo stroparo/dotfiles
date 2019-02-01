@@ -33,7 +33,6 @@ if [[ $PROVISION_OPTIONS != *nogui* ]] ; then
   if [[ $PROVISION_OPTIONS != *nodevel* ]] ; then
     bash "${RUNR_DIR:-.}"/recipes/powerline-fonts.sh
     bash "${RUNR_DIR:-.}"/recipes/subl.sh
-    bash "${RUNR_DIR:-.}"/recipes/vim.sh
     bash "${RUNR_DIR:-.}"/recipes/vscode.sh
   fi
 fi
@@ -42,6 +41,9 @@ fi
 bash "${RUNR_DIR:-.}"/recipes/linux-fixes.sh
 
 if [[ $PROVISION_OPTIONS != *nodevel* ]] ; then
+
+  bash "${RUNR_DIR:-.}"/recipes/vim.sh
+
   # Dev platforms
   bash "${RUNR_DIR:-.}"/recipes/python.sh
   bash "${RUNR_DIR:-.}"/installers/setuprust.sh
