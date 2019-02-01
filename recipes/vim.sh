@@ -97,24 +97,12 @@ _provide_vim_undo_dir
 if _provide_vim_colors_dir ; then
   : # empty command in case all lines below get commented
 
-  _install_colorscheme 'https://github.com/AlessandroYorba/Despacio' despacio
-
   # Themes also aggregated by https://github.com/rafi/awesome-vim-colorschemes
-  _install_colorscheme 'https://github.com/ajmwagar/vim-deus' deus
-  _install_colorscheme 'https://github.com/dracula/vim' dracula
   _install_colorscheme 'https://github.com/yorickpeterse/happy_hacking.vim' happy_hacking
   _install_colorscheme 'https://github.com/cocopon/iceberg.vim' iceberg
-  _install_colorscheme 'https://github.com/nanotech/jellybeans.vim' jellybeans
   _install_colorscheme 'https://github.com/dikiaap/minimalist' minimalist
-  _install_colorscheme 'https://github.com/haishanh/night-owl.vim' night-owl
   _install_colorscheme 'https://github.com/owickstrom/vim-colors-paramount' paramount
-  _install_colorscheme 'https://github.com/keith/parsec.vim' parsec
-  _install_colorscheme 'https://github.com/scheakur/vim-scheakur' scheakur
   _install_colorscheme 'https://github.com/junegunn/seoul256.vim' seoul256
-  _install_colorscheme 'https://github.com/AlessandroYorba/Sierra' sierra
-  _install_colorscheme 'https://github.com/jacoborus/tender.vim' tender
-  _install_colorscheme 'https://github.com/vim-scripts/twilight256.vim' twilight256
-  _install_colorscheme 'https://github.com/vim-scripts/wombat256.vim' wombat256mod
 fi
 
 # #############################################################################
