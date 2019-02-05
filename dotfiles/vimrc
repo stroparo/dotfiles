@@ -41,6 +41,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/xtal8/traces.vim'
 Plug 'https://github.com/airblade/vim-gitgutter'
+Plug 'https://github.com/z0mbix/vim-shfmt', { 'for': 'sh' }
 Plug 'https://github.com/chaoren/vim-wordmotion'
 Plug 'https://github.com/fvictorio/vim-yank-queue'
 " Python
@@ -265,6 +266,12 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " Plugin Python folding SimpylFold
 
 let g:SimpylFold_docstring_preview = 1
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Shfmt - Shell formatting, ex command is 'Shfmt'
+
+" Use two spaces indentation by default:
+let g:shfmt_extra_args = '-i 2'
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Whitespace
