@@ -10,10 +10,13 @@ echo "Configure Sublime Text editor; \$0='$0'; \$PWD='$PWD'"
 # Prep User PATH
 
 if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
+
   SUBL_WIN="$(cygpath "$USERPROFILE")"'/AppData/Roaming/Sublime Text 3'
+
   if [ -d "${SUBL_WIN}" ] ; then
     SUBL_USER="${SUBL_WIN}/Packages/User"
-  if
+  fi
+
   if [ -d "$(cygpath "$USERPROFILE")/opt/subl" ] ; then
     SUBL_USER="$(cygpath "$USERPROFILE")/opt/subl/Data/Packages/User"
   elif [ -d "/c/opt/subl" ] ; then
