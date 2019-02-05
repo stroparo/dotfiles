@@ -37,7 +37,7 @@ fi
 # Deploy
 
 mkdir -p "${SUBL_USER}"
-assets_dir=$(dirname "$(find "$PWD" -type f -name 'Preferences.sublime-settings')")
+assets_dir=$(dirname "$(find "${RUNR_DIR:-$PWD}" -type f -name 'Preferences.sublime-settings')")
 if [ -z "$assets_dir" ] ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: No assets dir found ($assets_dir)." 1>&2
   exit 1
