@@ -47,12 +47,12 @@ fi
 if [ ! -d "${CODE_USER_DIR}" ] ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP assets copy as there is no CODE_USER_DIR dir ('$CODE_USER_DIR')." 1>&2
 else
-  assets_dir=$(dirname "$(find "$PWD" -type f -name 'settings.json' | grep 'code')")
+  assets_dir=$(dirname "$(find "${RUNR_DIR:-$PWD}" -type f -name 'settings.json' | grep 'code')")
   if [ -z "$assets_dir" ] ; then
     echo "${PROGNAME:+$PROGNAME: }FATAL: No assets dir found ($assets_dir)." 1>&2
     exit 1
   fi
-  assets="$(ls -1d ${assets_dir:-.}/*)"
+  assets="$(ls -1d ${assets_dir:-${DEV:-${HOME}/workspace}/dotfiles/code}/*)"
   assets="$(echo "$assets" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
 
   if ! eval cp -L -R "${assets}" "\"${CODE_USER_DIR}\""/ ; then

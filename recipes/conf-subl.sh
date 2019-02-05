@@ -46,7 +46,7 @@ if [ -z "$assets_dir" ] ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: No assets dir found ($assets_dir)." 1>&2
   exit 1
 fi
-assets="$(ls -1d "${assets_dir}"/*)"
+assets="$(ls -1d "${assets_dir:-${DEV:-${HOME}/workspace}/dotfiles/subl3}"/*)"
 assets="$(echo "$assets" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
 if ! eval cp -v -L -R "${assets}" "\"${SUBL_USER}\""/ ; then
   echo "${PROGNAME:+$PROGNAME: }ERROR deploying sublimetext files." 1>&2
