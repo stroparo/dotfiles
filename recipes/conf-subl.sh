@@ -13,14 +13,15 @@ if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
   SUBL_WIN="$(cygpath "$USERPROFILE")"'/AppData/Roaming/Sublime Text 3'
   if [ -d "${SUBL_WIN}" ] ; then
     SUBL_USER="${SUBL_WIN}/Packages/User"
-  elif [ -d "$(cygpath "$USERPROFILE")/opt/subl" ] ; then
+  if
+  if [ -d "$(cygpath "$USERPROFILE")/opt/subl" ] ; then
     SUBL_USER="$(cygpath "$USERPROFILE")/opt/subl/Data/Packages/User"
   elif [ -d "/c/opt/subl" ] ; then
     SUBL_USER="/c/opt/subl/Data/Packages/User"
   elif [ -d "/cygdrive/c/opt/subl" ] ; then
     SUBL_USER="/cygdrive/c/opt/subl/Data/Packages/User"
   else
-    echo "Sublime path:"
+    echo "Enter the sublimetext root directory:"
     read SUBL_PATH
     SUBL_USER="${SUBL_PATH}/Data/Packages/User"
   fi
