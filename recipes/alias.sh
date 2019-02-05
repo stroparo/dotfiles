@@ -206,6 +206,16 @@ if which gradle >/dev/null 2>&1 ; then
 fi
 
 # #############################################################################
+# Kitchen
+
+alias ktc='kitchen converge'
+alias ktd='kitchen destroy'
+alias ktl='kitchen login'
+alias kts='kitchen setup'
+alias ktt='kitchen test'
+alias ktv='kitchen verify'
+
+# #############################################################################
 # Packaging APT dpkg etcetera
 
 if which apt >/dev/null 2>&1 || which apt-get >/dev/null 2>&1 ; then
