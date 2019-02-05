@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Create a default SSH key
+# Requires Daily Shells at https://stroparo.github.io/ds
 
 # #############################################################################
 # Globals
@@ -11,6 +12,9 @@ SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
 
 # #############################################################################
 # Prep
+
+echo "################################################################################"
+echo "SSH key generation; \$0='$0'; \$PWD='$PWD'"
 
 # Daily Shells dependency
 if [ ! -e "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
@@ -35,5 +39,5 @@ fi
 # #############################################################################
 # Finish
 
-echo "FINISHED sshkeygen recipe"
+echo "${PROGNAME:+$PROGNAME: }INFO: complete." 1>&2
 echo
