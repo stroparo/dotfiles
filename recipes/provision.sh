@@ -19,7 +19,6 @@ if [[ $PROVISION_OPTIONS != *nogui* ]] ; then
     bash "${RUNR_DIR:-.}"/recipes/base-el7-gui.sh
     bash "${RUNR_DIR:-.}"/recipes/base-el7-gui-fonts.sh
     bash "${RUNR_DIR:-.}"/recipes/apps-el-desktop.sh
-    bash "${RUNR_DIR:-.}"/installers/setupanki.sh
     bash "${RUNR_DIR:-.}"/installers/setupchrome.sh
     bash "${RUNR_DIR:-.}"/installers/setuprdp.sh xfce
   else
