@@ -124,6 +124,7 @@
     "statusBar.noFolderBackground": "#663333",
     "statusBar.debuggingBackground": "#263238"
   },
+  "workbench.editor.enablePreview": false,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.settings.editor": "json",
   "workbench.sideBar.location": "right",
