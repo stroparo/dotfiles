@@ -94,15 +94,25 @@ _provide_vim_undo_dir
 # #############################################################################
 # Themes
 
+# Several of these themes are also aggregated by
+#   https://github.com/rafi/awesome-vim-colorschemes
+
 if _provide_vim_colors_dir ; then
+
   : # empty command in case all lines below get commented
 
-  # Themes also aggregated by https://github.com/rafi/awesome-vim-colorschemes
-  _install_colorscheme 'https://github.com/yorickpeterse/happy_hacking.vim' happy_hacking
-  _install_colorscheme 'https://github.com/cocopon/iceberg.vim' iceberg
-  _install_colorscheme 'https://github.com/dikiaap/minimalist' minimalist
-  _install_colorscheme 'https://github.com/owickstrom/vim-colors-paramount' paramount
-  _install_colorscheme 'https://github.com/junegunn/seoul256.vim' seoul256
+  # Commented as these are now in 'stroparo/dotfiles/assets/vim' as well
+  # as in and 'stroparo/dotfiles/dotfiles/vim' for direct installation:
+
+  # _install_colorscheme 'https://github.com/yorickpeterse/happy_hacking.vim' happy_hacking
+  # _install_colorscheme 'https://github.com/cocopon/iceberg.vim' iceberg
+  # _install_colorscheme 'https://github.com/dikiaap/minimalist' minimalist
+  # _install_colorscheme 'https://github.com/fcpg/vim-orbital' orbital
+  # _install_colorscheme 'https://github.com/owickstrom/vim-colors-paramount' paramount
+  # _install_colorscheme 'https://github.com/junegunn/seoul256.vim' seoul256
+  # _install_colorscheme 'https://github.com/kamykn/skyhawk' skyhawk
+  # _install_colorscheme 'https://github.com/cseelus/vim-colors-tone' tone
+  # _install_colorscheme 'https://github.com/scottymoon/vim-twilight' twilight
 fi
 
 # #############################################################################
