@@ -12,13 +12,13 @@ echo "Aliases ==> '$ALIASES_FILE'"
 # #############################################################################
 # Shell profiles
 
-if [ -r ~/.bashrc ] && [ -w ~/.bashrc ] ; then
+if touch ~/.bashrc && [ -r ~/.bashrc ] && [ -w ~/.bashrc ] ; then
   fgrep -i -q "/.aliases-cs" ~/.bashrc \
     || echo ". \"${ALIASES_FILE}\"" >> ~/.bashrc
 fi
 
 # Zsh profile
-if [ -r ~/.zshrc ] && [ -w ~/.zshrc ] ; then
+if touch ~/.zshrc && [ -r ~/.zshrc ] && [ -w ~/.zshrc ] ; then
   fgrep -i -q "/.aliases-cs" ~/.zshrc \
     || echo ". \"${ALIASES_FILE}\"" >> ~/.zshrc
 fi
