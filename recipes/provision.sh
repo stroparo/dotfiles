@@ -41,8 +41,6 @@ bash "${RUNR_DIR:-.}"/recipes/linux-fixes.sh
 
 if [[ $PROVISION_OPTIONS != *nodevel* ]] ; then
 
-  bash "${RUNR_DIR:-.}"/recipes/vim.sh
-
   # Dev platforms
   bash "${RUNR_DIR:-.}"/recipes/python.sh
   bash "${RUNR_DIR:-.}"/installers/setuprust.sh
@@ -52,4 +50,5 @@ if [[ $PROVISION_OPTIONS != *nodevel* ]] ; then
   bash "${RUNR_DIR:-.}"/installers/setupdocker-compose.sh
   bash "${RUNR_DIR:-.}"/installers/setupexa.sh
   bash "${RUNR_DIR:-.}"/installers/setupsdkman.sh
+  bash "${RUNR_DIR:-.}"/recipes/vim.sh
 fi
