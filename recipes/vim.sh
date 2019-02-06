@@ -9,7 +9,6 @@ echo "Vim custom stroparo/dotfiles setup; \$0='$0'; \$PWD='$PWD'"
 # #############################################################################
 # Globals
 
-: ${VIM_COLORS_DIR:=${HOME}/.vim/colors}
 : ${VIM_UNDO_DIR:=${HOME}/.vim/colors}
 : ${VERBOSE:=false}
 
@@ -28,60 +27,9 @@ shift "$((OPTIND-1))"
 # Functions
 
 
-_print_results () {
-  if ${VERBOSE:-false} ; then
-    echo
-    echo "==> Vim setup results"
-    echo
-    ls -d -l "${VIM_COLORS_DIR}"
-    ls -d -l "${VIM_UNDO_DIR}"
-    ls -l "${VIM_COLORS_DIR}"/*.vim
-    echo
-  fi
-}
-
-
-_provide_vim_colors_dir () {
-  mkdir -p "${VIM_COLORS_DIR}"
-  [ -d "${VIM_COLORS_DIR}" ]
-}
-
-
 _provide_vim_undo_dir () {
   mkdir -p "${VIM_UNDO_DIR}"
   [ -d "${VIM_UNDO_DIR}" ]
-}
-
-
-_install_colorscheme () {
-  # Syntax: {repo url} {colorscheme filename}
-  if [ $# -lt 2 ] ; then return ; fi
-
-  typeset scheme_filename
-  typeset scheme_url="$1"; shift
-  typeset clone_dir
-  typeset package_dir
-
-  for scheme_filename in "$@" ; do
-    clone_dir="${HOME}/.vimscheme-${scheme_filename%.vim}"
-    if ls "${HOME}/.vim/colors/${scheme_filename%.vim}"*".vim" >/dev/null 2>&1 ; then
-      echo "${PROGNAME:+$PROGNAME: }SKIP: colorscheme '${scheme_filename}' was previously installed.."
-    else
-      echo
-      echo "${PROGNAME:+$PROGNAME: }INFO: Installing '${scheme_filename}' colorscheme..."
-
-      if git clone --depth 1 "${scheme_url}" "${clone_dir}" ; then
-        package_dir="${clone_dir}/colors"
-        if [ -d "${clone_dir}/vim/colors" ] ; then
-          package_dir="${clone_dir}/vim/colors"
-        fi
-        mv -f -v \
-          "${package_dir}/${scheme_filename%.vim}"*".vim" \
-          "${VIM_COLORS_DIR}/" \
-          && rm -f -r "${clone_dir}"
-      fi
-    fi
-  done
 }
 
 
@@ -92,34 +40,9 @@ bash "${RUNR_DIR:-.}"/installers/setupvim.sh
 _provide_vim_undo_dir
 
 # #############################################################################
-# Themes
-
-# Several of these themes are also aggregated by
-#   https://github.com/rafi/awesome-vim-colorschemes
-
-if _provide_vim_colors_dir ; then
-
-  : # empty command in case all lines below get commented
-
-  # Commented as these are now in 'stroparo/dotfiles/assets/vim' as well
-  # as in and 'stroparo/dotfiles/dotfiles/vim' for direct installation:
-
-  # _install_colorscheme 'https://github.com/yorickpeterse/happy_hacking.vim' happy_hacking
-  # _install_colorscheme 'https://github.com/cocopon/iceberg.vim' iceberg
-  # _install_colorscheme 'https://github.com/dikiaap/minimalist' minimalist
-  # _install_colorscheme 'https://github.com/fcpg/vim-orbital' orbital
-  # _install_colorscheme 'https://github.com/owickstrom/vim-colors-paramount' paramount
-  # _install_colorscheme 'https://github.com/junegunn/seoul256.vim' seoul256
-  # _install_colorscheme 'https://github.com/kamykn/skyhawk' skyhawk
-  # _install_colorscheme 'https://github.com/cseelus/vim-colors-tone' tone
-  # _install_colorscheme 'https://github.com/scottymoon/vim-twilight' twilight
-fi
-
-# #############################################################################
 # Finish
 
-_print_results
-
 echo
+echo "${PROGNAME:+$PROGNAME: }INFO: Run the 'dotfiles' recipe to install colors etc."
 echo "${PROGNAME:+$PROGNAME: }INFO: FINISHED custom deployment of Vim."
 echo
