@@ -23,10 +23,6 @@ if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
     SUBL_USER="/c/opt/subl/Data/Packages/User"
   elif [ -d "/cygdrive/c/opt/subl" ] ; then
     SUBL_USER="/cygdrive/c/opt/subl/Data/Packages/User"
-  else
-    echo "Enter the sublimetext root directory:"
-    read SUBL_PATH
-    SUBL_USER="${SUBL_PATH}/Data/Packages/User"
   fi
 elif [[ "$(uname -a)" = *[Ll]inux* ]] ; then
   SUBL_USER="$HOME/.config/sublime-text-3/Packages/User"

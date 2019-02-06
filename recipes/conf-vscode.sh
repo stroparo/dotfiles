@@ -35,29 +35,32 @@ fi
 # #############################################################################
 # Conf - User settings
 
-${VSCODE_CMD:-code} >/dev/null 2>&1 & disown
-sleep 4
-
 if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
   CODE_USER_DIR="$(cygpath "${USERPROFILE}")/AppData/Roaming/Code/User"
 elif [[ "$(uname -a)" = *[Ll]inux* ]] ; then
   CODE_USER_DIR="${HOME}/.config/Code/User"
 fi
 
+# Start vscode for it to create the user dir, then kill it right away:
+${VSCODE_CMD} >/dev/null 2>&1 &
+sleep 8
+kill %1
+
 if [ ! -d "${CODE_USER_DIR}" ] ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP assets copy as there is no CODE_USER_DIR dir ('$CODE_USER_DIR')." 1>&2
-else
-  assets_dir=$(dirname "$(find "${RUNR_DIR:-$PWD}" -type f -name 'settings.json' | grep 'code')")
-  if [ -z "$assets_dir" ] ; then
-    echo "${PROGNAME:+$PROGNAME: }FATAL: No assets dir found ($assets_dir)." 1>&2
-    exit 1
-  fi
-  assets="$(ls -1d ${assets_dir:-${DEV:-${HOME}/workspace}/dotfiles/code}/*)"
-  assets="$(echo "$assets" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
+  exit
+fi
 
-  if ! eval cp -L -R "${assets}" "\"${CODE_USER_DIR}\""/ ; then
-    echo "${PROGNAME:+$PROGNAME: }ERROR deploying VSCode files." 1>&2
-  fi
+assets_dir=$(dirname "$(find "${RUNR_DIR:-$PWD}" -type f -name 'settings.json' | grep 'code')")
+if [ -z "$assets_dir" ] ; then
+  echo "${PROGNAME:+$PROGNAME: }FATAL: No assets dir found ($assets_dir)." 1>&2
+  exit 1
+fi
+assets="$(ls -1d ${assets_dir:-${DEV:-${HOME}/workspace}/dotfiles/code}/*)"
+assets="$(echo "$assets" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
+
+if ! eval cp -L -R "${assets}" "\"${CODE_USER_DIR}\""/ ; then
+  echo "${PROGNAME:+$PROGNAME: }ERROR deploying VSCode files." 1>&2
 fi
 
 # #############################################################################
