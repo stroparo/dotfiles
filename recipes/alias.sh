@@ -161,8 +161,12 @@ if which git >/dev/null 2>&1 ; then
   alias gv='git mv'
 
   # Log:
+
+  alias glggs='git log --decorate --graph --stat'
+
   alias glggas='git log --decorate --graph --all --stat'
   alias gas='git log --decorate --graph --all --stat'
+
   alias glogas='git log --decorate --graph --all --stat --oneline'
   alias gaso='git log --decorate --graph --all --stat --oneline'
 
@@ -184,7 +188,7 @@ if which git >/dev/null 2>&1 ; then
     alias gf='git fetch'
     alias gl='git pull'
     alias glgga='git log --decorate --graph --all'
-    alias glog='git log --oneline --decorate --graph'
+    alias glog='git log --decorate --graph --oneline'
     alias gloga='git log --decorate --graph --all --oneline'
     alias gp='git push'
     alias grh='git reset HEAD'
