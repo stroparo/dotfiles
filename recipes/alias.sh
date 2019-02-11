@@ -156,11 +156,19 @@ if which git >/dev/null 2>&1 ; then
   alias gfap='git fetch --all -p'
   alias gfp='git fetch -p'
   alias gh='git diff HEAD'
-  alias glggas='git log --graph --decorate --all --stat'
-  alias glogas='git log --graph --decorate --all --stat --oneline'
   alias glrum='git pull --rebase upstream master'
   alias gpmm='git push mirror master'
   alias gv='git mv'
+
+  # Log:
+  alias glggas='git log --decorate --graph --all --stat'
+  alias gas='git log --decorate --graph --all --stat'
+  alias glogas='git log --decorate --graph --all --stat --oneline'
+  alias gaso='git log --decorate --graph --all --stat --oneline'
+
+  # Override oh-my-zsh's (e.g. add --decorate):
+  alias glg='git log --decorate --stat'
+  alias glgg='git log --decorate --graph'
 
   # If no Oh-My-ZSH then load similar git aliases:
   if [ -z "${ZSH_THEME}" ] ; then
@@ -175,9 +183,9 @@ if which git >/dev/null 2>&1 ; then
     alias gdca='git diff --cached'
     alias gf='git fetch'
     alias gl='git pull'
-    alias glg='git log --stat'
-    alias glgg='git log --graph'
+    alias glgga='git log --decorate --graph --all'
     alias glog='git log --oneline --decorate --graph'
+    alias gloga='git log --decorate --graph --all --oneline'
     alias gp='git push'
     alias grh='git reset HEAD'
     alias grhh='git reset HEAD --hard'
