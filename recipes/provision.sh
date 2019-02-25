@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # PROVISION_OPTIONS variable may contain any or all of these flags:
+# - gui
 # - nodevel
-# - nogui
 # - workstation
 # - xfce
 
@@ -13,7 +13,7 @@ if ! ${STEP_BASE_SYSTEM_DONE:-false} ; then # Avoid redundancy with other provis
 fi
 
 # Desktop
-if [[ $PROVISION_OPTIONS != *nogui* ]] ; then
+if [[ $PROVISION_OPTIONS = *gui* ]] ; then
 
   if [[ $PROVISION_OPTIONS = *workstation* ]] && (uname | grep -i -q linux) ; then
     bash "${RUNR_DIR:-.}"/recipes/base-el7-gui.sh
