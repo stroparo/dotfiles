@@ -79,10 +79,11 @@ set wrapmargin=0
 set wrapscan
 
 " Colors if you have vim >= 8 or Neovim >= 0.1.5
-" Commented out as did not work in EL6.x with no X11/GUI
-if (has("termguicolors"))
-  set termguicolors
-  set t_ut=
+if has("gui_running")
+  if (has("termguicolors"))
+    set termguicolors
+    set t_ut=
+  endif
 endif
 
 " Theme options for the seoul256 colors:
@@ -229,7 +230,7 @@ au BufNewFile,BufRead *.js,*.html,*.css
 if has("gui_running")
   " GUI is running or is about to start.
   set background=dark
-  set gfn=Knack\ NF\ 11
+  set gfn=Fira\ Code\ 11
   set lines=999 columns=140
 endif
 
