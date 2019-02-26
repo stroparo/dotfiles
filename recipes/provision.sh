@@ -2,9 +2,9 @@
 
 # PROVISION_OPTIONS variable may contain any or all of these flags:
 # - gui
+#   - workstation
+#   - xfce
 # - nodevel
-# - workstation
-# - xfce
 
 # Base
 if ! ${STEP_BASE_SYSTEM_DONE:-false} ; then # Avoid redundancy with other provisioning scripts
