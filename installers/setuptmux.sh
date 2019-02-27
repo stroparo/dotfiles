@@ -99,21 +99,21 @@ _build_deps () {
 
 _build_tmux () {
 
-  if which tmux >/dev/null 2>&1 && [ -e .tmux-$TMUX_VERSION ] ; then
+  cd "$WORKDIR"
+
+  if which tmux >/dev/null 2>&1 && [ -d ./."tmux-$TMUX_VERSION" ] ; then
     echo "${PROGNAME:+$PROGNAME: }SKIP: tmux likely already built and installed." 1>&2
     return
   fi
 
   _build_deps
 
-  cd "$WORKDIR"
-
-  if [ ! -e ./.tmux-$TMUX_VERSION.tar.gz ] ; then
-    curl -LSfs -o ./.tmux-$TMUX_VERSION.tar.gz "$TMUX_URL"
+  if [ ! -e ./."tmux-$TMUX_VERSION".tar.gz ] ; then
+    curl -LSfs -o ./."tmux-$TMUX_VERSION".tar.gz "$TMUX_URL"
   fi
-  tar -xzf ./.tmux-$TMUX_VERSION.tar.gz
-  mv tmux-$TMUX_VERSION .tmux-$TMUX_VERSION
-  cd .tmux-$TMUX_VERSION
+  tar -xzf ./."tmux-$TMUX_VERSION".tar.gz
+  mv "tmux-$TMUX_VERSION" ."tmux-$TMUX_VERSION"
+  cd ."tmux-$TMUX_VERSION"
   LDFLAGS="-L$PREFIX/lib -Wl,-rpath=$PREFIX/lib" \
     ./configure --prefix="$PREFIX"
   make
