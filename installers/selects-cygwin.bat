@@ -29,6 +29,7 @@ rem pause
 %CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P curl,ping,rsync -P lftp -P wget,whois,wput
 %CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P mosh -P the_silver_searcher -P tmux
 %CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P git -P git-completion
+%CYGSETUP% -q -v -a x86_64 -l "%LOCALDIR%" -R "%ROOTDIR%" -P putclip
 
 echo.
 echo Cygwin installation complete
