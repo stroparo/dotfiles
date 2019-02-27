@@ -25,7 +25,17 @@ TMUX_VERSION=2.6
 TMUX_URL="https://github.com/tmux/tmux/releases/download/$TMUX_VERSION/tmux-$TMUX_VERSION.tar.gz"
 
 # #############################################################################
-# Helpers
+# Pre-reqs
+
+# Check OS
+if !(uname -a | grep -i -q linux) ; then
+  echo "SKIP: Only Linux is supported." 1>&2
+  exit
+fi
+
+# #############################################################################
+# Functions
+
 
 _make_install () {
   if (echo "$PREFIX" | grep -q "$HOME") ; then
@@ -35,14 +45,89 @@ _make_install () {
   fi
 }
 
-# #############################################################################
-# Prep
 
-# Check OS
-if !(uname -a | grep -i -q linux) ; then
-  echo "SKIP: Only Linux is supported." 1>&2
-  exit
-fi
+_install_system_deps () {
+  echo ${BASH_VERSION:+-e} "\n==> Installing dependencies..."
+  if egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
+    sudo $RPMPROG install -y automake make gcc
+    sudo $RPMPROG install -y glibc-static
+    sudo $RPMPROG install -y kernel-devel
+    sudo $RPMPROG install -y libevent libevent-devel libevent-headers
+    sudo $RPMPROG install -y ncurses ncurses-devel
+  elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
+    sudo $APTPROG install -y automake make gcc
+  fi
+}
+
+
+_build_libevent () {
+
+  cd "$WORKDIR"
+
+  if [ ! -e libevent-$LIBEVENT_VERSION.tar.gz ] ; then
+    curl -LSfs -o libevent-$LIBEVENT_VERSION.tar.gz "$LIBEVENT_URL"
+  fi
+  tar -xzf ./libevent-$LIBEVENT_VERSION.tar.gz
+  cd libevent-$LIBEVENT_VERSION-stable
+  ./configure --prefix="$PREFIX"
+  make
+  _make_install
+}
+
+
+_build_ncurses () {
+
+  cd "$WORKDIR"
+
+  if [ ! -e ncurses-$NCURSES_VERSION.tar.gz ] ; then
+    curl -LSfs -o ncurses-$NCURSES_VERSION.tar.gz "$NCURSES_URL"
+  fi
+  tar -xzf ncurses-$NCURSES_VERSION.tar.gz
+  cd ncurses-$NCURSES_VERSION
+  ./configure --prefix="$PREFIX"
+  make
+  _make_install
+}
+
+
+_build_deps () {
+  _install_system_deps
+  _build_libevent
+  _build_ncurses
+}
+
+
+_build_tmux () {
+
+  if which tmux >/dev/null 2>&1 && [ -e .tmux-$TMUX_VERSION ] ; then
+    echo "${PROGNAME:+$PROGNAME: }SKIP: tmux likely already built and installed." 1>&2
+    return
+  fi
+
+  _build_deps
+
+  cd "$WORKDIR"
+
+  if [ ! -e ./.tmux-$TMUX_VERSION.tar.gz ] ; then
+    curl -LSfs -o ./.tmux-$TMUX_VERSION.tar.gz "$TMUX_URL"
+  fi
+  tar -xzf ./.tmux-$TMUX_VERSION.tar.gz
+  mv tmux-$TMUX_VERSION .tmux-$TMUX_VERSION
+  cd .tmux-$TMUX_VERSION
+  LDFLAGS="-L$PREFIX/lib -Wl,-rpath=$PREFIX/lib" \
+    ./configure --prefix="$PREFIX"
+  make
+  _make_install
+}
+
+
+_install_plugin_manager () {
+  mkdir -p ~/.tmux/plugins >/dev/null
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+}
+
+# #############################################################################
+# Main
 
 mkdir -p "$PREFIX"/
 if [ ! -d "$PREFIX" ] ; then
@@ -50,62 +135,8 @@ if [ ! -d "$PREFIX" ] ; then
   exit 1
 fi
 
-echo ${BASH_VERSION:+-e} "\n==> Installing dependencies..."
-if egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
-  sudo $RPMPROG install -y automake make gcc
-  sudo $RPMPROG install -y glibc-static
-  sudo $RPMPROG install -y kernel-devel
-  sudo $RPMPROG install -y libevent libevent-devel libevent-headers
-  sudo $RPMPROG install -y ncurses ncurses-devel
-elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
-  sudo $APTPROG install -y automake make gcc
-fi
-
-# #############################################################################
-# Build libevent
-
-cd "$WORKDIR"
-
-if [ ! -e libevent-$LIBEVENT_VERSION.tar.gz ] ; then
-  curl -LSfs -o libevent-$LIBEVENT_VERSION.tar.gz "$LIBEVENT_URL"
-fi
-tar -xzf ./libevent-$LIBEVENT_VERSION.tar.gz
-cd libevent-$LIBEVENT_VERSION-stable
-./configure --prefix="$PREFIX"
-make
-_make_install
-
-# #############################################################################
-# Build ncurses
-
-cd "$WORKDIR"
-
-if [ ! -e ncurses-$NCURSES_VERSION.tar.gz ] ; then
-  curl -LSfs -o ncurses-$NCURSES_VERSION.tar.gz "$NCURSES_URL"
-fi
-tar -xzf ncurses-$NCURSES_VERSION.tar.gz
-cd ncurses-$NCURSES_VERSION
-./configure --prefix="$PREFIX"
-make
-_make_install
-
-# #############################################################################
-# Build tmux
-
-cd "$WORKDIR"
-
-if [ ! -e tmux-$TMUX_VERSION.tar.gz ] ; then
-  curl -LSfs -o tmux-$TMUX_VERSION.tar.gz "$TMUX_URL"
-fi
-tar -xzf ./tmux-$TMUX_VERSION.tar.gz
-cd tmux-$TMUX_VERSION
-LDFLAGS="-L$PREFIX/lib -Wl,-rpath=$PREFIX/lib" \
-  ./configure --prefix="$PREFIX"
-make
-_make_install
-
-# #############################################################################
-# Finish
+_build_tmux
+_install_plugin_manager
 
 echo "FINISHED tmux setup"
 echo

@@ -48,6 +48,9 @@ Plug 'https://github.com/fvictorio/vim-yank-queue'
 Plug 'https://github.com/nvie/vim-flake8'
 Plug 'https://github.com/vim-scripts/indentpython.vim'
 Plug 'https://github.com/tmhedberg/SimpylFold'
+" Tmux
+Plug 'https://github.com/tmux-plugins/vim-tmux'
+Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events'
 " Visuals
 Plug 'https://github.com/c9s/colorselector.vim'
 Plug 'https://github.com/Konfekt/FastFold'
