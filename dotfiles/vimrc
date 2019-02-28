@@ -63,23 +63,25 @@ call plug#end()
 
 syntax on
 filetype indent plugin on
+set autoread
+set backspace=indent,eol,start
 set encoding=utf-8
-set ignorecase
-set incsearch
-set magic
+set gcr=a:blinkon0  " Disable cursor blink
+set history=1000  " Store lots of :cmdline history
 set nolist
-"set nowrap
+set magic
 set number
 set ruler
-set smarttab
 set showcmd
+set showmatch  " show matching bracket
 set showmode
-set sidescroll=0
 set timeoutlen=2000
-set undofile
-set undodir=~/.vim/undodir
-set wrapmargin=0
-set wrapscan
+set visualbell
+
+" Backup, swap etc.
+set nobackup  " don't make automatic backups
+set noswapfile
+set nowb
 
 " Colors if you have vim >= 8 or Neovim >= 0.1.5
 if has("gui_running")
@@ -88,6 +90,23 @@ if has("gui_running")
     set t_ut=
   endif
 endif
+
+" Hidden
+" This makes vim act like all other editors, buffers can
+" exist in the background without being in a window.
+" http://items.sjbach.com/319/configuring-vim-right
+set hidden
+
+" Scrolling
+set scrolloff=8  " keeps cursor away from top/bottom of screen
+set sidescrolloff=4
+set sidescroll=0
+
+" Search
+set hlsearch
+set ignorecase
+set incsearch
+set smartcase  " ignore case unless we type a capital
 
 " Theme options for the seoul256 colors:
 let g:seoul256_background = 234
@@ -101,14 +120,26 @@ let g:zenburn_alternate_Visual = 1
 set t_Co=256
 colorscheme seoul256
 
+" Undo
+if has('persistent_undo') && !isdirectory(expand('~').'/.vim/undodir')
+  silent !mkdir ~/.vim/undodir > /dev/null 2>&1
+  set undodir=~/.vim/undodir
+  set undofile
+endif
+
 " Whitespace
 set autoindent    " align the new line indent with the previous line
 set expandtab     " insert spaces when hitting TABs
 set shiftround    " round indent to multiple of 'shiftwidth'
-set shiftwidth=2  " operation >> indents 4 columns; << unindents 4 columns
+set shiftwidth=2  " operation >> indents this number of columns; << unindents
+set smartindent
+set smarttab
 set softtabstop=2 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
 set tabstop=2     " a hard TAB displays as 4 columns
-set textwidth=79  " lines longer than 79 columns will be broken
+set textwidth=127 " lines with more columns than this will be broken
+"set nowrap
+set wrapmargin=0
+set wrapscan
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcuts
@@ -138,7 +169,7 @@ inoremap <silent> ;t <C-x><C-]>
 inoremap <silent> ;u <C-x><C-u>
 
 " Copy
-set pastetoggle=<F2>
+set pastetoggle=<F3>
 
 " Folding
 set foldmethod=indent
@@ -146,7 +177,7 @@ set foldlevel=99
 nnoremap <space> za
 
 " Nav cd to current file dir
-nnoremap <silent> <F3> :lchdir %:p:h<CR>:pwd<CR>
+nnoremap <silent> <F4> :lchdir %:p:h<CR>:pwd<CR>
 
 " Nav split panels with vim char motions
 nnoremap <C-J> <C-W><C-J>
@@ -203,28 +234,18 @@ au BufNewFile,BufRead *.py
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
     \ set textwidth=79 |
-    \ set expandtab |
-    \ set autoindent |
     \ set fileformat=unix
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Conf for Ruby files
 
 au BufNewFile,BufRead *.erb,*.rb
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2 |
-    \ set expandtab |
-    \ set autoindent |
     \ set fileformat=unix
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Conf for web files
 
 au BufNewFile,BufRead *.js,*.html,*.css
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2 |
     \ set fileformat=unix
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
