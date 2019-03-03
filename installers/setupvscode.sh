@@ -32,8 +32,8 @@ if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
   # Install
-  sudo $INSTPROG install -y apt-transport-https
   sudo $INSTPROG update
+  sudo $INSTPROG install -y apt-transport-https
   sudo $INSTPROG install -y code # or code-insiders
 
 elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
