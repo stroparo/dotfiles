@@ -37,18 +37,22 @@ Plug 'https://github.com/ajh17/VimCompletesMe'
 Plug 'neomake/neomake'
 " Etc
 Plug 'https://github.com/editorconfig/editorconfig-vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
-Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/xtal8/traces.vim'
 Plug 'https://github.com/airblade/vim-gitgutter'
-Plug 'https://github.com/z0mbix/vim-shfmt', { 'for': 'sh' }
 Plug 'https://github.com/chaoren/vim-wordmotion'
 Plug 'https://github.com/fvictorio/vim-yank-queue'
-" Python
+" Formatting
+Plug 'https://github.com/z0mbix/vim-shfmt', { 'for': 'sh' }
+" Search
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
+Plug 'junegunn/fzf.vim'
+" Specific for Java
+Plug 'https://github.com/akhaku/vim-java-unused-imports'
+" Specific for Python
 Plug 'https://github.com/nvie/vim-flake8'
 Plug 'https://github.com/vim-scripts/indentpython.vim'
 Plug 'https://github.com/tmhedberg/SimpylFold'
-" Tmux
+" Specific for Tmux
 Plug 'https://github.com/tmux-plugins/vim-tmux'
 Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events'
 " Visuals
@@ -137,7 +141,7 @@ set smarttab
 set softtabstop=2 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
 set tabstop=2     " a hard TAB displays as 4 columns
 set textwidth=127 " lines with more columns than this will be broken
-"set nowrap
+set nowrap
 set wrapmargin=0
 set wrapscan
 
@@ -227,28 +231,6 @@ augroup autoquickfix
 augroup END
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Conf for Python files
-
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set fileformat=unix
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Conf for Ruby files
-
-au BufNewFile,BufRead *.erb,*.rb
-    \ set fileformat=unix
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Conf for web files
-
-au BufNewFile,BufRead *.js,*.html,*.css
-    \ set fileformat=unix
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GUI (graphical Vim)
 
 if has("gui_running")
@@ -281,6 +263,12 @@ augroup highligh_follows_vim
     autocmd FocusGained * set cursorline
     autocmd FocusLost * set nocursorline
 augroup END
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Keymaps for nav
+
+" gf - opens file under cursor in a new vertical split
+nnoremap gf :vertical wincmd f<CR>
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin EditorConfig
@@ -318,5 +306,27 @@ function! StripTrailingWhitespace()
     normal `z
   endif
 endfunction
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Specific conf for Python files
+
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set fileformat=unix
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Specific conf for Ruby files
+
+au BufNewFile,BufRead *.erb,*.rb
+    \ set fileformat=unix
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Specific conf for web files
+
+au BufNewFile,BufRead *.js,*.html,*.css
+    \ set fileformat=unix
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
