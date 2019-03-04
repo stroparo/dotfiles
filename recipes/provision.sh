@@ -51,6 +51,7 @@ if [[ $PROVISION_OPTIONS != *nodevel* ]] ; then
   bash "${RUNR_DIR:-.}"/installers/setupdocker-compose.sh
   bash "${RUNR_DIR:-.}"/installers/setupeditorconfig.sh
   bash "${RUNR_DIR:-.}"/installers/setupexa.sh
+  bash "${RUNR_DIR:-.}"/installers/setupgotools.sh
   bash "${RUNR_DIR:-.}"/installers/setupsdkman.sh
   bash "${RUNR_DIR:-.}"/installers/setuptmux.sh
   bash "${RUNR_DIR:-.}"/recipes/vim.sh
