@@ -112,6 +112,24 @@ set hlsearch
 set ignorecase
 set incsearch
 set smartcase  " ignore case unless we type a capital
+set wildmenu
+" Don't offer to open certain files/directories
+set wildignore+=*.bak
+set wildignore+=*~,.*~
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
+set wildignore+=*.dat,*.out
+set wildignore+=*.exe,*.dll
+set wildignore+=*.pdf,*.psd
+set wildignore+=*.pyc
+set wildignore+=*.so
+set wildignore+=*stackdump
+set wildignore+=*.swo,*.swp,tags,tags.lock
+set wildignore+=*.\(zip\|7z\|bz2\|gz\|tar\|xz\|[zZ]\)
+set wildignore+=[Dd]esktop.ini
+set wildignore+=node_modules/*,bower_components/*
+set wildignore+=.\(git\|hg\|svn\)
+set wildignore+=.idea,*.sublime-project,*.sublime-workspace,.vscode
+set wildignore+=.kitchen
 
 " Theme options for the seoul256 colors:
 let g:seoul256_background = 234
