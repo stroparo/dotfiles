@@ -2,6 +2,21 @@
   "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
   // "color_scheme": "Packages/RailsCasts Colour Scheme/RailsCastsColorScheme.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
 
+  // EditorConfig properties
+  "default_encoding": "UTF-8",                // charset = utf-8
+  "default_line_ending": "unix",              // end_of_line = lf
+  "ensure_newline_at_eof_on_save": true,      // insert_final_newline = true
+  "tab_size": 2,                              // tab_width = 2
+  "translate_tabs_to_spaces": true,           // indent_style = space
+  "trim_automatic_white_space": true,         // trim_trailing_whitespace = true
+  "trim_trailing_white_space_on_save": true,  // trim_trailing_whitespace = true
+
+  // "font_face": "Droid Sans Mono Dotted for Powerline", "font_size": 11, // nice font_size's: TBD..13
+  "font_face": "Fira Mono for Powerline", "font_size": 11, // nice font_size's: 11..13
+  // "font_face": "Inconsolata-dz for Powerline", "font_size": 11, // nice font_size's: TBD..13
+  // "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12, // nice font_size's: 12..15
+  "font_options": ["subpixel_antialias", "no_bold"],
+
   // Theme Boxy
   "theme_accent_purple": true,
   "theme_autocomplete_item_selected_colored": true,
@@ -30,7 +45,6 @@
   "auto_complete": true,
   "auto_complete_commit_on_tab": true,
   "auto_match_enabled": true,
-  "default_encoding": "UTF-8",
   "fade_fold_buttons": false,
   "find_selected_text": true,
   "match_brackets": true,
@@ -52,13 +66,6 @@
   "caret_extra_width": 4,
   "caret_style": "blink",
   "wide_caret": true,
-
-  // Fonts
-  // "font_face": "Droid Sans Mono Dotted for Powerline", "font_size": 11, // nice font_size's: TBD..13
-  "font_face": "Fira Mono for Powerline", "font_size": 11, // nice font_size's: 11..13
-  // "font_face": "Inconsolata-dz for Powerline", "font_size": 11, // nice font_size's: TBD..13
-  // "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12, // nice font_size's: 12..15
-  "font_options": ["subpixel_antialias", "no_bold"],
 
   // Layout & look-and-feel
   "always_show_minimap_viewport": false,
@@ -90,17 +97,11 @@
 
   // Whitespace
   "auto_indent": true,
-  "default_line_ending": "unix",
   "detect_indentation": true,
-  "draw_white_space": "all", // all or selected
-  "ensure_newline_at_eof_on_save": true,
+  "draw_white_space": "all",                    // all or selected
   "indent_subsequent_lines": true,
-  "indent_to_bracket": true, // requires auto_indent
+  "indent_to_bracket": true,                    // requires auto_indent
   "smart_indent": true,
-  "tab_size": 2,
-  "translate_tabs_to_spaces": true,
-  "trim_automatic_white_space": true,
-  "trim_trailing_white_space_on_save": true,
   // "use_tab_stops": true,
 
   // Word wrapping
