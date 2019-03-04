@@ -31,24 +31,17 @@ if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
   sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
-  # Install
-  sudo $INSTPROG update
-  sudo $INSTPROG install -y apt-transport-https
-  sudo $INSTPROG install -y code # or code-insiders
+  sudo "${INSTPROG}" update \
+    && sudo "${INSTPROG}" install -y apt-transport-https \
+    && sudo "${INSTPROG}" install -y code # or code-insiders
 
 elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
   # Add repo
   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
   sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 
-  # Install
-  if egrep -i -q -r 'fedora' /etc/*release ; then
-    sudo dnf check-update
-    sudo dnf install code
-  else
-    sudo yum check-update
-    sudo yum install code
-  fi
+  sudo "${INSTPROG}" check-update \
+    && sudo "${INSTPROG}" install -y code
 fi
 
 # #############################################################################
