@@ -43,11 +43,13 @@ if [[ $PROVISION_OPTIONS != *nodevel* ]] ; then
 
   # Dev platforms
   bash "${RUNR_DIR:-.}"/recipes/python.sh
+  bash "${RUNR_DIR:-.}"/installers/setupgolang.sh
   bash "${RUNR_DIR:-.}"/installers/setuprust.sh
 
   # Dev tools
   bash "${RUNR_DIR:-.}"/installers/setupdocker.sh
   bash "${RUNR_DIR:-.}"/installers/setupdocker-compose.sh
+  bash "${RUNR_DIR:-.}"/installers/setupeditorconfig.sh
   bash "${RUNR_DIR:-.}"/installers/setupexa.sh
   bash "${RUNR_DIR:-.}"/installers/setupsdkman.sh
   bash "${RUNR_DIR:-.}"/installers/setuptmux.sh
