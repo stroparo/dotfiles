@@ -31,14 +31,13 @@ Plug 'https://github.com/tpope/vim-surround'
 Plug 'https://github.com/wellle/targets.vim'
 Plug 'https://github.com/tomtom/ttags_vim'
 Plug 'https://github.com/mbbill/undotree'
-Plug 'https://github.com/tpope/vim-unimpaired'
 Plug 'https://github.com/ajh17/VimCompletesMe'
+Plug 'https://github.com/tpope/vim-unimpaired'
 " Build
 Plug 'neomake/neomake'
-" Etc
+" Editor
 Plug 'https://github.com/editorconfig/editorconfig-vim'
 Plug 'https://github.com/xtal8/traces.vim'
-Plug 'https://github.com/airblade/vim-gitgutter'
 Plug 'https://github.com/chaoren/vim-wordmotion'
 Plug 'https://github.com/fvictorio/vim-yank-queue'
 " Formatting
@@ -55,6 +54,8 @@ Plug 'https://github.com/tmhedberg/SimpylFold'
 " Specific for Tmux
 Plug 'https://github.com/tmux-plugins/vim-tmux'
 Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events'
+" Version control
+Plug 'https://github.com/airblade/vim-gitgutter'
 " Visuals
 Plug 'https://github.com/c9s/colorselector.vim'
 Plug 'https://github.com/Konfekt/FastFold'
@@ -138,8 +139,8 @@ set shiftround    " round indent to multiple of 'shiftwidth'
 set shiftwidth=2  " operation >> indents this number of columns; << unindents
 set smartindent
 set smarttab
-set softtabstop=2 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
-set tabstop=2     " a hard TAB displays as 4 columns
+set softtabstop=2 " insert/delete this num of spaces when hitting a TAB/BACKSPACE
+set tabstop=2     " a hard TAB displays as this num of columns
 set textwidth=127 " lines with more columns than this will be broken
 set nowrap
 set wrapmargin=0
