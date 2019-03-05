@@ -30,7 +30,12 @@
     // Code Versioning
     "Git",
     // "GitGutter",
+    "GitSavvy",
     "Modific",
+
+    // Syntax support
+    "Dockerfile Syntax Highlighting",
+    "VimL",
 
     // Themes
     "Boxy Theme",
@@ -46,7 +51,6 @@
     "ColorPicker",
     "Compare Side-By-Side",
     "DocBlockr",
-    "Dockerfile Syntax Highlighting",
     "EasyMotion",
     "Emmet Css Snippets",
     "FuzzyFilePath",
