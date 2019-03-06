@@ -1,7 +1,4 @@
 {
-  "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
-  // "color_scheme": "Packages/RailsCasts Colour Scheme/RailsCastsColorScheme.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
-
   // EditorConfig properties
   "default_encoding": "UTF-8",                // charset = utf-8
   "default_line_ending": "unix",              // end_of_line = lf
@@ -17,29 +14,45 @@
   // "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12, // nice font_size's: 12..15
   "font_options": ["subpixel_antialias", "no_bold"],
 
-  // Theme Boxy
-  "theme_accent_purple": true,
-  "theme_autocomplete_item_selected_colored": true,
-  "theme_bar": true,
-  "theme_bar_colored": true,
-  "theme_scrollbar_colored": true,
-  "theme_sidebar_disclosure": true,
-  "theme_sidebar_font_md": true,
-  "theme_sidebar_indent_lg": true,
-  "theme_sidebar_size_xxs": true,
-  "theme_statusbar_colored": false,
-  "theme_statusbar_size_xs": true,
-  "theme_tab_selected_underlined": true,
-  "theme_tab_selected_transparent": false,
-  "theme_tab_size_xs": true,
-  "theme_tabset_line_visible": false,
-  "theme_unified": true,
+  // Theme
+  // "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
+  // "color_scheme": "Packages/RailsCasts Colour Scheme/RailsCastsColorScheme.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
+  // "color_scheme": "Packages/Theme - Afterglow/Afterglow-monokai.tmTheme",
+  "color_scheme": "Packages/Theme - Afterglow/Afterglow-twilight.tmTheme",
+  // "color_scheme": "Packages/Theme - Spacegray/base16-eighties.dark.tmTheme",
 
-  // Theme spacegray
+  // Theme - Afterglow
+  "sidebar_size_12": true,
+  "status_bar_brighter": true,
+  "statusbar_size_12": true,
+  "tabs_label_not_italic": true,
+  "tabs_padding_small": true,
+  "tabs_small": true,
+
+  // Theme - Boxy
+  // "theme_accent_purple": true,
+  // "theme_autocomplete_item_selected_colored": true,
+  // "theme_bar": true,
+  // "theme_bar_colored": true,
+  // "theme_scrollbar_colored": true,
+  // "theme_sidebar_disclosure": true,
+  // "theme_sidebar_font_md": true,
+  // "theme_sidebar_indent_lg": true,
+  // "theme_sidebar_size_xxs": true,
+  // "theme_statusbar_colored": false,
+  // "theme_statusbar_size_xs": true,
+  // "theme_tab_selected_underlined": true,
+  // "theme_tab_selected_transparent": false,
+  // "theme_tab_size_xs": true,
+  // "theme_tabset_line_visible": false,
+  // "theme_unified": true,
+
+  // Theme - Spacegray
   // "theme": "Spacegray Eighties.sublime-theme",
   // "spacegray_fileicons": true,
   // "spacegray_sidebar_font_xlarge": true,
   // "spacegray_sidebar_tree_xsmall": true,
+  // "spacegray_tabs_font_normal": true,
 
   // Behavior
   "auto_complete": true,
@@ -92,8 +105,10 @@
   "tree_animation_enabled": false,
   "use_simple_full_screen": true,
 
-  // Misc
-  "ignored_packages": ["Vintage"],
+  // Ignored Packages
+  // Babel replaced JavaScript
+  // CSS3 replaced CSS
+  "ignored_packages": ["CSS", "JavaScript", "Vintage"],
 
   // Whitespace
   "auto_indent": true,

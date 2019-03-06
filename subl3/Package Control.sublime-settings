@@ -5,46 +5,9 @@
   ],
   "installed_packages":
   [
-    // Code
-    // "Alignment",
-    // "All Autocomplete",
-    "EditorConfig",
-    "Indent Size",
-    "Pretty JSON",
-    // "Ruby Completions",
-    "SublimeCodeIntel", // disable this for *.py files as it clashes with anaconda's completion
-    "SublimeLinter",
-    "SublimeLinter-flake8", // or "SublimeLinter-pycodestyle",
-    "SublimeLinter-jshint",
-    "SublimeLinter-json",
-    "SublimeLinter-rubocop",
-    "SublimeREPL",
-    // "Text Pastry",
-    "TrailingSpaces",
-
-    // Code Python
-    "Anaconda",
-    "Djaneiro",
-    "requirementstxt",
-
-    // Code Versioning
-    "Git",
-    // "GitGutter",
-    "GitSavvy",
-    "Modific",
-
-    // Syntax support
-    "Dockerfile Syntax Highlighting",
-    "VimL",
-
-    // Themes
-    "Boxy Theme",
-    "Pastel Paws Color Scheme",
-    "RailsCasts Colour Scheme",
-
-    // Etcetera
     "AdvancedNewFile",
     "AutoFileName",
+    "Automatic Backups",
     "BracketHighlighter",
     "Clickable URLs",
     "ColorHelper",
@@ -52,20 +15,73 @@
     "Compare Side-By-Side",
     "DocBlockr",
     "EasyMotion",
-    "Emmet Css Snippets",
+    "EditorConfig",
     "FuzzyFilePath",
     "Highlight",
     "Highlight Dodgy Chars",
     "Highlight Duplicates",
-    "MarkdownEditing",
-    "Markdown Preview",
     "Package Control",
     "PackageResourceViewer",
-    "Select By Regex",
     "SideBarEnhancements",
+    "SublimeCodeIntel", // disable this for *.py files as it clashes with anaconda's completion
+    "SublimeREPL",
     "SyncedSideBar",
     "SublimeServer",
     "TabsExtra",
-    "Terminal"
+    "Terminal",
+
+    // Color Themes
+    "Boxy Theme",
+    "Pastel Paws Color Scheme",
+    "RailsCasts Colour Scheme",
+    "Theme - Afterglow",
+    "Theme - Spacegray",
+
+    // Linting
+    "SublimeLinter",
+    "SublimeLinter-flake8", // or "SublimeLinter-pycodestyle",
+    "SublimeLinter-jshint",
+    "SublimeLinter-json",
+    "SublimeLinter-rubocop",
+
+    // Specific - syntax support
+    "Dockerfile Syntax Highlighting",
+    "VimL",
+
+    // Specific for JavaScript
+    "Babel",
+
+    // Specific for Markdown
+    "MarkdownEditing",
+    "Markdown Preview",
+
+    // Specific for Python
+    "Anaconda",
+    "Djaneiro",
+    "requirementstxt",
+
+    // Specific for Ruby
+    // "Ruby Completions",
+
+    // Specific for version control
+    "Git",
+    // "GitGutter",
+    "GitSavvy",
+    "Modific",
+
+    // Specific for web devel
+    "CSS3", // CSS3 syntax highlight support
+    "Emmet Css Snippets",
+    "SCSS",
+
+    // Text
+    // "Alignment",
+    // "All Autocomplete",
+    "Indent Size",
+    "Indent XML",
+    "Pretty JSON",
+    "Select By Regex",
+    // "Text Pastry",
+    "TrailingSpaces"
   ]
 }
