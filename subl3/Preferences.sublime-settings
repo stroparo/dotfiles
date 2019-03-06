@@ -22,7 +22,8 @@
   // "color_scheme": "Packages/Theme - Spacegray/base16-eighties.dark.tmTheme",
 
   // Theme - Afterglow
-  "theme": "Afterglow.sublime-theme",
+  // "theme": "Afterglow.sublime-theme",
+  "theme": "Afterglow-blue.sublime-theme",
   "sidebar_size_12": true,
   "status_bar_brighter": true,
   "statusbar_size_12": true,
