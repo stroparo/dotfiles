@@ -24,10 +24,11 @@
   // Theme - Afterglow
   // "theme": "Afterglow.sublime-theme",
   "theme": "Afterglow-blue.sublime-theme",
+  "color_inactive_tabs": true,
   "sidebar_size_13": true,
   "status_bar_brighter": true,
   "statusbar_size_13": true,
-  "tabs_medium": true,
+  "tabs_small": true,
   "tabs_label_not_italic": true,
   "tabs_padding_small": true,
 
