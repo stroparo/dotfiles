@@ -17,19 +17,19 @@
   // Theme
   // "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
   // "color_scheme": "Packages/RailsCasts Colour Scheme/RailsCastsColorScheme.tmTheme", "theme": "Boxy Tomorrow.sublime-theme",
-  // "color_scheme": "Packages/Theme - Afterglow/Afterglow-monokai.tmTheme",
-  "color_scheme": "Packages/Theme - Afterglow/Afterglow-twilight.tmTheme",
+  "color_scheme": "Packages/Theme - Afterglow/Afterglow.tmTheme",
+  // "color_scheme": "Packages/Theme - Afterglow/Afterglow-twilight.tmTheme",
   // "color_scheme": "Packages/Theme - Spacegray/base16-eighties.dark.tmTheme",
 
   // Theme - Afterglow
   // "theme": "Afterglow.sublime-theme",
   "theme": "Afterglow-blue.sublime-theme",
-  "sidebar_size_12": true,
+  "sidebar_size_13": true,
   "status_bar_brighter": true,
-  "statusbar_size_12": true,
+  "statusbar_size_13": true,
+  "tabs_medium": true,
   "tabs_label_not_italic": true,
   "tabs_padding_small": true,
-  "tabs_small": true,
 
   // Theme - Boxy
   // "theme_accent_purple": true,
