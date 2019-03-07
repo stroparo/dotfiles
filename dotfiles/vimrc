@@ -109,6 +109,11 @@ set scrolloff=8  " keeps cursor away from top/bottom of screen
 set sidescrolloff=4
 set sidescroll=0
 
+" Nav - Scrolling - Mouse scrolling in a terminal
+set mouse=a
+map <ScrollWheelUp> <C-Y>
+map <ScrollWheelDown> <C-E>
+
 " Op - Undo
 if has('persistent_undo') && !isdirectory(expand('~').'/.vim/undodir')
   silent !mkdir ~/.vim/undodir > /dev/null 2>&1
