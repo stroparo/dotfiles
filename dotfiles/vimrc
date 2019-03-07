@@ -314,7 +314,7 @@ augroup highlight_follows_focus
   autocmd WinLeave * set nocursorline
 augroup END
 
-augroup highligh_follows_vim
+augroup highlight_follows_vim
   autocmd!
   autocmd FocusGained * set cursorline
   autocmd FocusLost * set nocursorline
