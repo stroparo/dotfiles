@@ -68,15 +68,20 @@ call plug#end()
 " Vim settings
 
 syntax on
+
 filetype indent plugin on
+
+" Leaders
+let mapleader = ","
+let maplocalleader = "\\"
+
 set autoread
 set backspace=indent,eol,start
 set encoding=utf-8
 set gcr=a:blinkon0  " Disable cursor blink
 set history=1000  " Store lots of :cmdline history
-set nolist
 set magic
-set number
+" set number
 set ruler
 set showcmd
 set showmatch  " show matching bracket
@@ -84,12 +89,49 @@ set showmode
 set timeoutlen=2000
 set visualbell
 
-" Backup, swap etc.
+" File - Backup, swap etc.
 set nobackup  " don't make automatic backups
 set noswapfile
 set nowb
 
-" Colors if you have vim >= 8 or Neovim >= 0.1.5
+" File - Hidden
+" This makes vim act like all other editors, buffers can
+" exist in the background without being in a window.
+" http://items.sjbach.com/319/configuring-vim-right
+set hidden
+
+" Nav - Scrolling
+set scrolloff=8  " keeps cursor away from top/bottom of screen
+set sidescrolloff=4
+set sidescroll=0
+
+" Op - Undo
+if has('persistent_undo') && !isdirectory(expand('~').'/.vim/undodir')
+  silent !mkdir ~/.vim/undodir > /dev/null 2>&1
+  set undodir=~/.vim/undodir
+  set undofile
+endif
+
+" Text - Spell checking
+" Configure the language and turn off spell checking:
+set spell spelllang=en_ca
+set nospell
+
+" Text - Whitespace
+set autoindent    " align the new line indent with the previous line
+set expandtab     " insert spaces when hitting TABs
+set shiftround    " round indent to multiple of 'shiftwidth'
+set shiftwidth=2  " operation >> indents this number of columns; << unindents
+set smartindent
+set smarttab
+set softtabstop=2 " insert/delete this num of spaces when hitting a TAB/BACKSPACE
+set tabstop=2     " a hard TAB displays as this num of columns
+set textwidth=127 " lines with more columns than this will be broken
+set nowrap
+set wrapmargin=0
+set wrapscan
+
+" View - Colors if you have vim >= 8 or Neovim >= 0.1.5
 if has("gui_running")
   if (has("termguicolors"))
     set termguicolors
@@ -97,18 +139,153 @@ if has("gui_running")
   endif
 endif
 
-" Hidden
-" This makes vim act like all other editors, buffers can
-" exist in the background without being in a window.
-" http://items.sjbach.com/319/configuring-vim-right
-set hidden
+" View - Folding
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
 
-" Scrolling
-set scrolloff=8  " keeps cursor away from top/bottom of screen
-set sidescrolloff=4
-set sidescroll=0
+" View - Theme
+set t_Co=256
+colorscheme seoul256
 
-" Search
+" View - Theme seoul256 options:
+let g:seoul256_background = 234
+set background=dark
+
+" View - Theme zenburn options:
+let g:zenburn_transparent = 1
+let g:zenburn_alternate_Visual = 1
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Base / vanilla shortcuts
+
+" By https://www.vi-improved.org/recommendations/
+nnoremap <leader>a :argadd <c-r>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
+nnoremap <leader>b :b <C-d>
+nnoremap <leader>e :e **/
+nnoremap <leader>g :grep<space>
+nnoremap <leader>i :Ilist<space>
+nnoremap <leader>j :tjump /
+nnoremap <leader>m :make<cr>
+nnoremap <leader>q :b#<cr>
+nnoremap <leader>t :TTags<space>*<space>*<space>.<cr>
+
+" File open - gf - opens file under cursor in a new vertical split
+nnoremap gf :vertical wincmd f<CR>
+
+" File saving
+nmap <Leader>w :w<CR>
+inoremap :w <ESC>:w
+
+" Nav cd to current file dir
+nnoremap <silent> <F4> :lchdir %:p:h<CR>:pwd<CR>
+
+" Nav split panels with vim char motions
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Op - Copying
+set pastetoggle=<F3>
+
+" Op - Repeat also on visually selected lines
+vnoremap . :norm.<CR>
+
+" Text - Completion
+inoremap <silent> ;f <C-x><C-f>
+inoremap <silent> ;i <C-x><C-i>
+inoremap <silent> ;l <C-x><C-l>
+inoremap <silent> ;n <C-x><C-n>
+inoremap <silent> ;o <C-x><C-o>
+inoremap <silent> ;t <C-x><C-]>
+inoremap <silent> ;u <C-x><C-u>
+
+" Text - upcase last typed word
+inoremap ;wu <esc>viwUea
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto make dir
+
+function! <SID>AutoMkdir() abort
+  let l:dir = expand('<afile>:p:h')
+  let l:file = expand('<afile>:t')
+  if !isdirectory(l:dir)
+    call mkdir(l:dir, 'p')
+    silent execute 'bw ' . l:dir . '/' . l:file
+    silent execute 'e ' . l:dir . '/' . l:file
+  endif
+endfunction
+
+augroup AutoMkdir
+  autocmd!
+  autocmd BufWritePre,FileWritePre,BufNewFile *
+    \ call <SID>AutoMkdir()
+augroup END
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" :H topic will open an 80 columns vertical split
+
+command! -complete=help -nargs=1 H call VerticalHelp(<f-args>)
+function! VerticalHelp(topic)
+  execute "vertical botright help " . a:topic
+  execute "vertical resize 78"
+endfunction
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Nav - Quickfix window
+
+" Auto open
+augroup autoquickfix
+  autocmd!
+  autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd QuickFixCmdPost    l* lwindow
+augroup END
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Search - Ag silversearcher via Ack.vim
+
+" Shortcuts for Ack.vim and Ag silversearcher
+map <Leader>a :Ack!<Space>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>t :Files<CR>
+
+if executable("ag")
+  " Ack.vim invoked by typing ag, case insensitive:
+  cnoreabbrev ag Ack!
+  cnoreabbrev aG Ack!
+  cnoreabbrev Ag Ack!
+  cnoreabbrev AG Ack!
+
+  " Ack.vim program change to Ag silversearcher
+  let g:ackprg = 'ag --vimgrep --smart-case'
+
+  " Default grep override
+  set grepprg=ag\ --nogroup\ --nocolor\ --smart-case\ --column
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Search - fzf - fuzzy finder
+
+let g:fzf_tags_command = 'ctags --extra=+f -R'
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Search - Vanilla
+
 set hlsearch
 set ignorecase
 set incsearch
@@ -132,140 +309,29 @@ set wildignore+=.\(git\|hg\|svn\)
 set wildignore+=.idea,*.sublime-project,*.sublime-workspace,.vscode
 set wildignore+=.kitchen
 
-" Theme options for the seoul256 colors:
-let g:seoul256_background = 234
-set background=dark
-
-" Theme options for the zenburn colors:
-let g:zenburn_transparent = 1
-let g:zenburn_alternate_Visual = 1
-
-" Themes
-set t_Co=256
-colorscheme seoul256
-
-" Undo
-if has('persistent_undo') && !isdirectory(expand('~').'/.vim/undodir')
-  silent !mkdir ~/.vim/undodir > /dev/null 2>&1
-  set undodir=~/.vim/undodir
-  set undofile
-endif
-
-" Whitespace
-set autoindent    " align the new line indent with the previous line
-set expandtab     " insert spaces when hitting TABs
-set shiftround    " round indent to multiple of 'shiftwidth'
-set shiftwidth=2  " operation >> indents this number of columns; << unindents
-set smartindent
-set smarttab
-set softtabstop=2 " insert/delete this num of spaces when hitting a TAB/BACKSPACE
-set tabstop=2     " a hard TAB displays as this num of columns
-set textwidth=127 " lines with more columns than this will be broken
-set nowrap
-set wrapmargin=0
-set wrapscan
-
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Shortcuts
+" Text - Whitespace
 
-" Leaders
-let mapleader = ","
-let maplocalleader = "\\"
+" BadWhitespace definition:
+highlight BadWhitespace ctermbg=red guibg=darkred
 
-" By https://www.vi-improved.org/recommendations/
-nnoremap <leader>a :argadd <c-r>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
-nnoremap <leader>b :b <C-d>
-nnoremap <leader>e :e **/
-nnoremap <leader>g :grep<space>
-nnoremap <leader>i :Ilist<space>
-nnoremap <leader>j :tjump /
-nnoremap <leader>m :make<cr>
-nnoremap <leader>q :b#<cr>
-nnoremap <leader>t :TTags<space>*<space>*<space>.<cr>
+" BadWhitespace opening file:
+au BufRead,BufNewFile *.py,*.pyw,*.rb,*.c,*.h match BadWhitespace /\s\+$/
 
-" Completion
-inoremap <silent> ;f <C-x><C-f>
-inoremap <silent> ;i <C-x><C-i>
-inoremap <silent> ;l <C-x><C-l>
-inoremap <silent> ;n <C-x><C-n>
-inoremap <silent> ;o <C-x><C-o>
-inoremap <silent> ;t <C-x><C-]>
-inoremap <silent> ;u <C-x><C-u>
-
-" Copy
-set pastetoggle=<F3>
-
-" File open - gf - opens file under cursor in a new vertical split
-nnoremap gf :vertical wincmd f<CR>
-
-" Folding
-set foldmethod=indent
-set foldlevel=99
-nnoremap <space> za
-
-" Nav cd to current file dir
-nnoremap <silent> <F4> :lchdir %:p:h<CR>:pwd<CR>
-
-" Nav split panels with vim char motions
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-" Repeat also on visually selected lines
-vnoremap . :norm.<CR>
-
-" Saving
-nmap <Leader>w :w<CR>
-inoremap :w <ESC>:w
-
-" Search with Ack.vim and Ag silversearcher
-map <Leader>a :Ack!<Space>
-nmap <Leader>b :Buffers<CR>
-nmap <Leader>t :Files<CR>
-
-" Upcase last typed word
-inoremap ;wu <esc>viwUea
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ag silversearcher
-
-if executable("ag")
-  " Ack.vim invoked by typing ag, case insensitive:
-  cnoreabbrev ag Ack!
-  cnoreabbrev aG Ack!
-  cnoreabbrev Ag Ack!
-  cnoreabbrev AG Ack!
-
-  " Ack.vim program change to Ag silversearcher
-  let g:ackprg = 'ag --vimgrep --smart-case'
-
-  " Default grep override
-  set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Auto make dir
-
-function! <SID>AutoMkdir() abort
-  let l:dir = expand('<afile>:p:h')
-  let l:file = expand('<afile>:t')
-  if !isdirectory(l:dir)
-    call mkdir(l:dir, 'p')
-    silent execute 'bw ' . l:dir . '/' . l:file
-    silent execute 'e ' . l:dir . '/' . l:file
+" Strip trailing whitespace function
+nnoremap <leader>s :call StripTrailingWhitespace()<cr>
+function! StripTrailingWhitespace()
+  if !&binary && &filetype != 'diff'
+    normal mz
+    normal Hmy
+    %s/\s\+$//e
+    normal 'yz<CR>
+    normal `z
   endif
 endfunction
 
-augroup AutoMkdir
-  autocmd!
-  autocmd BufWritePre,FileWritePre,BufNewFile *
-    \ call <SID>AutoMkdir()
-augroup END
-
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Focus
+" View - Focus
 
 augroup active_relative_number
     au!
@@ -290,25 +356,7 @@ augroup highlight_follows_vim
 augroup END
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" fzf - fuzzy finder
-
-let g:fzf_tags_command = 'ctags --extra=+f -R'
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" GUI (graphical Vim)
+" View - GUI - Graphical User Interface Vim
 
 if has("gui_running")
   " GUI is running or is about to start.
@@ -317,14 +365,10 @@ if has("gui_running")
   set lines=999 columns=140
 endif
 
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" :H topic will open an 80 columns vertical split
 
-command! -complete=help -nargs=1 H call VerticalHelp(<f-args>)
-function! VerticalHelp(topic)
-  execute "vertical botright help " . a:topic
-  execute "vertical resize 78"
-endfunction
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins
+
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin EditorConfig
@@ -342,39 +386,13 @@ let g:SimpylFold_docstring_preview = 1
 " Use two spaces indentation by default:
 let g:shfmt_extra_args = '-i 2'
 
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Quickfix window
-
-" Auto open
-augroup autoquickfix
-  autocmd!
-  autocmd QuickFixCmdPost [^l]* cwindow
-  autocmd QuickFixCmdPost    l* lwindow
-augroup END
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Whitespace
+" Specific conf for filetypes
 
-" BadWhitespace definition:
-highlight BadWhitespace ctermbg=red guibg=darkred
-
-" BadWhitespace opening file:
-au BufRead,BufNewFile *.py,*.pyw,*.rb,*.c,*.h match BadWhitespace /\s\+$/
-
-" Strip trailing whitespace function
-nnoremap <leader>s :call StripTrailingWhitespace()<cr>
-function! StripTrailingWhitespace()
-  if !&binary && &filetype != 'diff'
-    normal mz
-    normal Hmy
-    %s/\s\+$//e
-    normal 'yz<CR>
-    normal `z
-  endif
-endfunction
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Specific conf for Python files
+" ... Python
 
 au BufNewFile,BufRead *.py
   \ set tabstop=4 |
@@ -384,13 +402,13 @@ au BufNewFile,BufRead *.py
   \ set fileformat=unix
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Specific conf for Ruby files
+" ... Ruby
 
 au BufNewFile,BufRead *.erb,*.rb
   \ set fileformat=unix
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Specific conf for web files
+" ... Web devel
 
 au BufNewFile,BufRead *.js,*.html,*.css
   \ set fileformat=unix
