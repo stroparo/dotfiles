@@ -75,6 +75,7 @@ filetype indent plugin on
 let mapleader = ","
 let maplocalleader = "\\"
 
+" Basic options
 set autoread
 set backspace=indent,eol,start
 set encoding=utf-8
@@ -88,6 +89,9 @@ set showmatch  " show matching bracket
 set showmode
 set timeoutlen=2000
 set visualbell
+
+" Editor - disable core Ex mode
+nnoremap Q <nop>
 
 " File - Backup, swap etc.
 set nobackup  " don't make automatic backups
