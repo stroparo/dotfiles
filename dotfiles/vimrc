@@ -43,6 +43,7 @@ Plug 'https://github.com/fvictorio/vim-yank-queue'
 " Formatting
 Plug 'https://github.com/z0mbix/vim-shfmt', { 'for': 'sh' }
 " Search
+Plug 'https://github.com/mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 " Specific for Java
@@ -194,6 +195,9 @@ inoremap <silent> ;u <C-x><C-u>
 " Copy
 set pastetoggle=<F3>
 
+" File open - gf - opens file under cursor in a new vertical split
+nnoremap gf :vertical wincmd f<CR>
+
 " Folding
 set foldmethod=indent
 set foldlevel=99
@@ -211,6 +215,11 @@ nnoremap <C-H> <C-W><C-H>
 " Repeat also on visually selected lines
 vnoremap . :norm.<CR>
 
+" Search with Ack.vim and Ag silversearcher
+map <Leader>a :Ack!<Space>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>t :Files<CR>
+
 " Upcase last typed word
 inoremap ;wu <esc>viwUea
 
@@ -218,36 +227,64 @@ inoremap ;wu <esc>viwUea
 " Ag silversearcher
 
 if executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
+  " Ack.vim invoked by typing ag, case insensitive:
+  cnoreabbrev ag Ack!
+  cnoreabbrev aG Ack!
+  cnoreabbrev Ag Ack!
+  cnoreabbrev AG Ack!
+
+  " Ack.vim program change to Ag silversearcher
+  let g:ackprg = 'ag --vimgrep --smart-case'
+
+  " Default grep override
+  set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto make dir
 
 function! <SID>AutoMkdir() abort
-    let l:dir = expand('<afile>:p:h')
-    let l:file = expand('<afile>:t')
-    if !isdirectory(l:dir)
-        call mkdir(l:dir, 'p')
-        silent execute 'bw ' . l:dir . '/' . l:file
-        silent execute 'e ' . l:dir . '/' . l:file
-    endif
+  let l:dir = expand('<afile>:p:h')
+  let l:file = expand('<afile>:t')
+  if !isdirectory(l:dir)
+    call mkdir(l:dir, 'p')
+    silent execute 'bw ' . l:dir . '/' . l:file
+    silent execute 'e ' . l:dir . '/' . l:file
+  endif
 endfunction
 
 augroup AutoMkdir
-    autocmd!
-    autocmd BufWritePre,FileWritePre,BufNewFile *
-        \ call <SID>AutoMkdir()
+  autocmd!
+  autocmd BufWritePre,FileWritePre,BufNewFile *
+    \ call <SID>AutoMkdir()
 augroup END
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto open quickfix window
 augroup autoquickfix
-    autocmd!
-    autocmd QuickFixCmdPost [^l]* cwindow
-    autocmd QuickFixCmdPost    l* lwindow
+  autocmd!
+  autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd QuickFixCmdPost    l* lwindow
 augroup END
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fzf - fuzzy finder
+
+let g:fzf_tags_command = 'ctags --extra=+f -R'
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GUI (graphical Vim)
@@ -264,30 +301,24 @@ endif
 
 command! -complete=help -nargs=1 H call VerticalHelp(<f-args>)
 function! VerticalHelp(topic)
-    execute "vertical botright help " . a:topic
-    execute "vertical resize 78"
+  execute "vertical botright help " . a:topic
+  execute "vertical resize 78"
 endfunction
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Highlight only the line with focus
 
 augroup highlight_follows_focus
-    autocmd!
-    autocmd WinEnter * set cursorline
-    autocmd WinLeave * set nocursorline
+  autocmd!
+  autocmd WinEnter * set cursorline
+  autocmd WinLeave * set nocursorline
 augroup END
 
 augroup highligh_follows_vim
-    autocmd!
-    autocmd FocusGained * set cursorline
-    autocmd FocusLost * set nocursorline
+  autocmd!
+  autocmd FocusGained * set cursorline
+  autocmd FocusLost * set nocursorline
 augroup END
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Keymaps for nav
-
-" gf - opens file under cursor in a new vertical split
-nnoremap gf :vertical wincmd f<CR>
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin EditorConfig
@@ -330,22 +361,22 @@ endfunction
 " Specific conf for Python files
 
 au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set fileformat=unix
+  \ set tabstop=4 |
+  \ set softtabstop=4 |
+  \ set shiftwidth=4 |
+  \ set textwidth=79 |
+  \ set fileformat=unix
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Specific conf for Ruby files
 
 au BufNewFile,BufRead *.erb,*.rb
-    \ set fileformat=unix
+  \ set fileformat=unix
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Specific conf for web files
 
 au BufNewFile,BufRead *.js,*.html,*.css
-    \ set fileformat=unix
+  \ set fileformat=unix
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
