@@ -215,6 +215,10 @@ nnoremap <C-H> <C-W><C-H>
 " Repeat also on visually selected lines
 vnoremap . :norm.<CR>
 
+" Saving
+nmap <Leader>w :w<CR>
+inoremap :w <ESC>:w
+
 " Search with Ack.vim and Ag silversearcher
 map <Leader>a :Ack!<Space>
 nmap <Leader>b :Buffers<CR>
