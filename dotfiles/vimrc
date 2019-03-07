@@ -179,11 +179,14 @@ nnoremap <leader>m :make<cr>
 nnoremap <leader>q :b#<cr>
 nnoremap <leader>t :TTags<space>*<space>*<space>.<cr>
 
+" Editor - quit
+inoremap ;qq <ESC>:q
+
 " File - open - gf - opens file under cursor in a new vertical split
 nnoremap gf :vertical wincmd f<CR>
 
 " File - save
-nmap <Leader>w :w<CR>
+nmap <leader>ww :w<CR>
 inoremap ;ww <ESC>:w
 
 " Nav - cd to current file dir
@@ -215,7 +218,7 @@ inoremap <silent> ;t <C-x><C-]>
 inoremap <silent> ;u <C-x><C-u>
 
 " Text - Insert - upcase last typed word
-inoremap ;wu <esc>viwUea
+inoremap ;uu <esc>viwUea
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto make dir
@@ -259,9 +262,9 @@ augroup END
 " Search - Ag silversearcher via Ack.vim
 
 " Shortcuts for Ack.vim and Ag silversearcher
-map <Leader>a :Ack!<Space>
-nmap <Leader>b :Buffers<CR>
-nmap <Leader>t :Files<CR>
+map <leader>a :Ack!<Space>
+nmap <leader>b :Buffers<CR>
+nmap <leader>t :Files<CR>
 
 if executable("ag")
   " Ack.vim invoked by typing ag, case insensitive:
@@ -381,8 +384,8 @@ endif
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Viewports / splits to be the same size
 
-map <Leader>= <C-w>=
-imap <Leader>= <Esc> <C-w>=
+map <leader>= <C-w>=
+imap <leader>= <Esc> <C-w>=
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
