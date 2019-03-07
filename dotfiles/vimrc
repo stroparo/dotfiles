@@ -265,11 +265,28 @@ augroup AutoMkdir
 augroup END
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Auto open quickfix window
-augroup autoquickfix
+" Focus
+
+augroup active_relative_number
+    au!
+    au BufEnter * :setlocal number relativenumber
+    au WinEnter * :setlocal number relativenumber
+    au BufLeave * :setlocal nonumber norelativenumber
+    au WinLeave * :setlocal nonumber norelativenumber
+augroup END
+
+set cursorline
+
+augroup highlight_follows_focus
   autocmd!
-  autocmd QuickFixCmdPost [^l]* cwindow
-  autocmd QuickFixCmdPost    l* lwindow
+  autocmd WinEnter * set cursorline
+  autocmd WinLeave * set nocursorline
+augroup END
+
+augroup highlight_follows_vim
+  autocmd!
+  autocmd FocusGained * set cursorline
+  autocmd FocusLost * set nocursorline
 augroup END
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -310,21 +327,6 @@ function! VerticalHelp(topic)
 endfunction
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Highlight only the line with focus
-
-augroup highlight_follows_focus
-  autocmd!
-  autocmd WinEnter * set cursorline
-  autocmd WinLeave * set nocursorline
-augroup END
-
-augroup highlight_follows_vim
-  autocmd!
-  autocmd FocusGained * set cursorline
-  autocmd FocusLost * set nocursorline
-augroup END
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin EditorConfig
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
@@ -339,6 +341,16 @@ let g:SimpylFold_docstring_preview = 1
 
 " Use two spaces indentation by default:
 let g:shfmt_extra_args = '-i 2'
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Quickfix window
+
+" Auto open
+augroup autoquickfix
+  autocmd!
+  autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd QuickFixCmdPost    l* lwindow
+augroup END
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Whitespace
