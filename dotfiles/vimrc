@@ -170,17 +170,21 @@ nnoremap <leader>m :make<cr>
 nnoremap <leader>q :b#<cr>
 nnoremap <leader>t :TTags<space>*<space>*<space>.<cr>
 
-" File open - gf - opens file under cursor in a new vertical split
+" File - open - gf - opens file under cursor in a new vertical split
 nnoremap gf :vertical wincmd f<CR>
 
-" File saving
+" File - save
 nmap <Leader>w :w<CR>
 inoremap :w <ESC>:w
 
-" Nav cd to current file dir
+" Nav - cd to current file dir
 nnoremap <silent> <F4> :lchdir %:p:h<CR>:pwd<CR>
 
-" Nav split panels with vim char motions
+" Nav - lines - nav through long, wrapped lines with ease
+nmap j gj
+nmap k gk
+
+" Nav - split panels with vim char motions
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
