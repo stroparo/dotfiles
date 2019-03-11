@@ -11,25 +11,26 @@ echo "Configure Sublime Text editor; \$0='$0'; \$PWD='$PWD'"
 
 if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
 
-  SUBL_WIN="$(cygpath "$USERPROFILE")"'/AppData/Roaming/Sublime Text 3'
+  SUBL_WIN="$(cygpath "${USERPROFILE}")"'/AppData/Roaming/Sublime Text 3'
 
   if [ -d "${SUBL_WIN}" ] ; then
     SUBL_USER="${SUBL_WIN}/Packages/User"
   fi
 
-  if [ -d "$(cygpath "$USERPROFILE")/opt/subl" ] ; then
-    SUBL_USER="$(cygpath "$USERPROFILE")/opt/subl/Data/Packages/User"
+  # Prefer an opt dir sublime_text instance instead, if any:
+  if [ -d "$(cygpath "${USERPROFILE}")/opt/subl" ] ; then
+    SUBL_USER="$(cygpath "${USERPROFILE}")/opt/subl/Data/Packages/User"
   elif [ -d "/c/opt/subl" ] ; then
     SUBL_USER="/c/opt/subl/Data/Packages/User"
   elif [ -d "/cygdrive/c/opt/subl" ] ; then
     SUBL_USER="/cygdrive/c/opt/subl/Data/Packages/User"
   fi
 elif [[ "$(uname -a)" = *[Ll]inux* ]] ; then
-  SUBL_USER="$HOME/.config/sublime-text-3/Packages/User"
+  SUBL_USER="${HOME}/.config/sublime-text-3/Packages/User"
 fi
 
-if [ ! -d "$SUBL_USER" ] ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: No SUBL_USER dir ('$SUBL_USER')." 1>&2
+if [ ! -d "${SUBL_USER}" ] ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: No SUBL_USER dir ('${SUBL_USER}')." 1>&2
   exit
 fi
 
@@ -42,10 +43,17 @@ if [ -z "$assets_dir" ] ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: No assets dir found ($assets_dir)." 1>&2
   exit 1
 fi
-assets="$(ls -1d "${assets_dir:-${DEV:-${HOME}/workspace}/dotfiles/subl3}"/*)"
+assets="$(ls -1d "${assets_dir:-${DEV:-${HOME}/workspace}/dotfiles/config/subl}"/*)"
 assets="$(echo "$assets" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
 if ! eval cp -v -L -R "${assets}" "\"${SUBL_USER}\""/ ; then
   echo "${PROGNAME:+$PROGNAME: }ERROR deploying sublimetext files." 1>&2
+fi
+
+# #############################################################################
+# Package Control ignored plugins if not in Linux
+
+if ! (uname -a | grep -i -q linux) ; then
+  sed -i -e 's#"Git#// "Git#' "${SUBL_USER}/Package Control.sublime-settings"
 fi
 
 # #############################################################################

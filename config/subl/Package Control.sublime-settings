@@ -45,6 +45,7 @@
     "SublimeLinter-rubocop",
 
     // Specific - syntax support
+    "AutoHotkey",
     "Dockerfile Syntax Highlighting",
     "VimL",
 
@@ -65,7 +66,7 @@
 
     // Specific for version control
     "Git",
-    // "GitGutter",
+    "GitGutter",
     "GitSavvy",
     "Modific",
 

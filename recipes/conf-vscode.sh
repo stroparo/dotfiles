@@ -56,7 +56,7 @@ if [ -z "$assets_dir" ] ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: No assets dir found ($assets_dir)." 1>&2
   exit 1
 fi
-assets="$(ls -1d ${assets_dir:-${DEV:-${HOME}/workspace}/dotfiles/code}/*)"
+assets="$(ls -1d ${assets_dir:-${DEV:-${HOME}/workspace}/dotfiles/config/vscode}/*)"
 assets="$(echo "$assets" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
 
 if ! eval cp -L -R "${assets}" "\"${CODE_USER_DIR}\""/ ; then
