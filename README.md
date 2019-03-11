@@ -4,7 +4,7 @@ Custom configuration files and shell script recipes.
 
 ## Requirements
 
-* [runr](https://github.com/stroparo/runr) - routine runner, be acquainted with it first by reading its README
+* [runr](https://github.com/stroparo/runr) - routine runner; its commands are given in the examples below, but if you want you could use it with whatever other scripts etc. For the latter case, access that repo and get instructions by reading its README.
 * [sudo setup](#sudo-setup)
 
 ---
@@ -89,18 +89,16 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
 
 Ensure sudo access by editing the sudoers file (```sudo visudo``` command).
 
-A handy command ready to do that edit for your user:
+Login as root then run this using your user instead of 'USER':
 
 ```bash
-sudo grep -q "$USER" /etc/sudoers || (echo "$USER ALL=(ALL) ALL" | sudo tee -a /etc/sudoers)
-# Select this whole code block, copy and paste in your terminal
+grep -q "USER" /etc/sudoers || (echo "USER ALL=(ALL) ALL" >> /etc/sudoers)
 ```
 
 Same as above but removing the password restriction for each call to sudo (not recommended):
 
 ```bash
-sudo grep -q "$USER" /etc/sudoers || (echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers)
-: # Ignore; This expedited running the above on paste; Press ENTER ;)
+grep -q "USER" /etc/sudoers || (echo "USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers)
 ```
 
 ---
