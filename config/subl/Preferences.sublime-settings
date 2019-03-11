@@ -43,7 +43,7 @@
   "theme_sidebar_font_md": true,
   "theme_sidebar_indent_lg": true,
   "theme_sidebar_size_xxs": true,
-  "theme_statusbar_colored": true,
+  "theme_statusbar_colored": false,
   "theme_statusbar_size_xs": true,
   "theme_tab_selected_underlined": true,
   "theme_tab_selected_transparent": false,
@@ -108,11 +108,6 @@
   "tree_animation_enabled": false,
   "use_simple_full_screen": true,
 
-  // Ignored Packages
-  // Babel replaced JavaScript
-  // CSS3 replaced CSS
-  "ignored_packages": ["CSS", "JavaScript", "Vintage"],
-
   // Whitespace
   "auto_indent": true,
   "detect_indentation": true,
@@ -144,5 +139,10 @@
       "__pycache__",
       "env",
       "env3"
-  ]
+  ],
+
+  // Ignored Packages
+  //    Babel replaced JavaScript
+  //    CSS3 replaced CSS
+  "ignored_packages": ["CSS", "JavaScript", "Vintage"]
 }
