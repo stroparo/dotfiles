@@ -1,6 +1,7 @@
 {
   "extensions":
   [
-    "Jenkinsfile"
+    "Jenkinsfile",
+    "promote"
   ]
 }
