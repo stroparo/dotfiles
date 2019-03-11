@@ -7,6 +7,11 @@ echo "##########################################################################
 echo "Configure Sublime Text editor; \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
+# Globals
+
+SRC_CONFIG_DIR="${RUNR_DIR:-$PWD}/config/subl"
+
+# #############################################################################
 # Prep User PATH
 
 if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
@@ -30,7 +35,7 @@ elif [[ "$(uname -a)" = *[Ll]inux* ]] ; then
 fi
 
 if [ ! -d "${SUBL_USER}" ] ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: No SUBL_USER dir ('${SUBL_USER}')." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP configuration as there is no SUBL_USER dir ('${SUBL_USER}')." 1>&2
   exit
 fi
 
@@ -38,14 +43,15 @@ fi
 # Deploy
 
 mkdir -p "${SUBL_USER}"
-assets_dir=$(dirname "$(find "${RUNR_DIR:-$PWD}" -type f -name 'Preferences.sublime-settings')")
-if [ -z "$assets_dir" ] ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: No assets dir found ($assets_dir)." 1>&2
+
+if [ -z "$SRC_CONFIG_DIR" ] ; then
+  echo "${PROGNAME:+$PROGNAME: }FATAL: No source config dir found ($SRC_CONFIG_DIR)." 1>&2
   exit 1
 fi
-assets="$(ls -1d "${assets_dir:-${DEV:-${HOME}/workspace}/dotfiles/config/subl}"/*)"
-assets="$(echo "$assets" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
-if ! eval cp -v -L -R "${assets}" "\"${SUBL_USER}\""/ ; then
+config_filenames="$(ls -1d "${SRC_CONFIG_DIR}"/*)"
+config_filenames="$(echo "$config_filenames" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
+
+if ! eval cp -v -L -R "${config_filenames}" "\"${SUBL_USER}\""/ ; then
   echo "${PROGNAME:+$PROGNAME: }ERROR deploying sublimetext files." 1>&2
 fi
 
@@ -54,6 +60,17 @@ fi
 
 if ! (uname -a | grep -i -q linux) ; then
   sed -i -e 's#"Git#// "Git#' "${SUBL_USER}/Package Control.sublime-settings"
+fi
+
+# #############################################################################
+# Packages no longer maintained, installed from this repo's assets dir
+
+if [ -d "${SUBL_USER}/../../Installed Packages" ] ; then
+  if ! cp -v -L -R "${RUNR_DIR:-$PWD}/assets/subl-Installed-Packages"/* "${SUBL_USER}/../../Installed Packages"/ ; then
+    echo "${PROGNAME:+$PROGNAME: }ERROR deploying local 'Installed Packages'." 1>&2
+  fi
+else
+  echo "${PROGNAME:+$PROGNAME: }SKIP: deployment of local 'Installed Packages' as there is no '${SUBL_USER}/../../Installed Packages' dir." 1>&2
 fi
 
 # #############################################################################

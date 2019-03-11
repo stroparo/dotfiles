@@ -9,6 +9,7 @@ echo "Configure Visual Studio Code editor; \$0='$0'; \$PWD='$PWD'"
 # #############################################################################
 # Globals
 
+SRC_CONFIG_DIR="${RUNR_DIR:-$PWD}/config/vscode"
 export VSCODE_CMD="code"
 
 # #############################################################################
@@ -47,20 +48,19 @@ sleep 8
 kill %1
 
 if [ ! -d "${CODE_USER_DIR}" ] ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP assets copy as there is no CODE_USER_DIR dir ('$CODE_USER_DIR')." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP configuration as there is no CODE_USER_DIR dir ('$CODE_USER_DIR')." 1>&2
   exit
 fi
 
-assets_dir=$(dirname "$(find "${RUNR_DIR:-$PWD}" -type f -name 'settings.json' | grep 'code')")
-if [ -z "$assets_dir" ] ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: No assets dir found ($assets_dir)." 1>&2
+if [ -z "$SRC_CONFIG_DIR" ] ; then
+  echo "${PROGNAME:+$PROGNAME: }FATAL: No source config dir found ($SRC_CONFIG_DIR)." 1>&2
   exit 1
 fi
-assets="$(ls -1d ${assets_dir:-${DEV:-${HOME}/workspace}/dotfiles/config/vscode}/*)"
-assets="$(echo "$assets" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
+config_filenames="$(ls -1d ${SRC_CONFIG_DIR}/*)"
+config_filenames="$(echo "$config_filenames" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
 
-if ! eval cp -L -R "${assets}" "\"${CODE_USER_DIR}\""/ ; then
-  echo "${PROGNAME:+$PROGNAME: }ERROR deploying VSCode files." 1>&2
+if ! eval cp -L -R "${config_filenames}" "\"${CODE_USER_DIR}\""/ ; then
+  echo "${PROGNAME:+$PROGNAME: }ERROR deploying VSCode configuration files." 1>&2
 fi
 
 # #############################################################################
