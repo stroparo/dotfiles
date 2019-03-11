@@ -9,15 +9,15 @@
   "trim_trailing_white_space_on_save": true,  // trim_trailing_whitespace = true
 
   // "font_face": "Droid Sans Mono Dotted for Powerline", "font_size": 11, // nice font_size's: TBD..13
-  "font_face": "Fira Mono for Powerline", "font_size": 11, // nice font_size's: 11..13
+  // "font_face": "Fira Mono for Powerline", "font_size": 11, // nice font_size's: 11..13
   // "font_face": "Inconsolata-dz for Powerline", "font_size": 11, // nice font_size's: TBD..13
-  // "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12, // nice font_size's: 12..15
+  "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12, // nice font_size's: 12..15
   "font_options": ["subpixel_antialias", "no_bold"],
 
   // Color & theme selections
   //
-  // "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme",
-  "color_scheme": "Packages/Theme - Afterglow/Afterglow.tmTheme",
+  "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme",
+  // "color_scheme": "Packages/Theme - Afterglow/Afterglow.tmTheme",
   // "color_scheme": "Packages/Theme - Afterglow/Afterglow-twilight.tmTheme",
   // "color_scheme": "Packages/Theme - Spacegray/base16-eighties.dark.tmTheme",
   // "theme": "Afterglow-blue.sublime-theme", // Variants: blue, green, magenta, orange
