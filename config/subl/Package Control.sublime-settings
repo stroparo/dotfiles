@@ -43,11 +43,6 @@
     "SublimeLinter-json",
     "SublimeLinter-rubocop",
 
-    // Specific - syntax support
-    "AutoHotkey",
-    "Dockerfile Syntax Highlighting",
-    "VimL",
-
     // Specific for JavaScript
     "Babel",
 
@@ -73,6 +68,12 @@
     "CSS3", // CSS3 syntax highlight support
     "Emmet Css Snippets",
     "SCSS",
+
+    // Syntax Highlight support
+    "AutoHotkey",
+    "Dockerfile Syntax Highlighting",
+    "Tmux Syntax Highlight",
+    "VimL",
 
     // Text
     // "Alignment",
