@@ -1,0 +1,8 @@
+C-a   prefix (leader)
+a     last window
+hjkl  move to pane
+HJKL  resize pane
+p     pane capture into ~/terminal...txt
+x,X   kill pane, kill session
+<,>   move/swap window
+C-c   choose buffer
