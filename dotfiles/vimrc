@@ -87,7 +87,7 @@ set ruler
 set showcmd
 set showmatch  " show matching bracket
 set showmode
-set timeoutlen=2000
+set timeout timeoutlen=1500
 set visualbell
 
 " Editor - disable core Ex mode
