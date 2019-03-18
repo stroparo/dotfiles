@@ -69,8 +69,6 @@ call plug#end()
 
 syntax on
 
-filetype indent plugin on
-
 " Leaders
 let mapleader = ","
 let maplocalleader = "\\"
@@ -127,6 +125,7 @@ set spell spelllang=en_ca
 set nospell
 
 " Text - Whitespace
+filetype indent plugin on
 set autoindent    " align the new line indent with the previous line
 set expandtab     " insert spaces when hitting TABs
 set shiftround    " round indent to multiple of 'shiftwidth'
