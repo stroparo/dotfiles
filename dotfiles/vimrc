@@ -138,6 +138,7 @@ set textwidth=127 " lines with more columns than this will be broken
 set nowrap
 set wrapmargin=0
 set wrapscan
+set list listchars=tab:\ \ ,trail:·
 
 " View - Colors if you have vim >= 8 or Neovim >= 0.1.5
 if has("gui_running")
