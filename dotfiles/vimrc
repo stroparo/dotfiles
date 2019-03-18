@@ -128,6 +128,8 @@ set nospell
 filetype indent plugin on
 set autoindent    " align the new line indent with the previous line
 set expandtab     " insert spaces when hitting TABs
+set linebreak     " break line at convenient points e.g. not in the middle of a word
+set list listchars=tab:\ \ ,trail:·
 set shiftround    " round indent to multiple of 'shiftwidth'
 set shiftwidth=2  " operation >> indents this number of columns; << unindents
 set smartindent
@@ -138,7 +140,6 @@ set textwidth=127 " lines with more columns than this will be broken
 set nowrap
 set wrapmargin=0
 set wrapscan
-set list listchars=tab:\ \ ,trail:·
 
 " View - Colors if you have vim >= 8 or Neovim >= 0.1.5
 if has("gui_running")
