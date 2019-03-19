@@ -13,7 +13,7 @@ _step_base_system () {
 }
 
 
-_step_self_provision () {
+_step_setup_ds () {
   if ! ${DS_LOADED:-false} ; then
     . "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
   fi
@@ -35,7 +35,7 @@ _step_setup () {
 
 _main () {
   _step_base_system
-  _step_self_provision
+  _step_setup_ds
   _step_setup
 }
 
