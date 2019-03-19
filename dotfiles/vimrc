@@ -91,14 +91,21 @@ set visualbell
 " Editor - disable core Ex mode
 nnoremap Q <nop>
 
+" Editor - per directory vimrc config
+set exrc
+
+" Editor - Regular expression engine eg better for Ruby files
+" Use new regex engine to get better performance in ruby files
+set regexpengine=2
+
 " File - Backup, swap etc.
 set nobackup  " don't make automatic backups
 set noswapfile
-set nowb
+set nowritebackup
 
 " File - Hidden
-" This makes vim act like all other editors, buffers can
-" exist in the background without being in a window.
+" This makes vim act like all other editors, buffers, modified or not,
+" can exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
 set hidden
 
@@ -127,9 +134,11 @@ set nospell
 " Text - Whitespace
 filetype indent plugin on
 set autoindent    " align the new line indent with the previous line
+set endofline
 set expandtab     " insert spaces when hitting TABs
+set fileformat=unix
 set linebreak     " break line at convenient points e.g. not in the middle of a word
-set list listchars=tab:\ \ ,trail:·
+set list listchars=tab:▸\ ,trail:·
 set shiftround    " round indent to multiple of 'shiftwidth'
 set shiftwidth=2  " operation >> indents this number of columns; << unindents
 set smartindent
@@ -153,6 +162,9 @@ endif
 set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
+
+" View - Macro - Do not redraw when macros are executing:
+set lazyredraw
 
 " View - Theme
 set t_Co=256
@@ -393,11 +405,9 @@ imap <leader>= <Esc> <C-w>=
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin EditorConfig
@@ -417,32 +427,35 @@ let g:shfmt_extra_args = '-i 2'
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Specific conf for filetypes
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" File entensions vs Syntax map
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
+au BufRead,BufNewFile Jenkinsfile set ft=groovy
+au BufRead,BufNewFile *.coffee set ft=coffee
+au BufNewFile,BufRead {*.json,*.es6} set ft=javascript
+au BufNewFile,BufRead {*.lr} set ft=markdown
+au BufRead,BufNewFile {*.mustache,*.hbs} set ft=mustache
+au BufRead,BufNewFile *.twig,*.tpl set ft=htmljinja
 
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ... Python
 
+" Language formatting
+
+au FileType {javascript,css,typescript,mustache,htmljinja,html}
+  \ setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2 textwidth=120 colorcolumn=119
+
+au FileType make setlocal noexpandtab
+
+au FileType markdown
+  \ setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80 colorcolumn=79
+
+" Python
 au BufNewFile,BufRead *.py
-  \ set tabstop=4 |
-  \ set softtabstop=4 |
-  \ set shiftwidth=4 |
-  \ set textwidth=79 |
-  \ set fileformat=unix
+  \ setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80 colorcolumn=79
 
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ... Ruby
-
-au BufNewFile,BufRead *.erb,*.rb
-  \ set fileformat=unix
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ... Web devel
-
-au BufNewFile,BufRead *.js,*.html,*.css
-  \ set fileformat=unix
+au FileType {ruby,cucumber,yaml,sass,scss,eruby,less}
+  \ setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2 textwidth=100 colorcolumn=99
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
