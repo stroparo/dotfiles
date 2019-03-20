@@ -161,6 +161,7 @@ endif
 " View - Folding
 set foldmethod=indent
 set foldlevel=99
+set foldnestmax=3
 nnoremap <space> za
 
 " View - Macro - Do not redraw when macros are executing:
