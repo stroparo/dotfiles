@@ -33,6 +33,9 @@ Plug 'https://github.com/tomtom/ttags_vim'
 Plug 'https://github.com/mbbill/undotree'
 Plug 'https://github.com/ajh17/VimCompletesMe'
 Plug 'https://github.com/tpope/vim-unimpaired'
+" Autocomplete
+Plug 'https://github.com/ervandew/supertab'
+Plug 'https://github.com/tpope/vim-endwise'
 " Build
 Plug 'neomake/neomake'
 " Editor
@@ -422,6 +425,24 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " Plugin Python folding SimpylFold
 
 let g:SimpylFold_docstring_preview = 1
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Ruby Seeing is Believing
+
+" Annotate every line
+nmap <leader>b :%!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk<CR>;
+
+" Annotate marked lines
+nmap <leader>n :%.!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk --xmpfilter-style<CR>;
+
+" Remove annotations
+nmap <leader>c :%.!seeing_is_believing --clean<CR>;
+
+" Mark the current line for annotation
+nnoremap <leader>m A # => <Esc>
+
+" Mark the highlighted lines for annotation
+vnoremap <leader>m :norm A # => <Esc>
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Shfmt - Shell formatting, ex command is 'Shfmt'
