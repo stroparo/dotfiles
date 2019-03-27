@@ -254,15 +254,6 @@ augroup AutoMkdir
 augroup END
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" :H topic will open an 80 columns vertical split
-
-command! -complete=help -nargs=1 H call VerticalHelp(<f-args>)
-function! VerticalHelp(topic)
-  execute "vertical botright help " . a:topic
-  execute "vertical resize 78"
-endfunction
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nav - Quickfix window
 
 " Auto open
@@ -399,10 +390,22 @@ if has("gui_running")
 endif
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Viewports / splits to be the same size
+" Viewports - windows
 
+" :H topic will open an 80 columns vertical split
+command! -complete=help -nargs=1 H call VerticalHelp(<f-args>)
+function! VerticalHelp(topic)
+  execute "vertical botright help " . a:topic
+  execute "vertical resize 78"
+endfunction
+
+" Splits to be the same size
 map <leader>= <C-w>=
 imap <leader>= <Esc> <C-w>=
+
+" Verticald pane resizing
+nnoremap <silent> <Leader>[ :exe "resize " . (winheight(0) * 5/4)<CR>
+nnoremap <silent> <Leader>] :exe "resize " . (winheight(0) * 4/5)<CR>
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
