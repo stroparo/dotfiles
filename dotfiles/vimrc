@@ -417,6 +417,12 @@ nnoremap <silent> <Leader>] :exe "resize " . (winheight(0) * 4/5)<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin commentary.vim
+" commentstring is the variable dedicated to the vim-commentary plugin.
+
+autocmd FileType apache setlocal commentstring=#\ %s
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin EditorConfig
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
@@ -464,9 +470,6 @@ au BufNewFile,BufRead {*.json,*.es6} set ft=javascript
 au BufNewFile,BufRead {*.lr} set ft=markdown
 au BufRead,BufNewFile {*.mustache,*.hbs} set ft=mustache
 au BufRead,BufNewFile *.twig,*.tpl set ft=htmljinja
-
-
-" Language formatting
 
 au FileType {javascript,css,typescript,mustache,htmljinja,html}
   \ setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2 textwidth=120 colorcolumn=119
