@@ -408,8 +408,8 @@ map <leader>= <C-w>=
 imap <leader>= <Esc> <C-w>=
 
 " Verticald pane resizing
-nnoremap <silent> <Leader>[ :exe "resize " . (winheight(0) * 5/4)<CR>
-nnoremap <silent> <Leader>] :exe "resize " . (winheight(0) * 4/5)<CR>
+nnoremap <silent> <Leader>[ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>] :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
