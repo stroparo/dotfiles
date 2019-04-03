@@ -140,7 +140,7 @@ set autoindent    " align the new line indent with the previous line
 set endofline
 set expandtab     " insert spaces when hitting TABs
 set fileformat=unix
-set linebreak     " break line at convenient points e.g. not in the middle of a word
+set nolinebreak   " break line at convenient points e.g. not in the middle of a word
 set list listchars=tab:▸\ ,trail:·
 set shiftround    " round indent to multiple of 'shiftwidth'
 set shiftwidth=2  " operation >> indents this number of columns; << unindents
