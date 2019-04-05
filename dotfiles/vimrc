@@ -113,12 +113,12 @@ set nowritebackup
 set hidden
 
 " Nav - Scrolling
-set scrolloff=8  " keeps cursor away from top/bottom of screen
+set scrolloff=0  " keeps cursor away from top/bottom of screen
 set sidescrolloff=4
 set sidescroll=0
 
 " Nav - Scrolling - Mouse scrolling in a terminal
-set mouse=a
+set mouse=
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
@@ -140,7 +140,7 @@ set autoindent    " align the new line indent with the previous line
 set endofline
 set expandtab     " insert spaces when hitting TABs
 set fileformat=unix
-set nolinebreak   " break line at convenient points e.g. not in the middle of a word
+set linebreak     " break line at convenient points e.g. not in the middle of a word
 set list listchars=tab:▸\ ,trail:·
 set shiftround    " round indent to multiple of 'shiftwidth'
 set shiftwidth=2  " operation >> indents this number of columns; << unindents
