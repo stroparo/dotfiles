@@ -164,6 +164,10 @@ if has("gui_running")
   endif
 endif
 
+" View - Cursor - Context-dependent cursor in the terminal
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7""
+
 " View - Folding
 set foldmethod=indent
 set foldlevel=99
@@ -229,6 +233,9 @@ set pastetoggle=<F3>
 " Op - Repeat also on visually selected lines
 vnoremap . :norm.<CR>
 
+" Search highlight clear
+map <Leader><Space> :nohl<CR>
+
 " Text - Insert - Completion
 inoremap <silent> ;f <C-x><C-f>
 inoremap <silent> ;i <C-x><C-i>
@@ -240,6 +247,14 @@ inoremap <silent> ;u <C-x><C-u>
 
 " Text - Insert - upcase last typed word
 inoremap ;uu <esc>viwUea
+
+" Windows pane verticals resizing
+nnoremap <silent> <Leader>[ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>] :exe "resize " . (winheight(0) * 2/3)<CR>
+
+" Window splitting to be the same size
+map <leader>= <C-w>=
+imap <leader>= <Esc> <C-w>=
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto make dir
@@ -406,14 +421,6 @@ function! VerticalHelp(topic)
   execute "vertical resize 78"
 endfunction
 
-" Splits to be the same size
-map <leader>= <C-w>=
-imap <leader>= <Esc> <C-w>=
-
-" Verticald pane resizing
-nnoremap <silent> <Leader>[ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>] :exe "resize " . (winheight(0) * 2/3)<CR>
-
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -437,7 +444,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 let g:SimpylFold_docstring_preview = 1
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin Ruby Seeing is Believing
+" Plugin Ruby Seeing is Believing +shortcuts
 
 " Annotate every line
 nmap <leader>b :%!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk<CR>;
