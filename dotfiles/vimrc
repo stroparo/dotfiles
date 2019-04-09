@@ -138,20 +138,23 @@ set nospell
 filetype indent plugin on
 set autoindent    " align the new line indent with the previous line
 set endofline
-set expandtab     " insert spaces when hitting TABs
 set fileformat=unix
 set linebreak     " break line at convenient points e.g. not in the middle of a word
 set list listchars=tab:▸\ ,trail:·
 set shiftround    " round indent to multiple of 'shiftwidth'
-set shiftwidth=2  " operation >> indents this number of columns; << unindents
 set smartindent
 set smarttab
-set softtabstop=2 " insert/delete this num of spaces when hitting a TAB/BACKSPACE
-set tabstop=2     " a hard TAB displays as this num of columns
-set textwidth=127 " lines with more columns than this will be broken
 set nowrap
 set wrapmargin=0
 set wrapscan
+
+" Text - Whitespace - indentation and tab size defaults
+set expandtab     " insert spaces when hitting TABs
+set tabstop=2     " a hard TAB displays as this num of columns
+set softtabstop=2 " insert/delete this num of spaces when hitting a TAB/BACKSPACE
+set shiftwidth=2  " operation >> indents this number of columns; << unindents
+set textwidth=127 " lines with more columns than this will be broken
+set colorcolumn=126
 
 " View - Colors if you have vim >= 8 or Neovim >= 0.1.5
 if has("gui_running")
