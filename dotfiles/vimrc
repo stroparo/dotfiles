@@ -424,7 +424,7 @@ endfunction
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins
+" Plugins configurations
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -437,6 +437,15 @@ autocmd FileType apache setlocal commentstring=#\ %s
 " Plugin EditorConfig
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin GitGutter summarization in status line
+
+" let g:gitgutter_signs=0  " disable the gitgutter lateral signs
+function! GitStatus()
+  return join(filter(map(['A','M','D'], {i,v -> v.': '.GitGutterGetHunkSummary()[i]}), 'v:val[-1:]'), ' ')
+endfunction
+set statusline+=%{GitStatus()}
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Python folding SimpylFold
