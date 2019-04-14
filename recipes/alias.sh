@@ -63,9 +63,6 @@ alias sourcevirtualenv='. ./bin/activate'
 alias xcd="alias | egrep \"'c?d \" | fgrep -v 'cd -'"
 alias xgit="alias | grep -w git"
 
-# Breaking aliases
-which vim >/dev/null 2>&1 && alias vi=vim
-
 # Clipboard
 if [ -e /dev/clipboard ]; then
   alias pbcopy='cat >/dev/clipboard'
@@ -94,103 +91,88 @@ fi
 # #############################################################################
 # Ag aka the silver searcher
 
-if which ag >/dev/null 2>&1 ; then
+alias agf='ag -F'
+alias agn='ag --line-numbers'
 
-  alias agf='ag -F'
-  alias agn='ag --line-numbers'
-
-  alias agjs='ag --js'
-  alias agp='ag --python'
-  alias agr='ag --ruby'
-  alias ags='ag --shell'
-fi
+# Search only certain filetypes:
+alias agjs='ag --js'
+alias agp='ag --python'
+alias agr='ag --ruby'
+alias ags='ag --shell'
 
 # #############################################################################
 # Docker
 
-if which docker-compose >/dev/null 2>&1 ; then
-  alias dc='docker-compose'
-  alias dce='docker-compose exec'
-fi
+alias dk='docker'
+alias dke='docker exec'
+alias dkipaddr="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 
-if which docker >/dev/null 2>&1 ; then
-  alias dk='docker'
-  alias dke='docker exec'
-  alias dkipaddr="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
-fi
+# Compose
+alias dc='docker-compose'
+alias dce='docker-compose exec'
 
 # #############################################################################
 # Git
 
-if which git >/dev/null 2>&1 ; then
+alias bv='git branch -vv'
+alias bav='git branch -avv'
+alias gfa='git fetch --all'
+alias gfap='git fetch --all -p'
+alias gfp='git fetch -p'
+alias gh='git diff HEAD'
+alias gdie='git diff --ignore-space-at-eol'
+alias glrum='git pull --rebase upstream master'
+alias gpmm='git push mirror master'
+alias gv='git mv'
 
-  alias bv='git branch -vv'
-  alias bav='git branch -avv'
-  alias gdnoeol='git diff --ignore-space-at-eol'
-  alias gfa='git fetch --all'
-  alias gfap='git fetch --all -p'
-  alias gfp='git fetch -p'
-  alias gh='git diff HEAD'
-  alias glrum='git pull --rebase upstream master'
-  alias gpmm='git push mirror master'
-  alias gv='git mv'
+# Log
+alias gas='git log --decorate --graph --all --stat'
+alias gaso='git log --decorate --graph --all --stat --oneline'
+alias glggs='git log --decorate --graph --stat'
 
-  # Log:
+# Override oh-my-zsh's (e.g. add --decorate):
+alias glg='git log --decorate --stat'
+alias glgg='git log --decorate --graph'
 
-  alias glggs='git log --decorate --graph --stat'
+# If no Oh-My-ZSH then load similar git aliases:
+if [ -z "${ZSH_THEME}" ] ; then
+  alias ga='git add'
+  alias gb='git branch'
+  alias gc='git commit -v'
+  alias gcb='git checkout -b'
+  alias gcf='git config -l'
+  alias gcl='git clone --recursive'
+  alias gco='git checkout'
+  alias gd='git diff'
+  alias gdca='git diff --cached'
+  alias gf='git fetch'
+  alias gl='git pull'
+  alias glgga='git log --decorate --graph --all'
+  alias glog='git log --decorate --graph --oneline'
+  alias gloga='git log --decorate --graph --all --oneline'
+  alias gp='git push'
+  alias grh='git reset HEAD'
+  alias grhh='git reset HEAD --hard'
+  alias gru='git reset --'
+  alias gsps='git show --pretty=short --show-signature'
+  alias gss='git status -s'
+  alias gst='git status'
+  alias gts='git tag -s'
 
-  alias glggas='git log --decorate --graph --all --stat'
-  alias gas='git log --decorate --graph --all --stat'
-
-  alias glogas='git log --decorate --graph --all --stat --oneline'
-  alias gaso='git log --decorate --graph --all --stat --oneline'
-
-  # Override oh-my-zsh's (e.g. add --decorate):
-  alias glg='git log --decorate --stat'
-  alias glgg='git log --decorate --graph'
-
-  # If no Oh-My-ZSH then load similar git aliases:
-  if [ -z "${ZSH_THEME}" ] ; then
-    alias ga='git add'
-    alias gb='git branch'
-    alias gc='git commit -v'
-    alias gcb='git checkout -b'
-    alias gcf='git config -l'
-    alias gcl='git clone --recursive'
-    alias gco='git checkout'
-    alias gd='git diff'
-    alias gdca='git diff --cached'
-    alias gf='git fetch'
-    alias gl='git pull'
-    alias glgga='git log --decorate --graph --all'
-    alias glog='git log --decorate --graph --oneline'
-    alias gloga='git log --decorate --graph --all --oneline'
-    alias gp='git push'
-    alias grh='git reset HEAD'
-    alias grhh='git reset HEAD --hard'
-    alias gru='git reset --'
-    alias gsps='git show --pretty=short --show-signature'
-    alias gss='git status -s'
-    alias gst='git status'
-    alias gts='git tag -s'
-
-    alias gr='git remote'
-    alias gra='git remote add'
-    alias grmv='git remote rename'
-    alias grrm='git remote remove'
-    alias grset='git remote set-url'
-    alias grup='git remote update'
-    alias grv='git remote -v'
-  fi
+  alias gr='git remote'
+  alias gra='git remote add'
+  alias grmv='git remote rename'
+  alias grrm='git remote remove'
+  alias grset='git remote set-url'
+  alias grup='git remote update'
+  alias grv='git remote -v'
 fi
 
 # #############################################################################
 # Gradle
 
-if which gradle >/dev/null 2>&1 ; then
-  alias gdl='gradle'
-  alias gdlc='gradle --console=plain'
-fi
+alias gdl='gradle'
+alias gdlc='gradle --console=plain'
 
 # #############################################################################
 # Kitchen
@@ -205,38 +187,44 @@ alias ktv='kitchen verify'
 # #############################################################################
 # Packaging APT dpkg etcetera
 
-if which apt >/dev/null 2>&1 || which apt-get >/dev/null 2>&1 ; then
-  alias apd='sudo aptitude'
-  alias apdup='sudo aptitude update && sudo aptitude'
-  alias apdupgrade='sudo aptitude update && sudo aptitude safe-upgrade'
-  alias apti='sudo apt install -y'
-  alias apts='apt-cache search'
-  alias aptshow='apt-cache show'
-  alias aptshowpkg='apt-cache showpkg'
-  alias aptup='sudo apt update && sudo apt'
-  alias aptupgrade='sudo apt update && sudo apt upgrade'
-  alias dpkgl='dpkg -L'
-  alias dpkgs='dpkg -s'
-  alias dpkgsel='dpkg --get-selections | egrep -i'
-  alias updalt='sudo update-alternatives'
-fi
+alias apd='sudo aptitude'
+alias apdup='sudo aptitude update && sudo aptitude'
+alias apdupgrade='sudo aptitude update && sudo aptitude safe-upgrade'
+alias apti='sudo apt install -y'
+alias apts='apt-cache search'
+alias aptshow='apt-cache show'
+alias aptshowpkg='apt-cache showpkg'
+alias aptup='sudo apt update && sudo apt'
+alias aptupgrade='sudo apt update && sudo apt upgrade'
+alias dpkgl='dpkg -L'
+alias dpkgs='dpkg -s'
+alias dpkgsel='dpkg --get-selections | egrep -i'
+alias updalt='sudo update-alternatives'
 
 # #############################################################################
 # Packaging RPM etcetera
 
-if (uname -a | grep -i -q linux) \
-  && egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release
-then
-  alias yumepel='sudo yum --enablerepo=epel'
-fi
+alias yumepel='sudo yum --enablerepo=epel'
 
 # #############################################################################
 # Tmux
 
-alias tls='tmux ls'
-alias tat='tmux attach -t'
-alias tns='tmux new-session -s'
-alias tks='tmux kill-session -t'
+alias ta='tmux attach -t'
+alias tk='tmux kill-session -t'
+alias tl='tmux ls'
+alias ts='tmux new-session -s'
+
+# #############################################################################
+# Vim
+
+if which vim >/dev/null 2>&1 ; then
+  alias vi=vim
+fi
+
+alias vim.js="vim - -c 'set syntax=javascript'"
+alias vim.py="vim - -c 'set syntax=python'"
+alias vim.pl="vim - -c 'set syntax=perl'"
+alias vim.rb="vim - -c 'set syntax=ruby'"
 
 # #############################################################################
 
