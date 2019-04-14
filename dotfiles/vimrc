@@ -428,12 +428,6 @@ endfunction
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin commentary.vim
-" commentstring is the variable dedicated to the vim-commentary plugin.
-
-autocmd FileType apache setlocal commentstring=#\ %s
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin EditorConfig
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
@@ -494,13 +488,7 @@ au BufRead,BufNewFile *.twig,*.tpl set ft=htmljinja
 au FileType {javascript,css,typescript,mustache,htmljinja,html}
   \ setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2 textwidth=120 colorcolumn=119
 
-au FileType make setlocal noexpandtab
-
-au FileType markdown
-  \ setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80 colorcolumn=79
-
-" Python
-au BufNewFile,BufRead *.py
+au FileType python
   \ setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80 colorcolumn=79
 
 au FileType {ruby,cucumber,yaml,sass,scss,eruby,less}
