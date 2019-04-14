@@ -210,6 +210,12 @@ nnoremap <leader>t :TTags<space>*<space>*<space>.<cr>
 " Editor - quit
 inoremap ;qq <ESC>:q
 
+" File - buffer cycling
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+
 " File - open - gf - opens file under cursor in a new vertical split
 nnoremap gf :vertical wincmd f<CR>
 
