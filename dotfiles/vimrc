@@ -109,10 +109,7 @@ set nobackup  " don't make automatic backups
 set noswapfile
 set nowritebackup
 
-" File - Hidden
-" This makes vim act like all other editors, buffers, modified or not,
-" can exist in the background without being in a window.
-" http://items.sjbach.com/319/configuring-vim-right
+" File - Hidden - Allow switching (auto hiding) from a modifier buffer into another
 set hidden
 
 " Nav - Scrolling
