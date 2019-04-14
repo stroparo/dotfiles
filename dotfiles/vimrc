@@ -52,6 +52,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 " Specific for Java
 Plug 'https://github.com/akhaku/vim-java-unused-imports'
+" Specific for Markdown
+Plug 'https://github.com/Scuilion/markdown-drawer'
 " Specific for Python
 Plug 'https://github.com/nvie/vim-flake8'
 Plug 'https://github.com/vim-scripts/indentpython.vim'
@@ -443,11 +445,16 @@ endfunction
 set statusline+=%{GitStatus()}
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Hexokinase - display hex/rgb colors in the sign column
+" Plugin Hexokinase - display hex/rgb colors in the sign column
 
 let g:Hexokinase_highlighters = ['sign_column']
 let g:Hexokinase_refreshEvents = ['BufWritePost']
 let g:Hexokinase_ftAutoload = ['css', 'xml']
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Markdown-drawer
+
+nnoremap <Leader>md :MarkDrawer<CR>
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Python folding SimpylFold
