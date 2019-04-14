@@ -40,6 +40,7 @@ Plug 'https://github.com/tpope/vim-endwise'
 Plug 'neomake/neomake'
 " Editor
 Plug 'https://github.com/editorconfig/editorconfig-vim'
+Plug 'https://github.com/RRethy/vim-hexokinase.git'
 Plug 'https://github.com/xtal8/traces.vim'
 Plug 'https://github.com/chaoren/vim-wordmotion'
 Plug 'https://github.com/fvictorio/vim-yank-queue'
@@ -440,6 +441,13 @@ function! GitStatus()
   return join(filter(map(['A','M','D'], {i,v -> v.': '.GitGutterGetHunkSummary()[i]}), 'v:val[-1:]'), ' ')
 endfunction
 set statusline+=%{GitStatus()}
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Hexokinase - display hex/rgb colors in the sign column
+
+let g:Hexokinase_highlighters = ['sign_column']
+let g:Hexokinase_refreshEvents = ['BufWritePost']
+let g:Hexokinase_ftAutoload = ['css', 'xml']
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Python folding SimpylFold
