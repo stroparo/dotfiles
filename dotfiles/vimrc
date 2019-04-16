@@ -61,6 +61,7 @@ Plug 'https://github.com/tmhedberg/SimpylFold'
 " Specific for Tmux
 Plug 'https://github.com/tmux-plugins/vim-tmux'
 Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events'
+Plug 'https://github.com/christoomey/vim-tmux-navigator'
 " Version control
 Plug 'https://github.com/airblade/vim-gitgutter'
 " Visuals
