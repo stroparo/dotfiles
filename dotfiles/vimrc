@@ -84,6 +84,7 @@ let maplocalleader = "\\"
 set autoread
 set backspace=indent,eol,start
 set encoding=utf-8
+" set formatoptions=lt...?
 set gcr=a:blinkon0  " Disable cursor blink
 set history=1000  " Store lots of :cmdline history
 set magic
@@ -145,7 +146,7 @@ set list listchars=tab:▸\ ,trail:·
 set shiftround    " round indent to multiple of 'shiftwidth'
 set smartindent
 set smarttab
-set nowrap
+set wrap
 set wrapmargin=0
 set wrapscan
 
@@ -154,8 +155,8 @@ set expandtab     " insert spaces when hitting TABs
 set tabstop=2     " a hard TAB displays as this num of columns
 set softtabstop=2 " insert/delete this num of spaces when hitting a TAB/BACKSPACE
 set shiftwidth=2  " operation >> indents this number of columns; << unindents
-set textwidth=127 " lines with more columns than this will be broken
-set colorcolumn=126
+set textwidth=99  " lines with more columns than this will be broken
+set colorcolumn=98
 
 " View - Colors if you have vim >= 8 or Neovim >= 0.1.5
 if has("gui_running")
@@ -505,12 +506,12 @@ au BufRead,BufNewFile {*.mustache,*.hbs} set ft=mustache
 au BufRead,BufNewFile *.twig,*.tpl set ft=htmljinja
 
 au FileType {javascript,css,typescript,mustache,htmljinja,html}
-  \ setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2 textwidth=120 colorcolumn=119
+  \ setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 
 au FileType python
-  \ setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80 colorcolumn=79
+  \ setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 colorcolumn=78
 
 au FileType {ruby,cucumber,yaml,sass,scss,eruby,less}
-  \ setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2 textwidth=100 colorcolumn=99
+  \ setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
