@@ -50,6 +50,8 @@ Plug 'https://github.com/z0mbix/vim-shfmt', { 'for': 'sh' }
 Plug 'https://github.com/mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
 Plug 'junegunn/fzf.vim'
+" Syntax support for multiple languages
+Plug 'https://github.com/sheerun/vim-polyglot'
 " Specific for Java
 Plug 'https://github.com/akhaku/vim-java-unused-imports'
 " Specific for Markdown
