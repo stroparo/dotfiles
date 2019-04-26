@@ -209,10 +209,10 @@ alias yumepel='sudo yum --enablerepo=epel'
 # #############################################################################
 # Tmux
 
-alias ta='tmux attach -t'
-alias tk='tmux kill-session -t'
-alias tl='tmux ls'
-alias ts='tmux new-session -s'
+alias xa='tmux attach -t'
+alias xk='tmux kill-session -t'
+alias xl='tmux ls'
+alias xs='tmux new-session -s'
 
 # #############################################################################
 # Vim
