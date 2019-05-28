@@ -17,7 +17,7 @@ The script is self provisioned, just copy & paste the following block in a termi
 {
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
-  entry.sh shell apps alias dotfiles
+  entry.sh shell apps dotfiles
 . "${DS_HOME:-$HOME/.ds}/ds.sh"
 . ~/.aliases-cs
 }
