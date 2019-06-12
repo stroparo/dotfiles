@@ -21,6 +21,7 @@ _step_custom () {
   fi
 
   export PROVISION_OPTIONS="${PROVISION_OPTIONS} xfce"
+  export RUNR_QUIET=true
   runr provision-stroparo
   runr disable-ipv6
   runr setupkeybk380
