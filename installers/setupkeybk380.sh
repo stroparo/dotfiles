@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-# Daily Shells Stroparo extensions
+PROGNAME='setupkeybk380.sh'
 
 # #############################################################################
 # Checks
 
 if ! (uname -a | grep -i -q linux) ; then
-  echo "SKIP: Not on Linux." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Only Linux is supported."
   exit
 fi
 
@@ -19,7 +19,11 @@ K380_PATH=/srv/k380-function-keys-conf
 # #############################################################################
 # Main
 
-echo ${BASH_VERSION:+-e} "\n\n==> Started '$0'"
+sudo mkdir /srv 2>/dev/null
+if [ ! -d /srv ] ; then
+  echo "${PROGNAME:+$PROGNAME: }FATAL: No /srv dir, nor could this script create it." 1>&2
+  exit 1
+fi
 
 sudo git clone "$K380_GIT" "$K380_PATH" \
   && cd "$K380_PATH" \
@@ -29,5 +33,10 @@ sudo git clone "$K380_GIT" "$K380_PATH" \
   && sudo cp /srv/k380-function-keys-conf/80-k380.rules /etc/udev/rules.d/ \
   && set +x \
   && sudo udevadm control -R \
-  && ls -l /etc/udev/rules.d/80-k380.rules \
-  && echo "OK: built successfully"
+  && ls -l /etc/udev/rules.d/80-k380.rules
+if [ $? -eq 0 ] ; then
+  echo "${PROGNAME:+$PROGNAME: }INFO: Logitech K380 keyboard configured successfully."
+else
+  echo "${PROGNAME:+$PROGNAME: }FATAL: Error configuring the Logitech K380 keyboard." 1>&2
+  exit 1
+fi
