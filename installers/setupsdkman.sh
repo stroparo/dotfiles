@@ -40,10 +40,12 @@ EOF
 # Reqs
 
 if ! which zip ; then
-  if egrep -i -q -r 'debian|ubuntu' /etc/*release 2>/dev/null ; then
-    sudo apt update && sudo apt install -y zip
-  elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release 2>/dev/null ; then
-    sudo yum install -y zip
+  if (uname -a | grep -i -q linux) ; then
+    if egrep -i -q -r 'debian|ubuntu' /etc/*release 2>/dev/null ; then
+      sudo apt update && sudo apt install -y zip
+    elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release 2>/dev/null ; then
+      sudo yum install -y zip
+    fi
   fi
 fi
 if ! which zip ; then
