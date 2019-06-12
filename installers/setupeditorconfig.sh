@@ -2,19 +2,30 @@
 
 PROGNAME="setupeditorconfig.sh"
 
+_end_bar () { echo "////////////////////////////////////////////////////////////////////////////////" ; }
+
 echo
 echo "################################################################################"
 echo "Setup Editor Config; \$0='$0'; \$PWD='$PWD'"
+
+# Check Linux:
+if !(uname -a | grep -i -q linux) ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Only Linux is supported." 1>&2
+  _end_bar
+  exit
+fi
 
 if (sudo apt list --installed | grep -q '^editorconfig') \
   || (sudo yum list installed | grep -q '^editorconfig')
 then
   echo "${PROGNAME:+$PROGNAME: }SKIP: already installed." 1>&2
+  _end_bar
   exit
 fi
 
 if [ ! -f "${DS_HOME:-$HOME/.ds}/scripts/pkgupdate.sh" ] ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: Daily Shells must be installed." 1>&2
+  _end_bar
   exit 1
 fi
 
@@ -37,4 +48,4 @@ sudo ${INSTPROG} install -y editorconfig
 # Final sequence
 
 echo "${PROGNAME:+$PROGNAME: }COMPLETE"
-echo
+_end_bar
