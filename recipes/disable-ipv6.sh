@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
-PROGNAME="ipv6off.sh"
+PROGNAME="disable-ipv6.sh"
 
 echo
 echo "################################################################################"
 echo "Disabling IPv6; \$0='$0'; \$PWD='$PWD'"
+
+if !(uname -a | grep -i -q linux) ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Only Linux is supported." 1>&2
+  exit
+fi
 
 if sudo grep -r -q "GRUB_CMDLINE_LINUX_DEFAULT.*ipv6.disable=1" /etc/default/grub /etc/default/grub.d ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: IPv6 already disabled via grub default file." 1>&2
