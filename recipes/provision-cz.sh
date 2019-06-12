@@ -25,8 +25,8 @@ _step_custom () {
   runr disable-ipv6
   runr setupkeybk380
 
-  "${DS_HOME:-$HOME/.ds}"/scripts/stsetupautostart.sh
-  "${DS_HOME:-$HOME/.ds}"/recipes/cz-conf-git.sh
+  bash "${DS_HOME:-$HOME/.ds}"/scripts/stsetupautostart.sh
+  bash "${DS_HOME:-$HOME/.ds}"/recipes/cz-conf-git.sh
 
   echo; echo "==> czsetup.sh <=="
   echo
