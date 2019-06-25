@@ -16,19 +16,7 @@ _error_exit () {
 }
 
 _setup_sdkman_profile () {
-  if (uname -a | grep -i -q linux) ; then
-    if [ ! -f /etc/profile.d/sdkman.sh ] ; then
-      cat <<EOF | sudo tee /etc/profile.d/sdkman.sh > /dev/null
-export SDKMAN_DIR="${SDKMAN_DIR}"
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-EOF
-      chmod 755 /etc/profile.d/sdkman.sh
-    fi
-
-    if [ ! -f /etc/profile.d/sdkman.sh ] ; then
-      _error_exit
-    fi
-  elif ! egrep -i -q 'SDKMAN_DIR=' ~/.bashrc ; then
+  if ! egrep -i -q 'SDKMAN_DIR=' ~/.bashrc ; then
     cat <<EOF | tee ~/.bashrc ~/.zshrc > /dev/null
 export SDKMAN_DIR="${SDKMAN_DIR}"
 [[ -s "\${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "\${SDKMAN_DIR}/bin/sdkman-init.sh"
