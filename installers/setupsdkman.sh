@@ -5,7 +5,7 @@ PROGNAME="setupsdkman.sh"
 # #############################################################################
 # Globals
 
-export SDKMAN_DIR="/usr/local/sdkman"
+export SDKMAN_DIR="${HOME}/.sdkman"
 
 # #############################################################################
 # Functions
@@ -31,7 +31,7 @@ EOF
   elif ! egrep -i -q 'SDKMAN_DIR=' ~/.bashrc ; then
     cat <<EOF | tee ~/.bashrc ~/.zshrc > /dev/null
 export SDKMAN_DIR="${SDKMAN_DIR}"
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+[[ -s "\${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "\${SDKMAN_DIR}/bin/sdkman-init.sh"
 EOF
   fi
 }
@@ -56,7 +56,7 @@ fi
 # #############################################################################
 # Main
 
-if ! curl -s "https://get.sdkman.io" | sudo -E bash ; then
+if ! curl -s "https://get.sdkman.io" | bash ; then
   _error_exit
 fi
 
