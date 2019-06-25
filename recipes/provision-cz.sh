@@ -25,9 +25,8 @@ _step_custom () {
   runr provision-stroparo
   runr setupkeybk380
 
-  bash "${DS_HOME:-$HOME/.ds}"/scripts/stsetupautostart.sh
   bash "${DS_HOME:-$HOME/.ds}"/recipes/cz-conf-git.sh
-
+  bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh
   echo; echo "==> czsetup.sh <=="
   echo
   echo "Review script \$DS_HOME/.../cz*filesystem*.sh" 1>&2
