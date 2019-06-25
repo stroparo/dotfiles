@@ -56,7 +56,7 @@ fi
 # #############################################################################
 # Main
 
-if ! curl -s "https://get.sdkman.io" | bash ; then
+if ! curl -s "https://get.sdkman.io" | sudo bash ; then
   _error_exit
 fi
 
