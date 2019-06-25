@@ -16,7 +16,7 @@ if !(uname -a | grep -i -q linux) ; then
 fi
 
 if (sudo apt list --installed | grep -q '^golang-any') \
-  || (sudo apt list --installed | grep -q '^golang-go')
+  || (sudo apt list --installed | grep -q '^golang-go') \
   || (sudo yum list installed | grep -q '^golang')
 then
   echo "${PROGNAME:+$PROGNAME: }SKIP: already installed." 1>&2

@@ -75,6 +75,7 @@ _install_packages zlib1g zlib1g-dev
 echo "Debian security packages..."
 _install_packages gnupg pwgen
 _install_packages oathtool
+_install_packages ssh-askpass
 
 # #############################################################################
 # Cleanup

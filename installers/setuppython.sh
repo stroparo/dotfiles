@@ -15,9 +15,7 @@ export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 # #############################################################################
 # Check OS
 
-if [ ! -f /etc/*release ] \
-  || ! egrep -i -q -r 'debian|ubuntu|centos|fedora|oracle|red *hat' /etc/*release
-then
+if ! egrep -i -q -r 'debian|ubuntu|centos|fedora|oracle|red *hat' /etc/*release ; then
   echo "$PROGNAME: SKIP: Only Debian and Enterprise Linux distributions are supported." 1>&2
   exit
 fi
