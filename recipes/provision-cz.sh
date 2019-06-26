@@ -20,10 +20,9 @@ _step_custom () {
     exit 1
   fi
 
-  export PROVISION_OPTIONS="${PROVISION_OPTIONS} xfce"
+  export PROVISION_OPTIONS="${PROVISION_OPTIONS} gui xfce"
   export RUNR_QUIET=true
   runr provision-stroparo
-  runr setupkeybk380
 
   bash "${DS_HOME:-$HOME/.ds}"/recipes/cz-conf-git.sh
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh
