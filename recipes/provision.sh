@@ -47,7 +47,7 @@ if [[ $PROVISION_OPTIONS = *gui* ]] ; then
   if [[ $PROVISION_OPTIONS != *nodevel* ]] ; then
     bash "${RUNR_DIR:-.}"/recipes/powerline-fonts.sh
     bash "${RUNR_DIR:-.}"/recipes/subl.sh
-    bash "${RUNR_DIR:-.}"/recipes/vscode.sh
+    # TODO implement bash "${RUNR_DIR:-.}"/recipes/vscodium.sh
   fi
 fi
 
