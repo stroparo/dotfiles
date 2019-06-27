@@ -100,6 +100,7 @@ sudo $INSTPROG install -y joy2key joystick inputattach
 sudo $INSTPROG install -y visualboyadvance-gtk
 
 # Etc - Multimedia
+sudo $INSTPROG install -y asunder # CD ripper
 sudo $INSTPROG install -y gnome-alsamixer pulseaudio-equalizer pavucontrol volumeicon-alsa
 sudo $INSTPROG install -y audacious audacious-plugins
 sudo $INSTPROG install -y mpv
