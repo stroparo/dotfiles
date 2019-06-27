@@ -45,6 +45,7 @@ if [[ $PROVISION_OPTIONS = *gui* ]] ; then
     else
       # TODO review setuprdp with no args:
       # bash "${RUNR_DIR:-.}"/installers/setuprdp.sh
+      :
     fi
   fi
 
