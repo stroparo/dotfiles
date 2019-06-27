@@ -28,6 +28,21 @@ ZEAL_URL="https://github.com/zealdocs/zeal/archive/master.zip"
 # Build functions
 
 
+_install_qt_5_9_5 () {
+  if [ -e /opt/Qt5.9.5 ] ; then
+    return
+  fi
+  if [ ! -e /opt/installers ] ; then
+    sudo mkdir /opt/installers
+  fi
+  if [ ! -e '/opt/installers/qt-5-9-5.run' ] ; then
+    sudo curl -LSf -o '/opt/installers/qt-5-9-5.run' "https://download.qt.io/official_releases/qt/5.9/5.9.5/qt-opensource-linux-x64-5.9.5.run"
+  fi
+  sudo chmod 700 '/opt/installers/qt-5-9-5.run'
+  sudo '/opt/installers/qt-5-9-5.run'
+}
+
+
 _install_system_deps () {
   echo ${BASH_VERSION:+-e} "\n==> Installing dependencies..."
   if egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
@@ -35,16 +50,21 @@ _install_system_deps () {
     echo "${PROGNAME:+$PROGNAME: }SKIP: Enterprise Linux distributions still not supported." 1>&2
     exit
   elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
-    sudo $APTPROG install -y cmake extra-cmake-modules libqt5webkit5-dev libqt5x11extras5-dev libarchive-dev libsqlite3-dev libxcb-keysyms1-dev
+    sudo "${APTPROG:-apt-get}" install -y cmake extra-cmake-modules libqt5webkit5-dev libqt5x11extras5-dev libarchive-dev libsqlite3-dev libxcb-keysyms1-dev
+    _install_qt_5_9_5
+
+    # TODO debug why cmake and make are not picking this Qt version up:
+    export LD_LIBRARY_PATH="/opt/Qt5.9.5/5.9.5/gcc_64/lib:$LD_LIBRARY_PATH"
   fi
 }
 
 
 _build_main () {
-  if which zeal >/dev/null 2>&1 && [ -d "${WORKDIR}"/."zeal" ] ; then
+  if which zeal >/dev/null 2>&1 && [ -d "${WORKDIR}/.zeal" ] ; then
     echo "${PROGNAME:+$PROGNAME: }SKIP: zeal likely already built and installed." 1>&2
     return
   fi
+  rm -rf "${WORKDIR}/zeal-master" "${WORKDIR}/.zeal" >/dev/null 2>&1
 
   _install_system_deps
 
@@ -59,6 +79,7 @@ _build_main () {
   cmake ..
   make
   sudo make install
+  rm -rf "${WORKDIR}/.zeal"
 }
 
 
