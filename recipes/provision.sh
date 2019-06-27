@@ -31,15 +31,15 @@ if [[ $PROVISION_OPTIONS = *gui* ]] ; then
     fi
   }
 
-  if [[ $PROVISION_OPTIONS != *chrome* ]] ; then
+  if [[ $PROVISION_OPTIONS = *chrome* ]] ; then
     bash "${RUNR_DIR:-.}"/installers/setupchrome.sh
   fi
 
-  if [[ $PROVISION_OPTIONS != *edu* ]] ; then
+  if [[ $PROVISION_OPTIONS = *edu* ]] ; then
     bash "${RUNR_DIR:-.}"/installers/setupanki.sh
   fi
 
-  if [[ $PROVISION_OPTIONS != *rdp* ]] ; then
+  if [[ $PROVISION_OPTIONS = *rdp* ]] ; then
     if [[ $PROVISION_OPTIONS = *xfce* ]] ; then
       bash "${RUNR_DIR:-.}"/installers/setuprdp.sh xfce
     else
