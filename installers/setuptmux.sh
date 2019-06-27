@@ -97,7 +97,7 @@ _build_deps () {
 }
 
 
-_build_tmux () {
+_build_main () {
 
   cd "$WORKDIR"
 
@@ -135,7 +135,7 @@ if [ ! -d "$PREFIX" ] ; then
   exit 1
 fi
 
-_build_tmux
+_build_main
 _install_plugin_manager
 
 echo "FINISHED tmux setup"
