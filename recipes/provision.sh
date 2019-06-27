@@ -15,18 +15,33 @@ fi
 # Desktop
 if [[ $PROVISION_OPTIONS = *gui* ]] ; then
 
-  if [[ $PROVISION_OPTIONS = *workstation* ]] && (uname | grep -i -q linux) ; then
-    bash "${RUNR_DIR:-.}"/recipes/base-el7-gui.sh
-    bash "${RUNR_DIR:-.}"/recipes/base-el7-gui-fonts.sh
-    bash "${RUNR_DIR:-.}"/recipes/apps-el-desktop.sh
-    bash "${RUNR_DIR:-.}"/installers/setupchrome.sh
-    bash "${RUNR_DIR:-.}"/installers/setuprdp.sh xfce
-  else
+  # Base
+  {
+    if [[ $PROVISION_OPTIONS = *el7* ]] && (uname | grep -i -q linux) ; then
+      bash "${RUNR_DIR:-.}"/recipes/base-el7-gui.sh
+      bash "${RUNR_DIR:-.}"/recipes/base-el7-gui-fonts.sh
+    fi
+    if [[ $PROVISION_OPTIONS = *xfce* ]] ; then
+      bash "${RUNR_DIR:-.}"/recipes/xfce.sh
+    fi
     bash "${RUNR_DIR:-.}"/recipes/apps-desktop.sh
+  }
+
+  if [[ $PROVISION_OPTIONS != *chrome* ]] ; then
+    bash "${RUNR_DIR:-.}"/installers/setupchrome.sh
   fi
 
-  if [[ $PROVISION_OPTIONS = *xfce* ]] && (uname | grep -i -q linux) ; then
-    bash "${RUNR_DIR:-.}"/recipes/xfce.sh
+  if [[ $PROVISION_OPTIONS != *edu* ]] ; then
+    bash "${RUNR_DIR:-.}"/installers/setupanki.sh
+  fi
+
+  if [[ $PROVISION_OPTIONS != *rdp* ]] ; then
+    if [[ $PROVISION_OPTIONS = *xfce* ]] ; then
+      bash "${RUNR_DIR:-.}"/installers/setuprdp.sh xfce
+    else
+      # TODO review setuprdp with no args:
+      # bash "${RUNR_DIR:-.}"/installers/setuprdp.sh
+    fi
   fi
 
   if [[ $PROVISION_OPTIONS != *nodevel* ]] ; then

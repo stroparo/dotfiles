@@ -68,7 +68,7 @@ sudo $APTPROG autoremove -y
 sudo $APTPROG clean -y
 
 # #############################################################################
-_print_header "Debian GUI app recommendations"
+_print_header "Debian GUI app recommendations > ~/README-debian-gui-apps.lst"
 
 cat <<EOF | tee ~/README-debian-gui-apps.lst
 # Favorites

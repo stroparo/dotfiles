@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+if ! (uname -a | grep -i linux) ; then exit ; fi
+
 # #############################################################################
 # Globals
 
