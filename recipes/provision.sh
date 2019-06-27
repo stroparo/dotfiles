@@ -8,7 +8,9 @@
 
 # Base
 if ! ${STEP_BASE_SYSTEM_DONE:-false} ; then # Avoid redundancy with other provisioning scripts
-  bash "${RUNR_DIR:-.}"/recipes/apps.sh
+  if [[ $PROVISION_OPTIONS != *noapps* ]] ; then
+    bash "${RUNR_DIR:-.}"/recipes/apps.sh
+  fi
   bash "${RUNR_DIR:-.}"/recipes/shell.sh
 fi
 
@@ -24,7 +26,9 @@ if [[ $PROVISION_OPTIONS = *gui* ]] ; then
     if [[ $PROVISION_OPTIONS = *xfce* ]] ; then
       bash "${RUNR_DIR:-.}"/recipes/xfce.sh
     fi
-    bash "${RUNR_DIR:-.}"/recipes/apps-desktop.sh
+    if [[ $PROVISION_OPTIONS != *noapps* ]] ; then
+      bash "${RUNR_DIR:-.}"/recipes/apps-desktop.sh
+    fi
   }
 
   if [[ $PROVISION_OPTIONS != *chrome* ]] ; then
