@@ -88,6 +88,14 @@ else
   alias lt='ls -Flrt'
 fi
 
+# Ls-like exa
+if which exa >/dev/null 2>&1 ; then
+  alias exa='exa --color=auto'
+  alias x='exa -hil'
+  alias xx='exa -hil -a'
+  alias xm='exa -hil -mr'
+fi
+
 # #############################################################################
 # Ag aka the silver searcher
 
