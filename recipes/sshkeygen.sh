@@ -22,6 +22,7 @@ if [ ! -e "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
 fi
 if [ ! -e "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: No Daily Shells directory available." 1>&2
+  echo
   exit 1
 fi
 
@@ -31,10 +32,22 @@ fi
 mkdir ~/.ssh 2>/dev/null
 if [ ! -d ~/.ssh ] ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: Could not create ~/.ssh directory." 1>&2
+  echo
   exit 1
 fi
 
-"${DS_HOME:-$HOME/.ds}"/scripts/sshkeygenrsa.sh
+# Create a key only if there is none loaded:
+SSH_ENV="$HOME/.ssh/environment"
+if [ -f "$SSH_ENV" ] ; then
+  . "$SSH_ENV"
+fi
+if [ -z "$(ssh-add -l)" ] ; then
+  "${DS_HOME:-$HOME/.ds}"/scripts/sshkeygenrsa.sh
+else
+  echo "${PROGNAME:+$PROGNAME: }SKIP: There already is an active ssh-agent." 1>&2
+  echo
+  exit
+fi
 
 # #############################################################################
 # Finish
