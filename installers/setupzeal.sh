@@ -4,14 +4,15 @@ set -e
 
 PROGNAME="setupzeal.sh"
 
-if !(uname -a | grep -i -q linux) ; then
-  echo "SKIP: Only Linux is supported." 1>&2
-  exit
-fi
-
 echo
 echo "################################################################################"
 echo "Zeal dev docs manager setup..."
+
+if !(uname -a | grep -i -q linux) ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Only Linux is supported." 1>&2
+  echo "////////////////////////////////////////////////////////////////////////////////"
+  exit
+fi
 
 # #############################################################################
 # Globals
