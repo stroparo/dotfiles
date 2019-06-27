@@ -59,6 +59,7 @@ _install_packages gnome-shell-pomodoro
 
 echo ${BASH_VERSION:+-e} "Debian desktop - miscellaneous packages..."
 _install_packages autorenamer
+_install_packages slop # GUI region selection, used by other apps such as screenkey
 
 # #############################################################################
 _print_header "Debian APT repository clean up..."
