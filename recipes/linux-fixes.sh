@@ -3,8 +3,13 @@
 (uname | grep -i -q linux) || exit
 
 echo "################################################################################"
-echo "Applying fixes list in '$0'..."
+echo "Applying Linux fixes in '${RUNR_DIR:-.}/recipes-linux-fixes'..."
 
-bash "${RUNR_DIR:-.}"/fixes/fix-apt-modes.sh
-bash "${RUNR_DIR:-.}"/fixes/fix-fedora-input.sh
-bash "${RUNR_DIR:-.}"/fixes/fix-guake-python2.sh
+for fix in "${RUNR_DIR:-.}"/recipes-linux-fixes/fix-* ; do
+  bash "${fix}"
+done
+
+echo
+echo "////////////////////////////////////////////////////////////////////////////////"
+echo
+

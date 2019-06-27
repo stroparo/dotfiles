@@ -1,4 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
+if [ ! -e "${HOME}/.dropbox-dist/dropboxd" ] ; then
+  exit
+fi
 
 # Desktop tray workaround (export empty DBUS_SESSION_BUS_ADDRESS for process).
 # This approach doesnt work as Dropbox often updates itself:
