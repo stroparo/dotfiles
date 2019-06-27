@@ -34,7 +34,7 @@
   "tabs_padding_small": true,
 
   // Attributes for theme: Boxy
-  "theme_accent_purple": true, // Variants: mono, cyan, green, numix, purple, sky, tangerine
+  "theme_accent_numix": true, // Variants: mono, cyan, green, numix, purple, sky, tangerine
   "theme_autocomplete_item_selected_colored": true,
   "theme_bar": true,
   "theme_bar_colored": false,
