@@ -18,7 +18,7 @@ export DS_SETUP_URL_ALT="https://raw.githubusercontent.com/stroparo/ds/master/se
 
 if which curl >/dev/null 2>&1 ; then
   export DLPROG=curl
-  export DLOPT='-LSfs'
+  export DLOPT='--tlsv1.3 -LSfs'
   if ${IGNORE_SSL:-false} ; then
     export DLOPT="-k ${DLOPT}"
   fi
