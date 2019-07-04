@@ -69,7 +69,7 @@ if egrep -i -q -r 'fedora' /etc/*release 2>/dev/null ; then
 
   _print_header "Fedora - Stacer monitor dashboard..."
 
-  curl -kLSf -o ~/stacer.rpm "$URL_STACER" \
+  curl --tlsv1.3 -kLSf -o ~/stacer.rpm "$URL_STACER" \
     && $INSTPROG install -q -y ~/stacer.rpm \
     && rm ~/stacer.rpm
 

@@ -34,7 +34,7 @@ echo "... for this sequence to continue."
 echo
 
 if [ ! -d "${HOME}/.oh-my-zsh" ] ; then
-  sh -c "$(curl -LSfs "${OMZ_URL}")"
+  sh -c "$(curl --tlsv1.3 -LSfs "${OMZ_URL}")"
 fi
 
 # Restore pre-oh-my-zsh backup:

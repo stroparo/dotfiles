@@ -65,7 +65,7 @@ _build_libevent () {
   cd "$WORKDIR"
 
   if [ ! -e libevent-$LIBEVENT_VERSION.tar.gz ] ; then
-    curl -LSfs -o libevent-$LIBEVENT_VERSION.tar.gz "$LIBEVENT_URL"
+    curl --tlsv1.3 -LSfs -o libevent-$LIBEVENT_VERSION.tar.gz "$LIBEVENT_URL"
   fi
   tar -xzf ./libevent-$LIBEVENT_VERSION.tar.gz
   cd libevent-$LIBEVENT_VERSION-stable
@@ -109,7 +109,7 @@ _build_main () {
   _build_deps
 
   if [ ! -e ./."tmux-$TMUX_VERSION".tar.gz ] ; then
-    curl -LSfs -o ./."tmux-$TMUX_VERSION".tar.gz "$TMUX_URL"
+    curl --tlsv1.3 -LSfs -o ./."tmux-$TMUX_VERSION".tar.gz "$TMUX_URL"
   fi
   tar -xzf ./."tmux-$TMUX_VERSION".tar.gz
   mv "tmux-$TMUX_VERSION" ."tmux-$TMUX_VERSION"
