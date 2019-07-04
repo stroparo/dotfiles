@@ -31,7 +31,7 @@ fi
 
 # Download docker-compose as a last resort if all else fails:
 if ! type docker-compose >/dev/null 2>&1 ; then
-  sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+  sudo curl --tlsv1.3 -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
   sudo chmod +x /usr/local/bin/docker-compose
 fi
 
