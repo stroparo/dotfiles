@@ -41,10 +41,10 @@ _install_fresh () {
 
 
 _main () {
-  if [ ! -f "${DS_HOME}/ds.sh" ] ; then
+  if [ ! -f "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
     _install_fresh
-  elif [ -f "${HOME}/.ds/ds.sh" ] ; then
-    . "${HOME}/.ds/ds.sh" && dsupgrade
+  elif [ -f "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
+    . "${DS_HOME:-$HOME/.ds}/ds.sh" && dsupgrade
   fi
   echo "${PROGNAME}: FINISHED Daily Shells setup"
   echo
