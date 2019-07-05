@@ -14,11 +14,8 @@ _step_base_system () {
 
 
 _step_setup_ds () {
-  if ! ${DS_LOADED:-false} ; then
-    . "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
-  fi
-  dsplugin.sh "stroparo@bitbucket.org/stroparo/ds-stroparo" \
-    || dsplugin.sh "stroparo@github.com/stroparo/ds-stroparo"
+  "${DS_HOME:-$HOME/.ds}/scripts/dsplugin.sh" "stroparo@bitbucket.org/stroparo/ds-stroparo" \
+    || "${DS_HOME:-$HOME/.ds}/scripts/dsplugin.sh" "stroparo@github.com/stroparo/ds-stroparo"
   dsload || . "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
 }
 
