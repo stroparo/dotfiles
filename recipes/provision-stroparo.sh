@@ -24,9 +24,9 @@ _step_setup_ds () {
 
 
 _step_setup () {
-  runr dotfiles
-  runr git
-  runr provision
+  runr -c dotfiles
+  runr -c git
+  runr -c provision
 
   selects-python-stroparo.sh
   st-conf-git.sh

@@ -22,7 +22,7 @@ _step_custom () {
 
   export PROVISION_OPTIONS="${PROVISION_OPTIONS} gui xfce"
   export RUNR_QUIET=true
-  runr provision-stroparo
+  runr -c provision-stroparo
 
   bash "${DS_HOME:-$HOME/.ds}"/recipes/cz-conf-git.sh
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh
