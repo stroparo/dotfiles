@@ -16,18 +16,29 @@ export DS_HOME="$(eval echo "\"${DS_INSTALL_DIR}\"")"
 export DS_SETUP_URL="https://bitbucket.org/stroparo/ds/raw/master/setup.sh"
 export DS_SETUP_URL_ALT="https://raw.githubusercontent.com/stroparo/ds/master/setup.sh"
 
+DS_SETUP_BASENAME="${DS_SETUP_URL##*/}"
+: ${DS_SETUP_BASENAME:=setup.sh}
+export DS_SETUP_BASENAME
+
+# Setup the downloader program (curl/wget)
+_no_download_program () {
+  echo "${PROGNAME} (ds): FATAL: curl and wget missing" 1>&2
+  exit 1
+}
+export DLOPTEXTRA
 if which curl >/dev/null 2>&1 ; then
   export DLPROG=curl
-  export DLOPT='--tlsv1.3 -LSfs'
+  export DLOPT='-LSfs'
+  export DLOUT='-o'
   if ${IGNORE_SSL:-false} ; then
     export DLOPT="-k ${DLOPT}"
   fi
 elif which wget >/dev/null 2>&1 ; then
   export DLPROG=wget
-  export DLOPT='-O -'
+  export DLOPT=''
+  export DLOUT='-O'
 else
-  echo "${PROGNAME:+${PROGNAME}: }FATAL: curl and wget missing" 1>&2
-  exit 1
+  export DLPROG=_no_download_program
 fi
 
 
@@ -36,7 +47,9 @@ _install_fresh () {
   # Forced unset eg for when in an old DS loaded session but having removed DS:
   export DS_LOADED=false
 
-  bash -c "$(${DLPROG} ${DLOPT} "${DS_SETUP_URL}" || ${DLPROG} ${DLOPT} "${DS_SETUP_URL_ALT}")" setup.sh "${DS_INSTALL_DIR}"
+  bash -c "$(${DLPROG} ${DLOPT} ${DLOPTEXTRA} ${DLOUT} - "${DS_SETUP_URL}" \
+    || ${DLPROG} ${DLOPT} ${DLOPTEXTRA} ${DLOUT} - "${DS_SETUP_URL_ALT}")" \
+    setup.sh "${DS_INSTALL_DIR}"
 }
 
 

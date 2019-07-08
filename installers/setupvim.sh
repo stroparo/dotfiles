@@ -297,7 +297,7 @@ VIM_PKG_DIR="$(dirname "${VIM_PKG}")"
 VIM_SETUP_DIR="${VIM_PKG_DIR}/vim-master"
 
 if [ ! -e "${VIM_PKG}" ] ; then
-  curl --tlsv1.3 -LSfs https://github.com/vim/vim/archive/master.zip > "${VIM_PKG}"
+  curl ${DLOPTEXTRA} -LSfs https://github.com/vim/vim/archive/master.zip > "${VIM_PKG}"
 fi
 
 if ! unzip -o "${VIM_PKG}" -d "${VIM_PKG_DIR}" ; then
