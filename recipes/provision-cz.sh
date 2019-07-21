@@ -8,7 +8,7 @@ _step_base_system () {
 
   if [ -e /etc/sudoers ] && ! sudo grep -q "${USER}.*ALL" /etc/sudoers ; then
     echo
-    echo "Add this line to your sudoers file:
+    echo "Add this line to your sudoers file:"
     echo "$USER ALL=(ALL) NOPASSWD: ALL"
     echo "Press any key to continue..."
     read dummy
