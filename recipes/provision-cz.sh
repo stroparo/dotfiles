@@ -5,18 +5,30 @@ PROGNAME="provision-cz.sh"
 
 _step_base_system () {
   ${STEP_BASE_SYSTEM_DONE:-false} && return
-  [ -e /etc/sudoers ] && ! sudo grep -q "$USER" /etc/sudoers && (echo "$USER ALL=(ALL) NOPASSWD: ALL" | su -c 'tee -a /etc/sudoers' -)
+
+  if [ -e /etc/sudoers ] && ! sudo grep -q "${USER}.*ALL" /etc/sudoers ; then
+    echo
+    echo "Add this line to your sudoers file:
+    echo "$USER ALL=(ALL) NOPASSWD: ALL"
+    echo "Press any key to continue..."
+    read dummy
+    su - -c visudo
+  fi
+
   mkdir ~/workspace >/dev/null 2>&1 ; ls -d -l ~/workspace || exit $?
+
   bash -c "$(curl ${DLOPTEXTRA} -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
     || curl ${DLOPTEXTRA} -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
     entry.sh apps shell
+
   source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
+
   export STEP_BASE_SYSTEM_DONE=true
 }
 
 
 _step_custom () {
-  dsplugin.sh "bitbucket.org/stroparo/ds-cz"
+  dsplugin.sh "stroparo@bitbucket.org/stroparo/ds-cz"
   if [ ! -f "${DS_HOME}/envcz.sh" ] ; then
     echo "${PROGNAME}: FATAL: no 'envcz.sh' found in DS_HOME (${DS_HOME})."
     exit 1
