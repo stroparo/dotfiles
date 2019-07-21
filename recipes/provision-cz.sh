@@ -56,11 +56,10 @@ _step_expedite_pre_existing () {
 
 _step_custom () {
 
+  _step_expedite_pre_existing
   _step_ds_custom
   _step_ds_stroparo
-  source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
-  
-  _step_expedite_pre_existing
+
   bash "${DS_HOME:-$HOME/.ds}"/recipes/cz-conf-git.sh
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh
 
