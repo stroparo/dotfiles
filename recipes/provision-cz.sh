@@ -46,7 +46,7 @@ _step_ds_stroparo () {
 _step_expedite_pre_existing () {
   if [ -d "${MOUNTS_PREFIX}/z" ] ; then
     git clone "https://stroparo@bitbucket.org/stroparo/handy.git" "${MOUNTS_PREFIX}/z/handy"
-    
+
     if [ -f "${MOUNTS_PREFIX}/z/gitcred.txt" ] ; then
       git config --global credential.helper "store --file=${MOUNTS_PREFIX}/z/gitcred.txt"
     fi
