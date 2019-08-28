@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-(uname | grep -i -q linux) || exit
+PROGNAME="setupdocker-compose.sh"
 
-echo
-echo "################################################################################"
-echo "Setup docker-compose..."
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
+echo "$PROGNAME: INFO: docker-compose setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -13,17 +14,9 @@ COMPLETION_FILE="${HOME}/.zsh/completion/_docker-compose"
 COMPLETION_URL="https://raw.githubusercontent.com/docker/compose/1.18.0/contrib/completion/zsh/_docker-compose"
 
 # #############################################################################
-# Checks
-
-# Check for idempotency
-if type docker-compose >/dev/null 2>&1 ; then
-  INSTALLED=true
-fi
-
-# #############################################################################
 # Install
 
-if ${INSTALLED:-false} ; then
+if type docker-compose >/dev/null 2>&1 ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: Already installed." 1>&2
 elif which pip >/dev/null 2>&1 ; then
   pip install --user docker-compose
@@ -68,7 +61,7 @@ if which zsh >/dev/null 2>&1 ; then
 fi
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "${PROGNAME:+$PROGNAME: }SUCCESS: docker-compose setup complete"
-echo
+echo "${PROGNAME:+$PROGNAME: }COMPLETE: docker-compose setup"
+exit

@@ -1,18 +1,12 @@
 #!/usr/bin/env bash
 
-PROGNAME=setupjenkins-apt.sh
+PROGNAME="setupjenkins-apt.sh"
 
-echo
-echo "################################################################################"
-echo "Setup Jenkins for Debian based distributions"
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if ! egrep -i -q -r 'debi|ubun' /etc/*release ; then ; echo "PROGNAME: SKIP: De/b/untu-like supported only" ; exit ; fi
 
-# #############################################################################
-# Checks
-
-if ! egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
-  echo "${PROGNAME}: SKIP: Only APT (Debian, Ubuntu etc.) Linux distributions supported." 1>&2
-  exit
-fi
+echo "$PROGNAME: INFO: Jenkins for Debian distros setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Prep
@@ -35,16 +29,13 @@ EOF
 fi
 
 # #############################################################################
-# Install
+# Main
 
-echo "${PROGNAME:+$PROGNAME: }INFO: Updating index..." 1>&2
+echo "${PROGNAME}: INFO: Updating index..."
 sudo apt update
 
-echo "${PROGNAME:+$PROGNAME: }INFO: Installing..." 1>&2
+echo "${PROGNAME}: INFO: Installing..."
 sudo apt install -y jenkins
 
-# #############################################################################
-# Finish
-
-echo "${PROGNAME}: FINISHED Jenkins for Debian distros setup"
-echo
+echo "${PROGNAME}: COMPLETE: Jenkins for Debian distros setup"
+exit

@@ -1,19 +1,12 @@
 #!/usr/bin/env bash
 
-PROGNAME=setupepel.sh
+PROGNAME="setupepel.sh"
 
-echo
-echo "################################################################################"
-echo "Setup EPEL repository..."
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if ! egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then echo "${PROGNAME}: SKIP: EL supported only" ; exit ; fi
 
-# #############################################################################
-# Checks
-
-# Check for idempotency
-if ! egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
-  echo "${PROGNAME}: SKIP: Only Enterprise Linux distributions are supported." 1>&2
-  exit
-fi
+echo "$PROGNAME: INFO: EPEL repository setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 sudo yum install epel-release
 # Fallback to manual sequence:
@@ -32,7 +25,6 @@ echo "${PROGNAME}:     sudo yum-config-manager --enable epel.repo"
 echo "${PROGNAME}:     or use yum's --enablerepo=epel option for each call to yum"
 echo "${PROGNAME}:"
 
-# #############################################################################
-# Finish
+echo "${PROGNAME}: COMPLETE: epel repository setup"
 
-echo "${PROGNAME}: FINISHED epel repository setup"
+exit

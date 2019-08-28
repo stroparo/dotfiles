@@ -5,6 +5,10 @@
 #   This script must have all the uppercase variables
 #   in its code exported prior to being called.
 
+PROGNAME="setupjava-helper.sh"
+
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+
 # #############################################################################
 # Checks
 

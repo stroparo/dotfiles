@@ -1,25 +1,15 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup VirtualBox guest for Debian based distributions"
+PROGNAME="setupvboxguest-apt.sh"
 
-# #############################################################################
-# Check OS
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if ! egrep -i -q -r 'debi|ubun' /etc/*release ; then ; echo "PROGNAME: SKIP: De/b/untu-like supported only" ; exit ; fi
 
-if ! egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
-  echo "SKIP: Only Debian/Ubuntu based distros supported by '$0'" 1>&2
-  exit
-fi
-
-# #############################################################################
-# Main
+echo "$PROGNAME: INFO: VirtualBox guest for Debian distros setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 sudo apt update
 sudo apt install -y build-essential dkms module-assistant
 
-# #############################################################################
-# Finish
-
-echo "FINISHED VirtualBox guest additions setup"
-echo
+echo "$PROGNAME: COMPLETE: VirtualBox guest additions setup"
+exit

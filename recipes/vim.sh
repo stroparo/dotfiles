@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 PROGNAME="vim.sh"
-USAGE="[-v]"
 
 echo "################################################################################"
 echo "Vim custom stroparo/dotfiles setup; \$0='$0'; \$PWD='$PWD'"
@@ -9,6 +8,7 @@ echo "Vim custom stroparo/dotfiles setup; \$0='$0'; \$PWD='$PWD'"
 # #############################################################################
 # Globals
 
+USAGE="[-v]"
 : ${VIM_UNDO_DIR:=${HOME}/.vim/undodir}
 : ${VERBOSE:=false}
 
@@ -40,9 +40,9 @@ bash "${RUNR_DIR:-.}"/installers/setupvim.sh
 _provide_vim_undo_dir
 
 # #############################################################################
-# Finish
+# Final sequence
 
 echo
 echo "${PROGNAME:+$PROGNAME: }INFO: Run the 'dotfiles' recipe to install colors etc."
-echo "${PROGNAME:+$PROGNAME: }INFO: FINISHED custom deployment of Vim."
+echo "${PROGNAME:+$PROGNAME: }COMPLETE: custom Vim deployment"
 echo

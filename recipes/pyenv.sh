@@ -247,7 +247,7 @@ if virtualenv:
 EOF
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED Python setup"
+echo "$PROGNAME: COMPLETE: Python setup"
 echo

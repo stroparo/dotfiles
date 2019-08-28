@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Set a PPTP vpn up for Linux"
+PROGNAME="setupvpnpptp.sh"
+
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
+echo "$PROGNAME: INFO: PPTP vpn setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 export USAGE='{connection name} {host address[|other hosts up script]} [up command]'
 
 # #############################################################################
 # Functions
+
 
 setvpnpptp () {
 
@@ -18,11 +22,6 @@ setvpnpptp () {
     typeset user pass
     typeset vpnpptpconf="/etc/ppp/ip-up.d/${conn_name}"
     typeset vpnpptppeer="/etc/ppp/peers/${conn_name}"
-
-    if ! [[ "$(uname -a)" = *[Ll]inux* ]] ; then
-        echo 'The setvpnpptp function only supports Linux environments.' 1>&2
-        return 1
-    fi
 
     if [ -z "$host" -o -z "$conn_name" ] ; then
         echo 'Must have the host passed in the first argument.' 1>&2
@@ -65,6 +64,7 @@ PPPEOF
     ls -l "$vpnpptpconf" "$vpnpptppeer"
 }
 
+
 # #############################################################################
 # Main
 
@@ -74,8 +74,5 @@ if [ "$#" -gt 1 ] ; then
     exit "$?"
 fi
 
-# #############################################################################
-# Finish
-
-echo "FINISHED PPTP vpn setup"
+echo "$PROGNAME: COMPLETE: PPTP vpn setup"
 echo

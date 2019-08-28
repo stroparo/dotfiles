@@ -1,25 +1,19 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup Oh-My-Zsh"
+PROGNAME=setupohmyzsh.sh
+
+if ! type zsh >/dev/null 2>&1 ; then echo "$PROGNAME: SKIP: zsh is not installed" 1>&2 ; exit ; fi
+
+echo "$PROGNAME: INFO: Oh-My-Zsh setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
 
-PROGNAME=setupohmyzsh.sh
 OMZ_SYN_PATH="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 OMZ_SYN_URL="https://github.com/zsh-users/zsh-syntax-highlighting.git"
 OMZ_URL="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
 ZSH_THEME="robbyrussell"
-
-# #############################################################################
-# Checks
-
-if ! type zsh >/dev/null 2>&1 ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: zsh is not installed. Nothing done." 1>&2
-  exit
-fi
 
 # #############################################################################
 # Main
@@ -45,6 +39,7 @@ if [ -s "${HOME}/.zshrc.pre-oh-my-zsh" ] ; then
 fi
 
 # #############################################################################
+# Plugins
 
 echo
 echo "Installing ohmyzsh plugin zsh-syntax-highlighting"
@@ -65,6 +60,7 @@ else
 fi
 
 # #############################################################################
+# Theme
 
 echo
 echo "Selecting ZSH_THEME=\"${ZSH_THEME:-robbyrussell}\""
@@ -73,7 +69,7 @@ echo
 sed -i -e "s/^ZSH_THEME=.*$/ZSH_THEME=\"${ZSH_THEME:-robbyrussell}\"/" "${HOME}/.zshrc"
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED Oh-My-Zsh setup"
-echo
+echo "$PROGNAME: COMPLETE: Oh-My-Zsh setup"
+exit

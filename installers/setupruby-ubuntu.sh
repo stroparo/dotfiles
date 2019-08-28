@@ -1,26 +1,21 @@
 #!/usr/bin/env bash
 
+PROGNAME="setupruby-ubuntu.sh"
+
+if ! egrep -i -q -r 'ubuntu' /etc/*release ; then ; echo "PROGNAME: SKIP: Ubuntu supported only" ; exit ; fi
+
 # Install Ruby, Rails, Bundler and common gems
 # Argument is a gemfile to use to install global packages
 
 UBUNTU_VERSION_SUPPORTED="16.04"
 
-echo
-echo "################################################################################"
-echo "Setup Ruby stack in Ubuntu $UBUNTU_VERSION_SUPPORTED"
+echo "$PROGNAME: INFO: Ruby stack in Ubuntu '$UBUNTU_VERSION_SUPPORTED' setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
 
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
-
-# #############################################################################
-# Checks
-
-if (! grep -q "Ubuntu" /etc/os-release || ! fgrep -q -r "$UBUNTU_VERSION_SUPPORTED" /etc/os-release) ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: Only Ubuntu supported." 1>&2
-  exit
-fi
 
 # #############################################################################
 # Helpers
@@ -158,7 +153,7 @@ ruby -v
 rails -v
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED Ruby setup"
-echo
+echo "$PROGNAME: COMPLETE: Ruby setup"
+exit

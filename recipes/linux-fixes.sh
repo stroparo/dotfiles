@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
-(uname | grep -i -q linux) || exit
+PROGNAME="linux-fixes.sh"
 
-echo "################################################################################"
-echo "Applying Linux fixes in '${RUNR_DIR:-.}/recipes-linux-fixes'..."
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
+echo "$PROGNAME: INFO: Applying Linux fixes in '${RUNR_DIR:-.}/recipes-linux-fixes'..."
 
 for fix in "${RUNR_DIR:-.}"/recipes-linux-fixes/fix-* ; do
   bash "${fix}"
 done
 
-echo
-echo "////////////////////////////////////////////////////////////////////////////////"
-echo
-
+echo "$PROGNAME: COMPLETE: Linux fixes in '${RUNR_DIR:-.}/recipes-linux-fixes'"
+exit

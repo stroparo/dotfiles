@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
-set -e
+PROGNAME="setuptmux.sh"
 
-echo
-echo "################################################################################"
-echo "Setup tmux Terminal MUltipleXer"
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: only Linux supported." ; exit ; fi
+
+echo "$PROGNAME: INFO: tmux Terminal MUltipleXer setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+
+set -e
 
 # #############################################################################
 # Globals
@@ -23,15 +26,6 @@ NCURSES_URL="https://ftp.gnu.org/pub/gnu/ncurses/ncurses-$NCURSES_VERSION.tar.gz
 
 TMUX_VERSION=2.6
 TMUX_URL="https://github.com/tmux/tmux/releases/download/$TMUX_VERSION/tmux-$TMUX_VERSION.tar.gz"
-
-# #############################################################################
-# Pre-reqs
-
-# Check OS
-if !(uname -a | grep -i -q linux) ; then
-  echo "SKIP: Only Linux is supported." 1>&2
-  exit
-fi
 
 # #############################################################################
 # Functions
@@ -126,6 +120,7 @@ _install_plugin_manager () {
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
+
 # #############################################################################
 # Main
 
@@ -138,5 +133,5 @@ fi
 _build_main
 _install_plugin_manager
 
-echo "FINISHED tmux setup"
-echo
+echo "$PROGNAME: COMPLETE: tmux setup"
+exit

@@ -10,7 +10,7 @@ if [ ! -d "$DEV" ] ; then
   echo "DEV dir created:"
   ls -d -l "${DEV}"
 
-  echo "FINISHED provisioning workspace DEV='${DEV}' directory"
+  echo "$PROGNAME: COMPLETE: provisioning workspace DEV='${DEV}' directory"
   echo
 fi
 

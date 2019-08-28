@@ -2,12 +2,14 @@
 
 PROGNAME="setupgit.sh"
 
-echo
-echo "################################################################################"
-echo "Setup Git from source"
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
+echo "$PROGNAME: INFO: Git from source setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
+
 VER_FULL=2.18.0
 export GIT_PREFIX="/usr/local/git"
 export GIT_URL="https://www.kernel.org/pub/software/scm/git/git-${VER_FULL}.tar.gz"
@@ -18,20 +20,14 @@ export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 
 # #############################################################################
-# Check OS
-
-if ! (uname -a | grep -i -q linux) ; then
-  echo "SKIP: Only Linux is allowed to call this script ($0)" 1>&2
-  exit
-fi
-
-# #############################################################################
 # Functions
 
+
 _error_exit () {
-  echo "${PROGNAME:+$PROGNAME: }FATAL: There was some error." 1>&2
+  echo "${PROGNAME}: FATAL: There was some error." 1>&2
   exit 1
 }
+
 
 # #############################################################################
 # Main
@@ -65,13 +61,13 @@ if [ ! -f /etc/profile.d/gitsrc.sh ] ; then
   sudo chmod 755 /etc/profile.d/gitsrc.sh
 fi
 
-echo "${PROGNAME:+$PROGNAME: }INFO: Git path:" 1>&2
+echo "${PROGNAME}: INFO: Git path:"
 eval ${PROFILE_STRING}
 which -a git
 git --version
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "${PROGNAME:+$PROGNAME: }INFO: Git from source setup complete." 1>&2
-echo
+echo "${PROGNAME}: COMPLETE: Git from source setup"
+exit

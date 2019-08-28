@@ -2,6 +2,9 @@
 
 PROGNAME="setupsdkman.sh"
 
+echo "$PROGNAME: INFO: started sdkman setup"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+
 # #############################################################################
 # Globals
 
@@ -50,4 +53,8 @@ fi
 
 _setup_sdkman_profile
 
-echo "${PROGNAME:+$PROGNAME: }COMPLETE: sdkman setup complete." 1>&2
+# #############################################################################
+# Final sequence
+
+echo "${PROGNAME}: COMPLETE: sdkman setup" 1>&2
+exit

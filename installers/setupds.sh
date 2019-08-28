@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
-# Install Daily Shells & DS-Extras plugin
-
 PROGNAME=setupds.sh
 
-echo
-echo "################################################################################"
-echo "Daily Shells setup \$0='$0'"
+echo "$PROGNAME: INFO: Daily Shells setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -19,6 +16,7 @@ export DS_SETUP_URL_ALT="https://raw.githubusercontent.com/stroparo/ds/master/se
 DS_SETUP_BASENAME="${DS_SETUP_URL##*/}"
 : ${DS_SETUP_BASENAME:=setup.sh}
 export DS_SETUP_BASENAME
+
 
 # Setup the downloader program (curl/wget)
 _no_download_program () {
@@ -65,3 +63,5 @@ _main () {
 
 
 _main "$@" || exit $?
+echo "$PROGNAME: COMPLETE: Daily Shells setup"
+exit

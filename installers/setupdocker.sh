@@ -1,40 +1,21 @@
 #!/usr/bin/env bash
 
-(uname | grep -i -q linux) || exit
-
 PROGNAME="setupdocker.sh"
 
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if type docker >/dev/null 2>&1 ; then echo "$PROGNAME: SKIP: Already installed" 1>&2 ; exit ; fi
+
+echo "$PROGNAME: INFO: Docker container platform setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+
 echo
-echo "################################################################################"
-echo "Setup Docker..."
-
-# #############################################################################
-# Checks
-
-# Check for idempotency
-if type docker >/dev/null 2>&1 ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: Docker is already installed." 1>&2
-  exit
-fi
-
-# #############################################################################
-# Install
-
 sh -c "$(curl -fsSL https://get.docker.com)"
 
-# #############################################################################
-# Post installation configuration
-
+echo
 sudo usermod -aG docker "$USER"
-
-# #############################################################################
-# Verification
 
 echo
 sudo docker run hello-world
 
-# #############################################################################
-# Finish
-
-echo "${PROGNAME:+$PROGNAME: }COMPLETE: Docker setup complete"
 echo
+echo "$PROGNAME: COMPLETE: Docker setup"

@@ -2,17 +2,11 @@
 
 PROGNAME="setupjenkins-el.sh"
 
-echo
-echo "################################################################################"
-echo "Setup Jenkins for EL Enterprise Linux based distributions"
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if ! egrep -i -q -r '(centos|fedora|oracle|red *hat).*7' /etc/*release ; then echo "${PROGNAME}: SKIP: EL7 supported only" ; exit ; fi
 
-# #############################################################################
-# Checks
-
-if ! egrep -i -q -r '(centos|fedora|oracle|red *hat).*7' /etc/*release ; then
-  echo "${PROGNAME}: SKIP: Only Red Hat 7.x Linux distributions are supported." 1>&2
-  exit
-fi
+echo "$PROGNAME: INFO: Jenkins for EL Enterprise Linux distros setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Requirements
@@ -62,7 +56,7 @@ sudo systemctl enable jenkins
 sudo systemctl start jenkins
 
 cat <<EOF
-${PROGNAME}: # Run any of this command as applicable in your environment:
+${PROGNAME}: # Run any of this command as applicable to your environment:
 ${PROGNAME}:
 ${PROGNAME}: # Enable the service:
 ${PROGNAME}: sudo systemctl enable jenkins
@@ -83,7 +77,7 @@ ${PROGNAME}: sudo grep -A 5 password /var/log/jenkins/jenkins.log
 EOF
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "${PROGNAME}: FINISHED Jenkins for EL Enterprise Linux distros setup"
-echo
+echo "${PROGNAME}: COMPLETE: Jenkins for EL Enterprise Linux distros setup"
+exit

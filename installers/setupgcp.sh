@@ -1,17 +1,11 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup GCP - Google Cloud Platform - client"
+PROGNAME="setupgcp.sh"
 
-# #############################################################################
-# Checks
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
 
-if !(uname -a | grep -i -q linux) ; then
-  echo "SKIP: Only Linux is supported." 1>&2
-fi
-
-# TODO idempotency check
+echo "$PROGNAME: INFO: GCP - Google Cloud Platform - client setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -29,7 +23,7 @@ echo "WORKDIR='$WORKDIR'"
 
 # Pre-req Python 2:
 if ! [[ $(python -V 2>&1) =~ 2[.] ]]; then
-  echo "FATAL: python command must be Python 2" 1>&2
+  echo "$PROGNAME: FATAL: python command must be Python 2" 1>&2
   exit 1
 fi
 
@@ -50,8 +44,8 @@ cd "$WORKDIR"
 
 # Download:
 if ! curl -Lf "$URL" > "$TAR" ; then
-  echo "FATAL: Could not write package from '$URL'..." 1>&2
-  echo "   ... to '$TAR'" 1>&2
+  echo "$PROGNAME: FATAL: Could not write package from '$URL'..." 1>&2
+  echo "$PROGNAME:    ... to '$TAR'" 1>&2
   exit 1
 fi
 
@@ -60,21 +54,17 @@ cat > "$TAR".sha256 <<EOF
 ${SHA256} *${TAR}
 EOF
 if [ -z "$(sha256deep -m "$TAR".sha256 "$TAR")" ]; then
-  echo "FATAL: Checksum failed (${TAR}.sha256)" 1>&2
+  echo "$PROGNAME: FATAL: Checksum failed (${TAR}.sha256)" 1>&2
 fi
 
 if ! tar -xzvf "$TAR" ; then
-  echo "FATAL: There was an error decompressing '$TAR'." 1>&2
+  echo "$PROGNAME: FATAL: There was an error decompressing '$TAR'." 1>&2
   exit 1
 fi
 
 # #############################################################################
-# Install
+# Main
 
 ./google-cloud-sdk/install.sh
-
-# #############################################################################
-# Finish
-
-echo "FINISHED GCP client setup"
-echo
+echo "$PROGNAME: COMPLETE: GCP client setup"
+exit

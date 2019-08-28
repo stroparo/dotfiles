@@ -2,14 +2,11 @@
 
 PROGNAME="setupsubl.sh"
 
-echo
-echo "################################################################################"
-echo "Setup Sublime Text editor; \$0='$0'; \$PWD='$PWD'"
+if which subl >/dev/null 2>&1 ; then ; echo "$PROGNAME: SKIP: Already installed" ; exit ; fi
+if which sublime_text >/dev/null 2>&1 ; then ; echo "$PROGNAME: SKIP: Already installed" ; exit ; fi
 
-if which subl >/dev/null 2>&1 || which sublime_text >/dev/null 2>&1 ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: Already installed." 1>&2
-  exit
-fi
+echo "$PROGNAME: INFO: Sublime Text editor setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -53,7 +50,7 @@ export SUBL_OPT_DIR
 
 _skip_if_installed_in_opt () {
   if ls "${SUBL_OPT_DIR}"/subl* >/dev/null 2>&1 ; then
-    echo "${PROGNAME:+$PROGNAME: }SKIP: Already installed." 1>&2
+    echo "${PROGNAME:+$PROGNAME: }SKIP: Already installed."
     exit
   fi
 }
@@ -107,7 +104,7 @@ else # not portable i.e. via distribution packages
 fi
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED setting up Sublime Text editor"
-echo
+echo "$PROGNAME: COMPLETE: Sublime Text editor setup"
+exit

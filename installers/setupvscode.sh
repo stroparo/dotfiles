@@ -2,9 +2,8 @@
 
 PROGNAME="setupvscode.sh"
 
-echo
-echo "################################################################################"
-echo "Setup Visual Studio Code editor; \$0='$0'; \$PWD='$PWD'"
+echo "$PROGNAME: INFO: started Visual Studio Code editor setup"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 if which ${VSCODE_CMD:-code} >/dev/null 2>&1 ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: already installed." 1>&2
@@ -47,5 +46,4 @@ fi
 # #############################################################################
 # Final sequence
 
-echo "${PROGNAME:+$PROGNAME: }COMPLETE"
-echo
+echo "${PROGNAME:+$PROGNAME: }COMPLETE: Visual Studio Code setup"

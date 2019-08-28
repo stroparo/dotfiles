@@ -1,5 +1,8 @@
 #!/bin/bash
 
+PROGNAME="fix-dropbox-start.sh"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+
 if [ ! -e "${HOME}/.dropbox-dist/dropboxd" ] ; then
   exit
 fi

@@ -2,33 +2,21 @@
 
 PROGNAME="setupgolang.sh"
 
-_end_bar () { echo "////////////////////////////////////////////////////////////////////////////////" ; }
-
-echo
-echo "################################################################################"
-echo "Setup Go (golang); \$0='$0'; \$PWD='$PWD'"
-
-# Check Linux:
-if !(uname -a | grep -i -q linux) ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: Only Linux is supported." 1>&2
-  _end_bar
-  exit
-fi
-
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
 if (sudo apt list --installed | grep -q '^golang-any') \
   || (sudo apt list --installed | grep -q '^golang-go') \
   || (sudo yum list installed | grep -q '^golang')
 then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: already installed." 1>&2
-  _end_bar
+  echo "${PROGNAME}: SKIP: already installed."
   exit
 fi
-
-if [ ! -f "${DS_HOME:-$HOME/.ds}/scripts/pkgupdate.sh" ] ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: Daily Shells must be installed." 1>&2
-  _end_bar
+if [ ! -f "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
+  echo "${PROGNAME}: FATAL: Daily Shells must be installed." 1>&2
   exit 1
 fi
+
+echo "$PROGNAME: INFO: Go (golang) setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -55,5 +43,5 @@ fi
 # #############################################################################
 # Final sequence
 
-echo "${PROGNAME:+$PROGNAME: }COMPLETE"
-_end_bar
+echo "${PROGNAME}: COMPLETE: Go (golang) setup"
+exit

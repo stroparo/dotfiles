@@ -116,7 +116,7 @@ sudo $INSTPROG install -y ntfs-3g
 EOF
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED Debian desktop package installations"
+echo "$PROGNAME: COMPLETE: Debian desktop package installations"
 echo

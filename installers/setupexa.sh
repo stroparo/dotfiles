@@ -1,21 +1,12 @@
 #!/usr/bin/env bash
 
-(uname | grep -i -q linux) || exit
-
 PROGNAME="setupexa.sh"
 
-echo
-echo "################################################################################"
-echo "Setup exa file listing"
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if type exa >/dev/null 2>&1 ; then echo "${PROGNAME:+$PROGNAME: }SKIP: exa already installed." 1>&2 ; exit ; fi
 
-# #############################################################################
-# Checks
-
-# Check for idempotency
-if type exa >/dev/null 2>&1 ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: exa already installed." 1>&2
-  exit
-fi
+echo "$PROGNAME: INFO: Setup exa setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Functions
@@ -62,8 +53,5 @@ else
   exit
 fi
 
-# #############################################################################
-# Finish
-
 echo "${PROGNAME:+$PROGNAME: }COMPLETE: exa setup complete"
-echo
+exit

@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
+PROGNAME=sshkeygen.sh
+
 # Create a default SSH key
 # Requires Daily Shells at https://stroparo.github.io/ds
 
 # #############################################################################
 # Globals
 
-PROGNAME=sshkeygen.sh
 SCRIPT_DIR="$(dirname "${0%/*}")"
 SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
 
@@ -50,7 +51,7 @@ else
 fi
 
 # #############################################################################
-# Finish
+# Final sequence
 
 echo "${PROGNAME:+$PROGNAME: }INFO: complete." 1>&2
 echo

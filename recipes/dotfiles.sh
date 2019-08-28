@@ -44,7 +44,7 @@ for dotfilename in $(ls -d "$DOT_ASSETS_DIR"/*) ; do
 done
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED deploying dotfiles in ${DOT_ASSETS_DIR}"
+echo "$PROGNAME: COMPLETE: deploying dotfiles in ${DOT_ASSETS_DIR}"
 echo

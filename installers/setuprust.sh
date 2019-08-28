@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
-(uname | grep -i -q linux) || exit
+PROGNAME="setuprust.sh"
 
-PROGNAME=setuprust.sh
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
 
-echo
-echo "################################################################################"
-echo "Setup Rust"
+echo "$PROGNAME: INFO: Rust setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Checks
@@ -36,7 +35,7 @@ fi
 echo "${PROGNAME:+$PROGNAME: }INFO: Rust path='$(which rustc 2>&1)'." 1>&2
 
 # #############################################################################
-# Finish
+# Final sequence
 
 echo "${PROGNAME:+$PROGNAME: }INFO: Rust setup complete"
 echo

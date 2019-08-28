@@ -157,7 +157,7 @@ sudo $INSTPROG install -q -y libreoffice-calc
 EOF
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED EL Enterprise Linux desktop installations"
+echo "$PROGNAME: COMPLETE: EL Enterprise Linux desktop installations"
 echo

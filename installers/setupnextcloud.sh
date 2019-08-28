@@ -1,24 +1,16 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup Next Cloud"
+PROGNAME="setupnextcloud.sh"
 
-# #############################################################################
-# Globals
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if ! egrep -i -q -r 'ubuntu' /etc/*release ; then ; echo "PROGNAME: SKIP: Ubuntu supported only" ; exit ; fi
 
-PROGNAME=setupnextcloud.sh
-
-# #############################################################################
-# Early checks
-
-if ! egrep -i -q -r 'ubuntu' /etc/*release ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: This is not an Ubuntu distribution." 1>&2
-  exit
-fi
+echo "$PROGNAME: INFO: Next Cloud setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Helpers
+
 
 _add_ppa_repo () {
 
@@ -32,6 +24,7 @@ _add_ppa_repo () {
   fi
 }
 
+
 _install_packages () {
   for package in "$@" ; do
     echo "Installing '$package'..."
@@ -41,6 +34,7 @@ _install_packages () {
   done
 }
 
+
 # #############################################################################
 # Main
 
@@ -49,7 +43,7 @@ sudo apt update
 _install_packages nextcloud-client
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED Next Cloud setup"
-echo
+echo "$PROGNAME: COMPLETE: Next Cloud setup"
+exit

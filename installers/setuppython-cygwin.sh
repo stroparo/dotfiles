@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup Python in a Cygwin environment"
+PROGNAME="setuppython-cygwin.sh"
+
+if ! (uname -a | grep -i -q "cygwin") ; then echo "${PROGNAME:+$PROGNAME: }SKIP: Cygwin supported only" ; exit ; fi
+
+echo "$PROGNAME: INFO: Python in a Cygwin environment setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # Arguments of filenames ending '-xyz' will have a list of pip packages to be installed
 # into the 'xyz' virtualenv.
@@ -10,11 +13,6 @@ echo "Setup Python in a Cygwin environment"
 export PYV2='2.7.13'
 export PYV3='3.6.0'
 
-# Dependencies
-if ! (uname -a | grep -i -q "cygwin") ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: Only cygwin supported." 1>&2
-  exit
-fi
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 [ -n "$ZSH_VERSION" ] && set -o shwordsplit
 
@@ -202,7 +200,7 @@ if virtualenv:
 EOF
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED Python setup for Cygwin"
-echo
+echo "$PROGNAME: COMPLETE: Python setup for Cygwin"
+exit

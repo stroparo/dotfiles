@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+PROGNAME=setupcitrix
+
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if [ -e /opt/Citrix/ICAClient/selfservice ] ; then echo "$PROGNAME: SKIP: Already installed" ; exit ; fi
+
+echo "$PROGNAME: INFO: Citrix setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+
 # Sources:
 # https://help.ubuntu.com/community/CitrixICAClientHowTo
 
@@ -9,29 +17,12 @@
 # #############################################################################
 # Globals
 
-PROGNAME=setupcitrix
-
 CITRIX_VERSION=${1:-13.4}
 CITRIX_MAJOR_VERSION=${CITRIX_VERSION%%.*}
 CITRIX_MINOR_VERSION=${CITRIX_VERSION##*.}
 CITRIX_DOWNLOAD_URL="https://www.citrix.com.br/downloads/citrix-receiver/\
 legacy-receiver-for-linux/receiver-for-linux-latest-\
 ${CITRIX_MAJOR_VERSION}-${CITRIX_MINOR_VERSION}.html"
-
-# #############################################################################
-
-echo
-echo "################################################################################"
-echo "Setup Citrix..."
-
-# #############################################################################
-# Checks
-
-# Check for idempotency
-if [ -e /opt/Citrix/ICAClient/selfservice ] ; then
-  echo "$PROGNAME: SKIP: Already installed." 1>&2
-  exit
-fi
 
 # #############################################################################
 # Prep filesystem
@@ -51,7 +42,7 @@ pwd
 while ! ls -1 "$HOME/Downloads"/*linuxx64* >/dev/null 2>&1 ; do
 
   echo "$PROGNAME: INFO: Please go download the linuxx64...tar.gz package,"
-  echo "$PROGNAME: INFO: ... and place it in '$HOME/Downloads'..." 1>&2
+  echo "$PROGNAME: INFO: ... and place it in '$HOME/Downloads'..."
   echo
   echo "$PROGNAME: INFO: Opening the browser for you at '$CITRIX_DOWNLOAD_URL'..."
   echo "$PROGNAME: IMPORTANT: Select the >> tarball << option..."
@@ -105,14 +96,15 @@ elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
 
   sudo c_rehash /opt/Citrix/ICAClient/keystore/cacerts/
 else
-  echo "$PROGNAME: SKIP: No ca-cert setup supported for this distro." 1>&2
+  echo "$PROGNAME: SKIP: No ca-cert setup supported for this distro."
+  exit 0
 fi
 
 # Chrome mime type for ICAClient
 # xdg-mime default wfica.desktop application/x-ica
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED Citrix setup"
-echo
+echo "$PROGNAME: COMPLETE: Citrix setup"
+exit

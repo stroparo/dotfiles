@@ -85,7 +85,7 @@ sudo $APTPROG autoremove -y
 sudo $APTPROG clean -y
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED Debian package installations"
+echo "$PROGNAME: COMPLETE: Debian package installations"
 echo

@@ -1,25 +1,18 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup powerline fonts"
+PROGNAME="setuppowerfonts.sh"
 
-# #############################################################################
-# Checks
-
-if !(uname -a | grep -i -q linux) ; then
-  echo "SKIP: Only Linux is supported." 1>&2
-  exit
-fi
-
-# Check for idempotency
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
 if [ -e "$HOME/.local/share/fonts/Inconsolata for Powerline.otf" ] ; then
   echo "SKIP: Already installed." 1>&2
   exit
 fi
 
+echo "$PROGNAME: INFO: powerline fonts setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+
 # #############################################################################
-# Install
+# Main
 
 wget https://github.com/powerline/fonts/archive/master.zip \
   -O ~/powerline.zip
@@ -29,8 +22,5 @@ wget https://github.com/powerline/fonts/archive/master.zip \
   && rm -rf ~/fonts-master ~/powerline.zip \
   || ls -d -l ~/fonts-master ~/powerline.zip
 
-# #############################################################################
-# Finish
-
-echo "FINISHED powerline fonts setup"
-echo
+echo "$PROGNAME: COMPLETE: powerline fonts setup"
+exit

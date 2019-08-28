@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup Chrome browser..."
+PROGNAME="setupchrome.sh"
+
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
+echo "$PROGNAME: INFO: Chrome browser setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -40,12 +43,12 @@ elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   sudo $APTPROG update
   sudo $APTPROG install -y google-chrome-stable
 else
-  echo "${PROGNAME:+$PROGNAME: }SKIP: OS not supported." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: OS not supported" 1>&2
   exit
 fi
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED Chrome browser setup"
-echo
+echo "$PROGNAME: COMPLETE: Chrome browser setup"
+exit

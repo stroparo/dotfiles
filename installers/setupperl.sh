@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup Perl"
+PROGNAME="setupperl.sh"
+
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
+echo "$PROGNAME: INFO: Perl setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -21,8 +24,5 @@ elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
   sudo $RPMPROG install -y --enablerepo=epel perl perl-devel perl-ExtUtils-Embed
 fi
 
-# #############################################################################
-# Finish
-
-echo "FINISHED Perl setup"
-echo
+echo "$PROGNAME: COMPLETE: Perl setup"
+exit

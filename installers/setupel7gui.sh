@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "EL7 Enterprise Linux GUI setup..."
+PROGNAME="setupel7gui.sh"
+
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if ! egrep -i -q -r '(centos|fedora|oracle|red *hat).*7' /etc/*release ; then echo "${PROGNAME}: SKIP: EL7 supported only" 1>&2 ; exit ; fi
+
+echo "$PROGNAME: INFO: EL7 Enterprise Linux GUI setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # Fonts
 sudo yum install -y cjkuni-uming-fonts dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts gnu-free-mono-fonts gnu-free-sans-fonts gnu-free-serif-fonts google-crosextra-caladea-fonts google-crosextra-carlito-fonts jomolhari-fonts khmeros-base-fonts liberation-mono-fonts liberation-sans-fonts liberation-serif-fonts lklug-fonts madan-fonts nhn-nanum-gothic-fonts open-sans-fonts overpass-fonts paktype-naskh-basic-fonts paratype-pt-sans-fonts ucs-miscfixed-fonts
@@ -16,8 +20,5 @@ sudo yum install -y NetworkManager-l2tp NetworkManager-openconnect NetworkManage
 # Etc
 sudo yum install -y gstreamer1-plugins-bad-free gstreamer1-plugins-good gtk2-immodule-xim gtk3-immodule-xim ibus-gtk2 ibus-gtk3 imsettings-gsettings rdma-core
 
-# #############################################################################
-# Finish
-
-echo "FINISHED EL7 Enterprise Linux GUI setup setup"
-echo
+echo "$PROGNAME: COMPLETE: EL7 Enterprise Linux GUI setup"
+exit

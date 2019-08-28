@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
-# Set appropriate modes/permissions to SSH related files
-
-# #############################################################################
-# Globals
-
 PROGNAME=sshmodes.sh
+
+# Set appropriate modes/permissions to SSH related files
 
 # #############################################################################
 # Prep
@@ -28,7 +25,7 @@ chmod -f -v 700 ~/.ssh
 ls -l ~/.ssh/authorized_keys ~/.ssh/id*
 
 # #############################################################################
-# Finish
+# Final sequence
 
 echo "${PROGNAME:+$PROGNAME: }INFO: complete." 1>&2
 echo

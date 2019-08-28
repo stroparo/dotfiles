@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup OpenShift for Enterprise Linux 7"
+PROGNAME="setupopenshift-el7.sh"
+
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if ! egrep -i -q -r 'red *hat.* 7' /etc/*release ; then echo "${PROGNAME}: SKIP: RHEL7 supported only" ; exit ; fi
+if [ "$(id -u)" -ne 0 ]; then echo "${PROGNAME}: SKIP: Must be root" ; exit ; fi
+
+echo "$PROGNAME: INFO: OpenShift for Enterprise Linux 7 setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -12,20 +17,8 @@ PROGNAME=setupopenshift-el7.sh
 VG_NAME=docker-vg
 
 # #############################################################################
-# Checks
+echo "${PROGNAME}: INFO: Installing dependencies..."
 
-if ! egrep -i -q -r 'red *hat.* 7' /etc/*release ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: Only EL7 supported." 1>&2
-  exit
-fi
-
-if [ "$(id -u)" -ne 0 ]; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: Must be root." 1>&2
-  exit
-fi
-
-# #############################################################################
-echo "${PROGNAME:+$PROGNAME: }INFO: Installing dependencies..." 1>&2
 yum update -y
 yum install -y wget git net-tools bind-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct
 yum -y install \
@@ -34,12 +27,12 @@ sed -i -e "s/^enabled=1/enabled=0/" /etc/yum.repos.d/epel.repo
 yum -y --enablerepo=epel install ansible pyOpenSSL
 
 # #############################################################################
-echo "${PROGNAME:+$PROGNAME: }INFO: Prep containerized installation..." 1>&2
+echo "${PROGNAME}: INFO: Prep containerized installation..."
 
-echo "${PROGNAME:+$PROGNAME: }INFO: Installing atomic..." 1>&2
+echo "${PROGNAME}: INFO: Installing atomic..."
+# TODO
 
-
-echo "${PROGNAME:+$PROGNAME: }INFO: Cloning openshift-ansible..." 1>&2
+echo "${PROGNAME}: INFO: Cloning openshift-ansible..."
 cd ~
 if [ ! -d openshift-ansible ] ; then
   git clone --depth 1 https://github.com/openshift/openshift-ansible
@@ -50,13 +43,14 @@ git pull
 # #############################################################################
 # Prep Docker
 
-echo "${PROGNAME:+$PROGNAME: }INFO: Setting up Docker..." 1>&2
+echo "${PROGNAME}: INFO: Setting up Docker..."
 yum install docker-1.12.6
 rpm -V docker-1.12.6
 docker version
 
 # #############################################################################
-echo "${PROGNAME:+$PROGNAME: }INFO: Setting up Docker filesystem...." 1>&2
+echo "${PROGNAME}: INFO: Setting up Docker filesystem...."
+
 unset part
 while [ ! -e "$part" ] ; then
   read -p "Enter partition (block device) for the Docker physical volume..." part
@@ -76,12 +70,13 @@ docker-storage-setup
 lvs
 
 # #############################################################################
-echo "${PROGNAME:+$PROGNAME: }INFO: Enabling and starting up Docker...." 1>&2
+echo "${PROGNAME}: INFO: Enabling and starting up Docker...."
+
 systemctl enable docker
 systemctl start docker
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED OpenShift for Enterprise Linux 7 setup"
-echo
+echo "$PROGNAME: COMPLETE: OpenShift for Enterprise Linux 7 setup"
+exit

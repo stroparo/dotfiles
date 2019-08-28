@@ -136,7 +136,7 @@ if (uname -a | egrep -i -q "mingw|msys|win32|windows") ; then
 fi
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED custom deployment of Git"
+echo "$PROGNAME: COMPLETE: custom deployment of Git"
 echo

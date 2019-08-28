@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+PROGNAME="setupjava9openjdk.sh"
+
+echo "$PROGNAME: INFO: Java OpenJDK ${VER_MAJOR} version ${VER_FULL} setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+
 # Remark: OpenJDK packages are at http://jdk.java.net
 
 # #############################################################################
@@ -19,14 +24,6 @@ export REQ_HEADER="Cookie: oraclelicense=accept-securebackup-cookie"
 # #############################################################################
 # Main
 
-echo
-echo "################################################################################"
-echo "Setup Java OpenJDK ${VER_MAJOR} version ${VER_FULL}"
-
 ./setupjava-helper.sh
-
-# #############################################################################
-# Finish
-
-echo "FINISHED Java OpenJDK setup"
-echo
+echo "$PROGNAME: COMPLETE: Java OpenJDK setup"
+exit

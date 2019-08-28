@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-PROGNAME="$(basename "${0:-setupvim.sh}")"
+PROGNAME="setupvim.sh"
 
-echo
-echo "################################################################################"
-echo "Setup Vim compiling from source"
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
+echo "$PROGNAME: INFO: Vim compiling from source started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # Supports Lua, Perl Python, Ruby
 
@@ -16,14 +17,6 @@ echo "Setup Vim compiling from source"
 
 # Configure command based on:
 # https://gist.github.com/odiumediae/3b22d09b62e9acb7788baf6fdbb77cf8
-
-# #############################################################################
-# Env check
-
-if ! (uname | grep -i -q linux) ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: Only Linux is supported."
-  exit 0
-fi
 
 # #############################################################################
 # Globals
@@ -341,12 +334,15 @@ then
 fi
 
 # #############################################################################
-# Finish
+# Final sequence
 
 echo
 if (vim --version | grep -q "${BUILD_NAME}") ; then
   echo "${PROGNAME:+$PROGNAME: }COMPLETE: Vim - '${BUILD_NAME}' build - setup complete"
+  exit 0
 else
   echo "${PROGNAME:+$PROGNAME: }FAIL: Vim - '${BUILD_NAME}' build is unavailable"
   exit 1
 fi
+
+exit

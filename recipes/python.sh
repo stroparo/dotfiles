@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-(uname | grep -i -q linux) || exit
-
 PROGNAME="python.sh"
+
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
 
 cd "${RUNR_DIR:-.}"
 

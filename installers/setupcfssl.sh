@@ -1,21 +1,12 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup cfssl..."
+PROGNAME="setupcfssl.sh"
 
-# #############################################################################
-# Checks
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if type cfssl >/dev/null 2>&1 ; then echo "$PROGNAME: SKIP: Already installed" ; exit ; fi
 
-if !(uname -a | grep -i -q linux) ; then
-  echo "SKIP: Only Linux is supported." 1>&2
-  exit
-fi
-
-if type cfssl >/dev/null 2>&1 ; then
-  echo "SKIP: Already installed." 1>&2
-  exit
-fi
+echo "$PROGNAME: INFO: started cfssl setup"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -49,7 +40,7 @@ ls -l "${INSTALL_DIR}"/cfssl*
 which cfssl cfssljson
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED cfssl setup"
-echo
+echo "$PROGNAME: COMPLETE: cfssl setup"
+exit

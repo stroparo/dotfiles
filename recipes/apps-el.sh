@@ -100,7 +100,7 @@ echo "EL system packages..."
 _install_packages yum-utils
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED EL Enterprise Linux package installations"
+echo "$PROGNAME: COMPLETE: EL Enterprise Linux package installations"
 echo

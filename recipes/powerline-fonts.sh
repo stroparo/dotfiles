@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-(uname | grep -i -q linux) || exit
+PROGNAME="powerline-fonts.sh"
 
-PROGNAME=devel-fonts.sh
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
 LOCAL_FONTS_DIR="$HOME/.local/share/fonts"
 
-echo "################################################################################"
-echo "Fonts installation"
+echo "$PROGNAME: INFO: Fonts setup recipe started"
 
 git clone --depth 1 "https://github.com/powerline/fonts.git" ~/.powerline-fonts
 cd ~/.powerline-fonts
@@ -24,3 +24,6 @@ if ls -l "${LOCAL_FONTS_DIR}"/* ; then
 else
   exit 1
 fi
+
+echo "$PROGNAME: COMPLETE: Fonts setup recipe"
+exit

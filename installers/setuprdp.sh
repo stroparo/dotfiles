@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup RDP"
+PROGNAME="setuprdp.sh"
+
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
+echo "$PROGNAME: INFO: RDP setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
 
-PROGNAME="setuprdp.sh"
 export USAGE="[-h] [-y]"
 
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
@@ -75,7 +77,7 @@ else
 fi
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED RDP setup"
-echo
+echo "$PROGNAME: COMPLETE: RDP setup"
+exit

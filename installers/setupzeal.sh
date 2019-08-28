@@ -4,9 +4,8 @@ set -e
 
 PROGNAME="setupzeal.sh"
 
-echo
-echo "################################################################################"
-echo "Zeal dev docs manager setup..."
+echo "$PROGNAME: INFO: started Zeal dev docs manager setup..."
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 if !(uname -a | grep -i -q linux) ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: Only Linux is supported." 1>&2
@@ -121,5 +120,4 @@ else
   _build_main
 fi
 
-echo "////////////////////////////////////////////////////////////////////////////////"
-echo
+echo "$PROGNAME: COMPLETE: Zeal setup"

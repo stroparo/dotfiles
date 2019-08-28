@@ -1,25 +1,12 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup Dropbox..."
+PROGNAME="setupdropbox.sh"
 
-# #############################################################################
-# Checks
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if [ -e ~/.dropbox-dist/dropboxd ] ; then echo "PROGNAME: SKIP: Already installed" ; exit ; fi
 
-if !(uname -a | grep -i -q linux) ; then
-  echo "SKIP: Only Linux is supported." 1>&2
-  exit
-fi
-
-# Check for idempotency
-if [ -e ~/.dropbox-dist/dropboxd ] ; then
-  echo "SKIP: Already installed." 1>&2
-  exit
-fi
-
-# #############################################################################
-# Main
+echo "$PROGNAME: INFO: Dropbox setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 cd ~
 wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" \
@@ -27,8 +14,5 @@ wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" \
 
 env DBUS_SESSION_BUS_ADDRESS='' "${HOME}"/.dropbox-dist/dropboxd > /dev/null 2>&1 &
 
-# #############################################################################
-# Finish
-
-echo "FINISHED Dropbox setup"
-echo
+echo "$PROGNAME: COMPLETE: Dropbox setup"
+exit

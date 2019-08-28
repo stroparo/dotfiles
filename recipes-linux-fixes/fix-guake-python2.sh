@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+PROGNAME="fix-guake-python2.sh"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+
 which guake || exit $?
 
 # Globals

@@ -1,24 +1,17 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup Python"
+export PROGNAME=setuppython.sh
+
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
+echo "$PROGNAME: INFO: Python setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
 
-export PROGNAME=setuppython.sh
-
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
-
-# #############################################################################
-# Check OS
-
-if ! egrep -i -q -r 'debian|ubuntu|centos|fedora|oracle|red *hat' /etc/*release ; then
-  echo "$PROGNAME: SKIP: Only Debian and Enterprise Linux distributions are supported." 1>&2
-  exit
-fi
 
 # #############################################################################
 # Shell
@@ -74,7 +67,7 @@ sudo -H pip3 install --upgrade pip
 )
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED Python setup"
-echo
+echo "$PROGNAME: COMPLETE: Python setup"
+exit

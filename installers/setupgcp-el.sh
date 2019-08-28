@@ -1,21 +1,17 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup GCP - Google Cloud Platform - SDK - google-cloud-sdk"
+PROGNAME="setupgcp-el.sh"
+
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if ! egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then echo "${PROGNAME}: SKIP: EL supported only" 1>&2 ; exit ; fi
+
+echo "$PROGNAME: INFO: GCP - Google Cloud Platform - SDK - google-cloud-sdk setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
 
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
-
-# #############################################################################
-# Checks
-
-if ! egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
-  echo "SKIP: Only Red Hat distros supported." 1>&2
-  exit
-fi
 
 # #############################################################################
 # Main
@@ -37,8 +33,5 @@ EOM
 # Install the Cloud SDK
 sudo $RPMPROG install google-cloud-sdk
 
-# #############################################################################
-# Finish
-
-echo "FINISHED GCP SDK setup"
-echo
+echo "$PROGNAME: COMPLETE: GCP SDK setup"
+exit

@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup Lua platform"
+PROGNAME="setuplua.sh"
+
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
+echo "$PROGNAME: INFO: Lua platform setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -25,7 +28,7 @@ elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
 fi
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED Lua platform setup"
-echo
+echo "$PROGNAME: COMPLETE: Lua platform setup"
+exit

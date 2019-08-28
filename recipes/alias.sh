@@ -239,7 +239,7 @@ alias vim.rb="vim - -c 'set syntax=ruby'"
 EOF
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED aliases setup at ${ALIASES_FILE}"
+echo "$PROGNAME: COMPLETE: aliases setup at ${ALIASES_FILE}"
 echo

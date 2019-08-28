@@ -1,17 +1,11 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup Atom editor..."
+PROGNAME="setupatom.sh"
 
-# #############################################################################
-# Checks
+if type atom >/dev/null 2>&1 ; then echo "$PROGNAME: SKIP: Already installed" 1>&2 ; exit ; fi
 
-# Check for idempotency
-if type atom >/dev/null 2>&1 ; then
-  echo "SKIP: Already installed." 1>&2
-  exit
-fi
+echo "$PROGNAME: INFO: started Atom setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Cygwin
@@ -41,14 +35,14 @@ elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
   sudo yum-config-manager --disable epel.repo
 
 # #############################################################################
+# Other distributions
 
 else
-  echo "SKIP: OS not handled." 1>&2
+  echo "$PROGNAME: SKIP: OS not handled." 1>&2
   exit
 fi
 
 # #############################################################################
-# Finish
 
-echo "FINISHED Atom setup"
-echo
+echo "$PROGNAME: COMPLETE: Atom setup"
+exit

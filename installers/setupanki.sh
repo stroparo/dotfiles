@@ -1,22 +1,12 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup Anki flashcards..."
+PROGNAME="setupanki.sh"
 
-# #############################################################################
-# Checks
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if type anki >/dev/null 2>&1 ; then echo "$PROGNAME: SKIP: Already installed" ; exit ; fi
 
-if !(uname -a | grep -i -q linux) ; then
-  echo "SKIP: Only Linux is supported." 1>&2
-  exit
-fi
-
-# Check for idempotency
-if type anki >/dev/null 2>&1 ; then
-  echo "SKIP: Already installed." 1>&2
-  exit
-fi
+echo "$PROGNAME: INFO: Anki setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -26,7 +16,7 @@ ANKI_VERSION=2.0.47
 WORK_DIR=/tmp
 
 # #############################################################################
-# Install
+# Main
 
 curl -LSfs \
   "https://apps.ankiweb.net/downloads/current/anki-${ANKI_VERSION}-amd64.tar.bz2" \
@@ -36,13 +26,7 @@ curl -LSfs \
   && cd "anki-${ANKI_VERSION}" \
   && sudo make install
 
-# #############################################################################
-# Verification
-
 which anki
 
-# #############################################################################
-# Finish
-
-echo "FINISHED Anki setup"
-echo
+echo "$PROGNAME: COMPLETE: Anki setup"
+exit

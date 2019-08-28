@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+PROGNAME=fix-fedora-input.sh
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+
 # #############################################################################
 # Globals
 
-PROGNAME=fix-fedora-input.sh
 COMPOSE_FILE="/usr/share/X11/locale/en_US.UTF-8/Compose"
 
 # #############################################################################

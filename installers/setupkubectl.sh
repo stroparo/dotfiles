@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "Setup Kubernetes kubectl"
+PROGNAME="setupkubectl.sh"
+
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if type kubectl >/dev/null 2>&1 ; then echo "$PROGNAME: SKIP: Already installed." ; exit ; fi
+
+echo "$PROGNAME: INFO: Kubernetes kubectl setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -39,19 +43,6 @@ done
 shift "$((OPTIND-1))"
 
 # #############################################################################
-# Checks
-
-if !(uname -a | grep -i -q linux) ; then
-  echo "$PROGNAME: SKIP: Only Linux is supported." 1>&2
-  exit
-fi
-
-if type kubectl >/dev/null 2>&1 ; then
-  echo "$PROGNAME: SKIP: Already installed." 1>&2
-  exit
-fi
-
-# #############################################################################
 # Prep
 
 cd "$WORK_DIR"
@@ -68,11 +59,12 @@ if ${FORCE:-false} || [ ! -e "${INSTALL_DIR}"/kubectl ] ; then
   ls -l "${INSTALL_DIR}"/kubectl
   kubectl version --client
 else
-  echo "$PROGNAME: SKIP: kubectl already installed (call this again with -f to force)." 1>&2
+  echo "$PROGNAME: SKIP: kubectl already installed (call this again with -f to force)."
+  exit
 fi
 
 # #############################################################################
-# Finish
+# Final sequence
 
-echo "FINISHED Kubernetes kubectl setup"
-echo
+echo "$PROGNAME: COMPLETE: Kubernetes kubectl setup"
+exit
