@@ -86,10 +86,8 @@ EOF
 which git >/dev/null 2>&1 \
   || (sudo ${APTPROG:-apt} update && sudo ${APTPROG:-apt} install -y 'git-core') \
   || (sudo ${RPMPROG:-yum} install -y 'git')
-which git >/dev/null 2>&1 || return 1
-
-if ! which git >/dev/null 2>&1 ; then
-  echo "$PROGNAME: SKIP: no git available" 1>&2
+if ! which git >/dev/null ; then
+  echo "$PROGNAME: SKIP: no git available"
   exit
 fi
 
