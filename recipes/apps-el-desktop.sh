@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
-# Custom RPM package selection for desktop environments
+# Custom EL Enterprise Linux desktop selections installation
 
-PROGNAME=apps-el-desktop.sh
+PROGNAME="apps-el-desktop.sh"
 
-# #############################################################################
-# Check OS
+if ! egrep -i -q -r 'cent *os|fedora|oracle|red *hat' /etc/*release ; then echo "${PROGNAME}: SKIP: EL supported only" 1>&2 ; exit ; fi
 
-if ! egrep -i -q -r 'cent ?os|fedora|oracle|red ?hat' /etc/*release 2>/dev/null ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: Only Red Hat based distros are supported" 1>&2
-  exit
-fi
+echo "$PROGNAME: INFO: EL Enterprise Linux desktop selections installation"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -34,13 +31,8 @@ _install_packages () {
   fi
 }
 
-_print_header () {
-  echo "################################################################################"
-  echo "$@"
-}
-
 # #############################################################################
-_print_header "EL Enterprise Linux desktop package selects"
+# Base
 
 echo ${BASH_VERSION:+-e} "\n==> Base desktop packages..."
 _install_packages gnome-themes-standard x11-ssh-askpass xbacklight xclip
@@ -51,23 +43,23 @@ _install_packages atril galculator gnome-shell-extension-pomodoro guake meld shu
 # #############################################################################
 if egrep -i -q -r 'fedora' /etc/*release 2>/dev/null ; then
 
-  _print_header "Fedora"
+  echo "$PROGNAME: INFO: Fedora"
 
   if which dnf >/dev/null 2>&1 ; then
 
-    _print_header "Fedora - DNF Delta RPM compression..."
+    echo "$PROGNAME: INFO: Fedora - DNF Delta RPM compression..."
 
     sudo dnf install -q -y deltarpm \
       && (echo "deltarpm=1" | sudo tee -a /etc/dnf/dnf.conf)
   fi
 
-  _print_header "Fedora - Flash Player..."
+  echo "$PROGNAME: INFO: Fedora - Flash Player..."
 
   _install_packages "$URL_FLASH"
   sudo rpm --import --quiet /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
   _install_packages flash-plugin
 
-  _print_header "Fedora - Stacer monitor dashboard..."
+  echo "$PROGNAME: INFO: Fedora - Stacer monitor dashboard..."
 
   curl ${DLOPTEXTRA} -kLSf -o ~/stacer.rpm "$URL_STACER" \
     && $INSTPROG install -q -y ~/stacer.rpm \
@@ -75,13 +67,13 @@ if egrep -i -q -r 'fedora' /etc/*release 2>/dev/null ; then
 
   if which dnf >/dev/null 2>&1 ; then
 
-    _print_header "Fedora - skypeforlinux installation prep..."
+    echo "$PROGNAME: INFO: Fedora - skypeforlinux installation prep..."
 
     sudo dnf config-manager --add-repo 'https://repo.skype.com/data/skype-stable.repo'
     sudo rpm --import --quiet 'https://repo.skype.com/data/SKYPE-GPG-KEY'
     sudo dnf update
 
-    _print_header "Fedora - skypeforlinux installation..."
+    echo "$PROGNAME: INFO: Fedora - skypeforlinux installation..."
 
     sudo dnf install -q -y skypeforlinux
   fi
@@ -90,24 +82,24 @@ fi
 # #############################################################################
 if egrep -i -q -r 'fedora 27' /etc/*release 2>/dev/null ; then
 
-  _print_header "Fedora 27"
+  echo "$PROGNAME: INFO: Fedora 27"
 
   {
-    echo 'Fedora 27 - RPMFusion repo...'
+    echo "$PROGNAME: INFO: Fedora 27 - RPMFusion repo..."
     _install_packages http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm
     sudo rpm --import --quiet /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-27
     _install_packages http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-27.noarch.rpm
     sudo rpm --import --quiet /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-27
     sudo $INSTPROG update -y
 
-    echo 'Fedora 27 - RPMFusion - virtualbox...'
+    echo "$PROGNAME: INFO: Fedora 27 - RPMFusion - virtualbox..."
     _install_packages virtualbox
 
-    echo 'Fedora 27 - RPMFusion - codecs...'
+    echo "$PROGNAME: INFO: Fedora 27 - RPMFusion - codecs..."
     _install_packages amrnb amrwb faad2 flac ffmpeg gpac-libs lame libfc14audiodecoder mencoder mplayer x264 x265 gstreamer-plugins-espeak gstreamer-plugins-fc gstreamer-rtsp gstreamer-plugins-good gstreamer-plugins-bad gstreamer-plugins-bad-free-extras gstreamer-plugins-bad-nonfree gstreamer-plugins-ugly gstreamer-ffmpeg gstreamer1-plugins-base gstreamer1-libav gstreamer1-plugins-bad-free-extras gstreamer1-plugins-bad-freeworld gstreamer1-plugins-base-tools gstreamer1-plugins-good-extras gstreamer1-plugins-ugly gstreamer1-plugins-bad-free gstreamer1-plugins-good
   }
 
-  # echo 'Fedora 27 - Graphics drivers...'
+  # echo "$PROGNAME: INFO: Fedora 27 - Graphics drivers..."
 
   # VGA AMD closed
   # sudo $INSTPROG install -q -y mesa-dri-drivers.i686 mesa-libGL.i686 xorg-x11-drv-amdgpu
@@ -120,7 +112,7 @@ if egrep -i -q -r 'fedora 27' /etc/*release 2>/dev/null ; then
 
   if which dnf >/dev/null 2>&1 ; then
 
-    _print_header 'Fedora 27 - Steam...'
+    echo "$PROGNAME: INFO: Fedora 27 - Steam..."
 
     sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-steam.repo
     sudo dnf install -q -y steam
@@ -128,7 +120,7 @@ if egrep -i -q -r 'fedora 27' /etc/*release 2>/dev/null ; then
 fi
 
 # #############################################################################
-_print_header "EL Enterprise Linux GUI app recommendations"
+echo "$PROGNAME: INFO: EL Enterprise Linux GUI app recommendations"
 
 cat <<EOF | tee ~/README-el-gui-apps.lst
 
@@ -159,5 +151,5 @@ EOF
 # #############################################################################
 # Final sequence
 
-echo "$PROGNAME: COMPLETE: EL Enterprise Linux desktop installations"
-echo
+echo "$PROGNAME: COMPLETE: EL Enterprise Linux desktop selections installation"
+exit

@@ -3,7 +3,7 @@
 PROGNAME="setupgcp-el.sh"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
-if ! egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then echo "${PROGNAME}: SKIP: EL supported only" 1>&2 ; exit ; fi
+if ! egrep -i -q -r 'cent *os|fedora|oracle|red *hat' /etc/*release ; then echo "${PROGNAME}: SKIP: EL supported only" 1>&2 ; exit ; fi
 
 echo "$PROGNAME: INFO: GCP - Google Cloud Platform - SDK - google-cloud-sdk setup started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
