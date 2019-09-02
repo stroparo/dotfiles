@@ -3,16 +3,13 @@
 PROGNAME="disable-ipv6.sh"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if sudo grep -r -q "GRUB_CMDLINE_LINUX_DEFAULT.*ipv6.disable=1" /etc/default/grub /etc/default/grub.d 2>/dev/null ; then
+  echo "$PROGNAME: SKIP: IPv6 already disabled via grub default file."
+  exit
+fi
 
 echo "$PROGNAME: INFO: started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
-
-# #############################################################################
-
-if sudo grep -r -q "GRUB_CMDLINE_LINUX_DEFAULT.*ipv6.disable=1" /etc/default/grub /etc/default/grub.d 2>/dev/null ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: IPv6 already disabled via grub default file." 1>&2
-  exit
-fi
 
 # #############################################################################
 # Globals
@@ -26,7 +23,6 @@ GRUB_CMDLINE_FILE="$(grep -l -r "GRUB_CMDLINE_LINUX_DEFAULT=" /etc/default/grub 
 GRUB_FILE="${GRUB_CMDLINE_FILE:-${GRUB_FILE}}"
 
 # #############################################################################
-# Main
 
 if ! grep -q "GRUB_CMDLINE_LINUX_DEFAULT=" "${GRUB_FILE}" ; then
   echo "${PROGNAME:+$PROGNAME: }INFO: Updating grub file '${GRUB_FILE}' with:"
@@ -39,9 +35,6 @@ echo "${PROGNAME:+$PROGNAME: }INFO: Updating grub file '${GRUB_FILE}' default Li
 sudo sed -i -e 's/GRUB_CMDLINE_LINUX_DEFAULT="/GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1 /' "${GRUB_FILE}"
 
 sudo update-grub
-
-# #############################################################################
-# Final sequence
 
 echo "$PROGNAME: COMPLETE"
 exit
