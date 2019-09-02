@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
-# Custom Debian package selection
+# Custom Debian package selections installation
 
-PROGNAME=apps-debian.sh
+PROGNAME="apps-debian.sh"
 
-# #############################################################################
-# Checks
+if ! egrep -i -q -r 'debi|ubun' /etc/*release ; then ; echo "PROGNAME: SKIP: De/b/untu-like supported only" ; exit ; fi
 
-if ! egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: This is not an Debian/Ubuntu Linux family instance." 1>&2
-  exit
-fi
+echo "$PROGNAME: INFO: Debian package selections installation"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -24,25 +21,24 @@ export INSTPROG="$APTPROG"
 
 _install_packages () {
   for package in "$@" ; do
-    echo "Installing '$package'..."
+    echo "$PROGNAME: INFO: Installing '$package'..."
     if ! sudo $INSTPROG install -y "$package" >/tmp/pkg-install-${package}.log 2>&1 ; then
-      echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${package}.log'." 1>&2
+      echo "$PROGNAME: WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${package}.log'." 1>&2
     fi
   done
 }
 
 # #############################################################################
-# Main
+echo "$PROGNAME: INFO: Debian APT index update..."
 
-echo "################################################################################"
-echo "Debian package selects"
-
-echo "Debian APT index update..."
 if ! sudo $APTPROG update >/dev/null 2>/tmp/apt-update-err.log ; then
   echo "WARN: There was some failure during APT index update - see '/tmp/apt-update-err.log'." 1>&2
 fi
 
-echo "Debian base packages..."
+# #############################################################################
+# Installations
+
+echo "$PROGNAME: INFO: Debian base packages..."
 _install_packages curl lftp mosh net-tools rsync wget
 # _install_packages gdebi-core
 _install_packages less
@@ -57,7 +53,7 @@ _install_packages tmux
 _install_packages unzip zip
 _install_packages zsh
 
-echo "Debian devel packages..."
+echo "$PROGNAME: INFO: Debian devel packages..."
 _install_packages exuberant-ctags
 _install_packages httpie
 _install_packages git tig
@@ -65,14 +61,14 @@ _install_packages jq
 _install_packages perl libperl-dev
 # _install_packages ruby ruby-dev ruby-full
 
-echo "Debian devel libs..."
+echo "$PROGNAME: INFO: Debian devel libs..."
 _install_packages gettext
 _install_packages imagemagick
 _install_packages libsqlite3-0 libsqlite3-dev
 _install_packages libssl-dev
 _install_packages zlib1g zlib1g-dev
 
-echo "Debian security packages..."
+echo "$PROGNAME: INFO: Debian security packages..."
 _install_packages gnupg pwgen
 _install_packages oathtool
 _install_packages ssh-askpass
@@ -80,12 +76,12 @@ _install_packages ssh-askpass
 # #############################################################################
 # Cleanup
 
-echo "Debian APT repository clean up..."
+echo "$PROGNAME: INFO: Debian APT repository clean up..."
 sudo $APTPROG autoremove -y
 sudo $APTPROG clean -y
 
 # #############################################################################
 # Final sequence
 
-echo "$PROGNAME: COMPLETE: Debian package installations"
-echo
+echo "$PROGNAME: COMPLETE: Debian package selections installation"
+exit

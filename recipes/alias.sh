@@ -4,6 +4,7 @@ PROGNAME="alias.sh"
 ALIASES_FILE='${HOME}/.aliases-cs'
 
 echo "$PROGNAME: INFO: aliases writing to '$ALIASES_FILE' started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Shell profiles
@@ -238,3 +239,4 @@ EOF
 # Final sequence
 
 echo "$PROGNAME: COMPLETE: aliases written to '${ALIASES_FILE}'"
+exit

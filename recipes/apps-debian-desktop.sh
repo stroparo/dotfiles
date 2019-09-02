@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
-# Custom Debian package selection for desktop environments
+# Custom Debian package selections installation for desktop environments
 
-PROGNAME=apps-debian-desktop.sh
+PROGNAME="apps-debian-desktop.sh"
 
-# #############################################################################
-# Checks
+if ! egrep -i -q -r 'debi|ubun' /etc/*release ; then ; echo "PROGNAME: SKIP: De/b/untu-like supported only" ; exit ; fi
 
-if ! egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: This is not an Debian/Ubuntu Linux family instance." 1>&2
-  exit
-fi
+echo "$PROGNAME: INFO: Debian desktop package selections"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -24,53 +21,50 @@ export INSTPROG="$APTPROG"
 
 _install_packages () {
   for package in "$@" ; do
-    echo "Installing '$package'..."
+    echo "$PROGNAME: INFO: Installing '$package'..."
     if ! sudo $INSTPROG install -y "$package" >/tmp/pkg-install-${package}.log 2>&1 ; then
-      echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${package}.log'." 1>&2
+      echo "$PROGNAME: WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${package}.log'." 1>&2
     fi
   done
 }
 
-_print_header () {
-  echo "################################################################################"
-  echo "$@"
-}
-
 # #############################################################################
-_print_header "Debian desktop package selects"
+echo "$PROGNAME: INFO: Debian APT index update..."
 
-echo "Debian APT index update..."
 if ! sudo $APTPROG update >/dev/null 2>/tmp/apt-update-err.log ; then
-  echo "WARN: There was some failure during APT index update - see '/tmp/apt-update-err.log'." 1>&2
+  echo "$PROGNAME: WARN: There was some failure during APT index update - see '/tmp/apt-update-err.log'." 1>&2
 fi
 
-echo ${BASH_VERSION:+-e} "Debian desktop - educational packages..."
+# #############################################################################
+# Installations
+
+echo "$PROGNAME: INFO: Debian desktop - educational packages..."
 _install_packages gperiodic
 
-echo ${BASH_VERSION:+-e} "Debian desktop - multimedia packages..."
+echo "$PROGNAME: INFO: Debian desktop - multimedia packages..."
 _install_packages mp3splt parole ristretto
 
-echo ${BASH_VERSION:+-e} "Debian desktop - networking packages..."
+echo "$PROGNAME: INFO: Debian desktop - networking packages..."
 _install_packages gigolo # remote filesystem management
 
-echo ${BASH_VERSION:+-e} "Debian desktop - productivity packages..."
+echo "$PROGNAME: INFO: Debian desktop - productivity packages..."
 _install_packages atril galculator guake meld
 _install_packages gnome-shell-pomodoro
 
-echo ${BASH_VERSION:+-e} "Debian desktop - miscellaneous packages..."
+echo "$PROGNAME: INFO: Debian desktop - miscellaneous packages..."
 _install_packages autorenamer
 _install_packages slop # GUI region selection, used by other apps such as screenkey
 
 # #############################################################################
-_print_header "Debian APT repository clean up..."
+echo "$PROGNAME: INFO: Debian APT repository clean up..."
 
 sudo $APTPROG autoremove -y
 sudo $APTPROG clean -y
 
 # #############################################################################
-_print_header "Debian GUI app recommendations > ~/README-debian-gui-apps.lst"
+echo "$PROGNAME: INFO: Debian GUI app recommendations > ~/README-debian-gui-apps.lst"
 
-cat <<EOF | tee ~/README-debian-gui-apps.lst
+cat <<EOF | tee "${HOME}/README-debian-gui-apps.lst"
 # Favorites
 {
 sudo $INSTPROG update
@@ -118,5 +112,5 @@ EOF
 # #############################################################################
 # Final sequence
 
-echo "$PROGNAME: COMPLETE: Debian desktop package installations"
-echo
+echo "$PROGNAME: COMPLETE: Debian desktop package selections"
+exit
