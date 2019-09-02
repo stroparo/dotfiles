@@ -3,13 +3,10 @@
 set -e
 PROGNAME="base-el7-gui-fonts.sh"
 
-# #############################################################################
-# Prep
+if ! egrep -i -q -r '(cent *os|fedora|oracle|red *hat).*7' /etc/*release ; then echo "${PROGNAME}: SKIP: EL7 supported only" ; exit ; fi
 
-if ! egrep -i -q -r 'fedora|(centos|oracle|red *hat).* 7' /etc/*release ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: Only EL7 is supported." 1>&2
-  exit
-fi
+echo "$PROGNAME: INFO: EL7 GUI base fonts setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Main
@@ -50,7 +47,7 @@ if egrep -i -q -r 'fedora' /etc/*release ; then
 EOF
 
 
-elif egrep -i -q -r 'centos|oracle|red *hat' /etc/*release ; then
+elif egrep -i -q -r 'cent *os|oracle|red *hat' /etc/*release ; then
 
   # set up nux-dextop repo to install font packages. skip if this repo had already set up.
   # can be done by either rpm or yum app.
@@ -105,5 +102,8 @@ EOF
 fi
 
 # #############################################################################
-echo
-echo 'Log out and log back in for clear looking fonts.'
+
+echo '$PROGNAME: INFO: Log out and log back in for clear looking fonts.'
+
+echo "$PROGNAME: COMPLETE"
+exit

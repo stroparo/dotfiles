@@ -2,13 +2,10 @@
 
 PROGNAME=base-el7-gui.sh
 
-# #############################################################################
-# Early checks
+if ! egrep -i -q -r '(cent *os|fedora|oracle|red *hat).*7' /etc/*release ; then echo "${PROGNAME}: SKIP: EL7 supported only" ; exit ; fi
 
-if ! egrep -i -q -r '(cent ?os|oracle|red ?hat).* 7' /etc/*release ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: This is not an Enterprise Linux 7 distribution." 1>&2
-  exit
-fi
+echo "$PROGNAME: INFO: EL7 GUI base desktop setup started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -21,6 +18,7 @@ export INSTPROG="$RPMPROG"
 # #############################################################################
 # Helpers
 
+
 _install_packages () {
   typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')-${RANDOM}"
   if ! sudo $INSTPROG install -y "$@" >/tmp/pkg-install-${filestamp}.log 2>&1 ; then
@@ -28,12 +26,8 @@ _install_packages () {
   fi
 }
 
-# #############################################################################
-# Main
 
-echo "################################################################################"
-echo "Enterprise Linux 7 GUI graphical desktop environment base"
-echo "################################################################################"
+# #############################################################################
 
 # Fonts
 _install_packages dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts gnu-free-mono-fonts gnu-free-sans-fonts gnu-free-serif-fonts google-crosextra-caladea-fonts google-crosextra-carlito-fonts liberation-mono-fonts liberation-sans-fonts liberation-serif-fonts open-sans-fonts overpass-fonts ucs-miscfixed-fonts
@@ -48,3 +42,6 @@ _install_packages NetworkManager-l2tp NetworkManager-openconnect NetworkManager-
 _install_packages gtk2-immodule-xim gtk3-immodule-xim ibus-gtk2 ibus-gtk3 imsettings-gsettings rdma-core
 
 # _install_packages gstreamer1-plugins-bad-free gstreamer1-plugins-good gtk2-immodule-xim gtk3-immodule-xim ibus-gtk2 ibus-gtk3 imsettings-gsettings rdma-core
+
+echo "$PROGNAME: COMPLETE"
+exit
