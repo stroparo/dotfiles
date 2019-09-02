@@ -4,9 +4,17 @@ PROGNAME="python.sh"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
 
-cd "${RUNR_DIR:-.}"
+echo "$PROGNAME: INFO: Python env deployment started >>>> this is a compound recipe"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
-bash ./installers/setuppython.sh
+# #############################################################################
 
-bash ./recipes/conf-pip.sh
-bash ./recipes/pyenv.sh
+cd "${RUNR_DIR:-$PWD}"
+
+bash "${RUNR_DIR:-$PWD}"/installers/setuppython.sh
+
+bash "${RUNR_DIR:-$PWD}"/recipes/conf-pip.sh
+bash "${RUNR_DIR:-$PWD}"/recipes/pyenv.sh
+
+echo "$PROGNAME: COMPLETE: Python env deployment (compound)"
+exit
