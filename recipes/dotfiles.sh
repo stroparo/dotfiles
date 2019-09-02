@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
 
+DOT_ASSETS_DIR="${PWD}/dotfiles"
+
 PROGNAME=dotfiles.sh
-USAGE="[-v]"
+
+echo "$PROGNAME: INFO: Dotfiles deployment started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+echo "$PROGNAME: INFO: Op: '$DOT_ASSETS_DIR'/* -> \$HOME/.*"
 
 # #############################################################################
 # Globals
 
-DOT_ASSETS_DIR="$PWD"/dotfiles
+USAGE="[-v]"
 : ${VERBOSE:=false} ; export VERBOSE
 
-# #############################################################################
 # Options:
 OPTIND=1
 while getopts ':hv' option ; do
@@ -21,11 +25,6 @@ done
 shift "$((OPTIND-1))"
 
 # #############################################################################
-# Main
-
-echo "################################################################################"
-echo "Dotfiles setup; \$0='$0'; \$PWD='$PWD'"
-echo "Op: $DOT_ASSETS_DIR/* -> \$HOME/.*"
 
 for dotfilename in $(ls -d "$DOT_ASSETS_DIR"/*) ; do
   destname="${HOME}/.${dotfilename#$DOT_ASSETS_DIR/}"
@@ -43,8 +42,5 @@ for dotfilename in $(ls -d "$DOT_ASSETS_DIR"/*) ; do
   fi
 done
 
-# #############################################################################
-# Final sequence
-
-echo "$PROGNAME: COMPLETE: deploying dotfiles in ${DOT_ASSETS_DIR}"
-echo
+echo "$PROGNAME: COMPLETE: Dotfiles deployment"
+exit

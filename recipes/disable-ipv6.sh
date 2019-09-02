@@ -43,5 +43,5 @@ sudo update-grub
 # #############################################################################
 # Final sequence
 
-echo "${PROGNAME:+$PROGNAME: }COMPLETE"
+echo "$PROGNAME: COMPLETE"
 exit
