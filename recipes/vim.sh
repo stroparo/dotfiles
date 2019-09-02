@@ -2,7 +2,7 @@
 
 PROGNAME="vim.sh"
 
-echo "$PROGNAME: INFO: Vim custom recipe >>>> this is a compound recipe"
+echo "$PROGNAME: INFO: Vim custom deployment >>>> this is a compound recipe"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
@@ -43,5 +43,5 @@ fi
 
 echo "$PROGNAME: INFO: Run the 'dotfiles' recipe to install colors etc."
 
-echo "$PROGNAME: COMPLETE: Vim custom recipe (compound)"
+echo "$PROGNAME: COMPLETE: Vim custom deployment (compound)"
 exit
