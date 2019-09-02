@@ -2,9 +2,8 @@
 
 PROGNAME="conf-vscode.sh"
 
-echo
-echo "################################################################################"
-echo "Configure Visual Studio Code editor; \$0='$0'; \$PWD='$PWD'"
+echo "$PROGNAME: INFO: Visual Studio Code custom config started"
+echo "$PROGNAME: INFO: started"
 
 # #############################################################################
 # Globals
@@ -16,7 +15,7 @@ export VSCODE_CMD="code"
 # Requirements
 
 if ! which ${VSCODE_CMD} >/dev/null 2>&1 ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: vscode not available." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: vscode not available."
   exit
 fi
 
@@ -48,7 +47,7 @@ sleep 8
 kill %1
 
 if [ ! -d "${CODE_USER_DIR}" ] ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP configuration as there is no CODE_USER_DIR dir ('$CODE_USER_DIR')." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP configuration as there is no CODE_USER_DIR dir ('$CODE_USER_DIR')."
   exit
 fi
 

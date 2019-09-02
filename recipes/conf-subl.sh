@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-PROGNAME=conf-subl.sh
+PROGNAME="conf-subl.sh"
 
-echo
-echo "################################################################################"
-echo "Configure Sublime Text editor; \$0='$0'; \$PWD='$PWD'"
+echo "$PROGNAME: INFO: SublimeText custom config started"
+echo "$PROGNAME: INFO: started"
 
 # #############################################################################
 # Globals
@@ -35,7 +34,7 @@ elif [[ "$(uname -a)" = *[Ll]inux* ]] ; then
 fi
 
 if [ ! -d "${SUBL_USER}" ] ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP configuration as there is no SUBL_USER dir ('${SUBL_USER}')." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP configuration as there is no SUBL_USER dir ('${SUBL_USER}')."
   exit
 fi
 
@@ -70,7 +69,7 @@ if [ -d "${SUBL_USER}/../../Installed Packages" ] ; then
     echo "${PROGNAME:+$PROGNAME: }ERROR deploying local 'Installed Packages'." 1>&2
   fi
 else
-  echo "${PROGNAME:+$PROGNAME: }SKIP: deployment of local 'Installed Packages' as there is no '${SUBL_USER}/../../Installed Packages' dir." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: deployment of local 'Installed Packages' as there is no '${SUBL_USER}/../../Installed Packages' dir."
 fi
 
 # #############################################################################
