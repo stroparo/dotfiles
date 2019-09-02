@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
-echo
-echo "################################################################################"
-echo "pyenv & virtualenv wrapper setup based on Henrique Bastos article at"
-echo "https://medium.com/@henriquebastos/the-definitive-guide-to-setup-my-python-workspace-628d68552e14"
+export PROGNAME="pyenv.sh"
+
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
+echo "$PROGNAME: INFO: Python pyenv & virtualenv wrapper setup"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+echo "$PROGNAME: INFO: ... based on Henrique Bastos article at:"
+echo "$PROGNAME: INFO:     https://medium.com/@henriquebastos/the-definitive-guide-to-setup-my-python-workspace-628d68552e14"
 
 # Arguments of filenames ending '-xyz' will have a list of pip packages to be installed
 # into the 'xyz' virtualenv.
@@ -14,21 +18,9 @@ echo "https://medium.com/@henriquebastos/the-definitive-guide-to-setup-my-python
 # #############################################################################
 # Globals
 
-export PROGNAME=setuppyenvwrapper.sh
-
 export PYENV_INSTALLER="https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer"
 export PYV2='2.7.15'
 export PYV3='3.7.1'
-
-# #############################################################################
-# Check OS
-
-if ! egrep -i -q -r 'debian|ubuntu' /etc/*release \
-  && ! egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release
-then
-  echo "$PROGNAME: SKIP: Only Debian and Enterprise Linux distributions are supported." 1>&2
-  exit
-fi
 
 # #############################################################################
 # Shell
@@ -37,6 +29,7 @@ fi
 
 # #############################################################################
 # Helpers
+
 
 appendunique () {
     # Syntax: [-n] string file1 [file2 ...]
@@ -60,6 +53,7 @@ appendunique () {
     done
     return ${result}
 }
+
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Preparing venv and workspace directories..."
@@ -249,5 +243,5 @@ EOF
 # #############################################################################
 # Final sequence
 
-echo "$PROGNAME: COMPLETE: Python setup"
-echo
+echo "$PROGNAME: COMPLETE"
+exit

@@ -2,9 +2,12 @@
 
 PROGNAME="conf-pip.sh"
 
-echo
-echo "################################################################################"
-echo "Configure pip; \$0='$0'; \$PWD='$PWD'"
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
+echo "$PROGNAME: INFO: Python pip configuration started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+
+# #############################################################################
 
 mkdir -p "$HOME/.config/pip" 2>/dev/null
 

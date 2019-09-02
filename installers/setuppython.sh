@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export PROGNAME=setuppython.sh
+PROGNAME="setuppython.sh"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
 
