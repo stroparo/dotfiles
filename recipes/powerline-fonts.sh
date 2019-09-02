@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
+LOCAL_FONTS_DIR="$HOME/.local/share/fonts"
+
 PROGNAME="powerline-fonts.sh"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
 
-LOCAL_FONTS_DIR="$HOME/.local/share/fonts"
-
 echo "$PROGNAME: INFO: Fonts setup recipe started"
+
+# #############################################################################
 
 git clone --depth 1 "https://github.com/powerline/fonts.git" ~/.powerline-fonts
 cd ~/.powerline-fonts
@@ -19,7 +21,7 @@ mkfontscale "${LOCAL_FONTS_DIR}"
 mkfontdir "${LOCAL_FONTS_DIR}"
 
 if ls -l "${LOCAL_FONTS_DIR}"/* ; then
-  echo "${PROGNAME:+$PROGNAME: }SUCCESS: installed fonts successfully."
+  echo "$PROGNAME: SUCCESS: installed fonts successfully."
   exit 0
 else
   exit 1
