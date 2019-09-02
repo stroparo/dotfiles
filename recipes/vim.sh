@@ -2,8 +2,8 @@
 
 PROGNAME="vim.sh"
 
-echo "################################################################################"
-echo "Vim custom stroparo/dotfiles setup; \$0='$0'; \$PWD='$PWD'"
+echo "$PROGNAME: INFO: Vim custom recipe >>>> this is a compound recipe"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -12,7 +12,6 @@ USAGE="[-v]"
 : ${VIM_UNDO_DIR:=${HOME}/.vim/undodir}
 : ${VERBOSE:=false}
 
-# #############################################################################
 # Options:
 OPTIND=1
 while getopts ':hv' option ; do
@@ -34,15 +33,15 @@ _provide_vim_undo_dir () {
 
 
 # #############################################################################
-# Main
 
-bash "${RUNR_DIR:-.}"/installers/setupvim.sh
-_provide_vim_undo_dir
+cd "${RUNR_DIR:-$PWD}"
 
-# #############################################################################
-# Final sequence
+bash "${RUNR_DIR:-$PWD}"/installers/setupvim.sh
+if ! _provide_vim_undo_dir ; then
+  echo "$PROGNAME: WARN: Could not create Vim undo dir at '$VIM_UNDO_DIR'."
+fi
 
-echo
-echo "${PROGNAME:+$PROGNAME: }INFO: Run the 'dotfiles' recipe to install colors etc."
-echo "${PROGNAME:+$PROGNAME: }COMPLETE: custom Vim deployment"
-echo
+echo "$PROGNAME: INFO: Run the 'dotfiles' recipe to install colors etc."
+
+echo "$PROGNAME: COMPLETE: Vim custom recipe (compound)"
+exit
