@@ -25,3 +25,6 @@ if ! grep -q "format=columns" "$HOME/.config/pip/pip.conf" ; then
 format=columns
 EOF
 fi
+
+echo "$PROGNAME: COMPLETE"
+exit

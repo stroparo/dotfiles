@@ -84,5 +84,5 @@ then
   sudo ln -s $(which sublime_text) /usr/local/bin/subl
 fi
 
-echo "${PROGNAME:+$PROGNAME: }COMPLETE"
-echo
+echo "$PROGNAME: COMPLETE"
+exit

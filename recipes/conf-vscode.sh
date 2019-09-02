@@ -66,5 +66,5 @@ fi
 # #############################################################################
 # Final sequence
 
-echo "${PROGNAME:+$PROGNAME: }COMPLETE"
-echo
+echo "$PROGNAME: COMPLETE"
+exit

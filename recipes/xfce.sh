@@ -103,3 +103,8 @@ elif _is_debian_family ; then
   _install_packages "xfwm4-themes"
   _install_packages xfce4-clipman-plugin xfce4-mount-plugin xfce4-places-plugin xfce4-timer-plugin
 fi
+
+# #############################################################################
+
+echo "$PROGNAME: COMPLETE"
+exit
