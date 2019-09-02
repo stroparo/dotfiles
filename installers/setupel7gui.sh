@@ -3,7 +3,7 @@
 PROGNAME="setupel7gui.sh"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
-if ! egrep -i -q -r '(centos|fedora|oracle|red *hat).*7' /etc/*release ; then echo "${PROGNAME}: SKIP: EL7 supported only" 1>&2 ; exit ; fi
+if ! egrep -i -q -r '(cent *os|fedora|oracle|red *hat).*7' /etc/*release ; then echo "${PROGNAME}: SKIP: EL7 supported only" ; exit ; fi
 
 echo "$PROGNAME: INFO: EL7 Enterprise Linux GUI setup started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
