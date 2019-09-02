@@ -36,7 +36,7 @@ if egrep -i -q -r 'debian' /etc/*release ; then
   sudo "${INSTPROG}" install -y golang-any
 if egrep -i -q -r 'ubuntu' /etc/*release ; then
   sudo "${INSTPROG}" install -y golang-go
-elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
+elif egrep -i -q -r 'cent *os|fedora|oracle|red *hat' /etc/*release ; then
   sudo "${INSTPROG}" install -y golang
 fi
 
