@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
 
-# Custom aliases
-
-# Globals
+PROGNAME="alias.sh"
 ALIASES_FILE='${HOME}/.aliases-cs'
 
-echo
-echo "################################################################################"
-echo "Aliases ==> '$ALIASES_FILE'"
+echo "$PROGNAME: INFO: aliases writing to '$ALIASES_FILE' started"
 
 # #############################################################################
 # Shell profiles
@@ -241,5 +237,4 @@ EOF
 # #############################################################################
 # Final sequence
 
-echo "$PROGNAME: COMPLETE: aliases setup at ${ALIASES_FILE}"
-echo
+echo "$PROGNAME: COMPLETE: aliases written to '${ALIASES_FILE}'"
