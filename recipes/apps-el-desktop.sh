@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# Custom EL Enterprise Linux desktop selections installation
-
 PROGNAME="apps-el-desktop.sh"
 
 if ! egrep -i -q -r 'cent *os|fedora|oracle|red *hat' /etc/*release ; then echo "${PROGNAME}: SKIP: EL supported only" 1>&2 ; exit ; fi
@@ -24,6 +22,7 @@ URL_STACER='https://github.com/oguzhaninan/Stacer/releases/download/v1.0.8/stace
 # #############################################################################
 # Helpers
 
+
 _install_packages () {
   typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')-${RANDOM}"
   if ! sudo $INSTPROG install -y "$@" >/tmp/pkg-install-${filestamp}.log 2>&1 ; then
@@ -31,8 +30,8 @@ _install_packages () {
   fi
 }
 
+
 # #############################################################################
-# Base
 
 echo ${BASH_VERSION:+-e} "\n==> Base desktop packages..."
 _install_packages gnome-themes-standard x11-ssh-askpass xbacklight xclip

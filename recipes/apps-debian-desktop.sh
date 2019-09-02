@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# Custom Debian package selections installation for desktop environments
-
 PROGNAME="apps-debian-desktop.sh"
 
 if ! egrep -i -q -r 'debi|ubun' /etc/*release ; then ; echo "PROGNAME: SKIP: De/b/untu-like supported only" ; exit ; fi
@@ -19,6 +17,7 @@ export INSTPROG="$APTPROG"
 # #############################################################################
 # Helpers
 
+
 _install_packages () {
   for package in "$@" ; do
     echo "$PROGNAME: INFO: Installing '$package'..."
@@ -28,15 +27,13 @@ _install_packages () {
   done
 }
 
-# #############################################################################
-echo "$PROGNAME: INFO: Debian APT index update..."
 
+# #############################################################################
+
+echo "$PROGNAME: INFO: Debian APT index update..."
 if ! sudo $APTPROG update >/dev/null 2>/tmp/apt-update-err.log ; then
   echo "$PROGNAME: WARN: There was some failure during APT index update - see '/tmp/apt-update-err.log'." 1>&2
 fi
-
-# #############################################################################
-# Installations
 
 echo "$PROGNAME: INFO: Debian desktop - educational packages..."
 _install_packages gperiodic
@@ -55,15 +52,11 @@ echo "$PROGNAME: INFO: Debian desktop - miscellaneous packages..."
 _install_packages autorenamer
 _install_packages slop # GUI region selection, used by other apps such as screenkey
 
-# #############################################################################
 echo "$PROGNAME: INFO: Debian APT repository clean up..."
-
 sudo $APTPROG autoremove -y
 sudo $APTPROG clean -y
 
-# #############################################################################
 echo "$PROGNAME: INFO: Debian GUI app recommendations > ~/README-debian-gui-apps.lst"
-
 cat <<EOF | tee "${HOME}/README-debian-gui-apps.lst"
 # Favorites
 {
@@ -108,9 +101,6 @@ sudo $INSTPROG install -y shutter # screenshots
 # Etc - System
 sudo $INSTPROG install -y ntfs-3g
 EOF
-
-# #############################################################################
-# Final sequence
 
 echo "$PROGNAME: COMPLETE: Debian desktop package selections"
 exit
