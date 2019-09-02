@@ -43,5 +43,5 @@ fi
 # #############################################################################
 # Final sequence
 
-echo "${PROGNAME}: COMPLETE: Go (golang) setup"
+echo "$PROGNAME: COMPLETE: Go (golang) setup"
 exit
