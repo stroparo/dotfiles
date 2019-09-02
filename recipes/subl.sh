@@ -2,12 +2,20 @@
 
 PROGNAME="subl.sh"
 
-cd "${RUNR_DIR:-.}"
+echo "$PROGNAME: INFO: SublimeText custom deployment >>>> this is a compound recipe"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
-bash ./installers/setupsubl.sh
+# #############################################################################
 
-echo "IMPORTANT Install package control and only after that press ENTER..."
+cd "${RUNR_DIR:-$PWD}"
+
+bash "${RUNR_DIR:-$PWD}"/installers/setupsubl.sh
+
+echo "$PROGNAME: INFO: IMPORTANT: Install package control in sublime and hit ENTER here..."
 subl || sublime_text || exit $?
 read enter_key_press_dummy_var
 
-bash ./recipes/conf-subl.sh
+bash "${RUNR_DIR:-$PWD}"/recipes/conf-subl.sh
+
+echo "$PROGNAME: COMPLETE: SublimeText custom deployment (compound)"
+exit
