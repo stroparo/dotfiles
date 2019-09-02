@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-PROGNAME=sshkeygen.sh
+PROGNAME="sshkeygen.sh"
 
 # Create a default SSH key
 # Requires Daily Shells at https://stroparo.github.io/ds
+
+echo "$PROGNAME: INFO: SSH key generation; \$0='$0'; \$PWD='$PWD'"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -13,9 +16,6 @@ SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
 
 # #############################################################################
 # Prep
-
-echo "################################################################################"
-echo "SSH key generation; \$0='$0'; \$PWD='$PWD'"
 
 # Daily Shells dependency
 if [ ! -e "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
@@ -45,7 +45,7 @@ fi
 if [ -z "$(ssh-add -l)" ] ; then
   "${DS_HOME:-$HOME/.ds}"/scripts/sshkeygenrsa.sh
 else
-  echo "${PROGNAME:+$PROGNAME: }SKIP: There already is an active ssh-agent." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: There already is an active ssh-agent."
   echo
   exit
 fi
@@ -53,5 +53,5 @@ fi
 # #############################################################################
 # Final sequence
 
-echo "${PROGNAME:+$PROGNAME: }INFO: complete." 1>&2
-echo
+echo "$PROGNAME: COMPLETE"
+exit
