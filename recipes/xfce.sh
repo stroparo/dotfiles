@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
+PROGNAME="xfce.sh"
+
 if ! (uname -a | grep -i linux) ; then exit ; fi
+
+echo "$PROGNAME: INFO: XFCE setup"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
 
-PROGNAME="xfce.sh"
 export USAGE="[-d] [-h]"
 
 # System installers
@@ -16,7 +20,6 @@ export INSTPROG="$APTPROG"; which "$RPMPROG" >/dev/null 2>&1 && export INSTPROG=
 
 # #############################################################################
 # Specific globals
-
 
 # Options:
 OPTIND=1
@@ -59,22 +62,12 @@ _install_rpm_groups () {
   done
 }
 
-_print_header () {
-  echo "################################################################################"
-  echo "$@"
-  echo "################################################################################"
-}
-
 _set_fedora_version () {
   export FEDORA_VERSION=$(egrep -i -o -r 'fedora [0-9]+' /etc/*release \
     | head -1 \
     | awk '{ print $2; }')
 }
 
-# #############################################################################
-# Main
-
-_print_header "XFCE setup"
 
 # #############################################################################
 if _is_el_family ; then
@@ -89,7 +82,7 @@ if _is_el_family ; then
   _install_rpm_groups xfce
   _install_packages xorg-x11-fonts-Type1 xorg-x11-fonts-misc
 
-  _print_header "XFCE Whisker Menu setup..."
+  echo "$PROGNAME: INFO: XFCE Whisker Menu setup..."
   if _is_el ; then
     _install_packages "xfce4-whiskermenu-plugin"
   elif egrep -i -q -r 'fedora 2[6-9]' /etc/*release ; then
