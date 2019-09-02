@@ -1,14 +1,20 @@
 #!/usr/bin/env bash
 
 PROGNAME=git.sh
-USAGE="[-v] [git files --default--> \$HOME/.gitconfig]"
+
+echo "$PROGNAME: INFO: Git custom recipe started"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
 
+USAGE="[-v] [git files --default--> \$HOME/.gitconfig]"
 : ${VERBOSE:=false} ; export VERBOSE
 
-# #############################################################################
+export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
+export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
+export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP="dnf group install"
+
 # Options:
 OPTIND=1
 while getopts ':hv' option ; do
@@ -20,24 +26,8 @@ done
 shift "$((OPTIND-1))"
 
 # #############################################################################
-# Begin
-
-echo "################################################################################"
-echo "Git setup; \$0='$0'; \$PWD='$PWD'"
-
-# Install Git
-which git >/dev/null 2>&1 \
-  || (sudo apt update && sudo apt install -y 'git-core') \
-  || (sudo yum install -y git)
-which git >/dev/null 2>&1 || return 1
-
-if ! which git >/dev/null 2>&1 ; then
-  echo "$PROGNAME: SKIP: no git available" 1>&2
-  exit
-fi
-
-# #############################################################################
 # Routines
+
 
 _prep_git_config_file () {
   typeset gitfile
@@ -46,11 +36,12 @@ _prep_git_config_file () {
     touch "$gitfile"
 
     if [ ! -f "$gitfile" ] || [ ! -w "$gitfile" ] ; then
-      echo "ERROR: Git file missing ('$gitfile')." 1>&2
+      echo "$PROGNAME: ERROR: Git file missing ('$gitfile')." 1>&2
       return 1
     fi
   done
 }
+
 
 _git_config () {
   typeset gitfile
@@ -81,14 +72,26 @@ EOF
 
     if ${VERBOSE:-false} ; then
       echo
-      echo "==> Git config in '$gitfile' file:"
+      echo "$PROGNAME: ==> Git config in '$gitfile' file:"
       git config -f "$gitfile" -l
     fi
   done
 }
 
+
 # #############################################################################
 # Main
+
+# Install Git
+which git >/dev/null 2>&1 \
+  || (sudo ${APTPROG:-apt} update && sudo ${APTPROG:-apt} install -y 'git-core') \
+  || (sudo ${RPMPROG:-yum} install -y 'git')
+which git >/dev/null 2>&1 || return 1
+
+if ! which git >/dev/null 2>&1 ; then
+  echo "$PROGNAME: SKIP: no git available" 1>&2
+  exit
+fi
 
 if [ -z "$1" ] ; then
   echo "${PROGNAME:+$PROGNAME: }WARN: No args so defaulting to '$HOME/.gitconfig'." 1>&2
@@ -113,7 +116,7 @@ if (uname -a | egrep -i -q "cygwin") ; then
 
   if ${VERBOSE:-false} ; then
     echo
-    echo "==> Git config in '$GITCONFIG_CYGWIN' file:"
+    echo "$PROGNAME: ==> Git config in '$GITCONFIG_CYGWIN' file:"
     git config -f "$GITCONFIG_CYGWIN" -l
   fi
 fi
@@ -130,7 +133,7 @@ if (uname -a | egrep -i -q "mingw|msys|win32|windows") ; then
 
   if ${VERBOSE:-false} ; then
     echo
-    echo "==> Git config in '$GITCONFIG_MINGW' file:"
+    echo "$PROGNAME: ==> Git config in '$GITCONFIG_MINGW' file:"
     git config -f "$GITCONFIG_MINGW" -l
   fi
 fi
@@ -138,5 +141,5 @@ fi
 # #############################################################################
 # Final sequence
 
-echo "$PROGNAME: COMPLETE: custom deployment of Git"
-echo
+echo "$PROGNAME: COMPLETE: Git custom recipe"
+exit
