@@ -2,7 +2,7 @@
 
 PROGNAME="apps-debian.sh"
 
-if ! egrep -i -q -r 'debi|ubun' /etc/*release ; then ; echo "PROGNAME: SKIP: De/b/untu-like supported only" ; exit ; fi
+if ! egrep -i -q -r 'debi|ubun' /etc/*release ; then echo "PROGNAME: SKIP: De/b/untu-like supported only" ; exit ; fi
 
 echo "$PROGNAME: INFO: Debian package selections installation"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
