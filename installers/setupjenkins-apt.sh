@@ -3,7 +3,7 @@
 PROGNAME="setupjenkins-apt.sh"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
-if ! egrep -i -q -r 'debi|ubun' /etc/*release ; then ; echo "PROGNAME: SKIP: De/b/untu-like supported only" ; exit ; fi
+if ! egrep -i -q -r 'debi|ubun' /etc/*release ; then echo "PROGNAME: SKIP: De/b/untu-like supported only" ; exit ; fi
 
 echo "$PROGNAME: INFO: Jenkins for Debian distros setup started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"

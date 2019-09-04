@@ -2,7 +2,7 @@
 
 PROGNAME="setupruby-ubuntu.sh"
 
-if ! egrep -i -q -r 'ubuntu' /etc/*release ; then ; echo "PROGNAME: SKIP: Ubuntu supported only" ; exit ; fi
+if ! egrep -i -q -r 'ubuntu' /etc/*release ; then echo "PROGNAME: SKIP: Ubuntu supported only" ; exit ; fi
 
 # Install Ruby, Rails, Bundler and common gems
 # Argument is a gemfile to use to install global packages

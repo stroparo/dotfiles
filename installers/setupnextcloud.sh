@@ -3,7 +3,7 @@
 PROGNAME="setupnextcloud.sh"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
-if ! egrep -i -q -r 'ubuntu' /etc/*release ; then ; echo "PROGNAME: SKIP: Ubuntu supported only" ; exit ; fi
+if ! egrep -i -q -r 'ubuntu' /etc/*release ; then echo "PROGNAME: SKIP: Ubuntu supported only" ; exit ; fi
 
 echo "$PROGNAME: INFO: Next Cloud setup started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
