@@ -2,8 +2,8 @@
 
 PROGNAME="setupsubl.sh"
 
-if which subl >/dev/null 2>&1 ; then ; echo "$PROGNAME: SKIP: Already installed" ; exit ; fi
-if which sublime_text >/dev/null 2>&1 ; then ; echo "$PROGNAME: SKIP: Already installed" ; exit ; fi
+if which subl >/dev/null 2>&1 ; then echo "$PROGNAME: SKIP: Already installed" ; exit ; fi
+if which sublime_text >/dev/null 2>&1 ; then echo "$PROGNAME: SKIP: Already installed" ; exit ; fi
 
 echo "$PROGNAME: INFO: Sublime Text editor setup started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
