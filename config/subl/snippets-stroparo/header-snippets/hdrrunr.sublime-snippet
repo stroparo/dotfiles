@@ -1,9 +1,0 @@
-<snippet>
-  <content><![CDATA[
-# Cristian Stroparo's runr - https://github.com/stroparo/runr
-]]></content>
-  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>hdrrunr</tabTrigger>
-  <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <!-- <scope>source.shell</scope> -->
-</snippet>
