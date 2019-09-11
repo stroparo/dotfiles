@@ -37,9 +37,6 @@
     "Theme - Afterglow",
     "Theme - Spacegray",
 
-    // Build
-    "Bash Build System",
-
     // Linting
     "SublimeLinter",
     "SublimeLinter-flake8", // or "SublimeLinter-pycodestyle",

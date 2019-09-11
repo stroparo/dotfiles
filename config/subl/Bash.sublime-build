@@ -1,0 +1,17 @@
+{
+  "selector": "source.shell",
+
+  "windows": {
+    "path": "$path;C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\mingw64\\\\bin",
+    "cmd": ["bash", "--login", "-i", "-c", "cd \"$file_path\"; \"$file\""]
+  },
+
+  "linux": {
+    "cmd": ["bash", "-c", "cd \"$file_path\"; \"$file\""]
+  },
+
+  "osx": {
+    "path": "$PATH:/usr/local/bin:/usr/X11R6/bin:/opt/X11/bin:/usr/texbin",
+    "cmd": ["bash", "-c", "cd \"$file_path\"; \"$file\""]
+  }
+}
