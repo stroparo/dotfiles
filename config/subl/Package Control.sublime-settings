@@ -73,6 +73,7 @@
     // Syntax Highlight support
     "AutoHotkey",
     "Dockerfile Syntax Highlighting",
+    "Dotfiles Syntax Highlighting",
     "Tmux Syntax Highlight",
     "VimL",
 
