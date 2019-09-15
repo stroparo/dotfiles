@@ -32,9 +32,13 @@
     "Text Marker",
 
     // Color Themes
+    "1337 Color Scheme",
     "Boxy Theme",
+    "Color Scheme - Legacy",
+    "gruvbox", // Colorscheme good, theme not so good
     "Pastel Paws Color Scheme",
-    "Theme - Afterglow",
+    "Theme - Arc", // Colorscheme not good (shell); Arc Dark theme good!!
+    "Theme - Hero", // colorscheme good, theme not so good
     "Theme - Spacegray",
 
     // Linting

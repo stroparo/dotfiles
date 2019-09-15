@@ -14,15 +14,23 @@
   "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12, // nice font_size's: 12..15
   "font_options": ["subpixel_antialias", "no_bold"],
 
-  // Color & theme selections
+  // Colorschemes & themes
   //
-  "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme",
-  // "color_scheme": "Packages/Theme - Afterglow/Afterglow.tmTheme",
-  // "color_scheme": "Packages/Theme - Afterglow/Afterglow-twilight.tmTheme",
-  // "color_scheme": "Packages/Theme - Spacegray/base16-eighties.dark.tmTheme",
-  // "theme": "Afterglow-blue.sublime-theme", // Variants: blue, green, magenta, orange
-  "theme": "Boxy Tomorrow.sublime-theme",
+  // "color_scheme": "Packages/1337 Color Scheme/1337.tmTheme",
+  // "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme",
+  // "color_scheme": "Packages/Theme - Hero/Hero Dark.tmTheme",
+  // "theme": "Adaptive.sublime-theme",
+  // "theme": "Arc Dark.sublime-theme",
+  // "theme": "Boxy Tomorrow.sublime-theme",
   // "theme": "Spacegray Eighties.sublime-theme",
+  //
+  // Color & theme selections:
+  // "theme": "Arc Dark.sublime-theme", "color_scheme": "Packages/Pastel Paws Color Scheme/Base16 Pastel Paws.tmTheme",
+  // "theme": "Arc Dark.sublime-theme", "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme",
+  // "theme": "Arc Dark.sublime-theme", "color_scheme": "Packages/Theme - Hero/Hero Dark.tmTheme",
+  // "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/1337 Color Scheme/1337.tmTheme",
+  "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/gruvbox/gruvbox (Dark) (Medium).sublime-color-scheme",
+  // "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme",
 
   // Attributes for theme: Afterglow
   "color_inactive_tabs": true,
