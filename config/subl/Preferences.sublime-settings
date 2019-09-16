@@ -28,8 +28,11 @@
   // "theme": "Arc Dark.sublime-theme", "color_scheme": "Packages/Pastel Paws Color Scheme/Base16 Pastel Paws.tmTheme",
   // "theme": "Arc Dark.sublime-theme", "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme",
   // "theme": "Arc Dark.sublime-theme", "color_scheme": "Packages/Theme - Hero/Hero Dark.tmTheme",
+  // "theme": "Boxy Tomorrow.sublime-theme", "color_scheme": "Packages/1337 Color Scheme/1337.tmTheme",
+  // "theme": "Boxy Tomorrow.sublime-theme", "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme",
+  "theme": "Boxy Tomorrow.sublime-theme", "color_scheme": "Packages/gruvbox/gruvbox (Dark) (Medium).sublime-color-scheme",
   // "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/1337 Color Scheme/1337.tmTheme",
-  "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/gruvbox/gruvbox (Dark) (Medium).sublime-color-scheme",
+  // "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/gruvbox/gruvbox (Dark) (Medium).sublime-color-scheme",
   // "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme",
 
   // Attributes for theme: Afterglow
