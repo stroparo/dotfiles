@@ -1,5 +1,12 @@
 {
-  "trailing_spaces_modified_lines_only": true,
-  "trailing_spaces_trim_on_save": true,
-  "trailing_spaces_syntax_ignore": ["Packages/Markdown/Markdown.sublime-syntax", "Markdown", "Markdown GFM", "Markdown (Standard)", "MultiMarkdown" ]
+  "trailing_spaces_syntax_ignore": [],
+  "trailing_spaces_enabled" : true,
+  "trailing_spaces_highlight_color" : "invalid",
+  "trailing_spaces_include_empty_lines" : true,
+  "trailing_spaces_include_current_line" : true,
+  "trailing_spaces_modified_lines_only": false,
+  "trailing_spaces_trim_on_save": false,
+  "trailing_spaces_save_after_trim": false,
+  "trailing_spaces_file_max_size" : 1048576,
+  "trailing_spaces_regexp": "[ \t]+"
 }
