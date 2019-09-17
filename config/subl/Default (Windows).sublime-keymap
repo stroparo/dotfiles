@@ -1,17 +1,22 @@
 [
+    { "keys": ["ctrl+b"], "command": "build" }, // override markdownediting's bold command and possibly more plugins
     { "keys": ["ctrl+alt+p"], "command": "prompt_select_workspace" },
     { "keys": ["ctrl+shift+a"], "command": "alignment" },
+    { "keys": ["ctrl+shift+c"], "command": "copy_path_to_clipboard" },
     { "keys": ["ctrl+shift+t"], "command": "reopen_last_file" }, // back to default, against the Terminal plugin
+
     { "keys": ["ctrl+v"], "command": "paste_and_indent" },
     { "keys": ["ctrl+shift+v"], "command": "paste" },
+
     // Close all other tabs
-    { "keys": ["ctrl+shift+c"], "command": "copy_path_to_clipboard" },
+    { "keys": ["ctrl+alt+w"], "command": "close_tabs" },
+    { "keys": ["f9"], "command": "unbound" },
+
+    // Windows only:
     { "keys": ["ctrl+alt+b"], "command": "run_existing_window_command", "args":
       {
         "id": "repl_python_run",
         "file": "config/Python/Main.sublime-menu",
       }
-    },
-    { "keys": ["ctrl+alt+w"], "command": "close_tabs" },
-    { "keys": ["f9"], "command": "unbound" }
+    }
 ]
