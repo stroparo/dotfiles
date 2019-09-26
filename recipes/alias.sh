@@ -134,10 +134,10 @@ alias gv='git mv'
 # Diff
 alias gdc='git diff --cached'
 alias gdce='git diff --cached --ignore-space-at-eol'
-alias gde='git diff --ignore-space-at-eol'
-alias gdee'git diff --ignore-space-at-eol HEAD'
-alias gdi='git diff --ignore-space-at-eol'
+alias ge='git diff --ignore-space-at-eol'
+alias gee'git diff --ignore-space-at-eol HEAD'
 alias gdh='git diff HEAD'
+alias gdi='git diff --ignore-space-at-eol'
 
 # Log
 alias gas='git log --decorate --graph --all --stat'
