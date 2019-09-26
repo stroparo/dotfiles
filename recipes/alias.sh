@@ -135,7 +135,7 @@ alias gv='git mv'
 alias gdc='git diff --cached'
 alias gdce='git diff --cached --ignore-space-at-eol'
 alias ge='git diff --ignore-space-at-eol'
-alias gee'git diff --ignore-space-at-eol HEAD'
+alias gee='git diff --ignore-space-at-eol HEAD'
 alias gdh='git diff HEAD'
 alias gdi='git diff --ignore-space-at-eol'
 
