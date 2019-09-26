@@ -180,6 +180,17 @@ if [ -z "${ZSH_THEME}" ] ; then
   alias grset='git remote set-url'
   alias grup='git remote update'
   alias grv='git remote -v'
+
+  # --wip--
+  alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
+  alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"'
+
+  # --wip-- Warn if the current branch is a WIP (common usage in prompt vars eg PS1):
+  function work_in_progress() {
+    if $(git log -n 1 2>/dev/null | grep -q -c "\-\-wip\-\-"); then
+      echo "WIP!!"
+    fi
+  }
 fi
 
 # #############################################################################
