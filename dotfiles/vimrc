@@ -9,8 +9,11 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+
 call plug#begin('~/.vim/bundle')
+
 Plug 'junegunn/vim-plug'    " has vim-plug help
+
 " No harm plugins from https://www.vi-improved.org/plugins/
 Plug 'https://github.com/tpope/vim-abolish'
 Plug 'https://github.com/tpope/vim-characterize'
@@ -33,25 +36,29 @@ Plug 'https://github.com/tomtom/ttags_vim'
 Plug 'https://github.com/mbbill/undotree'
 Plug 'https://github.com/ajh17/VimCompletesMe'
 Plug 'https://github.com/tpope/vim-unimpaired'
+
 " Autocomplete
 Plug 'https://github.com/ervandew/supertab'
 Plug 'https://github.com/tpope/vim-endwise'
-" Build
-Plug 'neomake/neomake'
-" Editor
+
+" Editing
 Plug 'https://github.com/editorconfig/editorconfig-vim'
 Plug 'https://github.com/RRethy/vim-hexokinase.git'
 Plug 'https://github.com/xtal8/traces.vim'
 Plug 'https://github.com/chaoren/vim-wordmotion'
 Plug 'https://github.com/fvictorio/vim-yank-queue'
+
 " Formatting
 Plug 'https://github.com/z0mbix/vim-shfmt', { 'for': 'sh' }
+
 " Search
 Plug 'https://github.com/mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
 Plug 'junegunn/fzf.vim'
+
 " Syntax support for multiple languages
 Plug 'https://github.com/sheerun/vim-polyglot'
+
 " Specific for Java
 Plug 'https://github.com/akhaku/vim-java-unused-imports'
 " Specific for Markdown
@@ -64,14 +71,24 @@ Plug 'https://github.com/tmhedberg/SimpylFold'
 Plug 'https://github.com/tmux-plugins/vim-tmux'
 Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events'
 Plug 'https://github.com/christoomey/vim-tmux-navigator'
-" Version control
+
+" Tooling - CI / Building
+Plug 'neomake/neomake'
+
+" Toolind - Container - Docker
+Plug 'https://github.com/skanehira/docker.vim'
+
+" Tooling - Version control
 Plug 'https://github.com/airblade/vim-gitgutter'
+
 " Visuals
 Plug 'https://github.com/c9s/colorselector.vim'
 Plug 'https://github.com/Konfekt/FastFold'
 " Visuals - colorschemes
 " Plug 'https://github.com/rafi/awesome-vim-colorschemes' " several schemes aggregated in one place
+
 call plug#end()
+
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim settings
