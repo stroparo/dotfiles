@@ -124,17 +124,20 @@ alias dce='docker-compose exec'
 
 alias bv='git branch -vv'
 alias bav='git branch -avv'
-alias gdc='git diff --cached'
-alias gdce='git diff --cached --ignore-space-at-eol'
-alias gde='git diff --ignore-space-at-eol'
-alias gdh='git diff HEAD'
-alias gdhe='git diff --ignore-space-at-eol HEAD'
 alias gfa='git fetch --all'
 alias gfap='git fetch --all -p'
 alias gfp='git fetch -p'
 alias glrum='git pull --rebase upstream master'
 alias gpmm='git push mirror master'
 alias gv='git mv'
+
+# Diff
+alias gdc='git diff --cached'
+alias gdce='git diff --cached --ignore-space-at-eol'
+alias gde='git diff --ignore-space-at-eol'
+alias gdee'git diff --ignore-space-at-eol HEAD'
+alias gdi='git diff --ignore-space-at-eol'
+alias gdh='git diff HEAD'
 
 # Log
 alias gas='git log --decorate --graph --all --stat'
