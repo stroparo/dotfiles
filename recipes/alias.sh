@@ -124,6 +124,8 @@ alias dce='docker-compose exec'
 
 alias bv='git branch -vv'
 alias bav='git branch -avv'
+alias gbd='git branch -d'
+alias gbD='git branch -D'
 alias gfa='git fetch --all'
 alias gfap='git fetch --all -p'
 alias gfp='git fetch -p'
