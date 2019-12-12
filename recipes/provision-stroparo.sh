@@ -3,27 +3,38 @@
 PROGNAME="provision-stroparo.sh"
 
 
-_step_base_system () {
-
-  ${STEP_BASE_SYSTEM_DONE:-false} && return
-
-  if [ -e /etc/sudoers ] && ! sudo grep -q "${USER}.*ALL" /etc/sudoers ; then
-    echo
-    echo "Add this line to your sudoers file:"
-    echo "$USER ALL=(ALL) NOPASSWD: ALL"
-    echo "Press any key to continue..."
-    read dummy
-    su - -c visudo
-  fi
-
-  mkdir ~/workspace >/dev/null 2>&1 ; ls -d -l ~/workspace || exit $?
-
+_daily_shells () {
   bash -c "$(curl ${DLOPTEXTRA} -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
     || curl ${DLOPTEXTRA} -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
     entry.sh apps shell
-
   source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
+}
 
+
+_sudo_setup () {
+  if [ -e /etc/sudoers ] && ! sudo grep -q "${USER}.*ALL" /etc/sudoers ; then
+    echo "Append: '$USER ALL=(ALL) NOPASSWD: ALL' to the sudo file."
+    echo "Press any key to enter visudo (if you reach a second attempt, root password will be needed)..."
+    read dummy
+    sudo visudo
+    if [ -e /etc/sudoers ] && ! sudo grep -q "${USER}.*ALL" /etc/sudoers ; then
+      su - -c visudo
+    fi
+  fi
+}
+
+
+_make_workspace_dir () {
+  mkdir ~/workspace >/dev/null 2>&1
+  ls -d -l ~/workspace || exit $?
+}
+
+
+_step_base_system () {
+  ${STEP_BASE_SYSTEM_DONE:-false} && return
+  _sudo_setup
+  _make_workspace_dir
+  _daily_shells
   export STEP_BASE_SYSTEM_DONE=true
 }
 
