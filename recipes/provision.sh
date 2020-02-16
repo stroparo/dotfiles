@@ -94,6 +94,7 @@ _desktop_any_os () {
 
 _dev_platforms () {
   if [[ $PROVISION_OPTIONS = *nodevel* ]] ; then return ; fi
+
   bash "${RUNR_DIR:-.}"/recipes/python.sh
   bash "${RUNR_DIR:-.}"/installers/setupgolang.sh
   bash "${RUNR_DIR:-.}"/installers/setuprust.sh
@@ -101,6 +102,7 @@ _dev_platforms () {
 
 _dev_tools () {
   if [[ $PROVISION_OPTIONS = *nodevel* ]] ; then return ; fi
+
   bash "${RUNR_DIR:-.}"/installers/setupdocker.sh
   bash "${RUNR_DIR:-.}"/installers/setupdocker-compose.sh
   bash "${RUNR_DIR:-.}"/installers/setupeditorconfig.sh
@@ -109,6 +111,15 @@ _dev_tools () {
   bash "${RUNR_DIR:-.}"/installers/setupsdkman.sh
   bash "${RUNR_DIR:-.}"/installers/setuptmux.sh
   bash "${RUNR_DIR:-.}"/recipes/vim.sh
+}
+
+# #############################################################################
+# System helpers
+
+_sys_linux () {
+  if ! _is_linux ; then return ; fi
+
+  bash "${RUNR_DIR:-.}"/recipes/linux-fixes.sh
 }
 
 # #############################################################################
@@ -130,4 +141,4 @@ _dev_platforms
 _dev_tools
 
 # System
-bash "${RUNR_DIR:-.}"/recipes/linux-fixes.sh
+_sys_linux
