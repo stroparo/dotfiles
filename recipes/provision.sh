@@ -50,7 +50,7 @@ if [[ $PROVISION_OPTIONS = *gui* ]] ; then
   fi
 
   if [[ $PROVISION_OPTIONS != *nodevel* ]] ; then
-    bash "${RUNR_DIR:-.}"/recipes/powerline-fonts.sh
+    bash "${RUNR_DIR:-.}"/installers/setuppowerfonts.sh
     bash "${RUNR_DIR:-.}"/recipes/subl.sh
     # TODO implement bash "${RUNR_DIR:-.}"/recipes/vscodium.sh
   fi
