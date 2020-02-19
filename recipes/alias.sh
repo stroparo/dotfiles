@@ -130,6 +130,8 @@ alias gfa='git fetch --all'
 alias gfap='git fetch --all -p'
 alias gfp='git fetch -p'
 alias glrum='git pull --rebase upstream master'
+alias gph='git push origin HEAD'
+alias gphf='git push -f origin HEAD'
 alias gpmm='git push mirror master'
 alias gv='git mv'
 
