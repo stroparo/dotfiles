@@ -8,7 +8,7 @@ fi
 # #############################################################################
 # Dependencies
 
-sudo apt-get install -y gtk+3.0 webkit2gtk-4.0 libusb-dev
+sudo apt update && sudo apt-get install -y gtk+3.0 webkit2gtk-4.0 libusb-dev
 if [ $? -ne 0 ] ; then
   exit 1
 fi
@@ -28,7 +28,7 @@ chmod -R -v '700' "$HOME/opt/wally"
 # #############################################################################
 # Configure
 
-sudo cat > /etc/udev/rules.d/50-wally.rules <<EOF
+sudo cat > /tmp/50-wally.rules <<EOF
 # Teensy rules for the Ergodox EZ Original / Shine / Glow
 ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", ENV{ID_MM_DEVICE_IGNORE}="1"
 ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789A]?", ENV{MTP_NO_PROBE}="1"
@@ -41,15 +41,20 @@ SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", \
     SYMLINK+="stm32_dfu"
 EOF
 
+sudo cp -f -v /tmp/50-wally.rules /etc/udev/rules.d/
+
 # #############################################################################
 # Configure live training
 
-sudo cat > /etc/udev/rules.d/50-oryx.rules <<EOF
+sudo cat > /tmp/50-oryx.rules <<EOF
 # Rule for the Ergodox EZ Original / Shine / Glow
 SUBSYSTEM=="usb", ATTR{idVendor}=="feed", ATTR{idProduct}=="1307", GROUP="plugdev"
 # Rule for the Planck EZ Standard / Glow
 SUBSYSTEM=="usb", ATTR{idVendor}=="feed", ATTR{idProduct}=="6060", GROUP="plugdev"
 EOF
 
+sudo cp -f -v /tmp/50-oryx.rules /etc/udev/rules.d/
+
 sudo groupadd plugdev
+echo sudo usermod -aG plugdev "$USER"
 sudo usermod -aG plugdev "$USER"
