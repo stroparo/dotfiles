@@ -95,8 +95,8 @@ _build_main () {
 
   cd "$WORKDIR"
 
-  if which tmux >/dev/null 2>&1 && [ -d ./."tmux-$TMUX_VERSION" ] ; then
-    echo "${PROGNAME:+$PROGNAME: }SKIP: tmux likely already built and installed." 1>&2
+  if which tmux >/dev/null 2>&1 && [ -d "${PWD}/.tmux-$TMUX_VERSION" ] ; then
+    echo "${PROGNAME:+$PROGNAME: }SKIP: tmux likely already built (from '${PWD}/.tmux-$TMUX_VERSION') and installed." 1>&2
     return
   fi
 
