@@ -2,6 +2,8 @@
 
 PROGNAME="provision-stroparo.sh"
 
+# #############################################################################
+# Base
 
 _daily_shells () {
   bash -c "$(curl ${DLOPTEXTRA} -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
@@ -39,6 +41,9 @@ _step_base_system () {
 }
 
 
+# #############################################################################
+# Custom
+
 _step_ds_custom_plugins () {
 
   "${DS_HOME:-$HOME/.ds}/scripts/dsplugin.sh" "stroparo@bitbucket.org/stroparo/ds-stroparo" \
@@ -61,6 +66,7 @@ _step_custom () {
   bash "${DS_HOME:-$HOME/.ds}"/scripts/dsconfgit.sh
 }
 
+# #############################################################################
 
 _main () {
   _step_base_system
