@@ -50,8 +50,9 @@ _step_ds_custom_plugins () {
 
 _step_provision_custom () {
 
-  export PROVISION_OPTIONS="${PROVISION_OPTIONS} gui xfce"
+  export PROVISION_OPTIONS="${PROVISION_OPTIONS} gui xfce chrome edu"
   runr -c provision-stroparo
+  runr -c setupez
 }
 
 

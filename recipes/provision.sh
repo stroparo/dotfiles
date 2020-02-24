@@ -33,9 +33,11 @@ _desktop_linux_xfce () {
 }
 
 _desktop_linux_apps () {
-  if [[ $PROVISION_OPTIONS = *noapps* ]] ; then return ; fi
+  if [[ $PROVISION_OPTIONS != *noapps* ]] ; then
+    bash "${RUNR_DIR:-.}"/recipes/apps-desktop.sh
+  fi
 
-  bash "${RUNR_DIR:-.}"/recipes/apps-desktop.sh
+  # Specific apps:
   if [[ $PROVISION_OPTIONS = *chrome* ]] ; then bash "${RUNR_DIR:-.}"/installers/setupchrome.sh ; fi
   if [[ $PROVISION_OPTIONS = *edu* ]] ; then bash "${RUNR_DIR:-.}"/installers/setupanki.sh ; fi
 }
