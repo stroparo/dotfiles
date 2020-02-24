@@ -5,7 +5,7 @@ PROGNAME="provision-stroparo.sh"
 # #############################################################################
 # Base
 
-_daily_shells () {
+_shell_plus_cli_apps () {
   bash -c "$(curl ${DLOPTEXTRA} -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
     || curl ${DLOPTEXTRA} -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
     entry.sh apps shell
@@ -15,8 +15,11 @@ _daily_shells () {
 
 _sudo_setup () {
   if [ -e /etc/sudoers ] && ! sudo grep -q "${USER}.*ALL" /etc/sudoers ; then
-    echo "Append: '$USER ALL=(ALL) NOPASSWD: ALL' to the sudo file."
-    echo "Press any key to enter visudo (if you reach a second attempt, root password will be needed)..."
+    echo "Append:"
+    echo "$USER ALL=(ALL) NOPASSWD: ALL"
+    echo "... to the sudoers file."
+    echo "Copy the above line then press any key to invoke 'sudo visudo'..."
+    echo "If sudo visudo fails then enter root password for 'su visudo'..."
     read dummy
     sudo visudo
     if [ -e /etc/sudoers ] && ! sudo grep -q "${USER}.*ALL" /etc/sudoers ; then
@@ -36,14 +39,14 @@ _step_base_system () {
   ${STEP_BASE_SYSTEM_DONE:-false} && return
   _sudo_setup
   _make_workspace_dir
-  _daily_shells
+  _shell_plus_cli_apps
   export STEP_BASE_SYSTEM_DONE=true
 }
 
 # #############################################################################
 # Custom
 
-_step_ds_custom_plugins () {
+_step_custom_ds_plugins () {
 
   "${DS_HOME:-$HOME/.ds}/scripts/dsplugin.sh" "stroparo@bitbucket.org/stroparo/ds-stroparo" \
     || "${DS_HOME:-$HOME/.ds}/scripts/dsplugin.sh" "stroparo@github.com/stroparo/ds-stroparo"
@@ -52,13 +55,17 @@ _step_ds_custom_plugins () {
 }
 
 
-_step_custom () {
-
-  _step_ds_custom_plugins
-
+_step_custom_provision () {
   runr -c dotfiles
   runr -c git
   runr -c provision
+}
+
+
+_step_custom () {
+
+  _step_custom_ds_plugins
+  _step_custom_provision
 
   selects-python-stroparo.sh
 
