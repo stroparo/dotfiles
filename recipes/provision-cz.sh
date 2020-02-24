@@ -2,6 +2,8 @@
 
 PROGNAME="provision-cz.sh"
 
+# #############################################################################
+# Base
 
 _step_base_system () {
 
@@ -27,6 +29,8 @@ _step_base_system () {
   export STEP_BASE_SYSTEM_DONE=true
 }
 
+# #############################################################################
+# Custom
 
 _step_expedite_pre_existing () {
 
@@ -74,6 +78,8 @@ _step_custom () {
   echo
 }
 
+
+# #############################################################################
 
 _main () {
   _step_base_system
