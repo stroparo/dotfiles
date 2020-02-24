@@ -15,6 +15,7 @@ fi
 
 # #############################################################################
 # Install
+# Source: https://github.com/zsa/wally/wiki/Linux-install
 
 URL="https://configure.ergodox-ez.com/wally/linux"
 mkdir -p "$HOME/opt/wally"
@@ -45,6 +46,7 @@ sudo cp -f -v /tmp/50-wally.rules /etc/udev/rules.d/
 
 # #############################################################################
 # Configure live training
+# Source: https://github.com/zsa/wally/wiki/Live-training-on-Linux
 
 sudo cat > /tmp/50-oryx.rules <<EOF
 # Rule for the Ergodox EZ Original / Shine / Glow
