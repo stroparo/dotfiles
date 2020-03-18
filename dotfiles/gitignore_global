@@ -4,6 +4,7 @@
 .*.swo
 .*.swp
 .dropbox*
+.fuse*
 .kitchen
 .idea
 .vscode
