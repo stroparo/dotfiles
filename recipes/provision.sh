@@ -10,14 +10,15 @@
 # - nodevel
 
 # #############################################################################
-# Helpers
+# Globals
 
-_is_linux () {
-  (uname | grep -i -q linux)
-}
+export ISLINUX=false
+if (uname | grep -i -q linux) ; then
+  export ISLINUX=true
+fi
 
 # #############################################################################
-# Desktop Linux helpers
+# Desktop helpers for Linux
 
 _desktop_linux_el7 () {
   if [[ $PROVISION_OPTIONS != *el7* ]] ; then return ; fi
@@ -68,7 +69,7 @@ _desktop_linux_rdp () {
 }
 
 _desktop_linux () {
-  if ! _is_linux ; then return ; fi
+  if ! ${ISLINUX} ; then return ; fi
   if [[ $PROVISION_OPTIONS != *gui* ]] ; then return ; fi
 
   _desktop_linux_el7
@@ -79,12 +80,16 @@ _desktop_linux () {
   _desktop_linux_rdp
 }
 
+# #############################################################################
+# Desktop helpers for any Operating System
+
 _desktop_any_os_dev_tools () {
-  if [[ $PROVISION_OPTIONS != *nodevel* ]] ; then
-    bash "${RUNR_DIR:-.}"/recipes/subl.sh
-    # TODO implement bash "${RUNR_DIR:-.}"/recipes/vscodium.sh
-  fi
+  if [[ $PROVISION_OPTIONS = *nodevel* ]] ; then return ; fi
+
+  bash "${RUNR_DIR:-.}"/recipes/subl.sh
+  # TODO implement bash "${RUNR_DIR:-.}"/recipes/vscodium.sh
 }
+
 _desktop_any_os () {
   if [[ $PROVISION_OPTIONS != *gui* ]] ; then return ; fi
 
@@ -94,32 +99,55 @@ _desktop_any_os () {
 # #############################################################################
 # Development helpers
 
-_dev_platforms () {
-  if [[ $PROVISION_OPTIONS = *nodevel* ]] ; then return ; fi
+_dev_platforms_any_os () {
+  :
+}
+
+_dev_platforms_linux () {
+  if ! ${ISLINUX} ; then return ; fi
 
   bash "${RUNR_DIR:-.}"/recipes/python.sh
   bash "${RUNR_DIR:-.}"/installers/setupgolang.sh
   bash "${RUNR_DIR:-.}"/installers/setuprust.sh
 }
 
-_dev_tools () {
-  if [[ $PROVISION_OPTIONS = *nodevel* ]] ; then return ; fi
+_dev_platforms () {
+  # _dev_platforms_any_os
+  _dev_platforms_linux
+}
+
+_dev_tools_any_os () {
+  bash "${RUNR_DIR:-.}"/installers/setupgotools.sh
+  bash "${RUNR_DIR:-.}"/installers/setupsdkman.sh
+}
+
+_dev_tools_linux () {
+  if ! ${ISLINUX} ; then return ; fi
 
   bash "${RUNR_DIR:-.}"/installers/setupdocker.sh
   bash "${RUNR_DIR:-.}"/installers/setupdocker-compose.sh
   bash "${RUNR_DIR:-.}"/installers/setupeditorconfig.sh
   bash "${RUNR_DIR:-.}"/installers/setupexa.sh
-  bash "${RUNR_DIR:-.}"/installers/setupgotools.sh
-  bash "${RUNR_DIR:-.}"/installers/setupsdkman.sh
   bash "${RUNR_DIR:-.}"/installers/setuptmux.sh
   bash "${RUNR_DIR:-.}"/recipes/vim.sh
+}
+
+_dev_tools () {
+  _dev_tools_any_os
+  _dev_tools_linux
+}
+
+_devel () {
+  if [[ $PROVISION_OPTIONS = *nodevel* ]] ; then return ; fi
+  _dev_platforms
+  _dev_tools
 }
 
 # #############################################################################
 # System helpers
 
 _sys_linux () {
-  if ! _is_linux ; then return ; fi
+  if ! ${ISLINUX} ; then return ; fi
 
   bash "${RUNR_DIR:-.}"/recipes/linux-fixes.sh
 }
@@ -134,13 +162,7 @@ if ! ${STEP_BASE_SYSTEM_DONE:-false} ; then # Avoid redundancy with other provis
   bash "${RUNR_DIR:-.}"/recipes/shell.sh
 fi
 
-# Desktop
 _desktop_linux
 _desktop_any_os
-
-# Development
-_dev_platforms
-_dev_tools
-
-# System
+_devel
 _sys_linux
