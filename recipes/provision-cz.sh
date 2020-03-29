@@ -46,11 +46,19 @@ _step_base_system () {
 # #############################################################################
 # Custom
 
-_step_expedite_pre_existing () {
+_step_enforce_handy_repo () {
+
+  while [ ! -d "${MOUNTS_PREFIX}/z" ] || [ "$dummy" != 'skip' ] ; do
+    echo "${PROGNAME:+$PROGNAME: }REQUIRED: Provide Z drive then press ENTER (or SKIP and ENTER)" 1>&2
+    read dummy
+  done
 
   if [ -d "${MOUNTS_PREFIX}/z" ] ; then
     git clone "https://stroparo@bitbucket.org/stroparo/handy.git" "${MOUNTS_PREFIX}/z/handy"
     git config --global credential.helper "store --file=${MOUNTS_PREFIX}/z/gitcred.txt"
+  else
+    git config --global credential.helper "store --file=${HOME}/gitcred.txt"
+    echo "${PROGNAME:+$PROGNAME: }WARN: Storing credentials in '${HOME}/gitcred.txt'." 1>&2
   fi
 }
 
@@ -75,7 +83,7 @@ _step_custom_provision () {
 
 _step_custom () {
 
-  _step_expedite_pre_existing
+  _step_enforce_handy_repo
   _step_custom_ds_plugins
   _step_custom_provision
 
