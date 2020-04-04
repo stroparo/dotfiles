@@ -3,7 +3,6 @@
 PROGNAME="conf-vscode.sh"
 
 echo "$PROGNAME: INFO: Visual Studio Code custom config started"
-echo "$PROGNAME: INFO: started"
 
 # #############################################################################
 # Globals

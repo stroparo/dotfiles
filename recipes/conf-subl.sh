@@ -3,7 +3,6 @@
 PROGNAME="conf-subl.sh"
 
 echo "$PROGNAME: INFO: SublimeText custom config started"
-echo "$PROGNAME: INFO: started"
 
 # #############################################################################
 # Globals
