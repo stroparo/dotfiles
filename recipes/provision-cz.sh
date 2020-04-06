@@ -74,7 +74,9 @@ _helper_provision_encrypted_assets () {
 
   if [ -d "${CRYPT_DIR}" ] ; then
     git clone "https://stroparo@bitbucket.org/stroparo/handy.git" "${CRYPT_DIR}/handy"
-    git config --global credential.helper "store --file=${CRYPT_DIR}/gitcred.txt"
+    if ! (git config --global credential.helper | grep -q 'store') ; then
+      git config --global credential.helper "store --file=${CRYPT_DIR}/gitcred.txt"
+    fi
   else
     git config --global credential.helper "store --file=${HOME}/gitcred.txt"
     echo "${PROGNAME:+$PROGNAME: }WARN: Storing credentials in '${HOME}/gitcred.txt'." 1>&2
