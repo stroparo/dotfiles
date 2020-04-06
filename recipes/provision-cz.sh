@@ -68,7 +68,7 @@ _helper_provision_encrypted_assets () {
 
   : ${CRYPT_DIR:=${MOUNTS_PREFIX}/z}
   while [ ! -d "${CRYPT_DIR}" ] || [ "$dummy" != 'skip' ] ; do
-    echo "${PROGNAME:+$PROGNAME: }REQUIRED: Provide Z drive then press ENTER (or 'skip' and ENTER)" 1>&2
+    echo "${PROGNAME:+$PROGNAME: }REQUIRED: drive '${CRYPT_DIR}' then press ENTER (or 'skip' and ENTER)" 1>&2
     read dummy
   done
 
