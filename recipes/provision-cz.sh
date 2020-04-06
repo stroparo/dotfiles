@@ -43,6 +43,7 @@ _step_base_system () {
   export STEP_BASE_SYSTEM_DONE=true
 }
 
+
 # #############################################################################
 # Custom
 
@@ -75,19 +76,16 @@ _step_custom_ds_plugins () {
 
 
 _step_custom_provision () {
+  source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
+
+  # Setup TrueCrypt and mount encrypted volume
+  bash "${DS_HOME:-$HOME/.ds}"/scripts/czinstalltc.sh
+  bash "${DS_HOME:-$HOME/.ds}"/scripts/czmountcrypt.sh
+  bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynctc.sh
+
   export PROVISION_OPTIONS="${PROVISION_OPTIONS} gui xfce chrome edu"
   runr -c provision-stroparo
-  runr -c setupez
-}
-
-
-_step_custom () {
-
-  _step_enforce_handy_repo
-  _step_custom_ds_plugins
-  _step_custom_provision
-
-  source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
+  runr -c setupezkb
 
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh
 
@@ -98,6 +96,14 @@ _step_custom () {
   echo "... and only then run czsetup.sh." 1>&2
   echo
 }
+
+
+_step_custom () {
+  _step_enforce_handy_repo
+  _step_custom_ds_plugins
+  _step_custom_provision
+}
+
 
 # #############################################################################
 

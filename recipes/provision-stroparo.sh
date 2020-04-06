@@ -59,17 +59,16 @@ _step_custom_provision () {
   runr -c dotfiles
   runr -c git
   runr -c provision
+
+  # selects-python-stroparo.sh
+
+  bash "${DS_HOME:-$HOME/.ds}"/scripts/dsconfgit.sh
 }
 
 
 _step_custom () {
-
   _step_custom_ds_plugins
   _step_custom_provision
-
-  selects-python-stroparo.sh
-
-  bash "${DS_HOME:-$HOME/.ds}"/scripts/dsconfgit.sh
 }
 
 # #############################################################################
