@@ -47,23 +47,6 @@ _step_base_system () {
 # #############################################################################
 # Custom
 
-_step_enforce_handy_repo () {
-
-  while [ ! -d "${MOUNTS_PREFIX}/z" ] || [ "$dummy" != 'skip' ] ; do
-    echo "${PROGNAME:+$PROGNAME: }REQUIRED: Provide Z drive then press ENTER (or SKIP and ENTER)" 1>&2
-    read dummy
-  done
-
-  if [ -d "${MOUNTS_PREFIX}/z" ] ; then
-    git clone "https://stroparo@bitbucket.org/stroparo/handy.git" "${MOUNTS_PREFIX}/z/handy"
-    git config --global credential.helper "store --file=${MOUNTS_PREFIX}/z/gitcred.txt"
-  else
-    git config --global credential.helper "store --file=${HOME}/gitcred.txt"
-    echo "${PROGNAME:+$PROGNAME: }WARN: Storing credentials in '${HOME}/gitcred.txt'." 1>&2
-  fi
-}
-
-
 _step_custom_ds_plugins () {
 
   dsplugin.sh "stroparo@bitbucket.org/stroparo/ds-cz"
@@ -75,13 +58,32 @@ _step_custom_ds_plugins () {
 }
 
 
-_step_custom_provision () {
+_helper_provision_encrypted_assets () {
+  # Setup TrueCrypt, mount encrypted volume and provide encrypted assets to the environment
   source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
 
-  # Setup TrueCrypt and mount encrypted volume
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czinstalltc.sh
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czmountcrypt.sh
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynctc.sh
+
+  : ${CRYPT_DIR:=${MOUNTS_PREFIX}/z}
+  while [ ! -d "${CRYPT_DIR}" ] || [ "$dummy" != 'skip' ] ; do
+    echo "${PROGNAME:+$PROGNAME: }REQUIRED: Provide Z drive then press ENTER (or 'skip' and ENTER)" 1>&2
+    read dummy
+  done
+
+  if [ -d "${CRYPT_DIR}" ] ; then
+    git clone "https://stroparo@bitbucket.org/stroparo/handy.git" "${CRYPT_DIR}/handy"
+    git config --global credential.helper "store --file=${CRYPT_DIR}/gitcred.txt"
+  else
+    git config --global credential.helper "store --file=${HOME}/gitcred.txt"
+    echo "${PROGNAME:+$PROGNAME: }WARN: Storing credentials in '${HOME}/gitcred.txt'." 1>&2
+  fi
+}
+
+
+_step_custom_provision () {
+  _helper_provision_encrypted_assets
 
   export PROVISION_OPTIONS="${PROVISION_OPTIONS} gui xfce chrome edu"
   runr -c provision-stroparo
@@ -99,7 +101,6 @@ _step_custom_provision () {
 
 
 _step_custom () {
-  _step_enforce_handy_repo
   _step_custom_ds_plugins
   _step_custom_provision
 }
