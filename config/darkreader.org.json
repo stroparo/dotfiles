@@ -1,0 +1,108 @@
+{
+    "siteList": [
+        "C:",
+        "Z:",
+        "jetstreamradio.com",
+        "web.whatsapp.com",
+        "configure.ergodox-ez.com",
+        "tomato-timer.com",
+        "www.google.com",
+        "github.com",
+        "contacts.google.com",
+        "calendar.google.com",
+        "bitbucket.org"
+    ],
+    "applyToListedOnly": true,
+    "customThemes": [
+        {
+            "url": [
+                "tomato-timer.com"
+            ],
+            "theme": {
+                "mode": 1,
+                "brightness": 85,
+                "contrast": 110,
+                "grayscale": 0,
+                "sepia": 0,
+                "useFont": false,
+                "fontFamily": "Segoe UI",
+                "textStroke": 0,
+                "engine": "dynamicTheme",
+                "stylesheet": ""
+            }
+        },
+        {
+            "url": [
+                "C:"
+            ],
+            "theme": {
+                "mode": 1,
+                "brightness": 100,
+                "contrast": 110,
+                "grayscale": 0,
+                "sepia": 0,
+                "useFont": false,
+                "fontFamily": "Segoe UI",
+                "textStroke": 0,
+                "engine": "dynamicTheme",
+                "stylesheet": ""
+            }
+        },
+        {
+            "url": [
+                "www.instagram.com"
+            ],
+            "theme": {
+                "mode": 1,
+                "brightness": 100,
+                "contrast": 110,
+                "grayscale": 0,
+                "sepia": 0,
+                "useFont": false,
+                "fontFamily": "Segoe UI",
+                "textStroke": 0,
+                "engine": "dynamicTheme",
+                "stylesheet": ""
+            }
+        }
+    ],
+    "theme": {
+        "mode": 1,
+        "brightness": 100,
+        "contrast": 110,
+        "grayscale": 0,
+        "sepia": 0,
+        "useFont": false,
+        "fontFamily": "Segoe UI",
+        "textStroke": 0,
+        "engine": "dynamicTheme",
+        "stylesheet": ""
+    },
+    "readNews": [
+        "2m-users",
+        "automation",
+        "product-hunt-golden-kitty-2018",
+        "time-settings",
+        "safari",
+        "500k-users",
+        "stylish",
+        "product-hunt",
+        "custom-site-settings",
+        "thanks-for-contribution",
+        "dynamic-theme"
+    ],
+    "time": {
+        "activation": "18:00",
+        "deactivation": "9:00"
+    },
+    "syncSettings": true,
+    "siteListEnabled": [],
+    "notifyOfNews": false,
+    "location": {
+        "latitude": null,
+        "longitude": null
+    },
+    "enabled": true,
+    "changeBrowserTheme": false,
+    "automation": ""
+}
