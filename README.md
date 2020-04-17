@@ -4,8 +4,8 @@ Custom configuration files and shell script recipes.
 
 ## Requirements
 
-* [runr](https://github.com/stroparo/runr) - routine runner; its commands are given in the examples below, but if you want you could use it with whatever other scripts etc. For the latter case, access that repo and get instructions by reading its README.
-* [sudo setup](#sudo-setup)
+* [runr](https://github.com/stroparo/runr) - routine runner; the commands needed for this project are given in the examples below, but you could use it with whatever other project's or repository's scripts (see the instructions in the runr's link).
+* [sudo setup](#sudo-setup) - several of the recipes use sudo to do system installation and configuration.
 
 ---
 
