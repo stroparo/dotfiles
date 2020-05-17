@@ -52,7 +52,6 @@ _desktop_linux_apps_devel () {
 _desktop_linux_fonts () {
   if [[ $PROVISION_OPTIONS = *nofonts* ]] ; then return ; fi
 
-  bash "${RUNR_DIR:-.}"/installers/setupfedorafonts.sh
   bash "${RUNR_DIR:-.}"/installers/setuppowerfonts.sh
 }
 
