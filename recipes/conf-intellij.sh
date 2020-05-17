@@ -13,19 +13,18 @@ SRC_CONFIG_DIR="${RUNR_DIR:-$PWD}/config/intellij"
 # Prep User PATH
 
 if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
-  INTELLIJ_WIN="$(cygpath "${USERPROFILE}")/.IntelliJIdea"
+  INTELLIJ_USER_DIR="$(cygpath "${USERPROFILE}")/.IntelliJIdea"
 elif [[ "$(uname -a)" = *[Ll]inux* ]] ; then
   # TODO review
-  INTELLIJ_USER="${HOME}/.config/intellij"
+  INTELLIJ_USER_DIR="${HOME}/.config/intellij"
 fi
 
 # #############################################################################
 # Deploy
 
-for iconfigdir in $(ls -1d "${INTELLIJ_WIN}"*/) ; do
-  echo "cp -f -R \"${SRC_CONFIG_DIR}\"/* \"${iconfigdir%/}/\" ..."
-  cp -f -R "${SRC_CONFIG_DIR}"/* "${iconfigdir%/}"/
-done
+echo "cp -f -R \"${SRC_CONFIG_DIR}\"/* \"${INTELLIJ_USER_DIR}/\" ..."
+cp -f -R -v "${SRC_CONFIG_DIR}"/* "${INTELLIJ_USER_DIR}"/
 
 echo "$PROGNAME: COMPLETE"
+
 exit
