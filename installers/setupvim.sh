@@ -97,7 +97,6 @@ done
 
 echo ${BASH_VERSION:+-e} "\n${PROGNAME:+$PROGNAME: }INFO: Dependencies custom scripts...\n"
 
-if ${DO_LUA:-false} ; then "${RUNR_DIR:-.}/installers/setuplua.sh" ; fi
 if ${DO_PERL:-false} ; then "${RUNR_DIR:-.}/installers/setupperl.sh" ; fi
 if ! ${NO_PYTHON:-false} ; then "${RUNR_DIR:-.}/installers/setuppython.sh" "system" ; fi
 
