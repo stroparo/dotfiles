@@ -15,7 +15,7 @@ PROGNAME="setupkubectl.sh"
 
 FORCE=false
 INSTALL_DIR="/usr/local/bin"
-KUBE_URL="https://storage.googleapis.com/kubernetes-release/release/v1.8.0/bin/linux/amd64/kubectl"
+KUBE_VERSION=1.18.0
 WORK_DIR="/tmp"
 
 # Setup the downloader program (curl/wget)
@@ -34,13 +34,16 @@ fi
 
 # Options:
 OPTIND=1
-while getopts ':f' option ; do
+while getopts ':fhv:' option ; do
   case "${option}" in
-    f) FORCE=true"${OPTARG}";;
+    f) FORCE=true;;
+    v) KUBE_VERSION="${OPTARG:-${KUBE_VERSION}}";;
     h) echo "$USAGE"; exit;;
   esac
 done
 shift "$((OPTIND-1))"
+
+export KUBE_URL="https://storage.googleapis.com/kubernetes-release/release/v${KUBE_VERSION}/bin/linux/amd64/kubectl"
 
 # #############################################################################
 # Prep
