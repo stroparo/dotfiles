@@ -12,18 +12,18 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 # Globals
 
 ANKI_INSTALLER=$(mktemp)
-ANKI_VERSION=2.0.47
+ANKI_VERSION=2.1.22
 WORK_DIR=/tmp
 
 # #############################################################################
 # Main
 
 curl -LSfs \
-  "https://apps.ankiweb.net/downloads/current/anki-${ANKI_VERSION}-amd64.tar.bz2" \
+  "https://github.com/ankitects/anki/releases/download/${ANKI_VERSION}/anki-${ANKI_VERSION}-linux-amd64.tar.bz2"
   > "${WORK_DIR}/anki-${ANKI_VERSION}-amd64.tar.bz2" \
   && cd "${WORK_DIR}" \
   && tar xjf "${WORK_DIR}/anki-${ANKI_VERSION}-amd64.tar.bz2" \
-  && cd "anki-${ANKI_VERSION}" \
+  && cd anki*${ANKI_VERSION}*/ \
   && sudo make install
 
 which anki
