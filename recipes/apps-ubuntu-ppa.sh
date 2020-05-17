@@ -45,6 +45,7 @@ _install_packages () {
 
 # TODO parameterize list of apps to be installed
 
+dpkg -s nextcloud-client || _add_ppa_repo 'nextcloud-devs/client'
 dpkg -s qdirstat      || _add_ppa_repo 'nathan-renniewaldock/qdirstat'
 dpkg -s stacer        || _add_ppa_repo 'oguzhaninan/stacer'
 dpkg -s woeusb        || _add_ppa_repo 'nilarimogard/webupd8'
@@ -53,6 +54,12 @@ dpkg -s zeal          || _add_ppa_repo 'zeal-developers/ppa'
 
 sudo ${APTPROG} update
 
-_install_packages qdirstat stacer woeusb y-ppa-manager zeal
+_install_packages \
+  nextcloud-client \
+  qdirstat \
+  stacer \
+  woeusb \
+  y-ppa-manager \
+  zeal
 
 exit
