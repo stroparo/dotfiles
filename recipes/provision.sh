@@ -132,7 +132,7 @@ _dev_tools_linux () {
   bash "${RUNR_DIR:-.}"/installers/setupeditorconfig.sh
   bash "${RUNR_DIR:-.}"/installers/setupexa.sh
   bash "${RUNR_DIR:-.}"/installers/setuptmux.sh
-  bash "${RUNR_DIR:-.}"/recipes/vim.sh
+  if [[ $PROVISION_OPTIONS = *vim* ]] ; then bash "${RUNR_DIR:-.}"/recipes/vim.sh ; fi
 }
 
 _dev_tools () {

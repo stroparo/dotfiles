@@ -87,7 +87,7 @@ _helper_provision_encrypted_assets () {
 _step_custom_provision () {
   _helper_provision_encrypted_assets
 
-  export PROVISION_OPTIONS="${PROVISION_OPTIONS} gui xfce chrome edu golang python"
+  export PROVISION_OPTIONS="${PROVISION_OPTIONS} gui xfce chrome edu golang python vim"
   runr -c provision-stroparo
   runr -c setupezkb
 
