@@ -5,7 +5,7 @@
 #   - el7
 #   - xfce
 #   - noapps|[chrome [edu]]
-#   - nodevel
+#   - nodevel|golang|python|rust
 #   - nofonts
 # - nodevel
 
@@ -109,9 +109,9 @@ _dev_platforms_any_os () {
 _dev_platforms_linux () {
   if ! ${ISLINUX} ; then return ; fi
 
-  bash "${RUNR_DIR:-.}"/recipes/python.sh
-  bash "${RUNR_DIR:-.}"/installers/setupgolang.sh
-  bash "${RUNR_DIR:-.}"/installers/setuprust.sh
+  if [[ $PROVISION_OPTIONS = *python* ]] ; bash "${RUNR_DIR:-.}"/recipes/python.sh ; fi
+  if [[ $PROVISION_OPTIONS = *golang* ]] ; then bash "${RUNR_DIR:-.}"/installers/setupgolang.sh ; fi
+  if [[ $PROVISION_OPTIONS = *rust* ]] ; then bash "${RUNR_DIR:-.}"/installers/setuprust.sh ; fi
 }
 
 _dev_platforms () {
@@ -120,8 +120,8 @@ _dev_platforms () {
 }
 
 _dev_tools_any_os () {
-  bash "${RUNR_DIR:-.}"/installers/setupgotools.sh
-  bash "${RUNR_DIR:-.}"/installers/setupsdkman.sh
+  if [[ $PROVISION_OPTIONS = *golang* ]] ; then bash "${RUNR_DIR:-.}"/installers/setupgotools.sh ; fi
+  if [[ $PROVISION_OPTIONS = *sdkman* ]] ; then bash "${RUNR_DIR:-.}"/installers/setupsdkman.sh ; fi
 }
 
 _dev_tools_linux () {
