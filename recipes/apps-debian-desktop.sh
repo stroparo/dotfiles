@@ -56,6 +56,12 @@ echo "$PROGNAME: INFO: Debian APT repository clean up..."
 sudo $APTPROG autoremove -y
 sudo $APTPROG clean -y
 
+echo "$PROGNAME: INFO: Debian APT package for flatpak..."
+if ! type flatpak >/dev/null 2>&1 ; then
+  sudo apt install flatpak
+  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+fi
+
 echo "$PROGNAME: INFO: Debian GUI app recommendations > ~/README-debian-gui-apps.lst"
 cat <<EOF | tee "${HOME}/README-debian-gui-apps.lst"
 # Favorites
