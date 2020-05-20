@@ -22,14 +22,20 @@ URL_STACER='https://github.com/oguzhaninan/Stacer/releases/download/v1.0.8/stace
 # #############################################################################
 # Helpers
 
-
 _install_packages () {
-  typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')-${RANDOM}"
-  if ! sudo $INSTPROG install -y "$@" >/tmp/pkg-install-${filestamp}.log 2>&1 ; then
-    echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing packages - see '/tmp/pkg-install-${filestamp}.log'." 1>&2
-  fi
-}
+  typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')"
 
+  for package in "$@" ; do
+    if yum list installed "${package}" >/dev/null 2>&1 ; then
+      echo "$PROGNAME: SKIP: Package '${package}' already installed..."
+    else
+      echo "$PROGNAME: INFO: Installing '${package}'..."
+      if ! sudo $INSTPROG install -y "${package}" >/tmp/pkg-install-${filestamp}-${package}.log 2>&1 ; then
+        echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing packages - see '/tmp/pkg-install-${filestamp}-${package}.log'." 1>&2
+      fi
+    fi
+  done
+}
 
 # #############################################################################
 

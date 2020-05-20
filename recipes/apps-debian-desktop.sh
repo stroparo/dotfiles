@@ -17,23 +17,28 @@ export INSTPROG="$APTPROG"
 # #############################################################################
 # Helpers
 
-
 _install_packages () {
   for package in "$@" ; do
-    echo "$PROGNAME: INFO: Installing '$package'..."
-    if ! sudo $INSTPROG install -y "$package" >/tmp/pkg-install-${package}.log 2>&1 ; then
-      echo "$PROGNAME: WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${package}.log'." 1>&2
+    if dpkg -s "${package}" >/dev/null 2>&1 ; then
+      echo "$PROGNAME: SKIP: Package '${package}' already installed..."
+    else
+      echo "$PROGNAME: INFO: Installing '${package}'..."
+      if ! sudo $INSTPROG install -y "${package}" >/tmp/pkg-install-${package}.log 2>&1 ; then
+        echo "$PROGNAME: WARN: There was an error installing package '${package}' - see '/tmp/pkg-install-${package}.log'." 1>&2
+      fi
     fi
   done
 }
 
-
 # #############################################################################
-
 echo "$PROGNAME: INFO: Debian APT index update..."
+
 if ! sudo $APTPROG update >/dev/null 2>/tmp/apt-update-err.log ; then
   echo "$PROGNAME: WARN: There was some failure during APT index update - see '/tmp/apt-update-err.log'." 1>&2
 fi
+
+# #############################################################################
+# Installations
 
 echo "$PROGNAME: INFO: Debian desktop - educational packages..."
 _install_packages gperiodic
