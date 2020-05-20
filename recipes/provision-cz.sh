@@ -73,7 +73,7 @@ _helper_provision_encrypted_assets () {
   done
 
   if [ -d "${CRYPT_DIR}" ] ; then
-    git clone "https://stroparo@bitbucket.org/stroparo/handy.git" "${CRYPT_DIR}/handy"
+    git clone "https://stroparo@bitbucket.org/stroparo/handys.git" "${CRYPT_DIR}/handy"
     if ! (git config --global credential.helper | grep -q 'store') ; then
       git config --global credential.helper "store --file=${CRYPT_DIR}/gitcred.txt"
     fi
