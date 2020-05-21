@@ -55,31 +55,37 @@ _step_custom_ds_plugins () {
     echo "${PROGNAME}: FATAL: no 'envcz.sh' found in DS_HOME (${DS_HOME})."
     exit 1
   fi
+
+  source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
 }
 
 
 _helper_provision_encrypted_assets () {
-  # Setup TrueCrypt, mount encrypted volume and provide encrypted assets to the environment
-  source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
-
-  bash "${DS_HOME:-$HOME/.ds}"/scripts/czinstalltc.sh
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czmountcrypt.sh
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynctc.sh
 
   : ${CRYPT_DIR:=${MOUNTS_PREFIX}/z}
-  while [ ! -d "${CRYPT_DIR}" ] || [ "$dummy" != 'skip' ] ; do
-    echo "${PROGNAME:+$PROGNAME: }REQUIRED: drive '${CRYPT_DIR}' then press ENTER (or 'skip' and ENTER)" 1>&2
+  while [ ! -d "${CRYPT_DIR}" ] && [ "$dummy" != 'skip' ] ; do
+    echo "${PROGNAME:+$PROGNAME: }REQUIRED: drive CRYPT_DIR='${CRYPT_DIR}' then press ENTER (or 'skip' and ENTER to ignore)" 1>&2
     read dummy
   done
 
-  if [ -d "${CRYPT_DIR}" ] ; then
+  crypt_mounted=false
+  if (uname -a | grep -i -q linux) && grep -q "${CRYPT_MNT}" /etc/mtab ; then
+    crypt_mounted=true
+  elif [ -f /usr/bin/cygpath ] && [ -d "${CRYPT_DIR}" ] ; then
+    crypt_mounted=true
+  fi
+
+  if ${crypt_mounted} ; then
     git clone "https://stroparo@bitbucket.org/stroparo/handys.git" "${CRYPT_DIR}/handys"
     if ! (git config --global credential.helper | grep -q 'store') ; then
       git config --global credential.helper "store --file=${CRYPT_DIR}/gitcred.txt"
     fi
-  else
+  elif ! (git config --global credential.helper | grep -q 'store') ; then
     git config --global credential.helper "store --file=${HOME}/gitcred.txt"
     echo "${PROGNAME:+$PROGNAME: }WARN: Storing credentials in '${HOME}/gitcred.txt'." 1>&2
+    echo "${PROGNAME:+$PROGNAME: }WARN: REMOVE/SHRED IT AS SOON AS THIS SETUP HAS FINISHED." 1>&2
   fi
 }
 
@@ -87,18 +93,13 @@ _helper_provision_encrypted_assets () {
 _step_custom_provision () {
   _helper_provision_encrypted_assets
 
-  export PROVISION_OPTIONS="${PROVISION_OPTIONS} gui xfce chrome edu golang python rust vim"
+  # Include rust in the provisioning options to satisfy setupexa:
+  export PROVISION_OPTIONS="${PROVISION_OPTIONS} gui chrome golang python rust vim"
   runr -c provision-stroparo
   runr -c setupezkb
 
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh
-
-  echo
-  echo "==> czsetup.sh <=="
-  echo
-  echo "Review script \$DS_HOME/.../cz*filesystem*.sh" 1>&2
-  echo "... and only then run czsetup.sh." 1>&2
-  echo
+  bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupfs.sh
 }
 
 
