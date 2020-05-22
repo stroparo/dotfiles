@@ -109,7 +109,7 @@ _dev_platforms_any_os () {
 _dev_platforms_linux () {
   if ! ${ISLINUX} ; then return ; fi
 
-  if [[ $PROVISION_OPTIONS = *python* ]] ; bash "${RUNR_DIR:-.}"/recipes/python.sh ; fi
+  if [[ $PROVISION_OPTIONS = *python* ]] ; then bash "${RUNR_DIR:-.}"/recipes/python.sh ; fi
   if [[ $PROVISION_OPTIONS = *golang* ]] ; then bash "${RUNR_DIR:-.}"/installers/setupgolang.sh ; fi
   if [[ $PROVISION_OPTIONS = *rust* ]] ; then bash "${RUNR_DIR:-.}"/installers/setuprust.sh ; fi
 }
