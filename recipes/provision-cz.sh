@@ -61,7 +61,7 @@ _step_custom_ds_plugins () {
 
 
 _helper_provision_encrypted_assets () {
-  bash "${DS_HOME:-$HOME/.ds}"/scripts/czmountcrypt.sh
+  bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupfs.sh
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynctc.sh
 
   : ${CRYPT_DIR:=${MOUNTS_PREFIX}/z}
@@ -99,7 +99,6 @@ _step_custom_provision () {
   runr -c setupezkb
 
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh
-  bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupfs.sh
 }
 
 
