@@ -90,7 +90,7 @@ _desktop_any_os_dev_tools () {
   if [[ $PROVISION_OPTIONS = *nodevel* ]] ; then return ; fi
 
   bash "${RUNR_DIR:-.}"/recipes/subl.sh
-  # TODO implement bash "${RUNR_DIR:-.}"/recipes/vscodium.sh
+  bash "${RUNR_DIR:-.}"/recipes/vscodium.sh
 }
 
 _desktop_any_os () {
