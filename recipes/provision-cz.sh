@@ -58,12 +58,6 @@ _helper_provision_encrypted_assets () {
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupfs.sh
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynctc.sh
 
-  : ${CRYPT_DIR:=${MOUNTS_PREFIX}/z}
-  while [ ! -d "${CRYPT_DIR}" ] && [ "$dummy" != 'skip' ] ; do
-    echo "${PROGNAME:+$PROGNAME: }REQUIRED: drive CRYPT_DIR='${CRYPT_DIR}' then press ENTER (or 'skip' and ENTER to ignore)" 1>&2
-    read dummy
-  done
-
   crypt_mounted=false
   if (uname -a | grep -i -q linux) && grep -q "${CRYPT_MNT}" /etc/mtab ; then
     crypt_mounted=true
@@ -71,6 +65,7 @@ _helper_provision_encrypted_assets () {
     crypt_mounted=true
   fi
 
+  git config --global --unset-all 'credential.helper'
   if ${crypt_mounted} ; then
     git clone "https://stroparo@bitbucket.org/stroparo/handys.git" "${CRYPT_DIR}/handys"
     if ! (git config --global credential.helper | grep -q 'store') ; then
