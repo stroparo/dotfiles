@@ -70,6 +70,11 @@ bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/ent
   entry.sh setupvim
 ```
 
+```bash
+bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
+  entry.sh vscodium
+```
+
 ---
 
 ## Linux desktop package selects
