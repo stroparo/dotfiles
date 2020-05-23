@@ -48,15 +48,8 @@ _step_base_system () {
 # Custom
 
 _step_custom_ds_plugins () {
-
   dsplugin.sh "stroparo@bitbucket.org/stroparo/ds-cz"
-  chmodscriptsds
-
-  if [ ! -f "${DS_HOME}/envcz.sh" ] ; then
-    echo "${PROGNAME}: FATAL: no 'envcz.sh' found in DS_HOME (${DS_HOME})."
-    exit 1
-  fi
-
+  if [ $? -ne 0 ] ; then exit 99 ; fi
   source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
 }
 

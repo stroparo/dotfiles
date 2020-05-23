@@ -47,11 +47,9 @@ _step_base_system () {
 # Custom
 
 _step_custom_ds_plugins () {
-
   "${DS_HOME:-$HOME/.ds}/scripts/dsplugin.sh" "stroparo@bitbucket.org/stroparo/ds-stroparo" \
     || "${DS_HOME:-$HOME/.ds}/scripts/dsplugin.sh" "stroparo@github.com/stroparo/ds-stroparo"
-  chmodscriptsds
-
+  if [ $? -ne 0 ] ; then exit 99 ; fi
   source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
 }
 

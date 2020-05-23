@@ -47,10 +47,10 @@ _step_base_system () {
 # Custom
 
 _step_custom_ds_plugins () {
-  # dsplugin.sh "https://site/path/to/dsplugin/repo1.git"
-  # dsplugin.sh "https://site/path/to/dsplugin/repo2.git"
-  # dsplugin.sh ...
-  # chmodscriptsds
+  # dsplugin.sh \
+  #   "https://site/path/to/dsplugin/repo1.git" \
+  #   "https://site/path/to/dsplugin/repo2.git"
+  # if [ $? -ne 0 ] ; then exit 99 ; fi
   # source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
 }
 
