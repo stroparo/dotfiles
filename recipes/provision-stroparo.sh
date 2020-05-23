@@ -50,6 +50,7 @@ _step_custom_ds_plugins () {
 
   "${DS_HOME:-$HOME/.ds}/scripts/dsplugin.sh" "stroparo@bitbucket.org/stroparo/ds-stroparo" \
     || "${DS_HOME:-$HOME/.ds}/scripts/dsplugin.sh" "stroparo@github.com/stroparo/ds-stroparo"
+  chmodscriptsds
 
   source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
 }

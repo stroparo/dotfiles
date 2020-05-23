@@ -50,6 +50,7 @@ _step_custom_ds_plugins () {
   # dsplugin.sh "https://site/path/to/dsplugin/repo1.git"
   # dsplugin.sh "https://site/path/to/dsplugin/repo2.git"
   # dsplugin.sh ...
+  # chmodscriptsds
   # source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
 }
 
