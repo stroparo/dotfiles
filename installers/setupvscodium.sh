@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-PROGNAME="setupvscode.sh"
+PROGNAME="setupvscodium.sh"
 
-echo "$PROGNAME: INFO: started Visual Studio Code editor setup"
+echo "$PROGNAME: INFO: started Visual Studio Codium editor setup"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
-if which ${VSCODE_CMD:-code} >/dev/null 2>&1 ; then
+if which ${VSCODE_CMD:-codium} >/dev/null 2>&1 ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: already installed." 1>&2
   exit
 fi
@@ -13,7 +13,7 @@ fi
 # #############################################################################
 # Globals
 
-export VSCODE_CMD="code"
+export VSCODE_CMD="codium"
 
 # System installers
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
@@ -26,24 +26,25 @@ export INSTPROG="$APTPROG"; which "$RPMPROG" >/dev/null 2>&1 && export INSTPROG=
 
 if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   # Add repo
-  curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-  sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-  sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+  wget -qO - 'https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg' \
+    | sudo apt-key add -
+  echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' \
+    | sudo tee --append /etc/apt/sources.list.d/vscodium.list
 
   sudo "${INSTPROG}" update \
     && sudo "${INSTPROG}" install -y apt-transport-https \
-    && sudo "${INSTPROG}" install -y code # or code-insiders
+    && sudo "${INSTPROG}" install -y codium
 
 elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
   # Add repo
-  sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-  sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+  printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg" \
+    | sudo tee -a /etc/yum.repos.d/vscodium.repo
 
   sudo "${INSTPROG}" check-update \
-    && sudo "${INSTPROG}" install -y code
+    && sudo "${INSTPROG}" install -y codium
 fi
 
 # #############################################################################
 # Final sequence
 
-echo "${PROGNAME:+$PROGNAME: }COMPLETE: Visual Studio Code setup"
+echo "${PROGNAME:+$PROGNAME: }COMPLETE: Visual Studio Codium setup"

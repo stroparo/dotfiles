@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
-PROGNAME="conf-vscode.sh"
+PROGNAME="conf-vscodium.sh"
 
 echo "$PROGNAME: INFO: Visual Studio Code custom config started"
 
 # #############################################################################
 # Globals
 
-SRC_CONFIG_DIR="${RUNR_DIR:-$PWD}/config/vscode"
-export VSCODE_CMD="code"
+SRC_CONFIG_DIR="${RUNR_DIR:-$PWD}/config/vscodium"
+export VSCODE_CMD="codium"
 
 # #############################################################################
 # Requirements
 
 if ! which ${VSCODE_CMD} >/dev/null 2>&1 ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: vscode not available."
+  echo "${PROGNAME:+$PROGNAME: }SKIP: vscodium not available."
   exit
 fi
 
@@ -22,7 +22,7 @@ fi
 # Set as default editor
 
 if which xdg-mime >/dev/null 2>&1 ; then
-  xdg-mime default code.desktop text/plain
+  xdg-mime default vscodium.desktop text/plain
 fi
 
 if which update-alternatives >/dev/null 2>&1 \
@@ -35,12 +35,12 @@ fi
 # Conf - User settings
 
 if (uname -a | egrep -i -q "cygwin|mingw|msys|win32|windows") ; then
-  CODE_USER_DIR="$(cygpath "${USERPROFILE}")/AppData/Roaming/Code/User"
+  CODE_USER_DIR="$(cygpath "${USERPROFILE}")/AppData/Roaming/VSCodium/User"
 elif [[ "$(uname -a)" = *[Ll]inux* ]] ; then
-  CODE_USER_DIR="${HOME}/.config/Code/User"
+  CODE_USER_DIR="${HOME}/.config/VSCodium/User"
 fi
 
-# Start vscode for it to create the user dir, then kill it right away:
+# Start vscodium for it to create the user dir, then kill it right away:
 ${VSCODE_CMD} >/dev/null 2>&1 &
 sleep 8
 kill %1
