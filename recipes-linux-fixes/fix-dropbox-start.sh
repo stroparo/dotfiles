@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 PROGNAME="fix-dropbox-start.sh"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"

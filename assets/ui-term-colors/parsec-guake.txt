@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/usr/bin/env bash 
 
 # Save this script into set_colors.sh, make this file executable and run it: 
 # 
