@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 PROGNAME="sshkeygen.sh"
+if [[ ${DOTFILES_SUPPRESS} = *${PROGNAME%.*}* ]] ; then exit ; fi
 
 # Create a default SSH key
 # Requires Daily Shells at https://stroparo.github.io/ds

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROGNAME="setupbox.sh"
+PROGNAME="provision-custom-sample.sh"
 
 # #############################################################################
 # Base

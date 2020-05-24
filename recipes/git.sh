@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROGNAME=git.sh
+PROGNAME="git.sh"
 
 echo "$PROGNAME: INFO: Git custom recipe started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"

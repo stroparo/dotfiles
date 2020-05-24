@@ -12,8 +12,6 @@ cd "${RUNR_DIR:-$PWD}"
 bash "${RUNR_DIR:-$PWD}"/installers/setupds.sh
 bash "${RUNR_DIR:-$PWD}"/installers/setupohmyzsh.sh
 bash "${RUNR_DIR:-$PWD}"/recipes/alias.sh
-bash "${RUNR_DIR:-$PWD}"/recipes/sshkeygen.sh
-bash "${RUNR_DIR:-$PWD}"/recipes/sshmodes.sh
 
 echo "$PROGNAME: COMPLETE: shell custom deployment (compound)"
 exit

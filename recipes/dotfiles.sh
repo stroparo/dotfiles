@@ -2,7 +2,7 @@
 
 DOT_ASSETS_DIR="${PWD}/dotfiles"
 
-PROGNAME=dotfiles.sh
+PROGNAME="dotfiles.sh"
 
 echo "$PROGNAME: INFO: Dotfiles deployment started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
