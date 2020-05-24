@@ -45,7 +45,7 @@ _install_packages () {
 
 # TODO parameterize list of apps to be installed
 
-dpkg -s fsearch-trunk || 'christian-boxdoerfer/fsearch-daily'
+dpkg -s fsearch-trunk || _add_ppa_repo 'christian-boxdoerfer/fsearch-daily'
 dpkg -s nextcloud-client || _add_ppa_repo 'nextcloud-devs/client'
 dpkg -s qdirstat      || _add_ppa_repo 'nathan-renniewaldock/qdirstat'
 dpkg -s stacer        || _add_ppa_repo 'oguzhaninan/stacer'
