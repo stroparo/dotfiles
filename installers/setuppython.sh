@@ -4,7 +4,7 @@ PROGNAME="setuppython.sh"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
 
-echo "$PROGNAME: INFO: Python setup started"
+echo "$PROGNAME: INFO: Python system-wide setup started..."
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
@@ -19,18 +19,18 @@ export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 [ -n "$ZSH_VERSION" ] && set -o shwordsplit
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Python system packages"
+echo ${BASH_VERSION:+-e} "\n\n==> Python system-wide packages"
 
 if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
 
   sudo $APTPROG update || exit $?
 
   # Distribution Python
-  sudo $APTPROG install -y python python-dev python-pip
-  sudo $APTPROG install -y python3 python3-dev python3-pip
+  sudo $APTPROG install -y python python-pip
+  sudo $APTPROG install -y python3 python3-pip
 
-  # pyenv dependencies
-  sudo $APTPROG install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+  # Python build dependencies
+  sudo $APTPROG install -y make build-essential libssl-dev libffi-dev python3-dev python-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
   xz-utils tk-dev
 
