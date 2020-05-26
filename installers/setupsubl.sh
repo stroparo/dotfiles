@@ -87,7 +87,9 @@ else # not portable i.e. via distribution packages
   if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
     curl -LSf "$SUBL_APT_KEY" | sudo apt-key add -
     sudo $APTPROG install -y apt-transport-https
-    echo "$SUBL_APT_REPO" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+    if ! sudo grep -q "sublime" /etc/apt/sources.list.d/sublime-text.list 2>/dev/null ; then
+      echo "$SUBL_APT_REPO" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+    fi
     sudo $APTPROG update
     sudo $APTPROG install -y "$SUBL_APT_PKG"
   elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then

@@ -27,21 +27,25 @@ enabled=1
 gpgcheck=1
 gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
 EOF
-  sudo $RPMPROG install -y google-chrome-stable
+  sudo "${RPMPROG}" install -y google-chrome-stable
+
 
 elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
 
-  curl -LSfs "https://dl-ssl.google.com/linux/linux_signing_key.pub" | sudo apt-key add -
+  curl -LSfs "https://dl-ssl.google.com/linux/linux_signing_key.pub" \
+    | sudo apt-key add -
 
-  if ! sudo fgrep -q "deb http://dl.google.com/linux/chrome/deb/ stable main" /etc/apt/sources.list.d/google-chrome.list ; then
+  if ! sudo grep -q "chrome" /etc/apt/sources.list.d/google-chrome.list ; then
     sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
   fi
   if [ "$(uname -p)" = "x86_64" ] ; then
     sudo sed -i -e 's/deb http/deb [arch=amd64] http/' '/etc/apt/sources.list.d/google-chrome.list'
   fi
 
-  sudo $APTPROG update
-  sudo $APTPROG install -y google-chrome-stable
+  sudo "${APTPROG}" update
+  sudo "${APTPROG}" install -y google-chrome-stable
+
+
 else
   echo "${PROGNAME:+$PROGNAME: }SKIP: OS not supported" 1>&2
   exit
