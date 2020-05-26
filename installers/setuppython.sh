@@ -25,12 +25,15 @@ if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
 
   sudo $APTPROG update || exit $?
 
-  # Distribution Python
+  sudo $APTPROG install -y make
+  
+  # Python 2, maintain these in case Py 3 packages switch to just "python":
   sudo $APTPROG install -y python python-pip
-  sudo $APTPROG install -y python3 python3-pip
+  sudo $APTPROG install -y python-dev
 
-  # Python build dependencies
-  sudo $APTPROG install -y make build-essential libssl-dev libffi-dev python3-dev python-dev zlib1g-dev libbz2-dev \
+  # Python 3
+  sudo $APTPROG install -y python3 python3-pip
+  sudo $APTPROG install -y python3-dev build-essential libssl-dev libffi-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
   xz-utils tk-dev
 
