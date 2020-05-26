@@ -18,15 +18,7 @@ SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
 # #############################################################################
 # Prep
 
-# Daily Shells dependency
-if [ ! -e "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
-  ./installers/setupds.sh
-fi
-if [ ! -e "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: No Daily Shells directory available." 1>&2
-  echo
-  exit 1
-fi
+source "${RUNR_DIR:-.}"/helpers/enforceds.sh
 
 # #############################################################################
 # Main
