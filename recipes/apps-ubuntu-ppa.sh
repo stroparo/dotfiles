@@ -10,16 +10,18 @@ fi
 echo "$PROGNAME: INFO: Ubuntu PPA selects (compound)"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
-bash "${RUNR_DIR:-.}"/installers-ubuntu/setupfsearch.sh
-bash "${RUNR_DIR:-.}"/installers-ubuntu/setupnextcloud.sh
-bash "${RUNR_DIR:-.}"/installers-ubuntu/setupulauncher.sh
-bash "${RUNR_DIR:-.}"/installers-ubuntu/setupwoeusb.sh
-bash "${RUNR_DIR:-.}"/installers-ubuntu/setupyppamanager.sh
+source "${RUNR_DIR:-.}"/helpers/enforceds.sh
+
+aptinstallppa.sh "christian-boxdoerfer/fsearch-daily" "fsearch-trunk"
+aptinstallppa.sh "nextcloud-devs/client" "nextcloud-client"
+aptinstallppa.sh "agornostal/ulauncher" "ulauncher"
+aptinstallppa.sh "nilarimogard/webupd8" "woeusb"
+aptinstallppa.sh "webupd8team/y-ppa-manager" "y-ppa-manager"
 
 # Disabled as not available in current Ubuntu release:
-# bash "${RUNR_DIR:-.}"/installers-ubuntu/setupqdirstat.sh
-# bash "${RUNR_DIR:-.}"/installers-ubuntu/setupstacer.sh
-# bash "${RUNR_DIR:-.}"/installers-ubuntu/setupzeal.sh
+# aptinstallppa.sh "nathan-renniewaldock/qdirstat" "qdirstat"
+# aptinstallppa.sh "oguzhaninan/stacer" "stacer"
+# aptinstallppa.sh "zeal-developers/ppa" "zeal"
 
 echo "$PROGNAME: COMPLETE (compound)"
 exit
