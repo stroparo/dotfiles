@@ -280,9 +280,9 @@ _prep_ruby () {
 
 _prep_lua
 _prep_perl
-_prep_python2
+# _prep_python2
 _prep_python3
-_prep_ruby
+# _prep_ruby
 
 VIM_PKG="${HOME}/vim.zip"
 VIM_PKG_DIR="$(dirname "${VIM_PKG}")"
