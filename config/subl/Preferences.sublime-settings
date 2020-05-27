@@ -9,31 +9,13 @@
   "trim_trailing_white_space_on_save": true,  // trim_trailing_whitespace = true
 
   // "font_face": "Droid Sans Mono Dotted for Powerline", "font_size": 11, // nice font_size's: TBD..13
-  // "font_face": "Fira Mono for Powerline", "font_size": 11, // nice font_size's: 11..13
+  "font_face": "Fira Mono for Powerline", "font_size": 11, // nice font_size's: 11..13
   // "font_face": "Inconsolata-dz for Powerline", "font_size": 11, // nice font_size's: TBD..13
-  "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12, // nice font_size's: 12..15
+  // "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12, // nice font_size's: 12..15
   "font_options": ["subpixel_antialias", "no_bold"],
 
-  // Colorschemes & themes
-  //
-  // "color_scheme": "Packages/1337 Color Scheme/1337.tmTheme",
-  // "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme",
-  // "color_scheme": "Packages/Theme - Hero/Hero Dark.tmTheme",
-  // "theme": "Adaptive.sublime-theme",
-  // "theme": "Arc Dark.sublime-theme",
-  // "theme": "Boxy Tomorrow.sublime-theme",
-  // "theme": "Spacegray Eighties.sublime-theme",
-  //
-  // Color & theme selections:
-  // "theme": "Arc Dark.sublime-theme", "color_scheme": "Packages/Pastel Paws Color Scheme/Base16 Pastel Paws.tmTheme",
-  // "theme": "Arc Dark.sublime-theme", "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme",
-  // "theme": "Arc Dark.sublime-theme", "color_scheme": "Packages/Theme - Hero/Hero Dark.tmTheme",
-  // "theme": "Boxy Tomorrow.sublime-theme", "color_scheme": "Packages/1337 Color Scheme/1337.tmTheme",
-  // "theme": "Boxy Tomorrow.sublime-theme", "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme",
-  "theme": "Boxy Tomorrow.sublime-theme", "color_scheme": "Packages/gruvbox/gruvbox (Dark) (Medium).sublime-color-scheme",
-  // "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/1337 Color Scheme/1337.tmTheme",
-  // "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/gruvbox/gruvbox (Dark) (Medium).sublime-color-scheme",
-  // "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/Pastel Paws Color Scheme/Pastel Paws.tmTheme",
+  // Color & theme selection:
+  "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/gruvbox/gruvbox (Dark) (Medium).sublime-color-scheme",
 
   // Attributes for theme: Afterglow
   "color_inactive_tabs": true,
@@ -43,24 +25,6 @@
   "tabs_small": true,
   "tabs_label_not_italic": true,
   "tabs_padding_small": true,
-
-  // Attributes for theme: Boxy
-  "theme_accent_numix": true, // Variants: mono, cyan, green, numix, purple, sky, tangerine
-  "theme_autocomplete_item_selected_colored": true,
-  "theme_bar": true,
-  "theme_bar_colored": false,
-  "theme_scrollbar_colored": true,
-  "theme_sidebar_disclosure": true,
-  "theme_sidebar_font_md": true,
-  "theme_sidebar_indent_lg": true,
-  "theme_sidebar_size_xxs": true,
-  "theme_statusbar_colored": false,
-  "theme_statusbar_size_xs": true,
-  "theme_tab_selected_underlined": true,
-  "theme_tab_selected_transparent": false,
-  "theme_tab_size_xs": true,
-  "theme_tabset_line_visible": false,
-  "theme_unified": true,
 
   // Attributes for theme: Spacegray
   "spacegray_fileicons": true,

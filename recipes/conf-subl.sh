@@ -50,7 +50,7 @@ config_filenames="$(ls -1d "${SRC_CONFIG_DIR}"/*)"
 config_filenames="$(echo "$config_filenames" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
 
 if ! eval cp -v -L -R "${config_filenames}" "\"${SUBL_USER}\""/ ; then
-  echo "${PROGNAME:+$PROGNAME: }ERROR deploying sublimetext files." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }ERROR: deploying sublimetext files." 1>&2
 fi
 
 # #############################################################################
@@ -63,12 +63,10 @@ fi
 # #############################################################################
 # Packages no longer maintained, installed from this repo's assets dir
 
-if [ -d "${SUBL_USER}/../../Installed Packages" ] ; then
-  if ! cp -v -L -R "${RUNR_DIR:-$PWD}/assets/subl-Installed-Packages"/* "${SUBL_USER}/../../Installed Packages"/ ; then
-    echo "${PROGNAME:+$PROGNAME: }ERROR deploying local 'Installed Packages'." 1>&2
+if [-d "${RUNR_DIR:-$PWD}/assets/subl-packages" ] && [ -d "${SUBL_USER}/../../Installed Packages" ] ; then
+  if ! cp -v -L -R "${RUNR_DIR:-$PWD}/assets/subl-packages"/* "${SUBL_USER}/../../Installed Packages"/ ; then
+    echo "${PROGNAME:+$PROGNAME: }ERROR: deploying local 'Installed Packages'." 1>&2
   fi
-else
-  echo "${PROGNAME:+$PROGNAME: }SKIP: deployment of local 'Installed Packages' as there is no '${SUBL_USER}/../../Installed Packages' dir."
 fi
 
 # #############################################################################
