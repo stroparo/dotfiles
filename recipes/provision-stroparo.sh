@@ -9,7 +9,7 @@ _shell_plus_cli_apps () {
   bash -c "$(curl ${DLOPTEXTRA} -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
     || curl ${DLOPTEXTRA} -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
     entry.sh apps shell
-  source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
+  if ! . "${DS_HOME:-$HOME/.ds}/ds.sh" ; then echo "$PROGNAME: ERROR: DS source failure." ; exit $? ; fi
 }
 
 
@@ -47,8 +47,8 @@ _step_base_system () {
 # Custom
 
 _step_custom_ds_plugins () {
-  "${DS_HOME:-$HOME/.ds}/scripts/dsplugin.sh" "stroparo@bitbucket.org/stroparo/ds-stroparo" \
-    || "${DS_HOME:-$HOME/.ds}/scripts/dsplugin.sh" "stroparo@github.com/stroparo/ds-stroparo"
+  dsplugin.sh "stroparo@bitbucket.org/stroparo/ds-stroparo" \
+    || dsplugin.sh "stroparo@github.com/stroparo/ds-stroparo"
   if [ $? -ne 0 ] ; then exit 99 ; fi
   source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
 }
@@ -58,9 +58,7 @@ _step_custom_provision () {
   runr -c dotfiles
   runr -c git
   runr -c provision
-
   # selects-python-stroparo.sh
-
   bash "${DS_HOME:-$HOME/.ds}"/scripts/dsconfgit.sh
 }
 

@@ -9,7 +9,7 @@ _shell_plus_cli_apps () {
   bash -c "$(curl ${DLOPTEXTRA} -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
     || curl ${DLOPTEXTRA} -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
     entry.sh apps shell
-  source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
+  if ! . "${DS_HOME:-$HOME/.ds}/ds.sh" ; then echo "$PROGNAME: ERROR: DS source failure." ; exit $? ; fi
 }
 
 
