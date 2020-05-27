@@ -7,6 +7,7 @@
 #   - noapps|[chrome [edu]]
 #   - nodevel|golang|python|rust
 #   - nofonts
+#   - rdp
 # - nodevel
 
 # #############################################################################
