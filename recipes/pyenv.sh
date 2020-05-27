@@ -1,28 +1,59 @@
 #!/usr/bin/env bash
 
+# This pyenv setup recipe is based on Henrique Bastos gist at:
+# https://gist.github.com/henriquebastos/0a45c39115ca5b3776a93c89dbddfacb
+
+# The final pyenv global PATH priority setup will be:
+# PY3 PY2 jupyter(3) ipython(2) tools(3) tools(2)
+
+# Arguments of filenames ending '-xyz' will have a list of pip packages to be installed
+# into the 'xyz' virtualenv.
+
+# pyenv projects:
+# https://github.com/yyuu/pyenv-installer (https://github.com/yyuu/pyenv)
+# https://github.com/yyuu/pyenv-virtualenv
+# https://github.com/yyuu/pyenv-virtualenvwrapper
+
+# pyenv common problems:
+# https://github.com/pyenv/pyenv/wiki/Common-build-problems
+
 export PROGNAME="pyenv.sh"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
 
 echo "$PROGNAME: INFO: Python pyenv & virtualenv wrapper setup"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
-echo "$PROGNAME: INFO: ... based on Henrique Bastos article at:"
-echo "$PROGNAME: INFO:     https://medium.com/@henriquebastos/the-definitive-guide-to-setup-my-python-workspace-628d68552e14"
-
-# Arguments of filenames ending '-xyz' will have a list of pip packages to be installed
-# into the 'xyz' virtualenv.
-
-# pyenv common problems:
-# https://github.com/pyenv/pyenv/wiki/Common-build-problems
 
 # #############################################################################
 # Globals / env
 
 [ -n "$ZSH_VERSION" ] && set -o shwordsplit
 
-export PYENV_INSTALLER="https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer"
+export PROJS="${HOME}/workspace"
+export VENVS="${HOME}/.ve"
+
 export PYV2='2.7.18'
 export PYV3='3.8.3'
+export VENVJUPYTER="jupyter$(echo ${PYV3%.*} | tr -d .)"
+export VENVIPYTHON="ipython$(echo ${PYV2%.*} | tr -d .)"
+export VENVTOOLS3="tools$(echo ${PYV3%.*} | tr -d .)"
+export VENVTOOLS2="tools$(echo ${PYV2%.*} | tr -d .)"
+export PYENV_GLOBAL_DEFAULT="$PYV3 $PYV2 $VENVJUPYTER $VENVIPYTHON $VENVTOOLS3 $VENVTOOLS2"
+
+export PYENV_INSTALLER="https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer"
+
+export PYENV_SHELL_INIT='
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv >/dev/null 2>&1 ; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi'
+
+export PYENV_VENVWRAPPER_INIT="
+# Virtualenv Wrapper initialization
+export VIRTUALENVWRAPPER_PYTHON=~/.pyenv/versions/$VENVTOOLS3/bin/python
+source ~/.pyenv/versions/$VENVTOOLS3/bin/virtualenvwrapper.sh"
 
 # #############################################################################
 # Helpers
@@ -41,189 +72,97 @@ appendunique () {
 }
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Preparing venv and workspace directories..."
+echo ${BASH_VERSION:+-e} "\n\n==> Prep directories..."
 
-# Directory for projects
-mkdir "$HOME"/workspace
-ls -ld "$HOME"/workspace || exit $?
-
-# Directory for virtualenvs
-mkdir "$HOME"/.ve
-ls -ld "$HOME"/.ve || exit $?
-
-# #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Preparing shell profiles for Python..."
-
-echo ${BASH_VERSION:+-e} "\n\n==> WORKON_HOME..."
-appendunique 'export WORKON_HOME="$HOME"/.ve' \
-  "${HOME}/.bashrc" \
-  "${HOME}/.zshrc" \
-  || exit $?
-
-echo ${BASH_VERSION:+-e} "\n\n==> PROJECT_HOME..."
-appendunique 'export PROJECT_HOME="$HOME"/workspace' \
-  "${HOME}/.bashrc" \
-  "${HOME}/.zshrc" \
-  || exit $?
-
-# #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> pyenv setup and load into this session..."
-
-# Pyenv projects:
-# https://github.com/yyuu/pyenv-installer (https://github.com/yyuu/pyenv)
-# https://github.com/yyuu/pyenv-virtualenv
-# https://github.com/yyuu/pyenv-virtualenvwrapper
-
-# Write shell RC files before everything, as pyenv could be in path,
-# but for some reason the RC files been meddled with or reset etc.
-if ! grep -q 'pyenv init' "$HOME/.bashrc" \
-  || ! grep -q 'pyenv init' "$HOME/.zshrc"
-then
-  cat <<'EOF' | tee -a "$HOME"/.{ba,z}shrc
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-# Commenting this LOC out avoids conflicting with virtualenvwrapper...
-# eval "$(pyenv virtualenv-init -)"
-EOF
-fi
-
-# Speed up disabling prompt as it is going to be discontinued anyway:
-appendunique 'export PYENV_VIRTUALENV_DISABLE_PROMPT=1' \
-  "${HOME}/.bashrc" \
-  "${HOME}/.zshrc"
-
-# Install or upgrade
-if [ ! -d "${HOME}/.pyenv" ] ; then
-  bash -c "$(curl -L "$PYENV_INSTALLER")"
-else
-  (cd "${HOME}/.pyenv" && git pull)
-fi
-
-# Load
-if which pyenv >/dev/null 2>&1 ; then
-  eval "$(pyenv init -)"
-else
-  if [ -n "$BASH_VERSION" ] && grep -q "pyenv" "$HOME/.bashrc" ; then
-    . "$HOME/.bashrc"
-  elif [ -n "$ZSH_VERSION" ] && grep -q "pyenv" "$HOME/.zshrc" ; then
-    . "$HOME/.zshrc"
-  fi
-  if ! which pyenv >/dev/null 2>&1 ; then
-    echo "FATAL: There was some error installing pyenv." 1>&2
-    exit 1
-  fi
-fi
-
-# #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> pyenv install $PYV3 and $PYV2 ..."
-
-pyenv install "$PYV3"
-if ! (pyenv versions | fgrep -q "$PYV3") ; then
-  echo "FATAL: $PYV3 version could not be installed." 1>&2
+mkdir -p "${PROJS}"
+mkdir -p "${VENVS}"
+if ! ls -ld "${PROJS}" "${VENVS}" ; then
+  echo "${PROGNAME:+$PROGNAME: }FATAL: Either '${HOME}/workspace' or '${VENVS}' directory is missing." 1>&2
   exit 1
 fi
-pyenv install "$PYV2"
-pyenv global "$PYV3" "$PYV2"
 
-echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for pyenv's pip...\n"
-pip2 install --upgrade pip
-pip3 install --upgrade pip
+echo ${BASH_VERSION:+-e} "\n\n==> Preparing venv and workspace globals in shell profiles..."
 
-# #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> virtualenv's..."
+echo ${BASH_VERSION:+-e} "\n\n==> WORKON_HOME..."
+appendunique "export WORKON_HOME=\"${VENVS}\"" "${HOME}/.bashrc" "${HOME}/.zshrc" || exit $?
 
-pyenv virtualenv -f "$PYV3" jupyter3
-pyenv virtualenv -f "$PYV2" ipython2
-pyenv virtualenv -f "$PYV3" tools3
-pyenv virtualenv -f "$PYV2" tools2
+echo ${BASH_VERSION:+-e} "\n\n==> PROJECT_HOME..."
+appendunique "export PROJECT_HOME=\"${PROJS}\"" "${HOME}/.bashrc" "${HOME}/.zshrc" || exit $?
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> IPython for Python 3 & Jupyter"
+echo ${BASH_VERSION:+-e} "\n\n==> Setup and load into this session..."
 
-pyenv activate jupyter3
-pip install jupyter # iPython dependency gets automatically installed...
-python -m ipykernel install --user
-pyenv deactivate
+grep -q 'pyenv init' "$HOME/.bashrc" || echo "$PYENV_SHELL_INIT" >> "$HOME/.bashrc"
+grep -q 'pyenv init' "$HOME/.zshrc" || echo "$PYENV_SHELL_INIT" >> "$HOME/.zshrc"
 
-# #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> IPython for Python 2"
-
-pyenv activate ipython2
-pip install ipykernel
-python -m ipykernel install --user
-pyenv deactivate
-
-# #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> pyenv PATH priority"
-
-pyenv global "$PYV3" "$PYV2" jupyter3 ipython2 tools3 tools2
-
-# #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> virtualenvwrapper installation"
-
-if [ ! -d "$HOME"/.pyenv/plugins/pyenv-virtualenvwrapper ] ; then
-  git clone --depth 1 \
-    "https://github.com/yyuu/pyenv-virtualenvwrapper.git" \
-    "$HOME"/.pyenv/plugins/pyenv-virtualenvwrapper \
-    || exit $?
+if ! (cd "${HOME}/.pyenv" && [[ $PWD = */.pyenv ]] && git pull >/dev/null 2>&1) ; then
+  bash -c "$(curl -L "$PYENV_INSTALLER")"
 fi
 
-appendunique 'pyenv virtualenvwrapper_lazy' \
-  "${HOME}/.bashrc" \
-  "${HOME}/.zshrc" \
-  || exit $?
+eval "$PYENV_SHELL_INIT"
+
+if ! which pyenv >/dev/null 2>&1 ; then
+  echo "FATAL: There was some error installing pyenv." 1>&2
+  exit 1
+fi
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> virtualenvwrapper load into this session"
+echo ${BASH_VERSION:+-e} "\n\n==> Setup Python interpreters..."
 
-eval "$(pyenv init -)"
-pyenv virtualenvwrapper_lazy
+pyenv install "$PYV3" || exit $?
+pyenv install "$PYV2"
+
+echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for Python interpreters...\n"
+~/.pyenv/versions/${PYV3}/bin/pip install --upgrade pip
+~/.pyenv/versions/${PYV2}/bin/pip install --upgrade pip
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> IPython virtualenv detection (by Henrique Bastos)"
+echo ${BASH_VERSION:+-e} "\n\n==> Setup virtualenv's for tooling..."
 
-ipython profile create
+pyenv virtualenv -f "$PYV3" $VENVJUPYTER
+pyenv virtualenv -f "$PYV2" $VENVIPYTHON
+pyenv virtualenv -f "$PYV3" $VENVTOOLS3
+pyenv virtualenv -f "$PYV2" $VENVTOOLS2
 
-mkdir -p "$HOME"/.ipython/profile_default/startup
-# curl -L http://hbn.link/hb-ipython-startup-script \
-#     > "$HOME"/.ipython/profile_default/startup/00-venv-sitepackages.py
-cat > "$HOME"/.ipython/profile_default/startup/00-venv-sitepackages.py <<'EOF'
-"""IPython startup script to detect and inject VIRTUAL_ENV's site-packages dirs.
+echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for tooling virtualenv's...\n"
+~/.pyenv/versions/$VENVJUPYTER/bin/pip install --upgrade pip
+~/.pyenv/versions/$VENVTOOLS3/bin/pip install --upgrade pip
+~/.pyenv/versions/$VENVIPYTHON/bin/pip install --upgrade pip
+~/.pyenv/versions/$VENVTOOLS2/bin/pip install --upgrade pip
 
-IPython can detect virtualenv's path and injects it's site-packages dirs into sys.path.
-But it can go wrong if IPython's python version differs from VIRTUAL_ENV's.
+# #############################################################################
+echo ${BASH_VERSION:+-e} "\n\n==> Install Jupyter and iPython in its own virtualenv..."
 
-This module fixes it looking for the actual directories. We use only old stdlib
-resources so it can work with as many Python versions as possible.
+# iPython dependency gets automatically installed with jupyter:
+~/.pyenv/versions/$VENVJUPYTER/bin/pip install jupyter
+~/.pyenv/versions/$VENVJUPYTER/bin/python -m ipykernel install --user
+~/.pyenv/versions/$VENVJUPYTER/bin/pip install jupyter_nbextensions_configurator rise
+~/.pyenv/versions/$VENVJUPYTER/bin/jupyter nbextensions_configurator enable --user
 
-References:
-http://stackoverflow.com/a/30650831/443564
-http://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory
-https://github.com/ipython/ipython/blob/master/IPython/core/interactiveshell.py#L676
+# #############################################################################
+echo ${BASH_VERSION:+-e} "\n\n==> Install IPython for Python 2 in its own virtualenv..."
 
-Author: Henrique Bastos <henrique@bastos.net>
-License: BSD
-"""
-import os
-import sys
-from warnings import warn
+~/.pyenv/versions/$VENVIPYTHON/bin/pip install ipykernel
+~/.pyenv/versions/$VENVIPYTHON/bin/python -m ipykernel install --user
 
+# #############################################################################
+echo ${BASH_VERSION:+-e} "\n\n==> Install virtualenvwrapper in tooling virtualenv..."
 
-virtualenv = os.environ.get('VIRTUAL_ENV')
+~/.pyenv/versions/$VENVTOOLS3/bin/pip install virtualenvwrapper
 
-if virtualenv:
+grep -q 'virtualenvwrapper.sh' "$HOME/.bashrc" || echo "$PYENV_VENVWRAPPER_INIT" >> "$HOME/.bashrc"
+grep -q 'virtualenvwrapper.sh' "$HOME/.zshrc" || echo "$PYENV_VENVWRAPPER_INIT" >> "$HOME/.zshrc"
 
-  version = os.listdir(os.path.join(virtualenv, 'lib'))[0]
-  site_packages = os.path.join(virtualenv, 'lib', version, 'site-packages')
-  lib_dynload = os.path.join(virtualenv, 'lib', version, 'lib-dynload')
+# #############################################################################
+echo ${BASH_VERSION:+-e} "\n\n==> Write-protect lib dir for globals interpreters..."
 
-  if not (os.path.exists(site_packages) and os.path.exists(lib_dynload)):
-    msg = 'Virtualenv site-packages discovery went wrong for %r' % repr([site_packages, lib_dynload])
-    warn(msg)
+chmod -R -w ~/.pyenv/versions/$PY2/lib/
+chmod -R -w ~/.pyenv/versions/$PY3/lib/
 
-  sys.path.insert(0, site_packages)
-  sys.path.insert(1, lib_dynload)
-EOF
+# #############################################################################
+echo ${BASH_VERSION:+-e} "\n\n==> Setup pyenv PATH priority ($PYENV_GLOBAL_DEFAULT)..."
+
+pyenv global $PYENV_GLOBAL_DEFAULT
 
 # #############################################################################
 # Final sequence
