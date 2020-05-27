@@ -36,20 +36,26 @@ _desktop_linux_xfce () {
 
 _desktop_linux_apps () {
   if [[ $PROVISION_OPTIONS = *noapps* ]] ; then return ; fi
+
   bash "${RUNR_DIR:-.}"/recipes/apps-desktop.sh
 }
 
 _desktop_linux_apps_chrome () {
-  if [[ $PROVISION_OPTIONS = *chrome* ]] ; then bash "${RUNR_DIR:-.}"/installers/setupchrome.sh ; fi
+  if [[ $PROVISION_OPTIONS != *chrome* ]] ; then return ; fi
+
+  bash "${RUNR_DIR:-.}"/installers/setupchrome.sh
 }
 
 _desktop_linux_apps_devel () {
   if [[ $PROVISION_OPTIONS = *nodevel* ]] ; then return ; fi
+
   :
 }
 
 _desktop_linux_apps_edu () {
-  if [[ $PROVISION_OPTIONS = *edu* ]] ; then bash "${RUNR_DIR:-.}"/installers/setupanki.sh ; fi
+  if [[ $PROVISION_OPTIONS != *edu* ]] ; then return ; fi
+
+  bash "${RUNR_DIR:-.}"/installers/setupanki.sh
 }
 
 _desktop_linux_fonts () {
