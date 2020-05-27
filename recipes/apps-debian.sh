@@ -52,6 +52,7 @@ _install_packages secure-delete
 _install_packages silversearcher-ag
 _install_packages tmux
 _install_packages unzip zip
+_install_packages xz-utils
 _install_packages zsh
 
 echo "$PROGNAME: INFO: Debian devel packages..."
@@ -64,7 +65,7 @@ _install_packages jq
 _install_packages llvm
 _install_packages perl
 _install_packages pkg-config
-_install_packages python-software-properties
+# _install_packages python-software-properties
 _install_packages sqlite3 libdbd-sqlite3
 
 echo "$PROGNAME: INFO: Debian devel libs..."
@@ -73,6 +74,7 @@ _install_packages imagemagick
 _install_packages libbz2-dev
 _install_packages libcurl4-openssl-dev
 _install_packages libffi-dev
+_install_packages liblzma-dev
 _install_packages libncurses5-dev libncursesw5-dev
 _install_packages libperl-dev
 _install_packages libreadline-dev
@@ -81,6 +83,8 @@ _install_packages libssl-dev
 _install_packages libxml2-dev
 _install_packages libxslt1-dev
 _install_packages libyaml-dev
+_install_packages python-openssl
+_install_packages tk-dev
 _install_packages zlib1g zlib1g-dev
 
 echo "$PROGNAME: INFO: Debian security packages..."
