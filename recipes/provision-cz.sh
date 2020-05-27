@@ -58,23 +58,10 @@ _helper_provision_encrypted_assets () {
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupfs.sh
   bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynctc.sh
 
-  crypt_mounted=false
-  if (uname -a | grep -i -q linux) && grep -q "${CRYPT_MNT}" /etc/mtab ; then
-    crypt_mounted=true
-  elif [ -f /usr/bin/cygpath ] && [ -d "${CRYPT_DIR}" ] ; then
-    crypt_mounted=true
-  fi
-
   git config --global --unset-all 'credential.helper'
-  if ${crypt_mounted} ; then
-    git clone "https://stroparo@bitbucket.org/stroparo/handys.git" "${CRYPT_DIR}/handys"
-    if ! (git config --global credential.helper | grep -q 'store') ; then
-      git config --global credential.helper "store --file=${CRYPT_DIR}/gitcred.txt"
-    fi
-  elif ! (git config --global credential.helper | grep -q 'store') ; then
-    git config --global credential.helper "store --file=${HOME}/gitcred.txt"
-    echo "${PROGNAME:+$PROGNAME: }WARN: Storing credentials in '${HOME}/gitcred.txt'." 1>&2
-    echo "${PROGNAME:+$PROGNAME: }WARN: REMOVE/SHRED IT AS SOON AS THIS SETUP HAS FINISHED." 1>&2
+  git config --global credential.helper "store --file=${CRYPT_DIR}/gitcred.txt"
+  if grep -q "${CRYPT_MNT}" /etc/mtab ; then
+    git clone "https://stroparo@bitbucket.org/stroparo/handys.git" "${CRYPT_DIR:-nanaobobo}/handys"
   fi
 }
 
