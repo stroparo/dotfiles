@@ -102,11 +102,8 @@ _desktop_any_os () {
 # #############################################################################
 # Development helpers
 
-_dev_platforms_any_os () {
-  :
-}
+_dev_platforms () {
 
-_dev_platforms_linux () {
   if ! ${ISLINUX} ; then return ; fi
 
   if [[ $PROVISION_OPTIONS = *python* ]] ; then bash "${RUNR_DIR:-.}"/recipes/python.sh ; fi
@@ -114,17 +111,10 @@ _dev_platforms_linux () {
   if [[ $PROVISION_OPTIONS = *rust* ]] ; then bash "${RUNR_DIR:-.}"/installers/setuprust.sh ; fi
 }
 
-_dev_platforms () {
-  # _dev_platforms_any_os
-  _dev_platforms_linux
-}
-
-_dev_tools_any_os () {
+_dev_tools () {
   if [[ $PROVISION_OPTIONS = *golang* ]] ; then bash "${RUNR_DIR:-.}"/installers/setupgotools.sh ; fi
   if [[ $PROVISION_OPTIONS = *sdkman* ]] ; then bash "${RUNR_DIR:-.}"/installers/setupsdkman.sh ; fi
-}
 
-_dev_tools_linux () {
   if ! ${ISLINUX} ; then return ; fi
 
   bash "${RUNR_DIR:-.}"/installers/setupdocker.sh
@@ -133,11 +123,6 @@ _dev_tools_linux () {
   bash "${RUNR_DIR:-.}"/installers/setupexa.sh
   bash "${RUNR_DIR:-.}"/installers/setuptmux.sh
   if [[ $PROVISION_OPTIONS = *vim* ]] ; then bash "${RUNR_DIR:-.}"/recipes/vim.sh ; fi
-}
-
-_dev_tools () {
-  _dev_tools_any_os
-  _dev_tools_linux
 }
 
 _devel () {
