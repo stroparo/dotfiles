@@ -6,9 +6,6 @@
 # The final pyenv global PATH priority setup will be:
 # PY3 PY2 jupyter(3) ipython(2) tools(3) tools(2)
 
-# Arguments of filenames ending '-xyz' will have a list of pip packages to be installed
-# into the 'xyz' virtualenv.
-
 # pyenv projects:
 # https://github.com/yyuu/pyenv-installer (https://github.com/yyuu/pyenv)
 # https://github.com/yyuu/pyenv-virtualenv
