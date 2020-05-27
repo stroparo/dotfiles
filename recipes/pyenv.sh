@@ -19,8 +19,8 @@ echo "$PROGNAME: INFO:     https://medium.com/@henriquebastos/the-definitive-gui
 # Globals
 
 export PYENV_INSTALLER="https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer"
-export PYV2='2.7.15'
-export PYV3='3.7.1'
+export PYV2='2.7.18'
+export PYV3='3.8.3'
 
 # #############################################################################
 # Shell
