@@ -12,48 +12,33 @@ echo "$PROGNAME: INFO:     https://medium.com/@henriquebastos/the-definitive-gui
 # Arguments of filenames ending '-xyz' will have a list of pip packages to be installed
 # into the 'xyz' virtualenv.
 
-# pyenv faq
+# pyenv common problems:
 # https://github.com/pyenv/pyenv/wiki/Common-build-problems
 
 # #############################################################################
-# Globals
+# Globals / env
+
+[ -n "$ZSH_VERSION" ] && set -o shwordsplit
 
 export PYENV_INSTALLER="https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer"
 export PYV2='2.7.18'
 export PYV3='3.8.3'
 
 # #############################################################################
-# Shell
-
-[ -n "$ZSH_VERSION" ] && set -o shwordsplit
-
-# #############################################################################
 # Helpers
 
-
 appendunique () {
-    # Syntax: [-n] string file1 [file2 ...]
-    [ "$1" = '-n' ] && shift && typeset newline=true
-    [ -z "$1" ] && return 0
-    typeset result=0
-    typeset text="${1}" ; shift
-    for f in "$@" ; do
-        if [ ! -e "$f" ] ; then
-            result=1
-            echo "ERROR '${f}' does not exist" 1>&2
-            continue
-        fi
-        if ! grep -F -q "$text" "$f" ; then
-            ${newline:-false} && echo ${BASH_VERSION:+-e} '\n' >> "$f"
-            if ! echo "$text" >> "$f" ; then
-                result=1
-                echo "ERROR appending '$f'" 1>&2
-            fi
-        fi
-    done
-    return ${result}
+  typeset result=0
+  typeset text="${1}" ; shift
+  if [ -z "${text}" ] ; then return 0 ; fi
+  for f in "$@" ; do
+    if [ ! -e "$f" ] ; then echo "$PROGNAME:WARN: '${f}' does not exist." 1>&2 ; continue ; fi
+    if ! grep -F -q "$text" "$f" ; then
+      if ! echo "$text" >> "$f" ; then result=1 ; echo "ERROR: appending '$f'" 1>&2 ; fi
+    fi
+  done
+  return ${result}
 }
-
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Preparing venv and workspace directories..."
