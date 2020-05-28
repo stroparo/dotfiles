@@ -18,7 +18,7 @@ SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
 # #############################################################################
 # Prep
 
-source "${RUNR_DIR:-.}"/helpers/enforceds.sh
+source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 
 # #############################################################################
 # Main

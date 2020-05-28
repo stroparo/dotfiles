@@ -26,7 +26,7 @@ if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   sudo $APTPROG update || exit $?
 
   sudo $APTPROG install -y make
-  
+
   # Python 2, maintain these in case Py 3 packages switch to just "python":
   sudo $APTPROG install -y python python-pip python-dev
 
@@ -71,5 +71,8 @@ sudo -H pip3 install --upgrade pip
 # #############################################################################
 # Final sequence
 
-echo "$PROGNAME: COMPLETE: Python setup"
+echo "$PROGNAME: COMPLETE: Python system-wide setup"
+echo
+echo
+
 exit

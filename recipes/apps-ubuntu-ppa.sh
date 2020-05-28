@@ -10,7 +10,7 @@ fi
 echo "$PROGNAME: INFO: Ubuntu PPA selects (compound)"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
-source "${RUNR_DIR:-.}"/helpers/enforceds.sh
+source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 
 aptinstallppa.sh "christian-boxdoerfer/fsearch-daily" "fsearch-trunk"
 aptinstallppa.sh "nextcloud-devs/client" "nextcloud-client"

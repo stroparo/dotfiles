@@ -1,79 +1,21 @@
 #!/usr/bin/env bash
 
-PROGNAME="provision-stroparo.sh"
+: ${PROGNAME:=provision-stroparo.sh}
+: ${RUNR_DIR:=${RUNR_DIR:-${PWD}}}
 
-# #############################################################################
-# Base
+REPO_DS_ST="stroparo@bitbucket.org/stroparo/ds-stroparo"
+REPO_DS_ST_ALTN="stroparo@github.com/stroparo/ds-stroparo"
 
-_shell_plus_cli_apps () {
-  bash -c "$(curl ${DLOPTEXTRA} -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
-    || curl ${DLOPTEXTRA} -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
-    entry.sh apps shell
-  if ! . "${DS_HOME:-$HOME/.ds}/ds.sh" ; then echo "$PROGNAME: ERROR: DS source failure." ; exit $? ; fi
-}
+# Recipes:
+if [ -z "${PROVISION_OPTIONS}" ] ; then
+  export PROVISION_OPTIONS="base gui chrome python rust"
+  bash "${RUNR_DIR}"/recipes/provision.sh
+fi
+bash "${RUNR_DIR}"/recipes/dotfiles.sh
+bash "${RUNR_DIR}"/recipes/git.sh
 
-
-_sudo_setup () {
-  if [ -e /etc/sudoers ] && ! sudo grep -q "${USER}.*ALL" /etc/sudoers ; then
-    echo "Append:"
-    echo "$USER ALL=(ALL) NOPASSWD: ALL"
-    echo "... to the sudoers file."
-    echo "Copy the above line then press any key to invoke 'sudo visudo'..."
-    echo "If sudo visudo fails then enter root password for 'su visudo'..."
-    read dummy
-    sudo visudo
-    if [ -e /etc/sudoers ] && ! sudo grep -q "${USER}.*ALL" /etc/sudoers ; then
-      su - -c visudo
-    fi
-  fi
-}
-
-
-_make_workspace_dir () {
-  mkdir ~/workspace >/dev/null 2>&1
-  ls -d -l ~/workspace || exit $?
-}
-
-
-_step_base_system () {
-  ${STEP_BASE_SYSTEM_DONE:-false} && return
-  _sudo_setup
-  _make_workspace_dir
-  _shell_plus_cli_apps
-  export STEP_BASE_SYSTEM_DONE=true
-}
-
-# #############################################################################
-# Custom
-
-_step_custom_ds_plugins () {
-  dsplugin.sh "stroparo@bitbucket.org/stroparo/ds-stroparo" \
-    || dsplugin.sh "stroparo@github.com/stroparo/ds-stroparo"
-  if [ $? -ne 0 ] ; then exit 99 ; fi
-  source "${DS_HOME:-$HOME/.ds}/ds.sh" || exit $?
-}
-
-
-_step_custom_provision () {
-  runr -c dotfiles
-  runr -c git
-  runr -c provision
-  # selects-python-stroparo.sh
-  bash "${DS_HOME:-$HOME/.ds}"/scripts/dsconfgit.sh
-}
-
-
-_step_custom () {
-  _step_custom_ds_plugins
-  _step_custom_provision
-}
-
-# #############################################################################
-
-_main () {
-  _step_base_system
-  _step_custom
-}
-
-
-_main "$@"
+# Daily Shells setups:
+if ! source "${RUNR_DIR:-.}"/helpers/dsenforce.sh ; then exit 1 ; fi
+if ! (dsplugin.sh "$REPO_DS_ST" || dsplugin.sh "$REPO_DS_ST_ALTN") ; then exit 1 ; fi
+bash "${DS_HOME:-$HOME/.ds}"/scripts/dsconfgit.sh
+bash "${DS_HOME:-$HOME/.ds}"/scripts/selects-python-stroparo.sh

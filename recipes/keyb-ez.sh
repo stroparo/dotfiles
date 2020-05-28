@@ -1,4 +1,4 @@
-PROGNAME="setupezkb.sh"
+PROGNAME="keyb-ez.sh"
 
 if ! (uname -a | grep -i -q linux) ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: Linux routine only." 1>&2
