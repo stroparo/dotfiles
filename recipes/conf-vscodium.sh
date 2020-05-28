@@ -8,13 +8,13 @@ echo "$PROGNAME: INFO: Visual Studio Code custom config started"
 # Globals
 
 SRC_CONFIG_DIR="${RUNR_DIR:-$PWD}/config/vscodium"
-export VSCODE_CMD="codium"
+export VSCODECMD="codium"
 
 # #############################################################################
 # Requirements
 
-if ! which ${VSCODE_CMD} >/dev/null 2>&1 ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: vscodium not available."
+if ! which ${VSCODECMD} >/dev/null 2>&1 ; then
+  echo "${PROGNAME:+$PROGNAME: }SKIP: ${VSCODECMD} not available."
   exit
 fi
 
@@ -28,7 +28,7 @@ fi
 if which update-alternatives >/dev/null 2>&1 \
   && egrep -i -q -r 'debian|ubuntu' /etc/*release
 then
-  sudo update-alternatives --set editor "$(which ${VSCODE_CMD})"
+  sudo update-alternatives --set editor "$(which ${VSCODECMD})"
 fi
 
 # #############################################################################
@@ -41,7 +41,7 @@ elif [[ "$(uname -a)" = *[Ll]inux* ]] ; then
 fi
 
 # Start vscodium for it to create the user dir, then kill it right away:
-${VSCODE_CMD} >/dev/null 2>&1 &
+${VSCODECMD} >/dev/null 2>&1 &
 sleep 8
 kill %1
 
@@ -65,4 +65,7 @@ fi
 # Final sequence
 
 echo "$PROGNAME: COMPLETE"
+echo
+echo
+
 exit
