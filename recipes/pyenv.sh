@@ -53,38 +53,30 @@ export VIRTUALENVWRAPPER_PYTHON=~/.pyenv/versions/$VENVTOOLS3/bin/python
 source ~/.pyenv/versions/$VENVTOOLS3/bin/virtualenvwrapper.sh"
 
 # #############################################################################
-# Helpers
-
-appendunique () {
-  typeset result=0
-  typeset text="${1}" ; shift
-  if [ -z "${text}" ] ; then return 0 ; fi
-  for f in "$@" ; do
-    if [ ! -e "$f" ] ; then echo "$PROGNAME:WARN: '${f}' does not exist." 1>&2 ; continue ; fi
-    if ! grep -F -q "$text" "$f" ; then
-      if ! echo "$text" >> "$f" ; then result=1 ; echo "ERROR: appending '$f'" 1>&2 ; fi
-    fi
-  done
-  return ${result}
-}
-
-# #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Prep directories..."
+echo ${BASH_VERSION:+-e} "\n\n==> Prep PROJECT_HOME ($PROJS) and WORKON_HOME ($VENVS) directories..."
 
 mkdir -p "${PROJS}"
 mkdir -p "${VENVS}"
 if ! ls -ld "${PROJS}" "${VENVS}" ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: Either '${HOME}/workspace' or '${VENVS}' directory is missing." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }FATAL: Could not make either of '${PROJS}' or '${VENVS}' directories." 1>&2
   exit 1
 fi
 
-echo ${BASH_VERSION:+-e} "\n\n==> Preparing venv and workspace globals in shell profiles..."
+echo ${BASH_VERSION:+-e} "\n\n==> Prep shell profiles with WORKON_HOME global..."
+if ! grep -q 'WORKON_HOME=' ~/.bashrc ; then echo "export WORKON_HOME=\"${VENVS}\"" >> ~/.bashrc
+if ! grep -q 'WORKON_HOME=' ~/.zshrc ; then echo "export WORKON_HOME=\"${VENVS}\"" >> ~/.zshrc
+if ! grep -q 'WORKON_HOME=' ~/.bashrc ; then
+  echo "${PROGNAME:+$PROGNAME: }FATAL: Could not write WORKON_HOME global in shell profiles." 1>&2
+  exit 1
+fi
 
-echo ${BASH_VERSION:+-e} "\n\n==> WORKON_HOME..."
-appendunique "export WORKON_HOME=\"${VENVS}\"" "${HOME}/.bashrc" "${HOME}/.zshrc" || exit $?
-
-echo ${BASH_VERSION:+-e} "\n\n==> PROJECT_HOME..."
-appendunique "export PROJECT_HOME=\"${PROJS}\"" "${HOME}/.bashrc" "${HOME}/.zshrc" || exit $?
+echo ${BASH_VERSION:+-e} "\n\n==> Prep shell profiles with PROJECT_HOME global..."
+if ! grep -q 'PROJECT_HOME=' ~/.bashrc ; then echo "export PROJECT_HOME=\"${PROJS}\"" >> ~/.bashrc
+if ! grep -q 'PROJECT_HOME=' ~/.zshrc ; then echo "export PROJECT_HOME=\"${PROJS}\"" >> ~/.zshrc
+if ! grep -q 'PROJECT_HOME=' ~/.bashrc ; then
+  echo "${PROGNAME:+$PROGNAME: }FATAL: Could not write PROJECT_HOME global in shell profiles." 1>&2
+  exit 1
+fi
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Setup and load into this session..."
@@ -165,4 +157,7 @@ pyenv global $PYENV_GLOBAL_DEFAULT
 # Final sequence
 
 echo "$PROGNAME: COMPLETE"
+echo
+echo
+
 exit
