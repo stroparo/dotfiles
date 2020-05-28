@@ -145,8 +145,8 @@ grep -q 'virtualenvwrapper.sh' "$HOME/.zshrc" || echo "$PYENV_VENVWRAPPER_INIT" 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Write-protect lib dir for globals interpreters..."
 
-chmod -R -w ~/.pyenv/versions/$PY2/lib/
-chmod -R -w ~/.pyenv/versions/$PY3/lib/
+chmod -R -w ~/.pyenv/versions/$PYV2/lib/
+chmod -R -w ~/.pyenv/versions/$PYV3/lib/
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Setup pyenv PATH priority ($PYENV_GLOBAL_DEFAULT)..."
