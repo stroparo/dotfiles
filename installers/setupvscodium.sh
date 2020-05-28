@@ -2,27 +2,21 @@
 
 PROGNAME="setupvscodium.sh"
 
-echo "$PROGNAME: INFO: started Visual Studio Codium editor setup"
-echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+export VSCODEPKG="codium"
 
-if which ${VSCODE_CMD:-codium} >/dev/null 2>&1 ; then
+if which "${VSCODEPKG}" >/dev/null 2>&1 ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: already installed." 1>&2
   exit
 fi
+echo "$PROGNAME: INFO: started Visual Studio Codium editor setup"
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
-# #############################################################################
-# Globals
 
-export VSCODE_CMD="codium"
-
-# System installers
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP="dnf group install"
 export INSTPROG="$APTPROG"; which "$RPMPROG" >/dev/null 2>&1 && export INSTPROG="$RPMPROG"
 
-# #############################################################################
-# Install
 
 if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   # Add repo
@@ -34,7 +28,8 @@ if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   fi
   sudo "${INSTPROG}" update \
     && sudo "${INSTPROG}" install -y apt-transport-https \
-    && sudo "${INSTPROG}" install -y codium
+    && sudo "${INSTPROG}" install -y "${VSCODEPKG}"
+
 
 elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
   # Add repo
@@ -42,10 +37,10 @@ elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
     | sudo tee -a /etc/yum.repos.d/vscodium.repo
 
   sudo "${INSTPROG}" check-update \
-    && sudo "${INSTPROG}" install -y codium
+    && sudo "${INSTPROG}" install -y "${VSCODEPKG}"
 fi
 
-# #############################################################################
-# Final sequence
 
 echo "${PROGNAME:+$PROGNAME: }COMPLETE: Visual Studio Codium setup"
+echo
+echo
