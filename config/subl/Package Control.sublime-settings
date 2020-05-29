@@ -36,6 +36,7 @@
     "Theme - Spacegray",
 
     // Linting
+    "coala",
     "SublimeLinter",
     "SublimeLinter-flake8", // or "SublimeLinter-pycodestyle",
     "SublimeLinter-jshint",
