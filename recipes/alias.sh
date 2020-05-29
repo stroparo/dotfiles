@@ -232,6 +232,7 @@ alias yumepel='sudo yum --enablerepo=epel'
 # #############################################################################
 # Python
 
+alias m='python `cat "${VIRTUAL_ENV}/.project"`/manage.py'
 alias server='python -m http.server'
 alias va='. ./bin/activate'
 
