@@ -78,6 +78,10 @@ if ! grep -q 'PROJECT_HOME=' ~/.bashrc ; then
   exit 1
 fi
 
+# Speed up disabling prompt as it is going to be discontinued anyway:
+if ! grep -q 'DISABLE_PROMPT=1' ~/.bashrc ; then echo "export PYENV_VIRTUALENV_DISABLE_PROMPT=1" >> ~/.bashrc
+if ! grep -q 'DISABLE_PROMPT=1' ~/.zshrc ; then echo "export PYENV_VIRTUALENV_DISABLE_PROMPT=1" >> ~/.zshrc
+
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Setup and load into this session..."
 
