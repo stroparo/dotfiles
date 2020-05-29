@@ -116,6 +116,14 @@ alias dce='docker-compose exec'
 # #############################################################################
 # Git
 
+# Check existence to avoid duplicate of alias recipe in dotfiles vs daily shells:
+if ! type gcheckedout >/dev/null 2>&1 ; then gcheckedout () { git branch -v "$@" | egrep '^(==|[*]|---)' ; } ; fi
+if ! type gitbranchactive >/dev/null 2>&1 ; then gitbranchactive () { echo "$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')" ; } ; fi
+if ! type gdd >/dev/null 2>&1 ; then  gdd () { git add -A "$@" ; git status -s ; } ; fi
+if ! type gddd >/dev/null 2>&1 ; then gddd () { git add -A "$@" ; git status -s ; git diff --cached ; } ; fi
+if ! type gee >/dev/null 2>&1 ; then  gee () { git add -A "$@" ; git status -s ; git diff --ignore-space-at-eol --cached ; } ; fi
+if ! type glsd >/dev/null 2>&1 ; then glsd () { git ls-files --deleted ; } ; fi
+
 alias bv='git branch -vv'
 alias bav='git branch -avv'
 alias gbd='git branch -d'
@@ -123,19 +131,20 @@ alias gbD='git branch -D'
 alias gfa='git fetch --all'
 alias gfap='git fetch --all -p'
 alias gfp='git fetch -p'
+alias glru='git pull --rebase upstream HEAD'
 alias glrum='git pull --rebase upstream master'
-alias gph='git push origin HEAD'
-alias gphf='git push -f origin HEAD'
-alias gpmm='git push mirror master'
-alias gv='git mv'
+alias gpm='git push mirror HEAD'
+alias gpmf='git push -f mirror HEAD'
+alias gpo='git push origin HEAD'
+alias gpof='git push -f origin HEAD'
+alias gmv='git mv'
 
 # Diff
 alias gdc='git diff --cached'
 alias gdh='git diff HEAD'
-alias gdi='git diff --ignore-space-at-eol'
 alias ge='git diff --ignore-space-at-eol'
 alias gec='git diff --ignore-space-at-eol --cached'
-alias gee='git diff --ignore-space-at-eol HEAD'
+alias geh='git diff --ignore-space-at-eol HEAD'
 
 # Log
 alias gas='git log --decorate --graph --all --stat'
