@@ -51,15 +51,11 @@ alias dfh='df -hP'
 alias dsloaddefault='. "$HOME/.ds/ds.sh"'
 alias dumr='du -ma | sort -rn'
 alias dums='du -ma | sort -n'
-alias e='exa -hil'
-alias ea='exa -ahil'
 alias findd='find . -type d'
 alias findf='find . -type f'
 alias nhr='rm nohup.out'
 alias nht='tail -9999f nohup.out'
-alias server='python3 -m http.server'
 alias tpf='typeset -f'
-alias sourcevirtualenv='. ./bin/activate'
 alias xcd="alias | egrep \"'c?d \" | fgrep -v 'cd -'"
 alias xgit="alias | grep -w git"
 
@@ -76,24 +72,22 @@ if (command grep --help | command grep -q -- --color) ; then
   alias fgrep='fgrep --color=auto'
 fi
 
-# Ls
-if [[ $(ls --version 2>/dev/null) = *GNU* ]] ; then
+# Ls / exa - list files:
+unalias exa ls
+if which exa >/dev/null 2>&1 ; then
+  alias exa='exa --color=auto'
+  alias l='exa -hil'
+  alias ll='exa -ahil'
+  alias lt='exa -ahil --sort=age'
+elif [[ $(ls --version 2>/dev/null) = *GNU* ]] ; then
   alias ls='ls --color=auto'
-  alias l='ls -Flhi'
-  alias ll='ls -AFlhi'
-  alias lt='ls -Flrthi'
+  alias l='ls -Fhil'
+  alias ll='ls -AFhil'
+  alias lt='ls -Fhilrt'
 else
   alias l='ls -Fl'
   alias ll='ls -AFl'
   alias lt='ls -Flrt'
-fi
-
-# Ls-like exa
-if which exa >/dev/null 2>&1 ; then
-  alias exa='exa --color=auto'
-  alias x='exa -hil'
-  alias xx='exa -hil -a'
-  alias xm='exa -hil -mr'
 fi
 
 # #############################################################################
@@ -234,6 +228,12 @@ alias updalt='sudo update-alternatives'
 # Packaging RPM etcetera
 
 alias yumepel='sudo yum --enablerepo=epel'
+
+# #############################################################################
+# Python
+
+alias server='python -m http.server'
+alias va='. ./bin/activate'
 
 # #############################################################################
 # Tmux
