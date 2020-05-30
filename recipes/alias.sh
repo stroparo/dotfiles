@@ -73,7 +73,7 @@ if (command grep --help | command grep -q -- --color) ; then
 fi
 
 # Ls / exa - list files:
-unalias exa ls
+unalias exa ls 2>/dev/null
 if which exa >/dev/null 2>&1 ; then
   alias exa='exa --color=auto'
   alias l='exa -hil'
