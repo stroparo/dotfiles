@@ -119,10 +119,10 @@ alias dce='docker-compose exec'
 # Check existence to avoid duplicate of alias recipe in dotfiles vs daily shells:
 if ! type gcheckedout >/dev/null 2>&1 ; then gcheckedout () { git branch -v "$@" | egrep '^(==|[*]|---)' ; } ; fi
 if ! type gitbranchactive >/dev/null 2>&1 ; then gitbranchactive () { echo "$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')" ; } ; fi
-if ! type gdd >/dev/null 2>&1 ; then  gdd () { git add -A "$@" ; git status -s ; } ; fi
-if ! type gddd >/dev/null 2>&1 ; then gddd () { git add -A "$@" ; git status -s ; git diff --cached ; } ; fi
-if ! type gee >/dev/null 2>&1 ; then  gee () { git add -A "$@" ; git status -s ; git diff --ignore-space-at-eol --cached ; } ; fi
-if ! type glsd >/dev/null 2>&1 ; then glsd () { git ls-files --deleted ; } ; fi
+if ! type gdd   >/dev/null 2>&1 ; then gdd () { git add -A "$@" ; git status -s ; } ; fi
+if ! type gddd  >/dev/null 2>&1 ; then gddd () { git add -A "$@" ; git status -s ; git diff --cached ; } ; fi
+if ! type gee   >/dev/null 2>&1 ; then gee () { git add -A "$@" ; git status -s ; git diff --ignore-space-at-eol --cached ; } ; fi
+if ! type glsd  >/dev/null 2>&1 ; then glsd () { git ls-files --deleted ; } ; fi
 
 alias bv='git branch -vv'
 alias bav='git branch -avv'
