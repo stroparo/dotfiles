@@ -15,6 +15,7 @@ bash "${RUNR_DIR:-$PWD}"/installers/setuppython.sh
 
 bash "${RUNR_DIR:-$PWD}"/recipes/conf-pip.sh
 bash "${RUNR_DIR:-$PWD}"/recipes/pyenv.sh
+bash "${RUNR_DIR:-$PWD}"/recipes/fix-ipython-virtualenv.sh
 
 echo "$PROGNAME: COMPLETE: Python env deployment (compound)"
 exit
