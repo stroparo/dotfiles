@@ -16,7 +16,7 @@ if [ !-d "$HOME"/.ipython/profile_default/startup ] ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: Dir '$HOME/.ipython/profile_default/startup' could not be created." 1>&2
 fi
 
-cat > "$HOME"/.ipython/profile_default/startup/00-add-venv-sitepackages-libs-to-sys-path.py <<'EOF'
+cat > "$HOME"/.ipython/profile_default/startup/00-add-actual-virtualenv-sitepackages.py <<'EOF'
 """IPython startup script to detect and inject actual VIRTUAL_ENV's site-packages dirs.
 
 IPython can detect virtualenv's path and inject its site-packages dirs into sys.path.
