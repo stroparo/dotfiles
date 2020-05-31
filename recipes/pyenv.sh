@@ -33,9 +33,10 @@ export PYV2='2.7.18'
 export PYV3='3.8.3'
 export VENVJUPYTER="jupyter$(echo ${PYV3%.*} | tr -d .)"
 export VENVIPYTHON="ipython$(echo ${PYV2%.*} | tr -d .)"
+export VENVPOETRY="poetry$(echo ${PYV3%.*} | tr -d .)"
 export VENVTOOLS3="tools$(echo ${PYV3%.*} | tr -d .)"
 export VENVTOOLS2="tools$(echo ${PYV2%.*} | tr -d .)"
-export PYENV_GLOBAL_DEFAULT="$PYV3 $PYV2 $VENVJUPYTER $VENVIPYTHON $VENVTOOLS3 $VENVTOOLS2"
+export PYENV_GLOBAL_DEFAULT="$PYV3 $PYV2 $VENVPOETRY $VENVJUPYTER $VENVIPYTHON $VENVTOOLS3 $VENVTOOLS2"
 
 export PYENV_INSTALLER="https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer"
 
@@ -113,12 +114,14 @@ echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for Python interpreters...\n"
 echo ${BASH_VERSION:+-e} "\n\n==> Setup virtualenv's for tooling..."
 
 pyenv virtualenv -f "$PYV3" $VENVJUPYTER
-pyenv virtualenv -f "$PYV2" $VENVIPYTHON
+pyenv virtualenv -f "$PYV3" $VENVPOETRY
 pyenv virtualenv -f "$PYV3" $VENVTOOLS3
+pyenv virtualenv -f "$PYV2" $VENVIPYTHON
 pyenv virtualenv -f "$PYV2" $VENVTOOLS2
 
 echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for tooling virtualenv's...\n"
 ~/.pyenv/versions/$VENVJUPYTER/bin/pip install --upgrade pip
+~/.pyenv/versions/$VENVPOETRY/bin/pip install --upgrade pip
 ~/.pyenv/versions/$VENVTOOLS3/bin/pip install --upgrade pip
 ~/.pyenv/versions/$VENVIPYTHON/bin/pip install --upgrade pip
 ~/.pyenv/versions/$VENVTOOLS2/bin/pip install --upgrade pip
@@ -131,6 +134,11 @@ echo ${BASH_VERSION:+-e} "\n\n==> Install Jupyter and iPython in its own virtual
 ~/.pyenv/versions/$VENVJUPYTER/bin/python -m ipykernel install --user
 ~/.pyenv/versions/$VENVJUPYTER/bin/pip install jupyter_nbextensions_configurator rise
 ~/.pyenv/versions/$VENVJUPYTER/bin/jupyter nbextensions_configurator enable --user
+
+# #############################################################################
+echo ${BASH_VERSION:+-e} "\n\n==> Install Poetry for Python 3 in its own virtualenv..."
+
+~/.pyenv/versions/$VENVPOETRY/bin/pip install poetry
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Install IPython for Python 2 in its own virtualenv..."
