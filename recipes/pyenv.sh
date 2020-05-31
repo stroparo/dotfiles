@@ -4,7 +4,7 @@
 # https://gist.github.com/henriquebastos/0a45c39115ca5b3776a93c89dbddfacb
 
 # The final pyenv global PATH priority setup will be:
-# PY3 PY2 jupyter(3) ipython(2) tools(3) tools(2)
+# PY3 PY2 poetry(3) jupyter(3) ipython(2) tools(3) tools(2)
 
 # pyenv projects:
 # https://github.com/yyuu/pyenv-installer (https://github.com/yyuu/pyenv)
