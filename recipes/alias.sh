@@ -24,6 +24,7 @@ fi
 # Aliases file
 
 cat > "$(eval echo "\"${ALIASES_FILE}\"")" <<'EOF'
+
 # Function d - Dir navigation
 unalias d 2>/dev/null
 unset d 2>/dev/null
@@ -41,6 +42,7 @@ d () {
     echo ; git status -s
   fi
 }
+
 
 # Asorted
 alias capsctrl='setxkbmap -option "ctrl:nocaps"'
