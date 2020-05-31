@@ -9,9 +9,9 @@
   "trim_trailing_white_space_on_save": true,  // trim_trailing_whitespace = true
 
   // "font_face": "Droid Sans Mono Dotted for Powerline", "font_size": 11, // nice font_size's: TBD..13
-  "font_face": "Fira Mono for Powerline", "font_size": 11, // nice font_size's: 11..13
+  // "font_face": "Fira Mono for Powerline", "font_size": 11, // nice font_size's: 11..13
   // "font_face": "Inconsolata-dz for Powerline", "font_size": 11, // nice font_size's: TBD..13
-  // "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12, // nice font_size's: 12..15
+  "font_face": "Ubuntu Mono derivative Powerline", "font_size": 12, // nice font_size's: 12..15
   "font_options": ["subpixel_antialias", "no_bold"],
 
   // Color & theme selection:
@@ -27,10 +27,12 @@
   "tabs_padding_small": true,
 
   // Attributes for theme: Spacegray
-  "spacegray_fileicons": true,
+  // "spacegray_fileicons": true, // commented as using "A File Icon" instead.
   "spacegray_sidebar_font_xlarge": true,
   "spacegray_sidebar_tree_xsmall": true,
-  "spacegray_tabs_font_normal": true,
+  "spacegray_tabs_auto_width": true,
+  "spacegray_tabs_font_large": true,
+  "spacegray_tabs_normal": true,
 
   // Behavior
   "auto_complete": true,
