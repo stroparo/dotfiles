@@ -63,7 +63,7 @@ fi
 # #############################################################################
 # Packages no longer maintained, installed from this repo's assets dir
 
-if [-d "${RUNR_DIR:-$PWD}/assets/subl-packages" ] && [ -d "${SUBL_USER}/../../Installed Packages" ] ; then
+if [ -d "${RUNR_DIR:-$PWD}/assets/subl-packages" ] && [ -d "${SUBL_USER}/../../Installed Packages" ] ; then
   if ! cp -v -L -R "${RUNR_DIR:-$PWD}/assets/subl-packages"/* "${SUBL_USER}/../../Installed Packages"/ ; then
     echo "${PROGNAME:+$PROGNAME: }ERROR: deploying local 'Installed Packages'." 1>&2
   fi
