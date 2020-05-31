@@ -29,9 +29,9 @@
   // Attributes for theme: Spacegray
   // "spacegray_fileicons": true, // commented as using "A File Icon" instead.
   "spacegray_sidebar_font_xlarge": true,
-  "spacegray_sidebar_tree_xsmall": true,
+  "spacegray_sidebar_tree_small": true,
   "spacegray_tabs_auto_width": true,
-  "spacegray_tabs_font_large": true,
+  "spacegray_tabs_font_xlarge": true,
   "spacegray_tabs_normal": true,
 
   // Behavior
