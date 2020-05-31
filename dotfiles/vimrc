@@ -38,17 +38,16 @@ Plug 'https://github.com/ajh17/VimCompletesMe'
 Plug 'https://github.com/tpope/vim-unimpaired'
 
 " Autocomplete
-Plug 'https://github.com/ervandew/supertab'
 Plug 'https://github.com/tpope/vim-endwise'
 
 " Editing
 Plug 'https://github.com/editorconfig/editorconfig-vim'
-Plug 'https://github.com/RRethy/vim-hexokinase.git'
 Plug 'https://github.com/xtal8/traces.vim'
 Plug 'https://github.com/chaoren/vim-wordmotion'
 Plug 'https://github.com/fvictorio/vim-yank-queue'
 
 " Formatting
+Plug 'https://github.com/tpope/vim-sleuth'
 Plug 'https://github.com/z0mbix/vim-shfmt', { 'for': 'sh' }
 
 " Search
