@@ -33,7 +33,8 @@
 
     // Color Themes
     "Boxy Theme", // Awesome theme ("numix" color is the red variant) - missing - install own backup
-    "gruvbox", // Colorscheme good, theme not so good
+    // "gruvbox", // Colorscheme good, theme not so good
+    "Seti_UI", // Awesome theme, no colorscheme
     "Theme - Brogrammer",
     "Theme - Spacegray", // Colorschemes "bad", theme good, lean and customizable
 
