@@ -17,24 +17,10 @@
 
   // Color & theme selection:
 
-  // "theme": "Boxy Tomorrow.sublime-theme",      "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
+  "theme": "Boxy Tomorrow.sublime-theme",      "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
   // "theme": "Brogrammer.sublime-theme",         "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
-  "theme": "Seti_orig.sublime-theme",          "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
+  // "theme": "Seti_orig.sublime-theme",          "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
   // "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
-
-  // Attributes for theme: Afterglow
-  "color_inactive_tabs": true,
-  "sidebar_size_13": true,
-  "status_bar_brighter": true,
-  "statusbar_size_14": true,
-  "tabs_small": true,
-  "tabs_label_not_italic": true,
-  "tabs_padding_small": true,
-
-  // Attributes for theme: Afterglow (based on spacegray)
-  "color_inactive_tabs": true,
-  "status_bar_brighter": true,
-  "tabs_padding_small": true,
 
   // Attributes for theme: Boxy
   "theme_accent_numix": true, // Variants: mono, cyan, green, numix, purple, sky, tangerine
