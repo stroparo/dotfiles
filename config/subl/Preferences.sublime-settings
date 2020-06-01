@@ -57,6 +57,16 @@
   "theme_tabset_line_visible": false,
   "theme_unified": true,
 
+  // Attributes for theme: Seti_UI
+  "mouse_wheel_tabswitch": true,
+  "Seti_accent_seablue": false,
+  "Seti_seablue_scrollbar": true,
+  "Seti_sb_small_padding": true,
+  "Seti_sidebar_font_size_14": true,
+  "Seti_tab_font_12": true,
+  "Seti_tabs_no_min_width": true,
+  "Seti_tabs_small": true,
+
   // Attributes for theme: Spacegray
   "spacegray_fileicons": true,
   "spacegray_sidebar_font_xlarge": true,
