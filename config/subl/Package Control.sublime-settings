@@ -32,21 +32,22 @@
     "Text Marker",
 
     // Color Themes
-    "A File Icon",
-    "Guna",
+    "A File Icon", // Applies to any active theme, pretty good icons
+    "Boxy Theme", // Awesome theme ("numix" color is the red variant)
     "gruvbox", // Colorscheme good, theme not so good
-    "Theme - Spacegray",
+    "Guna", // Colorscheme not so good, theme good and adaptive to other Colorschemes
+    "Theme - Brogrammer",
+    "Theme - Spacegray", // Colorschemes "bad", theme good, lean and customizable
 
     // Linting
     "coala",
-    "SublimeLinter",
-    "SublimeLinter-flake8", // or "SublimeLinter-pycodestyle",
-    "SublimeLinter-jshint",
-    "SublimeLinter-json",
-    "SublimeLinter-rubocop",
+    // "SublimeLinter",
+    // "SublimeLinter-flake8", // or "SublimeLinter-pycodestyle",
+    // "SublimeLinter-json",
+    // "SublimeLinter-rubocop",
 
     // Specific for JavaScript
-    "Babel",
+    // "Babel",
 
     // Specific for Markdown
     "MarkdownEditing",
