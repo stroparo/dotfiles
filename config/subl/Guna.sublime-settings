@@ -1,9 +1,0 @@
-// Specify your own settings. You don't need to restart
-{
-  "weather": {
-    "appid": "",
-    "city_name": "Curitiba,BR",  // - city name, country code e.g) seoul,KR
-    "geographic": {}, // - geographic coordinate (alternative) e.g) {"lat":35, "lon":139}
-    "proxy": "",      // - http proxy e.g) 10.75.97.11:8080 - if needed
-  },
-}

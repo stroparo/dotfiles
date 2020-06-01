@@ -16,8 +16,7 @@
 
   // Color & theme selection:
   // "theme": "Boxy Tomorrow.sublime-theme",      "color_scheme": "Packages/gruvbox/gruvbox (Dark) (Medium).sublime-color-scheme",
-  // "theme": "Guna.sublime-theme",               "color_scheme": "Packages/gruvbox/gruvbox (Dark) (Medium).sublime-color-scheme",
-  "theme": "Guna.sublime-theme",               "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
+  "theme": "Brogrammer.sublime-theme",            "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
   // "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/gruvbox/gruvbox (Dark) (Medium).sublime-color-scheme",
 
   // Attributes for theme: Afterglow
