@@ -15,10 +15,10 @@
   "font_options": ["subpixel_antialias", "no_bold"],
 
   // Color & theme selection:
-  "theme": "Boxy Tomorrow.sublime-theme",      "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
+  // "theme": "Boxy Tomorrow.sublime-theme",      "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
   // "theme": "Boxy Tomorrow.sublime-theme",      "color_scheme": "Packages/gruvbox/gruvbox (Dark) (Medium).sublime-color-scheme",
   // "theme": "Brogrammer.sublime-theme",         "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
-  // "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
+  "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
   // "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/gruvbox/gruvbox (Dark) (Medium).sublime-color-scheme",
 
   // Attributes for theme: Afterglow
