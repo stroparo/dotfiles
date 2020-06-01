@@ -67,6 +67,9 @@ if [ -d "${RUNR_DIR:-$PWD}/assets/subl-packages" ] && [ -d "${SUBL_USER}/../../I
   if ! cp -v -L -R "${RUNR_DIR:-$PWD}/assets/subl-packages"/* "${SUBL_USER}/../../Installed Packages"/ ; then
     echo "${PROGNAME:+$PROGNAME: }ERROR: deploying local 'Installed Packages'." 1>&2
   fi
+  if which conf-subl-custom.sh >/dev/null 2>&1 ; then
+    SUBL_USER="${SUBL_USER}" conf-subl-custom.sh
+  fi
 fi
 
 # #############################################################################
