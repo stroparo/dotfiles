@@ -32,7 +32,7 @@
     "Text Marker",
 
     // Color Themes
-    // "Boxy Theme", // Awesome theme ("numix" color is the red variant) - missing - install own backup
+    "Boxy Theme", // Awesome theme ("numix" color is the red variant) - missing - install own backup
     "gruvbox", // Colorscheme good, theme not so good
     "Theme - Brogrammer",
     "Theme - Spacegray", // Colorschemes "bad", theme good, lean and customizable
