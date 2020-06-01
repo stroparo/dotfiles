@@ -18,25 +18,22 @@
   // Color & theme selection:
 
   // "theme": "Boxy Tomorrow.sublime-theme",      "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
-  // "theme": "Seti_orig.sublime-theme",          "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
-
   // "theme": "Brogrammer.sublime-theme",         "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
-  // "theme": "Brogrammer.sublime-theme",         "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
-
   "theme": "Seti_orig.sublime-theme",          "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
-  // "theme": "Seti_orig.sublime-theme",          "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
-
   // "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
-  // "theme": "Seti_orig.sublime-theme",          "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
-
 
   // Attributes for theme: Afterglow
   "color_inactive_tabs": true,
   "sidebar_size_13": true,
   "status_bar_brighter": true,
-  "statusbar_size_13": true,
+  "statusbar_size_14": true,
   "tabs_small": true,
   "tabs_label_not_italic": true,
+  "tabs_padding_small": true,
+
+  // Attributes for theme: Afterglow (based on spacegray)
+  "color_inactive_tabs": true,
+  "status_bar_brighter": true,
   "tabs_padding_small": true,
 
   // Attributes for theme: Boxy
@@ -80,6 +77,7 @@
   "spacegray_tabs_auto_width": true,
   "spacegray_tabs_font_xlarge": true,
   "spacegray_tabs_normal": true,
+
 
   // Behavior
   "auto_complete": true,
