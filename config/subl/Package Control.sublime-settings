@@ -62,6 +62,8 @@
     // Specific for version control
     "Git",
     "GitGutter",
+    "GitHubinator",
+    "GitOpenChangedFiles",
     "GitSavvy",
     "Modific",
 
