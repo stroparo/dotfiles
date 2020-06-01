@@ -59,13 +59,19 @@
 
   // Attributes for theme: Seti_UI
   "mouse_wheel_tabswitch": true,
-  "Seti_accent_seablue": false,
-  "Seti_seablue_scrollbar": true,
   "Seti_sb_small_padding": true,
   "Seti_sidebar_font_size_14": true,
   "Seti_tab_font_12": true,
   "Seti_tabs_no_min_width": true,
   "Seti_tabs_small": true,
+
+  // Attributes for theme: Seti_UI - coloring
+  "Seti_accent_seablue": false,
+  "Seti_alt_tree_row": false,
+  "Seti_red_label": true,
+  "Seti_seablue_scrollbar": true,
+  "Seti_seablue_tab": true,
+  "Seti_red_tabclose": true,
 
   // Attributes for theme: Spacegray
   "spacegray_fileicons": true,
