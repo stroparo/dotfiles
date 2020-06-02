@@ -74,6 +74,8 @@ _install_packages imagemagick
 _install_packages libbz2-dev
 _install_packages libcurl4-openssl-dev
 _install_packages libffi-dev
+_install_packages libgdbm-dev
+_install_packages libgmp-dev
 _install_packages liblzma-dev
 _install_packages libncurses5-dev libncursesw5-dev
 _install_packages libperl-dev
