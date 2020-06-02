@@ -7,7 +7,7 @@ REPO_DS_CZ="stroparo@bitbucket.org/stroparo/ds-cz"
 REPO_DS_CZ_ALTN="stroparo@github.com/stroparo/ds-cz"
 
 # Recipes:
-export PROVISION_OPTIONS="base sudonopasswd gui chrome golang python rust"
+export PROVISION_OPTIONS="base sudonopasswd gui chrome golang node python rust"
 bash "${RUNR_DIR}"/recipes/provision.sh
 bash "${RUNR_DIR}"/recipes/keyb-ez.sh
 
