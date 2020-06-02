@@ -2,7 +2,7 @@
 
 PROGNAME="setupgolang.sh"
 
-if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only." ; exit ; fi
 if (sudo apt list --installed | grep -q '^golang-any') \
   || (sudo apt list --installed | grep -q '^golang-go') \
   || (sudo yum list installed | grep -q '^golang')
