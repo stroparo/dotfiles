@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROGNAME="node.sh"
+PROGNAME="nodejs.sh"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
 

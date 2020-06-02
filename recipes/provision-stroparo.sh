@@ -8,7 +8,7 @@ REPO_DS_ST_ALTN="stroparo@github.com/stroparo/ds-stroparo"
 
 # Recipes:
 if [ -z "${PROVISION_OPTIONS}" ] ; then
-  export PROVISION_OPTIONS="base gui chrome golang node python rust"
+  export PROVISION_OPTIONS="base gui chrome golang nodejs python rust"
   bash "${RUNR_DIR}"/recipes/provision.sh
 fi
 bash "${RUNR_DIR}"/recipes/dotfiles.sh

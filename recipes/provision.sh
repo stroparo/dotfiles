@@ -151,8 +151,9 @@ _dev_platforms () {
 
   if ! ${ISLINUX} ; then return ; fi
 
-  if [[ $PROVISION_OPTIONS = *python* ]] ; then bash "${RUNR_DIR}"/recipes/python.sh ; fi
   if [[ $PROVISION_OPTIONS = *golang* ]] ; then bash "${RUNR_DIR}"/installers/setupgolang.sh ; fi
+  if [[ $PROVISION_OPTIONS = *nodejs* ]] ; then bash "${RUNR_DIR}"/recipes/nodejs.sh ; fi
+  if [[ $PROVISION_OPTIONS = *python* ]] ; then bash "${RUNR_DIR}"/recipes/python.sh ; fi
   if [[ $PROVISION_OPTIONS = *rust* ]] ; then bash "${RUNR_DIR}"/installers/setuprust.sh ; fi
 }
 
