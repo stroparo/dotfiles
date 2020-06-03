@@ -5,7 +5,10 @@ _exit () { echo ; echo ; echo ; exit 0 ; }
 _exiterr () { echo "$2" 1>&2 ; echo 1>&2 ; echo 1>&2 ; exit "$1" ; }
 
 SRC_CONFIG_DIR="${RUNR_DIR:-$PWD}/config/subl"
-if [ -z "$SRC_CONFIG_DIR" ] ; then _exiterr 1 "${PROGNAME}: FATAL: No dir '${SRC_CONFIG_DIR}'." ; fi
+if [ ! -d "$SRC_CONFIG_DIR" ] ; then _exiterr 1 "${PROGNAME}: FATAL: No dir '${SRC_CONFIG_DIR}'." ; fi
+
+export EDITOR_COMMAND="subl"
+if ! which ${EDITOR_COMMAND} >/dev/null 2>&1 ; then _exit "${PROGNAME}: SKIP: ${EDITOR_COMMAND} not available." ; fi
 
 # Global SUBL_USER:
 SUBL_USER="$HOME/.config/sublime-text-3/Packages/User"

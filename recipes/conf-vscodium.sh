@@ -5,10 +5,10 @@ _exit () { echo ; echo ; echo ; exit 0 ; }
 _exiterr () { echo "$2" 1>&2 ; echo 1>&2 ; echo 1>&2 ; exit "$1" ; }
 
 SRC_CONFIG_DIR="${RUNR_DIR:-$PWD}/config/vscodium"
-if [ -z "$SRC_CONFIG_DIR" ] ; then _exiterr 1 "${PROGNAME}: FATAL: No dir '${SRC_CONFIG_DIR}'." ; fi
+if [ ! -d "$SRC_CONFIG_DIR" ] ; then _exiterr 1 "${PROGNAME}: FATAL: No dir '${SRC_CONFIG_DIR}'." ; fi
 
-export VSCODECMD="codium"
-if ! which ${VSCODECMD} >/dev/null 2>&1 ; then _exit "${PROGNAME}: SKIP: ${VSCODECMD} not available." ; fi
+export EDITOR_COMMAND="codium"
+if ! which ${EDITOR_COMMAND} >/dev/null 2>&1 ; then _exit "${PROGNAME}: SKIP: ${EDITOR_COMMAND} not available." ; fi
 
 # Global CODE_USER_DIR:
 if which cygpath >/dev/null 2>&1 ; then CODE_USER_DIR="$(cygpath "${USERPROFILE}" 2>/dev/null)/AppData/Roaming/VSCodium/User" ; fi
@@ -23,7 +23,7 @@ echo "$PROGNAME: INFO: VSCodium custom config started..."
 # Set as default editor
 if which xdg-mime >/dev/null 2>&1 ; then xdg-mime default vscodium.desktop text/plain ; fi
 if which update-alternatives >/dev/null 2>&1 && egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
-  sudo update-alternatives --set editor "$(which ${VSCODECMD})"
+  sudo update-alternatives --set editor "$(which ${EDITOR_COMMAND})"
 fi
 
 # Copy config files:
