@@ -64,30 +64,30 @@ if ! ls -ld "${PROJS}" "${VENVS}" ; then
 fi
 
 echo ${BASH_VERSION:+-e} "\n\n==> Prep shell profiles with WORKON_HOME global..."
-if ! grep -q 'WORKON_HOME=' ~/.bashrc ; then echo "export WORKON_HOME=\"${VENVS}\"" >> ~/.bashrc
-if ! grep -q 'WORKON_HOME=' ~/.zshrc ; then echo "export WORKON_HOME=\"${VENVS}\"" >> ~/.zshrc
+if ! grep -q 'WORKON_HOME=' ~/.bashrc ; then echo "export WORKON_HOME=\"${VENVS}\"" >> ~/.bashrc ; fi
+if ! grep -q 'WORKON_HOME=' ~/.zshrc ; then echo "export WORKON_HOME=\"${VENVS}\"" >> ~/.zshrc ; fi
 if ! grep -q 'WORKON_HOME=' ~/.bashrc ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: Could not write WORKON_HOME global in shell profiles." 1>&2
   exit 1
 fi
 
 echo ${BASH_VERSION:+-e} "\n\n==> Prep shell profiles with PROJECT_HOME global..."
-if ! grep -q 'PROJECT_HOME=' ~/.bashrc ; then echo "export PROJECT_HOME=\"${PROJS}\"" >> ~/.bashrc
-if ! grep -q 'PROJECT_HOME=' ~/.zshrc ; then echo "export PROJECT_HOME=\"${PROJS}\"" >> ~/.zshrc
+if ! grep -q 'PROJECT_HOME=' ~/.bashrc ; then echo "export PROJECT_HOME=\"${PROJS}\"" >> ~/.bashrc ; fi
+if ! grep -q 'PROJECT_HOME=' ~/.zshrc ; then echo "export PROJECT_HOME=\"${PROJS}\"" >> ~/.zshrc ; fi
 if ! grep -q 'PROJECT_HOME=' ~/.bashrc ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: Could not write PROJECT_HOME global in shell profiles." 1>&2
   exit 1
 fi
 
 # Speed up disabling prompt as it is going to be discontinued anyway:
-if ! grep -q 'DISABLE_PROMPT=1' ~/.bashrc ; then echo "export PYENV_VIRTUALENV_DISABLE_PROMPT=1" >> ~/.bashrc
-if ! grep -q 'DISABLE_PROMPT=1' ~/.zshrc ; then echo "export PYENV_VIRTUALENV_DISABLE_PROMPT=1" >> ~/.zshrc
+if ! grep -q 'DISABLE_PROMPT=1' ~/.bashrc ; then echo "export PYENV_VIRTUALENV_DISABLE_PROMPT=1" >> ~/.bashrc ; fi
+if ! grep -q 'DISABLE_PROMPT=1' ~/.zshrc ; then echo "export PYENV_VIRTUALENV_DISABLE_PROMPT=1" >> ~/.zshrc ; fi
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Setup and load into this session..."
 
-grep -q 'pyenv init' "$HOME/.bashrc" || echo "$PYENV_SHELL_INIT" >> "$HOME/.bashrc"
-grep -q 'pyenv init' "$HOME/.zshrc" || echo "$PYENV_SHELL_INIT" >> "$HOME/.zshrc"
+if ! grep -q 'pyenv init' "$HOME/.bashrc" ; then echo "$PYENV_SHELL_INIT" >> "$HOME/.bashrc" ; fi
+if ! grep -q 'pyenv init' "$HOME/.zshrc" ; then echo "$PYENV_SHELL_INIT" >> "$HOME/.zshrc" ; fi
 
 if ! (cd "${HOME}/.pyenv" && [[ $PWD = */.pyenv ]] && git pull >/dev/null 2>&1) ; then
   bash -c "$(curl -L "$PYENV_INSTALLER")"
@@ -103,7 +103,7 @@ fi
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Setup Python interpreters..."
 
-pyenv install "$PYV3" || exit $?
+if ! pyenv install "$PYV3" ; then exit 1 ; fi
 pyenv install "$PYV2"
 
 echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for Python interpreters...\n"
@@ -151,8 +151,8 @@ echo ${BASH_VERSION:+-e} "\n\n==> Install virtualenvwrapper in tooling virtualen
 
 ~/.pyenv/versions/$VENVTOOLS3/bin/pip install virtualenvwrapper
 
-grep -q 'virtualenvwrapper.sh' "$HOME/.bashrc" || echo "$PYENV_VENVWRAPPER_INIT" >> "$HOME/.bashrc"
-grep -q 'virtualenvwrapper.sh' "$HOME/.zshrc" || echo "$PYENV_VENVWRAPPER_INIT" >> "$HOME/.zshrc"
+if ! grep -q 'virtualenvwrapper.sh' "$HOME/.bashrc" ; then echo "$PYENV_VENVWRAPPER_INIT" >> "$HOME/.bashrc" ; fi
+if ! grep -q 'virtualenvwrapper.sh' "$HOME/.zshrc" ; then echo "$PYENV_VENVWRAPPER_INIT" >> "$HOME/.zshrc" ; fi
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Write-protect lib dir for globals interpreters..."
