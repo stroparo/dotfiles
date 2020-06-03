@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 PROGNAME="conf-subl.sh"
-_exit () { echo ; echo ; echo ; exit 0 ; }
+_exit () { echo "$1" ; echo ; echo ; exit 0 ; }
 _exiterr () { echo "$2" 1>&2 ; echo 1>&2 ; echo 1>&2 ; exit "$1" ; }
 
 SRC_CONFIG_DIR="${RUNR_DIR:-$PWD}/config/subl"
