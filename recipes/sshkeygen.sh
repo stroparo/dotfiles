@@ -1,27 +1,17 @@
 #!/usr/bin/env bash
 
+# Create a default SSH key
+
 PROGNAME="sshkeygen.sh"
 if [[ ${DOTFILES_SUPPRESS} = *${PROGNAME%.*}* ]] ; then exit ; fi
-
-# Create a default SSH key
-# Requires Daily Shells at https://stroparo.github.io/ds
+SCRIPT_DIR="$(dirname "${0%/*}")"
+SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
 
 echo "$PROGNAME: INFO: SSH key generation; \$0='$0'; \$PWD='$PWD'"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
-# #############################################################################
-# Globals
-
-SCRIPT_DIR="$(dirname "${0%/*}")"
-SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
-
-# #############################################################################
-# Prep
-
 source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 
-# #############################################################################
-# Main
 
 mkdir ~/.ssh 2>/dev/null
 if [ ! -d ~/.ssh ] ; then
@@ -43,8 +33,8 @@ else
   exit
 fi
 
-# #############################################################################
-# Final sequence
-
 echo "$PROGNAME: COMPLETE"
+echo
+echo
+
 exit

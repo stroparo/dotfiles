@@ -12,7 +12,7 @@ bash "${RUNR_DIR}"/recipes/provision.sh
 bash "${RUNR_DIR}"/recipes/keyb-ez.sh
 
 # Daily Shells setups:
-if ! source "${RUNR_DIR:-.}"/helpers/dsenforce.sh ; then exit 1 ; fi
+source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 if ! (dsplugin.sh "$REPO_DS_CZ" || dsplugin.sh "$REPO_DS_CZ_ALTN") ; then exit 1 ; fi
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupfs.sh   # includes encryption
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh

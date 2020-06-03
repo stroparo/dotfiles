@@ -8,7 +8,7 @@ export PROVISION_OPTIONS="base sudonopasswd gui chrome golang python rust"
 bash "${RUNR_DIR}"/recipes/provision.sh
 
 # Daily Shells setups:
-if ! source "${RUNR_DIR:-.}"/helpers/dsenforce.sh ; then exit 1 ; fi
+source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 # if ! dsplugin.sh "some repo url" ; then exit 1 ; fi
 bash "${DS_HOME:-$HOME/.ds}"/scripts/pipinstall.sh pipenv
 

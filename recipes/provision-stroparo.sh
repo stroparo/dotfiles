@@ -15,7 +15,7 @@ bash "${RUNR_DIR}"/recipes/dotfiles.sh
 bash "${RUNR_DIR}"/recipes/git.sh
 
 # Daily Shells setups:
-if ! source "${RUNR_DIR:-.}"/helpers/dsenforce.sh ; then exit 1 ; fi
+source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 if ! (dsplugin.sh "$REPO_DS_ST" || dsplugin.sh "$REPO_DS_ST_ALTN") ; then exit 1 ; fi
 bash "${DS_HOME:-$HOME/.ds}"/scripts/dsconfgit.sh
 bash "${DS_HOME:-$HOME/.ds}"/scripts/selects-python-stroparo.sh
