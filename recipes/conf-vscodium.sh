@@ -29,7 +29,7 @@ fi
 # Copy config files:
 config_filenames="$(ls -1d ${SRC_CONFIG_DIR}/*)"
 config_filenames="$(echo "$config_filenames" | sed "s/^/'/" | sed "s/$/'/" | tr '\n' ' ')" # prep for eval
-if ! eval cp -L -R "${config_filenames}" "\"${CODE_USER_DIR}\""/ ; then
+if ! eval cp -v -L -R "${config_filenames}" "\"${CODE_USER_DIR}\""/ ; then
   _exiterr 1 "${PROGNAME}: FATAL: deploying VSCode configuration files."
 fi
 
