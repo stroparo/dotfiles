@@ -35,7 +35,7 @@ fi
 # Installations
 
 echo "$PROGNAME: INFO: Debian desktop - educational packages..."
-_install_packages gperiodic
+_install_packages gperiodic gtypist tuxtype
 
 echo "$PROGNAME: INFO: Debian desktop - multimedia packages..."
 _install_packages mp3splt parole ristretto
@@ -49,6 +49,7 @@ _install_packages gnome-shell-pomodoro
 
 echo "$PROGNAME: INFO: Debian desktop - miscellaneous packages..."
 _install_packages autorenamer
+_install_packages keepassxc
 _install_packages slop # GUI region selection, used by other apps such as screenkey
 
 echo "$PROGNAME: INFO: Debian APT repository clean up..."
@@ -68,8 +69,6 @@ cat <<EOF | tee "${HOME}/README-debian-gui-apps.lst"
 sudo apt-get update
 
 # Apps
-sudo apt-get install -y gnucash
-sudo apt-get install -y gtypist tuxtype
 sudo apt-get install -y libreoffice-calc
 
 # Games
