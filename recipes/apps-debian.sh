@@ -1,21 +1,14 @@
 #!/usr/bin/env bash
 
 PROGNAME="apps-debian.sh"
+export APTPROG=apt-get
+export INSTPROG=apt-get
 
 if ! egrep -i -q -r 'debi|ubun' /etc/*release ; then echo "PROGNAME: SKIP: De/b/untu-like supported only" ; exit ; fi
 
 echo "$PROGNAME: INFO: Debian package selections installation"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
-# #############################################################################
-# Globals
-
-# System installers
-export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
-export INSTPROG="$APTPROG"
-
-# #############################################################################
-# Helpers
 
 _install_packages () {
   for package in "$@" ; do
@@ -29,6 +22,7 @@ _install_packages () {
     fi
   done
 }
+
 
 # #############################################################################
 echo "$PROGNAME: INFO: Debian APT index update..."
