@@ -1,22 +1,17 @@
 #!/usr/bin/env bash
 
 PROGNAME="setupsubl.sh"
-
 if which subl >/dev/null 2>&1 ; then echo "$PROGNAME: SKIP: Already installed" ; exit ; fi
 if which sublime_text >/dev/null 2>&1 ; then echo "$PROGNAME: SKIP: Already installed" ; exit ; fi
 
-echo "$PROGNAME: INFO: Sublime Text editor setup started"
+echo "$PROGNAME: INFO: setup started..."
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
-# #############################################################################
-# Globals
-
+DO_PORTABLE=false
+export APTPROG=apt-get
+export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 USAGE="$PROGNAME [-d opt_dir (effect with -p only)] [-h] [-p]"
 
-DO_PORTABLE=false
-
-# Deb-based package
-export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 SUBL_APT_KEY="https://download.sublimetext.com/sublimehq-pub.gpg"
 SUBL_APT_PKG="sublime-text"
 SUBL_APT_REPO="deb https://download.sublimetext.com/ apt/stable/"
@@ -51,6 +46,8 @@ export SUBL_OPT_DIR
 _skip_if_installed_in_opt () {
   if ls "${SUBL_OPT_DIR}"/subl* >/dev/null 2>&1 ; then
     echo "${PROGNAME:+$PROGNAME: }SKIP: Already installed."
+    echo
+    echo
     exit
   fi
 }
@@ -80,33 +77,30 @@ if ${DO_PORTABLE:-false} ; then
     # TODO rename the unpackaged dir to the final '/.../...opt.../subl' dir
 
   else
-    echo "SKIP: OS not handled." 1>&2
+    echo "${PROGNAME:+$PROGNAME: }SKIP: portable mode: OS not handled." 1>&2
+    echo
+    echo
     exit
   fi
-else # not portable i.e. via distribution packages
-  if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
-    curl -LSf "$SUBL_APT_KEY" | sudo apt-key add -
-    sudo $APTPROG install -y apt-transport-https
-    if ! sudo grep -q "sublime" /etc/apt/sources.list.d/sublime-text.list 2>/dev/null ; then
-      echo "$SUBL_APT_REPO" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-    fi
-    sudo $APTPROG update
-    sudo $APTPROG install -y "$SUBL_APT_PKG"
-  elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
-    if which dnf 2>/dev/null ; then
-      sudo rpm -v --import "$SUBL_RPM_KEY"
-      sudo dnf config-manager --add-repo "$SUBL_RPM_REPO"
-      sudo dnf install -y "$SUBL_RPM_PKG"
-    else
-      sudo rpm -v --import "$SUBL_RPM_KEY"
-      sudo yum-config-manager --add-repo "$SUBL_RPM_REPO"
-      sudo yum install -y "$SUBL_RPM_PKG"
-    fi
+
+
+elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
+  curl -LSf "$SUBL_APT_KEY" | sudo apt-key add -
+  sudo $APTPROG install -y apt-transport-https
+  if ! sudo grep -q "sublime" /etc/apt/sources.list.d/sublime-text.list 2>/dev/null ; then
+    echo "$SUBL_APT_REPO" | sudo tee /etc/apt/sources.list.d/sublime-text.list
   fi
+  sudo $APTPROG update
+  sudo $APTPROG install -y "$SUBL_APT_PKG"
+
+
+elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
+  sudo rpm -v --import "$SUBL_RPM_KEY"
+  sudo "${RPMPROG}" config-manager --add-repo "$SUBL_RPM_REPO"
+  sudo "${RPMPROG}" install -y "$SUBL_RPM_PKG"
 fi
 
-# #############################################################################
-# Final sequence
 
-echo "$PROGNAME: COMPLETE: Sublime Text editor setup"
-exit
+echo "${PROGNAME:+$PROGNAME: }COMPLETE"
+echo
+echo
