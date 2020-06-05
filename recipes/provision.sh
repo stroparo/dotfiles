@@ -87,7 +87,7 @@ _desktop_linux_apps_chrome () {
 _desktop_linux_apps_devel () {
   if [[ $PROVISION_OPTIONS = *nodevel* ]] ; then return ; fi
 
-  :
+  bash "${RUNR_DIR}"/installers/setupinsomnia.sh
 }
 
 _desktop_linux_apps_edu () {
@@ -167,7 +167,6 @@ _dev_tools () {
   bash "${RUNR_DIR}"/installers/setupdocker-compose.sh
   bash "${RUNR_DIR}"/installers/setupeditorconfig.sh
   bash "${RUNR_DIR}"/installers/setupexa.sh
-  bash "${RUNR_DIR}"/installers/setupinsomnia.sh
   bash "${RUNR_DIR}"/installers/setuptmux.sh
   if [[ $PROVISION_OPTIONS = *vim* ]] ; then bash "${RUNR_DIR}"/recipes/vim.sh ; fi
 }
