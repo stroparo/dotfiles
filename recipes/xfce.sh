@@ -100,6 +100,7 @@ gottcode.repo"
 # #############################################################################
 elif _is_debian_family ; then
   # Linux Lite (Ubuntu-based) has XFCE and whisker menu out of the box
+  _install_packages xfce4 xfce4-goodies
   _install_packages "xfwm4-themes"
   _install_packages xfce4-clipman-plugin xfce4-mount-plugin xfce4-places-plugin xfce4-timer-plugin
 fi
