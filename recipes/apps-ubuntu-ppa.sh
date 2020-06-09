@@ -15,7 +15,6 @@ source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 aptinstallppa.sh "christian-boxdoerfer/fsearch-daily" "fsearch-trunk"
 aptinstallppa.sh "nextcloud-devs/client" "nextcloud-client"
 aptinstallppa.sh "agornostal/ulauncher" "ulauncher"
-aptinstallppa.sh "gottcode/gcppa" "xfce4-whiskermenu-plugin"
 aptinstallppa.sh "webupd8team/y-ppa-manager" "y-ppa-manager"
 
 # Disabled as not available in current Ubuntu release:
@@ -23,6 +22,9 @@ aptinstallppa.sh "webupd8team/y-ppa-manager" "y-ppa-manager"
 # aptinstallppa.sh "oguzhaninan/stacer" "stacer"
 # aptinstallppa.sh "nilarimogard/webupd8" "woeusb" # uninstallable version of a dependency...
 # aptinstallppa.sh "zeal-developers/ppa" "zeal"
+
+# xfce4-appfinder same feats, besides this does not work in Ubuntu 20.04:
+# aptinstallppa.sh "gottcode/gcppa" "xfce4-whiskermenu-plugin"
 
 echo "$PROGNAME: COMPLETE (compound)"
 exit
