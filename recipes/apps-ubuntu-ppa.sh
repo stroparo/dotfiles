@@ -15,6 +15,7 @@ source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 aptinstallppa.sh "christian-boxdoerfer/fsearch-daily" "fsearch-trunk"
 aptinstallppa.sh "nextcloud-devs/client" "nextcloud-client"
 aptinstallppa.sh "agornostal/ulauncher" "ulauncher"
+aptinstallppa.sh "gottcode/gcppa" "xfce4-whiskermenu-plugin"
 aptinstallppa.sh "webupd8team/y-ppa-manager" "y-ppa-manager"
 
 # Disabled as not available in current Ubuntu release:
