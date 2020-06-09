@@ -46,7 +46,7 @@ _install_packages visualboyadvance \
   || _install_packages visualboyadvance-gtk
 
 echo "$PROGNAME: INFO: Multimedia packages..."
-_install_packages mp3splt parole ristretto
+_install_packages mp3splt mpv parole ristretto smplayer
 
 echo "$PROGNAME: INFO: Networking packages..."
 _install_packages gigolo  # remote filesystem management
@@ -100,7 +100,6 @@ sudo apt-get install -y joy2key joystick inputattach
 sudo apt-get install -y asunder # CD ripper
 sudo apt-get install -y gnome-alsamixer pulseaudio-equalizer pavucontrol volumeicon-alsa
 sudo apt-get install -y audacious audacious-plugins
-sudo apt-get install -y mpv
 
 # Etc - Networking
 sudo apt-get install -y mobile-broadband-provider-info modemmanager usb-modeswitch # mobile modem
