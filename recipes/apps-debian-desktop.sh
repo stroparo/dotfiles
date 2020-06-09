@@ -49,15 +49,16 @@ echo "$PROGNAME: INFO: Multimedia packages..."
 _install_packages mp3splt parole ristretto
 
 echo "$PROGNAME: INFO: Networking packages..."
-_install_packages gigolo # remote filesystem management
+_install_packages gigolo  # remote filesystem management
 
 echo "$PROGNAME: INFO: Productivity packages..."
 _install_packages atril galculator guake meld
 _install_packages gnome-shell-pomodoro
+_install_packages shutter  # screenshots
 
 echo "$PROGNAME: INFO: Miscellaneous packages..."
 _install_packages autorenamer
-_install_packages slop # GUI region selection, used by other apps such as screenkey
+_install_packages slop  # GUI region selection, used by other apps such as screenkey
 
 echo "$PROGNAME: INFO: APT repository clean up..."
 sudo $APTPROG autoremove -y
@@ -106,7 +107,6 @@ sudo apt-get install -y mobile-broadband-provider-info modemmanager usb-modeswit
 
 # Etc - Productivity
 sudo apt-get install -y libreoffice-calc
-sudo apt-get install -y shutter # screenshots
 
 # Etc - System
 sudo apt-get install -y ntfs-3g
