@@ -7,7 +7,7 @@
   [
     "AdvancedNewFile",
     "AutoFileName",
-    "Automatic Backups",
+    // "Automatic Backups",
     "BracketHighlighter",
     "Clickable URLs",
     "ColorHelper",
@@ -80,7 +80,7 @@
     "Tmux Syntax Highlight",
     "VimL",
 
-    // Text
+    // Text plugins
     // "Alignment",
     // "All Autocomplete",
     "Indent Size",
