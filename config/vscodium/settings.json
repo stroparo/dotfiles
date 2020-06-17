@@ -4,6 +4,7 @@
   "scss.validate": false,
   "less.validate": false,
   "alt-editor.name": "subl",
+  "breadcrumbs.enabled": true,
   "editor.autoIndent": true,
   "editor.cursorStyle": "block",
   "editor.fontFamily": "'Fira Code', 'Fira Mono for Powerline', 'Droid Sans Mono Dotted for Powerline', 'Ubuntu Mono derivative Powerline', Consolas, 'Courier New', monospace",
@@ -15,8 +16,12 @@
   "editor.lineNumbers": "on",
   "editor.matchBrackets": true,
   "editor.minimap.enabled": false,
+  "editor.parameterHints.enabled": true,
   "editor.renderIndentGuides": true,
+  "editor.renderLineHighlight": "gutter",
   "editor.renderWhitespace": "boundary",
+  "editor.rulers": [80, 120],
+  "editor.semanticHighlighting.enabled": false,
   "editor.tabSize": 2,
   "editor.tokenColorCustomizations": {
     "[Material Theme Darker High Contrast]": {
@@ -34,7 +39,8 @@
   },
   "editor.wordWrap": "on",
   "explorer.confirmDelete": false,
-  "extensions.ignoreRecommendations": false,
+  "explorer.confirmDragAndDrop": true,
+  "extensions.ignoreRecommendations": true,
   "files.autoSave": "off",
   "files.autoSaveDelay": 10000,
   "files.encoding": "utf8",
@@ -125,6 +131,7 @@
     "statusBar.debuggingBackground": "#263238"
   },
   "workbench.editor.enablePreview": false,
+  "workbench.editor.labelFormat": "short",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.settings.editor": "json",
   "workbench.sideBar.location": "left",
