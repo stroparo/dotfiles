@@ -58,6 +58,7 @@ _install_packages shutter  # screenshots
 
 echo "$PROGNAME: INFO: Miscellaneous packages..."
 _install_packages autorenamer
+_install_packages dconf-editor
 _install_packages slop  # GUI region selection, used by other apps such as screenkey
 
 echo "$PROGNAME: INFO: APT repository clean up..."
