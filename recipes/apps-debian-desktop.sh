@@ -56,6 +56,9 @@ _install_packages atril galculator guake meld
 _install_packages gnome-shell-pomodoro
 _install_packages shutter  # screenshots
 
+echo "$PROGNAME: INFO: Networking packages..."
+_install_packages clamav clamav-daemon libclamunrar6
+
 echo "$PROGNAME: INFO: Miscellaneous packages..."
 _install_packages autorenamer
 _install_packages dconf-editor
