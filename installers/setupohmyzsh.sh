@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 PROGNAME=setupohmyzsh.sh
+: ${ZSH_CUSTOM:=$HOME/.oh-my-zsh/custom}
 
 if ! type zsh >/dev/null 2>&1 ; then echo "$PROGNAME: SKIP: zsh is not installed" 1>&2 ; exit ; fi
 
@@ -10,10 +11,7 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 # #############################################################################
 # Globals
 
-OMZ_SYN_PATH="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-OMZ_SYN_URL="https://github.com/zsh-users/zsh-syntax-highlighting.git"
 OMZ_URL="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
-ZSH_THEME="robbyrussell"
 
 # #############################################################################
 # Main
@@ -41,35 +39,61 @@ fi
 # #############################################################################
 # Plugins
 
-echo
-echo "Installing ohmyzsh plugin zsh-syntax-highlighting"
-echo
+# {url} {path}
+_install_omz_plugin () {
+  typeset plugin_url="${1}"
+  typeset plugin_path="${2}"
+  typeset plugin_name=$(basename "${plugin_url%.git}")
 
-if [ ! -d "$OMZ_SYN_PATH" ] ; then
-  echo git clone "$OMZ_SYN_URL" "$OMZ_SYN_PATH"
-  git clone --depth 1 "$OMZ_SYN_URL" "$OMZ_SYN_PATH"
-fi
-ls -d -l "$OMZ_SYN_PATH"
+  echo ; echo "Installing ohmyzsh plugin (or theme) '${plugin_name}' ..." ; echo
 
-# Activate the plugin (idempotent):
-if ! grep -q 'plugins=.*zsh-syntax-highlighting' ~/.zshrc ; then
-  sed -i -e 's/\(plugins=(.*\))/\1 zsh-syntax-highlighting)/' ~/.zshrc
-  grep "zsh-syntax-highlighting" ~/.zshrc /dev/null
-else
-  echo "SKIP: zsh-syntax-highlighting already activated." 1>&2
+  if [ ! -d "$plugin_path" ] ; then
+    echo git clone "$OMZ_SYN_URL" "$plugin_path" ...
+    git clone --depth 1 "$OMZ_SYN_URL" "$plugin_path"
+  fi
+  ls -d -l "$plugin_path"
+
+  # Activate the plugin (idempotent):
+  if (echo "${plugin_path}" | grep '/plugins') ; then
+    if ! grep -q "plugins=.*${plugin_name}" ~/.zshrc ; then
+      sed -i -e 's/\(plugins=(.*\))/\1 '"${plugin_name}"')/' ~/.zshrc
+      grep "${plugin_name}" ~/.zshrc /dev/null
+    else
+      echo "SKIP: ${plugin_name} already activated." 1>&2
+    fi
+  fi
+}
+
+
+_install_omz_plugin \
+  "https://github.com/zsh-users/zsh-syntax-highlighting.git" \
+  "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting"
+
+
+_install_omz_plugin \
+  "https://github.com/denysdovhan/spaceship-prompt.git" \
+  "${ZSH_CUSTOM}/themes/spaceship-prompt"
+if [ ! -e "$ZSH_CUSTOM/themes/spaceship.zsh-theme" ] ; then
+  ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 fi
+
+
 
 # #############################################################################
-# Theme
-
-echo
-echo "Selecting ZSH_THEME=\"${ZSH_THEME:-robbyrussell}\""
-echo
-
-sed -i -e "s/^ZSH_THEME=.*$/ZSH_THEME=\"${ZSH_THEME:-robbyrussell}\"/" "${HOME}/.zshrc"
+_select_theme () {
+  echo ; echo "Selecting ZSH_THEME=\"${1}\"" ; echo
+  if ! grep 'ZSH_THEME=' "${HOME}/.zshrc" ; then
+    echo 'ZSH_THEME=' >> "${HOME}/.zshrc"
+  fi
+  sed -i -e "s/^ZSH_THEME=.*$/ZSH_THEME=\"${1}\"/" "${HOME}/.zshrc"
+}
+# _select_theme robbyrussell
+_select_theme spaceship
 
 # #############################################################################
 # Final sequence
 
 echo "$PROGNAME: COMPLETE: Oh-My-Zsh setup"
+echo
+echo
 exit
