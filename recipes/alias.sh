@@ -11,13 +11,13 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 if touch ~/.bashrc && [ -r ~/.bashrc ] && [ -w ~/.bashrc ] ; then
   fgrep -i -q "/.aliases-cs" ~/.bashrc \
-    || echo ". \"${ALIASES_FILE}\"" >> ~/.bashrc
+    || echo ${BASH_VERSION:+-e} ". \"${ALIASES_FILE}\"\n" >> ~/.bashrc
 fi
 
 # Zsh profile
 if touch ~/.zshrc && [ -r ~/.zshrc ] && [ -w ~/.zshrc ] ; then
   fgrep -i -q "/.aliases-cs" ~/.zshrc \
-    || echo ". \"${ALIASES_FILE}\"" >> ~/.zshrc
+    || echo ${BASH_VERSION:+-e} ". \"${ALIASES_FILE}\"\n" >> ~/.zshrc
 fi
 
 # #############################################################################
