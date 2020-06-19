@@ -3,7 +3,6 @@
 PROGNAME="setupnvm.sh"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only." ; exit ; fi
-if command -v nvm ; then nvm --version ; echo "$PROGNAME: SKIP: already installed." ; exit ; fi
 
 
 # Globals:
@@ -31,9 +30,6 @@ if ! grep -q "NVM_DIR=" ~/.zshrc ; then echo "${NVM_INIT_CODE}" >> ~/.zshrc ; fi
 
 eval "${NVM_INIT_CODE}"
 nvm use node
-
-which nvm
-nvm --version
 
 
 echo "$PROGNAME: COMPLETE"
