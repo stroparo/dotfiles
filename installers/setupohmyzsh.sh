@@ -13,6 +13,8 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 OMZ_URL="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
 
+if ${IGNORE_SSL:-false} ; then export DLOPTEXTRA="-k ${DLOPTEXTRA}" ; fi
+
 # #############################################################################
 # Main
 
@@ -42,8 +44,8 @@ fi
 # {url} {path}
 _install_omz_plugin () {
   typeset plugin_url="${1}"
-  typeset plugin_path="${2}"
   typeset plugin_name=$(basename "${plugin_url%.git}")
+  typeset plugin_path="${2:-${ZSH_CUSTOM}/plugins/${plugin_name}}"
 
   echo ; echo "Installing ohmyzsh plugin (or theme) '${plugin_name}' ..." ; echo
 
@@ -65,9 +67,8 @@ _install_omz_plugin () {
 }
 
 
-_install_omz_plugin \
-  "https://github.com/zsh-users/zsh-syntax-highlighting.git" \
-  "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting"
+# Using fast highlighter with zinit instead:
+# _install_omz_plugin "https://github.com/zsh-users/zsh-syntax-highlighting.git"
 
 
 _install_omz_plugin \
@@ -118,6 +119,25 @@ _select_theme () {
 
 # _select_theme robbyrussell
 _select_theme spaceship ; _conf_spaceship
+
+# #############################################################################
+# Zinit
+
+if ! grep -i -q zinit ~/.zshrc ; then
+  ZINIT_INSTALLER_URL="https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh"
+  if which curl >/dev/null 2>&1 ; then
+    sh -c "$(curl -fsSL ${DLOPTEXTRA} "${ZINIT_INSTALLER_URL}")"
+  elif which wget >/dev/null 2>&1 ; then
+    sh -c "$(wget -O - "${ZINIT_INSTALLER_URL}")"
+  fi
+  cat >> ~/.zshrc <<'EOF'
+### Zinit Plugins
+zinit light zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+
+EOF
+fi
 
 # #############################################################################
 # Final sequence
