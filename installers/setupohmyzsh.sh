@@ -48,8 +48,8 @@ _install_omz_plugin () {
   echo ; echo "Installing ohmyzsh plugin (or theme) '${plugin_name}' ..." ; echo
 
   if [ ! -d "$plugin_path" ] ; then
-    echo git clone "$OMZ_SYN_URL" "$plugin_path" ...
-    git clone --depth 1 "$OMZ_SYN_URL" "$plugin_path"
+    echo git clone "$plugin_url" "$plugin_path" ...
+    git clone --depth 1 "$plugin_url" "$plugin_path"
   fi
   ls -d -l "$plugin_path"
 
