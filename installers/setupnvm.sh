@@ -17,8 +17,9 @@ export NVM_DIR="$HOME/.nvm"
 '
 
 
-echo "$PROGNAME: INFO: nvm (version: ${NVM_VERSION}) setup started"
+echo "$PROGNAME: INFO: started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+echo "$PROGNAME: INFO: nvm version: '${NVM_VERSION}'"
 
 if ! bash -c "$(curl -o- ${DLOPTEXTRA} "${NVM_INSTALL_URL}")" "${NVM_INSTALL_URL##*/}" ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: There was some error." 1>&2
@@ -27,7 +28,10 @@ fi
 if ! grep -q "NVM_DIR=" ~/.bashrc ; then echo "${NVM_INIT_CODE}" >> ~/.bashrc ; fi
 if ! grep -q "NVM_DIR=" ~/.zshrc ; then echo "${NVM_INIT_CODE}" >> ~/.zshrc ; fi
 
-echo "$PROGNAME: COMPLETE: nvm setup"
+eval "${NVM_INIT_CODE}"
+nvm use node
+
+echo "$PROGNAME: COMPLETE"
 echo
 echo
 
