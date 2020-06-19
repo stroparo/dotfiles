@@ -19,6 +19,9 @@ fi
 sudo apt update \
   && sudo apt install --no-install-recommends yarn
 
+which yarn
+yarn -v
+
 
 echo "$PROGNAME: COMPLETE"
 echo
