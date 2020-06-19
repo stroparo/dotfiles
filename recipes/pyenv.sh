@@ -40,18 +40,19 @@ export PYENV_GLOBAL_DEFAULT="$PYV3 $PYV2 $VENVPOETRY $VENVJUPYTER $VENVIPYTHON $
 
 export PYENV_INSTALLER="https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer"
 
-export PYENV_SHELL_INIT='
-export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_SHELL_INIT='export PYENV_ROOT="$HOME/.pyenv"
 export PATH="${PYENV_ROOT:-$HOME/.pyenv}/bin:${PATH}"
 if command -v pyenv >/dev/null 2>&1 ; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
-fi'
+fi
+'
 
 export PYENV_VENVWRAPPER_INIT="
 # Virtualenv Wrapper initialization
 export VIRTUALENVWRAPPER_PYTHON=~/.pyenv/versions/$VENVTOOLS3/bin/python
-source ~/.pyenv/versions/$VENVTOOLS3/bin/virtualenvwrapper.sh"
+source ~/.pyenv/versions/$VENVTOOLS3/bin/virtualenvwrapper.sh
+"
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Prep PROJECT_HOME ($PROJS) and WORKON_HOME ($VENVS) directories..."
@@ -80,8 +81,10 @@ if ! grep -q 'PROJECT_HOME=' ~/.bashrc ; then
 fi
 
 # Speed up disabling prompt as it is going to be discontinued anyway:
-if ! grep -q 'DISABLE_PROMPT=1' ~/.bashrc ; then echo "export PYENV_VIRTUALENV_DISABLE_PROMPT=1" >> ~/.bashrc ; fi
-if ! grep -q 'DISABLE_PROMPT=1' ~/.zshrc ; then echo "export PYENV_VIRTUALENV_DISABLE_PROMPT=1" >> ~/.zshrc ; fi
+if ! grep -q 'DISABLE_PROMPT=1' ~/.bashrc ; then echo "export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+" >> ~/.bashrc ; fi
+if ! grep -q 'DISABLE_PROMPT=1' ~/.zshrc ; then echo "export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+" >> ~/.zshrc ; fi
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Setup and load into this session..."
