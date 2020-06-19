@@ -3,7 +3,7 @@
 PROGNAME="setupnvm.sh"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only." ; exit ; fi
-if command -v nvm ; then echo "$PROGNAME: SKIP: already installed." ; exit ; fi
+if command -v nvm ; then nvm --version ; echo "$PROGNAME: SKIP: already installed." ; exit ; fi
 
 
 # Globals:
@@ -21,6 +21,7 @@ echo "$PROGNAME: INFO: started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 echo "$PROGNAME: INFO: nvm version: '${NVM_VERSION}'"
 
+
 if ! bash -c "$(curl -o- ${DLOPTEXTRA} "${NVM_INSTALL_URL}")" "${NVM_INSTALL_URL##*/}" ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: There was some error." 1>&2
   exit 1
@@ -30,6 +31,10 @@ if ! grep -q "NVM_DIR=" ~/.zshrc ; then echo "${NVM_INIT_CODE}" >> ~/.zshrc ; fi
 
 eval "${NVM_INIT_CODE}"
 nvm use node
+
+which nvm
+nvm --version
+
 
 echo "$PROGNAME: COMPLETE"
 echo
