@@ -2,15 +2,15 @@
 
 # PROVISION_OPTIONS variable may contain any or all of these flags:
 # - base  # apps, shell etc.
+# -   sudonopasswd
 # - gui[ linux]
 #   - el7
 #   - xfce
-#   - noapps|[chrome [edu]]
-#   - nodevel|golang|python|rust
+#   - noapps|[chrome] [edu]
+#   - nodevel
 #   - nofonts
 #   - rdp
-# - nodevel
-# - sudonopasswd
+# - [nodevel] [golang] [nodejs] [python] [rust]  // i.e. platforms are not affected by 'nodevel'
 
 # #############################################################################
 # Globals
@@ -158,6 +158,8 @@ _dev_platforms () {
 }
 
 _dev_tools () {
+  if [[ $PROVISION_OPTIONS = *nodevel* ]] ; then return ; fi
+
   if [[ $PROVISION_OPTIONS = *golang* ]] ; then bash "${RUNR_DIR}"/installers/setupgotools.sh ; fi
   if [[ $PROVISION_OPTIONS = *sdkman* ]] ; then bash "${RUNR_DIR}"/installers/setupsdkman.sh ; fi
 
@@ -172,7 +174,6 @@ _dev_tools () {
 }
 
 _devel () {
-  if [[ $PROVISION_OPTIONS = *nodevel* ]] ; then return ; fi
   _dev_platforms
   _dev_tools
 }
