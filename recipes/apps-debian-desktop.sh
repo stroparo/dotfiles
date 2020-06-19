@@ -79,45 +79,34 @@ fi
 
 echo "$PROGNAME: INFO: GUI app recommendations > ~/README-debian-gui-apps.lst"
 cat <<EOF | tee "${HOME}/README-debian-gui-apps.lst"
-# Favorites
-{
 sudo apt-get update
 
-# Games
-sudo apt-get install -y chocolate-doom
-sudo apt-get install -y dosbox stella zsnes
-sudo apt-get install -y gnome-games gnome-sudoku gnuchess
-sudo apt-get install -y openttd openttd-opengfx openttd-openmsx openttd-opensfx timidity
-sudo apt-get install -y visualboyadvance \
-  || sudo apt-get install -y visualboyadvance-gtk
-}
-
-# Etc - Desktop
+# Apps - Desktop
 sudo apt-get install -y bum
 sudo apt-get install -y ssh-askpass
 sudo apt-get install -y xbacklight xclip xscreensaver
 
-# Etc - Drivers - Have linux-headers-... installed.
+# Apps - Drivers - Have linux-headers-... installed.
 sudo apt-get install -y "nvidia-kernel-$(uname -r)" nvidia-{settings,xconfig}
 
-# Etc - Games
+# Apps - Games
 sudo apt-get install -y joy2key joystick inputattach
 
-# Etc - Multimedia
+# Apps - Multimedia
 sudo apt-get install -y asunder # CD ripper
 sudo apt-get install -y gnome-alsamixer pulseaudio-equalizer pavucontrol volumeicon-alsa
 sudo apt-get install -y audacious audacious-plugins
 
-# Etc - Networking
+# Apps - Networking
 sudo apt-get install -y mobile-broadband-provider-info modemmanager usb-modeswitch # mobile modem
 
-# Etc - Productivity
+# Apps - Productivity
 sudo apt-get install -y libreoffice-calc
 
-# Etc - Security
+# Apps - Security
 sudo apt-get install -y clamav-daemon
 
-# Etc - System
+# Apps - System
 sudo apt-get install -y ntfs-3g
 EOF
 
