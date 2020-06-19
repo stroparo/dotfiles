@@ -7,38 +7,34 @@ if ! egrep -i -q -r 'cent *os|fedora|oracle|red *hat' /etc/*release ; then echo 
 echo "$PROGNAME: INFO: EL Enterprise Linux desktop selections installation"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
-# #############################################################################
-# Globals
-
 # System installers
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP="dnf group install"
 export INSTPROG="$RPMPROG"
+export INSTCKPROG="yum list installed"
 
 # URLs
 URL_FLASH='http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm'
 URL_STACER='https://github.com/oguzhaninan/Stacer/releases/download/v1.0.8/stacer-1.0.8_x64.rpm'
 
-# #############################################################################
-# Helpers
 
 _install_packages () {
   typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')"
 
   for package in "$@" ; do
-    if yum list installed "${package}" >/dev/null 2>&1 ; then
+    if eval ${INSTCKPROG} "${package}" >/dev/null 2>&1 ; then
       echo "$PROGNAME: SKIP: Package '${package}' already installed..."
     else
       echo "$PROGNAME: INFO: Installing '${package}'..."
       if ! sudo $INSTPROG install -y "${package}" >/tmp/pkg-install-${filestamp}-${package}.log 2>&1 ; then
-        echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing packages - see '/tmp/pkg-install-${filestamp}-${package}.log'." 1>&2
+        echo "${PROGNAME}: WARN: There was an error installing packages - see '/tmp/pkg-install-${filestamp}-${package}.log'." 1>&2
       fi
     fi
   done
 }
 
-# #############################################################################
 
+# #############################################################################
 echo ${BASH_VERSION:+-e} "\n==> Base desktop packages..."
 _install_packages gnome-themes-standard x11-ssh-askpass xbacklight xclip
 

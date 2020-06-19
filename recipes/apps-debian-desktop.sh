@@ -3,6 +3,7 @@
 PROGNAME="apps-debian-desktop.sh"
 export APTPROG=apt-get
 export INSTPROG=apt-get
+export INSTCKPROG="dpkg -s"
 
 if ! egrep -i -q -r 'debi|ubun' /etc/*release ; then echo "$PROGNAME: SKIP: De/b/untu-like supported only" ; exit ; fi
 
@@ -11,13 +12,15 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 
 _install_packages () {
+  typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')"
+
   for package in "$@" ; do
-    if dpkg -s "${package}" >/dev/null 2>&1 ; then
+    if eval ${INSTCKPROG} "${package}" >/dev/null 2>&1 ; then
       echo "$PROGNAME: SKIP: Package '${package}' already installed..."
     else
       echo "$PROGNAME: INFO: Installing '${package}'..."
-      if ! sudo $INSTPROG install -y "${package}" >/tmp/pkg-install-${package}.log 2>&1 ; then
-        echo "$PROGNAME: WARN: There was an error installing package '${package}' - see '/tmp/pkg-install-${package}.log'." 1>&2
+      if ! sudo $INSTPROG install -y "${package}" >/tmp/pkg-install-${filestamp}-${package}.log 2>&1 ; then
+        echo "${PROGNAME}: WARN: There was an error installing packages - see '/tmp/pkg-install-${filestamp}-${package}.log'." 1>&2
       fi
     fi
   done
@@ -57,7 +60,7 @@ _install_packages gnome-shell-pomodoro
 _install_packages shutter  # screenshots
 
 echo "$PROGNAME: INFO: Networking packages..."
-_install_packages clamav clamav-daemon libclamunrar6
+_install_packages clamav libclamunrar6
 
 echo "$PROGNAME: INFO: Miscellaneous packages..."
 _install_packages autorenamer
@@ -110,6 +113,9 @@ sudo apt-get install -y mobile-broadband-provider-info modemmanager usb-modeswit
 
 # Etc - Productivity
 sudo apt-get install -y libreoffice-calc
+
+# Etc - Security
+sudo apt-get install -y clamav-daemon
 
 # Etc - System
 sudo apt-get install -y ntfs-3g

@@ -13,10 +13,11 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 export USAGE="[-d] [-h]"
 
 # System installers
-export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
-export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
-export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP="dnf group install"
-export INSTPROG="$APTPROG"; which "$RPMPROG" >/dev/null 2>&1 && export INSTPROG="$RPMPROG"
+export APTPROG=apt-get; if which apt >/dev/null 2>&1 ; then export APTPROG=apt ; fi
+export RPMPROG=yum; if which dnf >/dev/null 2>&1 ; then export RPMPROG=dnf ; fi
+export RPMGROUP="yum groupinstall"; if which dnf >/dev/null 2>&1 ; then export RPMGROUP="dnf group install" ; fi
+export INSTPROG="$APTPROG"; if which "$RPMPROG" >/dev/null 2>&1 ; then export INSTPROG="$RPMPROG" ; fi
+export INSTCKPROG="dpkg -s"; if which "$RPMPROG" >/dev/null 2>&1 ; then export INSTCKPROG="yum list installed" ; fi
 
 # #############################################################################
 # Specific globals
@@ -44,14 +45,22 @@ else
   _is_fedora () { egrep -i -q -r 'fedora' /etc/*release ; }
 fi
 
+
 _install_packages () {
+  typeset filestamp="$(date '+%Y%m%d-%OH%OM%OS')"
+
   for package in "$@" ; do
-    echo "Installing '$package'..."
-    if ! sudo $INSTPROG install -y "$package" >/tmp/pkg-install-${package}.log 2>&1 ; then
-      echo "${PROGNAME:+$PROGNAME: }WARN: There was an error installing package '$package' - see '/tmp/pkg-install-${package}.log'." 1>&2
+    if eval ${INSTCKPROG} "${package}" >/dev/null 2>&1 ; then
+      echo "$PROGNAME: SKIP: Package '${package}' already installed..."
+    else
+      echo "$PROGNAME: INFO: Installing '${package}'..."
+      if ! sudo $INSTPROG install -y "${package}" >/tmp/pkg-install-${filestamp}-${package}.log 2>&1 ; then
+        echo "${PROGNAME}: WARN: There was an error installing packages - see '/tmp/pkg-install-${filestamp}-${package}.log'." 1>&2
+      fi
     fi
   done
 }
+
 
 _install_rpm_groups () {
   for group in "$@" ; do
@@ -62,6 +71,7 @@ _install_rpm_groups () {
   done
 }
 
+
 _set_fedora_version () {
   export FEDORA_VERSION=$(egrep -i -o -r 'fedora [0-9]+' /etc/*release \
     | head -1 \
@@ -71,6 +81,7 @@ _set_fedora_version () {
 
 # #############################################################################
 if _is_el_family ; then
+
   _install_rpm_groups "x window system"
   if ! _is_fedora ; then
     if _is_el6 ; then
@@ -80,6 +91,7 @@ if _is_el_family ; then
     fi
   fi
   _install_rpm_groups xfce
+
   _install_packages xorg-x11-fonts-Type1 xorg-x11-fonts-misc
 
   echo "$PROGNAME: INFO: XFCE Whisker Menu setup..."
@@ -99,7 +111,9 @@ gottcode.repo"
 
 # #############################################################################
 elif _is_debian_family ; then
-  # Linux Lite (Ubuntu-based) has XFCE and whisker menu out of the box
+
+  # No longer installing whisker menu as XFCE now has similar app 'xfce4-appfinder'
+
   _install_packages xfce4 xfce4-goodies
   _install_packages "xfwm4-themes"
   _install_packages xfce4-clipman-plugin xfce4-mount-plugin xfce4-places-plugin xfce4-timer-plugin
