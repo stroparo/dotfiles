@@ -60,6 +60,9 @@ _install_packages gnome-shell-pomodoro
 _install_packages shutter  # screenshots
 
 echo "$PROGNAME: INFO: Networking packages..."
+_install_packages blueman bluez
+
+echo "$PROGNAME: INFO: Security packages..."
 _install_packages clamav libclamunrar6
 
 echo "$PROGNAME: INFO: Miscellaneous packages..."
