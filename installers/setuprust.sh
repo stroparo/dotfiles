@@ -23,7 +23,8 @@ if [ ! -d ~/.cargo/bin ] ; then
   (curl -LSfs "https://sh.rustup.rs" | sh)
 fi
 
-PATH_STRING='export PATH="$HOME/.cargo/bin:$PATH"'
+PATH_STRING='export PATH="$HOME/.cargo/bin:$PATH"
+'
 grep -q 'PATH=.*[.]cargo' ~/.bashrc || echo "$PATH_STRING" >> ~/.bashrc
 grep -q 'PATH=.*[.]cargo' ~/.zshrc  || echo "$PATH_STRING" >> ~/.zshrc
 
