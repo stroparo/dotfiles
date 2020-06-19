@@ -3,7 +3,7 @@
 PROGNAME="setupyarn.sh"
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only." ; exit ; fi
 if ! egrep -i -q -r 'debian|ubuntu' /etc/*release ; then echo "$PROGNAME: SKIP: Debian/Ubuntu-based Linux supported only." ; exit ; fi
-if command -v yarn ; then echo "$PROGNAME: SKIP: already installed." ; exit ; fi
+if command -v yarn ; then yarn -v ; echo "$PROGNAME: SKIP: already installed." ; exit ; fi
 if ${IGNORE_SSL:-false} ; then export DLOPTEXTRA="-k ${DLOPTEXTRA}" ; fi
 
 
