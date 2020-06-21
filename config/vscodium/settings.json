@@ -85,7 +85,7 @@
   "sync.autoDownload": true,
   "sync.autoUpload": false,
   "sync.forceDownload": true,
-  "terminal.integrated.shell.windows": "C:\\opt\\git\\bin\\bash.exe",
+  "terminal.integrated.shell.windows": "C:\\Program Files (x86)\\Git\\bin\\bash.exe",
   "vim.easymotion": true,
   "vim.sneak": true,
   "vim.incsearch": true,
