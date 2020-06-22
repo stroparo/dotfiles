@@ -47,7 +47,7 @@
 	<icon></icon>
 	<name>tarxz</name>
 	<unique-id>1592853626833662-1</unique-id>
-	<command>tar -cJf &quot;%f.tar.xz&quot; %F</command>
+	<command>tar -cJf %f.tar.xz %F</command>
 	<description></description>
 	<patterns>*</patterns>
 	<directories/>
@@ -61,7 +61,7 @@
 	<icon></icon>
 	<name>tarxunz</name>
 	<unique-id>1592853678568322-2</unique-id>
-	<command>tar -xJf &quot;%f.tar.xz&quot;</command>
+	<command>tar -xJf %f.tar.xz</command>
 	<description></description>
 	<patterns>*</patterns>
 	<directories/>
