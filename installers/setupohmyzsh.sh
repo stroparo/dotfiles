@@ -3,10 +3,10 @@
 PROGNAME=setupohmyzsh.sh
 : ${ZSH_CUSTOM:=$HOME/.oh-my-zsh/custom}
 
-if ! type zsh >/dev/null 2>&1 ; then echo "$PROGNAME: SKIP: zsh is not installed" 1>&2 ; exit ; fi
+if ! type zsh >/dev/null 2>&1 ; then echo "${PROGNAME}: SKIP: zsh is not installed" 1>&2 ; exit ; fi
 
-echo "$PROGNAME: INFO: Oh-My-Zsh setup started"
-echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+echo "${PROGNAME}: INFO: Oh-My-Zsh setup started"
+echo "${PROGNAME}: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -59,9 +59,10 @@ _install_omz_plugin () {
   if (echo "${plugin_path}" | grep '/plugins') ; then
     if ! grep -q "plugins=.*${plugin_name}" ~/.zshrc ; then
       sed -i -e 's/\(plugins=(.*\))/\1 '"${plugin_name}"')/' ~/.zshrc
-      grep "${plugin_name}" ~/.zshrc /dev/null
+      grep "plugins=" ~/.zshrc | grep "${plugin_name}"
+      echo "${PROGNAME}: INFO: plugin '${plugin_name}' is active now." 1>&2
     else
-      echo "SKIP: ${plugin_name} already activated." 1>&2
+      echo "${PROGNAME}: SKIP: plugin '${plugin_name}' was already active." 1>&2
     fi
   fi
 }
@@ -74,9 +75,10 @@ _install_omz_plugin () {
 _install_omz_plugin \
   "https://github.com/denysdovhan/spaceship-prompt.git" \
   "${ZSH_CUSTOM}/themes/spaceship-prompt"
-if [ ! -e "$ZSH_CUSTOM/themes/spaceship.zsh-theme" ] ; then
-  ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-fi
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+
+
+_install_omz_plugin "https://github.com/wbingli/zsh-wakatime.git"
 
 
 # #############################################################################
@@ -143,7 +145,7 @@ fi
 # #############################################################################
 # Final sequence
 
-echo "$PROGNAME: COMPLETE: Oh-My-Zsh setup"
+echo "${PROGNAME}: COMPLETE: Oh-My-Zsh setup"
 echo
 echo
 exit
