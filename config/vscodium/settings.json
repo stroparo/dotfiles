@@ -78,14 +78,8 @@
       ]
     }
   ],
-  "sync.gist": "7fc97ccd1eb6cec364eec3e2bb3d7290",
-  "sync.quietSync": false,
-  "sync.removeExtensions": true,
-  "sync.syncExtensions": true,
-  "sync.autoDownload": true,
-  "sync.autoUpload": false,
-  "sync.forceDownload": true,
   "terminal.integrated.shell.windows": "C:\\Program Files (x86)\\Git\\bin\\bash.exe",
+  "typescript.suggest.paths": false,  // required by hristian-kohler.path-intellisense
   "vim.easymotion": true,
   "vim.sneak": true,
   "vim.incsearch": true,
@@ -144,8 +138,26 @@
     "editor.tabSize": 4,
   },
 
+  // GitLens
+  "gitlens.blame.heatmap.enabled": true,
+  "gitlens.currentLine.enabled": false,
+
   // JavaScript
   "javascript.implicitProjectConfig.checkJs": true,
   "npm.enableScriptExplorer": true,
   "workbench.colorTheme": "Night Owl No Italics",
+
+  // Settings sync
+  "sync.gist": "7fc97ccd1eb6cec364eec3e2bb3d7290",
+  "sync.quietSync": false,
+  "sync.removeExtensions": true,
+  "sync.syncExtensions": true,
+  "sync.autoDownload": true,
+  "sync.autoUpload": false,
+  "sync.forceDownload": true,
+
+  // SortLines
+  "sortLines.filterBlankLines": false,
+  "sortLines.sortEntireFile": true,
+
 }
