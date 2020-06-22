@@ -5,7 +5,7 @@
   "less.validate": false,
   "alt-editor.name": "sublime",
   "breadcrumbs.enabled": true,
-  "editor.autoIndent": true,
+  "editor.autoIndent": "full",
   "editor.cursorStyle": "block",
   "editor.fontFamily": "'Fira Code', 'Fira Mono for Powerline', 'Droid Sans Mono Dotted for Powerline', 'Ubuntu Mono derivative Powerline', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
@@ -14,7 +14,7 @@
   "editor.insertSpaces": true,
   "editor.lineHeight": 17,
   "editor.lineNumbers": "on",
-  "editor.matchBrackets": true,
+  "editor.matchBrackets": "near",
   "editor.minimap.enabled": false,
   "editor.parameterHints.enabled": true,
   "editor.renderIndentGuides": true,
@@ -145,7 +145,7 @@
   // JavaScript
   "javascript.implicitProjectConfig.checkJs": true,
   "npm.enableScriptExplorer": true,
-  "workbench.colorTheme": "Night Owl No Italics",
+  "workbench.colorTheme": "Night Owl (No Italics)",
 
   // Settings sync
   "sync.gist": "7fc97ccd1eb6cec364eec3e2bb3d7290",
