@@ -50,6 +50,12 @@
 	<command>tar -cJf &quot;%f.tar.xz&quot; %F</command>
 	<description></description>
 	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
 </action>
 <action>
 	<icon></icon>
@@ -58,5 +64,11 @@
 	<command>tar -xJf &quot;%f.tar.xz&quot;</command>
 	<description></description>
 	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
 </action>
 </actions>
