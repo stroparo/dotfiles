@@ -18,6 +18,7 @@ dsload
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupfs.sh   # includes encryption
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupgitcred.sh
+bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynckeys.sh
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynctc.sh
 
 # Recipes depending on prior custom Daily Shells setups:
