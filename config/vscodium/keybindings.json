@@ -51,7 +51,8 @@
   },
   { "key": "ctrl+k ctrl+u",
     "command": "editor.action.transformToUppercase",
-    "when": "editorTextFocus && !editorReadonly" },
+    "when": "editorTextFocus && !editorReadonly"
+  },
 
   // Plugin to duplicate lines:
   { "key": "ctrl+d",
@@ -66,4 +67,10 @@
   { "key": "ctrl+w",
     "command": "-workbench.action.closeWindow"
   },
+
+  { "key": "f9",
+    "command": "-sortLines.sortLines",
+    "when": "editorTextFocus"
+  },
+
 ]
