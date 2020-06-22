@@ -152,9 +152,9 @@
   "sync.quietSync": false,
   "sync.removeExtensions": true,
   "sync.syncExtensions": true,
-  "sync.autoDownload": true,
+  "sync.autoDownload": false,
   "sync.autoUpload": false,
-  "sync.forceDownload": true,
+  "sync.forceDownload": false,
 
   // SortLines
   "sortLines.filterBlankLines": false,
