@@ -3,7 +3,7 @@
   "css.validate": false,
   "scss.validate": false,
   "less.validate": false,
-  "alt-editor.name": "subl",
+  "alt-editor.name": "sublime",
   "breadcrumbs.enabled": true,
   "editor.autoIndent": true,
   "editor.cursorStyle": "block",
