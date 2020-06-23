@@ -7,7 +7,7 @@
   "breadcrumbs.enabled": true,
   "editor.autoIndent": "full",
   "editor.cursorStyle": "block",
-  "editor.fontFamily": "'Fira Code', 'Fira Mono for Powerline', 'Droid Sans Mono Dotted for Powerline', 'Ubuntu Mono derivative Powerline', Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "'Fira Code', 'Fira Mono for Powerline', 'Source Code Pro for Powerline', 'Droid Sans Mono Dotted for Powerline', 'Ubuntu Mono derivative Powerline', 'Consolas', 'Courier New', 'monospace'",
   "editor.fontLigatures": true,
   "editor.fontSize": 15,
   "editor.formatOnSave": false,
@@ -124,6 +124,7 @@
     "statusBar.noFolderBackground": "#663333",
     "statusBar.debuggingBackground": "#263238"
   },
+  "workbench.colorTheme": "IBM Colors Theme",
   "workbench.editor.enablePreview": false,
   "workbench.editor.labelFormat": "short",
   "workbench.iconTheme": "material-icon-theme",
@@ -145,7 +146,6 @@
   // JavaScript
   "javascript.implicitProjectConfig.checkJs": true,
   "npm.enableScriptExplorer": true,
-  "workbench.colorTheme": "Night Owl (No Italics)",
 
   // Settings sync
   "sync.gist": "7fc97ccd1eb6cec364eec3e2bb3d7290",
