@@ -127,7 +127,7 @@
     "statusBar.noFolderBackground": "#663333",
     "statusBar.debuggingBackground": "#263238"
   },
-  "workbench.colorTheme": "Mayukai Semantic Mirage",
+  "workbench.colorTheme": "Summer Night Gray",
   "workbench.editor.enablePreview": false,
   "workbench.editor.labelFormat": "short",
   "workbench.iconTheme": "simple-icons",
