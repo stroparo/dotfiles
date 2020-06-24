@@ -20,7 +20,10 @@
   "editor.renderIndentGuides": true,
   "editor.renderLineHighlight": "gutter",
   "editor.renderWhitespace": "boundary",
-  "editor.rulers": [80, 120],
+  "editor.rulers": [
+    80,
+    120
+  ],
   "editor.semanticHighlighting.enabled": false,
   "editor.tabSize": 2,
   "editor.tokenColorCustomizations": {
@@ -64,7 +67,7 @@
     "suppressLineUncommittedWarning": false,
     "suppressNoRepositoryWarning": false,
     "suppressUpdateNotice": false,
-      "suppressWelcomeNotice": true
+    "suppressWelcomeNotice": true
   },
   "gitlens.keymap": "alternate",
   "http.proxyStrictSSL": false,
@@ -79,7 +82,7 @@
     }
   ],
   "terminal.integrated.shell.windows": "C:\\Program Files (x86)\\Git\\bin\\bash.exe",
-  "typescript.suggest.paths": false,  // required by hristian-kohler.path-intellisense
+  "typescript.suggest.paths": false, // required by hristian-kohler.path-intellisense
   "vim.easymotion": true,
   "vim.sneak": true,
   "vim.incsearch": true,
