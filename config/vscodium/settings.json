@@ -124,7 +124,7 @@
     "statusBar.noFolderBackground": "#663333",
     "statusBar.debuggingBackground": "#263238"
   },
-  "workbench.colorTheme": "Ayu Mirage Bordered",
+  "workbench.colorTheme": "Mayukai Semantic Mirage",
   "workbench.editor.enablePreview": false,
   "workbench.editor.labelFormat": "short",
   "workbench.iconTheme": "simple-icons",
