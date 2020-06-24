@@ -36,8 +36,8 @@ fi
 
 echo "$PROGNAME: INFO: Debian base packages..."
 _install_packages curl lftp mosh net-tools rsync wget
-# _install_packages gdebi-core
 _install_packages dconf-cli
+_install_packages gdebi gdebi-core
 _install_packages less
 _install_packages localepurge
 _install_packages logrotate

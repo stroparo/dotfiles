@@ -127,7 +127,7 @@
     "statusBar.noFolderBackground": "#663333",
     "statusBar.debuggingBackground": "#263238"
   },
-  "workbench.colorTheme": "Summer Night Gray",
+  "workbench.colorTheme": "Night Wolf [dark gray]",
   "workbench.editor.enablePreview": false,
   "workbench.editor.labelFormat": "short",
   "workbench.iconTheme": "simple-icons",
