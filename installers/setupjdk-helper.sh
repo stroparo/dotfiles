@@ -27,7 +27,7 @@ if [ -z "${JDK_PATH}" ] ; then echo "${PROGNAME:+$PROGNAME: }FATAL: Global 'JDK_
 if [ -z "${REQ_HEADER}" ] ; then echo "${PROGNAME:+$PROGNAME: }FATAL: Global 'REQ_HEADER' must be exported in caller." 1>&2 ; exit 1 ; fi
 
 # #############################################################################
-# Prep
+# Prep - Download & Extract
 
 cd "${JDK_INSTALL_PATH}"
 
@@ -37,13 +37,16 @@ if [ ! -e "${JDK_PACKAGE_URL##*/}" ] \
 then
   echo "${PROGNAME:+$PROGNAME: }FATAL: There was an error downloading '${JDK_PACKAGE_URL}'." 1>&2
   exit 1
+else
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Did not download package as it is already there." 1>&2
+  sudo ls -l "${JDK_PACKAGE_URL##*/}"
 fi
-
-# #############################################################################
-# Install
 
 if [ ! -e "${JDK_EXTRACTED_PATH}/bin/java" ] ; then
   sudo tar xzvf "${JDK_PACKAGE_URL##*/}"
+else
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Did not extract '${JDK_PACKAGE_URL##*/}' as there is '${JDK_EXTRACTED_PATH}/bin/java' already." 1>&2
+  sudo ls -l "${JDK_INSTALL_PATH}/${JDK_PACKAGE_URL##*/}"
 fi
 
 # #############################################################################
