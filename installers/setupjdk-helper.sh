@@ -46,7 +46,7 @@ sudo tar xzf "${JDK_PACKAGE_URL##*/}"
 # #############################################################################
 # Post installation configuration
 
-sudo ln -f -s "${JDK_EXTRACTED_PATH}" "${JDK_PATH}"
+sudo ln -f -s -v "${JDK_EXTRACTED_PATH}" "${JDK_PATH}"
 cd "${JDK_PATH}"/
 
 if sudo which alternatives; then
@@ -66,14 +66,14 @@ fi
 # #############################################################################
 echo "Updating profile '${JDK_SHELL_PROFILE}'..." 1>&2
 
-for jdkprofile in $(ls "${JDK_SHELL_PROFILE##*/}/${JDK_SHELL_PROFILE_PREFIX}"*.sh 2>/dev/null) ; do
+for jdkprofile in $(sudo ls "${JDK_SHELL_PROFILE##*/}/${JDK_SHELL_PROFILE_PREFIX}"*.sh 2>/dev/null) ; do
   sudo mv -v "${jdkprofile}" "${jdkprofile%.sh}.disabled"
 done
 
-  cat >> "${JDK_SHELL_PROFILE}" <<EOF
-export JAVA_HOME=${JDK_PATH}
-export JRE_HOME=${JDK_PATH}/jre
-export PATH=\$PATH:\$JAVA_HOME/bin:\$JRE_HOME/bin
+  cat <<EOF | sudo tee "${JDK_SHELL_PROFILE}"
+export JAVA_HOME="${JDK_PATH}"
+export JRE_HOME="${JDK_PATH}/jre"
+export PATH="\$PATH:\$JAVA_HOME/bin:\$JRE_HOME/bin"
 EOF
 
 # #############################################################################
