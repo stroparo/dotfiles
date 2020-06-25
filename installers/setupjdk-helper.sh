@@ -70,7 +70,7 @@ fi
 # #############################################################################
 echo "Updating profile '${JDK_SHELL_PROFILE}'..." 1>&2
 
-for jdkprofile in $(sudo ls "${JDK_SHELL_PROFILE##*/}/${JDK_SHELL_PROFILE_PREFIX}"*.sh 2>/dev/null) ; do
+for jdkprofile in $(sudo ls "${JDK_SHELL_PROFILE%/*}/${JDK_SHELL_PROFILE_PREFIX}"*.sh 2>/dev/null) ; do
   sudo mv -v "${jdkprofile}" "${jdkprofile%.sh}.disabled"
 done
 
