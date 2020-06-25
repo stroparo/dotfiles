@@ -35,7 +35,8 @@ if ! sudo wget \
       --no-cookies \
       --no-check-certificate \
       -O "${PACKAGE_URL##*/}" \
-      "${PACKAGE_URL}"
+      "${PACKAGE_URL}" \
+  || sudo curl -k -LSfs -o "${PACKAGE_URL##*/}" "${PACKAGE_URL}"
 then
   echo "${PROGNAME:+$PROGNAME: }FATAL: There was an error downloading '${JDK_PACKAGE_URL}'." 1>&2
   exit 1
