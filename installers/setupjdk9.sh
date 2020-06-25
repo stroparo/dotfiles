@@ -19,6 +19,6 @@ export REQ_HEADER="Cookie: oraclelicense=accept-securebackup-cookie"
 # #############################################################################
 # Main
 
-./setupjdk-helper.sh
+bash "${RUNR_DIR:-$PWD}"/installers/setupjdk-helper.sh
 echo "$PROGNAME: COMPLETE: Java OpenJDK setup"
 exit
