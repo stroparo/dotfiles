@@ -31,12 +31,8 @@ if [ -z "${REQ_HEADER}" ] ; then echo "${PROGNAME:+$PROGNAME: }FATAL: Global 'RE
 
 cd "${JDK_INSTALL_PATH}"
 
-if ! sudo wget \
-      --no-cookies \
-      --no-check-certificate \
-      -O "${PACKAGE_URL##*/}" \
-      "${PACKAGE_URL}" \
-  && ! sudo curl -k -LSf -o "${PACKAGE_URL##*/}" "${PACKAGE_URL}"
+if ! sudo curl -k -LSf -o "${JDK_PACKAGE_URL##*/}" "${JDK_PACKAGE_URL}" \
+&& ! sudo wget --no-cookies --no-check-certificate -O "${JDK_PACKAGE_URL##*/}" "${JDK_PACKAGE_URL}"
 then
   echo "${PROGNAME:+$PROGNAME: }FATAL: There was an error downloading '${JDK_PACKAGE_URL}'." 1>&2
   exit 1
@@ -45,7 +41,7 @@ fi
 # #############################################################################
 # Install
 
-sudo tar xzf "${PACKAGE_URL##*/}"
+sudo tar xzf "${JDK_PACKAGE_URL##*/}"
 
 # #############################################################################
 # Post installation configuration
