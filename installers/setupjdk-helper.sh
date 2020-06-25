@@ -39,14 +39,14 @@ then
   exit 1
 else
   echo "${PROGNAME:+$PROGNAME: }SKIP: Did not download package as it is already there." 1>&2
-  sudo ls -l "${JDK_PACKAGE_URL##*/}"
+  sudo ls -l "${JDK_INSTALL_PATH}/${JDK_PACKAGE_URL##*/}"
 fi
 
 if [ ! -e "${JDK_EXTRACTED_PATH}/bin/java" ] ; then
   sudo tar xzvf "${JDK_PACKAGE_URL##*/}"
 else
-  echo "${PROGNAME:+$PROGNAME: }SKIP: Did not extract '${JDK_PACKAGE_URL##*/}' as there is '${JDK_EXTRACTED_PATH}/bin/java' already." 1>&2
-  sudo ls -l "${JDK_INSTALL_PATH}/${JDK_PACKAGE_URL##*/}"
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Did not extract '${JDK_INSTALL_PATH}/${JDK_PACKAGE_URL##*/}' as there is '${JDK_EXTRACTED_PATH}/bin/java' already." 1>&2
+  sudo ls -l "${JDK_EXTRACTED_PATH}/bin/java"
 fi
 
 # #############################################################################
