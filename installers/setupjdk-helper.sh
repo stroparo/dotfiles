@@ -34,7 +34,6 @@ cd "${JDK_INSTALL_PATH}"
 if ! sudo wget \
       --no-cookies \
       --no-check-certificate \
-      --header "${REQ_HEADER}" \
       -O "${PACKAGE_URL##*/}" \
       "${PACKAGE_URL}"
 then
