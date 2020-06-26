@@ -237,11 +237,6 @@ alias dpkgsel='dpkg --get-selections | egrep -i'
 alias updalt='sudo update-alternatives'
 
 # #############################################################################
-# Packaging RPM etcetera
-
-alias yumepel='sudo yum --enablerepo=epel'
-
-# #############################################################################
 # Python
 
 alias m='python `cat "${VIRTUAL_ENV}/.project"`/manage.py'
