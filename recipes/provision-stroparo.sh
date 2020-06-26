@@ -3,8 +3,8 @@
 : ${PROGNAME:=provision-stroparo.sh}
 : ${RUNR_DIR:=${RUNR_DIR:-${PWD}}}
 
-REPO_DS_ST="stroparo@bitbucket.org/stroparo/ds-stroparo"
-REPO_DS_ST_ALTN="stroparo@github.com/stroparo/ds-stroparo"
+REPO_BASE_BB="stroparo@bitbucket.org/stroparo"
+REPO_BASE_GH="stroparo@github.com/stroparo"
 PROVISION_DEVEL="golang nodejs python rust"
 
 
@@ -26,7 +26,10 @@ bash "${RUNR_DIR}"/recipes/git.sh
 
 # Daily Shells setups:
 source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
-if ! (dsplugin.sh "$REPO_DS_ST" || dsplugin.sh "$REPO_DS_ST_ALTN") ; then exit 1 ; fi
+if ! (dsplugin.sh "${REPO_BASE_BB}/ds-stroparo" || dsplugin.sh "${REPO_BASE_GH}/ds-stroparo") ; then exit 1 ; fi
+if ! (dsplugin.sh "${REPO_BASE_BB}/ds-js" || dsplugin.sh "${REPO_BASE_GH}/ds-js") ; then
+  echo "${PROGNAME:+$PROGNAME: }WARN: ds-js Daily Shells plugin for JavaScript was not installed." 1>&2
+fi
 bash "${DS_HOME:-$HOME/.ds}"/scripts/dsconfgit.sh
 bash "${DS_HOME:-$HOME/.ds}"/scripts/selects-python-stroparo.sh
 
