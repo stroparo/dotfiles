@@ -49,7 +49,9 @@ _install_packages visualboyadvance \
   || _install_packages visualboyadvance-gtk
 
 echo "$PROGNAME: INFO: Multimedia packages..."
-_install_packages mp3splt mpv parole ristretto smplayer
+_install_packages geeqie exiftool ristretto  # exiftool for cropping images from within geeqie
+_install_packages mp3splt
+_install_packages mpv parole smplayer
 
 echo "$PROGNAME: INFO: Networking packages..."
 _install_packages gigolo  # remote filesystem management
