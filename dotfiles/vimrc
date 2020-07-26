@@ -537,7 +537,7 @@ if has("gui_running")
     set guifont=Fira\ Code\ 11
     " set guifont=Fira\ Mono\ 10
   elseif g:os == "Windows"
-    set guifont=Fira_Code:h12:cANSI
+    " set guifont=Fira_Code:h12:cANSI
     " set guifont=Fira_Mono:h12:cANSI
   endif
 endif
