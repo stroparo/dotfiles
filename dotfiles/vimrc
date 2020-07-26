@@ -3,12 +3,12 @@ set nocompatible
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-plug
 
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -k -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-
 
 call plug#begin('~/.vim/bundle')
 
@@ -48,12 +48,13 @@ Plug 'https://github.com/fvictorio/vim-yank-queue'
 
 " Formatting
 Plug 'https://github.com/tpope/vim-sleuth'
-Plug 'https://github.com/z0mbix/vim-shfmt', { 'for': 'sh' }
 
 " Search
 Plug 'https://github.com/mileszs/ack.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
-Plug 'junegunn/fzf.vim'
+if has('unix')
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-update-rc' }
+  Plug 'junegunn/fzf.vim'
+endif
 
 " Syntax support for multiple languages
 Plug 'https://github.com/sheerun/vim-polyglot'
@@ -63,20 +64,25 @@ Plug 'https://github.com/akhaku/vim-java-unused-imports'
 " Specific for Markdown
 Plug 'https://github.com/Scuilion/markdown-drawer'
 " Specific for Python
-Plug 'https://github.com/nvie/vim-flake8'
-Plug 'https://github.com/vim-scripts/indentpython.vim'
-Plug 'https://github.com/tmhedberg/SimpylFold'
+if has('unix')
+  Plug 'https://github.com/nvie/vim-flake8'
+  Plug 'https://github.com/vim-scripts/indentpython.vim'
+  Plug 'https://github.com/tmhedberg/SimpylFold'
+endif
 " Specific for Tmux
-Plug 'https://github.com/tmux-plugins/vim-tmux'
-Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events'
-Plug 'https://github.com/christoomey/vim-tmux-navigator'
+if has('unix')
+  Plug 'https://github.com/tmux-plugins/vim-tmux'
+  Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events'
+  Plug 'https://github.com/christoomey/vim-tmux-navigator'
+endif
 
 " Tooling - CI / Building
-Plug 'neomake/neomake'
+" Plug 'neomake/neomake'
 
-" Toolind - Container - Docker
-Plug 'https://github.com/skanehira/docker.vim'
-
+" Tooling - Container - Docker
+if has('unix')
+  Plug 'https://github.com/skanehira/docker.vim'
+endif
 " Tooling - Version control
 Plug 'https://github.com/airblade/vim-gitgutter'
 
@@ -87,7 +93,6 @@ Plug 'https://github.com/Konfekt/FastFold'
 " Plug 'https://github.com/rafi/awesome-vim-colorschemes' " several schemes aggregated in one place
 
 call plug#end()
-
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim settings
@@ -334,26 +339,108 @@ if executable("ag")
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Search - fzf - fuzzy finder
-
-let g:fzf_tags_command = 'ctags --extra=+f -R'
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Search - Vanilla
+" Plugins configurations
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin EditorConfig
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin for search - fzf - fuzzy finder
+
+if has('unix')
+  let g:fzf_tags_command = 'ctags --extra=+f -R'
+  let g:fzf_colors =
+  \ { 'fg':      ['fg', 'Normal'],
+    \ 'bg':      ['bg', 'Normal'],
+    \ 'hl':      ['fg', 'Comment'],
+    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+    \ 'hl+':     ['fg', 'Statement'],
+    \ 'info':    ['fg', 'PreProc'],
+    \ 'prompt':  ['fg', 'Conditional'],
+    \ 'pointer': ['fg', 'Exception'],
+    \ 'marker':  ['fg', 'Keyword'],
+    \ 'spinner': ['fg', 'Label'],
+    \ 'header':  ['fg', 'Comment'] }
+endif
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin GitGutter summarization in status line
+
+" let g:gitgutter_signs=0  " disable the gitgutter lateral signs
+function! GitStatus()
+  return join(filter(map(['A','M','D'], {i,v -> v.': '.GitGutterGetHunkSummary()[i]}), 'v:val[-1:]'), ' ')
+endfunction
+set statusline+=%{GitStatus()}
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Hexokinase - display hex/rgb colors in the sign column
+
+let g:Hexokinase_highlighters = ['sign_column']
+let g:Hexokinase_refreshEvents = ['BufWritePost']
+let g:Hexokinase_ftAutoload = ['css', 'xml']
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Markdown-drawer
+
+nnoremap <Leader>md :MarkDrawer<CR>
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Python folding SimpylFold
+
+if has('unix')
+  let g:SimpylFold_docstring_preview = 1
+endif
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Ruby Seeing is Believing +shortcuts
+
+" Annotate every line
+nmap <leader>b :%!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk<CR>;
+
+" Annotate marked lines
+nmap <leader>n :%.!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk --xmpfilter-style<CR>;
+
+" Remove annotations
+nmap <leader>c :%.!seeing_is_believing --clean<CR>;
+
+" Mark the current line for annotation
+nnoremap <leader>m A # => <Esc>
+
+" Mark the highlighted lines for annotation
+vnoremap <leader>m :norm A # => <Esc>
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vanilla stuff - filetypes conf
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vanilla - Filetype specific configurations
+" File entensions vs Syntax map
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
+au BufRead,BufNewFile Jenkinsfile set ft=groovy
+au BufRead,BufNewFile *.coffee set ft=coffee
+au BufNewFile,BufRead {*.json,*.es6} set ft=javascript
+au BufNewFile,BufRead {*.lr} set ft=markdown
+au BufRead,BufNewFile {*.mustache,*.hbs} set ft=mustache
+au BufRead,BufNewFile *.twig,*.tpl set ft=htmljinja
+
+au FileType {javascript,css,typescript,mustache,htmljinja,html}
+  \ setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+
+au FileType python
+  \ setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 colorcolumn=78
+
+au FileType {ruby,cucumber,yaml,sass,scss,eruby,less}
+  \ setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vanilla - Search
 
 set hlsearch
 set incsearch
@@ -382,7 +469,7 @@ set wildignore+=.idea,*.sublime-project,*.sublime-workspace,.vscode
 set wildignore+=.kitchen
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Text - Whitespace
+" Vanilla - Text - Whitespace
 
 " BadWhitespace definition:
 highlight BadWhitespace ctermbg=red guibg=darkred
@@ -403,7 +490,7 @@ function! StripTrailingWhitespace()
 endfunction
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" View - Focus
+" Vanilla - View - Focus
 
 augroup active_relative_number
     au!
@@ -428,7 +515,7 @@ augroup highlight_follows_vim
 augroup END
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" View - GUI - Graphical User Interface Vim
+" Vanilla - View - GUI - Graphical User Interface Vim
 
 if has("gui_running")
   " GUI is running or is about to start.
@@ -438,7 +525,7 @@ if has("gui_running")
 endif
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Viewports - windows
+" Vanilla - Viewports - windows
 
 " :H topic will open an 80 columns vertical split
 command! -complete=help -nargs=1 H call VerticalHelp(<f-args>)
@@ -446,90 +533,5 @@ function! VerticalHelp(topic)
   execute "vertical botright help " . a:topic
   execute "vertical resize 78"
 endfunction
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins configurations
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin EditorConfig
-
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin GitGutter summarization in status line
-
-" let g:gitgutter_signs=0  " disable the gitgutter lateral signs
-function! GitStatus()
-  return join(filter(map(['A','M','D'], {i,v -> v.': '.GitGutterGetHunkSummary()[i]}), 'v:val[-1:]'), ' ')
-endfunction
-set statusline+=%{GitStatus()}
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin Hexokinase - display hex/rgb colors in the sign column
-
-let g:Hexokinase_highlighters = ['sign_column']
-let g:Hexokinase_refreshEvents = ['BufWritePost']
-let g:Hexokinase_ftAutoload = ['css', 'xml']
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin Markdown-drawer
-
-nnoremap <Leader>md :MarkDrawer<CR>
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin Python folding SimpylFold
-
-let g:SimpylFold_docstring_preview = 1
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin Ruby Seeing is Believing +shortcuts
-
-" Annotate every line
-nmap <leader>b :%!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk<CR>;
-
-" Annotate marked lines
-nmap <leader>n :%.!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk --xmpfilter-style<CR>;
-
-" Remove annotations
-nmap <leader>c :%.!seeing_is_believing --clean<CR>;
-
-" Mark the current line for annotation
-nnoremap <leader>m A # => <Esc>
-
-" Mark the highlighted lines for annotation
-vnoremap <leader>m :norm A # => <Esc>
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin Shfmt - Shell formatting, ex command is 'Shfmt'
-
-" Use two spaces indentation by default:
-let g:shfmt_extra_args = '-i 2'
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Specific conf for filetypes
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" File entensions vs Syntax map
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
-au BufRead,BufNewFile Jenkinsfile set ft=groovy
-au BufRead,BufNewFile *.coffee set ft=coffee
-au BufNewFile,BufRead {*.json,*.es6} set ft=javascript
-au BufNewFile,BufRead {*.lr} set ft=markdown
-au BufRead,BufNewFile {*.mustache,*.hbs} set ft=mustache
-au BufRead,BufNewFile *.twig,*.tpl set ft=htmljinja
-
-au FileType {javascript,css,typescript,mustache,htmljinja,html}
-  \ setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
-
-au FileType python
-  \ setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 colorcolumn=78
-
-au FileType {ruby,cucumber,yaml,sass,scss,eruby,less}
-  \ setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
