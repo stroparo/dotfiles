@@ -12,7 +12,7 @@ endif
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-plug
 
-if has('unix')
+if g:os == "Linux"
 
   if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -k -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -333,7 +333,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin for search - Ag silversearcher via Ack.vim
 
-if has('unix')
+if g:os == "Linux"
 
   " Shortcuts for Ack.vim and Ag silversearcher
   map <leader>a :Ack!<Space>
@@ -378,7 +378,7 @@ let g:fzf_colors =
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin GitGutter summarization in status line
 
-if has('unix')
+if g:os == "Linux"
   " let g:gitgutter_signs=0  " disable the gitgutter lateral signs
   function! GitStatus()
     return join(filter(map(['A','M','D'], {i,v -> v.': '.GitGutterGetHunkSummary()[i]}), 'v:val[-1:]'), ' ')
@@ -401,9 +401,7 @@ nnoremap <Leader>md :MarkDrawer<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Python folding SimpylFold
 
-if has('unix')
-  let g:SimpylFold_docstring_preview = 1
-endif
+let g:SimpylFold_docstring_preview = 1
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Ruby Seeing is Believing +shortcuts
