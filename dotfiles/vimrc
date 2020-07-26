@@ -1,5 +1,14 @@
 set nocompatible
 
+" https://vi.stackexchange.com/questions/2572/detect-os-in-vimscript"
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
+
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-plug
 
@@ -518,9 +527,21 @@ augroup END
 
 if has("gui_running")
   " GUI is running or is about to start.
+
   set background=dark
-  set gfn=Fira\ Code\ 11
   set lines=999 columns=140
+
+  " g:os was (supposedly) set at the start of this vimscript:"
+  if g:os == "Darwin"
+    set guifont=Fira\ Code:h12
+    " set guifont=Fira\ Mono:h12
+  elseif g:os == "Linux"
+    set guifont=Fira\ Code\ 11
+    " set guifont=Fira\ Mono\ 10
+  elseif g:os == "Windows"
+    set guifont=Fira_Code:h12:cANSI
+    " set guifont=Fira_Mono:h12:cANSI
+  endif
 endif
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
