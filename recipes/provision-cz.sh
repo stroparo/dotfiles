@@ -23,3 +23,6 @@ bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynctc.sh
 
 # Recipes depending on prior custom Daily Shells setups:
 source "${RUNR_DIR}"/recipes/provision-stroparo.sh
+
+# Post scripts that should be executed by the user:
+echo "Provide 'data/K:' mount and then run czjunctions.sh"
