@@ -29,7 +29,7 @@ if ! grep -q "NVM_DIR=" ~/.bashrc ; then echo "${NVM_INIT_CODE}" >> ~/.bashrc ; 
 if ! grep -q "NVM_DIR=" ~/.zshrc ; then echo "${NVM_INIT_CODE}" >> ~/.zshrc ; fi
 
 eval "${NVM_INIT_CODE}"
-nvm use node
+nvm use 'lts/erbium'
 
 
 echo "$PROGNAME: COMPLETE"
