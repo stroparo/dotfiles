@@ -62,6 +62,10 @@ alias tpf='typeset -f'
 alias xcd="alias | egrep \"'c?d \" | fgrep -v 'cd -'"
 alias xgit="alias | grep -w git"
 
+# Antivirus ClamAV
+alias cs='clamscan -i -r'
+alias csd='clamdscan -i -r'
+
 # Clipboard
 if [ -e /dev/clipboard ]; then
   alias pbcopy='cat >/dev/clipboard'
