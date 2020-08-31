@@ -63,8 +63,9 @@ alias xcd="alias | egrep \"'c?d \" | fgrep -v 'cd -'"
 alias xgit="alias | grep -w git"
 
 # Antivirus ClamAV
-alias cs='clamscan -i -r'
-alias csd='clamdscan -i -r'
+alias av='clamscan -i -v'
+alias avd='clamdscan -i -r -v'
+alias avr='clamdscan -i -r -v'
 
 # Clipboard
 if [ -e /dev/clipboard ]; then
