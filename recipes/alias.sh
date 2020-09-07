@@ -64,8 +64,8 @@ alias xgit="alias | grep -w git"
 
 # Antivirus ClamAV
 alias av='clamscan -i -v'
-alias avd='clamdscan -i -r -v'
-alias avr='clamdscan -i -r -v'
+alias avd='clamdscan -i -v'
+alias avr='clamscan -i -r -v'
 
 # Clipboard
 if [ -e /dev/clipboard ]; then
