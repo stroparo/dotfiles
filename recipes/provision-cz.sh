@@ -24,5 +24,3 @@ bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynctc.sh
 
 # Recipes depending on prior custom Daily Shells setups:
 source "${RUNR_DIR}"/recipes/provision-stroparo.sh
-
-echo "In Windows, provide the data disc/mount and then call czsetupfsjunctions.sh"
