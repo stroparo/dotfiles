@@ -13,6 +13,7 @@ bash "${RUNR_DIR}"/recipes/keyb-ez.sh
 
 # Daily Shells setups:
 source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
+git config --global credential.helper 'store --file=/z/gitcred.txt'
 if ! (dsplugin.sh "$REPO_DS_CZ" || dsplugin.sh "$REPO_DS_CZ_ALTN") ; then exit 1 ; fi
 dsload
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupfs.sh crypt data external c extra
