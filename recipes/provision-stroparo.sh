@@ -16,7 +16,7 @@ fi
 
 # Recipes:
 if [ -z "${PROVISION_OPTIONS}" ] ; then
-  export PROVISION_OPTIONS="base gui xfce chrome ${PROVISION_DEVEL}"
+  export PROVISION_OPTIONS="base gui xfce brave ${PROVISION_DEVEL}"
 else
   export PROVISION_OPTIONS="nodevel ${PROVISION_DEVEL}"
 fi

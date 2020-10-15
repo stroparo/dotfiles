@@ -78,6 +78,12 @@ _desktop_linux_apps () {
   bash "${RUNR_DIR}"/recipes/apps-desktop.sh
 }
 
+_desktop_linux_apps_brave () {
+  if [[ $PROVISION_OPTIONS != *brave* ]] ; then return ; fi
+
+  bash "${RUNR_DIR}"/installers/setupbrave.sh
+}
+
 _desktop_linux_apps_chrome () {
   if [[ $PROVISION_OPTIONS != *chrome* ]] ; then return ; fi
 
@@ -122,6 +128,7 @@ _desktop_linux () {
   _desktop_linux_xfce
   _desktop_linux_fonts
   _desktop_linux_apps
+  _desktop_linux_apps_brave
   _desktop_linux_apps_chrome
   _desktop_linux_apps_devel
   _desktop_linux_apps_edu

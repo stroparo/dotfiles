@@ -4,7 +4,7 @@ PROGNAME="provision-custom-sample.sh"
 : ${RUNR_DIR:=${RUNR_DIR:-${PWD}}}
 
 # Recipes:
-export PROVISION_OPTIONS="base sudonopasswd gui chrome golang python rust"
+export PROVISION_OPTIONS="base sudonopasswd gui brave golang python rust"
 bash "${RUNR_DIR}"/recipes/provision.sh
 
 # Daily Shells setups:
