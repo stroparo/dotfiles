@@ -19,8 +19,8 @@ export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP
 
 if egrep -i -q -r '(centos|fedora|oracle|red *hat).* 7' /etc/*release ; then
 
-# TODO
-
+  # TODO
+  :
 
 elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
 
