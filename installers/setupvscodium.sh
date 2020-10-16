@@ -12,10 +12,13 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 
 if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
+
   wget -qO - 'https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg' \
-    | sudo apt-key add -
+    | gpg --dearmor \
+    | sudo dd of=/etc/apt/trusted.gpg.d/vscodium.gpg
+
   if ! sudo grep -q "vscodium" /etc/apt/sources.list.d/vscodium.list 2>/dev/null ; then
-    echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' \
+    echo 'deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs/ vscodium main' \
       | sudo tee --append /etc/apt/sources.list.d/vscodium.list
   fi
   sudo apt-get update
