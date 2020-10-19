@@ -12,12 +12,12 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 
+aptinstallppa.sh "christian-boxdoerfer/fsearch-daily" "fsearch"
+aptinstallppa.sh "ppa:phoerious/keepassxc" "keepassxc"
+aptinstallppa.sh "agornostal/ulauncher" "ulauncher"
+
 # Disabled:
-# aptinstallppa.sh "christian-boxdoerfer/fsearch-daily" "fsearch-trunk"
 # aptinstallppa.sh "nextcloud-devs/client" "nextcloud-desktop"
-# aptinstallppa.sh "nathan-renniewaldock/qdirstat" "qdirstat"
-# aptinstallppa.sh "oguzhaninan/stacer" "stacer"
-# aptinstallppa.sh "agornostal/ulauncher" "ulauncher"
 # aptinstallppa.sh "nilarimogard/webupd8" "woeusb" # uninstallable version of a dependency...
 # aptinstallppa.sh "zeal-developers/ppa" "zeal"
 
