@@ -61,6 +61,7 @@ _install_packages stacer  # system monitoring; Ubuntu 20.04+, before it was unde
 
 echo "$PROGNAME: INFO: Productivity packages..."
 _install_packages atril galculator guake meld
+_install_packages flameshot  # take screenshots, annotate etc.
 _install_packages gnome-shell-pomodoro
 
 echo "$PROGNAME: INFO: Networking packages..."
