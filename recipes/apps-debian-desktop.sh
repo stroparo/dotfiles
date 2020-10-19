@@ -57,7 +57,7 @@ echo "$PROGNAME: INFO: Networking packages..."
 _install_packages gigolo  # remote filesystem management
 
 echo "$PROGNAME: INFO: Ops packages..."
-_install_packages stacer  # system monitoring
+_install_packages stacer  # system monitoring; Ubuntu 20.04+, before it was under the 'oguzhaninan/stacer' PPA
 
 echo "$PROGNAME: INFO: Productivity packages..."
 _install_packages atril galculator guake meld
@@ -72,7 +72,7 @@ _install_packages clamav libclamunrar6
 echo "$PROGNAME: INFO: Miscellaneous packages..."
 _install_packages autorenamer
 _install_packages dconf-editor
-_install_packages qdirstat  # Ubuntu 20.04+, before it was under the '' PPA
+_install_packages qdirstat  # Ubuntu 20.04+, before it was under the 'nathan-renniewaldock/qdirstat' PPA
 _install_packages slop  # GUI region selection, used by other apps such as screenkey
 
 echo "$PROGNAME: INFO: APT repository clean up..."
