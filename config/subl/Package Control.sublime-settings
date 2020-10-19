@@ -13,7 +13,6 @@
     "ColorHelper",
     "ColorPicker",
     "Compare Side-By-Side",
-    "DocBlockr",
     "EasyMotion",
     "EditorConfig",
     "FuzzyFilePath",
@@ -21,9 +20,9 @@
     "Highlight Dodgy Chars",
     "Highlight Duplicates",
     "Package Control",
-    "PackageResourceViewer",
+    // "PackageResourceViewer",
     "SideBarEnhancements",
-    "SublimeCodeIntel", // disable this for *.py files as it clashes with anaconda's completion
+    // "SublimeCodeIntel", // disable this for *.py files as it clashes with anaconda's completion
     "SublimeREPL",
     "SyncedSideBar",
     "SublimeServer",
@@ -32,14 +31,14 @@
     "Text Marker",
 
     // Color Themes
-    "Boxy Theme", // Awesome theme ("numix" color is the red variant) - missing - install own backup
+    // "Boxy Theme", // Awesome theme ("numix" color is the red variant) - missing - install own backup
     // "gruvbox", // Colorscheme good, theme not so good
     "Seti_UI", // Awesome theme, no colorscheme
     "Theme - Brogrammer",
     "Theme - Spacegray", // Colorschemes "bad", theme good, lean and customizable
 
     // Linting
-    "coala",
+    // "coala",
     // "SublimeLinter",
     // "SublimeLinter-flake8", // or "SublimeLinter-pycodestyle",
     // "SublimeLinter-json",
@@ -53,9 +52,9 @@
     "Markdown Preview",
 
     // Specific for Python
-    "Anaconda",
-    "Djaneiro",
-    "requirementstxt",
+    // "Anaconda",
+    // "Djaneiro",
+    // "requirementstxt",
 
     // Specific for Ruby
     // "Ruby Completions",
@@ -63,15 +62,15 @@
     // Specific for version control
     "Git",
     "GitGutter",
-    "GitHubinator",
-    "GitOpenChangedFiles",
+    // "GitHubinator",
+    // "GitOpenChangedFiles",
     "GitSavvy",
     "Modific",
 
     // Specific for web devel
-    "CSS3", // CSS3 syntax highlight support
+    // "CSS3", // CSS3 syntax highlight support
     "Emmet Css Snippets",
-    "SCSS",
+    // "SCSS",
 
     // Syntax Highlight support
     "AutoHotkey",
