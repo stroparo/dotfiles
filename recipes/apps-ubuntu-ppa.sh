@@ -12,7 +12,7 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 
-aptinstallppa.sh "christian-boxdoerfer/fsearch-daily" "fsearch"
+aptinstallppa.sh "christian-boxdoerfer/fsearch-daily" "fsearch-trunk"
 aptinstallppa.sh "phoerious/keepassxc" "keepassxc"
 aptinstallppa.sh "agornostal/ulauncher" "ulauncher"
 
