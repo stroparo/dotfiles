@@ -25,10 +25,9 @@
     // "SublimeCodeIntel", // disable this for *.py files as it clashes with anaconda's completion
     "SublimeREPL",
     "SyncedSideBar",
-    "SublimeServer",
     "TabsExtra",
     "Terminal",
-    "Text Marker",
+    // "Text Marker",
 
     // Color Themes
     // "Boxy Theme", // Awesome theme ("numix" color is the red variant) - missing - install own backup
