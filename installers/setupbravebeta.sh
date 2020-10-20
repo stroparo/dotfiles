@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-PROGNAME="setupbrave.sh"
+PROGNAME="setupbravebeta.sh"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
 
-echo "$PROGNAME: INFO: Brave Browser setup started"
+echo "$PROGNAME: INFO: Brave Browser Beta setup started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
@@ -26,15 +26,14 @@ elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
 
   sudo "${APTPROG}" install -y apt-transport-https curl
 
-  curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc \
-    | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
+  curl -s https://brave-browser-apt-beta.s3.brave.com/brave-core-nightly.asc \
+    | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-prerelease.gpg add -
 
-  echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" \
-    | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+  echo "deb [arch=amd64] https://brave-browser-apt-beta.s3.brave.com/ stable main" \
+    | sudo tee /etc/apt/sources.list.d/brave-browser-beta.list
 
   sudo "${APTPROG}" update
-  sudo "${APTPROG}" install -y brave-browser
-
+  sudo "${APTPROG}" install -y brave-browser-beta
 
 else
   echo "${PROGNAME:+$PROGNAME: }SKIP: OS not supported" 1>&2
@@ -44,5 +43,5 @@ fi
 # #############################################################################
 # Final sequence
 
-echo "$PROGNAME: COMPLETE: Brave Browser setup"
+echo "$PROGNAME: COMPLETE: Brave Browser Beta setup"
 exit

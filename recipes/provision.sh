@@ -84,6 +84,12 @@ _desktop_linux_apps_brave () {
   bash "${RUNR_DIR}"/installers/setupbrave.sh
 }
 
+_desktop_linux_apps_bravebeta () {
+  if [[ $PROVISION_OPTIONS != *bravebeta* ]] ; then return ; fi
+
+  bash "${RUNR_DIR}"/installers/setupbravebeta.sh
+}
+
 _desktop_linux_apps_chrome () {
   if [[ $PROVISION_OPTIONS != *chrome* ]] ; then return ; fi
 
