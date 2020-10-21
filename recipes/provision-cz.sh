@@ -16,7 +16,7 @@ source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 
 if ! (dsplugin.sh "$REPO_DS_CZ" || dsplugin.sh "$REPO_DS_CZ_ALTN") ; then exit 1 ; fi
 dsload
-bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupfs.sh crypt data external c
+bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupfs.sh crypt cryptlinux data external c
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupgitcred.sh
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynckeys.sh
