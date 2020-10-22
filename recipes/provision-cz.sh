@@ -7,7 +7,7 @@ REPO_DS_CZ="stroparo@bitbucket.org/stroparo/ds-cz"
 REPO_DS_CZ_ALTN="stroparo@github.com/stroparo/ds-cz"
 
 # Recipes:
-export PROVISION_OPTIONS="base sudonopasswd gui xfce bravebeta chrome"
+export PROVISION_OPTIONS="base sudonopasswd gui xfce chrome"
 bash "${RUNR_DIR}"/recipes/provision.sh
 bash "${RUNR_DIR}"/recipes/keyb-ez.sh
 
@@ -21,6 +21,8 @@ bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupgitcred.sh
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynckeys.sh
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynctc.sh
+
+bash "${RUNR_DIR}"/installers/setupskype.sh
 
 # Recipes depending on prior custom Daily Shells setups:
 source "${RUNR_DIR}"/recipes/provision-stroparo.sh
