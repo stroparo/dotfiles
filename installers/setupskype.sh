@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 PROGNAME="setupskype.sh"
-DEBFILE=/tmp/skypeforlinux-64.deb
+DEBFILE="/tmp/skypeforlinux-64.deb"
 DEBURL_MAIN='https://go.skype.com/skypeforlinux-64.deb'
 DEBURL_ALTN='https://repo.skype.com/latest/skypeforlinux-64.deb'
 
