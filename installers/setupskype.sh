@@ -24,7 +24,7 @@ if egrep -i -q -r '(centos|fedora|oracle|red *hat).* 7' /etc/*release ; then
 
 elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
 
-  sudo apt-get install -y <(curl -LSfs https://go.skype.com/skypeforlinux-64.deb)
+  sudo dpkg -i <(curl -LSfs https://go.skype.com/skypeforlinux-64.deb)
 
 else
   echo "${PROGNAME:+$PROGNAME: }SKIP: OS not supported" 1>&2
