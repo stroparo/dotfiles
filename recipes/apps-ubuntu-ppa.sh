@@ -12,17 +12,18 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 
-aptinstallppa.sh "christian-boxdoerfer/fsearch-daily" "fsearch-trunk"
-aptinstallppa.sh "phoerious/keepassxc" "keepassxc"
-aptinstallppa.sh "agornostal/ulauncher" "ulauncher"
+aptinstall.sh -r 'font-manager/staging' font-manager
+aptinstall.sh -r "christian-boxdoerfer/fsearch-daily" fsearch-trunk
+aptinstall.sh -r "agornostal/ulauncher" ulauncher
 
 # Disabled:
-# aptinstallppa.sh "nextcloud-devs/client" "nextcloud-desktop"
-# aptinstallppa.sh "nilarimogard/webupd8" "woeusb" # uninstallable version of a dependency...
-# aptinstallppa.sh "zeal-developers/ppa" "zeal"
+# aptinstall.sh -r "phoerious/keepassxc" keepassxc  # Installing 2.4.3 instead of 2.6.1 in Ubuntu 20.04
+# aptinstall.sh -r "nextcloud-devs/client" nextcloud-desktop
+# aptinstall.sh -r "nilarimogard/webupd8" woeusb  # Uninstallable version of a dependency...
+# aptinstall.sh -r "zeal-developers/ppa" zeal
 
 # xfce4-appfinder same feats, besides this does not work in Ubuntu 20.04:
-# aptinstallppa.sh "gottcode/gcppa" "xfce4-whiskermenu-plugin"
+# aptinstall.sh -r "gottcode/gcppa" xfce4-whiskermenu-plugin
 
 echo "$PROGNAME: COMPLETE (compound)"
 exit
