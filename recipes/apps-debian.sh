@@ -39,6 +39,7 @@ _install_packages bash
 _install_packages curl lftp mosh net-tools rsync wget
 _install_packages dconf-cli
 _install_packages gdebi gdebi-core
+_install_packages hashdeep
 _install_packages htop
 _install_packages less
 _install_packages localepurge
