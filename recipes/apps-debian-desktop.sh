@@ -75,6 +75,7 @@ _install_packages autorenamer
 _install_packages dconf-editor
 _install_packages qdirstat  # Ubuntu 20.04+, before it was under the 'nathan-renniewaldock/qdirstat' PPA
 _install_packages slop  # GUI region selection, used by other apps such as screenkey
+_install_packages xdotool wmctrl  # deps for jc00ke/move-to-next-monitor
 
 echo "$PROGNAME: INFO: APT repository clean up..."
 sudo $APTPROG autoremove -y
