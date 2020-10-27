@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 PROGNAME="apps-debian.sh"
 export APTPROG=apt-get
@@ -35,6 +35,7 @@ fi
 # Installations
 
 echo "$PROGNAME: INFO: Debian base packages..."
+_install_packages bash
 _install_packages curl lftp mosh net-tools rsync wget
 _install_packages dconf-cli
 _install_packages gdebi gdebi-core
