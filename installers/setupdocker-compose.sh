@@ -18,6 +18,7 @@ COMPLETION_URL="https://raw.githubusercontent.com/docker/compose/1.18.0/contrib/
 
 if type docker-compose >/dev/null 2>&1 ; then
   echo "${PROGNAME:+$PROGNAME: }SKIP: Already installed." 1>&2
+  exit
 elif which pip >/dev/null 2>&1 ; then
   pip install --user docker-compose
 fi
