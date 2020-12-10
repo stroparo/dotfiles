@@ -17,15 +17,16 @@
   "editor.matchBrackets": "near",
   "editor.minimap.enabled": false,
   "editor.parameterHints.enabled": true,
+  "editor.renameOnType": true,
   "editor.renderIndentGuides": true,
   "editor.renderLineHighlight": "gutter",
-  "editor.renderWhitespace": "boundary",
+  // "editor.renderWhitespace": "boundary",
   "editor.rulers": [
     80,
     120
   ],
   "editor.semanticHighlighting.enabled": false,
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "editor.tokenColorCustomizations": {
     "[Material Theme Darker High Contrast]": {
       "comments": "#888",
@@ -72,6 +73,7 @@
   "gitlens.keymap": "alternate",
   "http.proxyStrictSSL": false,
   "material-icon-theme.folders.theme": "specific",
+  "material-icon-theme.showWelcomeMessage": false,
   "multiCommand.commands": [
     {
       "command": "multiCommand.makeRoom",
