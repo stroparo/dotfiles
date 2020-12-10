@@ -3,6 +3,11 @@
 PROGNAME="setupvscode.sh"
 export VSCODEURL="https://code.visualstudio.com/docs/?dv=linux64_deb"
 
+if which code >/dev/null 2>&1 ; then
+  echo "$PROGNAME: SKIP: already installed."
+  exit
+fi
+
 echo "$PROGNAME: INFO: setup started..."
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
