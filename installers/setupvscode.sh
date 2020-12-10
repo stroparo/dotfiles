@@ -15,6 +15,9 @@ elif which brave-browser ; then
   brave-browser "${VSCODEURL}" & disown
 fi
 
+read -p "Hit ENTER when ready to install..." dummy
+sudo gdebi "$(ls -1 ~/Downloads/code*.deb | tail -n 1)"
+
 echo "${PROGNAME:+$PROGNAME: }COMPLETE"
 echo
 echo
