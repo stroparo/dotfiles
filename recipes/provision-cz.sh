@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+x#!/usr/bin/env bash
 
 PROGNAME="provision-cz.sh"
 : ${RUNR_DIR:=${RUNR_DIR:-${PWD}}}
@@ -38,20 +38,21 @@ source "${RUNR_DIR}"/recipes/provision-stroparo.sh  # After Daily Shells setups.
 
 # Apps - CLI - Prioritary (devel etc.)
 bash "${RUNR_DIR}"/recipes/nodejs.sh
-bash "${RUNR_DIR}"/recipes/python.sh
-# bash "${RUNR_DIR}"/installers/setupgolang.sh
-# bash "${RUNR_DIR}"/installers/setupgotools.sh
-bash "${RUNR_DIR}"/installers/setuprust.sh
 if ${ISLINUX} ; then
+  # bash "${RUNR_DIR}"/installers/setupgolang.sh
+  # bash "${RUNR_DIR}"/installers/setupgotools.sh
+  bash "${RUNR_DIR}"/recipes/python.sh
+  bash "${RUNR_DIR}"/installers/setuprust.sh
   bash "${RUNR_DIR}"/installers/setupdocker.sh
   bash "${RUNR_DIR}"/installers/setupdocker-compose.sh
   bash "${RUNR_DIR}"/installers/setupeditorconfig.sh
+
+  # Tools built from source:
   bash "${RUNR_DIR}"/installers/setupexa.sh  # Must have Rust already setup
+  # bash "${RUNR_DIR}"/installers/setuptmux.sh
   # bash "${RUNR_DIR}"/recipes/vim.sh
 fi
 bash "${DS_HOME:-$HOME/.ds}"/scripts/selects-python-stroparo.sh
-# bash "${RUNR_DIR}"/installers/setupsdkman.sh
-bash "${RUNR_DIR}"/installers/setuptmux.sh
 
 
 # Apps - GUI - Prioritary (devel etc.)

@@ -7,6 +7,7 @@ export INSTALLER_DIR="${HOME}/fonts-master"
 export INSTALLER_PKG="${HOME}/.powerline-fonts.zip"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
 if [ -e "$HOME/.local/share/fonts/Inconsolata for Powerline.otf" ] ; then
   echo "SKIP: Already installed." 1>&2
   exit
