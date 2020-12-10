@@ -4,6 +4,16 @@
   "scss.validate": false,
   "less.validate": false,
   "alt-editor.name": "sublime",
+  "bracket-pair-colorizer-2.forceUniqueOpeningColor": true,
+  "bracket-pair-colorizer-2.colors": [
+    "Gold",
+    "Orchid",
+    "LightSkyBlue",
+    "GreenYellow",
+    "Red",
+    "Turquoise",
+    "OliveDrab"
+  ],
   "breadcrumbs.enabled": true,
   "editor.autoIndent": "full",
   "editor.cursorStyle": "block",
