@@ -61,7 +61,6 @@ _install_packages git tig
 _install_packages httpie
 _install_packages jq
 _install_packages llvm
-_install_packages mongodb
 _install_packages perl
 _install_packages pkg-config
 _install_packages redis-server
