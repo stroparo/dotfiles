@@ -21,9 +21,7 @@ _install_exa_deb () {
   # Dependency - APT packages:
   sudo apt update || exit 1
   sudo apt install -y libgit2-dev
-  sudo apt install -y libhttp-parser2.1 \
-    || sudo apt install -y libhttp-parser2.7.1 \
-    || exit $?
+  sudo apt install -y libhttp-parser-dev || exit $?
   which cmake >/dev/null 2>&1 || sudo apt install -y cmake || exit $?
   which git >/dev/null 2>&1 || sudo apt install -y git || exit $?
 
