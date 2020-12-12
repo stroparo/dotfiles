@@ -4,7 +4,7 @@ PROGNAME="conf-vscode.sh"
 _exit () { echo "$1" ; echo ; echo ; exit 0 ; }
 _exiterr () { echo "$2" 1>&2 ; echo 1>&2 ; echo 1>&2 ; exit "$1" ; }
 
-SRC_CONFIG_DIR="${RUNR_DIR:-$PWD}/config/vscode"
+SRC_CONFIG_DIR="${RUNR_DIR:-$PWD}/config/vsc"
 if [ ! -d "$SRC_CONFIG_DIR" ] ; then _exiterr 1 "${PROGNAME}: FATAL: No dir '${SRC_CONFIG_DIR}'." ; fi
 
 export EDITOR_COMMAND="code"
