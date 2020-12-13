@@ -2,7 +2,8 @@
 
 PROGNAME="conf-intellij.sh"
 
-echo "$PROGNAME: INFO: Intellij custom config started"
+echo "$PROGNAME: INFO: setup started..."
+echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 # Globals
@@ -25,6 +26,8 @@ fi
 echo "cp -f -R \"${SRC_CONFIG_DIR}\"/* \"${INTELLIJ_USER_DIR}/\" ..."
 cp -f -R -v "${SRC_CONFIG_DIR}"/* "${INTELLIJ_USER_DIR}"/
 
-echo "$PROGNAME: COMPLETE"
+echo "${PROGNAME:+$PROGNAME: }COMPLETE"
+echo
+echo
 
 exit
