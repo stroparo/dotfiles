@@ -54,7 +54,7 @@ _install_packages () {
       echo "$PROGNAME: SKIP: Package '${package}' already installed..."
     else
       echo "$PROGNAME: INFO: Installing '${package}'..."
-      if ! sudo $INSTPROG install -y "${package}" >/tmp/pkg-install-${filestamp}-${package}.log 2>&1 ; then
+      if ! sudo $INSTPROG install -y "${package}" 2>&1 | tee /tmp/pkg-install-${filestamp}-${package}.log ; then
         echo "${PROGNAME}: WARN: There was an error installing packages - see '/tmp/pkg-install-${filestamp}-${package}.log'." 1>&2
       fi
     fi
