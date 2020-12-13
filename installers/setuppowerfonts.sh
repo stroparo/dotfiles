@@ -58,8 +58,11 @@ _install () {
   fi
 }
 
-_finish () {
+_finish_msg_and_exit () {
   echo "$PROGNAME: COMPLETE: ${PRODDESC}"
+  echo
+  echo
+
   exit
 }
 
@@ -72,4 +75,4 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 _get_package
 # _get_package_git
 _install
-_finish
+_finish_msg_and_exit
