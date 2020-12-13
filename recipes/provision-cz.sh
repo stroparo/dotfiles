@@ -58,6 +58,7 @@ bash "${DS_HOME:-$HOME/.ds}"/scripts/selects-python-stroparo.sh
 # Apps - GUI - Prioritary (devel etc.)
 bash "${RUNR_DIR}"/installers/setupchrome.sh
 bash "${RUNR_DIR}"/recipes/subl.sh
+bash "${RUNR_DIR}"/recipes/vsc.sh
 bash "${RUNR_DIR}"/installers/setuppowerfonts.sh
 bash "${RUNR_DIR}"/installers/setupinsomnia.sh
 if type code ; then bash "${RUNR_DIR:-$PWD}"/recipes/conf-vscode.sh ; fi
