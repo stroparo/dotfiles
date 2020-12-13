@@ -3,7 +3,9 @@
 PROGNAME="setupvscode.sh"
 export VSCODEURL="https://code.visualstudio.com/docs/?dv=linux64_deb"
 
-if which code >/dev/null 2>&1 ; then
+if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
+
+if ! ${UPGRADE:-false} && which code >/dev/null 2>&1 ; then
   echo "$PROGNAME: SKIP: already installed."
   exit
 fi
@@ -26,3 +28,5 @@ sudo gdebi "$(ls -1 ~/Downloads/code*.deb | tail -n 1)"
 echo "${PROGNAME:+$PROGNAME: }COMPLETE"
 echo
 echo
+
+exit
