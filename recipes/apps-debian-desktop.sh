@@ -19,7 +19,7 @@ _install_packages () {
       echo "$PROGNAME: SKIP: Package '${package}' already installed..."
     else
       echo "$PROGNAME: INFO: Installing '${package}'..."
-      if ! sudo $INSTPROG install -y "${package}" >/tmp/pkg-install-${filestamp}-${package}.log 2>&1 ; then
+      if ! sudo $INSTPROG install -y "${package}" 2>&1 | tee "/tmp/pkg-install-${filestamp}-${package}.log" ; then
         echo "${PROGNAME}: WARN: There was an error installing packages - see '/tmp/pkg-install-${filestamp}-${package}.log'." 1>&2
       fi
     fi
@@ -75,7 +75,7 @@ _install_packages autorenamer
 _install_packages dconf-editor
 _install_packages qdirstat  # Ubuntu 20.04+, before it was under the 'nathan-renniewaldock/qdirstat' PPA
 _install_packages slop  # GUI region selection, used by other apps such as screenkey
-_install_packages xdotool wmctrl  # deps for jc00ke/move-to-next-monitor
+_install_packages xdotool wmctrl  # deps for macro scripts in general and also for jc00ke/move-to-next-monitor
 
 echo "$PROGNAME: INFO: APT repository clean up..."
 sudo $APTPROG autoremove -y
