@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 PROGNAME="setupsubl.sh"
+
 if which subl >/dev/null 2>&1 || which sublime_text >/dev/null 2>&1 ; then
   echo "$PROGNAME: SKIP: Already installed, trying an upgrade..."
   sudo apt-get update && sudo apt-get install sublime-text
