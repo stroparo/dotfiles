@@ -39,6 +39,7 @@ fi
 
 echo "$PROGNAME: INFO: Educational packages..."
 _install_packages gperiodic gtypist tuxtype
+_install_packages mnemosyne
 
 echo "$PROGNAME: INFO: Entertainment packages..."
 _install_packages chocolate-doom
