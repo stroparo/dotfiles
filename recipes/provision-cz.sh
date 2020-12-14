@@ -49,10 +49,7 @@ if ${ISLINUX} ; then
 
   # Tools built from source:
   bash "${RUNR_DIR}"/installers/setupexa.sh  # Must have Rust already setup
-  # bash "${RUNR_DIR}"/installers/setuptmux.sh
-  # bash "${RUNR_DIR}"/recipes/vim.sh
 fi
-bash "${DS_HOME:-$HOME/.ds}"/scripts/selects-python-stroparo.sh
 
 
 # Apps - GUI - Prioritary (devel etc.)
@@ -60,19 +57,23 @@ bash "${RUNR_DIR}"/installers/setupchrome.sh
 bash "${RUNR_DIR}"/recipes/subl.sh
 bash "${RUNR_DIR}"/recipes/vsc.sh
 bash "${RUNR_DIR}"/installers/setuppowerfonts.sh
-bash "${RUNR_DIR}"/installers/setupinsomnia.sh
-if type code ; then bash "${RUNR_DIR:-$PWD}"/recipes/conf-vscode.sh ; fi
 
 
-# Apps - GUI - Etcetera
-bash "${RUNR_DIR}"/installers/setupanki.sh
-# bash "${RUNR_DIR}"/installers/setupbrave.sh
-# bash "${RUNR_DIR}"/installers/setupbravebeta.sh
-# bash "${RUNR_DIR}"/installers/setupskype.sh
-bash "${RUNR_DIR}"/recipes/apps-desktop.sh
-bash "${RUNR_DIR}"/recipes/keyb-ez.sh
+echo
+echo
+echo "Suggested recipes to run later on:"
+echo "apps-desktop"
+echo "conf-jetbrains"
+echo "keyb-ez"
+echo "setupbrave"
+echo "setupgolang"
+echo "setupgotools"
+echo "setupinsomnia"
+echo "vim"
+echo
+echo "Suggested scripts in stroparo/ds to run later on:"
+echo "selects-python-stroparo.sh"
+echo
+echo
 
-
-# Apps - GUI - VSCodium
-# bash "${RUNR_DIR:-$PWD}"/installers/setupvscodium.sh
-# bash "${RUNR_DIR:-$PWD}"/recipes/conf-vscodium.sh
+exit
