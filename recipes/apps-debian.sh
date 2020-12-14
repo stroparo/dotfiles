@@ -35,6 +35,7 @@ fi
 # Installations
 
 echo "$PROGNAME: INFO: Debian base packages..."
+_install_packages apt-transport-https
 _install_packages bash
 _install_packages curl lftp mosh net-tools rsync wget
 _install_packages dconf-cli
