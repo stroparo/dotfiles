@@ -9,7 +9,7 @@ echo "$PROGNAME: INFO: setup started..."
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 if which code >/dev/null 2>&1 ; then
-  echo "$PROGNAME: INFO: already installed, so trying upgrade..."
+  echo "$PROGNAME: INFO: already installed, so trying to upgrade..."
   sudo apt-get update
   sudo apt-get install -y code
   exit
