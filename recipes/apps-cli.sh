@@ -25,7 +25,7 @@ _assemble_valid_pkg_list () {
       echo "${pkg}"
     fi
   done \
-    tr -s '\n' ' '
+  | tr -s '\n' ' '
 }
 
 
