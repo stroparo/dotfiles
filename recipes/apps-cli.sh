@@ -33,6 +33,7 @@ _install_packages () {
   typeset timestamp="$(date '+%Y%m%d-%OH%OM%OS')"
 
   echo
+  echo
   echo "$PROGNAME: INFO: Installing packages..."
   if ! (sudo "${INSTPROG}" install -y $(_assemble_valid_pkg_list "${PKG_LIST_FILE}") 2>&1 | tee "/tmp/pkg-install-${timestamp}.log") ; then
     echo "$PROGNAME: WARN: There was an error installing package '${package}' - see '/tmp/pkg-install-${timestamp}.log'." 1>&2
@@ -53,6 +54,8 @@ fi
 _install_packages
 
 if ${isdebian:-false} || ${isubuntu:-false} ; then
+  echo
+  echo
   echo "$PROGNAME: INFO: APT repository clean up (autoremove & clean)..."
   sudo $APTPROG autoremove -y
   sudo $APTPROG clean -y
