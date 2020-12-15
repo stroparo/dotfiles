@@ -123,7 +123,7 @@
     "<C-f>": false
   },
   "window.restoreWindows": "all",
-  "window.title": "${activeEditorLong}${separator}${rootName}",
+  "window.title": "${rootName} - vsc - ${activeEditorLong}",
   "window.zoomLevel": 0,
   "workbench.activityBar.visible": true,
   "workbench.colorCustomizations": {
