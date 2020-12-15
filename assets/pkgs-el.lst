@@ -1,0 +1,17 @@
+# Base packages
+deltarpm less unzip zip zsh
+curl lftp rsync wget
+sqlite libdbi-dbd-sqlite
+tmux
+
+# Devel packages
+ctags make perl perl-devel perl-ExtUtils-Embed
+# golang
+# ruby ruby-devel
+
+# Security packages
+gnupg pwgen oathtool oath-toolkit
+setroubleshoot-server selinux-policy-devel  # SELinux
+
+# System packages
+yum-utils

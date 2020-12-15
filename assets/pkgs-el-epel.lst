@@ -1,0 +1,5 @@
+# Base packages
+mosh p7zip p7zip-plugins lzip cabextract unrar the_silver_searcher
+
+# Devel packages
+jq
