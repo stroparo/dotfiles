@@ -1,0 +1,59 @@
+# Base packages...
+apt-transport-https
+bash
+curl lftp mosh net-tools rsync wget
+dconf-cli
+gdebi gdebi-core
+hashdeep
+htop
+less
+localepurge
+logrotate
+parted
+p7zip-full p7zip-rar
+secure-delete
+silversearcher-ag
+tmux
+unzip zip
+xz-utils
+zsh
+
+# Devel packages...
+automake build-essential gcc make
+bison
+exuberant-ctags
+git tig
+httpie
+jq
+llvm
+perl
+pkg-config
+redis-server
+# python-software-properties
+sqlite3 libdbd-sqlite3
+
+# Devel libs...
+gettext
+imagemagick
+libbz2-dev
+libcurl4-openssl-dev
+libffi-dev
+libgdbm-dev
+libgmp-dev
+liblzma-dev
+libncurses5-dev libncursesw5-dev
+libperl-dev
+libreadline-dev
+libsqlite3-0 libsqlite3-dev
+libssl-dev
+libxml2-dev
+libxslt1-dev
+libyaml-dev
+python-openssl
+tk-dev
+zlib1g zlib1g-dev
+
+# Security packages...
+gnupg pwgen
+oathtool
+ssh-askpass
