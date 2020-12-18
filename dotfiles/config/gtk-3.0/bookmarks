@@ -8,11 +8,16 @@ file:///home/user/OneDrive
 file:///home/user/Pictures
 file:///home/user/Videos
 file:///home/user/workspace
-file:///mnt/data
-file:///mnt/sam
+file:///mnt/c -- c
+file:///mnt/c/Users/user
+file:///mnt/c/Users/user/Downloads
+file:///mnt/data -- data
+file:///mnt/data/Downloads
+file:///mnt/sam -- sam
 file:///mnt/sam/cs
-file:///mnt/z
+file:///mnt/z -- z
 file:///mnt/z/workspace/handy
 file:///mnt/z/handys
 file:///mnt/z/ps
-file:///mnt/zl
+file:///mnt/zl -- zl
+file:///mnt/zl/ps
