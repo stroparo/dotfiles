@@ -1,4 +1,4 @@
-x#!/usr/bin/env bash
+#!/usr/bin/env bash
 
 PROGNAME="provision-cz.sh"
 : ${RUNR_DIR:=${RUNR_DIR:-${PWD}}}
