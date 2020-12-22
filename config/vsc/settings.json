@@ -160,10 +160,6 @@
   "gitlens.blame.heatmap.enabled": true,
   "gitlens.currentLine.enabled": false,
 
-  // JavaScript
-  "javascript.implicitProjectConfig.checkJs": true,
-  "npm.enableScriptExplorer": true,
-
   // Settings sync
   "sync.gist": "7fc97ccd1eb6cec364eec3e2bb3d7290",
   "sync.quietSync": false,
@@ -176,5 +172,12 @@
   // SortLines
   "sortLines.filterBlankLines": false,
   "sortLines.sortEntireFile": true,
+
+  // Stack JavaScript
+  "javascript.implicitProjectConfig.checkJs": true,
+  "npm.enableScriptExplorer": true,
+
+  // Stack Python
+  "python.languageServer": "Pylance",
 
 }
