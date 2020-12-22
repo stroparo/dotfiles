@@ -70,6 +70,7 @@ echo "setupgolang"
 echo "setupgotools"
 echo "setupinsomnia"
 echo "vim"
+echo "xfce"
 echo
 echo "Suggested scripts in stroparo/ds to run later on:"
 echo "selects-python-stroparo.sh"
