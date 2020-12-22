@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=KeePassXC
+Comment=
+Exec=/mnt/zl/opt/keepassxc/keepassxc
+Icon=keepassxc
+Path=/mnt/zl/opt/keepassxc
+Terminal=false
+StartupNotify=false
