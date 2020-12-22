@@ -7,10 +7,12 @@ if ! egrep -i -q -r 'ubuntu' /etc/*release ; then
   exit
 fi
 
+
 echo "$PROGNAME: INFO: Ubuntu PPA selects (compound)"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
+
 
 aptinstall.sh -r "bashtop-monitor/bashtop" bashtop
 aptinstall.sh -r 'font-manager/staging' font-manager
@@ -26,5 +28,8 @@ aptinstall.sh -r "agornostal/ulauncher" ulauncher
 # xfce4-appfinder has same feats, and besides this does not work in Ubuntu 20.04:
 # aptinstall.sh -r "gottcode/gcppa" xfce4-whiskermenu-plugin
 
+
+echo
+echo
 echo "$PROGNAME: COMPLETE (compound)"
 exit
