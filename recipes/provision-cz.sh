@@ -54,9 +54,9 @@ fi
 
 # Apps - GUI - Prioritary (devel etc.)
 bash "${RUNR_DIR}"/installers/setupchrome.sh
+bash "${RUNR_DIR}"/installers/setuppowerfonts.sh
 bash "${RUNR_DIR}"/recipes/subl.sh
 bash "${RUNR_DIR}"/recipes/vsc.sh
-bash "${RUNR_DIR}"/installers/setuppowerfonts.sh
 
 
 echo
