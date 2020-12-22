@@ -1,9 +1,12 @@
 file:///home/user/.config
 file:///home/user/Documents
 file:///home/user/Downloads
+file:///mnt/z/datasens
 file:///home/user/Dropbox
 file:///home/user/gdrive
+file:///mnt/z/workspace/handy
 file:///home/user/Music
+file:///mnt/c/Users/user/nosync
 file:///home/user/OneDrive
 file:///home/user/Pictures
 file:///home/user/Videos
@@ -16,8 +19,7 @@ file:///mnt/data/Downloads
 file:///mnt/sam -- sam
 file:///mnt/sam/cs
 file:///mnt/z -- z
-file:///mnt/z/workspace/handy
+file:///mnt/z/Documents
 file:///mnt/z/handys
-file:///mnt/z/ps
 file:///mnt/zl -- zl
 file:///mnt/zl/ps
