@@ -84,7 +84,7 @@ Download of the runr package plus installation of custom desktop package selects
 ```bash
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
-  entry.sh apps-desktop
+  entry.sh apps-gui
 # Select this whole code block, copy and paste in your terminal
 ```
 
@@ -124,7 +124,7 @@ Download & comprehensive setup:
 curl -LSf -k -o ~/.runr.zip "https://github.com/stroparo/runr/archive/master.zip" \
   && unzip -o ~/.runr.zip -d "$HOME" \
   && cd "$HOME"/.runr \
-  && ./entry.sh alias apps dotfiles shell
+  && ./entry.sh alias apps-cli dotfiles shell
 # Select this whole code block, copy and paste in your terminal
 ```
 
