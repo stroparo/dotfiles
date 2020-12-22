@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
 <action>
+	<icon></icon>
+	<name>Open Guake Terminal Here</name>
+	<unique-id>1608639750858284-2</unique-id>
+	<command>guake --show -n %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon></icon>
+	<name>Open in Sublime Text</name>
+	<unique-id>1518473820062068-4</unique-id>
+	<command>subl %F</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+	<other-files/>
+	<text-files/>
+</action>
+<action>
 	<icon>utilities-terminal</icon>
 	<name>Open Terminal Here</name>
 	<unique-id>1517345475243851-1</unique-id>
@@ -12,36 +32,12 @@
 </action>
 <action>
 	<icon></icon>
-	<name>Open with Sublime</name>
-	<unique-id>1518473820062068-4</unique-id>
-	<command>subl %F</command>
-	<description></description>
+	<name>Paste as Image in Here</name>
+	<unique-id>1608639639090486-1</unique-id>
+	<command>bash -ic &apos;cb2imagefile.sh &quot;%f&quot;&apos;</command>
+	<description>generate clipboard*.png here</description>
 	<patterns>*</patterns>
 	<directories/>
-	<other-files/>
-	<text-files/>
-</action>
-<action>
-	<icon></icon>
-	<name>xz</name>
-	<unique-id>1518823355463389-3</unique-id>
-	<command>xz %F</command>
-	<description></description>
-	<patterns>*</patterns>
-	<audio-files/>
-	<image-files/>
-	<other-files/>
-	<text-files/>
-	<video-files/>
-</action>
-<action>
-	<icon></icon>
-	<name>xunz</name>
-	<unique-id>1518823348199612-2</unique-id>
-	<command>xz -d %F</command>
-	<description></description>
-	<patterns>*.xz</patterns>
-	<other-files/>
 </action>
 <action>
 	<icon></icon>
@@ -64,5 +60,27 @@
 	<command>tar -xJf %f</command>
 	<description></description>
 	<patterns>*.tar.xz</patterns>
+</action>
+<action>
+	<icon></icon>
+	<name>xunz</name>
+	<unique-id>1518823348199612-2</unique-id>
+	<command>xz -d %F</command>
+	<description></description>
+	<patterns>*.xz</patterns>
+	<other-files/>
+</action>
+<action>
+	<icon></icon>
+	<name>xz</name>
+	<unique-id>1518823355463389-3</unique-id>
+	<command>xz %F</command>
+	<description></description>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
 </action>
 </actions>
