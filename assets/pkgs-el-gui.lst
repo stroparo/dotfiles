@@ -1,0 +1,39 @@
+# Base desktop packages
+gnome-themes-standard
+x11-ssh-askpass
+# xbacklight
+xclip
+xdotool
+
+
+# Educational
+gnome-chemistry-utils
+
+
+# Games
+dosbox
+openttd openttd-opengfx timidity++
+
+
+# Multimedia
+audacious audacious-plugins-freeworld
+parole
+ristretto
+
+
+# Networking packages
+gigolo  # remote filesystem management
+
+
+# Productivity packages
+atril
+galculator
+gnome-shell-extension-pomodoro
+guake  # quake style terminal emulator
+# libreoffice-calc
+meld  # diff / comparison
+shutter  # screenshot
+
+
+# Security packages
+clamtk  # GUI client for clamav antivirus

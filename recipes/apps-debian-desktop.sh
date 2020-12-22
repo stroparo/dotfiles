@@ -76,7 +76,9 @@ _install_packages autorenamer
 _install_packages dconf-editor
 _install_packages qdirstat  # Ubuntu 20.04+, before it was under the 'nathan-renniewaldock/qdirstat' PPA
 _install_packages slop  # GUI region selection, used by other apps such as screenkey
+_install_packages xclip
 _install_packages xdotool wmctrl  # deps for macro scripts in general and also for jc00ke/move-to-next-monitor
+_install_packages xscreensaver
 
 echo "$PROGNAME: INFO: APT repository clean up..."
 sudo $APTPROG autoremove -y
@@ -95,7 +97,7 @@ sudo apt-get update
 # Apps - Desktop
 sudo apt-get install -y bum
 sudo apt-get install -y ssh-askpass
-sudo apt-get install -y xbacklight xclip xscreensaver
+sudo apt-get install -y xbacklight
 
 # Apps - Drivers - Have linux-headers-... installed.
 sudo apt-get install -y "nvidia-kernel-$(uname -r)" nvidia-{settings,xconfig}

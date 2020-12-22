@@ -1,6 +1,7 @@
-# Base packages...
+# Base packages
+bash zsh
+tmux
 apt-transport-https
-bash
 curl lftp mosh net-tools rsync wget
 dconf-cli
 gdebi gdebi-core
@@ -10,15 +11,12 @@ less
 localepurge
 logrotate
 parted
-p7zip-full p7zip-rar
 secure-delete
 silversearcher-ag
-tmux
-unzip zip
-xz-utils
-zsh
+zip unzip p7zip-full p7zip-rar xz-utils
 
-# Devel packages...
+
+# Development apps and utils packages
 automake build-essential gcc make
 bison
 exuberant-ctags
@@ -32,7 +30,8 @@ redis-server
 # python-software-properties
 sqlite3 libdbd-sqlite3
 
-# Devel libs...
+
+# Development libraries
 gettext
 imagemagick
 libbz2-dev
@@ -53,7 +52,10 @@ python-openssl
 tk-dev
 zlib1g zlib1g-dev
 
-# Security packages...
+
+# Security packages
+clamav libclamunrar6
+# clamav-daemon
 gnupg pwgen
 oathtool
 ssh-askpass

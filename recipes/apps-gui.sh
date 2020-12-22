@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-PROGNAME="apps-cli.sh"
+PROGNAME="apps-gui.sh"
 
-export PKG_LIST_FILE_EL="${RUNR_DIR}/assets/pkgs-el.lst"
-export PKG_LIST_FILE_EL_EPEL="${RUNR_DIR}/assets/pkgs-el-epel.lst"
-export PKG_LIST_FILE_UBUNTU="${RUNR_DIR}/assets/pkgs-ubuntu.lst"
+export PKG_LIST_FILE_EL="${RUNR_DIR}/assets/pkgs-el-gui.lst"
+export PKG_LIST_FILE_EL_EPEL="${RUNR_DIR}/assets/pkgs-el-epel-gui.lst"
+export PKG_LIST_FILE_UBUNTU="${RUNR_DIR}/assets/pkgs-ubuntu-gui.lst"
 
 
 if _is_debian_family ; then
@@ -33,15 +33,16 @@ if _is_debian_family ; then
 elif _is_el_family ; then
   installrepoepel
   sudo $RPMGROUP -q -y --enablerepo=epel 'Development Tools'
-  installpkgsepel $(validpkgs "${PKG_LIST_FILE_EL_EPEL}")
+  # installpkgsepel $(validpkgs "${PKG_LIST_FILE_EL_EPEL}")
 fi
 
 installpkgs $(validpkgs "${PKG_LIST_FILE}")
+bash "${RUNR_DIR:-$PWD}"/recipes/apps-ubuntu-ppa.sh
 
 if _is_debian_family ; then aptcleanup ; fi
 
 
 echo
 echo
-echo "$PROGNAME: COMPLETE"
+echo "$PROGNAME: COMPLETE (compound)"
 exit

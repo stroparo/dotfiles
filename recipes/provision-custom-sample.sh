@@ -54,11 +54,10 @@ if type code ; then bash "${RUNR_DIR:-$PWD}"/recipes/conf-vscode.sh ; fi
 
 
 # Apps - GUI - Etcetera
-bash "${RUNR_DIR}"/installers/setupanki.sh
 # bash "${RUNR_DIR}"/installers/setupbrave.sh
 # bash "${RUNR_DIR}"/installers/setupbravebeta.sh
 # bash "${RUNR_DIR}"/installers/setupskype.sh
-bash "${RUNR_DIR}"/recipes/apps-desktop.sh
+bash "${RUNR_DIR}"/recipes/apps-gui.sh
 bash "${RUNR_DIR}"/recipes/keyb-ez.sh
 
 

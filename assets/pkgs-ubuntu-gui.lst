@@ -2,81 +2,61 @@
 gperiodic gtypist tuxtype
 mnemosyne
 
+
 # Entertainment packages
 chocolate-doom
 dosbox stella zsnes
 gnome-games gnome-sudoku gnuchess
+# joy2key joystick inputattach
 openttd openttd-opengfx openttd-openmsx openttd-opensfx timidity
 visualboyadvance  # ubuntu
 visualboyadvance-gtk  # debian?
+
 
 # Multimedia packages
 geeqie exiftool ristretto  # exiftool for cropping images from within geeqie
 mp3splt
 mpv parole smplayer
 
+
 # Networking packages
+blueman bluez
 gigolo  # remote filesystem management
+# mobile-broadband-provider-info modemmanager usb-modeswitch  # mobile modem
+
 
 # Ops packages
 stacer  # system monitoring; Ubuntu 20.04+, before it was under the 'oguzhaninan/stacer' PPA
 
-# Productivity packages
-atril galculator guake meld
-flameshot  # take screenshots, annotate etc.
-gnome-shell-pomodoro
 
-# Networking packages
-blueman bluez
+# Productivity packages
+atril
+# audacious audacious-plugins
+flameshot  # take screenshots, annotate etc.
+galculator
+gnome-shell-pomodoro
+guake  # quake style terminal emulator
+# libreoffice-calc
+meld  # diff / comparison
+
 
 # Security packages
-clamav libclamunrar6
+seahorse
+
+
+# System packages
+# gnome-alsamixer pulseaudio-equalizer pavucontrol volumeicon-alsa
+# ntfs-3g
+
 
 # Miscellaneous packages
+# asunder  # CD ripper
 autorenamer
+# bum
 dconf-editor
 qdirstat  # Ubuntu 20.04+, before it was under the 'nathan-renniewaldock/qdirstat' PPA
 slop  # GUI region selection, used by other apps such as screenkey
+# xbacklight
+xclip
 xdotool wmctrl  # deps for macro scripts in general and also for jc00ke/move-to-next-monitor
-
-# APT repository clean up
-sudo $APTPROG autoremove -y
-sudo $APTPROG clean -y
-
-# APT package for flatpak
-if ! type flatpak >/dev/null 2>&1 ; then
-  sudo apt install flatpak
-  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-fi
-
-# GUI app recommendations > ~/README-debian-gui-apps.lst
-cat <<EOF | tee "${HOME}/README-debian-gui-apps.lst"
-sudo apt-get update
-
-# Apps - Desktop
-sudo apt-get install -y bum
-sudo apt-get install -y ssh-askpass
-sudo apt-get install -y xbacklight xclip xscreensaver
-
-# Apps - Drivers - Have linux-headers-... installed.
-sudo apt-get install -y "nvidia-kernel-$(uname -r)" nvidia-{settings,xconfig}
-
-# Apps - Games
-sudo apt-get install -y joy2key joystick inputattach
-
-# Apps - Multimedia
-sudo apt-get install -y asunder # CD ripper
-sudo apt-get install -y gnome-alsamixer pulseaudio-equalizer pavucontrol volumeicon-alsa
-sudo apt-get install -y audacious audacious-plugins
-
-# Apps - Networking
-sudo apt-get install -y mobile-broadband-provider-info modemmanager usb-modeswitch # mobile modem
-
-# Apps - Productivity
-sudo apt-get install -y libreoffice-calc
-
-# Apps - Security
-sudo apt-get install -y clamav-daemon
-
-# Apps - System
-sudo apt-get install -y ntfs-3g
+xscreensaver

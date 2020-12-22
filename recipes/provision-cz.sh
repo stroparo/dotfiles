@@ -4,8 +4,8 @@ PROGNAME="provision-cz.sh"
 : ${RUNR_DIR:=${RUNR_DIR:-${PWD}}}
 
 ISLINUX=false; if (uname | grep -i -q linux) ; then ISLINUX=true ; fi
-REPO_DS_CZ="stroparo@bitbucket.org/stroparo/ds-cz"
-REPO_DS_CZ_ALTN="stroparo@github.com/stroparo/ds-cz"
+REPO_BASE_BB="stroparo@bitbucket.org/stroparo"
+REPO_BASE_GH="stroparo@github.com/stroparo"
 
 # #############################################################################
 # Basic provisioning
@@ -18,7 +18,7 @@ bash "${RUNR_DIR}"/recipes/provision.sh
 
 source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 
-if ! (dsplugin.sh "$REPO_DS_CZ" || dsplugin.sh "$REPO_DS_CZ_ALTN") ; then
+if ! (dsplugin.sh "${REPO_BASE_BB}/ds-cz" || dsplugin.sh "${REPO_BASE_GH}/ds-cz") ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: 'ds-cz' Daily Shells plugin installation error." 1>&2
   exit 1
 fi
@@ -62,7 +62,7 @@ bash "${RUNR_DIR}"/installers/setuppowerfonts.sh
 echo
 echo
 echo "Suggested recipes to run later on:"
-echo "apps-desktop"
+echo "apps-gui"
 echo "conf-jetbrains"
 echo "keyb-ez"
 echo "setupbrave"
