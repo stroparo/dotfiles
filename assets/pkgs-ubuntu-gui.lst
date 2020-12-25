@@ -59,4 +59,4 @@ slop  # GUI region selection, used by other apps such as screenkey
 # xbacklight
 xclip
 xdotool wmctrl  # deps for macro scripts in general and also for jc00ke/move-to-next-monitor
-xscreensaver xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra
+# xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra
