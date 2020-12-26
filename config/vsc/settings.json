@@ -24,10 +24,10 @@
   "editor.insertSpaces": true,
   "editor.lineHeight": 16,
   "editor.lineNumbers": "on",
+  "editor.linkedEditing": true,
   "editor.matchBrackets": "near",
   "editor.minimap.enabled": false,
   "editor.parameterHints.enabled": true,
-  "editor.renameOnType": true,
   "editor.renderIndentGuides": true,
   "editor.renderLineHighlight": "gutter",
   // "editor.renderWhitespace": "boundary",
@@ -159,6 +159,8 @@
   // GitLens
   "gitlens.blame.heatmap.enabled": true,
   "gitlens.currentLine.enabled": false,
+  "gitlens.defaultDateStyle": "absolute",
+  "gitlens.hovers.currentLine.over": "line",
 
   // Settings sync
   "sync.gist": "7fc97ccd1eb6cec364eec3e2bb3d7290",
@@ -179,5 +181,12 @@
 
   // Stack Python
   "python.languageServer": "Pylance",
+
+  "vs-kubernetes": {
+    "vs-kubernetes.helm-path.linux": "/home/user/.vs-kubernetes/tools/helm/linux-amd64/helm",
+    "vs-kubernetes.draft-path.linux": "/home/user/.vs-kubernetes/tools/draft/linux-amd64/draft",
+    "vs-kubernetes.kubectl-path.linux": "/home/user/.vs-kubernetes/tools/kubectl/kubectl",
+    "vs-kubernetes.minikube-path.linux": "/home/user/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
+  },
 
 }
