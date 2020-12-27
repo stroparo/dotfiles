@@ -57,6 +57,6 @@ dconf-editor
 qdirstat  # Ubuntu 20.04+, before it was under the 'nathan-renniewaldock/qdirstat' PPA
 slop  # GUI region selection, used by other apps such as screenkey
 # xbacklight
-xclip
+xclip xsel
 xdotool wmctrl  # deps for macro scripts in general and also for jc00ke/move-to-next-monitor
 # xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra
