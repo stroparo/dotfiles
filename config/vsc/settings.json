@@ -198,10 +198,9 @@
   "sortLines.sortEntireFile": true,
 
   // Stack JavaScript
-  "javascript.implicitProjectConfig.checkJs": true,
+  "js/ts.implicitProjectConfig.checkJs": true,
   "javascript.suggest.autoImports": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "npm.enableScriptExplorer": true,
 
   // Stack JavaScript - TypeScript
   "typescript.suggest.autoImports": true,
