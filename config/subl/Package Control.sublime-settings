@@ -28,6 +28,7 @@
     "TabsExtra",
     "Terminal",
     "Text Marker", // mark text duplicates, default is the word under the cursor
+    "WakaTime",
 
     // Color Themes
     // "Boxy Theme", // Awesome theme ("numix" color is the red variant) - missing - install own backup
