@@ -78,7 +78,8 @@ _install_omz_plugin \
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
 
-_install_omz_plugin "https://github.com/wbingli/zsh-wakatime.git"
+# _install_omz_plugin "https://github.com/wbingli/zsh-wakatime.git"  # no project detection
+_install_omz_plugin "https://github.com/sobolevn/wakatime-zsh-plugin.git"
 
 
 # #############################################################################
