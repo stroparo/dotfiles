@@ -123,6 +123,8 @@ fi
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Setup Python interpreters..."
 
+_enforce_versions_links $VENVJUPYTER $VENVPOETRY $VENVTOOLS3 $VENVIPYTHON $VENVTOOLS2
+
 pyenv install -s "$PYV3"
 if ! pyenv versions | grep -q -w "$PYV3" ; then exit 1 ; fi
 
@@ -135,8 +137,6 @@ echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for Python interpreters...\n"
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Setup virtualenvs dedicated to tooling..."
 
-_enforce_versions_links $VENVJUPYTER $VENVPOETRY $VENVTOOLS3 $VENVIPYTHON $VENVTOOLS2
-
 pyenv virtualenv -f "$PYV3" $VENVJUPYTER
 pyenv virtualenv -f "$PYV3" $VENVPOETRY
 pyenv virtualenv -f "$PYV3" $VENVTOOLS3
@@ -145,11 +145,13 @@ pyenv virtualenv -f "$PYV3" $VENVTOOLS3
 pyenv virtualenv -f "$PYV2" $VENVIPYTHON
 pyenv virtualenv -f "$PYV2" $VENVTOOLS2
 
+_enforce_versions_links $VENVJUPYTER $VENVPOETRY $VENVTOOLS3 $VENVIPYTHON $VENVTOOLS2
+
 echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for tooling virtualenvs...\n"
 ~/.pyenv/versions/$VENVJUPYTER/bin/pip install --upgrade pip
+~/.pyenv/versions/$VENVIPYTHON/bin/pip install --upgrade pip
 ~/.pyenv/versions/$VENVPOETRY/bin/pip install --upgrade pip
 ~/.pyenv/versions/$VENVTOOLS3/bin/pip install --upgrade pip
-~/.pyenv/versions/$VENVIPYTHON/bin/pip install --upgrade pip
 ~/.pyenv/versions/$VENVTOOLS2/bin/pip install --upgrade pip
 
 # #############################################################################
