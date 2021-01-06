@@ -60,6 +60,18 @@ source ~/.pyenv/versions/$VENVTOOLS3/bin/virtualenvwrapper.sh
 "
 
 # #############################################################################
+# Helpers
+
+_enforce_versions_links () {
+  # Sometimes this recipe or virtualenv-delete (need to verify) corrupts versions links,
+  # ... so enforce these everytime this recipe executes:
+  for venv in "$@" ; do
+    venv_dir="$(ls -1d ~/.pyenv/versions/$PYV3/envs/$venv 2>/dev/null ; ls -1d ~/.pyenv/versions/$PYV2/envs/$venv 2>/dev/null)"
+    ln -s ${venv_dir} ~/.pyenv/versions/
+  done
+}
+
+# #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Prep PROJECT_HOME ($PROJS) and WORKON_HOME ($VENVS) directories..."
 
 mkdir -p "${PROJS}"
@@ -122,6 +134,8 @@ echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for Python interpreters...\n"
 
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Setup virtualenvs dedicated to tooling..."
+
+_enforce_versions_links $VENVJUPYTER $VENVPOETRY $VENVTOOLS3 $VENVIPYTHON $VENVTOOLS2
 
 pyenv virtualenv -f "$PYV3" $VENVJUPYTER
 pyenv virtualenv -f "$PYV3" $VENVPOETRY
