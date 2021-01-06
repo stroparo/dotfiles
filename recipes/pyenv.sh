@@ -121,7 +121,7 @@ echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for Python interpreters...\n"
 ~/.pyenv/versions/${PYV2}/bin/pip install --upgrade pip
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Setup virtualenv's for tooling..."
+echo ${BASH_VERSION:+-e} "\n\n==> Setup virtualenvs dedicated to tooling..."
 
 pyenv virtualenv -f "$PYV3" $VENVJUPYTER
 pyenv virtualenv -f "$PYV3" $VENVPOETRY
@@ -131,7 +131,7 @@ pyenv virtualenv -f "$PYV3" $VENVTOOLS3
 pyenv virtualenv -f "$PYV2" $VENVIPYTHON
 pyenv virtualenv -f "$PYV2" $VENVTOOLS2
 
-echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for tooling virtualenv's...\n"
+echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for tooling virtualenvs...\n"
 ~/.pyenv/versions/$VENVJUPYTER/bin/pip install --upgrade pip
 ~/.pyenv/versions/$VENVPOETRY/bin/pip install --upgrade pip
 ~/.pyenv/versions/$VENVTOOLS3/bin/pip install --upgrade pip
@@ -139,7 +139,7 @@ echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for tooling virtualenv's...\n"
 ~/.pyenv/versions/$VENVTOOLS2/bin/pip install --upgrade pip
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Install Jupyter and iPython in their own virtualenvs..."
+echo ${BASH_VERSION:+-e} "\n\n==> Install Jupyter in its own virtualenv ('$VENVJUPYTER')..."
 
 # iPython dependency gets automatically installed with jupyter:
 ~/.pyenv/versions/$VENVJUPYTER/bin/pip install jupyter
@@ -148,18 +148,18 @@ echo ${BASH_VERSION:+-e} "\n\n==> Install Jupyter and iPython in their own virtu
 ~/.pyenv/versions/$VENVJUPYTER/bin/jupyter nbextensions_configurator enable --user
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Install Poetry for Python 3 in its own virtualenv..."
-
-~/.pyenv/versions/$VENVPOETRY/bin/pip install poetry
-
-# #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Install IPython for Python 2 in its own virtualenv..."
+echo ${BASH_VERSION:+-e} "\n\n==> Install IPython for Python 2 in its own virtualenv ('$VENVIPYTHON')..."
 
 ~/.pyenv/versions/$VENVIPYTHON/bin/pip install ipykernel
 ~/.pyenv/versions/$VENVIPYTHON/bin/python -m ipykernel install --user
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Install virtualenvwrapper in tooling virtualenv..."
+echo ${BASH_VERSION:+-e} "\n\n==> Install Poetry for Python 3 in its own virtualenv ('$VENVPOETRY')..."
+
+~/.pyenv/versions/$VENVPOETRY/bin/pip install poetry
+
+# #############################################################################
+echo ${BASH_VERSION:+-e} "\n\n==> Install virtualenvwrapper in virtualenv '$VENVTOOLS3'..."
 
 ~/.pyenv/versions/$VENVTOOLS3/bin/pip install virtualenvwrapper
 
