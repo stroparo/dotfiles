@@ -65,7 +65,7 @@ fi
 echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for system's pip, so no pyenv in PATH...\n"
 export PATH="$(echo "$PATH" | tr : \\n | grep -v pyenv | tr \\n :)"
 sudo -H pip install --upgrade pip
-sudo -H pip3 install --upgrade pip
+sudo -H python3 -m pip install --upgrade pip
 )
 
 # #############################################################################
