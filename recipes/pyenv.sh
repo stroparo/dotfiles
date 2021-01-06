@@ -31,12 +31,17 @@ export VENVS="${HOME}/.ve"
 
 export PYV2='2.7.18'
 export PYV3='3.9.1'
+
+# Python 3 VENV's:
 export VENVJUPYTER="jupyter$(echo ${PYV3%.*} | tr -d .)"
-export VENVIPYTHON="ipython$(echo ${PYV2%.*} | tr -d .)"
 export VENVPOETRY="poetry$(echo ${PYV3%.*} | tr -d .)"
 export VENVTOOLS3="tools$(echo ${PYV3%.*} | tr -d .)"
+
+# Python 2 VENV's:
+export VENVIPYTHON="ipython$(echo ${PYV2%.*} | tr -d .)"
 export VENVTOOLS2="tools$(echo ${PYV2%.*} | tr -d .)"
-export PYENV_GLOBAL_DEFAULT="$PYV3 $PYV2 $VENVPOETRY $VENVJUPYTER $VENVIPYTHON $VENVTOOLS3 $VENVTOOLS2"
+
+export PYENV_GLOBAL_DEFAULT="$PYV3 $PYV2 $VENVJUPYTER $VENVIPYTHON $VENVPOETRY $VENVTOOLS3 $VENVTOOLS2"
 
 export PYENV_INSTALLER="https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer"
 
@@ -106,8 +111,10 @@ fi
 # #############################################################################
 echo ${BASH_VERSION:+-e} "\n\n==> Setup Python interpreters..."
 
-if ! pyenv install "$PYV3" ; then exit 1 ; fi
-pyenv install "$PYV2"
+pyenv install -s "$PYV3"
+if ! pyenv versions | grep -q -w "$PYV3" ; then exit 1 ; fi
+
+pyenv install -s "$PYV2"
 
 echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for Python interpreters...\n"
 ~/.pyenv/versions/${PYV3}/bin/pip install --upgrade pip
@@ -119,6 +126,8 @@ echo ${BASH_VERSION:+-e} "\n\n==> Setup virtualenv's for tooling..."
 pyenv virtualenv -f "$PYV3" $VENVJUPYTER
 pyenv virtualenv -f "$PYV3" $VENVPOETRY
 pyenv virtualenv -f "$PYV3" $VENVTOOLS3
+
+# Python 2:
 pyenv virtualenv -f "$PYV2" $VENVIPYTHON
 pyenv virtualenv -f "$PYV2" $VENVTOOLS2
 
@@ -130,7 +139,7 @@ echo ${BASH_VERSION:+-e} "\n\n==> pip upgrade for tooling virtualenv's...\n"
 ~/.pyenv/versions/$VENVTOOLS2/bin/pip install --upgrade pip
 
 # #############################################################################
-echo ${BASH_VERSION:+-e} "\n\n==> Install Jupyter and iPython in its own virtualenv..."
+echo ${BASH_VERSION:+-e} "\n\n==> Install Jupyter and iPython in their own virtualenvs..."
 
 # iPython dependency gets automatically installed with jupyter:
 ~/.pyenv/versions/$VENVJUPYTER/bin/pip install jupyter
