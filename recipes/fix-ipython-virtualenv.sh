@@ -12,7 +12,7 @@ echo "${PROGNAME}: INFO: IPython virtualenv detection fix (by Henrique Bastos)..
 ipython profile create
 
 mkdir -p "$HOME"/.ipython/profile_default/startup
-if [ !-d "$HOME"/.ipython/profile_default/startup ] ; then
+if [ ! -d "$HOME"/.ipython/profile_default/startup ] ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: Dir '$HOME/.ipython/profile_default/startup' could not be created." 1>&2
 fi
 
