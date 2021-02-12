@@ -149,6 +149,9 @@
   "zenMode.fullScreen": true,
 
   // Per Stack settings:
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
   "[markdown]": {
     "files.trimTrailingWhitespace": false,
   },
@@ -172,6 +175,7 @@
   "gitlens.defaultDateStyle": "absolute",
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.keymap": "alternate",
+  "gitlens.views.lineHistory.enabled": true,
 
   // Plugin - Kubernetes
   "vs-kubernetes": {
