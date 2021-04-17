@@ -19,8 +19,8 @@
 
   // "theme": "Boxy Tomorrow.sublime-theme",      "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
   // "theme": "Brogrammer.sublime-theme",         "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
-  // "theme": "Seti_orig.sublime-theme",          "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
-  "theme": "Seti_orig.sublime-theme",          "color_scheme": "Packages/Babel/Monokai Phoenix.tmTheme",
+  "theme": "Seti_orig.sublime-theme",          "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",  // << <<
+  // "theme": "Seti_orig.sublime-theme",          "color_scheme": "Packages/Babel/Monokai Phoenix.tmTheme",  // << <<
   // "theme": "Spacegray Eighties.sublime-theme", "color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
 
   // Attributes for theme: Boxy
