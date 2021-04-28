@@ -182,7 +182,8 @@
     "vs-kubernetes.helm-path.linux": "/home/user/.vs-kubernetes/tools/helm/linux-amd64/helm",
     "vs-kubernetes.draft-path.linux": "/home/user/.vs-kubernetes/tools/draft/linux-amd64/draft",
     "vs-kubernetes.kubectl-path.linux": "/home/user/.vs-kubernetes/tools/kubectl/kubectl",
-    "vs-kubernetes.minikube-path.linux": "/home/user/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
+    "vs-kubernetes.minikube-path.linux": "/home/user/.vs-kubernetes/tools/minikube/linux-amd64/minikube",
+    "vscode-kubernetes.minikube-path.linux": "/home/user/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
   },
 
   // Plugin - LiveServer
@@ -239,4 +240,8 @@
     "protos": "pipe",
     "grpc": "pipe"
   },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "snippets.snippetsLocation": "/home/user/.config/Code/User/globalStorage/tahabasri.snippets/data.json",
 }
