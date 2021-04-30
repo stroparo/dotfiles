@@ -5,6 +5,7 @@ export PROGDESC="powerline fonts setup"
 export INSTALLED_SUCCESSFULLY=false
 export INSTALLER_DIR="${HOME}/fonts-master"
 export INSTALLER_PKG="${HOME}/.powerline-fonts.zip"
+export LOCAL_FONTS_DIR="${HOME}/.local/share/fonts"
 
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
 
