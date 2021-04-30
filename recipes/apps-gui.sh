@@ -34,10 +34,16 @@ else
   exit
 fi
 
+
 installpkgs $(validpkgs "${PKG_LIST_FILE}")
+
+
 bash "${RUNR_DIR:-$PWD}"/recipes/apps-ubuntu-ppa.sh
 
-if _is_debian_family ; then aptcleanup ; fi
+
+if _is_debian_family ; then
+  aptcleanup
+fi
 
 
 echo
