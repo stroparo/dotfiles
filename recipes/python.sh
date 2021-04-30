@@ -2,6 +2,9 @@
 
 PROGNAME="python.sh"
 
+echo
+echo
+
 if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only" ; exit ; fi
 
 echo "$PROGNAME: INFO: Python env deployment started >>>> this is a compound recipe"
