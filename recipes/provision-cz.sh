@@ -52,9 +52,16 @@ if ${ISLINUX} ; then
 fi
 
 
-# Apps - GUI - Prioritary (devel etc.)
-bash "${RUNR_DIR}"/installers/setupchrome.sh
+# Apps - GUI
+if ${ISLINUX} ; then
+  bash "${RUNR_DIR}"/installers/setupbrave.sh
+  bash "${RUNR_DIR}"/installers/setupchrome.sh
+  bash "${RUNR_DIR}"/installers/setupinsomnia.sh
+fi
 bash "${RUNR_DIR}"/installers/setuppowerfonts.sh
+if ${ISLINUX} ; then
+  bash "${RUNR_DIR}"/recipes/keyb-ez.sh
+fi
 bash "${RUNR_DIR}"/recipes/subl.sh
 bash "${RUNR_DIR}"/recipes/vsc.sh
 
@@ -64,11 +71,8 @@ echo
 echo "Suggested recipes to run later on:"
 echo "apps-gui"
 echo "conf-jetbrains"
-echo "keyb-ez"
-echo "setupbrave"
 echo "setupgolang"
 echo "setupgotools"
-echo "setupinsomnia"
 echo "vim"
 echo "xfce"
 echo
