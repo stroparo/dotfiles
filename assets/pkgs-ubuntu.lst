@@ -62,4 +62,5 @@ ssh-askpass
 
 
 # System
+chntpw
 dkms
