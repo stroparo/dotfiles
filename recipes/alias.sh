@@ -25,6 +25,10 @@ fi
 
 cat > "$(eval echo "\"${ALIASES_FILE}\"")" <<'EOF'
 
+unalias ctl 2>/dev/null
+unset ctl 2>/dev/null
+ctl () { sudo systemctl "$@" ; }
+
 # Function d - Dir navigation
 unalias d 2>/dev/null
 unset d 2>/dev/null
@@ -47,7 +51,6 @@ d () {
 # Asorted
 alias capsctrl='setxkbmap -option "ctrl:nocaps"'
 alias cls='clear'
-alias ctl='sudo systemctl'
 alias dfg='df -gP'
 alias dfh='df -hP'
 alias dsloaddefault='. "$HOME/.ds/ds.sh"'
