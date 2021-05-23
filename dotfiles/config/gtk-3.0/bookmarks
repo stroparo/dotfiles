@@ -23,6 +23,6 @@ file:///mnt/zl -- zl
 file:///mnt/zl/opt zl.opt
 file:///mnt/sam -- sam
 file:///mnt/sam/bakcs
-file:///mnt/csxsg -- csxsg
-file:///mnt/csxsg/pkgs-4windows
-file:///mnt/csxwd -- csxwd
+file:///mnt/xmain -- xmain
+file:///mnt/xmain/pkgs-4windows
+file:///mnt/xspare -- xspare
