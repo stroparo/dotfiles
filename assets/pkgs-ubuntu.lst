@@ -59,6 +59,7 @@ clamav libclamunrar6
 gnupg pwgen
 oathtool
 ssh-askpass
+ufw
 
 
 # System

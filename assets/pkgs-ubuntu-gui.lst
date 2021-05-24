@@ -22,6 +22,7 @@ mpv parole smplayer
 # Networking packages
 blueman bluez
 gigolo  # remote filesystem management
+gufw
 # mobile-broadband-provider-info modemmanager usb-modeswitch  # mobile modem
 
 
