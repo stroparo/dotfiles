@@ -71,6 +71,11 @@ EOF
 
   sudo systemctl enable xrdp
   sudo systemctl start xrdp
+elif egrep -i -q -r 'ubuntu' /etc/*release ; then
+  sudo apt-get update
+  sudo apt-get install -y xrdp
+  sudo adduser xrdp ssl-cert
+  sudo systemctl restart xrdp
 else
   echo "${PROGNAME:+$PROGNAME: }SKIP: OS not supported." 1>&2
   exit
