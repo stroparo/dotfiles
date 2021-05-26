@@ -3,6 +3,7 @@
   "css.validate": false,
   "scss.validate": false,
   "less.validate": false,
+  "alt-editor.binary": "subl",
   "alt-editor.name": "sublime",
   "bracket-pair-colorizer-2.forceUniqueOpeningColor": true,
   "bracket-pair-colorizer-2.colors": [
@@ -72,7 +73,7 @@
   "files.eol": "\n",
   "files.hotExit": "onExit",
   "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true,
+  "files.trimTrailingWhitespace": false,
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -149,6 +150,9 @@
   "zenMode.fullScreen": true,
 
   // Per Stack settings:
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
@@ -171,7 +175,7 @@
     "suppressWelcomeNotice": true
   },
   "gitlens.blame.heatmap.enabled": true,
-  "gitlens.currentLine.enabled": false,
+  "gitlens.currentLine.enabled": true,
   "gitlens.defaultDateStyle": "absolute",
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.keymap": "alternate",
@@ -183,7 +187,9 @@
     "vs-kubernetes.draft-path.linux": "/home/user/.vs-kubernetes/tools/draft/linux-amd64/draft",
     "vs-kubernetes.kubectl-path.linux": "/home/user/.vs-kubernetes/tools/kubectl/kubectl",
     "vs-kubernetes.minikube-path.linux": "/home/user/.vs-kubernetes/tools/minikube/linux-amd64/minikube",
-    "vscode-kubernetes.minikube-path.linux": "/home/user/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
+    "vscode-kubernetes.helm-path.linux": "/home/user/.vs-kubernetes/tools/helm/linux-amd64/helm",
+    "vscode-kubernetes.minikube-path.linux": "/home/user/.vs-kubernetes/tools/minikube/linux-amd64/minikube",
+    "vscode-kubernetes.kubectl-path.linux": "/home/user/.vs-kubernetes/tools/kubectl/kubectl"
   },
 
   // Plugin - LiveServer
@@ -240,8 +246,6 @@
     "protos": "pipe",
     "grpc": "pipe"
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
   "snippets.snippetsLocation": "/home/user/.config/Code/User/globalStorage/tahabasri.snippets/data.json",
+  "redhat.telemetry.enabled": true,
 }
