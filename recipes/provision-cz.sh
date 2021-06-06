@@ -57,6 +57,9 @@ if ${ISLINUX} ; then
   bash "${RUNR_DIR}"/installers/setupbrave.sh
   bash "${RUNR_DIR}"/installers/setupchrome.sh
   bash "${RUNR_DIR}"/installers/setupinsomnia.sh
+  if sudo dpkg -s xfce4-panel >/dev/null 2>&1 ; then
+    bash "${RUNR_DIR}"/recipes/xfce.sh
+  fi
 fi
 bash "${RUNR_DIR}"/installers/setuppowerfonts.sh
 if ${ISLINUX} ; then
@@ -74,7 +77,6 @@ echo "conf-jetbrains"
 echo "setupgolang"
 echo "setupgotools"
 echo "vim"
-echo "xfce"
 echo
 echo "Suggested scripts in stroparo/ds to run later on:"
 echo "selects-python-stroparo.sh"
