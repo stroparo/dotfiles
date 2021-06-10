@@ -72,7 +72,7 @@ fi
 
 # Admin conf:
 if [ ! -f ~root/.vnc/xstartup ] ; then
-  cat > ~root/.vnc/xstartup <<EOF
+  cat <<EOF | tee ~root/.vnc/xstartup
 #!/bin/bash
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
@@ -101,6 +101,7 @@ ExecStop=/usr/bin/vncserver -kill :1
 [Install]
 WantedBy=multi-user.target
 EOF
+fi
 
 if [[ $- = *i* ]] && ! sudo ls ~/.vnc/passwd ; then
   echo "${PROGNAME:+$PROGNAME: }INFO: Setting up VNC userspace password..." 1>&2
