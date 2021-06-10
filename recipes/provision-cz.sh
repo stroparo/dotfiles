@@ -58,6 +58,7 @@ if ${ISLINUX} ; then
   bash "${RUNR_DIR}"/installers/setupchrome.sh
   bash "${RUNR_DIR}"/installers/setupinsomnia.sh
   if sudo dpkg -s xfce4-panel >/dev/null 2>&1 ; then
+    bash "${RUNR_DIR}"/installers/setupvnc.sh
     bash "${RUNR_DIR}"/recipes/xfce.sh
   fi
 fi
