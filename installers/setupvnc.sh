@@ -112,7 +112,7 @@ Type=forking
 User=root
 PAMName=login
 PIDFile=/root/.vnc/%H:1.pid
-ExecStartPre=/usr/bin/vncserver -kill :1 > /dev/null 2>&1
+ExecStartPre=/usr/bin/vncserver -kill :1 > /dev/null 2>&1; true
 ExecStart=/usr/bin/vncserver
 ExecStop=/usr/bin/vncserver -kill :1
 
