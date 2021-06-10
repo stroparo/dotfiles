@@ -72,7 +72,7 @@ fi
 
 # Admin conf:
 if [ ! -f ~root/.vnc/xstartup ] ; then
-  cat <<EOF | sudo tee ~root/.vnc/xstartup
+  cat <<EOF | sudo tee ~root/.vnc/xstartup >/dev/null
 #!/bin/bash
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
@@ -84,7 +84,7 @@ fi
 # Make service
 
 if [ ! -f /etc/systemd/system/vncserver.service ] ; then
-  cat <<EOF | sudo tee /etc/systemd/system/vncserver.service
+  cat <<EOF | sudo tee /etc/systemd/system/vncserver.service >/dev/null
 [Unit]
 Description=VNC server
 After=syslog.target network.target
@@ -103,11 +103,11 @@ WantedBy=multi-user.target
 EOF
 fi
 
-if [[ $- = *i* ]] && ! sudo ls ~/.vnc/passwd ; then
+if ! sudo ls ~/.vnc/passwd ; then
   echo "${PROGNAME:+$PROGNAME: }INFO: Setting up VNC userspace password..." 1>&2
   vncpasswd
 fi
-if [[ $- = *i* ]] && ! sudo ls ~root/.vnc/passwd ; then
+if ! sudo ls ~root/.vnc/passwd ; then
   echo "${PROGNAME:+$PROGNAME: }INFO: Setting up VNC admin (root) password..." 1>&2
   sudo -H vncpasswd
 fi
