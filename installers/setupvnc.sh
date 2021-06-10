@@ -72,7 +72,7 @@ fi
 
 # Admin conf:
 if [ ! -f ~root/.vnc/xstartup ] ; then
-  cat <<EOF | tee ~root/.vnc/xstartup
+  cat <<EOF | sudo tee ~root/.vnc/xstartup
 #!/bin/bash
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
