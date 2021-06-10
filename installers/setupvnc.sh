@@ -43,8 +43,9 @@ fi
 # #############################################################################
 # Make default configuration
 
-sudo mkdir /root/.vnc >/dev/null 2>&1
+sudo mkdir ~root/.vnc >/dev/null 2>&1
 mkdir ~/.vnc >/dev/null 2>&1
+
 if [ ! -f ~/.vnc/config ] ; then
   cat > ~/.vnc/config <<EOF
 ## Supported server options to pass to vncserver upon invocation can be listed
@@ -59,12 +60,23 @@ geometry=1440x900
 # alwaysshared
 EOF
 fi
+
 if [ ! -f ~/.vnc/xstartup ] ; then
   cat > ~/.vnc/xstartup <<EOF
 #!/bin/bash
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
 xfce4-session &
+EOF
+fi
+
+# Admin conf:
+if [ ! -f ~root/.vnc/xstartup ] ; then
+  cat > ~root/.vnc/xstartup <<EOF
+#!/bin/bash
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+lightdm &
 EOF
 fi
 
@@ -90,6 +102,14 @@ ExecStop=/usr/bin/vncserver -kill :1
 WantedBy=multi-user.target
 EOF
 
+if [[ $- = *i* ]] && ! sudo ls ~/.vnc/passwd ; then
+  echo "${PROGNAME:+$PROGNAME: }INFO: Setting up VNC userspace password..." 1>&2
+  vncpasswd
+fi
+if [[ $- = *i* ]] && ! sudo ls ~root/.vnc/passwd ; then
+  echo "${PROGNAME:+$PROGNAME: }INFO: Setting up VNC admin (root) password..." 1>&2
+  sudo -H vncpasswd
+fi
 sudo systemctl daemon-reload
 sudo systemctl enable --now vncserver
 
