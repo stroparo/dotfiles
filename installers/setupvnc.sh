@@ -70,21 +70,39 @@ xfce4-session &
 EOF
 fi
 
+
 # Admin conf:
+
+if [ ! -f ~root/.vnc/config ] ; then
+  cat <<EOF | sudo tee ~root/.vnc/config >/dev/null
+## Supported server options to pass to vncserver upon invocation can be listed
+## in this file. See the following manpages for more: vncserver(1) Xvnc(1).
+## Several common ones are shown below. Uncomment and modify to your liking.
+##
+# securitytypes=vncauth,tlsvnc
+# desktop=sandbox
+depth=32
+geometry=1440x900
+# localhost
+# alwaysshared
+EOF
+fi
+
 if [ ! -f ~root/.vnc/xstartup ] ; then
   cat <<EOF | sudo tee ~root/.vnc/xstartup >/dev/null
 #!/bin/bash
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
-lightdm &
+export SESSION_MANAGER
+export DBUS_SESSION_BUS_ADDRESS
+sudo -H -u user startxfce4 &
 EOF
 fi
 
 # #############################################################################
 # Make service
 
-if [ ! -f /etc/systemd/system/vncserver.service ] ; then
-  cat <<EOF | sudo tee /etc/systemd/system/vncserver.service >/dev/null
+cat <<EOF | sudo tee /etc/systemd/system/vncserver.service >/dev/null
 [Unit]
 Description=VNC server
 After=syslog.target network.target
@@ -94,14 +112,13 @@ Type=forking
 User=root
 PAMName=login
 PIDFile=/root/.vnc/%H:1.pid
-ExecStartPre=-/usr/bin/vncserver -kill :1 > /dev/null 2>&1
+ExecStartPre=/usr/bin/vncserver -kill :1 > /dev/null 2>&1
 ExecStart=/usr/bin/vncserver
 ExecStop=/usr/bin/vncserver -kill :1
 
 [Install]
 WantedBy=multi-user.target
 EOF
-fi
 
 if ! sudo ls ~/.vnc/passwd ; then
   echo "${PROGNAME:+$PROGNAME: }INFO: Setting up VNC userspace password..." 1>&2
