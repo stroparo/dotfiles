@@ -2,6 +2,7 @@
 
 PROGNAME="apps-gui.sh"
 
+export PKG_LIST_FILE_ARCH="${RUNR_DIR}/assets/pkgs-arch-gui.lst"
 export PKG_LIST_FILE_EL="${RUNR_DIR}/assets/pkgs-el-gui.lst"
 export PKG_LIST_FILE_EL_EPEL="${RUNR_DIR}/assets/pkgs-el-epel-gui.lst"
 export PKG_LIST_FILE_UBUNTU="${RUNR_DIR}/assets/pkgs-ubuntu-gui.lst"
@@ -15,7 +16,13 @@ source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 cd "${RUNR_DIR:-$PWD}"
 
 # #############################################################################
-if _is_debian_family ; then
+if _is_arch_family ; then
+  export PKG_LIST_FILE="${PKG_LIST_FILE_ARCH}"
+
+  sudo "$PACPROG" -Syu
+  sudo "$PACPROG" -Syy
+# #############################################################################
+elif _is_debian_family ; then
   export PKG_LIST_FILE="${PKG_LIST_FILE_UBUNTU}"
 
   if ! (sudo "$APTPROG" update | tee '/tmp/apt-update-err.log') ; then
@@ -36,7 +43,7 @@ fi
 # #############################################################################
 
 installpkgs $(validpkgs "${PKG_LIST_FILE}")
-bash "${RUNR_DIR:-$PWD}"/recipes/apps-ubuntu-ppa.sh
+bash "${RUNR_DIR:-$PWD}/recipes/apps-ubuntu-ppa.sh"
 
 if _is_debian_family ; then
   aptcleanup
@@ -44,5 +51,5 @@ fi
 
 echo
 echo
-echo "$PROGNAME: COMPLETE (compound)"
+echo "$PROGNAME: COMPLETE"
 exit

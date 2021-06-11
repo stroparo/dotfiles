@@ -14,6 +14,7 @@ export USAGE="[-d] [-h]"
 
 # System installers
 export APTPROG=apt-get; if which apt >/dev/null 2>&1 ; then export APTPROG=apt ; fi
+export PACPROG=pacman
 export RPMPROG=yum; if which dnf >/dev/null 2>&1 ; then export RPMPROG=dnf ; fi
 export RPMGROUP="yum groupinstall"; if which dnf >/dev/null 2>&1 ; then export RPMGROUP="dnf group install" ; fi
 export INSTPROG="$APTPROG"; if which "$RPMPROG" >/dev/null 2>&1 ; then export INSTPROG="$RPMPROG" ; fi
@@ -34,9 +35,11 @@ shift "$((OPTIND-1))"
 # #############################################################################
 # Helpers
 
-if [ -f ~/.ds/ds01tests.sh ] ; then
-  . ~/.ds/ds01tests.sh
+if [ -f "${DS_HOME:-$HOME/.ds}/ds01testsdistros.sh" ] ; then
+  . "${DS_HOME:-$HOME/.ds}/ds01testsdistros.sh"
 else
+  _is_arch () { egrep -i -q -r 'arch' /etc/*release ; }
+  _is_arch_family () { egrep -i -q -r 'arch|manjaro' /etc/*release ; }
   _is_debian_family () { egrep -i -q -r 'debian|ubuntu' /etc/*release ; }
   _is_el_family () { egrep -i -q -r '(cent ?os|oracle|red ?hat|fedora)' /etc/*release ; }
   _is_el () { egrep -i -q -r '(cent ?os|oracle|red ?hat)' /etc/*release ; }
@@ -111,15 +114,85 @@ gottcode.repo"
 
 # #############################################################################
 elif _is_debian_family ; then
-
-  # No longer installing whisker menu as XFCE now has similar app 'xfce4-appfinder'
-
   _install_packages xfce4 xfce4-goodies
   _install_packages "xfwm4-themes"
   _install_packages xfce4-clipman-plugin xfce4-mount-plugin xfce4-places-plugin xfce4-timer-plugin
+
+# #############################################################################
+elif _is_arch_family ; then
+  # TODO update for arch:
+  # _install_packages xfce4 xfce4-goodies
+  # _install_packages "xfwm4-themes"
+  # _install_packages xfce4-clipman-plugin xfce4-mount-plugin xfce4-places-plugin xfce4-timer-plugin
+
+  sudo "$PACPROG" -Syu
+  sudo "$PACPROG" -Syy
+
+  # xfce4
+  _install_packages \
+    exo \
+    garcon \
+    thunar \
+    thunar-volman \
+    tumbler \
+    xfce4-appfinder \
+    xfce4-panel \
+    xfce4-power-manager \
+    xfce4-session \
+    xfce4-settings \
+    xfce4-terminal \
+    xfconf \
+    xfdesktop \
+    xfwm4 \
+    xfwm4-themes
+
+  # xfce4-goodies
+  _install_packages \
+    mousepad \
+    parole \
+    ristretto \
+    thunar-archive-plugin \
+    thunar-media-tags-plugin \
+    xfburn \
+    xfce4-artwork \
+    xfce4-battery-plugin \
+    xfce4-clipman-plugin \
+    xfce4-cpufreq-plugin \
+    xfce4-cpugraph-plugin \
+    xfce4-datetime-plugin \
+    xfce4-dict \
+    xfce4-diskperf-plugin \
+    xfce4-eyes-plugin \
+    xfce4-fsguard-plugin \
+    xfce4-genmon-plugin \
+    xfce4-mailwatch-plugin \
+    xfce4-mount-plugin \
+    xfce4-mpc-plugin \
+    xfce4-netload-plugin \
+    xfce4-notes-plugin \
+    xfce4-notifyd \
+    xfce4-pulseaudio-plugin \
+    xfce4-screensaver \
+    xfce4-screenshooter \
+    xfce4-sensors-plugin \
+    xfce4-smartbookmark-plugin \
+    xfce4-systemload-plugin \
+    xfce4-taskmanager \
+    xfce4-time-out-plugin \
+    xfce4-timer-plugin \
+    xfce4-verve-plugin \
+    xfce4-wavelan-plugin \
+    xfce4-weather-plugin \
+    xfce4-whiskermenu-plugin \
+    xfce4-xkb-plugin
 fi
 
 # #############################################################################
+
+
+# Remarks:
+# No longer installing whisker menu as XFCE now has similar app 'xfce4-appfinder'
+
 
 echo "$PROGNAME: COMPLETE"
 exit
