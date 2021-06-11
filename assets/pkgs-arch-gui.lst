@@ -1,0 +1,66 @@
+# Devel
+bless
+sqlitebrowser
+
+
+# Educational packages
+# gperiodic gtypist tuxtype
+# mnemosyne
+
+
+# Entertainment packages
+# chocolate-doom  # TODO find in arch
+dosbox stella zsnes
+gnome-games gnome-sudoku gnuchess
+# joy2key joystick inputattach
+openttd openttd-opengfx openttd-opensfx timidity++
+# visualboyadvance  # ubuntu, TODO find in arch
+
+
+# Multimedia packages
+geeqie perl-image-exiftool ristretto  # exiftool for cropping images from within geeqie
+mp3splt mp3splt-gtk
+mpv parole smplayer
+
+
+# Networking packages
+blueman bluez
+gigolo  # remote filesystem management, TODO find in arch
+gufw
+# mobile-broadband-provider-info modemmanager usb-modeswitch  # mobile modem
+
+
+# Productivity packages
+atril
+audacious audacious-plugins playerctl
+flameshot  # take screenshots, annotate etc.
+galculator
+# gnome-shell-pomodoro  # TODO find in arch
+guake  # quake style terminal emulator
+libreoffice-fresh
+meld  # diff / comparison
+
+
+# Security packages
+gpa  # GUI for GnuPG
+seahorse
+xca  # GUI for certs, public keys, openssl etc.
+
+
+# Storage
+grsync
+
+
+# System packages
+# gnome-alsamixer pulseaudio-equalizer pavucontrol volumeicon-alsa
+ntfs-3g
+
+
+# Miscellaneous packages
+# asunder  # CD ripper
+dconf-editor
+gprename krename
+slop  # GUI region selection, used by other apps such as screenkey
+xclip xsel
+xdotool wmctrl  # deps for macro scripts in general and also for jc00ke/move-to-next-monitor
+# xscreensaver  # TODO get a better one, for arch

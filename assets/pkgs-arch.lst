@@ -1,0 +1,74 @@
+# Base packages
+bash zsh zsh-doc
+tmux
+curl lftp mosh net-tools rsync wget
+dconf dconf-editor
+hashdeep
+htop bashtop
+less
+logrotate
+parted
+secure-delete
+the_silver_searcher
+xz pixz
+zip unzip p7zip bzip2 lzip
+
+
+# Development apps and utils packages
+automake base-devel gcc make
+bison
+ctags
+git tig
+httpie
+jq
+llvm
+perl
+pkgconf
+prettier
+redis hiredis
+# python-software-properties
+sqlite sqlite-doc dqlite
+# virtualbox-host-dkms
+yamllint yq
+
+
+# Development libraries
+gettext
+imagemagick
+libcurl-openssl-1.0
+libffi
+gdbm
+gmp
+libdbi libdbi-drivers libspatialite sqlcipher vsqlite++ wxsqlite3
+libgcrypt  # GnuPG lib
+libldap
+libxml2 xmlsec
+libxslt xalan-c
+libyaml yaml-cpp
+ncurses
+python-pyopenssl python-service-identity
+readline
+tk
+zlib
+
+
+# Productivity
+wgetpaste
+
+
+# Security packages
+clamav
+gnupg pwgen
+oath-toolkit step-cli
+openssl libressl libretls
+x11-ssh-askpass
+ufw ufw-extras
+
+
+# System
+chntpw
+dkms
+
+
+# Miscellaneous
+perl-rename
