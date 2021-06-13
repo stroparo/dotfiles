@@ -1,27 +1,27 @@
 # Dotfiles
 
-Custom configuration files and shell script recipes.
+Several software deployments automated and custom configuration routines, mostly in the form of shell scripts: Bash, although there are some recipes with the purpose of setting Zsh up.
 
 ## Requirements
 
-* [runr](https://github.com/stroparo/runr) - routine runner; the commands needed for this project are given in the examples below, but you could use it with whatever other project's or repository's scripts (see the instructions in the runr's link).
+* [runr](https://github.com/stroparo/runr) - routine runner; the commands needed for this project are given in the examples below, but you could use it with whatever other project's or repository's scripts (see more in the linked paged).
 * [sudo setup](#sudo-setup) - several of the recipes use sudo to do system installation and configuration.
 
 ---
 
 ## Run it!
 
-The script is self provisioned, just copy & paste the following block in a terminal session:
+The script is self provisioned i.e. the command below downloads the code and executes it. Just copy & paste the following block in a terminal session:
 
 ```bash
 {
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
-  entry.sh shell apps dotfiles
+  entry.sh shell apps-cli dotfiles
 . "${DS_HOME:-$HOME/.ds}/ds.sh"
 . ~/.aliases-cs
 }
-# Select this whole code block, copy and paste in your terminal
+# This is a dummy line for copying and pasting this whole block in a terminal emulator with bash.
 ```
 
 ---
@@ -43,7 +43,7 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   entry.sh alias setupds setupohmyzsh sshkeygen sshmodes
 . "${DS_HOME:-$HOME/.ds}/ds.sh"
 . ~/.aliases-cs
-# Select this whole code block, copy and paste in your terminal
+# This is a dummy line for copying and pasting this whole block in a terminal emulator with bash.
 ```
 
 Other examples:
@@ -72,7 +72,7 @@ bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/ent
 
 ```bash
 bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
-  entry.sh vscodium
+  entry.sh vscode
 ```
 
 ---
@@ -85,7 +85,7 @@ Download of the runr package plus installation of custom desktop package selects
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
   entry.sh apps-gui
-# Select this whole code block, copy and paste in your terminal
+# This is a dummy line for copying and pasting this whole block in a terminal emulator with bash.
 ```
 
 ---
@@ -125,7 +125,7 @@ curl -LSf -k -o ~/.runr.zip "https://github.com/stroparo/runr/archive/master.zip
   && unzip -o ~/.runr.zip -d "$HOME" \
   && cd "$HOME"/.runr \
   && ./entry.sh alias apps-cli dotfiles shell
-# Select this whole code block, copy and paste in your terminal
+# This is a dummy line for copying and pasting this whole block in a terminal emulator with bash.
 ```
 
 ---
