@@ -34,6 +34,7 @@ bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynctc.sh
 # Recipes
 
 source "${RUNR_DIR}"/recipes/provision-stroparo.sh  # After Daily Shells setups.
+source "${RUNR_DIR}"/recipes/conf-coredump-disable.sh
 
 
 # Apps - CLI - Prioritary (devel etc.)
