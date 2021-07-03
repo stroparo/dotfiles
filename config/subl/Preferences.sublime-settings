@@ -1,4 +1,6 @@
 {
+  "update_check": false,
+
   // EditorConfig properties
   "default_encoding": "UTF-8",                // charset = utf-8
   "default_line_ending": "unix",              // end_of_line = lf
