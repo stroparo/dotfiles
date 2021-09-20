@@ -34,9 +34,6 @@ stacer  # system monitoring; Ubuntu 20.04+, before it was under the 'oguzhaninan
 atril
 # audacious audacious-plugins
 flameshot  # take screenshots, annotate etc.
-galculator
-gnome-shell-pomodoro
-guake  # quake style terminal emulator
 # libreoffice-calc
 meld  # diff / comparison
 
@@ -54,7 +51,6 @@ seahorse
 # asunder  # CD ripper
 autorenamer
 # bum
-dconf-editor
 qdirstat  # Ubuntu 20.04+, before it was under the 'nathan-renniewaldock/qdirstat' PPA
 slop  # GUI region selection, used by other apps such as screenkey
 # xbacklight
