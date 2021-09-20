@@ -40,16 +40,17 @@ source "${RUNR_DIR}"/recipes/conf-coredump-disable.sh
 # Apps - CLI - Prioritary (devel etc.)
 bash "${RUNR_DIR}"/recipes/nodejs.sh
 if ${ISLINUX} ; then
+  # Stacks:
   # bash "${RUNR_DIR}"/installers/setupgolang.sh
   # bash "${RUNR_DIR}"/installers/setupgotools.sh
-  bash "${RUNR_DIR}"/recipes/python.sh
+  # bash "${RUNR_DIR}"/recipes/python.sh
   bash "${RUNR_DIR}"/installers/setuprust.sh
+
+  # Tools:
   bash "${RUNR_DIR}"/installers/setupdocker.sh
   bash "${RUNR_DIR}"/installers/setupdocker-compose.sh
   bash "${RUNR_DIR}"/installers/setupeditorconfig.sh
-
-  # Tools built from source:
-  bash "${RUNR_DIR}"/installers/setupexa.sh  # Must have Rust already setup
+  bash "${RUNR_DIR}"/installers/setupexa.sh  # Deps: Rust
 fi
 
 
@@ -60,7 +61,7 @@ if ${ISLINUX} ; then
   bash "${RUNR_DIR}"/installers/setupinsomnia.sh
   if sudo dpkg -s xfce4-panel >/dev/null 2>&1 ; then
     bash "${RUNR_DIR}"/installers/setupvnc.sh
-    # bash "${RUNR_DIR}"/recipes/xfce.sh
+    bash "${RUNR_DIR}"/recipes/xfce.sh
   fi
 fi
 bash "${RUNR_DIR}"/installers/setuppowerfonts.sh
