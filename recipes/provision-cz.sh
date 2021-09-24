@@ -25,7 +25,7 @@ fi
 dsload
 
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupfs.sh crypt cryptlinux data external c
-# bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh
+bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupgitcred.sh
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynckeys.sh
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynctc.sh
@@ -44,32 +44,32 @@ if ${ISLINUX} ; then
   # bash "${RUNR_DIR}"/installers/setupgolang.sh
   # bash "${RUNR_DIR}"/installers/setupgotools.sh
   # bash "${RUNR_DIR}"/recipes/python.sh
-  # bash "${RUNR_DIR}"/installers/setuprust.sh
+  bash "${RUNR_DIR}"/installers/setuprust.sh
 
   # Tools:
   bash "${RUNR_DIR}"/installers/setupdocker.sh
   bash "${RUNR_DIR}"/installers/setupdocker-compose.sh
   bash "${RUNR_DIR}"/installers/setupeditorconfig.sh
-  # bash "${RUNR_DIR}"/installers/setupexa.sh  # Deps: Rust
+  bash "${RUNR_DIR}"/installers/setupexa.sh  # Deps: Rust
 fi
 
 
 # Apps - GUI
 if ${ISLINUX} ; then
   # bash "${RUNR_DIR}"/installers/setupbrave.sh
-  # bash "${RUNR_DIR}"/installers/setupchrome.sh
+  bash "${RUNR_DIR}"/installers/setupchrome.sh
   # bash "${RUNR_DIR}"/installers/setupinsomnia.sh
   if sudo dpkg -s xfce4-panel >/dev/null 2>&1 ; then
-    bash "${RUNR_DIR}"/installers/setupvnc.sh
-    bash "${RUNR_DIR}"/recipes/xfce.sh
+    # bash "${RUNR_DIR}"/installers/setupvnc.sh
+    # bash "${RUNR_DIR}"/recipes/xfce.sh
   fi
 fi
 bash "${RUNR_DIR}"/installers/setuppowerfonts.sh
 if ${ISLINUX} ; then
   bash "${RUNR_DIR}"/recipes/keyb-ez.sh
 fi
-# bash "${RUNR_DIR}"/recipes/subl.sh
-# bash "${RUNR_DIR}"/recipes/vsc.sh
+bash "${RUNR_DIR}"/recipes/subl.sh
+bash "${RUNR_DIR}"/recipes/vsc.sh
 
 
 echo
