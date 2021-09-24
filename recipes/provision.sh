@@ -99,7 +99,7 @@ _desktop_linux () {
 _sys_linux () {
   if ! ${ISLINUX} ; then return ; fi
 
-  bash "${RUNR_DIR}"/recipes/linux-fixes.sh
+  # bash "${RUNR_DIR}"/recipes/linux-fixes.sh
 }
 
 # #############################################################################

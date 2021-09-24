@@ -57,11 +57,11 @@ zlib1g zlib1g-dev
 clamav libclamunrar6
 # clamav-daemon
 gnupg pwgen
-oathtool
-ssh-askpass
+# oathtool
+# ssh-askpass
 ufw
 
 
 # System
 chntpw
-dkms
+# dkms
