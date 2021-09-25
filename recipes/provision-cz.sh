@@ -56,7 +56,6 @@ fi
 
 # Apps - GUI
 if ${ISLINUX} ; then
-  # bash "${RUNR_DIR}"/installers/setupbrave.sh
   bash "${RUNR_DIR}"/installers/setupchrome.sh
   # bash "${RUNR_DIR}"/installers/setupinsomnia.sh
   if sudo dpkg -s xfce4-panel >/dev/null 2>&1 ; then
