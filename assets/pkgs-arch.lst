@@ -61,7 +61,7 @@ clamav
 gnupg pwgen
 oath-toolkit step-cli
 openssl libressl libretls
-x11-ssh-askpass
+# x11-ssh-askpass
 ufw ufw-extras
 
 
