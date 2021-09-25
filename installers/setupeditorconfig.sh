@@ -31,7 +31,14 @@ export INSTPROG="$APTPROG"; which "$RPMPROG" >/dev/null 2>&1 && export INSTPROG=
 # #############################################################################
 # Main
 
-"${DS_HOME:-$HOME/.ds}/scripts/pkgupdate.sh"
-sudo ${INSTPROG} install -y editorconfig
+if grep -i -q 'id=arch' /etc/*release ; then
+
+  sudo pacman -Sy editorconfig-core-c
+
+elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
+
+  "${DS_HOME:-$HOME/.ds}/scripts/pkgupdate.sh"
+  sudo ${INSTPROG} install -y editorconfig
+fi
 
 echo "${PROGNAME:+$PROGNAME: }COMPLETE: Editor Config setup"

@@ -8,9 +8,24 @@ fi
 # #############################################################################
 # Dependencies
 
-sudo apt update && sudo apt-get install -y gtk+3.0 webkit2gtk-4.0 libusb-dev
-if [ $? -ne 0 ] ; then
-  exit 1
+# Debian / Ubuntu:
+if which apt-get >/dev/null 2>&1 ; then
+
+  sudo apt-get update \
+    && sudo apt-get install -y gtk+3.0 webkit2gtk-4.0 libusb-dev
+  if [ $? -ne 0 ] ; then
+    echo "${PROGNAME:+$PROGNAME: }FATAL: Could not install deps." 1>&2
+    exit 1
+  fi
+
+# Arch:
+elif which pacman >/dev/null 2>&1 ; then
+
+  sudo pacman -S gtk3 webkit2gtk libusb
+  if [ $? -ne 0 ] ; then
+    echo "${PROGNAME:+$PROGNAME: }FATAL: Could not install deps." 1>&2
+    exit 1
+  fi
 fi
 
 # #############################################################################

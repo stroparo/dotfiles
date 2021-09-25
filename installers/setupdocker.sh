@@ -13,7 +13,11 @@ export LINUX_RELEASE
 echo "$PROGNAME: INFO: Docker container platform setup started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
-if grep -i -q ubuntu /etc/*release ; then
+if grep -i -q 'id=arch' /etc/*release ; then
+
+  sudo pacman -Sy docker
+
+elif grep -i -q ubuntu /etc/*release ; then
 
   sudo apt-get update
 

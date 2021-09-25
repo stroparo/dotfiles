@@ -10,7 +10,7 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 # #############################################################################
 # Globals
 
-DC_VERSION='1.27.4'
+DC_VERSION='1.29.2'
 DC_ALTN_URL="https://github.com/docker/compose/releases/download/${DC_VERSION}/docker-compose-`uname -s`-`uname -m`"
 
 COMPLETION_FILE="${HOME}/.zsh/completion/_docker-compose"
@@ -20,17 +20,23 @@ SYSTEM_PYTHON="$(ls -1 /bin/python3 2>/dev/null || ls -1 /usr/bin/python3 2>/dev
 # #############################################################################
 # Install
 
-if which pip >/dev/null 2>&1 ; then
-  if type pyenv >/dev/null 2>&1 ; then
-    pyenv local system
-  fi
-  ${SYSTEM_PYTHON:-python3} -m pip install --user --upgrade docker-compose
-fi
+if grep -i -q 'id=arch' /etc/*release ; then
 
-# Download docker-compose as a last resort if all else fails:
-if ! type docker-compose >/dev/null 2>&1 ; then
-  sudo curl ${DLOPTEXTRA} -L "${DC_ALTN_URL}" -o /usr/local/bin/docker-compose
-  sudo chmod +x /usr/local/bin/docker-compose
+  sudo pacman -Sy docker-compose
+
+else
+  if which pip >/dev/null 2>&1 ; then
+    if type pyenv >/dev/null 2>&1 ; then
+      pyenv local system
+    fi
+    ${SYSTEM_PYTHON:-python3} -m pip install --user --upgrade docker-compose
+  fi
+
+  # Download docker-compose as a last resort if all else fails:
+  if ! type docker-compose >/dev/null 2>&1 ; then
+    sudo curl ${DLOPTEXTRA} -L "${DC_ALTN_URL}" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+  fi
 fi
 
 # #############################################################################
