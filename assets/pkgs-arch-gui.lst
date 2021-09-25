@@ -1,25 +1,30 @@
+# Comm
+telegram-desktop
+
+
 # Devel
 bless
 sqlitebrowser
 
 
 # Educational packages
-# gperiodic gtypist tuxtype
-# mnemosyne
+# gperiodic gtypist tuxtype  # TODO find in arch
+# mnemosyne  # TODO find in arch
 
 
 # Entertainment packages
 # chocolate-doom  # TODO find in arch
 dosbox stella zsnes
 gnome-games gnome-sudoku gnuchess
-# joy2key joystick inputattach
+joyutils linuxconsole
 openttd openttd-opengfx openttd-opensfx timidity++
-# visualboyadvance  # ubuntu, TODO find in arch
+vbam-sdl vbam-wx  # visualboyadvance emulator
 
 
 # Multimedia packages
-geeqie perl-image-exiftool ristretto  # exiftool for cropping images from within geeqie
-mp3splt mp3splt-gtk
+geeqie perl-image-exiftool ristretto  # image viewers; exiftool needed by geeqie image cropping
+# gwenview  # image viewer; KDE libs needed
+mp3splt mp3splt-gtk  # split mp3 and ogg audio files
 mpv parole smplayer
 
 
@@ -27,7 +32,7 @@ mpv parole smplayer
 blueman bluez
 gigolo  # remote filesystem management, TODO find in arch
 gufw
-# mobile-broadband-provider-info modemmanager usb-modeswitch  # mobile modem
+# mobile-broadband-provider-info modemmanager usb-modeswitch  # mobile modem  # ubuntu(?), old(?)
 
 
 # Productivity packages
@@ -43,23 +48,26 @@ meld  # diff / comparison
 
 # Security packages
 gpa  # GUI for GnuPG
+keepassxc  # password / secrets management; encrypted; browser-integration
 seahorse
-xca  # GUI for certs, public keys, openssl etc.
+xca  # GUI for certs (certificates), public keys, openssl etc.
 
 
 # Storage
 grsync
+grub-customizer
+veracrypt  # truecrypt alternative
 
 
 # System packages
-# gnome-alsamixer pulseaudio-equalizer pavucontrol volumeicon-alsa
+# gnome-alsamixer pulseaudio-equalizer pavucontrol volumeicon-alsa  # ubuntu(?), old(?)
 ntfs-3g
 
 
 # Miscellaneous packages
-# asunder  # CD ripper
+asunder  # CD ripper
 dconf-editor
-gprename krename
+gprename  # 'krename' does need kde libs?
 slop  # GUI region selection, used by other apps such as screenkey
 xclip xsel
 xdotool wmctrl  # deps for macro scripts in general and also for jc00ke/move-to-next-monitor
