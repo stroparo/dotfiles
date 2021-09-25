@@ -20,7 +20,7 @@ SYSTEM_PYTHON="$(ls -1 /bin/python3 2>/dev/null || ls -1 /usr/bin/python3 2>/dev
 # #############################################################################
 # Install
 
-if grep -i -q 'id=arch' /etc/*release ; then
+if egrep -i -q 'id[^=]*=arch' /etc/*release ; then
 
   sudo pacman -Sy docker-compose
 

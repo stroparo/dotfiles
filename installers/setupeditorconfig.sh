@@ -31,7 +31,7 @@ export INSTPROG="$APTPROG"; which "$RPMPROG" >/dev/null 2>&1 && export INSTPROG=
 # #############################################################################
 # Main
 
-if grep -i -q 'id=arch' /etc/*release ; then
+if egrep -i -q 'id[^=]*=arch' /etc/*release ; then
 
   sudo pacman -Sy editorconfig-core-c
 

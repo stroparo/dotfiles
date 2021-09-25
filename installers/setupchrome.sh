@@ -17,7 +17,11 @@ export RPMGROUP="yum groupinstall"; which dnf >/dev/null 2>&1 && export RPMGROUP
 # #############################################################################
 # Main
 
-if egrep -i -q -r '(centos|fedora|oracle|red *hat).* 7' /etc/*release ; then
+if egrep -i -q 'id[^=]*=arch' /etc/*release ; then
+
+  yay -Sy google-chrome
+
+elif egrep -i -q -r '(centos|fedora|oracle|red *hat).* 7' /etc/*release ; then
 
   cat <<EOF | sudo tee /etc/yum.repos.d/google-x86_64.repo
 [google64]

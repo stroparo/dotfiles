@@ -88,6 +88,10 @@ if ${DO_PORTABLE:-false} ; then
   fi
 
 
+elif egrep -i -q 'id[^=]*=arch' /etc/*release ; then
+  yay -S sublime-text-3
+
+
 elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   curl -LSf "$SUBL_APT_KEY" | sudo apt-key add -
   sudo $APTPROG install -y apt-transport-https
