@@ -89,7 +89,7 @@ if ${DO_PORTABLE:-false} ; then
 
 
 elif egrep -i -q 'id[^=]*=arch' /etc/*release ; then
-  yay -S sublime-text-3
+  yay -Sy sublime-text-3
 
 
 elif egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
