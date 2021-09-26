@@ -1,3 +1,7 @@
+# Base
+dconf-editor
+
+
 # Comm
 telegram-desktop
 
@@ -54,6 +58,7 @@ xca  # GUI for certs (certificates), public keys, openssl etc.
 
 
 # Storage
+gprename  # 'krename' does need kde libs?
 grsync
 grub-customizer
 veracrypt  # truecrypt alternative
@@ -66,8 +71,6 @@ ntfs-3g
 
 # Miscellaneous packages
 asunder  # CD ripper
-dconf-editor
-gprename  # 'krename' does need kde libs?
 slop  # GUI region selection, used by other apps such as screenkey
 xclip xsel
 xdotool wmctrl  # deps for macro scripts in general and also for jc00ke/move-to-next-monitor

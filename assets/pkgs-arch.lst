@@ -2,7 +2,7 @@
 bash zsh zsh-doc
 tmux
 curl lftp mosh net-tools rsync wget
-dconf dconf-editor
+dconf
 hashdeep
 htop bashtop
 less
@@ -68,6 +68,7 @@ ufw ufw-extras
 # System
 chntpw
 dkms
+grub os-prober
 
 
 # Miscellaneous
