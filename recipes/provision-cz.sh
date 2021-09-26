@@ -24,7 +24,7 @@ if ! (dsplugin.sh "${REPO_BASE_BB}/ds-cz" || dsplugin.sh "${REPO_BASE_GH}/ds-cz"
 fi
 dsload
 
-bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupfs.sh crypt cryptlinux data external c
+bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupfs.sh data external c
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupgitcred.sh
 bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynckeys.sh
