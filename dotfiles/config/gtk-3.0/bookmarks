@@ -1,21 +1,19 @@
+file:///mnt/data/csdata
+file:///mnt/z/csdataencr
+file:///mnt/z/csdatasync
 file:///home/user/Documents
 file:///home/user/Downloads
 file:///mnt/data/Dropbox
-file:///mnt/z/datasens
-file:///mnt/z/gdrive
+file:///mnt/data/ns--cs
+file:///home/user/workspace
 file:///mnt/z/workspace/handy
 file:///mnt/z/handys
 file:///mnt/data/Dropbox/libcomp
 file:///mnt/data/Dropbox/libcomp-public
-file:///mnt/z/datasens/naitsoft
 file:///mnt/zznix/ps
 file:///mnt/zznix/ps/tkts ps tkts
 file:///mnt/zznix/ps/vc ps.vc
-file:///home/user/workspace
 file:///home/user/.config
-file:///mnt/z/gdrive/0fin
-file:///mnt/z/gdrive/0fin-ns
-file:///mnt/z/gdrive/0m8
 file:///mnt/c -- c
 file:///mnt/c/Users/user
 file:///mnt/c/Users/user/Downloads
@@ -26,4 +24,3 @@ file:///mnt/z -- z
 file:///mnt/z/workspace/handy/scriptsw
 file:///mnt/zznix -- zznix
 file:///mnt/zznix/opt zznix.opt
-file:///mnt/sam -- sam
