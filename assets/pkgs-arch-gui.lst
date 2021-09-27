@@ -20,7 +20,7 @@ sqlitebrowser
 # chocolate-doom  # TODO find in arch
 dosbox stella zsnes
 gnome-games gnome-sudoku gnuchess
-joyutils linuxconsole
+joyutils  # conflicts with linuxconsole
 openttd openttd-opengfx openttd-opensfx timidity++
 vbam-sdl vbam-wx  # visualboyadvance emulator
 
@@ -34,7 +34,7 @@ mpv parole smplayer
 
 # Networking packages
 blueman bluez
-gigolo  # remote filesystem management, TODO find in arch
+# gigolo  # remote filesystem management, TODO find in arch
 gufw
 # mobile-broadband-provider-info modemmanager usb-modeswitch  # mobile modem  # ubuntu(?), old(?)
 
