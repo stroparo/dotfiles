@@ -20,7 +20,6 @@ if _is_arch_family ; then
   export PKG_LIST_FILE="${PKG_LIST_FILE_ARCH}"
 
   sudo "$PACPROG" -Syu
-  sudo "$PACPROG" -Syy
 # #############################################################################
 elif _is_debian_family ; then
   export PKG_LIST_FILE="${PKG_LIST_FILE_UBUNTU}"
