@@ -65,6 +65,7 @@ veracrypt  # truecrypt alternative
 
 
 # System packages
+flatpak
 # gnome-alsamixer pulseaudio-equalizer pavucontrol volumeicon-alsa  # ubuntu(?), old(?)
 ntfs-3g
 
