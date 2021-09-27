@@ -22,7 +22,7 @@ dosbox stella zsnes
 gnome-games gnome-sudoku gnuchess
 joyutils  # conflicts with linuxconsole
 openttd openttd-opengfx openttd-opensfx timidity++
-vbam-sdl vbam-wx  # visualboyadvance emulator
+# vbam-sdl vbam-wx  # visualboyadvance emulator; these two packages are conflicting
 
 
 # Multimedia packages
