@@ -8,3 +8,4 @@ fi
 yay -S brave-bin
 yay -S fsearch-git
 yay -S openvpn3
+yay -S slack-desktop
