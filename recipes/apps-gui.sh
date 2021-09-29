@@ -7,6 +7,21 @@ export PKG_LIST_FILE_EL="${RUNR_DIR}/assets/pkgs-el-gui.lst"
 export PKG_LIST_FILE_EL_EPEL="${RUNR_DIR}/assets/pkgs-el-epel-gui.lst"
 export PKG_LIST_FILE_UBUNTU="${RUNR_DIR}/assets/pkgs-ubuntu-gui.lst"
 
+if ! (which caja >/dev/null 2>&1 \
+  || which dolphin >/dev/null 2>&1 \
+  || which nautilus >/dev/null 2>&1 \
+  || which nemo >/dev/null 2>&1 \
+  || which pcmanfm >/dev/null 2>&1 \
+  || which thunar >/dev/null 2>&1 \
+  || sudo systemctl status gdm \
+  || sudo systemctl status lightdm \
+  || sudo systemctl status lxdm \
+  || sudo systemctl status sddm \
+  )
+then
+  echo "$PROGNAME: SKIP: No Display Manager, so no GUI available."
+  exit
+fi
 
 echo "$PROGNAME: INFO: started..."
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
