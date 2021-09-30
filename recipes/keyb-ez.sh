@@ -21,7 +21,7 @@ if which apt-get >/dev/null 2>&1 ; then
 # Arch:
 elif which pacman >/dev/null 2>&1 ; then
 
-  sudo pacman -S gtk3 webkit2gtk libusb
+  sudo pacman -Sy --noconfirm gtk3 webkit2gtk libusb
   if [ $? -ne 0 ] ; then
     echo "${PROGNAME:+$PROGNAME: }FATAL: Could not install deps." 1>&2
     exit 1
