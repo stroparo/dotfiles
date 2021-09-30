@@ -54,6 +54,7 @@ _step_base_apps () {
   if [[ $PROVISION_OPTIONS != *apps* ]] ; then return ; fi
 
   bash "${RUNR_DIR}"/recipes/apps-cli.sh
+  bash "${RUNR_DIR}"/recipes/apps-yay-cli.sh
 }
 
 # #############################################################################
