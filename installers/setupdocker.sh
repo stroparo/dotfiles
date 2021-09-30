@@ -15,7 +15,7 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 if egrep -i -q 'id[^=]*=arch' /etc/*release ; then
 
-  sudo pacman -Sy docker
+  sudo pacman -Sy --noconfirm docker
 
 elif grep -i -q ubuntu /etc/*release ; then
 

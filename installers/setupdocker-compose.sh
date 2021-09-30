@@ -22,7 +22,7 @@ SYSTEM_PYTHON="$(ls -1 /bin/python3 2>/dev/null || ls -1 /usr/bin/python3 2>/dev
 
 if egrep -i -q 'id[^=]*=arch' /etc/*release ; then
 
-  sudo pacman -Sy docker-compose
+  sudo pacman -Sy --noconfirm docker-compose
 
 else
   if which pip >/dev/null 2>&1 ; then

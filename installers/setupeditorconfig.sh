@@ -33,7 +33,7 @@ export INSTPROG="$APTPROG"; which "$RPMPROG" >/dev/null 2>&1 && export INSTPROG=
 
 if egrep -i -q 'id[^=]*=arch' /etc/*release ; then
 
-  sudo pacman -Sy editorconfig-core-c
+  sudo pacman -Sy --noconfirm editorconfig-core-c
 
 elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
