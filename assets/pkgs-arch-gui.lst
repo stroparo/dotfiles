@@ -55,6 +55,7 @@ gpa  # GUI for GnuPG
 keepassxc  # password / secrets management; encrypted; browser-integration
 seahorse
 xca  # GUI for certs (certificates), public keys, openssl etc.
+x11-ssh-askpass
 
 
 # Storage
