@@ -19,8 +19,23 @@ cd "${RUNR_DIR:-$PWD}"
 if _is_arch_family ; then
   export PKG_LIST_FILE="${PKG_LIST_FILE_ARCH}"
 
-  sudo "$PACPROG" -Syy
-  sudo "$PACPROG" -Syu
+  sudo "$PACPROG" -Sy
+
+  # Essential GUI packages some Arch distros do not ship by default:
+  if which caja >/dev/null 2>&1 \
+    || which dolphin >/dev/null 2>&1 \
+    || which nautilus >/dev/null 2>&1 \
+    || which nemo >/dev/null 2>&1 \
+    || which pcmanfm >/dev/null 2>&1 \
+    || which thunar >/dev/null 2>&1 \
+    || sudo systemctl status gdm \
+    || sudo systemctl status lightdm \
+    || sudo systemctl status lxdm \
+    || sudo systemctl status sddm
+  then
+    sudo pacman -S x11-ssh-askpass
+  fi
+
 # #############################################################################
 elif _is_debian_family ; then
   export PKG_LIST_FILE="${PKG_LIST_FILE_UBUNTU}"
