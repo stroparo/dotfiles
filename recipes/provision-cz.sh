@@ -57,10 +57,13 @@ fi
 # Apps - GUI
 if ${ISLINUX} ; then
   bash "${RUNR_DIR}"/installers/setupchrome.sh
+  bash "${RUNR_DIR}"/recipes/apps-gui.sh
+  bash "${RUNR_DIR}"/recipes/apps-yay-gui.sh
   # bash "${RUNR_DIR}"/installers/setupinsomnia.sh
   if sudo dpkg -s xfce4-panel >/dev/null 2>&1 ; then
     # bash "${RUNR_DIR}"/installers/setupvnc.sh
     # bash "${RUNR_DIR}"/recipes/xfce.sh
+    :
   fi
 fi
 bash "${RUNR_DIR}"/installers/setuppowerfonts.sh
@@ -74,7 +77,6 @@ bash "${RUNR_DIR}"/recipes/vsc.sh
 echo
 echo
 echo "Suggested recipes to run later on:"
-echo "apps-gui"
 echo "conf-jetbrains"
 echo "setupgolang"
 echo "setupgotools"
