@@ -26,6 +26,7 @@ fi
 PKGLIST="
 brave-bin
 fsearch-git
+skypeforlinux-stable-bin
 slack-desktop
 "
 
