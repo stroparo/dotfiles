@@ -26,17 +26,22 @@ openttd openttd-opengfx openttd-opensfx timidity++
 
 
 # Multimedia packages
+clementine  # audio player
 geeqie perl-image-exiftool ristretto  # image viewers; exiftool needed by geeqie image cropping
 # gwenview  # image viewer; KDE libs needed
 mp3splt mp3splt-gtk  # split mp3 and ogg audio files
-mpv parole smplayer
+mpv parole smplayer  # media players
+obs-studio  # desktop recording and streaming
 
 
 # Networking packages
-blueman bluez
+blueman bluez  # bluetooth
+filezilla
+deluge  # bittorrent
 # gigolo  # remote filesystem management, TODO find in arch
-gufw
+gufw  # firewall GUI client (for ufw)
 # mobile-broadband-provider-info modemmanager usb-modeswitch  # mobile modem  # ubuntu(?), old(?)
+nitroshare
 
 
 # Productivity packages
@@ -51,11 +56,11 @@ meld  # diff / comparison
 
 
 # Security packages
-gpa  # GUI for GnuPG
-keepassxc  # password / secrets management; encrypted; browser-integration
-seahorse
-xca  # GUI for certs (certificates), public keys, openssl etc.
-x11-ssh-askpass
+gpa  # Manage GnuPG certs / keys etc.
+keepassxc  # Manage secrets, passwords etc.; encrypted; browser-integration
+seahorse  # Manage GnuPG certs / keys etc.
+xca  # Manage certs (certificates), public keys, openssl etc.
+x11-ssh-askpass  # SSH passphrase prompt. (Endeavour does not ship it by default, as of 2021-09-30.)
 
 
 # Storage
