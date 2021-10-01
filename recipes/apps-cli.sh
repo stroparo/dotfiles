@@ -21,7 +21,7 @@ if _is_arch_family ; then
 
   sudo "$PACPROG" -Sy
 
-  # Essential GUI packages some Arch distros do not ship by default:
+  # Essential GUI environment packages best installed early on:
   if which caja >/dev/null 2>&1 \
     || which dolphin >/dev/null 2>&1 \
     || which nautilus >/dev/null 2>&1 \
@@ -33,7 +33,7 @@ if _is_arch_family ; then
     || sudo systemctl status lxdm \
     || sudo systemctl status sddm
   then
-    sudo pacman -S x11-ssh-askpass
+    sudo pacman -S ntfs-3g x11-ssh-askpass
   fi
 
 # #############################################################################
