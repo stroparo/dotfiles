@@ -9,11 +9,11 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
 
-echo "$PROGNAME: INFO: executing '${RUNR_DIR:-.}/recipes-linux-fixes/fix-*'..."
+echo "$PROGNAME: INFO: executing '${RUNR_DIR:-.}/recipes-linux/fix-*'..."
 
-for fix in "${RUNR_DIR:-.}"/recipes-linux-fixes/fix-* ; do
+for fix in "${RUNR_DIR:-.}"/recipes-linux/fix-* ; do
   bash "${fix}"
 done
 
-echo "$PROGNAME: COMPLETE: '${RUNR_DIR:-.}/recipes-linux-fixes' (compound)"
+echo "$PROGNAME: COMPLETE: '${RUNR_DIR:-.}/recipes-linux' (compound)"
 exit

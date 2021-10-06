@@ -26,7 +26,7 @@ if [ -f "$SSH_ENV" ] ; then
   . "$SSH_ENV"
 fi
 if [ -z "$(ssh-add -l)" ] ; then
-  "${DS_HOME:-$HOME/.ds}"/scripts/sshkeygenrsa.sh
+  "${DS_HOME:-$HOME/.ds}"/scripts/sshkeygenecdsa.sh
 else
   echo "${PROGNAME:+$PROGNAME: }SKIP: There already is an active ssh-agent."
   echo
