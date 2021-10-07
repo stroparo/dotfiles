@@ -76,6 +76,10 @@ flatpak
 ntfs-3g
 
 
+# VM
+jdk8-openjdk
+
+
 # Miscellaneous packages
 asunder  # CD ripper
 slop  # GUI region selection, used by other apps such as screenkey
