@@ -10,13 +10,13 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 # #############################################################################
 # Globals
 
-VER_FULL=2.18.0
+VER_FULL=2.33.0
 export GIT_PREFIX="/usr/local/git"
 export GIT_URL="https://www.kernel.org/pub/software/scm/git/git-${VER_FULL}.tar.gz"
 export PROFILE_STRING="export PATH=\"${GIT_PREFIX:-/usr/local/git}/bin:\$PATH\""
 
 # Package installers:
-export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
+export APTPROG=apt-get
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf
 
 # #############################################################################
