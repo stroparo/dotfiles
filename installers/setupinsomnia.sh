@@ -22,8 +22,8 @@ if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
   sudo apt-get install -y insomnia
 
 
-elif egrep -i -q -r 'centos|fedora|oracle|red *hat' /etc/*release ; then
-  echo "${PROGNAME:+$PROGNAME: }SKIP: TODO pending implementation for red hat distributions.." 1>&2
+else
+  echo "${PROGNAME:+$PROGNAME: }SKIP: Distro not supported." 1>&2
 fi
 
 
