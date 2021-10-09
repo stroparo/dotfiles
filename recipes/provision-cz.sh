@@ -24,18 +24,17 @@ if ! (dsplugin.sh "${REPO_BASE_BB}/ds-cz" || dsplugin.sh "${REPO_BASE_GH}/ds-cz"
 fi
 dsload
 
-bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupfs.sh data external c
-bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupautostart.sh
-bash "${DS_HOME:-$HOME/.ds}"/scripts/czsetupgitcred.sh
-bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynckeys.sh
-bash "${DS_HOME:-$HOME/.ds}"/scripts/czsynctc.sh
+bash "${DS_HOME:-$HOME/.ds}"/scripts-dsc-pc/czpc.sh
 
 # #############################################################################
 # Recipes
 
 source "${RUNR_DIR}"/recipes/provision-stroparo.sh  # After Daily Shells setups.
-# source "${RUNR_DIR}"/recipes/conf-coredump-disable.sh
-bash "${RUNR_DIR}"/recipes-linux/fix-ssh-algorithms.sh
+
+
+# Configure:
+bash "${RUNR_DIR}"/recipes-conf/coredump-disable.sh
+bash "${RUNR_DIR}"/recipes-conf/ssh-hostkeyalgorithms.sh
 
 
 # Apps - CLI - Prioritary (devel etc.)

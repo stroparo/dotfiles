@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROGNAME="fix-ssh-algorithms.sh"
+PROGNAME="ssh-hostkeyalgorithms.sh"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 
