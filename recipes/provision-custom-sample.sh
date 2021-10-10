@@ -12,19 +12,19 @@ export PROVISION_OPTIONS="base sudonopasswd apps"
 bash "${RUNR_DIR}"/recipes/provision.sh
 
 # #############################################################################
-# Daily Shells setups
+# DS (DRYSL) Scripting Library setups
 
 source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 
 if ! dsplugin.sh "some repo url" ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: 'some ds plugin' Daily Shells plugin installation error." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }FATAL: 'some ds plugin' DS (DRYSL) Scripting Library plugin installation error." 1>&2
   exit 1
 fi
 
 # #############################################################################
 # Recipes
 
-source "${RUNR_DIR}"/recipes/provision-stroparo.sh  # After Daily Shells setups.
+source "${RUNR_DIR}"/recipes/provision-stroparo.sh  # After DS (DRYSL) Scripting Library setups.
 
 
 # Apps - CLI - Prioritary (devel etc.)

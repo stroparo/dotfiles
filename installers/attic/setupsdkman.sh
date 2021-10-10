@@ -40,7 +40,7 @@ if ! which zip ; then
   fi
 fi
 if ! which zip ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: must have the 'zip' program in the PATH." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }FATAL: could not install the 'zip' package." 1>&2
   exit 1
 fi
 

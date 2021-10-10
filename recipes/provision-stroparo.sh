@@ -24,17 +24,17 @@ bash "${RUNR_DIR}"/recipes/dotfiles.sh
 bash "${RUNR_DIR}"/recipes/git.sh
 
 # #############################################################################
-# Daily Shells setups
+# DS (DRYSL) Scripting Library setups
 
 source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 
 if ! (dsplugin.sh "${REPO_BASE_BB}/ds-stroparo" || dsplugin.sh "${REPO_BASE_GH}/ds-stroparo") ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: 'ds-stroparo' Daily Shells plugin installation error." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }FATAL: 'ds-stroparo' DS (DRYSL) Scripting Library plugin installation error." 1>&2
   exit 1
 fi
 
 if ! (dsplugin.sh "${REPO_BASE_BB}/ds-js" || dsplugin.sh "${REPO_BASE_GH}/ds-js") ; then
-  echo "${PROGNAME:+$PROGNAME: }WARN: 'ds-js' Daily Shells plugin installation error." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }WARN: 'ds-js' DS (DRYSL) Scripting Library plugin installation error." 1>&2
 fi
 
 bash "${DS_HOME:-$HOME/.ds}"/scripts/dsconfgit.sh

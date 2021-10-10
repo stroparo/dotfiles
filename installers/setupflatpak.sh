@@ -9,7 +9,7 @@ if grep -q 'ubuntu' /etc/*release ; then
   sudo apt-get install flatpak
   flatpak remote-add --if-not-exists flathub 'https://flathub.org/repo/flathub.flatpakrepo'
 else
-  echo "${PROGNAME:+$PROGNAME: }SKIP: distro not supported." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: this OS is not handled by this script." 1>&2
   exit
 fi
 

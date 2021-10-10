@@ -2,7 +2,7 @@
 
 PROGNAME=setupds.sh
 
-echo "$PROGNAME: INFO: Daily Shells setup started"
+echo "$PROGNAME: INFO: DS (DRYSL) Scripting Library setup started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 # #############################################################################
@@ -55,11 +55,11 @@ _main () {
   elif [ -f "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
     . "${DS_HOME:-$HOME/.ds}/ds.sh" && dsupgrade
   fi
-  echo "${PROGNAME}: FINISHED Daily Shells setup"
+  echo "${PROGNAME}: FINISHED DS (DRYSL) Scripting Library setup"
   echo
 }
 
 
 _main "$@" || exit $?
-echo "$PROGNAME: COMPLETE: Daily Shells setup"
+echo "$PROGNAME: COMPLETE: DS (DRYSL) Scripting Library setup"
 exit

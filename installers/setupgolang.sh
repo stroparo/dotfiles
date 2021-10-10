@@ -12,7 +12,7 @@ then
   exit
 fi
 if [ ! -f "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
-  echo "${PROGNAME}: FATAL: Daily Shells must be installed." 1>&2
+  echo "${PROGNAME}: FATAL: DS (DRYSL) Scripting Library must be installed." 1>&2
   exit 1
 fi
 
@@ -39,6 +39,9 @@ elif egrep -i -q -r 'debian' /etc/*release ; then
   sudo "${INSTPROG}" install -y golang-any
 elif egrep -i -q -r 'cent *os|fedora|oracle|red *hat' /etc/*release ; then
   sudo "${INSTPROG}" install -y golang
+else
+  echo "${PROGNAME:+$PROGNAME: }SKIP: this OS is not handled by this script." 1>&2
+  exit
 fi
 
 # #############################################################################

@@ -23,7 +23,8 @@ if egrep -i -q -r 'debian|ubuntu' /etc/*release ; then
 
 
 else
-  echo "${PROGNAME:+$PROGNAME: }SKIP: Distro not supported." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }SKIP: this OS is not handled by this script." 1>&2
+  exit
 fi
 
 
