@@ -122,7 +122,7 @@ elif _is_arch_family ; then
   # _install_packages "xfwm4-themes"
   # _install_packages xfce4-clipman-plugin xfce4-mount-plugin xfce4-places-plugin xfce4-timer-plugin
 
-  sudo "$PACPROG" -Syyu
+  sudo "$PACPROG" -Sy
 
   # xfce4
   # _install_packages \
