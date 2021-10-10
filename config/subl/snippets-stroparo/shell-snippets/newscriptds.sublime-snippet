@@ -10,7 +10,7 @@
 ckds () {
   if [ -z "\${DS_VERSION}" ] && ! . "\${DS_HOME}/ds.sh" "\${DS_HOME}" >/dev/null 2>&1
   then
-    echo "No DS Daily Shells loaded. Fix it and call this again." 1>&2
+    echo "No DS DRYSL (DRY Scripting Library) loaded. Fix it and call this again." 1>&2
     echo "Tips:" 1>&2
     echo "curl -o - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh' | bash" 1>&2
     echo "wget -O - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh' | bash" 1>&2

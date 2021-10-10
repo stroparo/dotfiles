@@ -39,7 +39,7 @@ source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 if [ -f "${DS_HOME:-$HOME/.ds}/ds01testsdistros.sh" ] ; then
   . "${DS_HOME:-$HOME/.ds}/ds01testsdistros.sh"
 else
-  echo "${PROGNAME:+$PROGNAME: }FATAL: Must have Daily Shells installed in the environment." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }FATAL: Must have DRYSL (DRY Scripting Library) installed in the environment." 1>&2
   exit 1
 fi
 
