@@ -37,7 +37,7 @@ if ! (dsplugin.sh "${REPO_BASE_BB}/ds-js" || dsplugin.sh "${REPO_BASE_GH}/ds-js"
   echo "${PROGNAME:+$PROGNAME: }WARN: 'ds-js' DS (DRYSL) Scripting Library plugin installation error." 1>&2
 fi
 
-bash "${DS_HOME:-$HOME/.ds}"/scripts/dsconfgit.sh
+bash "${DS_HOME:-$HOME/.ds}"/scripts-dsc-pc/st-conf-git.sh
 
 # #############################################################################
 
