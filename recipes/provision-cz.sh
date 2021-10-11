@@ -19,7 +19,7 @@ bash "${RUNR_DIR}"/recipes/provision.sh
 source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 
 if ! (dsplugin.sh "${REPO_BASE_BB}/ds-cz" || dsplugin.sh "${REPO_BASE_GH}/ds-cz") ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: 'ds-cz' plugin installation error." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }FATAL: 'ds-cz' shell plugin installation error." 1>&2
   exit 1
 fi
 dsload
