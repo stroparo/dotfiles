@@ -130,7 +130,7 @@ alias dce='docker-compose exec'
 # #############################################################################
 # Git
 
-# Check existence to avoid duplicate of alias recipe in dotfiles vs DS (DRYSL) Scripting Library:
+# Check existence to avoid duplicate of alias recipe in dotfiles vs DRYSL - DRY Scripting Library:
 if ! type gcheckedout >/dev/null 2>&1 ; then function gcheckedout () { git branch -v "$@" | egrep '^(==|[*]|---)' ; } ; fi
 if ! type gitbranchactive >/dev/null 2>&1 ; then function gitbranchactive () { echo "$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')" ; } ; fi
 if ! type gdd   >/dev/null 2>&1 ; then function gdd () { git add -A "$@" ; git status -s ; } ; fi

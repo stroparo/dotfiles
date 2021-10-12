@@ -15,7 +15,7 @@ then
 fi
 
 if [ ! -f "${DS_HOME:-$HOME/.ds}/scripts/pkgupdate.sh" ] ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: DS (DRYSL) Scripting Library must be installed." 1>&2
+  echo "${PROGNAME:+$PROGNAME: }FATAL: DRYSL - DRY Scripting Library must be installed." 1>&2
   exit 1
 fi
 

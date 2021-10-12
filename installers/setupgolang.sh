@@ -12,7 +12,7 @@ then
   exit
 fi
 if [ ! -f "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
-  echo "${PROGNAME}: FATAL: DS (DRYSL) Scripting Library must be installed." 1>&2
+  echo "${PROGNAME}: FATAL: DRYSL - DRY Scripting Library must be installed." 1>&2
   exit 1
 fi
 

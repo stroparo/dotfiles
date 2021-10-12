@@ -29,7 +29,7 @@ bash "${DS_HOME:-$HOME/.ds}"/scripts-dsc-pc/czpc.sh
 # #############################################################################
 # Recipes
 
-source "${RUNR_DIR}"/recipes/provision-stroparo.sh  # After DS (DRYSL) Scripting Library setup.
+source "${RUNR_DIR}"/recipes/provision-stroparo.sh  # After DRYSL - DRY Scripting Library setup.
 
 
 # Configure:
