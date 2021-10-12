@@ -12,7 +12,7 @@ export PROVISION_OPTIONS="base sudonopasswd apps"
 bash "${RUNR_DIR}"/recipes/provision.sh
 
 # #############################################################################
-# DRYSL - DRY Scripting Library setups
+# Scripting Library setups
 
 source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 

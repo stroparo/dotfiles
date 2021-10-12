@@ -2,7 +2,8 @@
 
 PROGNAME="setupgolang.sh"
 
-if ! (uname | grep -i -q linux) ; then echo "$PROGNAME: SKIP: Linux supported only." ; exit ; fi
+source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
+linuxordie.sh
 
 if (sudo apt list --installed | grep -q '^golang-any') \
   || (sudo apt list --installed | grep -q '^golang-go') \
@@ -11,10 +12,6 @@ then
   echo "${PROGNAME}: SKIP: already installed."
   exit
 fi
-if [ ! -f "${DS_HOME:-$HOME/.ds}/ds.sh" ] ; then
-  echo "${PROGNAME}: FATAL: DRYSL - DRY Scripting Library must be installed." 1>&2
-  exit 1
-fi
 
 echo "$PROGNAME: INFO: Go (golang) setup started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
@@ -22,6 +19,7 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 # #############################################################################
 # Globals
 
+# TODO use globals set by the scripting library:
 # System installers
 export APTPROG=apt-get; which apt >/dev/null 2>&1 && export APTPROG=apt
 export RPMPROG=yum; which dnf >/dev/null 2>&1 && export RPMPROG=dnf

@@ -2,16 +2,18 @@
 
 PROGNAME="xfce.sh"
 
-if ! (uname -a | grep -i linux) ; then exit ; fi
-
 echo "$PROGNAME: INFO: XFCE setup"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
+
+source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
+linuxordie.sh
 
 # #############################################################################
 # Globals
 
 export USAGE="[-d] [-h]"
 
+# TODO use globals set by the scripting library:
 # System installers
 export APTPROG=apt-get; if which apt >/dev/null 2>&1 ; then export APTPROG=apt ; fi
 export PACPROG=pacman
@@ -34,14 +36,6 @@ shift "$((OPTIND-1))"
 
 # #############################################################################
 # Helpers
-
-source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
-if [ -f "${DS_HOME:-$HOME/.ds}/ds01testsdistros.sh" ] ; then
-  . "${DS_HOME:-$HOME/.ds}/ds01testsdistros.sh"
-else
-  echo "${PROGNAME:+$PROGNAME: }FATAL: Must have DRYSL - DRY Scripting Library installed in the environment." 1>&2
-  exit 1
-fi
 
 
 _install_packages () {
