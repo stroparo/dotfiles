@@ -2,7 +2,7 @@
   <content><![CDATA[
 #!/usr/bin/env bash
 
-# DS (DRYSL) Scripting Library
+# DRYSL - DRY Scripting Library Scripting Library
 # License:
 #   See README.md document in projects page at
 #   https://github.com/stroparo/ds

@@ -31,7 +31,7 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
 Some recipes aggregate others, e.g. the 'shell' recipe calls all of these:
 
 * Aliases recipe: alias
-* For [DRYSL](https://github.com/stroparo/ds) installation: setupds
+* For [DRYSL - DRY Scripting Library](https://github.com/stroparo/ds) installation: setupds
 * For oh-my-zsh: setupohmyzsh
 * For SSH default key generation: sshkeygen sshmodes
 
