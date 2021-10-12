@@ -14,7 +14,7 @@ export PROVISION_OPTIONS="base sudonopasswd apps"
 bash "${RUNR_DIR}"/recipes/provision.sh
 
 # #############################################################################
-# Scripting Library setup
+# Scripting Library setups
 
 source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 

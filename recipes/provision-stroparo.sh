@@ -24,7 +24,7 @@ bash "${RUNR_DIR}"/recipes/dotfiles.sh
 bash "${RUNR_DIR}"/recipes/git.sh
 
 # #############################################################################
-# DRYSL - DRY Scripting Library setups
+# Scripting Library setups
 
 source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
 
