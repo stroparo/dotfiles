@@ -10,10 +10,17 @@ echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
 if which code >/dev/null 2>&1 ; then
   echo "$PROGNAME: INFO: already installed, so trying to upgrade..."
+
+  # TODO handle distros
+
   sudo apt-get update
   sudo apt-get install -y code
   exit
 fi
+
+
+# TODO handle distros
+# Arch: yay -Sy visual-studio-code-bin
 
 echo "$PROGNAME: INFO: starting browser with the official download URL..."
 if which firefox ; then
@@ -23,9 +30,9 @@ elif which google-chrome ; then
 elif which brave-browser ; then
   brave-browser "${VSCODEURL}" & disown
 fi
-
 read -p "Hit ENTER when ready to install (i.e. package has been downloaded to '${HOME}/Downloads/')..." dummy
 sudo gdebi "$(ls -1 ~/Downloads/code*.deb | tail -n 1)"
+
 
 echo "${PROGNAME:+$PROGNAME: }COMPLETE"
 echo
