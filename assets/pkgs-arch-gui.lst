@@ -25,6 +25,10 @@ openttd openttd-opengfx openttd-opensfx timidity++
 # vbam-sdl vbam-wx  # visualboyadvance emulator; these two packages are conflicting
 
 
+# Fonts
+# ttf-fira-code
+
+
 # Multimedia packages
 clementine  # audio player
 geeqie perl-image-exiftool ristretto  # image viewers; exiftool needed by geeqie image cropping
