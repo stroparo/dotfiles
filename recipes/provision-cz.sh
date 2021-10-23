@@ -66,7 +66,6 @@ if ${ISLINUX} ; then
     :
   fi
 fi
-bash "${RUNR_DIR}"/installers/setuppowerfonts.sh
 if ${ISLINUX} ; then
   bash "${RUNR_DIR}"/recipes/keyb-ez.sh
 fi
