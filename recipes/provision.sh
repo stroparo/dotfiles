@@ -87,7 +87,7 @@ _desktop_linux_rdp () {
 
 _desktop_linux () {
   if ! ${ISLINUX} ; then return ; fi
-  if [[ $PROVISION_OPTIONS != *gui* ]] ; then return ; fi
+  if ! (echo "$PROVISION_OPTIONS" | grep -q -w gui) ; then return ; fi
 
   _desktop_linux_el7
   _desktop_linux_xfce
