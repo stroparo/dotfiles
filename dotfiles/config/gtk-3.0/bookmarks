@@ -1,15 +1,14 @@
-file:///mnt/data/csdata
-file:///mnt/z/csdataencr
-file:///mnt/z/csdatasync
+file:///mnt/z/datacs
+file:///mnt/data/datacspc
+file:///mnt/z/datacsyn
 file:///home/user/Documents
 file:///home/user/Downloads
-file:///mnt/data/Dropbox
 file:///mnt/data/ns--cs
 file:///home/user/workspace
 file:///mnt/z/workspace/handy
 file:///mnt/z/handys
-file:///mnt/data/Dropbox/libcomp
-file:///mnt/data/Dropbox/libcomp-public
+file:///mnt/z/datacsyn/libcomp
+file:///mnt/z/datacsyn/libcomp-public
 file:///mnt/zznix/ps
 file:///mnt/zznix/ps/tkts ps tkts
 file:///mnt/zznix/ps/vc ps.vc
