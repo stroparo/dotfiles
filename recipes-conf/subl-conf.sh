@@ -13,9 +13,11 @@ if ! which ${EDITOR_COMMAND} >/dev/null 2>&1 ; then _exit "${PROGNAME}: SKIP: ${
 # Global SUBL_USER:
 SUBL_USER="$HOME/.config/sublime-text-3/Packages/User"
 SUBL_WIN="$(cygpath "$USERPROFILE" 2>/dev/null)/AppData/Roaming/Sublime Text 3"
-SUBL_WIN_OPT="$(cygpath "$USERPROFILE" 2>/dev/null)/opt/subl"
+SUBL_WIN_OPT="$(cygpath "$MYOPT" 2>/dev/null)/opt/subl"
+SUBL_WIN_OPT_USER="$(cygpath "$USERPROFILE" 2>/dev/null)/opt/subl"
 if [ -d "${SUBL_WIN}" ] ; then SUBL_USER="${SUBL_WIN}/Packages/User" ; fi
 if [ -d "${SUBL_WIN_OPT}" ] ; then SUBL_USER="${SUBL_WIN_OPT}/Data/Packages/User" ; fi
+if [ -d "${SUBL_WIN_OPT_USER}" ] ; then SUBL_USER="${SUBL_WIN_OPT_USER}/Data/Packages/User" ; fi
 mkdir -p "${SUBL_USER}"
 if [ ! -d "$SUBL_USER" ] ; then _exiterr 1 "${PROGNAME}: FATAL: Could not create SUBL_USER dir '$SUBL_USER'." ; fi
 
