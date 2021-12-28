@@ -47,9 +47,10 @@ if [ -d "${RUNR_DIR:-$PWD}/assets/subl-packages" ] && [ -d "${SUBL_USER}/../../I
   fi
 fi
 
-# Symlink for any existing instance not in HOME:
-if which sublime_text >/dev/null 2>&1 && [[ $(which sublime_text) != ${HOME}* ]] ; then
-  sudo ln -s $(which sublime_text) /usr/local/bin/subl
+# Activate 'subl' command by creating it as a symlink:
+if which sudo >/dev/null 2>&1 && ! which subl >/dev/null 2>&1 && which sublime_text >/dev/null 2>&1 ; then
+  subl_path="$(which sublime_text)"
+  sudo ln -s "${subl_path}" "${subl_path%ime_text}"
 fi
 
 _exit "$PROGNAME: COMPLETE"
