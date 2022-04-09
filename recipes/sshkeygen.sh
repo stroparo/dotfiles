@@ -10,7 +10,7 @@ SCRIPT_DIR="${SCRIPT_DIR:-$(pwd)}"
 echo "$PROGNAME: INFO: SSH key generation; \$0='$0'; \$PWD='$PWD'"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
-source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
+source "${RUNR_DIR:-.}"/helpers/sidraenforce.sh
 
 
 mkdir ~/.ssh 2>/dev/null
@@ -26,7 +26,7 @@ if [ -f "$SSH_ENV" ] ; then
   . "$SSH_ENV"
 fi
 if [ -z "$(ssh-add -l)" ] ; then
-  "${DS_HOME:-$HOME/.ds}"/scripts/sshkeygenecdsa.sh
+  "${ZDRA_HOME:-$HOME/.zdra}"/scripts/sshkeygenecdsa.sh
 else
   echo "${PROGNAME:+$PROGNAME: }SKIP: There already is an active ssh-agent."
   echo

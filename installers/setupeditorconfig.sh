@@ -2,7 +2,7 @@
 
 PROGNAME="setupeditorconfig.sh"
 
-source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
+source "${RUNR_DIR:-.}"/helpers/sidraenforce.sh
 linuxordie.sh
 
 if (sudo apt list --installed | grep -q '^editorconfig') \
@@ -34,7 +34,7 @@ if egrep -i -q 'id[^=]*=arch' /etc/*release ; then
 
 elif egrep -i -q 'debian|ubuntu' /etc/*release ; then
 
-  "${DS_HOME:-$HOME/.ds}/scripts/pkgupdate.sh"
+  "${ZDRA_HOME:-$HOME/.zdra}/scripts/pkgupdate.sh"
   sudo ${INSTPROG} install -y editorconfig
 fi
 

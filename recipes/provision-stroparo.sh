@@ -26,18 +26,18 @@ bash "${RUNR_DIR}"/recipes/git.sh
 # #############################################################################
 # Scripting Library setups
 
-source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
+source "${RUNR_DIR:-.}"/helpers/sidraenforce.sh
 
-if ! (dsplugin.sh "${REPO_BASE_BB}/ds-stroparo" || dsplugin.sh "${REPO_BASE_GH}/ds-stroparo") ; then
+if ! (zdraplugin.sh "${REPO_BASE_BB}/ds-stroparo" || zdraplugin.sh "${REPO_BASE_GH}/ds-stroparo") ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: 'ds-stroparo' shell plugin installation error." 1>&2
   exit 1
 fi
 
-if ! (dsplugin.sh "${REPO_BASE_BB}/ds-js" || dsplugin.sh "${REPO_BASE_GH}/ds-js") ; then
+if ! (zdraplugin.sh "${REPO_BASE_BB}/ds-js" || zdraplugin.sh "${REPO_BASE_GH}/ds-js") ; then
   echo "${PROGNAME:+$PROGNAME: }WARN: 'ds-js' shell plugin installation error." 1>&2
 fi
 
-bash "${DS_HOME:-$HOME/.ds}"/scripts-dsc-pc/st-conf-git.sh
+bash "${ZDRA_HOME:-$HOME/.zdra}"/scripts-dsc-pc/st-conf-git.sh
 
 # #############################################################################
 

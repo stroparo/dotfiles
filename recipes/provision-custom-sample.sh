@@ -14,34 +14,38 @@ bash "${RUNR_DIR}"/recipes/provision.sh
 # #############################################################################
 # Scripting Library setups
 
-source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
+source "${RUNR_DIR:-.}"/helpers/sidraenforce.sh
 
-if ! dsplugin.sh "some repo url" ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: 'some ds plugin' DRYSL - DRY Scripting Library plugin installation error." 1>&2
+if ! zdraplugin.sh "some repo url" ; then
+  echo "${PROGNAME:+$PROGNAME: }FATAL: 'some sidra plugin' SIDRA Scripting Library plugin installation error." 1>&2
   exit 1
 fi
+zdraload
 
 # #############################################################################
 # Recipes
 
-source "${RUNR_DIR}"/recipes/provision-stroparo.sh  # After DRYSL - DRY Scripting Library setups.
+source "${RUNR_DIR}"/recipes/provision-stroparo.sh  # After SIDRA Scripting Library setups.
 
 
 # Apps - CLI - Prioritary (devel etc.)
-bash "${RUNR_DIR}"/recipes/nodejs.sh
-bash "${RUNR_DIR}"/recipes/python.sh
-bash "${RUNR_DIR}"/installers/setupgolang.sh
-bash "${RUNR_DIR}"/installers/setupgotools.sh
-bash "${RUNR_DIR}"/installers/setuprust.sh
 if ${ISLINUX} ; then
+  # Most devel stacks commented as one should prefer containers/VM's for security:
+  # bash "${RUNR_DIR}"/recipes/nodejs.sh
+  bash "${RUNR_DIR}"/recipes/python.sh
+  # bash "${RUNR_DIR}"/installers/setupgolang.sh
+  # bash "${RUNR_DIR}"/installers/setupgotools.sh
+  # bash "${RUNR_DIR}"/installers/setuprust.sh
+  # bash "${RUNR_DIR}"/installers/setupsdkman.sh
+
+  # Tools:
   bash "${RUNR_DIR}"/installers/setupdocker.sh
   bash "${RUNR_DIR}"/installers/setupdocker-compose.sh
   bash "${RUNR_DIR}"/installers/setupeditorconfig.sh
   bash "${RUNR_DIR}"/installers/setupexa.sh  # Must have Rust already setup
   # bash "${RUNR_DIR}"/recipes/vim.sh
 fi
-bash "${DS_HOME:-$HOME/.ds}"/scripts/selects-python-stroparo.sh
-bash "${RUNR_DIR}"/installers/setupsdkman.sh
+bash "${ZDRA_HOME:-$HOME/.zdra}"/scripts/selects-python-stroparo.sh
 bash "${RUNR_DIR}"/installers/setuptmux.sh
 
 
@@ -56,7 +60,6 @@ if type code ; then bash "${RUNR_DIR:-$PWD}"/recipes/conf-vscode.sh ; fi
 # Apps - GUI - Etcetera
 # bash "${RUNR_DIR}"/installers/setupbrave.sh
 # bash "${RUNR_DIR}"/installers/setupbravebeta.sh
-# bash "${RUNR_DIR}"/installers/setupskype.sh
 bash "${RUNR_DIR}"/recipes/apps-gui.sh
 bash "${RUNR_DIR}"/recipes/keyb-ez.sh
 

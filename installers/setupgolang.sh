@@ -2,7 +2,7 @@
 
 PROGNAME="setupgolang.sh"
 
-source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
+source "${RUNR_DIR:-.}"/helpers/sidraenforce.sh
 linuxordie.sh
 
 if (sudo apt list --installed | grep -q '^golang-any') \
@@ -29,7 +29,7 @@ export INSTPROG="$APTPROG"; which "$RPMPROG" >/dev/null 2>&1 && export INSTPROG=
 # #############################################################################
 # Install
 
-"${DS_HOME:-$HOME/.ds}/scripts/pkgupdate.sh"
+"${ZDRA_HOME:-$HOME/.zdra}/scripts/pkgupdate.sh"
 
 if egrep -i -q -r 'ubuntu' /etc/*release ; then
   sudo "${INSTPROG}" install -y golang-go

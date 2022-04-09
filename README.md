@@ -18,7 +18,7 @@ The script is self provisioned i.e. the command below downloads the code and exe
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
   entry.sh shell apps-cli dotfiles
-. "${DS_HOME:-$HOME/.ds}/ds.sh"
+. "${ZDRA_HOME:-$HOME/.zdra}/zdra.sh"
 . ~/.aliases-cs
 }
 # This is a dummy line for copying and pasting this whole block in a terminal emulator with bash.
@@ -31,7 +31,7 @@ bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
 Some recipes aggregate others, e.g. the 'shell' recipe calls all of these:
 
 * Aliases recipe: alias
-* For [DRYSL - DRY Scripting Library](https://github.com/stroparo/ds) installation: setupds
+* For [SIDRA Scripting Library](https://github.com/stroparo/sidra) installation: setupsidra
 * For oh-my-zsh: setupohmyzsh
 * For SSH default key generation: sshkeygen sshmodes
 
@@ -40,8 +40,8 @@ Instead of using aggregate recipes like the 'shell' one above, you can always sp
 ```bash
 bash -c "$(curl -LSf "https://bitbucket.org/stroparo/runr/raw/master/entry.sh" \
   || curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
-  entry.sh alias setupds setupohmyzsh sshkeygen sshmodes
-. "${DS_HOME:-$HOME/.ds}/ds.sh"
+  entry.sh alias setupsidra setupohmyzsh sshkeygen sshmodes
+. "${ZDRA_HOME:-$HOME/.zdra}/zdra.sh"
 . ~/.aliases-cs
 # This is a dummy line for copying and pasting this whole block in a terminal emulator with bash.
 ```
@@ -56,8 +56,8 @@ bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/ent
 
 ```bash
 bash -c "$(curl -LSf "https://raw.githubusercontent.com/stroparo/runr/master/entry.sh")" \
-  entry.sh setupds
-. "${DS_HOME:-$HOME/.ds}/ds.sh"
+  entry.sh setupsidra
+. "${ZDRA_HOME:-$HOME/.zdra}/zdra.sh"
 ```
 
 ```bash

@@ -53,7 +53,6 @@ alias capsctrl='setxkbmap -option "ctrl:nocaps"'
 alias cls='clear'
 alias dfg='df -gP'
 alias dfh='df -hP'
-alias dsloaddefault='. "$HOME/.ds/ds.sh"'
 alias dumr='du -ma | sort -rn'
 alias dums='du -ma | sort -n'
 alias findd='find . -type d'
@@ -64,6 +63,7 @@ alias nht='tail -9999f nohup.out'
 alias tpf='typeset -f'
 alias xcd="alias | egrep \"'c?d \" | fgrep -v 'cd -'"
 alias xgit="alias | grep -w git"
+alias zdraloaddefault='. "$HOME/.zdra/zdra.sh"'
 
 # Antivirus ClamAV
 alias av='clamscan -i'
@@ -130,7 +130,7 @@ alias dce='docker-compose exec'
 # #############################################################################
 # Git
 
-# Check existence to avoid duplicate of alias recipe in dotfiles vs DRYSL - DRY Scripting Library:
+# Check existence to avoid duplicate of alias recipe in dotfiles vs SIDRA Scripting Library:
 if ! type gcheckedout >/dev/null 2>&1 ; then function gcheckedout () { git branch -v "$@" | egrep '^(==|[*]|---)' ; } ; fi
 if ! type gitbranchactive >/dev/null 2>&1 ; then function gitbranchactive () { echo "$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')" ; } ; fi
 if ! type gdd   >/dev/null 2>&1 ; then function gdd () { git add -A "$@" ; git status -s ; } ; fi

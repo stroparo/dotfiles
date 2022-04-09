@@ -11,7 +11,7 @@ export PKG_LIST_FILE_UBUNTU="${RUNR_DIR}/assets/pkgs-ubuntu.lst"
 echo "$PROGNAME: INFO: started..."
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
-source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
+source "${RUNR_DIR:-.}"/helpers/sidraenforce.sh
 
 cd "${RUNR_DIR:-$PWD}"
 

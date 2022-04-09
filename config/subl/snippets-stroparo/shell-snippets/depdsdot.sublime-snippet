@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-source "\${RUNR_DIR:-.}"/helpers/dsenforce.sh
+source "\${RUNR_DIR:-.}"/helpers/sidraenforce.sh
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>depdsdot</tabTrigger>

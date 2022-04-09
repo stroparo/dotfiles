@@ -2,18 +2,18 @@
   <content><![CDATA[
 #!/usr/bin/env bash
 
-# DRYSL - DRY Scripting Library Scripting Library
+# SIDRA Scripting Library Scripting Library
 # License:
 #   See README.md document in projects page at
-#   https://github.com/stroparo/ds
+#   https://github.com/stroparo/sidra
 
 ckds () {
-  if [ -z "\${DS_VERSION}" ] && ! . "\${DS_HOME}/ds.sh" "\${DS_HOME}" >/dev/null 2>&1
+  if [ -z "\${ZDRA_VERSION}" ] && ! . "\${ZDRA_HOME}/zdra.sh" "\${ZDRA_HOME}" >/dev/null 2>&1
   then
-    echo "No DRYSL - DRY Scripting Library loaded. Fix it and call this again." 1>&2
+    echo "No SIDRA Scripting Library loaded. Fix it and call this again." 1>&2
     echo "Tips:" 1>&2
-    echo "curl -o - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh' | bash" 1>&2
-    echo "wget -O - 'https://raw.githubusercontent.com/stroparo/ds/master/setup.sh' | bash" 1>&2
+    echo "curl -o - 'https://raw.githubusercontent.com/stroparo/sidra/master/setup.sh' | bash" 1>&2
+    echo "wget -O - 'https://raw.githubusercontent.com/stroparo/sidra/master/setup.sh' | bash" 1>&2
     return 1
   fi
 }

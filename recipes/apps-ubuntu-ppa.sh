@@ -11,7 +11,7 @@ fi
 echo "$PROGNAME: INFO: Ubuntu PPA selects (compound)"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
 
-source "${RUNR_DIR:-.}"/helpers/dsenforce.sh
+source "${RUNR_DIR:-.}"/helpers/sidraenforce.sh
 
 
 aptinstall.sh -r "bashtop-monitor/bashtop" bashtop
