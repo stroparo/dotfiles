@@ -4,6 +4,8 @@ PROGNAME="provision-cz.sh"
 : ${RUNR_DIR:=${RUNR_DIR:-${PWD}}}
 
 ISLINUX=false; if (uname | grep -i -q linux) ; then ISLINUX=true ; fi
+REPO_BASE_BB="stroparo@bitbucket.org/stroparo"
+REPO_BASE_GH="stroparo@github.com/stroparo"
 
 # #############################################################################
 # Basic provisioning
@@ -16,9 +18,9 @@ bash "${RUNR_DIR}"/recipes/provision.sh
 
 source "${RUNR_DIR:-.}"/helpers/sidraenforce.sh
 
-REPO_BASE_BB="stroparo@bitbucket.org/stroparo"
-REPO_BASE_GH="stroparo@github.com/stroparo"
-if ! (zdraplugin.sh "${REPO_BASE_BB}/ds-cz" || zdraplugin.sh "${REPO_BASE_GH}/ds-cz") ; then
+if [ -d "${DEV}/ds-cz" ] ; then appendunique "${REPO_BASE_GH}/ds-cz" "${ZDRA_PLUGINS_FILE:-${HOME}/.zdraplugins}" ; fi
+zdrahashplugins.sh
+if ! (zdraplugin.sh "${REPO_BASE_GH}/ds-cz" || zdraplugin.sh "${REPO_BASE_BB}/ds-cz") ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: 'ds-cz' shell plugin installation error." 1>&2
   exit 1
 fi

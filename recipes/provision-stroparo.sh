@@ -28,14 +28,17 @@ bash "${RUNR_DIR}"/recipes/git.sh
 
 source "${RUNR_DIR:-.}"/helpers/sidraenforce.sh
 
-if ! (zdraplugin.sh "${REPO_BASE_BB}/ds-stroparo" || zdraplugin.sh "${REPO_BASE_GH}/ds-stroparo") ; then
+if [ -d "${DEV}/ds-stroparo" ] ; then appendunique "${REPO_BASE_GH}/ds-stroparo" "${ZDRA_PLUGINS_FILE:-${HOME}/.zdraplugins}" ; fi
+if [ -d "${DEV}/ds-js" ]       ; then appendunique "${REPO_BASE_GH}/ds-js" "${ZDRA_PLUGINS_FILE:-${HOME}/.zdraplugins}" ; fi
+zdrahashplugins.sh
+if ! (zdraplugin.sh "${REPO_BASE_GH}/ds-stroparo" || zdraplugin.sh "${REPO_BASE_BB}/ds-stroparo") ; then
   echo "${PROGNAME:+$PROGNAME: }FATAL: 'ds-stroparo' shell plugin installation error." 1>&2
   exit 1
 fi
-
-if ! (zdraplugin.sh "${REPO_BASE_BB}/ds-js" || zdraplugin.sh "${REPO_BASE_GH}/ds-js") ; then
+if ! (zdraplugin.sh "${REPO_BASE_GH}/ds-js" || zdraplugin.sh "${REPO_BASE_BB}/ds-js") ; then
   echo "${PROGNAME:+$PROGNAME: }WARN: 'ds-js' shell plugin installation error." 1>&2
 fi
+zdraload
 
 bash "${ZDRA_HOME:-$HOME/.zdra}"/scripts-dsc-pc/st-conf-git.sh
 
