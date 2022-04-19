@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 PROGNAME=setupsidra.sh
+USAGE="${PROGNAME} [-q]"
 
 echo "$PROGNAME: INFO: SIDRA Scripting Library setup started"
 echo "$PROGNAME: INFO: \$0='$0'; \$PWD='$PWD'"
@@ -38,13 +39,25 @@ else
 fi
 
 
+# Options:
+QUIET=false
+OPTIND=1
+while getopts ':q' option ; do
+  case "${option}" in
+    q) QUIET=true;;
+    h) echo "$USAGE"; exit;;
+  esac
+done
+shift "$((OPTIND-1))"
+
+
 _install_fresh () {
   typeset confirm
 
   # Forced unset eg for when in an old SIDRA loaded session but having removed SIDRA:
   export ZDRA_LOADED=false
 
-  if [ -f "${DEV}/sidra/setup.sh" ] ; then
+  if [ ! ${QUIET:-false} ] && [ -f "${DEV}/sidra/setup.sh" ] ; then
     echo ${BASH_VERSION:+-e} "$PROGNAME: CONFIRM: Local version found. (Re)Hash from it?" "[y/N] \c"
     read confirm
     if [[ $confirm = [yY]* ]] ; then
