@@ -57,19 +57,25 @@ _install_fresh () {
   # Forced unset eg for when in an old SIDRA loaded session but having removed SIDRA:
   export ZDRA_LOADED=false
 
-  if [ ! ${QUIET:-false} ] && [ -f "${DEV}/sidra/setup.sh" ] ; then
-    echo ${BASH_VERSION:+-e} "$PROGNAME: CONFIRM: Local version found. (Re)Hash from it?" "[y/N] \c"
-    read confirm
-    if [[ $confirm = [yY]* ]] ; then
+  ls -l "${DEV}/sidra/setup.sh"
+  if [ -f "${DEV}/sidra/setup.sh" ] ; then
+    if [ ! ${QUIET:-false} ] ; then
+      echo ${BASH_VERSION:+-e} "$PROGNAME: CONFIRM: Local version found. (Re)Hash from it?" "[y/N] \c"
+      read confirm
+      if [[ $confirm = [yY]* ]] ; then
+        . "${DEV}/sidra/zdra00.sh"
+        zdrahash
+      fi
+    else
       . "${DEV}/sidra/zdra00.sh"
       zdrahash
-      return
     fi
+  else
+    bash -c "$(cat "${DEV}/sidra/setup.sh" 2>/dev/null \
+      || ${DLPROG} ${DLOPT} ${DLOPTEXTRA} ${DLOUT} - "${ZDRA_SETUP_URL}" \
+      || ${DLPROG} ${DLOPT} ${DLOPTEXTRA} ${DLOUT} - "${ZDRA_SETUP_URL_ALT}")" \
+      setup.sh "${ZDRA_INSTALL_DIR}"
   fi
-  bash -c "$(cat "${DEV}/sidra/setup.sh" 2>/dev/null \
-    || ${DLPROG} ${DLOPT} ${DLOPTEXTRA} ${DLOUT} - "${ZDRA_SETUP_URL}" \
-    || ${DLPROG} ${DLOPT} ${DLOPTEXTRA} ${DLOUT} - "${ZDRA_SETUP_URL_ALT}")" \
-    setup.sh "${ZDRA_INSTALL_DIR}"
 }
 
 

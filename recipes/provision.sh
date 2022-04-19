@@ -41,8 +41,8 @@ _step_base_system () {
 
   _sudo_setup
 
-  mkdir -p ~/workspace >/dev/null 2>&1
-  if ! test -d ~/workspace && ! test -L ~/workspace ; then
+  mkdir -p ${DEV:-$HOME/workspace} >/dev/null 2>&1
+  if ! test -d ${DEV:-$HOME/workspace} && ! test -L ${DEV:-$HOME/workspace} ; then
     exit $?
   fi
 
