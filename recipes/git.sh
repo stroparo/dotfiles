@@ -61,6 +61,7 @@ core.autocrlf     false
 core.excludesfile $HOME/.gitignore_global
 core.pager        less -F -X
 diff.submodule    log
+init.defaultBranch develop
 push.default      simple
 push.recurseSubmodules  check
 rebase.missingCommitsCheck  warn
