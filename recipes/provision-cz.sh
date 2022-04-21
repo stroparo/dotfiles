@@ -18,12 +18,9 @@ bash "${RUNR_DIR}"/recipes/provision.sh
 
 source "${RUNR_DIR:-.}"/helpers/sidraenforce.sh
 
-if [ -d "${DEV}/ds-cz" ] ; then appendunique "${REPO_BASE_GH}/ds-cz" "${ZDRA_PLUGINS_FILE:-${HOME}/.zdraplugins}" ; fi
+appendunique "${REPO_BASE_GH}/ds-cz" "${ZDRA_PLUGINS_FILE:-${HOME}/.zdraplugins}"
+appendunique "${REPO_BASE_GH}/sidra-gui" "${ZDRA_PLUGINS_FILE:-${HOME}/.zdraplugins}"
 zdrahashplugins.sh
-if ! (zdraplugin.sh "${REPO_BASE_GH}/ds-cz" || zdraplugin.sh "${REPO_BASE_BB}/ds-cz") ; then
-  echo "${PROGNAME:+$PROGNAME: }FATAL: 'ds-cz' shell plugin installation error." 1>&2
-  exit 1
-fi
 zdraload
 
 bash "${ZDRA_HOME:-$HOME/.zdra}"/scripts-dsc-pc/czpc.sh
@@ -72,7 +69,7 @@ if ${ISLINUX} ; then
   bash "${RUNR_DIR}"/recipes/keyb-ez.sh
 fi
 bash "${RUNR_DIR}"/recipes/subl.sh
-bash "${RUNR_DIR}"/recipes/vsc.sh
+bash "${RUNR_DIR}"/recipes/vscode.sh
 
 
 echo
