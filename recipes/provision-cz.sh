@@ -32,7 +32,9 @@ source "${RUNR_DIR}"/recipes/provision-stroparo.sh  # After SIDRA Scripting Libr
 
 
 # Configure:
-bash "${RUNR_DIR}"/recipes-conf/coredump-disable.sh
+if ${ISLINUX} ; then
+  bash "${RUNR_DIR}"/recipes-conf/coredump-disable.sh
+fi
 bash "${RUNR_DIR}"/recipes-conf/ssh-hostkeyalgorithms.sh
 
 
